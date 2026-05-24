@@ -1,6 +1,6 @@
-# MS-NRRR 報告中心
+# MS_N_RR/RRR Ver.A 報告中心
 
-自動產生的台股分析報告，每日 18:00 由 [MS-NRRR](https://github.com/yoshiagent) 系統更新。
+自動產生的台股分析報告，每日 18:00 由 [MS_N_RR/RRR Ver.A](https://github.com/yoshiagent) 系統更新。
 
 ## 報告
 
