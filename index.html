@@ -20,6 +20,17 @@ h2 { font-size:17px; color:#93c5fd; border-bottom:1px solid #2d3f55;
 .ext-block { border-top:1px solid #2d3f55; margin-top:14px; padding-top:12px; }
 .ext-head { color:#94a3b8; font-size:12px; margin-bottom:8px; }
 .ext-head strong { color:#fb923c; margin:0 4px; }
+.regime-light { display:inline-block; width:10px; height:10px; border-radius:50%;
+                margin-right:6px; vertical-align:middle;
+                box-shadow:0 0 6px currentColor; }
+.regime-label { font-size:14px; font-weight:bold; vertical-align:middle; }
+.regime-comment { color:#cbd5e1; font-size:12px; margin-left:6px; vertical-align:middle; }
+.regime-banner { background:#0f1a2c; border:1px solid #2d3f55; border-radius:6px;
+                 padding:8px 12px; margin-bottom:10px;
+                 display:flex; justify-content:space-between; align-items:center; gap:12px;
+                 flex-wrap:wrap; }
+.regime-banner .right { color:#94a3b8; font-size:12px; }
+.regime-banner .right strong { color:#fb923c; margin:0 4px; }
 .ext-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
             gap:6px; }
 .ext-cell { background:#0f1a2c; padding:6px 10px; border-radius:4px; font-size:12px;
@@ -112,7 +123,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
 </style>
 </head><body>
 <h1>MS_N_RR/RRR Ver.A 報告中心</h1>
-<div class="sub">資料日：2026-05-22 ｜ 產生時間：2026-05-25 05:54</div>
+<div class="sub">資料日：2026-05-22 ｜ 產生時間：2026-05-25 06:15</div>
 
 <h2>1. 市場結構（總開關）</h2>
 
@@ -130,10 +141,16 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
       </details>
       
     <div class="ext-block">
-      <div class="ext-head">
-        進階指標 ｜ regime <strong>中多</strong>
-        ｜ 站上週MA20 <span class='green'>✓</span>
-        ｜ RR 動態 Z 門檻 <strong>2.0</strong>
+      <div class="regime-banner">
+        <div>
+          <span class="regime-light" style="background:#6ee7b7;color:#6ee7b7"></span>
+          <span class="regime-label" style="color:#6ee7b7">承接有效偏多</span>
+          <span class="regime-comment">綜合結構分 <strong style="color:#6ee7b7">+0.59</strong> ｜ regime 中多</span>
+        </div>
+        <div class="right">
+          站上週MA20 <span class='green'>✓</span>
+          ｜ RR 動態 Z 門檻 <strong>2.0</strong>
+        </div>
       </div>
       <div class="ext-grid">
         <div class='ext-cell'><span class='lbl'>外資壓力分數</span><span class='val green'>-0.55</span></div>
