@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MS-NRRR 報告中心</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:24px 20px 80px; max-width:1180px; margin:auto;
+       background:#080e18; color:#e2e8f0;
+       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; }
+h1 { font-size:26px; margin:0 0 4px; }
+h2 { font-size:17px; color:#93c5fd; border-bottom:1px solid #2d3f55;
+     padding-bottom:6px; margin:28px 0 12px; }
+.sub { color:#94a3b8; font-size:13px; margin-bottom:20px; }
+
+/* 市場結構區塊 */
+.market-box { background:#131f2e; border:1px solid #2d3f55; border-radius:8px;
+              padding:16px 18px; }
+.market-state { display:inline-block; padding:4px 14px; border-radius:6px;
+                font-size:18px; font-weight:bold; margin-right:10px; }
+.state-bullish { background:#064e3b; color:#6ee7b7; }
+.state-warning, .state-defensive { background:#422006; color:#fcd34d; }
+.state-exit { background:#4c0519; color:#fda4af; }
+.market-score { display:inline-block; color:#fb923c; font-size:22px; font-weight:bold; }
+.market-action { color:#94a3b8; margin-left:10px; }
+.subscore-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
+                 gap:6px; margin:12px 0; }
+.subscore-cell { background:#0f1a2c; padding:6px 10px; border-radius:4px; font-size:12px; }
+.subscore-cell .v { color:#93c5fd; font-weight:bold; }
+.reason-list { margin:6px 0 0 18px; padding:0; color:#cbd5e1; font-size:13px; }
+.reason-list li { margin:2px 0; }
+
+/* 統計卡網格 */
+.summary-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+                gap:14px; }
+.summary-card { background:#131f2e; border:1px solid #2d3f55; border-radius:8px;
+                padding:14px 16px; transition:border-color 0.15s; }
+.summary-card:hover { border-color:#3b82f6; }
+.summary-card .head { display:flex; justify-content:space-between; align-items:baseline; }
+.summary-card .title { font-size:16px; font-weight:bold; color:#e2e8f0; }
+.summary-card .icon { font-size:22px; }
+.summary-card .dist { color:#94a3b8; font-size:13px; margin-top:6px; }
+.summary-card .dist strong { color:#e2e8f0; }
+.summary-card .green { color:#6ee7b7; } .summary-card .yellow { color:#fcd34d; }
+.summary-card .red { color:#fda4af; } .summary-card .blue { color:#93c5fd; }
+.summary-card .top3 { margin-top:8px; font-size:13px; }
+.summary-card .top3 .item { color:#cbd5e1; margin:2px 0; }
+.summary-card .top3 .item .score { color:#fb923c; font-weight:bold; float:right; }
+.summary-card .top3 .item .codenum { color:#94a3b8; font-size:11px; margin-left:4px; }
+.summary-card .detail-link { display:inline-block; margin-top:10px; font-size:13px;
+                              color:#60a5fa; text-decoration:none; }
+.summary-card .detail-link:hover { text-decoration:underline; }
+
+/* 最終行動建議 */
+.action-card { background:#0f2040; border:1px solid rgba(59,130,246,0.4); border-radius:6px;
+               padding:10px 14px; margin-bottom:6px;
+               display:flex; justify-content:space-between; align-items:center; gap:14px; }
+.action-card .main { font-size:14px; }
+.action-card .pos { font-size:16px; font-weight:bold; color:#fb923c; }
+.action-card .name-strong { font-weight:bold; color:#e2e8f0; }
+.action-card .meta { color:#94a3b8; font-size:11px; }
+
+/* 詳細頁大卡片 */
+.detail-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+               gap:12px; }
+.detail-link { display:block; text-decoration:none; color:inherit;
+               background:#131f2e; border:1px solid #2d3f55; border-radius:8px;
+               padding:18px 20px; transition:transform 0.15s, border-color 0.15s; }
+.detail-link:hover { border-color:#3b82f6; transform:translateY(-2px); }
+.detail-link .icon { font-size:28px; }
+.detail-link .title { font-size:17px; font-weight:bold; margin-top:6px; }
+.detail-link .desc { color:#94a3b8; font-size:12px; margin-top:6px; }
+
+/* 歷史備份 */
+.backup-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr));
+               gap:6px; }
+.backup-link { display:block; background:#131f2e; border:1px solid #2d3f55;
+               border-radius:6px; padding:6px 12px; color:#cbd5e1;
+               text-decoration:none; font-size:13px; text-align:center; }
+.backup-link:hover { border-color:#3b82f6; color:#60a5fa; }
+
+/* 系統文件 */
+.docs-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+             gap:6px; }
+.doc-link { display:block; background:#131f2e; border:1px solid #2d3f55;
+            border-radius:6px; padding:6px 14px; color:#cbd5e1;
+            text-decoration:none; font-size:13px; }
+.doc-link:hover { border-color:#3b82f6; color:#60a5fa; }
+.doc-link .doc-type { color:#64748b; font-size:11px; }
+
+footer { color:#64748b; font-size:12px; margin-top:40px;
+         border-top:1px solid #2d3f55; padding-top:14px; }
+code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color:#7dd3fc;
+       padding:1px 6px; border-radius:3px; font-size:12px; }
+</style>
+</head><body>
+<h1>MS-NRRR 報告中心</h1>
+<div class="sub">資料日：2026-05-22 ｜ 產生時間：2026-05-24 20:30</div>
+
+<h2>1. 市場結構（總開關）</h2>
+
+    <div class="market-box">
+      <div>
+        <span class="market-state state-bullish">bullish</span>
+        <span class="market-score">84/100</span>
+        <span class="market-action">建議：aggressive</span>
+        <span class="muted" style="float:right">as_of 2026-05-22</span>
+      </div>
+      <div class="subscore-grid"><div class='subscore-cell'>twii_daily <span class='v'>90</span></div><div class='subscore-cell'>twii_weekly <span class='v'>100</span></div><div class='subscore-cell'>twii_monthly <span class='v'>100</span></div><div class='subscore-cell'>otci_weekly <span class='v'>90</span></div><div class='subscore-cell'>fx <span class='v'>60</span></div><div class='subscore-cell'>vix <span class='v'>80</span></div><div class='subscore-cell'>futures_oi <span class='v'>44</span></div></div>
+      <details><summary style="cursor:pointer; color:#94a3b8; font-size:13px; user-select:none;">
+        評估理由（7 條）</summary>
+        <ul class="reason-list"><li>日線：收盤 &gt; 日MA20、收盤 &gt; 日MA60、日MA20 斜率向上</li><li>週線：收盤 &gt; 週MA20、週MA20 斜率向上、近 4 週新高</li><li>月線：月收 &gt; 月MA10、月MA10 斜率向上</li><li>OTC 週線：收盤 &gt; 週MA20、週MA20 斜率向上</li><li>匯率：USDTWD 偏離 60日均 -0.68%（中性）</li><li>VIX=16.8（恐慌指數偏低）</li><li>外資台指期：未平倉 -46,483 口（外資淨空 3 ~ 6 萬（中空））；趨勢 5d 均略高於 20d 均</li></ul>
+      </details>
+    </div>
+    
+
+<h2>2. 各 Agent 簡要統計</h2>
+<div class="summary-grid">
+  
+    <div class="summary-card">
+      <div class="head"><div class="title">HotFlow 主流偵測</div><div class="icon">🔥</div></div>
+      <div class="dist">
+        <span class="green">A 30</span> ／
+        <span class="yellow">B 130</span> ／
+        <span class="red">C 452</span>
+      </div>
+      <div class="top3"><div class='item'><span class='codenum'>(2454)</span> 聯發科<span class='score'>94</span></div><div class='item'><span class='codenum'>(8027)</span> 鈦昇<span class='score'>89</span></div><div class='item'><span class='codenum'>(2356)</span> 英業達<span class='score'>89</span></div></div>
+      <a class="detail-link" href="hotflow.html">看完整 HotFlow →</a>
+    </div>
+    
+  
+    <div class="summary-card">
+      <div class="head"><div class="title">N-Pattern 候選</div><div class="icon">📈</div></div>
+      <div class="dist">
+        <span class="green">候選 29</span> ／
+        <span class="yellow">觀察 2</span> ／
+        <span class="red">否決 30</span>
+      </div>
+      <div class="top3"><div class='item'><span class='codenum'>(2379)</span> 瑞昱<span class='score'>95</span></div><div class='item'><span class='codenum'>(8299)</span> 群聯<span class='score'>91</span></div><div class='item'><span class='codenum'>(2451)</span> 創見<span class='score'>91</span></div></div>
+      <a class="detail-link" href="n_pattern.html">看完整 N-Pattern →</a>
+    </div>
+    
+  
+    <div class="summary-card">
+      <div class="head"><div class="title">RR 相對輪動</div><div class="icon">🔁</div></div>
+      <div class="dist" style="font-size:11px;color:#64748b">簡版：RS_MA20 穿越觸發</div>
+      <div class="dist">
+        <span class="green">配對 190</span> ／
+        <span class="blue">switch 82</span> ／
+        <span class="muted">hold 108</span>
+      </div>
+      <div class="top3"><div class='item'><span style='color:#94a3b8'>眾達-KY→</span><strong style='color:#e2e8f0'>長榮</strong><span class='score'>conf 23</span></div><div class='item'><span style='color:#94a3b8'>智邦→</span><strong style='color:#e2e8f0'>群聯</strong><span class='score'>conf 18</span></div><div class='item'><span style='color:#94a3b8'>瑞昱→</span><strong style='color:#e2e8f0'>群聯</strong><span class='score'>conf 7</span></div></div>
+      <a class="detail-link" href="rr.html">看完整 RR →</a>
+    </div>
+    
+  
+    <div class="summary-card">
+      <div class="head"><div class="title">RRR 共振輪動</div><div class="icon">🔄</div></div>
+      <div class="dist" style="font-size:11px;color:#64748b">嚴格版：cycle + 雙邊極端折返</div>
+      <div class="dist">
+        <span class="green">配對 158</span> ／
+        <span class="blue">switch 110</span> ／
+        <span class="green">放行 103</span>
+      </div>
+      <div class="top3"><div class='item'><span style='color:#94a3b8'>台積電→</span><strong style='color:#e2e8f0'>中信金</strong><span class='score'>100%</span></div><div class='item'><span style='color:#94a3b8'>瑞昱→</span><strong style='color:#e2e8f0'>明泰</strong><span class='score'>100%</span></div><div class='item'><span style='color:#94a3b8'>京元電子→</span><strong style='color:#e2e8f0'>台新新光金</strong><span class='score'>100%</span></div></div>
+      <a class="detail-link" href="rrr.html">看完整 RRR →</a>
+    </div>
+    
+  
+    <div class="summary-card">
+      <div class="head"><div class="title">回測</div><div class="icon">📊</div></div>
+      <div class="dist">近 4 年 Z60 折返訊號回測 · 20 KB</div>
+      <div class="top3"><div class='item muted'>跑 python -m src.backtest.engine</div></div>
+      <a class='detail-link' href='backtest.html'>看完整回測報告 →</a>
+    </div>
+    
+</div>
+
+<h2>3. 最終行動建議</h2>
+<div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'>台積電</span> (2330) → 買 <span class='name-strong'>中信金</span> (2891) <span class='meta'>Z60=-0.54 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'>瑞昱</span> (2379) → 買 <span class='name-strong'>明泰</span> (3380) <span class='meta'>Z60=1.3 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'>京元電子</span> (2449) → 買 <span class='name-strong'>台新新光金</span> (2887) <span class='meta'>Z60=0.37 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'>創見</span> (2451) → 買 <span class='name-strong'>明泰</span> (3380) <span class='meta'>Z60=1.2 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'>廣達</span> (2382) → 買 <span class='name-strong'>明泰</span> (3380) <span class='meta'>Z60=0.65 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'>台積電</span> (2330) → 買 <span class='name-strong'>台新新光金</span> (2887) <span class='meta'>Z60=1.33 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'>台達電</span> (2308) → 買 <span class='name-strong'>明泰</span> (3380) <span class='meta'>Z60=-1.1 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'>群聯</span> (8299) → 買 <span class='name-strong'>中信金</span> (2891) <span class='meta'>Z60=1.07 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='muted' style='font-size:12px;margin-top:6px'>… 另有 95 筆放行，見 <a href='rrr.html' style='color:#60a5fa'>RRR 詳細頁</a></div>
+
+<h2>4. 詳細報告</h2>
+<div class='detail-grid'><a class='detail-link' href='hotflow.html' ><div class='icon'>🔥</div><div class='title'>HotFlow 主流偵測</div><div class='desc'>全市場 ~1,935 檔的 A/B/C 分類</div></a><a class='detail-link' href='n_pattern.html' ><div class='icon'>📈</div><div class='title'>N-Pattern 波段結構</div><div class='desc'>月線突破 / 週MA20 / 回測 / 量縮</div></a><a class='detail-link' href='rr.html' ><div class='icon'>🔁</div><div class='title'>RR 相對輪動</div><div class='desc'>簡版 — RS_MA20 穿越觸發</div></a><a class='detail-link' href='rrr.html' ><div class='icon'>🔄</div><div class='title'>RRR 共振輪動</div><div class='desc'>嚴格版 — Z60 折返 + 風控</div></a><a class='detail-link' href='backtest.html' ><div class='icon'>📊</div><div class='title'>回測報告</div><div class='desc'>歷史 Z60 訊號的 hit rate 與超額報酬</div></a></div>
+
+<h2>5. 歷史備份（近 7 日）</h2>
+<div class='backup-grid'><a class='backup-link' href='backup/2026-05-22/index.html'>2026-05-22</a></div>
+
+<h2>6. 系統文件</h2>
+<div class='docs-grid'><a class='doc-link' href='../../README.md'><div>README</div><div class='doc-type'>系統總覽</div></a><a class='doc-link' href='../../ARCHITECTURE.md'><div>ARCHITECTURE</div><div class='doc-type'>架構圖對照</div></a><a class='doc-link' href='../../../../stockHisData/DATA_AGENT.md'><div>Data Agent 規格</div><div class='doc-type'>中央資料層</div></a><a class='doc-link' href='../../agents/02_market_structure.md'><div>02_market_structure</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='../../agents/03_hotflow.md'><div>03_hotflow</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='../../agents/04_n_pattern.md'><div>04_n_pattern</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='../../agents/05_rrr_pair.md'><div>05_rrr_pair</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='../../agents/05_rs_zscore.md'><div>05_rs_zscore</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='../../agents/06_chip_filter.md'><div>06_chip_filter</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='../../agents/06_report_generator.md'><div>06_report_generator</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='../../agents/06_risk_control.md'><div>06_risk_control</div><div class='doc-type'>Agent 規格</div></a></div>
+
+<footer>
+MS-NRRR Report Center ｜ 由 <code>src/agents/index_builder.py</code> 產生<br>
+主頁與子頁採固定檔名方便書籤，每日跑完 orchestrator 自動 snapshot 至 <code>backup/2026-05-22/</code>，保留 7 日。
+</footer>
+</body></html>
