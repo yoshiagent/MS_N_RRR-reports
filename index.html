@@ -17,6 +17,22 @@ h2 { font-size:17px; color:#93c5fd; border-bottom:1px solid #2d3f55;
 /* 市場結構區塊 */
 .market-box { background:#131f2e; border:1px solid #2d3f55; border-radius:8px;
               padding:16px 18px; }
+.ext-block { border-top:1px solid #2d3f55; margin-top:14px; padding-top:12px; }
+.ext-head { color:#94a3b8; font-size:12px; margin-bottom:8px; }
+.ext-head strong { color:#fb923c; margin:0 4px; }
+.ext-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+            gap:6px; }
+.ext-cell { background:#0f1a2c; padding:6px 10px; border-radius:4px; font-size:12px;
+            display:flex; justify-content:space-between; align-items:baseline; }
+.ext-cell .lbl { color:#94a3b8; }
+.ext-cell .val { font-weight:bold; }
+.ext-cell .val.green { color:#6ee7b7; }
+.ext-cell .val.red   { color:#fda4af; }
+.ext-cell .val.yellow{ color:#fcd34d; }
+.ext-cell .val.blue  { color:#93c5fd; }
+.ext-source { color:#64748b; font-size:11px; margin-top:6px; }
+.ext-source a { color:#64748b; text-decoration:none; }
+.ext-source a:hover { color:#60a5fa; }
 .market-state { display:inline-block; padding:4px 14px; border-radius:6px;
                 font-size:18px; font-weight:bold; margin-right:10px; }
 .state-bullish { background:#064e3b; color:#6ee7b7; }
@@ -96,7 +112,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
 </style>
 </head><body>
 <h1>MS_N_RR/RRR Ver.A 報告中心</h1>
-<div class="sub">資料日：2026-05-22 ｜ 產生時間：2026-05-25 04:48</div>
+<div class="sub">資料日：2026-05-22 ｜ 產生時間：2026-05-25 05:03</div>
 
 <h2>1. 市場結構（總開關）</h2>
 
@@ -110,8 +126,30 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
       <div class="subscore-grid"><div class='subscore-cell'>加權日線 <span class='v'>90</span></div><div class='subscore-cell'>加權週線 <span class='v'>100</span></div><div class='subscore-cell'>加權月線 <span class='v'>100</span></div><div class='subscore-cell'>櫃買週線 <span class='v'>100</span></div><div class='subscore-cell'>匯率 <span class='v'>60</span></div><div class='subscore-cell'>VIX <span class='v'>80</span></div><div class='subscore-cell'>外資台指期 <span class='v'>44</span></div><div class='subscore-cell'>投信台指期 <span class='v'>76</span></div><div class='subscore-cell'>自營台指期 <span class='v'>66</span></div></div>
       <details><summary style="cursor:pointer; color:#94a3b8; font-size:13px; user-select:none;">
         評估理由（9 條）</summary>
-        <ul class="reason-list"><li>日線：收盤 &gt; 日MA20、收盤 &gt; 日MA60、日MA20 斜率向上</li><li>週線：收盤 &gt; 週MA20、週MA20 斜率向上、近 4 週新高</li><li>月線：月收 &gt; 月MA10、月MA10 斜率向上</li><li>OTC 週線：收盤 &gt; 週MA20、週MA20 斜率向上、近 4 週新高</li><li>匯率：USDTWD 偏離 60日均 -0.68%（中性）</li><li>VIX=16.7（恐慌指數偏低）</li><li>外資台指期：未平倉 -46,483 口（外資淨空 3 ~ 6 萬（中空））；趨勢 5d 均略高於 20d 均</li><li>投信台指期：未平倉 +42,047 口（投信淨多 ≥ 4 萬（強多））；趨勢 5d 均略低於 20d 均</li></ul>
+        <ul class="reason-list"><li>日線：收盤 &gt; 日MA20、收盤 &gt; 日MA60、日MA20 斜率向上</li><li>週線：收盤 &gt; 週MA20、週MA20 斜率向上、近 4 週新高</li><li>月線：月收 &gt; 月MA10、月MA10 斜率向上</li><li>OTC 週線：收盤 &gt; 週MA20、週MA20 斜率向上、近 4 週新高</li><li>匯率：USDTWD 偏離 60日均 -0.68%（中性）</li><li>VIX=16.7（恐慌指數偏低）</li><li>外資台指期：未平倉 -46,483 口（外資淨空 3 ~ 6 萬（中空））；趨勢 5d 均略高於 20d 均</li><li>投信台指期：未平倉 +42,047 口（投信淨多 ≥ 4 萬（強多））；趨勢 5d 均略低於 20d 均</li><li>自營台指期：未平倉 +929 口（自營淨多 &lt; 8000）；趨勢 5d 均 &gt; 20d 均 2000 口</li></ul>
       </details>
+      
+    <div class="ext-block">
+      <div class="ext-head">
+        進階指標 ｜ regime <strong>中多</strong>
+        ｜ 站上週MA20 <span class='green'>✓</span>
+        ｜ RR 動態 Z 門檻 <strong>2.0</strong>
+      </div>
+      <div class="ext-grid">
+        <div class='ext-cell'><span class='lbl'>外資壓力分數</span><span class='val green'>-0.48</span></div>
+        <div class='ext-cell'><span class='lbl'>ETF 承接分數</span><span class='val yellow'>+0.04</span></div>
+        <div class='ext-cell'><span class='lbl'>綜合結構分</span><span class='val green'>+0.52</span></div>
+        <div class='ext-cell'><span class='lbl'>外資現貨</span><span class='val'><span class='green'>+781 億</span></span></div>
+        <div class='ext-cell'><span class='lbl'>投信現貨</span><span class='val'><span class='green'>+102 億</span></span></div>
+        <div class='ext-cell'><span class='lbl'>外資台指期</span><span class='val'><span class='red'>-46,483 口</span></span></div>
+        <div class='ext-cell'><span class='lbl'>外資選擇權 PCR</span><span class='val blue'>2.05</span></div>
+        <div class='ext-cell'><span class='lbl'>USDTWD</span><span class='val blue'>31.463</span></div>
+      </div>
+      <div class="ext-source">
+        進階指標來源：姊妹專案 <code>市場結構NRR</code> ｜ as_of 2026-05-22
+      </div>
+    </div>
+    
     </div>
     
 
