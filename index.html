@@ -26,11 +26,23 @@ h2 { font-size:17px; color:#93c5fd; border-bottom:1px solid #2d3f55;
 .regime-label { font-size:14px; font-weight:bold; vertical-align:middle; }
 .regime-comment { color:#cbd5e1; font-size:12px; margin-left:6px; vertical-align:middle; }
 .regime-banner { background:#0f1a2c; border:1px solid #2d3f55; border-radius:6px;
-                 padding:8px 12px; margin-bottom:10px;
+                 padding:8px 12px; margin:10px 0;
                  display:flex; justify-content:space-between; align-items:center; gap:12px;
                  flex-wrap:wrap; }
 .regime-banner .right { color:#94a3b8; font-size:12px; }
 .regime-banner .right strong { color:#fb923c; margin:0 4px; }
+
+/* 三分數排首：外資壓力 / ETF 承接 / 綜合結構 */
+.score-row { display:grid; grid-template-columns: repeat(3, 1fr); gap:8px;
+             margin-bottom:6px; }
+.score-cell { background:#0f1a2c; border:1px solid #2d3f55; border-radius:6px;
+              padding:8px 12px; text-align:center; }
+.score-cell .lbl { color:#94a3b8; font-size:12px; }
+.score-cell .val { font-size:22px; font-weight:bold; margin-top:2px; }
+.score-cell.headline { border-width:2px; }
+@media (max-width: 600px) {
+  .score-row { grid-template-columns: 1fr; }
+}
 .ext-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
             gap:6px; }
 .ext-cell { background:#0f1a2c; padding:6px 10px; border-radius:4px; font-size:12px;
@@ -123,7 +135,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
 </style>
 </head><body>
 <h1>MS_N_RR/RRR Ver.A 報告中心</h1>
-<div class="sub">資料日：2026-05-22 ｜ 產生時間：2026-05-25 06:15</div>
+<div class="sub">資料日：2026-05-22 ｜ 產生時間：2026-05-25 06:22</div>
 
 <h2>1. 市場結構（總開關）</h2>
 
@@ -141,11 +153,18 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
       </details>
       
     <div class="ext-block">
+      <div class="score-row">
+        <div class="score-cell"><div class='lbl'>外資壓力分數</div><span class='val green'>-0.55</span></div>
+        <div class="score-cell"><div class='lbl'>ETF 承接分數</div><span class='val yellow'>+0.04</span></div>
+        <div class="score-cell headline" style="border-color:#6ee7b7">
+          <div class='lbl'>綜合結構分</div><span class='val green'>+0.59</span>
+        </div>
+      </div>
       <div class="regime-banner">
         <div>
           <span class="regime-light" style="background:#6ee7b7;color:#6ee7b7"></span>
           <span class="regime-label" style="color:#6ee7b7">承接有效偏多</span>
-          <span class="regime-comment">綜合結構分 <strong style="color:#6ee7b7">+0.59</strong> ｜ regime 中多</span>
+          <span class="regime-comment">regime 中多</span>
         </div>
         <div class="right">
           站上週MA20 <span class='green'>✓</span>
@@ -153,9 +172,6 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
         </div>
       </div>
       <div class="ext-grid">
-        <div class='ext-cell'><span class='lbl'>外資壓力分數</span><span class='val green'>-0.55</span></div>
-        <div class='ext-cell'><span class='lbl'>ETF 承接分數</span><span class='val yellow'>+0.04</span></div>
-        <div class='ext-cell'><span class='lbl'>綜合結構分</span><span class='val green'>+0.59</span></div>
         <div class='ext-cell'><span class='lbl'>外資現貨</span><span class='val'><span class='green'>+781 億</span></span></div>
         <div class='ext-cell'><span class='lbl'>投信現貨</span><span class='val'><span class='green'>+102 億</span></span></div>
         <div class='ext-cell'><span class='lbl'>外資台指期</span><span class='val'><span class='red'>-46,483 口</span></span></div>
