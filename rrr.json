@@ -3,8 +3,8 @@
   "n_tradable": 158,
   "n_switches": 110,
   "n_holds": 47,
-  "n_allowed": 103,
-  "n_blocked": 55,
+  "n_allowed": 110,
+  "n_blocked": 48,
   "tradable": [
     {
       "pair": [
@@ -8703,13 +8703,12 @@
         "1303"
       ],
       "allowed": true,
-      "position_action": "partial_switch",
-      "position_size": "75%",
+      "position_action": "full_switch",
+      "position_size": "100%",
       "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "confidence=90 → conf_size 100%；取 min(市場上限, conf_size) = 100%",
-        "買入端 1303 籌碼 warning → 部位 100% → 75%"
+        "confidence=90 → conf_size 100%；取 min(市場上限, conf_size) = 100%"
       ]
     },
     {
@@ -8802,12 +8801,14 @@
         "2449",
         "2330"
       ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "75%",
+      "signal": "switch_to_A",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "買入端 2449 籌碼判定為賣壓（外資/投信/自營持續賣超）"
+        "confidence=80 → conf_size 100%；取 min(市場上限, conf_size) = 100%",
+        "買入端 2449 籌碼 warning → 部位 100% → 75%"
       ]
     },
     {
@@ -9084,12 +9085,14 @@
         "2451",
         "2449"
       ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "75%",
+      "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "買入端 2449 籌碼判定為賣壓（外資/投信/自營持續賣超）"
+        "confidence=80 → conf_size 100%；取 min(市場上限, conf_size) = 100%",
+        "買入端 2449 籌碼 warning → 部位 100% → 75%"
       ]
     },
     {
@@ -9199,12 +9202,11 @@
       ],
       "allowed": true,
       "position_action": "partial_switch",
-      "position_size": "50%",
+      "position_size": "75%",
       "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
-        "買入端 1303 籌碼 warning → 部位 75% → 50%"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
       ]
     },
     {
@@ -9226,12 +9228,14 @@
         "2891",
         "2449"
       ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "50%",
+      "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "買入端 2449 籌碼判定為賣壓（外資/投信/自營持續賣超）"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
+        "買入端 2449 籌碼 warning → 部位 75% → 50%"
       ]
     },
     {
@@ -9353,12 +9357,11 @@
       ],
       "allowed": true,
       "position_action": "partial_switch",
-      "position_size": "50%",
+      "position_size": "75%",
       "signal": "switch_to_A",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
-        "買入端 1303 籌碼 warning → 部位 75% → 50%"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
       ]
     },
     {
@@ -9422,12 +9425,14 @@
         "3017",
         "2449"
       ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "50%",
+      "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "買入端 2449 籌碼判定為賣壓（外資/投信/自營持續賣超）"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
+        "買入端 2449 籌碼 warning → 部位 75% → 50%"
       ]
     },
     {
@@ -9507,12 +9512,11 @@
       ],
       "allowed": true,
       "position_action": "partial_switch",
-      "position_size": "50%",
+      "position_size": "75%",
       "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
-        "買入端 1303 籌碼 warning → 部位 75% → 50%"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
       ]
     },
     {
@@ -9522,12 +9526,11 @@
       ],
       "allowed": true,
       "position_action": "partial_switch",
-      "position_size": "50%",
+      "position_size": "75%",
       "signal": "switch_to_A",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
-        "買入端 1303 籌碼 warning → 部位 75% → 50%"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
       ]
     },
     {
@@ -9622,12 +9625,11 @@
       ],
       "allowed": true,
       "position_action": "partial_switch",
-      "position_size": "50%",
+      "position_size": "75%",
       "signal": "switch_to_A",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
-        "買入端 1303 籌碼 warning → 部位 75% → 50%"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
       ]
     },
     {
@@ -9650,12 +9652,14 @@
         "2449",
         "2383"
       ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "50%",
+      "signal": "switch_to_A",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "買入端 2449 籌碼判定為賣壓（外資/投信/自營持續賣超）"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
+        "買入端 2449 籌碼 warning → 部位 75% → 50%"
       ]
     },
     {
@@ -9749,12 +9753,11 @@
       ],
       "allowed": true,
       "position_action": "partial_switch",
-      "position_size": "50%",
+      "position_size": "75%",
       "signal": "switch_to_A",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
-        "買入端 1303 籌碼 warning → 部位 75% → 50%"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
       ]
     },
     {
@@ -9818,12 +9821,14 @@
         "2345",
         "2449"
       ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "50%",
+      "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "買入端 2449 籌碼判定為賣壓（外資/投信/自營持續賣超）"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
+        "買入端 2449 籌碼 warning → 部位 75% → 50%"
       ]
     },
     {
@@ -9833,12 +9838,11 @@
       ],
       "allowed": true,
       "position_action": "partial_switch",
-      "position_size": "50%",
+      "position_size": "75%",
       "signal": "switch_to_A",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
-        "買入端 1303 籌碼 warning → 部位 75% → 50%"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
       ]
     },
     {
@@ -9878,12 +9882,11 @@
       ],
       "allowed": true,
       "position_action": "partial_switch",
-      "position_size": "50%",
+      "position_size": "75%",
       "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
-        "買入端 2308 籌碼 warning → 部位 75% → 50%"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
       ]
     },
     {
@@ -9906,12 +9909,14 @@
         "2449",
         "6213"
       ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "50%",
+      "signal": "switch_to_A",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "買入端 2449 籌碼判定為賣壓（外資/投信/自營持續賣超）"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
+        "買入端 2449 籌碼 warning → 部位 75% → 50%"
       ]
     },
     {
@@ -10006,12 +10011,11 @@
       ],
       "allowed": true,
       "position_action": "partial_switch",
-      "position_size": "50%",
+      "position_size": "75%",
       "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
-        "買入端 1303 籌碼 warning → 部位 75% → 50%"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
       ]
     },
     {
@@ -10066,12 +10070,11 @@
       ],
       "allowed": true,
       "position_action": "partial_switch",
-      "position_size": "50%",
+      "position_size": "75%",
       "signal": "switch_to_A",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
-        "買入端 1303 籌碼 warning → 部位 75% → 50%"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
       ]
     },
     {
