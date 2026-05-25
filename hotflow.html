@@ -86,7 +86,7 @@
     </style></head><body>
 <a class="back-link" href="index.html">← 返回主頁</a>
 <h1>HotFlow Agent — 主流形成偵測</h1>
-<div class="sub">資料日：2026-05-25 ｜ 產生時間：2026-05-26 01:56</div>
+<div class="sub">資料日：2026-05-25 ｜ 產生時間：2026-05-26 02:05</div>
 <div>
     <span class="stat">掃描 1935 檔</span>
     <span class="stat">過前置 52</span>
@@ -1091,14 +1091,11 @@
 <div style="box-sizing:border-box;width:100%;padding:24px 20px 24px;background:#0d1117;color:#94a3b8;font-size:13px;line-height:2;border-top:1px solid #1e293b;margin-top:24px;"><div style="max-width:1180px;margin:0 auto;"><div style="color:#93c5fd;font-size:14px;font-weight:bold;border-left:3px solid #3b82f6;padding-left:10px;margin-bottom:16px;">HotFlow — 策略與用法</div><div style="display:flex;flex-wrap:wrap;gap:16px;"><div style="flex:1;min-width:240px;background:#111827;border-radius:8px;padding:14px 16px;"><div style="color:#e2e8f0;font-weight:bold;margin-bottom:8px;">🔥 什麼是 HotFlow</div>偵測「全市場主流形成」的 Agent。對 ~1,935 檔股票打分，把當前資金流向最熱的族群與個股篩出來。<br><b style="color:#e2e8f0">不做買賣決策</b>，僅作為下游 N-Pattern / RR / RRR 的候選池。</div><div style="flex:1;min-width:240px;background:#111827;border-radius:8px;padding:14px 16px;"><div style="color:#e2e8f0;font-weight:bold;margin-bottom:8px;">📊 HotFlowScore 算法</div>11 個衍生欄位 → percentile 排名 → winsorize 抑制離群 → 加權平均：<br><code style="color:#7dd3fc">月漲幅×0.25 + 週漲幅×0.20 + 5日量比×0.15 + 月底站MA×0.15 + 法人連買×0.15 + 上影壓力×0.10</code><br>回傳 0~100 分。</div><div style="flex:1;min-width:240px;background:#111827;border-radius:8px;padding:14px 16px;"><div style="color:#e2e8f0;font-weight:bold;margin-bottom:8px;">🟢 A 級條件</div><span style="color:#6ee7b7">A 主流形成中</span>：HotFlowScore ≥ 70<br>且符合：月線突破近 12 月高 / 週 K 站上 MA20 / 量能擴張<br>通常為下游 RR/RRR 配對的優先候選。</div><div style="flex:1;min-width:240px;background:#111827;border-radius:8px;padding:14px 16px;"><div style="color:#e2e8f0;font-weight:bold;margin-bottom:8px;">🟡 B 級觀察 / 🔴 C 級排除</div><span style="color:#fcd34d">B 觀察中</span>：60-70 分，部分條件未齊全<br><span style="color:#fda4af">C 過熱或排除</span>：< 60 分，已飆漲完畢或趨勢轉空<br><br><span style="color:#64748b">收合區塊可分別展開檢視。</span></div><div style="flex:1;min-width:240px;background:#111827;border-radius:8px;padding:14px 16px;"><div style="color:#e2e8f0;font-weight:bold;margin-bottom:8px;">🎯 用法建議</div><b style="color:#e2e8f0">不要直接買 A 級</b>。HotFlow 只告訴你「主流在哪」，具體進場時機要看：<br>① N-Pattern 是否成立<br>② RR/RRR 是否有可配對輪動的對手<br>③ 市場結構是否允許（regime ≥ 中性）</div><div style="flex:1;min-width:240px;background:#111827;border-radius:8px;padding:14px 16px;"><div style="color:#e2e8f0;font-weight:bold;margin-bottom:8px;">🔄 資料新鮮度</div>每日 18:00 排程器自動更新（TWSE/TPEX 17:30 公布後）。<br>若主頁顯示 as_of 與當天不一致，代表 fetch 階段網路逾時，可手動跑 <code>python -m src.agents.hotflow</code>。</div></div></div></div>
 <footer>HotFlow Agent v0.2 ｜ 不做買賣決策，僅供下游 N-shape / RRR Agent 使用</footer>
 
-<style id='MS_N_RRR_tooltip_inject'>
+<style id='MS_N_RRR_tooltip_inject_v2'>
 .tip { position: relative; cursor: help; }
-.tip::after {
-  content: attr(data-tip);
-  position: absolute;
-  bottom: 125%;
-  left: 50%;
-  transform: translateX(-50%);
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
   background: #0f172a;
   color: #e2e8f0;
   padding: 8px 12px;
@@ -1110,67 +1107,97 @@
   width: max-content;
   text-align: left;
   border: 1px solid #475569;
-  z-index: 99999;
+  z-index: 999999;
   pointer-events: none;
   line-height: 1.6;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.15s, visibility 0.15s;
-}
-.tip::before {
-  content: '';
-  position: absolute;
-  bottom: 115%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 5px solid transparent;
-  border-top-color: #475569;
-  z-index: 99999;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.15s, visibility 0.15s;
-}
-.tip:hover::after, .tip:hover::before,
-.tip.show::after, .tip.show::before,
-.tip:focus::after, .tip:focus::before {
-  opacity: 1;
-  visibility: visible;
+  display: none;
 }
 .tip:focus { outline: none; }
 @media (max-width: 600px) {
-  .tip::after { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
 }
 </style>
 <script>
 (function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
   function init(){
-    // 把所有 title 屬性轉成自訂 tooltip（避免瀏覽器原生 title 同時出現）
+    // 把所有 title 屬性轉成 data-tip
     document.querySelectorAll('[title]').forEach(function(el){
       var t = el.getAttribute('title');
       if (!t) return;
-      // 跳過 <a> 標籤（外連 anchor 的 title 屬性是螢幕閱讀器用，保留）
-      if (el.tagName === 'A') return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
       el.setAttribute('data-tip', t);
       el.removeAttribute('title');
       if (!el.classList.contains('tip')) el.classList.add('tip');
-      // 讓手機可點擊聚焦
       if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
     });
-    // 手機 tap 切換 .show；點外部關閉
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
     document.addEventListener('click', function(e){
       var tip = e.target.closest('.tip');
-      // 先關閉所有非當前目標的 tooltip
-      document.querySelectorAll('.tip.show').forEach(function(other){
-        if (other !== tip) other.classList.remove('show');
-      });
       if (tip) {
-        tip.classList.toggle('show');
-        // 行動裝置點擊後 stop 避免立即關閉
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
         e.stopPropagation();
+      } else {
+        hideTip();
       }
     });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
