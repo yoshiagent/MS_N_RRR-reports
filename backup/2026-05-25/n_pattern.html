@@ -73,7 +73,7 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 <a class="back-link" href="index.html">← 返回主頁</a>
 
 <h1>N-Pattern Agent — 波段結構候選</h1>
-<div class="sub">資料日：2026-05-25 ｜ 產生時間：2026-05-26 01:46</div>
+<div class="sub">資料日：2026-05-25 ｜ 產生時間：2026-05-26 01:56</div>
 
 <div class="stats">
   <div class="stat-cell"><div class="label">掃描檔數</div><div class="value">61</div></div>
@@ -94,4 +94,93 @@ N-Pattern Agent（原 n_shape）｜ 評分維度：月線突破 / 週線底底�
 詳見 <code>agents/04_n_pattern.md</code>
 </footer>
 
+
+<style id='MS_N_RRR_tooltip_inject'>
+.tip { position: relative; cursor: help; }
+.tip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid #475569;
+  z-index: 99999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s, visibility 0.15s;
+}
+.tip::before {
+  content: '';
+  position: absolute;
+  bottom: 115%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #475569;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s, visibility 0.15s;
+}
+.tip:hover::after, .tip:hover::before,
+.tip.show::after, .tip.show::before,
+.tip:focus::after, .tip:focus::before {
+  opacity: 1;
+  visibility: visible;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  .tip::after { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  function init(){
+    // 把所有 title 屬性轉成自訂 tooltip（避免瀏覽器原生 title 同時出現）
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      // 跳過 <a> 標籤（外連 anchor 的 title 屬性是螢幕閱讀器用，保留）
+      if (el.tagName === 'A') return;
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      // 讓手機可點擊聚焦
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // 手機 tap 切換 .show；點外部關閉
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      // 先關閉所有非當前目標的 tooltip
+      document.querySelectorAll('.tip.show').forEach(function(other){
+        if (other !== tip) other.classList.remove('show');
+      });
+      if (tip) {
+        tip.classList.toggle('show');
+        // 行動裝置點擊後 stop 避免立即關閉
+        e.stopPropagation();
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 </body></html>

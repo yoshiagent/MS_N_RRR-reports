@@ -292,5 +292,94 @@ body{width:100vw;max-width:100vw;overflow-x:hidden;background:#0d1117;margin:0;p
   </div>
 </div>
 
+
+<style id='MS_N_RRR_tooltip_inject'>
+.tip { position: relative; cursor: help; }
+.tip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid #475569;
+  z-index: 99999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s, visibility 0.15s;
+}
+.tip::before {
+  content: '';
+  position: absolute;
+  bottom: 115%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #475569;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s, visibility 0.15s;
+}
+.tip:hover::after, .tip:hover::before,
+.tip.show::after, .tip.show::before,
+.tip:focus::after, .tip:focus::before {
+  opacity: 1;
+  visibility: visible;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  .tip::after { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  function init(){
+    // 把所有 title 屬性轉成自訂 tooltip（避免瀏覽器原生 title 同時出現）
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      // 跳過 <a> 標籤（外連 anchor 的 title 屬性是螢幕閱讀器用，保留）
+      if (el.tagName === 'A') return;
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      // 讓手機可點擊聚焦
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // 手機 tap 切換 .show；點外部關閉
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      // 先關閉所有非當前目標的 tooltip
+      document.querySelectorAll('.tip.show').forEach(function(other){
+        if (other !== tip) other.classList.remove('show');
+      });
+      if (tip) {
+        tip.classList.toggle('show');
+        // 行動裝置點擊後 stop 避免立即關閉
+        e.stopPropagation();
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 </body>
 </html>
