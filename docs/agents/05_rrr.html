@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>05_rrr — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../../index.html">← 返回主頁</a>
+<h1 id="rrr-agent-relative-resonance-rotation">RRR Agent — Relative Resonance Rotation（共振輪動）</h1>
+<h2 id="_1">任務</h2>
+<p>在 N-Pattern 候選池中尋找適合做 <strong>共振輪動</strong>（RRR）的股票配對。
+兩檔股票皆須具備中長期多頭結構，<strong>且其 RS 需呈現可辨識的週期性振盪</strong>，
+藉由 Z60 極端折返訊號換股，提升資金效率。</p>
+<h2 id="rr">與 RR 的差異（同一專案兩種策略）</h2>
+<table>
+<thead>
+<tr>
+<th>面向</th>
+<th>RR (<code>05_rr.md</code>)</th>
+<th>RRR（本 Agent）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>訊號</td>
+<td>RS 對 MA20 <strong>穿越</strong></td>
+<td>Z60 <strong>極端折返</strong>（±2 後回到 ±1.7 內）</td>
+</tr>
+<tr>
+<td>配對篩選</td>
+<td>寬鬆（流動性與波動）</td>
+<td>嚴格（cycle / phase / 雙邊極端 / 反趨勢化）</td>
+</tr>
+<tr>
+<td>訊號頻率</td>
+<td>較多</td>
+<td>較少</td>
+</tr>
+<tr>
+<td>思維</td>
+<td>趨勢追隨</td>
+<td>均值回歸</td>
+</tr>
+<tr>
+<td>對應實作</td>
+<td><code>src/agents/rr_pair.py</code></td>
+<td><code>src/agents/rrr_pair.py</code> + <code>rs_zscore.py</code></td>
+</tr>
+<tr>
+<td>報告</td>
+<td><code>data/output/rr.html</code></td>
+<td><code>data/output/rrr.html</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="rrr">RRR 定義</h2>
+<p>Relative Resonance Rotation：兩檔皆為長多結構，但因產業節奏、籌碼節奏或基本面節奏錯開，
+其相對強弱（RS）在中期呈現可辨識的振盪。透過 RS / Z-score 折返訊號於兩檔之間輪動換股。</p>
+<h2 id="_2">配對條件</h2>
+<ul>
+<li>兩檔股票皆為多頭結構（週 MA20 向上、不在崩跌）</li>
+<li>兩檔皆有相對足夠的波動度</li>
+<li>RS Ratio 具有明顯振盪（非單向發散）</li>
+<li>振盪週期接近（避免一檔極快、一檔極慢）</li>
+<li>相位差明顯，理想接近反向（不要求 180 度，60-180 度皆可考慮）</li>
+<li>不可一檔長期輾壓另一檔（避免 RS 趨勢化）</li>
+</ul>
+<h2 id="_3">輸入資料</h2>
+<ul>
+<li>N-shape 候選清單（來自 <code>n_shape_agent</code>）</li>
+<li>兩檔股票日線 / 週線收盤</li>
+<li>兩檔股票歷史波動度</li>
+<li>RS 序列：<code>RS = ln(A / B)</code></li>
+</ul>
+<h2 id="_4">評分維度</h2>
+<ul>
+<li><code>volatility_score</code>：兩檔個別波動度是否足以產生可交易振幅</li>
+<li><code>cycle_score</code>：RS 振盪週期是否接近且穩定</li>
+<li><code>phase_score</code>：相位差是否夠大（越接近反向越高）</li>
+<li><code>mean_reversion_score</code>：RS 是否具有均值回歸特性（非趨勢發散）</li>
+</ul>
+<h2 id="_5">輸出格式</h2>
+<pre><code class="language-json">{
+  &quot;pair&quot;: [&quot;A&quot;, &quot;B&quot;],
+  &quot;rrr_score&quot;: 0,
+  &quot;volatility_score&quot;: 0,
+  &quot;cycle_score&quot;: 0,
+  &quot;phase_score&quot;: 0,
+  &quot;mean_reversion_score&quot;: 0,
+  &quot;reason&quot;: [],
+  &quot;status&quot;: &quot;tradable / watch / reject&quot;
+}
+</code></pre>
+<h2 id="_6">否決條件</h2>
+<ul>
+<li>任一檔不是多頭結構</li>
+<li>RS 呈單向發散（其中一檔長期輾壓另一檔）</li>
+<li>振盪週期過長或過短（不利於波段操作）</li>
+<li>波動度太低，操作空間不足</li>
+<li>兩檔高度同步（相位差過小，沒有輪動價值）</li>
+</ul>
+<h2 id="agent">與其他 Agent 的關係</h2>
+<ul>
+<li>上游：<code>n_shape_agent</code></li>
+<li>下游：<code>rs_zscore_agent</code>（提供配對給 RS/Z-score 計算）</li>
+</ul>
+<h2 id="_7">未來擴充方向</h2>
+<ul>
+<li>加入產業 / 主題分類，避免同質性配對</li>
+<li>結合主動成份 ETF 對應產業，建立產業內輪動配對</li>
+<li>加入動態週期偵測（FFT / wavelet）取代固定 window</li>
+<li>配對淘汰機制：若配對 RS 趨勢化，自動降級為 reject</li>
+</ul>
+</body></html>

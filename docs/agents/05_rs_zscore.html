@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>05_rs_zscore — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../../index.html">← 返回主頁</a>
+<h1 id="rs-z-score-agent">RS / Z-Score Agent</h1>
+<h2 id="_1">任務</h2>
+<p>計算 RRR 配對的相對強弱（RS）與其 Z-score，產生換股訊號。
+這是 MS_N_RR/RRR Ver.A 系統中最核心的換股觸發器。</p>
+<h2 id="_2">核心計算</h2>
+<pre><code>RS = ln(A / B)
+rolling_mean = mean(RS, window=60)
+rolling_std  = std(RS,  window=60)
+Z-score = (RS - rolling_mean) / rolling_std
+</code></pre>
+<p>預設 <code>window = 60</code>（交易日，約三個月）。</p>
+<h2 id="_3">訊號邏輯</h2>
+<ul>
+<li><code>Z-score &gt; +zscore_upper</code>（預設 +2）：A 相對 B 過強，等待折返</li>
+<li><code>Z-score &lt; zscore_lower</code>（預設 -2）：A 相對 B 過弱，等待折返</li>
+<li>必須等極端值「折返」進入緩衝區（<code>zscore_reentry_buffer</code>，預設 0.3）內，
+  才確認換股訊號</li>
+<li>不在極端值未折返時追訊號</li>
+<li>支援分批換股（依 <code>position_steps</code> 分批，例如 25% / 50% / 75% / 100%）</li>
+</ul>
+<h2 id="_4">輸入資料</h2>
+<ul>
+<li>RRR Pair Agent 通過的配對清單</li>
+<li>兩檔股票對齊後的日線收盤序列</li>
+<li>參數：<code>rs_window</code>、<code>zscore_upper</code>、<code>zscore_lower</code>、<code>zscore_reentry_buffer</code></li>
+</ul>
+<h2 id="_5">輸出格式</h2>
+<pre><code class="language-json">{
+  &quot;pair&quot;: [&quot;A&quot;, &quot;B&quot;],
+  &quot;rs_value&quot;: 0.0,
+  &quot;zscore&quot;: 0.0,
+  &quot;signal&quot;: &quot;hold_A / hold_B / switch_to_A / switch_to_B / no_action&quot;,
+  &quot;confidence&quot;: 0,
+  &quot;reason&quot;: []
+}
+</code></pre>
+<h2 id="switch">否決條件（不發出 switch 訊號）</h2>
+<ul>
+<li>Z-score 仍在極端值且未折返</li>
+<li>配對中任一檔已被 <code>n_shape_agent</code> 降級為 reject</li>
+<li>市場狀態為 <code>exit</code></li>
+<li>籌碼 Agent 給出 reject</li>
+</ul>
+<h2 id="agent">與其他 Agent 的關係</h2>
+<ul>
+<li>上游：<code>rrr_pair_agent</code>（提供可交易配對）</li>
+<li>下游：<code>chip_agent</code>、<code>risk_agent</code>（最終是否執行由 risk_agent 決定）</li>
+</ul>
+<h2 id="_6">未來擴充方向</h2>
+<ul>
+<li>多 window 投票（30 / 60 / 120）提高訊號穩健度</li>
+<li>動態門檻：依配對波動度自動調整 <code>zscore_upper / lower</code></li>
+<li>加入 RS 動量斜率（折返速度）作為 confidence 加權</li>
+<li>引入分批換股建議比例輸出（不只 signal，還給出建議倉位變化）</li>
+</ul>
+</body></html>

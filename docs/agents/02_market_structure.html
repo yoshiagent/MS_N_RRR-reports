@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>02_market_structure — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../../index.html">← 返回主頁</a>
+<h1 id="market-structure-agent">Market Structure Agent</h1>
+<h2 id="_1">任務</h2>
+<p>判斷大盤目前處於哪一種結構，作為整個 MS_N_RR/RRR Ver.A 系統的「總開關」。
+所有換股建議都必須先經過此 Agent 的允許才能啟動。</p>
+<h2 id="_2">市場狀態分類</h2>
+<ul>
+<li><code>bullish</code>（多頭區）：可積極換股</li>
+<li><code>warning</code>（警告區）：可換股，但提高門檻</li>
+<li><code>defensive</code>（防守區）：降低換股頻率</li>
+<li><code>exit</code>（出清區）：停止所有積極換股</li>
+</ul>
+<h2 id="_3">輸入資料</h2>
+<ul>
+<li>加權指數（TWII）日線、週線、月線</li>
+<li>櫃買指數（OTCI）日線、週線、月線</li>
+<li>大盤成交量</li>
+<li>三大法人（外資 / 投信 / 自營）買賣超</li>
+<li>台幣兌美元匯率</li>
+<li>VIX 恐慌指數</li>
+<li>台指期 外資 / 投信 / 自營 未平倉口數（位置 + 5d/20d 趨勢）</li>
+</ul>
+<h2 id="_4">判斷依據（第一階段先列原則，第二階段再公式化）</h2>
+<ul>
+<li>月線、週線結構是否仍維持多頭排列</li>
+<li>週 MA20 是否向上</li>
+<li>量價配合度</li>
+<li>法人是否同步轉空</li>
+<li>匯率是否大幅貶值</li>
+<li>台指期外資未平倉是否轉為大幅淨空</li>
+</ul>
+<h2 id="_5">輸出格式</h2>
+<pre><code class="language-json">{
+  &quot;market_state&quot;: &quot;bullish / warning / defensive / exit&quot;,
+  &quot;score&quot;: 0,
+  &quot;reason&quot;: [],
+  &quot;allowed_action&quot;: &quot;aggressive / normal / reduce / stop&quot;
+}
+</code></pre>
+<h2 id="exit">否決條件（直接判定為 exit）</h2>
+<ul>
+<li>大盤跌破週 MA20 且月線轉折向下</li>
+<li>法人連續多日大幅賣超且量價背離</li>
+<li>出現系統性風險訊號（匯率急貶、期貨外資大量轉空）</li>
+</ul>
+<h2 id="agent">與其他 Agent 的關係</h2>
+<ul>
+<li>是所有 Agent 的上游</li>
+<li><code>risk_agent</code> 必須讀取本 Agent 結果決定是否放行換股</li>
+<li><code>execution_agent</code> 第一行即為市場狀態</li>
+</ul>
+<h2 id="phase-160-z-score-2026-05-25">Phase 1：60 日 Z-score 相對歷史模型（內建，2026-05-25 起）</h2>
+<p>本 Agent 除絕對水位 + 斜率分析外，另內建 60 日滾動 Z-score 模型
+（源自姊妹專案 市場結構NRR 的 indicators/market_structure.py），
+產生以下「相對歷史」維度欄位寫入 market.json：</p>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>意義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>foreign_pressure_score</code></td>
+<td>外資壓力分數（↑=壓力大），輸入：外資現貨/期貨 Z、USDTWD Z、SOX Z</td>
+</tr>
+<tr>
+<td><code>etf_support_score</code></td>
+<td>ETF 承接分數（↑=內資承接強），輸入：投信 Z、ETF 成交占比 Z、跌幅收斂 Z</td>
+</tr>
+<tr>
+<td><code>market_structure_score</code></td>
+<td>etf_support − foreign_pressure</td>
+</tr>
+<tr>
+<td><code>regime</code></td>
+<td>strong_bull/mild_bull/neutral/mild_bear/strong_bear</td>
+</tr>
+<tr>
+<td><code>dynamic_z_threshold</code></td>
+<td>RR 動態 Z 門檻（1.5/2.0/2.5），由 regime + 站上週MA20 決定</td>
+</tr>
+<tr>
+<td><code>taiex_above_wma20</code></td>
+<td>TAIEX 是否站上週 MA20（用 100 日 MA 近似）</td>
+</tr>
+<tr>
+<td><code>raw_values</code></td>
+<td>原始值 dict（外資現貨億元、PCR、USDTWD 等）</td>
+</tr>
+<tr>
+<td><code>z_subscores</code></td>
+<td>各輸入的 60 日 Z 值 dict</td>
+</tr>
+</tbody>
+</table>
+<p>實作位於 <code>src/shared/structure_zscore.py</code>。
+資料輸入（Phase 4 起完全自主）：全部由中央 stockHisData 提供，
+包含 SOX/USDTWD/TWII/外資台指期/大盤三大法人/選擇權 PCR/ETF volume。</p>
+<p>下游消費：
+- <code>rs_zscore.py</code> 讀 dynamic_z_threshold 取代靜態 ±2.0
+- <code>index_builder.py</code> 進階指標區塊優先讀 market.json 本身欄位，
+  姊妹專案 CSV 退為 fallback</p>
+<h2 id="_6">未來擴充方向</h2>
+<ul>
+<li>加入 ADR、新高新低家數、漲跌家數比</li>
+<li>加入 VIX、美股 SP500 / Nasdaq 結構連動</li>
+<li>以多時間框架投票機制計算 score</li>
+<li>加入「結構轉換警示」（bullish → warning 提前訊號）</li>
+</ul>
+</body></html>

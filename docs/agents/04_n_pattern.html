@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>04_n_pattern — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../../index.html">← 返回主頁</a>
+<h1 id="n-shape-agent">N-Shape Agent</h1>
+<h2 id="_1">任務</h2>
+<p>從股票池中找出具有「N 型波段結構」的強勢股，作為 RRR 配對的候選池。
+重點是抓「剛脫離盤整、開始走多」的階段，而不是追已飆漲完畢的股票。</p>
+<h2 id="n">N 型結構定義</h2>
+<ol>
+<li>月線剛脫離長期盤整區（突破或站穩盤整箱頂）</li>
+<li>週線形成底底高（higher low）</li>
+<li>週 MA20 向上</li>
+<li>股價回測週 MA20 不破且止穩</li>
+<li>日線呈現量縮修正，不在追高位置</li>
+</ol>
+<h2 id="_2">輸入資料</h2>
+<ul>
+<li>個股日線、週線、月線 OHLCV</li>
+<li>個股 MA5 / MA20 / MA60 / MA120</li>
+<li>股票池（來自 <code>config/stock_pool.yaml</code>）</li>
+<li>市場狀態（來自 <code>market_structure_agent</code>，決定是否啟動掃描）</li>
+</ul>
+<h2 id="0-100">評分維度（總分 0-100）</h2>
+<ul>
+<li>月線脫離盤整強度</li>
+<li>週線底底高完整度</li>
+<li>週 MA20 斜率</li>
+<li>回測週 MA20 是否成功</li>
+<li>日線修正量能（縮量為佳）</li>
+</ul>
+<h2 id="_3">輸出格式</h2>
+<pre><code class="language-json">{
+  &quot;symbol&quot;: &quot;&quot;,
+  &quot;n_shape_score&quot;: 0,
+  &quot;timeframe&quot;: &quot;monthly / weekly / daily&quot;,
+  &quot;reason&quot;: [],
+  &quot;status&quot;: &quot;candidate / watch / reject&quot;
+}
+</code></pre>
+<h2 id="_4">否決條件</h2>
+<ul>
+<li>月線仍在下降趨勢</li>
+<li>週線跌破前波低點（破壞底底高）</li>
+<li>週 MA20 向下</li>
+<li>日線在追高位置（距 MA20 過遠）</li>
+<li>量價背離（價漲量縮且型態走完）</li>
+</ul>
+<h2 id="agent">與其他 Agent 的關係</h2>
+<ul>
+<li>上游：<code>market_structure_agent</code>（非 bullish/warning 時可選擇不啟動）</li>
+<li>下游：<code>rrr_pair_agent</code>（只在 N-shape 候選池中配對）</li>
+</ul>
+<h2 id="_5">未來擴充方向</h2>
+<ul>
+<li>加入型態識別（雙底、杯柄、平台突破等子型態分類）</li>
+<li>引入相對強弱（RS Rating）作為加權項</li>
+<li>加入產業群聚加分（同產業多檔同時出現 N 型）</li>
+<li>引入歷史回測，校準 <code>min_n_shape_score</code> 門檻</li>
+</ul>
+</body></html>

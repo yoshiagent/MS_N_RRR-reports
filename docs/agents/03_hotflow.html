@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>03_hotflow — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../../index.html">← 返回主頁</a>
+<h1 id="hotflow-agent-agent">HotFlow Agent（主流形成偵測 Agent）</h1>
+<h2 id="_1">任務</h2>
+<p>每日從台股全市場（~1,935 檔）找出「<strong>可能正在形成主流資金流</strong>」的候選股，
+作為後續 N型結構 Agent、RRR 輪動 Agent、風控 Agent 的<strong>候選池來源</strong>。</p>
+<p><strong>本 Agent 不做買賣決策、不直接產生進出場訊號。</strong></p>
+<h2 id="ms_n_rrrrr-vera">在 MS_N_RR/RRR Ver.A 中的位置</h2>
+<pre><code>Market Structure        ← 總開關（市場狀態）
+        ↓
+HotFlow Agent           ← 候選池產生（本 Agent，1,935 → ~30-50）
+        ↓
+N-shape Agent           ← 結構確認（候選池 → 多頭 N 型）
+        ↓
+RRR Pair Agent          ← 配對篩選
+        ↓
+RS / Z-score Agent      ← 換股訊號
+        ↓
+Chip Filter             ← 籌碼濾網
+        ↓
+Risk Control            ← 守門員
+        ↓
+Execution Report        ← 最終輸出
+</code></pre>
+<h2 id="_2">一、資料輸入</h2>
+<p>由 Data Agent 統一供給（<code>C:\CludeHome\stockHisData</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>程式欄位</th>
+<th>中文</th>
+<th>來源 / 計算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>date</code></td>
+<td>資料日</td>
+<td>price.date</td>
+</tr>
+<tr>
+<td><code>stock_id</code></td>
+<td>代號</td>
+<td>price.symbol</td>
+</tr>
+<tr>
+<td><code>stock_name</code></td>
+<td>股名</td>
+<td>JOIN symbols.name</td>
+</tr>
+<tr>
+<td><code>close</code></td>
+<td>收盤</td>
+<td>price.close（已 auto-adjust）</td>
+</tr>
+<tr>
+<td><code>volume</code></td>
+<td>成交量</td>
+<td>price.volume（股數）</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td>成交金額</td>
+<td>= close × volume</td>
+</tr>
+<tr>
+<td><code>amount_rank</code></td>
+<td>成交金額名次</td>
+<td><code>ROW_NUMBER() OVER (PARTITION BY date ORDER BY amount DESC)</code></td>
+</tr>
+<tr>
+<td><code>market_index_close</code></td>
+<td>大盤收盤</td>
+<td>JOIN indices(name='TWII').close</td>
+</tr>
+<tr>
+<td><code>foreign_buy_shares</code></td>
+<td>外資淨股數</td>
+<td>institutional."foreign"</td>
+</tr>
+<tr>
+<td><code>investment_trust_buy_shares</code></td>
+<td>投信淨股數</td>
+<td>institutional.trust</td>
+</tr>
+<tr>
+<td><code>dealer_buy_shares</code></td>
+<td>自營淨股數</td>
+<td>institutional.dealer</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>我們以<strong>淨股數</strong>而非成交金額計算法人指標（資料層只存股數）。</p>
+</blockquote>
+<h2 id="_3">二、核心衍生欄位</h2>
+<table>
+<thead>
+<tr>
+<th>程式欄位</th>
+<th>中文</th>
+<th>計算公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rank_change</code></td>
+<td>名次變動</td>
+<td>previous_amount_rank − current_amount_rank（正值 = 名次上升）</td>
+</tr>
+<tr>
+<td><code>rank_score</code></td>
+<td>名次分數</td>
+<td>第 1 名 = 100，第 100 名 = 1，未進榜 = 0</td>
+</tr>
+<tr>
+<td><code>rank_momentum</code></td>
+<td>名次動能</td>
+<td>rank_score_today − rank_score_yesterday</td>
+</tr>
+<tr>
+<td><code>rank_slope_5d</code></td>
+<td>5日名次斜率</td>
+<td>最近 5 日 rank_score 的 OLS 斜率（向量化：(−2y₋₄ −1y₋₃ +1y₋₁ +2y₀)/10）</td>
+</tr>
+<tr>
+<td><code>hot_persistence_20d</code></td>
+<td>20日上榜天數</td>
+<td>近 20 日進入 amount_rank ≤ 100 的天數</td>
+</tr>
+<tr>
+<td><code>amount_expansion</code></td>
+<td>成交金額擴張倍數</td>
+<td>今日 amount ÷ 過去 60 日平均 amount</td>
+</tr>
+<tr>
+<td><code>amount_z_60d</code></td>
+<td>成交金額 60 日 Z 分數</td>
+<td>(today − ma60) / std60</td>
+</tr>
+<tr>
+<td><code>rs</code></td>
+<td>相對強弱 RS</td>
+<td>個股收盤 ÷ 大盤收盤</td>
+</tr>
+<tr>
+<td><code>rs_ma20</code></td>
+<td>RS 的 20 日均</td>
+<td>rs 的 20 日 rolling mean</td>
+</tr>
+<tr>
+<td><code>rs_trend</code></td>
+<td>RS 趨勢</td>
+<td>rs_ma20 今日 &gt; 昨日 → 1，否則 0</td>
+</tr>
+<tr>
+<td><code>weekly_ma20_slope</code></td>
+<td>週MA20 斜率</td>
+<td>日 K → 週 K resample → 週MA20 → 最近 5 週 OLS 斜率</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hotflowscore">三、HotFlowScore 計算（加權合成）</h2>
+<table>
+<thead>
+<tr>
+<th>子分數</th>
+<th>權重</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RankMomentum</td>
+<td>25%</td>
+</tr>
+<tr>
+<td>RankSlope_5D</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>HotPersistence_20D</td>
+<td>15%</td>
+</tr>
+<tr>
+<td>AmountZ_60D</td>
+<td>15%</td>
+</tr>
+<tr>
+<td>AmountExpansion</td>
+<td>10%</td>
+</tr>
+<tr>
+<td>RS（RS_Trend × 50% + RS 強度 × 50%）</td>
+<td>10%</td>
+</tr>
+<tr>
+<td>WeeklyMA20Slope</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>正規化流程</strong>：
+1. <strong>Winsorize</strong>：對每個原始指標 clip 在 [P1, P99]，避免極端值
+2. <strong>Percentile rank</strong>：用 <code>rank(pct=True) × 100</code>，得到 0–100 的截面排名
+3. <strong>加權合成</strong>：<code>HotFlowScore = Σ (pr_i × weight_i)</code>（範圍 0–100）</p>
+<blockquote>
+<p>全部用百分位排名（cross-section within today's universe），避免不同指標尺度差異。</p>
+</blockquote>
+<h2 id="_4">四、硬性前置條件（任一未過 → 直接排除）</h2>
+<table>
+<thead>
+<tr>
+<th>條件</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>歷史資料 ≥ 100 日</td>
+<td>算 60 日 Z 分數 + 24 週 MA20</td>
+</tr>
+<tr>
+<td>今日 volume &gt; 0</td>
+<td>排除停牌</td>
+</tr>
+<tr>
+<td>20 日均成交金額 ≥ 5,000 萬 NTD</td>
+<td>流動性下限，避免小型股雜訊</td>
+</tr>
+<tr>
+<td>週 MA20 斜率 &gt; 0（最近 5 週 OLS）</td>
+<td>中期動能向上是基本盤</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">五、分類規則</h2>
+<h3 id="a">A 主流形成中</h3>
+<p><strong>全部條件均成立</strong>：
+- HotFlowScore 位於前 20%（percentile rank ≥ 80）
+- <code>rank_slope_5d &gt; 0</code>（名次趨勢上升中）
+- <code>hot_persistence_20d ≥ 3</code>（20 日內至少 3 次上榜）
+- <code>rs_trend == 1</code>（RS 正在轉強）
+- <code>weekly_ma20_slope ≥ 0</code>（週MA20 不下彎）
+- 近 5 日漲幅 ≤ 25%（未過熱）</p>
+<h3 id="b">B 觀察中</h3>
+<ul>
+<li>HotFlowScore 位於前 40%（PR ≥ 60）</li>
+<li>但未完全符合 A 級條件</li>
+</ul>
+<h3 id="c">C 過熱或排除</h3>
+<p>任一觸發即歸 C：
+- 近 5 日漲幅 &gt; 25%
+- <code>amount_z_60d &gt; 3</code> 但 <code>hot_persistence_20d &lt; 2</code>（單日爆衝缺乏持續度）
+- <code>rs_trend == 0</code> 且 <code>rs_strength_20d &lt; 0</code>（RS 未轉強）
+- <code>weekly_ma20_slope &lt; 0</code>（週MA20 下彎）</p>
+<h2 id="_6">六、輸出格式</h2>
+<h3 id="json">單檔候選 JSON</h3>
+<pre><code class="language-json">{
+  &quot;stock_id&quot;: &quot;2454&quot;,
+  &quot;stock_name&quot;: &quot;聯發科&quot;,
+  &quot;as_of&quot;: &quot;2026-05-22&quot;,
+  &quot;hotflow_score&quot;: 93.6,
+  &quot;score_pr&quot;: 100.0,
+  &quot;status&quot;: &quot;A 主流形成中&quot;,
+  &quot;subscores_pr&quot;: {
+    &quot;rank_momentum&quot;: 94.0,
+    &quot;rank_slope_5d&quot;: 91.7,
+    &quot;hot_persistence_20d&quot;: 96.7,
+    &quot;amount_z_60d&quot;: 93.0,
+    &quot;amount_expansion&quot;: 87.4,
+    &quot;rs_combined&quot;: 96.2,
+    &quot;weekly_ma20_slope&quot;: 98.5
+  },
+  &quot;derived&quot;: {
+    &quot;amount_rank&quot;: 1,
+    &quot;rank_score&quot;: 100,
+    &quot;rank_change&quot;: 8.0,
+    &quot;rank_momentum&quot;: 8.0,
+    &quot;rank_slope_5d&quot;: 1.4,
+    &quot;hot_persistence_20d&quot;: 20,
+    &quot;amount_expansion&quot;: 3.25,
+    &quot;amount_z_60d&quot;: 2.7,
+    &quot;rs&quot;: 0.091322,
+    &quot;rs_ma20&quot;: 0.078435,
+    &quot;rs_trend&quot;: 1,
+    &quot;weekly_ma20_slope&quot;: 99.06,
+    &quot;ret_5d_pct&quot;: 18.4,
+    &quot;ret_20d_pct&quot;: 74.27,
+    &quot;rs_strength_20d_pct&quot;: 62.19,
+    &quot;close&quot;: 3860.0,
+    &quot;amount_million&quot;: 80007.0
+  },
+  &quot;classify_reason&quot;: [
+    &quot;HotFlow 進前 0%&quot;,
+    &quot;名次 5d 斜率 +1.4&quot;,
+    &quot;20日上榜 20 天&quot;,
+    &quot;RS 轉強且週MA20 向上&quot;
+  ]
+}
+</code></pre>
+<h3 id="_7">批次輸出</h3>
+<ul>
+<li><code>data/output/hotflow_{YYYYMMDD}.csv</code> — 全候選清單（中英欄位）</li>
+<li><code>data/output/hotflow_{YYYYMMDD}.json</code> — 結構化原始資料</li>
+<li><code>data/output/hotflow_{YYYYMMDD}.html</code> — A/B/C 三段視覺報告</li>
+</ul>
+<h2 id="_8">七、中英對照表</h2>
+<p>定義於 <code>src/hotflow.py</code> 內的 <code>CN_LABELS</code> dict，給 HTML / CSV 顯示用：</p>
+<pre><code class="language-python">CN_LABELS = {
+    &quot;amount_rank&quot;:           &quot;成交金額名次&quot;,
+    &quot;rank_score&quot;:            &quot;名次分數&quot;,
+    &quot;rank_change&quot;:           &quot;名次變動&quot;,
+    &quot;rank_momentum&quot;:         &quot;名次動能&quot;,
+    &quot;rank_slope_5d&quot;:         &quot;5日名次斜率&quot;,
+    &quot;hot_persistence_20d&quot;:   &quot;20日上榜天數&quot;,
+    &quot;amount_expansion&quot;:      &quot;成交金額擴張倍數&quot;,
+    &quot;amount_z_60d&quot;:          &quot;成交金額Z分數60日&quot;,
+    &quot;rs&quot;:                    &quot;相對強弱RS&quot;,
+    &quot;rs_ma20&quot;:               &quot;RS的20日均&quot;,
+    &quot;rs_trend&quot;:              &quot;RS趨勢&quot;,
+    &quot;weekly_ma20_slope&quot;:     &quot;週MA20斜率&quot;,
+    &quot;hotflow_score&quot;:         &quot;主流評分&quot;,
+}
+</code></pre>
+<h2 id="agent">八、與其他 Agent 的關係</h2>
+<ul>
+<li><strong>上游</strong>：<code>market_structure_agent</code></li>
+<li>市場狀態為 <code>exit</code> 時，HotFlow 仍會跑但下游 risk_agent 不會放行</li>
+<li>市場 <code>defensive</code> 時，可考慮提高 A 級 PR 門檻（從 80 → 90）</li>
+<li><strong>下游</strong>：<code>n_shape_agent</code></li>
+<li>n_shape 改用 HotFlow 的 A/B 候選清單作為輸入（取代 stock_pool.yaml 的固定 61 檔）</li>
+<li>動態股池：今日 A + B 才進 N-shape 評估</li>
+</ul>
+<h2 id="_9">九、未來擴充方向</h2>
+<ol>
+<li><strong>產業集中度偵測</strong>：A 級 candidate 在同一產業多檔同時出現 → 標「主流族群」</li>
+<li><strong>主題自動標籤</strong>：AI 伺服器 / ABF / CCL / 散熱 / 記憶體… 等</li>
+<li><strong>資金流時序</strong>：HotFlowScore 的 5 日趨勢（上升 / 平穩 / 下降）</li>
+<li><strong>悄悄放量 vs 天量爆發</strong>：低 amount_z_60d 但高 hot_persistence_20d → 標「早期主流」</li>
+<li><strong>主力分點淨買賣</strong>：當作 chip 子分數，需資料源接入</li>
+<li><strong>借券大增警示</strong>：硬扣分（潛在放空壓力）</li>
+<li><strong>回測</strong>：用歷史 HotFlowScore 預測未來 N 日報酬，校準權重與門檻</li>
+</ol>
+<h2 id="_10">十、實作位置</h2>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>agents/hotflow_agent.md</code></td>
+<td>本規格文件</td>
+</tr>
+<tr>
+<td><code>src/hotflow.py</code></td>
+<td>實作（~600 行）</td>
+</tr>
+<tr>
+<td><code>data/output/hotflow_YYYYMMDD.csv/json/html</code></td>
+<td>每日輸出</td>
+</tr>
+</tbody>
+</table>
+<p>CLI：</p>
+<pre><code class="language-powershell">python -m src.hotflow                 # 跑 DB 最新一日
+python -m src.hotflow --date 2026-05-22  # 指定日期
+python -m src.hotflow --top 50        # console 顯示前 N 筆
+</code></pre>
+</body></html>

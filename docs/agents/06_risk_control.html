@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>06_risk_control — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../../index.html">← 返回主頁</a>
+<h1 id="risk-agent">Risk Agent（風控守門員）</h1>
+<h2 id="_1">任務</h2>
+<p>最後決策守門員。決定是否允許換股、允許多少倉位、允許多少批次。
+所有換股訊號最終必須通過 <code>risk_agent</code> 才會出現在 <code>execution_agent</code> 報告中。</p>
+<h2 id="_2">核心規則</h2>
+<ul>
+<li>不做空（<code>allow_short = false</code>，硬性規則）</li>
+<li>只在配對中兩檔皆「週 MA20 向上」時，才允許 RRR 換股</li>
+<li>市場結構為 <code>defensive</code> 時，降低換股頻率（提高訊號門檻 / 縮小單次部位）</li>
+<li>市場結構為 <code>exit</code> 時，不產生積極換股建議</li>
+<li>單一股票部位不得過度集中（依 <code>rules.yaml</code> 設定上限）</li>
+<li>支援分批換股（25% / 50% / 75% / 100%）</li>
+<li>價差 Z-score 未折返，不追訊號</li>
+</ul>
+<h2 id="_3">輸入資料</h2>
+<ul>
+<li><code>market_structure_agent</code> 輸出</li>
+<li><code>rs_zscore_agent</code> 輸出</li>
+<li><code>chip_agent</code> 輸出</li>
+<li>目前持倉與部位比例</li>
+<li>參數：<code>position_steps</code>、單股上限、配對上限</li>
+</ul>
+<h2 id="_4">輸出格式</h2>
+<pre><code class="language-json">{
+  &quot;allowed&quot;: true,
+  &quot;position_action&quot;: &quot;full_switch / partial_switch / hold / reduce / stop&quot;,
+  &quot;position_size&quot;: &quot;0% / 25% / 50% / 75% / 100%&quot;,
+  &quot;risk_reason&quot;: []
+}
+</code></pre>
+<h2 id="_5">否決條件</h2>
+<ul>
+<li>市場狀態 = <code>exit</code></li>
+<li>配對任一檔週 MA20 向下</li>
+<li>籌碼 Agent 對任一檔給出 <code>reject</code></li>
+<li>Z-score 處於極端值但尚未折返</li>
+<li>單股已達持倉上限</li>
+</ul>
+<h2 id="agent">與其他 Agent 的關係</h2>
+<ul>
+<li>是所有訊號的最後關卡</li>
+<li>直接決定 <code>execution_agent</code> 的「最終行動建議」</li>
+</ul>
+<h2 id="_6">未來擴充方向</h2>
+<ul>
+<li>加入個股波動度權重（高波動股自動降低倉位）</li>
+<li>加入帳戶層級的整體曝險上限（總多頭曝險 ≤ X%）</li>
+<li>引入回撤控制（連續虧損後自動降批次）</li>
+<li>加入「冷卻期」機制（剛換股的配對短期內不重複換）</li>
+</ul>
+</body></html>
