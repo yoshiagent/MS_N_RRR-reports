@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自選配對 — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:24px 20px 80px; max-width:1180px; margin:auto;
+       background:#080e18; color:#e2e8f0;
+       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; }
+h1 { font-size:22px; margin:0 0 4px; }
+.sub { color:#94a3b8; font-size:13px; margin-bottom:18px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+.stats { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+         gap:10px; margin-bottom:18px; }
+.stat-cell { background:#131f2e; border:1px solid #2d3f55; border-radius:8px; padding:10px 14px; }
+.stat-cell .label { color:#94a3b8; font-size:12px; }
+.stat-cell .value { font-size:18px; font-weight:bold; }
+.green { color:#6ee7b7; }
+.yellow { color:#fcd34d; }
+.red { color:#fda4af; }
+.blue { color:#93c5fd; }
+.muted { color:#94a3b8; }
+table { width:100%; border-collapse:collapse; font-size:14px; margin-top:8px; }
+th { text-align:left; padding:8px 12px; border-bottom:1px solid #2d3f55;
+     color:#94a3b8; font-weight:600; background:#0f1a2c; }
+td { padding:8px 12px; border-bottom:1px solid #1e293b; vertical-align:top; }
+.pair-row { background:#131f2e; }
+.pair-row.switch { box-shadow: inset 4px 0 0 #fb923c; }
+.pair-row.hold { box-shadow: inset 4px 0 0 #93c5fd; }
+.pair-row.none { box-shadow: inset 4px 0 0 #475569; }
+.name-strong { font-weight:bold; color:#e2e8f0; }
+.code { color:#94a3b8; font-size:12px; margin-left:4px; }
+.signal-tag { display:inline-block; padding:2px 10px; border-radius:10px;
+              font-size:12px; font-weight:bold; }
+.signal-tag.switch_to_A, .signal-tag.switch_to_B { background:#7c2d12; color:#fdba74; }
+.signal-tag.hold_A, .signal-tag.hold_B { background:#1e3a8a; color:#93c5fd; }
+.signal-tag.no_action { background:#1e293b; color:#94a3b8; }
+.num { font-variant-numeric:tabular-nums; text-align:right; }
+.reason-cell { color:#cbd5e1; font-size:12px; }
+.reason-cell li { margin-left:18px; }
+footer { color:#64748b; font-size:12px; margin-top:30px;
+         border-top:1px solid #2d3f55; padding-top:12px; }
+</style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">← 返回主頁</a>
+
+<h1>自選配對 RR 評估</h1>
+<div class="sub">資料來源：<code>配對表.xlsx</code>（依序兩兩成對）
+｜ 資料日：2026-05-22 ｜ 產生時間：2026-05-25 10:19</div>
+
+<div class="stats">
+  <div class="stat-cell"><div class="label">配對總數</div><div class="value">5</div></div>
+  <div class="stat-cell"><div class="label">換股</div><div class="value yellow">5</div></div>
+  <div class="stat-cell"><div class="label">續抱</div><div class="value blue">0</div></div>
+  <div class="stat-cell"><div class="label">無訊號</div><div class="value muted">0</div></div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th class='num'>#</th>
+      <th>A／B 配對</th>
+      <th class='num'>Z60</th>
+      <th>訊號</th>
+      <th class='num'>信心度</th>
+      <th>建議動作</th>
+    </tr>
+  </thead>
+  <tbody><tr class='pair-row switch'><td class='num'>1</td><td><span class='name-strong'>南電</span><span class='code'>8046</span> ／ <span class='name-strong'>欣興</span><span class='code'>3037</span></td><td class='num green'>-1.67</td><td><span class='signal-tag switch_to_A'>換 A 持有</span></td><td class='num'>70</td><td>賣 <span class='muted'>欣興</span> → 買 <span class='name-strong'>南電</span></td></tr><tr><td></td><td colspan='5' class='reason-cell'><ul><li>as_of=2026-05-22</li><li>RS=-0.0378, Z60=-1.67</li><li>近 20 日 Z 範圍 [-2.14, +0.96]</li><li>近期 Z 極小 -2.14 已折返至 -1.67（≥ -1.7） → 賣 3037 換 8046</li></ul></td></tr><tr class='pair-row switch'><td class='num'>2</td><td><span class='name-strong'>晶豪科</span><span class='code'>3006</span> ／ <span class='name-strong'>智原</span><span class='code'>3035</span></td><td class='num yellow'>+0.56</td><td><span class='signal-tag switch_to_B'>換 B 持有</span></td><td class='num'>70</td><td>賣 <span class='muted'>晶豪科</span> → 買 <span class='name-strong'>智原</span></td></tr><tr><td></td><td colspan='5' class='reason-cell'><ul><li>as_of=2026-05-22</li><li>RS=+0.1183, Z60=+0.56</li><li>近 20 日 Z 範圍 [-1.69, +2.28]</li><li>近期 Z 極大 +2.28 已折返至 +0.56（≤ +1.7） → 賣 3006 換 3035</li></ul></td></tr><tr class='pair-row switch'><td class='num'>3</td><td><span class='name-strong'>華邦電</span><span class='code'>2344</span> ／ <span class='name-strong'>南亞科</span><span class='code'>2498</span></td><td class='num yellow'>+0.74</td><td><span class='signal-tag switch_to_B'>換 B 持有</span></td><td class='num'>70</td><td>賣 <span class='muted'>華邦電</span> → 買 <span class='name-strong'>南亞科</span></td></tr><tr><td></td><td colspan='5' class='reason-cell'><ul><li>as_of=2026-05-22</li><li>RS=+0.9910, Z60=+0.74</li><li>近 20 日 Z 範圍 [-1.15, +2.27]</li><li>近期 Z 極大 +2.27 已折返至 +0.74（≤ +1.7） → 賣 2344 換 2498</li></ul></td></tr><tr class='pair-row switch'><td class='num'>4</td><td><span class='name-strong'>上銀</span><span class='code'>2049</span> ／ <span class='name-strong'>大銀微系統</span><span class='code'>4576</span></td><td class='num yellow'>-1.03</td><td><span class='signal-tag switch_to_A'>換 A 持有</span></td><td class='num'>70</td><td>賣 <span class='muted'>大銀微系統</span> → 買 <span class='name-strong'>上銀</span></td></tr><tr><td></td><td colspan='5' class='reason-cell'><ul><li>as_of=2026-05-22</li><li>RS=+0.3645, Z60=-1.03</li><li>近 20 日 Z 範圍 [-2.08, -0.68]</li><li>近期 Z 極小 -2.08 已折返至 -1.03（≥ -1.7） → 賣 4576 換 2049</li></ul></td></tr><tr class='pair-row switch'><td class='num'>5</td><td><span class='name-strong'>巨大</span><span class='code'>9921</span> ／ <span class='name-strong'>美利達</span><span class='code'>9914</span></td><td class='num yellow'>-1.38</td><td><span class='signal-tag switch_to_B'>換 B 持有</span></td><td class='num'>80</td><td>賣 <span class='muted'>巨大</span> → 買 <span class='name-strong'>美利達</span></td></tr><tr><td></td><td colspan='5' class='reason-cell'><ul><li>as_of=2026-05-22</li><li>RS=+0.0362, Z60=-1.38</li><li>近 20 日 Z 範圍 [-1.94, +2.52]</li><li>近期 Z 極大 +2.52 已折返至 -1.38（≤ +1.7） → 賣 9921 換 9914</li></ul></td></tr></tbody>
+</table>
+
+<footer>
+自選配對：使用者於專案根目錄 <code>配對表.xlsx</code> 維護的清單，依序兩兩成對。<br>
+評估邏輯沿用 RR 的 <code>rs_zscore.compute_signal()</code>，與主 RR 頁採同一套折返判定。
+</footer>
+
+</body></html>
