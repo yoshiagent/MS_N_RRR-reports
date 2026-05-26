@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>README — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../index.html">← 返回主頁</a>
+<h1 id="ms_n_rrrrr-vera">MS_N_RR/RRR Ver.A</h1>
+<p>台股長多換股輪動決策系統。<strong>不做空、不追極端值、等折返才換</strong>。</p>
+<p>主頁：<a href="https://yoshiagent.github.io/MS_N_RRR-reports/">https://yoshiagent.github.io/MS_N_RRR-reports/</a></p>
+<hr />
+<h2 id="_1">一句話描述</h2>
+<p>每天 18:00（台股收盤 + 30 分鐘）自動跑：
+<strong>抓資料 → 評估市場 → 偵測主流 → 找配對 → 風控 → 產 HTML 報告 → 部署 GitHub Pages → 推 Email + Telegram。</strong></p>
+<hr />
+<h2 id="10-agent">系統流程（10 個 Agent 順序執行）</h2>
+<pre><code> 1. Data Agent           增量抓 yfinance + TWSE/TPEX + TAIFEX
+ 2. Market Structure     大盤狀態：bullish / warning / defensive / exit
+                         +60 日 Z-score 模型：foreign_pressure / etf_support / regime
+ 3. HotFlow              全市場 ~2,700 檔 → A/B/C 分類
+ 4. N-Pattern            波段結構候選股
+ 5a. RR Pair             簡版相對輪動（RS_MA20 穿越）
+ 5b. RRR Pair            嚴格版共振輪動（Z60 折返 + cycle + 雙邊極端）
+ 6. Chip Filter          外資/投信/自營籌碼濾網
+ 7. Risk Control         動作放行決策（部位 25/50/75/100%）
+ 8. Report Generator     HTML/JSON 子頁
+ 9. Custom Pairs         自選配對表（配對表.xlsx）+ pair_chart 互動圖表
+10. Notify               Email + Telegram
+</code></pre>
+<p>主頁 <code>index.html</code> 把 1~9 的成果整合成一頁。</p>
+<hr />
+<h2 id="5">5 分鐘上手</h2>
+<pre><code class="language-powershell"># 1. 看今日報告（自動更新中）
+打開瀏覽器 → https://yoshiagent.github.io/MS_N_RRR-reports/
+
+# 2. 本地手動跑一次（不抓網路、僅重生報告）
+cd C:\CludeHome\projects\MS_N_RRR
+python -m src.orchestrator --skip-fetch --skip-notify
+
+# 3. 完整跑（抓資料 + 通知）
+python -m src.orchestrator
+
+# 4. 部署排程（已設定，週一~五 18:00 自動跑）
+Get-ScheduledTask MS_N_RRR_Daily
+</code></pre>
+<hr />
+<h2 id="_2">各分頁</h2>
+<table>
+<thead>
+<tr>
+<th>頁</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>index.html</code></td>
+<td>主頁：市場結構 + 5 張 Agent 統計卡 + 最終行動建議 + 子頁連結</td>
+</tr>
+<tr>
+<td><code>hotflow.html</code></td>
+<td>全市場 A/B/C 分類（收合呈現）</td>
+</tr>
+<tr>
+<td><code>n_pattern.html</code></td>
+<td>N-Pattern 候選股詳細</td>
+</tr>
+<tr>
+<td><code>rr.html</code></td>
+<td>RR 簡版（RS_MA20 穿越觸發）</td>
+</tr>
+<tr>
+<td><code>rrr.html</code></td>
+<td>RRR 嚴格版（Z60 折返 + 風控放行）</td>
+</tr>
+<tr>
+<td><code>custom_pairs.html</code></td>
+<td>自選 5 組配對的 RR 評估</td>
+</tr>
+<tr>
+<td><code>nan_xin_chart.html</code>（#1）<br><code>pair_3006_3035.html</code>（#2）<br><code>pair_2344_2408.html</code>（#3）<br><code>pair_2049_4576.html</code>（#4）<br><code>pair_9921_9914.html</code>（#5）</td>
+<td>每組配對的完整互動圖表（Plotly + 換股紀錄 + 5 項健康檢查 + 策略說明）</td>
+</tr>
+<tr>
+<td><code>backtest.html</code></td>
+<td>回測報告</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_3">客製化（不需動程式碼）</h2>
+<h3 id="_4">新增自選配對</h3>
+<p>編輯 <code>配對表.xlsx</code>（不入 git，個人股票清單）：</p>
+<pre><code>序號 | 代號 | 股名 | 圖表連結（可選）
+ 1   | 8046 | 南電 | (留空即用內建)
+ 2   | 3037 | 欣興 | (B 側通常留空)
+ 3   | 3006 | 晶豪科
+ 4   | 3035 | 智原
+ ...
+</code></pre>
+<p>依序兩兩成對。下次 <code>python -m src.orchestrator --skip-fetch</code> 就會：
+1. 跑 RR 訊號評估
+2. 為每組產出獨立 Plotly 互動圖表
+3. 主頁自選配對卡自動顯示新組</p>
+<h3 id="_5">新增配對的產業描述</h3>
+<p>編 <code>src/agents/custom_pairs.py</code> 的 <code>PAIR_SECTOR_MAP</code> 字典：</p>
+<pre><code class="language-python">PAIR_SECTOR_MAP = {
+    1: &quot;PCB 載板（ABF）&quot;,
+    2: &quot;IC 設計&quot;,
+    3: &quot;電子業&quot;,
+    4: &quot;滾珠螺桿&quot;,
+    5: &quot;自行車&quot;,
+    6: &quot;你的新產業描述&quot;,  # 新增
+}
+</code></pre>
+<h3 id="_6">通知開關</h3>
+<p>編輯 <code>config/notify.local.yaml</code>（不入 git）：</p>
+<pre><code class="language-yaml">telegram:
+  enabled: true / false
+email:
+  enabled: true / false
+</code></pre>
+<hr />
+<h2 id="_7">進階文件</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="ARCHITECTURE.md">ARCHITECTURE.md</a></strong></td>
+<td>完整架構、目錄、模組對照表</td>
+</tr>
+<tr>
+<td><strong><a href="INTEGRATIONS.md">INTEGRATIONS.md</a></strong></td>
+<td>整合史 + 再整合指南（含 Claude 重新接手的所有資訊）</td>
+</tr>
+<tr>
+<td><strong><a href="OPERATIONS.md">OPERATIONS.md</a></strong></td>
+<td>日常操作手冊（如何排程、如何 commit、如何 debug）</td>
+</tr>
+<tr>
+<td><code>agents/02_market_structure.md</code> ~ <code>06_*.md</code></td>
+<td>各 Agent 規格</td>
+</tr>
+<tr>
+<td><code>C:\CludeHome\stockHisData\DATA_AGENT.md</code></td>
+<td>中央資料層使用說明</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_8">設計原則</h2>
+<ol>
+<li><strong>單一事實來源</strong>：股票價量、法人、期貨等全部存中央 <code>C:\CludeHome\stockHisData</code></li>
+<li><strong>每日固定流程</strong>：排程器 → orchestrator → 11 個 step → 部署 + 通知</li>
+<li><strong>報告固定檔名</strong>：書籤友善，舊版進入 <code>backup/{date}/</code> 保留 7 日</li>
+<li><strong>訊號層次清楚</strong>：技術面找機會，籌碼濾，風控守</li>
+<li><strong>配置與資料分離</strong>：xlsx 可由使用者改、程式不動</li>
+</ol>
+<hr />
+<h2 id="_9">排除問題</h2>
+<ul>
+<li><strong>報告沒更新</strong>：檢查 <code>Get-ScheduledTaskInfo MS_N_RRR_Daily</code>，或手動跑 <code>python -m src.orchestrator</code></li>
+<li><strong>Telegram 失效</strong>：見 <code>OPERATIONS.md</code> § Telegram 重設</li>
+<li><strong>某配對 chart 沒產出</strong>：檢查 <code>data/output/custom_pairs.json</code> 的 <code>chart_status</code>；通常是中央 stockHisData 缺該檔個股資料</li>
+<li><strong>想加新 Agent</strong>：參考 <code>INTEGRATIONS.md</code> § 新增 Agent 流程</li>
+</ul>
+</body></html>

@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>INTEGRATIONS — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../index.html">← 返回主頁</a>
+<h1 id="ms_n_rrrrr-vera">MS_N_RR/RRR Ver.A 整合史與再整合指南</h1>
+<p>本文件記錄已整合進 Ver.A 的外部專案／模組，並提供未來再整合（或重新整合）所需的完整資訊。</p>
+<p>最後更新：2026-05-26</p>
+<hr />
+<h2 id="_1">整合史時間軸</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>Commit</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-05-23</td>
+<td>6749e6d</td>
+<td>報告部署到 GitHub Pages（<code>yoshiagent/MS_N_RRR-reports</code>）</td>
+</tr>
+<tr>
+<td>2026-05-24</td>
+<td>56cb08c</td>
+<td>系統正名為 MS_N_RR/RRR Ver.A + Email/Telegram notify 框架</td>
+</tr>
+<tr>
+<td>2026-05-24</td>
+<td>1f4927f</td>
+<td>Telegram 切換 HTML parse mode 修復 URL underscore 問題</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>c3df021</td>
+<td>加 i18n module（英中對照）</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>b8e4a96</td>
+<td>market_structure 新增投信/自營 futures OI subscore</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>8c24adf</td>
+<td><strong>整合 1：surface 姊妹專案 市場結構NRR 進階指標於主頁</strong></td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>570dab2</td>
+<td>進階指標源連結到姊妹專案 GitHub Pages</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>c3f7979</td>
+<td><strong>整合 1 Phase 1</strong>：60 日 Z-score 市場結構模型內建</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>0671ad7 / e0a4503</td>
+<td>進階指標版面：regime 燈號 banner + 3 分數置頂</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>77a301b</td>
+<td><strong>整合 1 Phase 4</strong>：structure_zscore 完全脫離姊妹專案（搬中央 stockHisData）</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>dd59fdb</td>
+<td><strong>整合 2</strong>：自選配對 custom_pairs（讀 xlsx → RR 評估）</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>7f752ce</td>
+<td>配對表加圖表連結欄</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>df062df</td>
+<td><strong>整合 3</strong>：南電/欣興 完整 dashboard 移植（chart_gen + pair_health）</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>bb740d8</td>
+<td><strong>整合 3 延伸</strong>：pair_chart 通用化，5 組配對全部有完整 Plotly 圖表</td>
+</tr>
+<tr>
+<td>2026-05-26</td>
+<td>—</td>
+<td><strong>整合 4 P1+P2+P3</strong>：MS-Agent v2 Session 1 — sector_map（雙軌）+ ms_breadth + ms_diffusion</td>
+</tr>
+<tr>
+<td>2026-05-26</td>
+<td>—</td>
+<td><strong>整合 4 P1b</strong>：XQ industry_sub.csv 加入資料層，sector_map 升級為三軌（官方/自建/XQ）</td>
+</tr>
+<tr>
+<td>2026-05-26</td>
+<td>—</td>
+<td><strong>整合 4 P4+P5+P6</strong>：MS-Agent v2 Session 2 — hotflow lifecycle（4 階段+歷史回放）+ Temperature + RR Env + Risk</td>
+</tr>
+<tr>
+<td>2026-05-26</td>
+<td>—</td>
+<td><strong>整合 4 P7+P8+P9</strong>：MS-Agent v2 Session 3 — ms_dashboard.html 獨立頁 + 主頁入口卡 + 策略卡 + 完整規格</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4ms-agent-v2">整合 4：MS-Agent v2（市場結構監控中心）</h2>
+<h3 id="_2">來源</h3>
+<ul>
+<li>使用者規格 — 「不預測漲跌，持續監控資金如何流動」</li>
+<li>6 模組架構（M1-M6）+ Market Temperature + RR Environment + Market Risk</li>
+</ul>
+<h3 id="_3">提供的能力</h3>
+<ol>
+<li><strong>雙軌→三軌 sector_map</strong> — 官方 28 類 + 自建主題 + XQ 545 細產業（含真實市值）</li>
+<li><strong>市場 Breadth (M2)</strong> — 4 指標合成 0-100 分（healthy/mixed/weak/panic）</li>
+<li><strong>資金擴散 (M3)</strong> — HHI（用 XQ 細產業）+ 新進榜 + 中型佔比（用 XQ 真實市值）</li>
+<li><strong>HotFlow lifecycle (M4)</strong> — 形成/擴散/過熱/退潮/靜止 5 狀態機 + 跨日 state + 歷史回放</li>
+<li><strong>市場溫度</strong> — 8 因子加權合成（5 級分類）</li>
+<li><strong>RR 環境分</strong> — 6 條件加總（3 級分類，影響 dynamic_rr）</li>
+<li><strong>大盤層級風險 (M6)</strong> — 7 訊號偵測 + 部位上限自動調整</li>
+</ol>
+<h3 id="_4">實作位置</h3>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>行數</th>
+<th>職責</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stockHisData/stock_data/xq_industry.py</code></td>
+<td>110</td>
+<td>XQ CSV loader（big5 編碼）</td>
+</tr>
+<tr>
+<td><code>stockHisData/stock_data/build_sector_map.py</code></td>
+<td>380</td>
+<td>三軌整合，產出 sector_map.json</td>
+</tr>
+<tr>
+<td><code>src/agents/ms_breadth.py</code></td>
+<td>170</td>
+<td>M2 Breadth</td>
+</tr>
+<tr>
+<td><code>src/agents/ms_diffusion.py</code></td>
+<td>230</td>
+<td>M3 Diffusion（核心）</td>
+</tr>
+<tr>
+<td><code>src/agents/hotflow_lifecycle.py</code></td>
+<td>260</td>
+<td>M4 lifecycle 狀態機 + 歷史回放</td>
+</tr>
+<tr>
+<td><code>src/agents/ms_temperature.py</code></td>
+<td>210</td>
+<td>市場溫度 + RR 環境分</td>
+</tr>
+<tr>
+<td><code>src/agents/ms_risk.py</code></td>
+<td>220</td>
+<td>M6 大盤層級風險</td>
+</tr>
+<tr>
+<td><code>src/agents/ms_dashboard.py</code></td>
+<td>410</td>
+<td>整合視覺化（ms_dashboard.html）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">設計重點</h3>
+<ol>
+<li><strong>資料層整合</strong>：XQ industry_sub.csv（big5）由使用者匯出，每月手動更新；其他資料由 OpenAPI 自動抓</li>
+<li><strong>HHI 主鍵用 XQ 細產業而非官方 28 類</strong>：因半導體+電子零組件天然佔台股大半，用官方算永遠 over_concentrated 失去敏感度</li>
+<li><strong>市值用 XQ 真實值</strong>：取代之前的「排名 proxy」（之前用 rank≥21 假定為中小型，錯誤）</li>
+<li><strong>lifecycle state 持久化</strong>：跨日追蹤、自動清理 30 日 stale 檔</li>
+<li><strong>獨立頁不取代主頁</strong>：第 7 個子頁 ms_dashboard.html，主頁加入口卡（保守整合，可隨時改取代）</li>
+<li><strong>as_of 邏輯</strong>：選「最近一個全市場齊全（≥1000 檔）」交易日，避免取到只有 universe 子集的不完整日</li>
+</ol>
+<h3 id="_6">再整合時的踩坑提醒</h3>
+<ol>
+<li><strong>XQ CSV 編碼是 big5 / cp950，不是 utf-8</strong> — 用 <code>errors="replace"</code> 處理少數無法解碼字</li>
+<li><strong>TWSE OpenAPI 公司代號是 <code>公司代號</code> 中文 key，TPEX 是 <code>SecuritiesCompanyCode</code> 英文 key</strong> — 格式不同</li>
+<li><strong>stocks.duckdb 不在 <code>master.duckdb</code> 而是 <code>stocks.duckdb</code></strong> — 容易記錯</li>
+<li><strong>5/25 全市場資料只有 67 檔（DEFAULT_UNIVERSE）</strong>：需 fetch 才會更新到 ~1,935 檔；as_of 選最近齊全日避免誤判</li>
+<li><strong>lifecycle 第一天跑會幾乎全 dormant</strong>：因 score_history / persist_history 才剛開始累積，斜率算不出來</li>
+<li><strong>sector_map.json 重建後 ms_diffusion 才會生效</strong>：兩者有依賴關係</li>
+<li><strong>ms_temperature 依賴所有 M1-M6 JSON 已生成</strong>：在 orchestrator 中放在 hotflow 後面才對</li>
+</ol>
+<hr />
+<h2 id="1-nrr">整合 1：姊妹專案 市場結構NRR</h2>
+<h3 id="_7">來源</h3>
+<ul>
+<li><strong>位置</strong>：<code>C:\CludeHome\projects\市場結構NRR</code></li>
+<li><strong>規模</strong>：~4,560 行 Python（27 個 .py）</li>
+<li><strong>GitHub repo</strong>：<code>yoshiagent/market-structure-nrr</code></li>
+<li><strong>GitHub Pages</strong>：https://yoshiagent.github.io/market-structure-nrr/</li>
+<li><strong>每日 18:00 自動跑</strong>：<code>python run_daily.py</code></li>
+</ul>
+<h3 id="_8">提供的能力</h3>
+<ol>
+<li>60 日滾動 Z-score 市場結構模型</li>
+<li>5 級 regime 分類（strong_bull / mild_bull / neutral / mild_bear / strong_bear）</li>
+<li>11 組 RR 配對精選清單</li>
+<li>跨日事件偵測 + Telegram 變化推播（<code>src/notify/triggers.py</code>）</li>
+<li>週報（<code>src/weekly/build_weekly.py</code>）</li>
+</ol>
+<h3 id="phase-1commit-c3f7979">Phase 1：演算法移植（commit c3f7979）</h3>
+<p><strong>目標</strong>：把 60 日 Z-score 模型搬進 Ver.A，但資料源暫讀姊妹專案 raw CSV。</p>
+<p><strong>搬入位置</strong>：<code>src/shared/structure_zscore.py</code></p>
+<p><strong>演算法</strong>：</p>
+<pre><code>foreign_pressure_score = -0.30*Z_foreign_spot + -0.30*Z_foreign_fut
+                       + +0.20*Z_usdtwd + -0.20*Z_sox
+
+etf_support_score      = +0.35*Z_trust + +0.25*Z_etf_holder
+                       + +0.20*Z_hidiv_vol + +0.20*Z_mkt_dd_narrow
+
+market_structure_score = etf_support_score − foreign_pressure_score
+
+regime: &gt; +1.0 strong_bull / +0.3~+1.0 mild_bull / -0.3~+0.3 neutral
+         / -1.0~-0.3 mild_bear / &lt; -1.0 strong_bear
+
+dynamic_z_threshold:
+  strong_bull + 站上週MA20 → 2.5
+  neutral                  → 2.0
+  &lt; neutral 門檻            → 1.5
+</code></pre>
+<p><strong>接入</strong>：
+- <code>src/agents/market_structure.py.evaluate_market_structure()</code> 末段呼叫 <code>compute_structure_zscore()</code>
+- 結果合併進 <code>market.json</code> 的 <code>regime</code> / <code>foreign_pressure_score</code> / <code>etf_support_score</code> / <code>market_structure_score</code> / <code>dynamic_z_threshold</code> 等欄位
+- <code>src/agents/rs_zscore.py.compute_signal()</code> 讀 <code>market.json</code> 的 <code>dynamic_z_threshold</code> 覆蓋靜態 ±2.0
+- <code>src/agents/index_builder.py._render_extended_market()</code> 顯示在進階指標 banner</p>
+<h3 id="phase-4commit-77a301b">Phase 4：資料源完全自主（commit 77a301b）</h3>
+<p><strong>目標</strong>：把姊妹專案 raw CSV 全部搬到中央 stockHisData，stockture_zscore 不再讀姊妹專案。</p>
+<p><strong>新增中央資料</strong>：
+- <code>stockHisData/processed/3insti/market_aggregate.csv</code> — 大盤三大法人合計
+- <code>stockHisData/processed/options/foreign_opt.csv</code> — 外資選擇權 PCR
+- <code>stockHisData/processed/etf/volume.csv</code> — ETF 成交額（7 檔高股息+市值型）</p>
+<p><strong>新增中央 fetcher</strong>（<code>stockHisData/stock_data/fetchers.py</code>）：
+- <code>fetch_market_institutional()</code> — TWSE BFI82U + TPEX 3itrdsum
+- <code>fetch_foreign_options()</code> — TAIFEX callsAndPutsDateDown（外資 TXO）
+- <code>fetch_etf_volume()</code> — yfinance bulk 抓 0050/006208/0056/00878/00919/00940/00929</p>
+<p><strong>新增中央 loader</strong>（<code>stockHisData/stock_data/data_loader.py</code>）：
+- <code>load_market_institutional()</code> — pivot TWSE+TPEX → <code>foreign_net_all</code> 等欄位
+- <code>load_foreign_options()</code> — 外資選擇權 PCR
+- <code>load_etf_volume()</code> — code 強制讀為 string（避免 00919→919）</p>
+<p><strong>seed 既有歷史資料</strong>：一次性從姊妹專案 <code>data/raw/</code> 複製到中央 <code>processed/</code>，避免重抓 487 天。</p>
+<p><strong>驗證</strong>：演算法輸出與姊妹專案完全一致（<code>regime=mild_bull</code>, <code>market_structure_score=0.588</code>）。</p>
+<h3 id="_9">未整合（可參考的素材）</h3>
+<ul>
+<li><code>triggers.py</code>（事件偵測 7 類，282 行）— 用於未來 Phase 2</li>
+<li><code>build_weekly.py</code>（週報，497 行）— 用於未來 Phase 3</li>
+<li>11 組 RR 配對清單 + 7 檔 ETF 清單 — 可作為自選配對表的擴充來源</li>
+</ul>
+<h3 id="_10">再整合時的踩坑提醒</h3>
+<ol>
+<li><strong>路徑含中文</strong>：<code>C:\CludeHome\projects\市場結構NRR\</code> — Python 用 raw string <code>r"..."</code> 處理</li>
+<li><strong>encoding</strong>：姊妹專案 raw CSV 用 <code>utf-8-sig</code>（BOM），中央用 <code>utf-8</code></li>
+<li><strong>ETF code 型別</strong>：pandas 讀 CSV 預設轉 int 會吃掉 <code>00919</code> 的前導 0，要 <code>dtype={"code": str}</code></li>
+<li><strong>TAIFEX 是 cp950 encoded CSV，不是 JSON</strong>：要用 <code>csv</code> 模組 decode（big5/cp950/ms950 都試）</li>
+<li><strong>TWSE/TPEX 大盤合計 vs 個股</strong>：兩者 endpoint 完全不同</li>
+<li>大盤合計：TWSE BFI82U / TPEX 3itrdsum_result</li>
+<li>個股：TWSE T86 / TPEX 3itrade_hedge_result</li>
+<li><strong>姊妹專案如果不再跑了</strong>：Ver.A 完全不受影響（Phase 4 後已自主）</li>
+</ol>
+<hr />
+<h2 id="2-custom_pairs">整合 2：自選配對表 custom_pairs</h2>
+<h3 id="_11">來源</h3>
+<ul>
+<li><strong>使用者提供</strong>：<code>配對表.xlsx</code>（不入 git）</li>
+<li><strong>Sheet</strong>：<code>自選</code></li>
+<li><strong>結構</strong>：<code>序號 | 代號 | 股名 | 圖表連結（可選）</code></li>
+<li><strong>規則</strong>：依序兩兩成對</li>
+</ul>
+<h3 id="_12">實作位置</h3>
+<ul>
+<li><code>src/agents/custom_pairs.py</code> — xlsx 解析 + RR 評估</li>
+<li><code>src/agents/custom_pairs_report.py</code> — 詳細頁 HTML</li>
+</ul>
+<h3 id="_13">設計重點</h3>
+<ol>
+<li><strong>xlsx 不入 git</strong>：個人股票清單，且 Excel 二進位 diff 不友善</li>
+<li><strong>容錯設計</strong>：xlsx 不存在 → orchestrator step 標 <code>SKIP (no xlsx)</code>，不中斷主流程</li>
+<li><strong>chart_url 優先序</strong>：xlsx 第 4 欄 &gt; 內建 pair_chart 產出 &gt; DEFAULT_CHART_URLS</li>
+<li><strong>配對 sector 對應</strong>：<code>PAIR_SECTOR_MAP</code> dict 在 <code>custom_pairs.py</code>，新增配對的策略說明需要新增 entry</li>
+<li><strong>奇數列自動跳過</strong>：10 檔 → 5 組，11 檔 → 仍 5 組（最後一個不配）</li>
+</ol>
+<h3 id="5">目前 5 組配對</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>A</th>
+<th>B</th>
+<th>Sector</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>南電 8046</td>
+<td>欣興 3037</td>
+<td>PCB 載板（ABF）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>晶豪科 3006</td>
+<td>智原 3035</td>
+<td>IC 設計</td>
+</tr>
+<tr>
+<td>3</td>
+<td>華邦電 2344</td>
+<td>南亞科 2408</td>
+<td>電子業</td>
+</tr>
+<tr>
+<td>4</td>
+<td>上銀 2049</td>
+<td>大銀微系統 4576</td>
+<td>滾珠螺桿</td>
+</tr>
+<tr>
+<td>5</td>
+<td>巨大 9921</td>
+<td>美利達 9914</td>
+<td>自行車</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_14">再整合時的踩坑提醒</h3>
+<ol>
+<li><strong>xlsx code 欄位</strong>：pandas 讀出可能是 int 或 float，需要 <code>_normalize_code()</code> 統一處理</li>
+<li><strong>sheet 名容錯</strong>：優先抓 <code>自選</code>，找不到取 sheet 0</li>
+<li><strong>xlsx 在不同電腦上的編輯</strong>：避免 Excel 自動把 <code>00919</code> 改成 <code>919</code></li>
+<li><strong>新增配對時</strong>：要在 <code>PAIR_SECTOR_MAP</code> 加對應 entry，否則策略說明用「同產業」帶過</li>
+</ol>
+<hr />
+<h2 id="3-dashboard">整合 3：南電/欣興 配對交易 dashboard</h2>
+<h3 id="_15">來源</h3>
+<ul>
+<li><strong>位置</strong>：<code>C:\CludeHome\projects\南電欣興配對交易\</code> + 散落 <code>C:\CludeHome\projects\</code> 根目錄</li>
+<li><strong>規模</strong>：~1,058 行（chart_gen.py 699 + pair_health.py 144 + update_daily.py 215）</li>
+<li><strong>GitHub repo</strong>：<code>yoshiagent/nan-xin-pairs-trading</code></li>
+<li><strong>GitHub Pages</strong>：https://yoshiagent.github.io/nan-xin-pairs-trading/</li>
+</ul>
+<h3 id="_16">設計目標</h3>
+<p><strong>完整保留原 換股線圖_互動版.html 的 UI 與互動模式</strong>（用戶明確要求）：
+- 完整 Plotly 3 subplot（價格 / 價差+Z60 / Z60+BB）
+- 自訂可拖曳 tooltip + 十字線（buildCrosshair、findNearest）
+- 自訂按鈕（btn-prev/next/prev10/next10/3m/all/latest）
+- 鍵盤左右、響應式 resizeChart
+- 5 項健康檢查燈號
+- 換股歷史表格（當次績效 / 累計績效 / 觸發 Z60）
+- 換股策略說明 6 區塊</p>
+<h3 id="chart_genpy-11-vera">演算法（在 chart_gen.py 內，已 1:1 搬入 Ver.A）</h3>
+<pre><code class="language-python">START = &quot;2025-01-01&quot;
+WINDOW = 60       # Z60 視窗
+BB_WIN = 20       # 布林通道視窗
+ENTRY_Z = 1.5     # 入場門檻
+SELL_COST = 0.004425    # 賣出成本（含證交稅 0.3%）
+BUY_COST  = 0.001425    # 買入成本
+CAPITAL = 1_000_000     # 起始資金
+
+價差 = 南電收盤 − 欣興收盤
+MA60 = 價差 60 日均值
+SD60 = 價差 60 日標準差
+Z60  = (價差 − MA60) / SD60
+
+# C1 換股確認機制
+if Z60 &gt; +1.5 and 當日 Z60 &lt; 前日 Z60: 換成欣興（B）
+if Z60 &lt; -1.5 and 當日 Z60 &gt; 前日 Z60: 換成南電（A）
+</code></pre>
+<h3 id="5-srcsharedpair_healthpy">5 項健康檢查（已搬至 <code>src/shared/pair_health.py</code>）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>名稱</th>
+<th>警示門檻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td>Z60 連續超標日數</td>
+<td>≥ 25 日</td>
+</tr>
+<tr>
+<td>②</td>
+<td>Z60 極端值 (&gt;±3.0) 連續日數</td>
+<td>≥ 3 日</td>
+</tr>
+<tr>
+<td>③</td>
+<td>252 日 Engle-Granger 共整合 p 值</td>
+<td>&gt; 0.15 警示</td>
+</tr>
+<tr>
+<td>④</td>
+<td>價比週 MA20 死叉 週 MA60 連續週數</td>
+<td>≥ 8 週</td>
+</tr>
+<tr>
+<td>⑤</td>
+<td>近 60 日兩檔漲幅差距</td>
+<td>≥ 40%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>warn_total</strong>：0 → GREEN ／ 1 → YELLOW ／ 2+ → RED</p>
+<h3 id="_17">移植做法</h3>
+<ol>
+<li><strong>檔案位置</strong>：</li>
+<li><code>src/shared/pair_health.py</code> ← 1:1 從 <code>pair_health.py</code> 搬入</li>
+<li>
+<p><code>src/agents/pair_chart.py</code> ← 從 <code>chart_gen.py</code> 重構為通用版</p>
+</li>
+<li>
+<p><strong>資料源切換</strong>：</p>
+</li>
+<li>原：<code>yfinance.Ticker("8046.TW").history(start="2025-01-01")</code></li>
+<li>
+<p>新：<code>dl.load_price("8046", "daily", refresh=False)</code>（中央 stockHisData）</p>
+</li>
+<li>
+<p><strong>移除</strong>：</p>
+</li>
+<li>寫死的 git push（由 <code>scripts/deploy_reports.py</code> 統一處理）</li>
+<li>SMTP email 通知（由 <code>src/notify/</code> 統一處理）</li>
+<li>
+<p>寫死的 Gmail SMTP 帳號 + App Password（已 sanitize；新流程改由
+     <code>config/notify.local.yaml</code> 提供，絕不在 source 寫死）</p>
+</li>
+<li>
+<p><strong>保留</strong>：</p>
+</li>
+<li>所有 Plotly 設定、CSS、JS、HTML 結構（變數化 a_name/b_name 後 100% 對齊）</li>
+<li>5 項健康檢查邏輯（含 statsmodels.tsa.stattools.coint）</li>
+</ol>
+<h3 id="pair_chartpy-commit-bb740d8">pair_chart.py 通用化（commit bb740d8）</h3>
+<p>從寫死南電/欣興改為任意配對：</p>
+<pre><code class="language-python">def build_for_pair(
+    a_code: str, b_code: str,
+    a_name: str, b_name: str,
+    sector: str = &quot;同產業&quot;,
+    out_basename: str | None = None,
+) -&gt; Path:
+    # 任意配對皆能跑同一支
+</code></pre>
+<p><strong>變數化清單</strong>：
+- 中文名：<code>南電</code>/<code>欣興</code> → <code>{a_name}</code>/<code>{b_name}</code>
+- 代號：<code>8046</code>/<code>3037</code> → <code>{a_code}</code>/<code>{b_code}</code>
+- 產業：<code>PCB 產業</code>/<code>ABF 族群</code> → <code>{sector}</code>
+- CSS class：<code>.nan-row</code>/<code>.xin-row</code> → <code>.a-row</code>/<code>.b-row</code>
+- JS var：<code>NAN_PX</code>/<code>XIN_PX</code> → <code>A_PX</code>/<code>B_PX</code>
+- chart div id：<code>nanxin-chart</code> → <code>pair-chart</code></p>
+<p><strong>向後相容</strong>：<code>build()</code> 保留，呼叫 <code>build_for_pair("8046", "3037", "南電", "欣興", "PCB 載板（ABF）", "nan_xin_chart")</code></p>
+<h3 id="2026-05-22">數值驗證（2026-05-22）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>原檔</th>
+<th>Ver.A</th>
+<th>一致</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>價差</td>
+<td>-36.00</td>
+<td>-36.00</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Z60</td>
+<td>-1.816</td>
+<td>-1.816</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>6 次換股觸發 Z</td>
+<td>2.524 / -2.225 / 1.536 / -1.817 / 2.036 / -2.166</td>
+<td>完全相同</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>共整合 p</td>
+<td>0.4630</td>
+<td>0.4630</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>價比週MA死叉</td>
+<td>9 週</td>
+<td>9 週</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>60 日漲幅差距</td>
+<td>35.1%</td>
+<td>35.1%</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>健康等級</td>
+<td>RED 2 項</td>
+<td>RED 2 項</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-standalone">散落腳本對照（13+ 個 standalone 配對腳本）</h3>
+<p><code>C:\CludeHome\projects\</code> 根目錄底下還有 7+ 組其他配對的腳本（每組 ~38KB chart_gen + ~10KB update_daily）：</p>
+<table>
+<thead>
+<tr>
+<th>配對</th>
+<th>chart_gen</th>
+<th>update_daily</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>南亞科 / 華邦電</td>
+<td>chart_gen_南亞科華邦.py</td>
+<td>update_daily_南亞科華邦.py</td>
+</tr>
+<tr>
+<td>上銀 / 大銀微系統</td>
+<td>chart_gen_上銀大銀.py</td>
+<td>update_daily_上銀大銀.py</td>
+</tr>
+<tr>
+<td>巨大 / 美利達</td>
+<td>chart_gen_巨大美利達.py</td>
+<td>update_daily_巨大美利達.py</td>
+</tr>
+<tr>
+<td>光寶 / 台達電</td>
+<td>chart_gen_光寶台達電.py</td>
+<td>update_daily_光寶台達電.py</td>
+</tr>
+<tr>
+<td>台光電 / 聯茂</td>
+<td>chart_gen_台光電聯茂.py</td>
+<td>update_daily_台光電聯茂.py</td>
+</tr>
+<tr>
+<td>奇鋐 / 雙鴻</td>
+<td>chart_gen_奇鋐雙鴻.py</td>
+<td>update_daily_奇鋐雙鴻.py</td>
+</tr>
+<tr>
+<td>廣達 / 緯創</td>
+<td>chart_gen_廣達緯創.py</td>
+<td>update_daily_廣達緯創.py</td>
+</tr>
+</tbody>
+</table>
+<p><strong>處置策略</strong>：這些散落腳本的功能<strong>已被 Ver.A 的 <code>pair_chart.py</code> 通用版取代</strong>。要把對應配對加進 Ver.A，只需編輯 <code>配對表.xlsx</code> 即可，不需動程式碼。</p>
+<p>未來可考慮把這些散落腳本歸檔到 <code>_legacy/</code>（請使用者確認後再做）。</p>
+<h3 id="_18">再整合時的踩坑提醒</h3>
+<ol>
+<li><strong>HTML 內 JS 是 f-string</strong>：所有 <code>{</code> / <code>}</code> 在 f-string 內要 escape 成 <code>{{</code> / <code>}}</code>；改 JS 時注意</li>
+<li><strong>共整合 p 值需要 statsmodels</strong>：<code>pip install statsmodels</code></li>
+<li><strong>Plotly 版本</strong>：CDN 用 <code>plotly-3.5.0.min.js</code>，本地需 <code>plotly&gt;=5.0</code></li>
+<li><strong>chart_url 從 xlsx 第 4 欄覆蓋 vs 內建檔名</strong>：內建 build 永遠跑（即使 xlsx 有外部 URL），保證 health 燈號有值</li>
+</ol>
+<hr />
+<h2 id="_19">重新整合既有專案的通用步驟</h2>
+<p>未來若要把另一個 <code>C:\CludeHome\projects\xxx</code> 整合進 Ver.A，依此 checklist：</p>
+<h3 id="phase-0">Phase 0：盤點來源</h3>
+<ol>
+<li>找專案根：是哪個資料夾？哪個 <code>.py</code> 是主入口？</li>
+<li>找資料源：是 yfinance / TWSE / 自製 xlsx？資料更新頻率？</li>
+<li>找 UI：是 HTML（Plotly / 純 HTML）／ Jupyter Notebook ／ Excel？</li>
+<li>找通知：是 email / Telegram / GitHub Pages？</li>
+<li>找 Claude session 歷史紀錄（<code>C:\Users\USER\.claude\projects\C--CludeHome</code>）— <code>grep</code> 找關鍵字</li>
+</ol>
+<h3 id="phase-1-ui">Phase 1：演算法移植（不動 UI）</h3>
+<ol>
+<li>把計算邏輯抽出成 <code>src/agents/xxx.py</code> 或 <code>src/shared/xxx.py</code></li>
+<li>資料源改讀中央 <code>stockHisData</code></li>
+<li>用既有資料驗證輸出與來源相同（數值對齊）</li>
+<li>接入 orchestrator 新 step</li>
+</ol>
+<h3 id="phase-2ui">Phase 2：UI 移植（保留互動）</h3>
+<ol>
+<li>HTML/JS 1:1 搬入（包含 CSS / JS funcs）</li>
+<li>inline data 改成 fetch JSON 或 Python 直接 render</li>
+<li>寫死的中文/代號改 f-string 參數化（如 pair_chart 的做法）</li>
+</ol>
+<h3 id="phase-3">Phase 3：通知與部署整合</h3>
+<ol>
+<li>移除原專案的 SMTP / git push 寫死部分</li>
+<li>用 Ver.A 的 <code>src/notify/</code> 統一通知</li>
+<li>用 Ver.A 的 <code>scripts/deploy_reports.py</code> 統一部署</li>
+</ol>
+<h3 id="phase-4">Phase 4：資料源自主化</h3>
+<ol>
+<li>原專案的 fetcher 邏輯搬到 <code>stockHisData/stock_data/fetchers.py</code></li>
+<li>對應 loader 搬到 <code>stockHisData/stock_data/data_loader.py</code></li>
+<li>seed 既有歷史資料（避免重抓）</li>
+<li>orchestrator 的 <code>fetch_all</code> 加入新 source</li>
+</ol>
+<h3 id="phase-5">Phase 5：封存與清理</h3>
+<ol>
+<li>原專案資料夾保留作歷史備份（不動）</li>
+<li>對應的 <code>yoshiagent/xxx</code> repo 可選擇繼續推（雙寫）或停止</li>
+<li>散落根目錄的 .py 腳本歸檔到 <code>_legacy/</code></li>
+</ol>
+<h3 id="_20">驗收標準</h3>
+<ul>
+<li>每個 Phase 都能獨立 commit</li>
+<li>Phase 1 完成後，數值與原專案完全對齊</li>
+<li>Phase 4 完成後，可關閉原專案而 Ver.A 不受影響</li>
+<li><code>python -m src.orchestrator --skip-fetch --skip-notify</code> 全綠</li>
+</ul>
+<hr />
+<h2 id="_21">已知未來整合候選</h2>
+<h3 id="_22">高優先度</h3>
+<ul>
+<li><strong>姊妹專案 triggers.py 事件偵測</strong>（已搬演算法，未接通知）</li>
+<li><strong>姊妹專案 build_weekly.py 週報</strong>（497 行 Plotly + 累積分析）</li>
+<li><strong>散落 .py 配對腳本</strong>（7+ 組）— 用 pair_chart 通用版替代後封存</li>
+</ul>
+<h3 id="_23">中優先度</h3>
+<ul>
+<li><strong>姊妹專案 6 策略回測對照</strong>（<code>src/backtest/run_backtest.py</code> 328 行）</li>
+<li><strong>C:\CludeHome\projects\ABF交易系統</strong>（未盤點）</li>
+<li><strong>C:\CludeHome\projects\IC產業鏈</strong>（未盤點）</li>
+<li><strong>C:\CludeHome\projects\3Pstrategy</strong>（未盤點）</li>
+</ul>
+<h3 id="_24">低優先度</h3>
+<ul>
+<li><strong>C:\CludeHome\projects\XQ_DDE / XQ_XS</strong>（XQ Global 相關，與 Ver.A 不直接相關）</li>
+</ul>
+<hr />
+<h2 id="claude">Claude 接手檢查清單</h2>
+<p>開新 session 時，若使用者要求繼續整合或修改 Ver.A，先確認：</p>
+<ol>
+<li><strong>讀本檔（INTEGRATIONS.md）</strong>全文了解過去做了什麼</li>
+<li><strong>讀 ARCHITECTURE.md</strong> 了解現有結構</li>
+<li><strong>跑 <code>git log --oneline -30</code></strong> 看最近異動</li>
+<li><strong>跑 <code>python -m src.orchestrator --skip-fetch --skip-notify</code></strong> 確認管線正常</li>
+<li><strong>檢查 <code>data/output/index.html</code></strong> 確認最新報告呈現</li>
+<li><strong>若涉及通知</strong>：讀 <code>OPERATIONS.md</code> 的 Email/Telegram 重設章節</li>
+</ol>
+<p>決策原則：
+- <strong>保守變更</strong>：演算法 ownership 已轉移到 Ver.A 的部分（structure_zscore、pair_chart、pair_health），動之前先確認向後相容
+- <strong>資料源不重複</strong>：所有股票 / 法人 / 期貨 / 選擇權 / ETF 都走中央 <code>stockHisData</code>
+- <strong>xlsx 不動</strong>：個人配對清單只由使用者編輯
+- <strong>每次整合都要寫入本檔</strong>：時間軸 + commit + 來源 + 踩坑提醒</p>
+</body></html>

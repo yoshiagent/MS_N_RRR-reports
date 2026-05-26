@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10_box_structure — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../../index.html">← 返回主頁</a>
+<h1 id="box-structure-agent">Box Structure Agent 規格（股票箱結構分析）</h1>
+<blockquote>
+<p>對應實作：
+- <code>src/agents/box_structure.py</code>         — 核心演算法
+- <code>src/agents/box_structure_report.py</code>  — HTML 渲染</p>
+<p>規格類別：<strong>結構穩定性 Agent</strong>（不預測，只判斷結構品質）</p>
+</blockquote>
+<hr />
+<h2 id="_1">任務</h2>
+<p>依 K 線結構判斷：
+1. 是否存在「有效股票箱」
+2. 股票箱是否可作為 N 形延續/觀察/破壞的判斷基準
+3. 多個股票箱是否顯示趨勢正在劣化或即將結束</p>
+<p><strong>主時間框架</strong>：週線（判斷主結構）；日線可作為進出場輔助（未來擴充）</p>
+<p>設計偏好：
+✓ 裸 K + 成交量 + ATR(20) + SH/SL 結構
+✗ 不依賴 MACD / KD / 過多技術指標</p>
+<hr />
+<h2 id="_2">候選池</h2>
+<pre><code>HotFlow ∪ N-Pattern ∪ 配對表.xlsx ∪ Stock Ops
+</code></pre>
+<p>通常 ~67 檔。</p>
+<hr />
+<h2 id="9">演算法（9 步驟）</h2>
+<h3 id="step-1-atr20">Step 1 — 計算 ATR(20)</h3>
+<p>True Range 的 20 期均值，用於後續閾值。</p>
+<h3 id="step-2-pivot">Step 2 — 偵測候選 pivot</h3>
+<p><code>high[i] = max(high[i-2:i+3])</code> → SH 候選
+<code>low[i]  = min(low[i-2:i+3])</code>  → SL 候選</p>
+<h3 id="step-3">Step 3 — 套用「有效性」條件</h3>
+<p><strong>有效 SH</strong> 須同時符合：</p>
+<table>
+<thead>
+<tr>
+<th>條件</th>
+<th>規則</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A. 前方有效上漲</td>
+<td>漲幅 ≥ ATR × 2 <strong>或</strong> ≥ 8%</td>
+</tr>
+<tr>
+<td>B. 後方有效回落</td>
+<td>自高點回落 ≥ ATR × 0.5 <strong>或</strong> ≥ 3%</td>
+</tr>
+<tr>
+<td>C. 確認期</td>
+<td>≥ 3 根 K 棒未再創高</td>
+</tr>
+</tbody>
+</table>
+<p><strong>有效 SL</strong> 須同時符合：</p>
+<table>
+<thead>
+<tr>
+<th>條件</th>
+<th>規則</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A. 前方有效下跌</td>
+<td>跌幅 ≥ ATR × 0.5 <strong>或</strong> ≥ 3%</td>
+</tr>
+<tr>
+<td>B. 後方有效反彈</td>
+<td>反彈 ≥ ATR × 0.5 <strong>或</strong> ≥ 3%</td>
+</tr>
+<tr>
+<td>C. 確認期</td>
+<td>≥ 3 根 K 棒未再破低</td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-4-compression">Step 4 — Compression 識別</h3>
+<p>實作上以「箱體高度過小」隱含表達：箱高 &lt; <code>max(ATR/Close × 1.5, 5%)</code> → 分類為 <code>compression</code>，視為原推進延續，不切新 N 形。</p>
+<h3 id="step-5-sh-sl">Step 5 — 建構有效箱（SH-SL 配對）</h3>
+<p>對每個 SL，找「自上一個 SL 之後最高的有效 SH」配對。
+箱頂必須 &gt; 箱底（合理性檢查）。</p>
+<p>每個箱含：
+- <code>sh_date / sh_price</code> — 箱頂
+- <code>sl_date / sl_price</code> — 箱底
+- <code>height_pct</code> = (SH − SL) / SL
+- <code>duration_weeks</code> — SH 到 SL 的週數
+- <code>volume_change</code> — 縮量 / 放量 / 持平（vs SH 前 10 週均量）
+- <code>fake_breakout</code> — SL 後 5 根內突破 SH 又跌回箱內
+- <code>breakout_confirmed</code> — 突破 SH 且 5 根內未跌回</p>
+<h3 id="step-6-5">Step 6 — 5 類箱體分類</h3>
+<table>
+<thead>
+<tr>
+<th>類型</th>
+<th>條件</th>
+<th>UI 顏色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 <strong>健康回檔箱</strong></td>
+<td>已突破確認 + 箱底高於前箱 + 箱高適中</td>
+<td>綠</td>
+</tr>
+<tr>
+<td>🔵 <strong>壓縮整理箱</strong></td>
+<td>箱高 &lt; 門檻（雜訊區）</td>
+<td>藍</td>
+</tr>
+<tr>
+<td>🟡 <strong>觀察箱</strong></td>
+<td>尚未突破 SH 也未跌破 SL</td>
+<td>黃</td>
+</tr>
+<tr>
+<td>🟠 <strong>劣化箱</strong></td>
+<td>箱底未上移 / 箱高擴大 / 假突破</td>
+<td>橘</td>
+</tr>
+<tr>
+<td>🔴 <strong>破壞箱</strong></td>
+<td>收盤跌破 SL</td>
+<td>紅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-7-3">Step 7 — 多箱劣化分析（比較最近 3 箱）</h3>
+<p>逐項加分，總分 0-100：</p>
+<table>
+<thead>
+<tr>
+<th>訊號</th>
+<th>加分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>箱底未持續上移（HL 弱化）</td>
+<td>+12</td>
+</tr>
+<tr>
+<td>最新箱底跌破前箱底（trend down）</td>
+<td>+15</td>
+</tr>
+<tr>
+<td>箱高擴大 &gt; 20%</td>
+<td>+10</td>
+</tr>
+<tr>
+<td>回檔幅度加深超過 5 個百分點</td>
+<td>+8</td>
+</tr>
+<tr>
+<td>整理時間變長 &gt; 50%</td>
+<td>+8</td>
+</tr>
+<tr>
+<td>每個假突破</td>
+<td>+12</td>
+</tr>
+<tr>
+<td>箱體重疊度高</td>
+<td>+10</td>
+</tr>
+<tr>
+<td>當前收盤跌破最新 SL</td>
+<td><strong>+25</strong></td>
+</tr>
+<tr>
+<td>近 3 箱中有 2 個劣化箱</td>
+<td>+10</td>
+</tr>
+<tr>
+<td>近 3 箱中有 1 個破壞箱</td>
+<td>+15</td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-8-4">Step 8 — 4 趨勢階段</h3>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>條件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🌱 Stage 1 初升段</td>
+<td>僅 1 個有效箱</td>
+</tr>
+<tr>
+<td>🚀 Stage 2 主升段</td>
+<td>箱底上移 + 突破有效 + 劣化 ≤ 50</td>
+</tr>
+<tr>
+<td>⚠ Stage 3 高位震盪/劣化</td>
+<td>劣化評分 ≥ 51</td>
+</tr>
+<tr>
+<td>📉 Stage 4 趨勢破壞</td>
+<td>跌破最新 SL，或最新箱底跌破前箱底</td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-9">Step 9 — 操作建議 + 一句話結論</h3>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>持股</th>
+<th>候選股</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stage 1</td>
+<td>續抱</td>
+<td>等回測 SL 不破</td>
+</tr>
+<tr>
+<td>Stage 2 / N 延續</td>
+<td>續抱</td>
+<td>可加入觀察名單</td>
+</tr>
+<tr>
+<td>Stage 2 / 壓縮</td>
+<td>續抱</td>
+<td>等突破壓縮上緣</td>
+</tr>
+<tr>
+<td>Stage 3 (劣化 &lt; 70)</td>
+<td>減碼</td>
+<td>暫不介入</td>
+</tr>
+<tr>
+<td>Stage 3 (劣化 ≥ 70)</td>
+<td>停利</td>
+<td>暫不介入</td>
+</tr>
+<tr>
+<td>Stage 4</td>
+<td>停損</td>
+<td>排除</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_3">輸入 → 輸出</h2>
+<table>
+<thead>
+<tr>
+<th>輸入</th>
+<th>輸出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DuckDB <code>price</code> 表（~730 日）</td>
+<td><code>data/output/box_structure.json</code></td>
+</tr>
+<tr>
+<td><code>market.json</code> / <code>hotflow.json</code> / ...</td>
+<td><code>data/output/box_structure.html</code></td>
+</tr>
+<tr>
+<td><code>sector_map.json</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_4">不會做的事</h2>
+<ul>
+<li>❌ 不預測股價方向</li>
+<li>❌ 不單獨建議買賣（僅評估結構穩定性）</li>
+<li>❌ 不依賴 KD / MACD</li>
+<li>❌ 不將過小波動視為新 N 形</li>
+</ul>
+<hr />
+<h2 id="agent">與其他 Agent 的關係</h2>
+<pre><code>DuckDB price → ATR + Swings → Boxes → Multi-Box Analysis
+                                      ↓
+                              Stage + N State + Score
+                                      ↓
+                         操作建議 ＋ 給 N-RR 一句話結論
+                                      ↓
+        feed into stock_ops, RR/RRR 候選股排序（未來整合）
+</code></pre>
+<hr />
+<h2 id="_5">未來擴充</h2>
+<ol>
+<li><strong>日線輔助</strong>：除週線主結構外，加入日線進出場時機判斷</li>
+<li><strong>回檔幅度進階定義</strong>：考慮 Fibonacci 0.382 / 0.618</li>
+<li><strong>整合進場決策</strong>：作為第 ⑤ 維加入 entry_decision</li>
+<li><strong>整合 stock_ops</strong>：影響 stage 分類與停損位置</li>
+<li><strong>箱型回測</strong>：歷史「箱結構良好」標的的後續報酬統計</li>
+</ol>
+</body></html>

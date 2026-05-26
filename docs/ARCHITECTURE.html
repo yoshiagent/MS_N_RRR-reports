@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARCHITECTURE — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../index.html">← 返回主頁</a>
+<h1 id="ms_n_rrrrr-vera">MS_N_RR/RRR Ver.A 架構總覽</h1>
+<p>最後更新：2026-05-25</p>
+<hr />
+<h2 id="_1">一、三層架構</h2>
+<pre><code>┌────────────────────────────────────────────────────┐
+│ 排程層：Windows Task Scheduler                      │
+│   MS_N_RRR_Daily：週一~五 18:00 觸發                │
+└──────────────────┬─────────────────────────────────┘
+                   ▼
+┌────────────────────────────────────────────────────┐
+│ 主控層：src/orchestrator.py                         │
+│   13 個 step、依序執行、各 step 失敗不中斷下游       │
+└──────────────────┬─────────────────────────────────┘
+                   ▼
+┌────────────────────────────────────────────────────┐
+│ Agent 層：src/agents/  +  src/shared/              │
+│   10+ 個 Agent，每個是獨立模組                       │
+└──────────────────┬─────────────────────────────────┘
+                   ▼
+┌────────────────────────────────────────────────────┐
+│ 資料層：C:\CludeHome\stockHisData（外部，跨 session） │
+│   raw/  processed/  database/  stock_data/ 套件     │
+└────────────────────────────────────────────────────┘
+                   ↓
+        報告 HTML + JSON
+                   ↓
+        部署 GitHub Pages
+                   ↓
+        Email + Telegram
+</code></pre>
+<hr />
+<h2 id="agent">二、Agent 對照表</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Agent</th>
+<th>規格</th>
+<th>實作</th>
+<th>輸出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Data</strong></td>
+<td><code>stockHisData/DATA_AGENT.md</code></td>
+<td>外部 <code>stock_data/</code> 套件</td>
+<td><code>processed/*.csv</code> + DuckDB</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Market Structure</strong></td>
+<td><code>agents/02_market_structure.md</code></td>
+<td><code>src/agents/market_structure.py</code> + <code>src/shared/structure_zscore.py</code></td>
+<td><code>market.json</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>HotFlow</strong></td>
+<td><code>agents/03_hotflow.md</code></td>
+<td><code>src/agents/hotflow.py</code></td>
+<td><code>hotflow.json</code> + <code>hotflow.html</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>N-Pattern</strong></td>
+<td><code>agents/04_n_pattern.md</code></td>
+<td><code>n_pattern.py</code> + <code>n_pattern_report.py</code></td>
+<td><code>n_pattern.json</code> + <code>n_pattern.html</code></td>
+</tr>
+<tr>
+<td>5a</td>
+<td><strong>RR</strong>（簡版相對輪動）</td>
+<td><code>agents/05_rr.md</code></td>
+<td><code>rr_pair.py</code> + <code>rr_report.py</code></td>
+<td><code>rr.json</code> + <code>rr.html</code></td>
+</tr>
+<tr>
+<td>5b</td>
+<td><strong>RRR</strong>（嚴格共振輪動）</td>
+<td><code>agents/05_rrr.md</code> + <code>05_rs_zscore.md</code></td>
+<td><code>rrr_pair.py</code> + <code>rs_zscore.py</code> + <code>rrr_report.py</code></td>
+<td><code>rrr.json</code> + <code>rrr.html</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Chip Filter</strong></td>
+<td><code>agents/06_chip_filter.md</code></td>
+<td><code>chip_filter.py</code></td>
+<td>（內嵌呼叫）</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Risk Control</strong></td>
+<td><code>agents/06_risk_control.md</code></td>
+<td><code>risk_control.py</code></td>
+<td>（內嵌呼叫）</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Report Generator</strong></td>
+<td><code>agents/06_report_generator.md</code></td>
+<td><code>report_generator.py</code> + <code>index_builder.py</code></td>
+<td><code>index.html</code> + <code>report.html</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Custom Pairs</strong>（新）</td>
+<td>—</td>
+<td><code>custom_pairs.py</code> + <code>custom_pairs_report.py</code> + <code>pair_chart.py</code></td>
+<td><code>custom_pairs.html</code> + <code>pair_{a}_{b}.html</code> × N</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>Notify</strong></td>
+<td>—</td>
+<td><code>notify/email.py</code> + <code>notify/telegram.py</code></td>
+<td>Email + Telegram 訊息</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>Deploy</strong></td>
+<td>—</td>
+<td><code>scripts/deploy_reports.py</code></td>
+<td>GitHub Pages push</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_2">三、目錄結構（實際）</h2>
+<pre><code>MS_N_RRR/
+├── README.md                       系統導覽（您剛剛在看的）
+├── ARCHITECTURE.md                 本檔
+├── INTEGRATIONS.md                 整合史 + 再整合指南
+├── OPERATIONS.md                   日常操作手冊
+├── requirements.txt
+├── .gitignore
+├── 配對表.xlsx                     ★ 自選股清單（不入 git）
+│
+├── agents/                         Agent 規格文件
+│   ├── 02_market_structure.md
+│   ├── 03_hotflow.md
+│   ├── 04_n_pattern.md
+│   ├── 05_rr.md
+│   ├── 05_rrr.md
+│   ├── 05_rs_zscore.md
+│   ├── 06_chip_filter.md
+│   ├── 06_report_generator.md
+│   └── 06_risk_control.md
+│
+├── src/
+│   ├── orchestrator.py            ★ 主控（440 行）
+│   │
+│   ├── agents/
+│   │   ├── market_structure.py    Step 2 — 大盤狀態 + Z-score 模型整合
+│   │   ├── hotflow.py             Step 3 — A/B/C 分類
+│   │   ├── n_pattern.py           Step 4 — N 型偵測
+│   │   ├── n_pattern_report.py    Step 4 — 詳細頁
+│   │   ├── rr_pair.py             Step 5a — RR 簡版
+│   │   ├── rr_report.py           Step 5a — 詳細頁
+│   │   ├── rrr_pair.py            Step 5b — RRR 嚴格版
+│   │   ├── rs_zscore.py           Step 5b — Z60 折返訊號（吃 dynamic_z_threshold）
+│   │   ├── rrr_report.py          Step 5b — 詳細頁
+│   │   ├── chip_filter.py         Step 6 — 籌碼
+│   │   ├── risk_control.py        Step 7 — 風控閘
+│   │   ├── report_generator.py    Step 8 — 8 段 HTML
+│   │   ├── index_builder.py       Step 8 — 主頁
+│   │   ├── custom_pairs.py        Step 9 — 自選配對評估
+│   │   ├── custom_pairs_report.py Step 9 — 自選配對詳細頁
+│   │   └── pair_chart.py          Step 9 — 配對 Plotly 互動圖表（通用化）
+│   │
+│   ├── shared/                    共用工具
+│   │   ├── data_loader.py         薄殼 → stockHisData
+│   │   ├── symbol_meta.py         代號 ↔ 股名對照
+│   │   ├── indicators.py          rolling_zscore, rs_log, sma, slope
+│   │   ├── backup.py              data/output/backup/ 日期備份輪轉
+│   │   ├── i18n.py                英中對照（HTML 顯示用）
+│   │   ├── structure_zscore.py    ★ 60 日 Z-score 模型（Phase 1+4 整合）
+│   │   ├── extended_market.py     ★ 進階指標讀取器（fallback 用）
+│   │   └── pair_health.py         ★ 5 項配對健康檢查（含 Engle-Granger 共整合）
+│   │
+│   ├── backtest/
+│   │   └── engine.py              回測引擎
+│   │
+│   └── notify/
+│       ├── email.py               SMTP（Gmail App Password）
+│       ├── telegram.py            HTML parse mode（避免 URL underscore 被吃）
+│       └── __init__.py            統籌 send_daily()
+│
+├── config/
+│   ├── parameters.yaml            zscore 門檻、市場閾值
+│   ├── rules.yaml                 不做空等硬規則
+│   ├── stock_pool.yaml            全市場 ~2,700 檔分群組
+│   └── notify.local.yaml          ★ 通知憑證（不入 git）
+│
+├── data/
+│   ├── output/                    ★ 所有報告 HTML/JSON（是個 git repo，自動推 GitHub Pages）
+│   │   ├── index.html             主頁
+│   │   ├── *.html / *.json        各 Agent 子頁
+│   │   ├── nan_xin_chart.html     南電/欣興（配對 #1）
+│   │   ├── pair_{a}_{b}.html      自選配對 #2~#N
+│   │   └── backup/{YYYY-MM-DD}/   日期 snapshot（7 日輪轉）
+│   ├── signals/                   每日 orchestrator summary JSON
+│   ├── processed/                 中介結果
+│   └── logs/                      執行日誌
+│
+└── scripts/
+    ├── deploy_reports.py          git push data/output → GitHub Pages
+    └── install_scheduler.ps1      Windows Task Scheduler 註冊
+</code></pre>
+<hr />
+<h2 id="_3">四、資料流（每日執行細節）</h2>
+<pre><code>17:30  TWSE/TPEX 三大法人公布
+17:40  TAIFEX 期貨/選擇權公布
+18:00 ────────────────────────────────────────
+       Windows Scheduler 觸發 MS_N_RRR_Daily
+
+       Step 1: Data Agent fetch
+                stock_data.fetch_all(symbols=DEFAULT_UNIVERSE,
+                  sources=[&quot;price&quot;, &quot;index&quot;, &quot;macro&quot;, &quot;3insti&quot;, &quot;futures&quot;,
+                           &quot;market_insti&quot;, &quot;options&quot;, &quot;etf&quot;])
+                → 寫入 stockHisData/processed/
+
+       Step 2: Market Structure
+                evaluate_market_structure()
+                  ├─ TWII 日/週/月、OTCI 週
+                  ├─ FX、VIX
+                  ├─ 外資/投信/自營 台指期 OI（各自評分）
+                  └─ structure_zscore.compute_structure_zscore()
+                       └─ 60d Z: foreign_spot, foreign_fut, usdtwd, sox,
+                                 trust, hidiv_vol, mkt_dd_narrow
+                       → foreign_pressure_score, etf_support_score,
+                         market_structure_score, regime, dynamic_z_threshold
+                → market.json
+
+       Step 3: HotFlow
+                全市場 ~2,700 → A/B/C 分類
+                → hotflow.json + hotflow.html
+
+       Step 4: N-Pattern
+                從 HotFlow A+B 取候選 → N 型結構評分
+                → n_pattern.json + n_pattern.html
+
+       Step 5a: RR Pair
+                簡版 RS_MA20 穿越
+                → rr.json + rr.html
+
+       Step 5b: RRR Pair + RS/Z-score
+                rs_zscore.compute_signal()
+                  └─ 讀 market.json 的 dynamic_z_threshold
+                     （regime=strong_bull+wma20→2.5, neutral→2.0, mild_bear→1.5）
+                嚴格版 = cycle + phase + mean_reversion + Z60 折返
+                → rrr.json + rrr.html
+
+       Step 6+7+8: Chip → Risk → Report
+                每個 RRR 訊號跑 risk_control.gate()
+                合成 report.html / index.html
+                → 含 1) market structure  2) Agent 卡片 × 5
+                       3) 最終行動建議  4) 詳細頁連結
+                       5) 7 日 backup 連結  6) 系統文件清單
+
+       Step 9: Custom Pairs
+                evaluate_custom_pairs()
+                  ├─ 讀 配對表.xlsx（自選 sheet）
+                  ├─ 依序兩兩成對
+                  ├─ 每組跑 rs_zscore.compute_signal()
+                  └─ 每組呼叫 pair_chart.build_for_pair()
+                     → pair_{a}_{b}.html（5 組配對的完整 Plotly 圖）
+                → custom_pairs.json + custom_pairs.html
+
+       Step 10: Backup snapshot + 7 日清理
+                src/shared/backup.py
+
+       Step 11: Deploy
+                scripts/deploy_reports.py
+                  └─ git -C data/output push origin main
+                  → https://yoshiagent.github.io/MS_N_RRR-reports/
+
+       Step 12: Notify
+                src/notify/__init__.send_daily()
+                  ├─ Telegram HTML
+                  └─ Email
+</code></pre>
+<hr />
+<h2 id="session">五、跨 session / 跨專案的入口</h2>
+<pre><code class="language-python"># 任何專案 / Notebook / 新 Claude session 都能引用中央資料層
+import sys
+sys.path.insert(0, r&quot;C:\CludeHome\stockHisData&quot;)
+from stock_data import (
+    load_price,        # 個股日 K
+    load_index,        # TWII / OTCI
+    load_macro,        # USDTWD, VIX, SOX
+    load_institutional,         # 個股三大法人
+    load_market_institutional,  # 大盤三大法人合計
+    load_futures,               # 台指期 OI
+    load_foreign_options,       # 外資選擇權 PCR
+    load_etf_volume,            # ETF 成交額
+    fetch_all,                  # 一鍵增量更新所有資料
+    db_query,                   # 直接打 DuckDB SQL
+    name, pair_label,           # 代號 ↔ 名稱
+)
+</code></pre>
+<hr />
+<h2 id="cli">六、CLI 入口（可獨立執行）</h2>
+<pre><code class="language-powershell"># 完整管線
+python -m src.orchestrator
+python -m src.orchestrator --skip-fetch        # 跳過資料抓取
+python -m src.orchestrator --skip-fetch --skip-notify  # 純重生報告
+
+# 個別 Agent
+python -m src.agents.market_structure
+python -m src.agents.hotflow
+python -m src.agents.n_pattern
+python -m src.agents.rr_pair
+python -m src.agents.rrr_pair
+python -m src.agents.rs_zscore
+python -m src.agents.custom_pairs
+python -m src.agents.pair_chart                  # 南電/欣興預設
+python -m src.agents.n_pattern_report
+python -m src.agents.index_builder
+
+# 共用模組單獨測試
+python -m src.shared.structure_zscore
+python -m src.shared.extended_market
+python -m src.shared.pair_health                 # （無 __main__）
+
+# 中央資料 CLI
+cd C:\CludeHome\stockHisData
+python -m stock_data --help
+
+# 回測
+python -m src.backtest.engine
+</code></pre>
+<hr />
+<h2 id="xlsx">七、配對表 .xlsx 結構</h2>
+<p><code>配對表.xlsx</code>（<strong>不入 git</strong>，個人股票清單）</p>
+<p><strong>Sheet 名</strong>：<code>自選</code></p>
+<table>
+<thead>
+<tr>
+<th>序號</th>
+<th>代號</th>
+<th>股名</th>
+<th>圖表連結（可選）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>8046</td>
+<td>南電</td>
+<td>（留空→自動使用內建 pair_chart）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3037</td>
+<td>欣興</td>
+<td>（B 側通常留空）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3006</td>
+<td>晶豪科</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>3035</td>
+<td>智原</td>
+<td></td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>規則</strong>：
+- 第 4 欄填外部 URL → 主頁連結指向該 URL（覆蓋內建）
+- 留空 → 自動使用 <code>pair_chart.build_for_pair()</code> 產出的內部 HTML
+- 偶數列數量必須 = 配對數（奇數會跳過最後一個）</p>
+<hr />
+<h2 id="_4">八、報告分頁與部署網址</h2>
+<table>
+<thead>
+<tr>
+<th>本地路徑</th>
+<th>部署網址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data/output/index.html</code></td>
+<td>https://yoshiagent.github.io/MS_N_RRR-reports/</td>
+</tr>
+<tr>
+<td><code>data/output/hotflow.html</code></td>
+<td>https://yoshiagent.github.io/MS_N_RRR-reports/hotflow.html</td>
+</tr>
+<tr>
+<td><code>data/output/n_pattern.html</code></td>
+<td>…/n_pattern.html</td>
+</tr>
+<tr>
+<td><code>data/output/rr.html</code></td>
+<td>…/rr.html</td>
+</tr>
+<tr>
+<td><code>data/output/rrr.html</code></td>
+<td>…/rrr.html</td>
+</tr>
+<tr>
+<td><code>data/output/custom_pairs.html</code></td>
+<td>…/custom_pairs.html</td>
+</tr>
+<tr>
+<td><code>data/output/nan_xin_chart.html</code></td>
+<td>…/nan_xin_chart.html</td>
+</tr>
+<tr>
+<td><code>data/output/pair_{a}_{b}.html</code></td>
+<td>…/pair_{a}_{b}.html</td>
+</tr>
+<tr>
+<td><code>data/output/backtest.html</code></td>
+<td>…/backtest.html</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_5">九、完成度</h2>
+<table>
+<thead>
+<tr>
+<th>元件</th>
+<th>狀態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Agent（stockHisData）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Market Structure Agent</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>HotFlow Agent</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>N-Pattern Agent</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>RR / RRR Agent</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Chip Filter + Risk Control + Report Generator</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Custom Pairs（含 5 組 Plotly 互動圖）</strong></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>60 日 Z-score 市場結構模型</strong></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>南電/欣興完整 dashboard 整合</strong></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Orchestrator</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Signal History（DuckDB 表）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Windows Scheduler</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Git 版本管理</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>GitHub Pages 部署</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Email + Telegram 通知</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>i18n（HTML 中文顯示）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>7 日 backup 輪轉</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Phase 4：完全脫離姊妹專案</strong></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>回測 6 策略對照</td>
+<td>🚧 待補（姊妹專案有 backtest 範本可移植）</td>
+</tr>
+<tr>
+<td>週報（每週一次累積）</td>
+<td>❌ 未開始</td>
+</tr>
+<tr>
+<td>事件偵測 + 變化推播</td>
+<td>❌ 未開始（姊妹專案有 triggers.py 範本）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_6">十、外部依賴</h2>
+<ul>
+<li><code>pandas</code>, <code>numpy</code>, <code>pyyaml</code> — 資料運算</li>
+<li><code>yfinance</code> — 股價/匯率/指數</li>
+<li><code>requests</code> / <code>urllib</code> — TWSE/TPEX/TAIFEX 直連 endpoint</li>
+<li><code>plotly</code> — pair_chart 互動圖表</li>
+<li><code>statsmodels</code> — Engle-Granger 共整合（pair_health）</li>
+<li><code>duckdb</code> — 中央 DB（stockHisData 套件內）</li>
+<li><code>openpyxl</code> — xlsx 讀寫</li>
+</ul>
+<hr />
+<h2 id="claude-code">十一、Claude Code 重新接手的最小起點</h2>
+<p>如果未來開新 session、要從零理解這個系統，依序看：</p>
+<ol>
+<li>本檔 ARCHITECTURE.md（系統全貌）</li>
+<li><code>INTEGRATIONS.md</code>（過去如何把外部專案搬進來，再整合時的踩坑清單）</li>
+<li><code>src/orchestrator.py</code>（看 13 個 step 的順序）</li>
+<li><code>agents/02_market_structure.md</code> ~ <code>06_*.md</code>（各 Agent 的設計理由）</li>
+<li><code>stockHisData/DATA_AGENT.md</code>（資料層使用法）</li>
+</ol>
+<p>然後跑：</p>
+<pre><code class="language-powershell">python -m src.orchestrator --skip-fetch --skip-notify
+</code></pre>
+<p>看 <code>data/signals/run_*.json</code> 的 step 摘要，每個 step 顯示 OK/SKIPPED/FAIL。</p>
+</body></html>

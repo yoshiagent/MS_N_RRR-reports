@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>08_stock_ops — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../../index.html">← 返回主頁</a>
+<h1 id="stock-ops-agent-agent">Stock Ops Agent 規格（股票操作 Agent）</h1>
+<blockquote>
+<p>對應實作：
+- <code>src/agents/stock_ops.py</code>         — 評估邏輯
+- <code>src/agents/stock_ops_report.py</code>  — HTML 渲染</p>
+<p>規格類別：<strong>決策層 Agent</strong>（整合多個既有 agent，輸出具體操作建議）</p>
+</blockquote>
+<hr />
+<h2 id="_1">任務</h2>
+<p>在「市場結構偏多」的背景下，找出：
+1. 月線剛脫離底部盤整
+2. 週線進入主升段
+3. 日線健康修正後重新轉強
+4. 適合「佈局」與「加碼」的股票</p>
+<h3 id="_2">設計偏好（與規格一致）</h3>
+<p>✓ 波段交易　✓ 裸 K + 成交量　✓ 趨勢結構　✓ Relative Rotation　✓ 不做空　✓ 主流資金流向　✓ 量化 + 結構分析</p>
+<p>✗ 避免依賴：KD / MACD / 過多技術指標</p>
+<hr />
+<h2 id="_3">候選池</h2>
+<pre><code>HotFlow A + B 級
+  ∪  N-Pattern candidate + watch
+  ∪  配對表.xlsx 自選股
+</code></pre>
+<p>通常 30-60 檔，可深度月/週/日三層分析。</p>
+<hr />
+<h2 id="10">10 個檢查模組</h2>
+<h3 id="module-1-gate">Module 1 — 市場結構 Gate（必要條件）</h3>
+<p>讀取 <code>market.json</code> 的 subscores：</p>
+<table>
+<thead>
+<tr>
+<th>條件</th>
+<th>取值</th>
+<th>通過閾值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市場狀態</td>
+<td>market_state</td>
+<td>bullish 或 warning</td>
+</tr>
+<tr>
+<td>加權週線</td>
+<td>twii_weekly</td>
+<td>≥ 60</td>
+</tr>
+<tr>
+<td>櫃買週線</td>
+<td>otci_weekly</td>
+<td>≥ 60</td>
+</tr>
+<tr>
+<td>外資台指期</td>
+<td>foreign_oi</td>
+<td>≥ 40</td>
+</tr>
+</tbody>
+</table>
+<p>任一不通過 → 所有股票歸為「觀察」階段（部位 0%）。</p>
+<hr />
+<h3 id="module-2-0-100">Module 2 — 月線主升段起點（0-100 分）</h3>
+<p>對 daily price resample 為 月 K，計算：</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>權重</th>
+<th>邏輯</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>月 MA10 上彎</td>
+<td>35</td>
+<td>近 3 個月 MA10 - 5 個月前 &gt; 0</td>
+</tr>
+<tr>
+<td>月 K 突破 12 月區間頂部</td>
+<td>35</td>
+<td>last_close &gt; prev_12m_high</td>
+</tr>
+<tr>
+<td>月成交量擴張</td>
+<td>20</td>
+<td>近 3 月均量 &gt; 過去 12 月均量</td>
+</tr>
+<tr>
+<td>月線底底高</td>
+<td>10</td>
+<td>最新 swing low &gt; 前一個 swing low</td>
+</tr>
+</tbody>
+</table>
+<p>≥ 60 分為通過。</p>
+<hr />
+<h3 id="module-3-0-100">Module 3 — 週線主升段確認（0-100 分）</h3>
+<p>對 daily price resample 為 週 K（W-FRI），計算：</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>權重</th>
+<th>邏輯</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>週 MA20 向上</td>
+<td>30</td>
+<td>OLS 對近 5 週 MA20 斜率 &gt; 0</td>
+</tr>
+<tr>
+<td>股價 &gt; 週 MA20</td>
+<td>25</td>
+<td>last_close &gt; last_ma20</td>
+</tr>
+<tr>
+<td>Higher High</td>
+<td>20</td>
+<td>近 12 週最新 swing high &gt; 前一個</td>
+</tr>
+<tr>
+<td>Higher Low</td>
+<td>15</td>
+<td>近 12 週最新 swing low &gt; 前一個</td>
+</tr>
+<tr>
+<td>MA20 斜率加速</td>
+<td>10</td>
+<td>近 5 週 slope &gt; 前 5 週 slope</td>
+</tr>
+</tbody>
+</table>
+<p>≥ 60 分為通過。</p>
+<hr />
+<h3 id="module-4-z60">Module 4 — 日線 Z60 過熱史</h3>
+<pre><code>bias    = (close - MA20) / MA20
+bias_z  = (bias - mean60) / std60
+</code></pre>
+<p>近 60 日 Z60 是否曾達 ≥ +1.5？這代表股票曾有主升段動能。</p>
+<hr />
+<h3 id="module-5">Module 5 — 日線修正完成</h3>
+<p>理想 Z60 區間：<code>[0, +0.5]</code>
+不建議：<code>Z60 &lt; -1</code>（已轉弱）</p>
+<hr />
+<h3 id="module-6">Module 6 — 量縮確認</h3>
+<pre><code>vol_ratio_5d_vs_20d = mean(volume[-5:]) / mean(volume[-20:])
+volume_shrink = vol_ratio &lt; 1.0
+</code></pre>
+<p>代表主力未明顯撤退。</p>
+<hr />
+<h3 id="module-7">Module 7 — 重新轉強訊號（核心）</h3>
+<p>至少符合其中之一即視為「重新轉強」：</p>
+<ol>
+<li><strong>突破前日高點</strong>：<code>today.close &gt; yesterday.high</code></li>
+<li><strong>紅 K 吞噬</strong>：<code>today.close &gt; today.open</code> AND <code>today.high &gt; yesterday.high</code> AND <code>today.low &lt; yesterday.low</code></li>
+<li><strong>帶量紅 K</strong>：紅 K + <code>today.volume &gt; 5d_mean × 1.2</code></li>
+<li><strong>5 日平台突破</strong>：<code>today.close &gt; 過去 5 日最高（不含今日）</code></li>
+</ol>
+<p>外加：<strong>Z60 重新上彎</strong>（z_today &gt; z_yesterday）— 修正可能結束的關鍵訊號。</p>
+<hr />
+<h3 id="module-8">Module 8 — 主流性評估</h3>
+<p>從 <code>hotflow.json</code> 取：
+- <code>hotflow_score</code>（主流評分）
+- <code>amount_rank</code>（成交額名次）
+- <code>lifecycle_stage</code>（4 階段狀態機）</p>
+<p>主流性高 = 成交額名次靠前 + lifecycle 處於 forming / expanding。</p>
+<hr />
+<h3 id="module-9-rr">Module 9 — RR 配對對手</h3>
+<p>掃描 4 個來源是否有對手：
+- <code>rr.json</code> (RR 簡版)
+- <code>rrr.json</code> (RRR 嚴格版)
+- <code>custom_pairs.json</code> (自選配對)
+- <code>dynamic_rr.json</code> (動態 RR)</p>
+<p>顯示前 5 組相關配對 + 換股方向。</p>
+<hr />
+<h3 id="module-10">Module 10 — 結構停損（長線保護短線原則）</h3>
+<p>依優先序：
+1. 轉強 K 低點 −1%（若今日為轉強 K）
+2. 5 日平台低點 −1%（要求距現價 ≥ 5%）
+3. 日 MA20 −1%</p>
+<p>選符合條件最近最高者。</p>
+<hr />
+<h2 id="5">5 階段分類邏輯</h2>
+<pre><code class="language-python">if not market_gate_ok:
+    → 觀察 (0%)
+
+elif monthly ≥ 60 and weekly ≥ 60:
+    if daily_state == &quot;修正完成+重新轉強&quot;:
+        if higher_high + amount_expand + amount_rank ≤ 50:
+            → 加碼 (30%)         # 第一次加碼
+        else:
+            → 佈局 (30%)         # 中間偏進取
+    elif daily_state == &quot;主升段持續&quot;:
+        → 持有 (100%)            # 主升中，不加倉
+    elif daily_state == &quot;修正完成中&quot;:
+        → 佈局 (20%)             # 保守佈局
+    elif daily_state == &quot;已轉弱&quot;:
+        → 減碼 (0%)              # 結構轉弱出場
+    elif daily_state == &quot;過熱中&quot;:
+        → 持有 (100%)            # 不追高
+
+else:
+    → 觀察 (0%)
+</code></pre>
+<hr />
+<h2 id="abc">A/B/C 風險等級</h2>
+<pre><code class="language-python">A 級（全部條件齊備）：
+  ✓ market_gate_ok
+  ✓ monthly ≥ 60 AND weekly ≥ 60
+  ✓ daily_state == &quot;修正完成+重新轉強&quot;
+  ✓ amount_rank ≤ 100（主流性）
+  ✓ rr_pair_count &gt; 0（有對手）
+  ✓ 失敗風險 ≤ 1 項
+
+B 級（主要達標但有警示）：
+  ✓ market_gate_ok
+  ✓ monthly ≥ 60 AND weekly ≥ 60
+  ✓ 失敗風險 ≤ 3 項
+
+C 級：以上皆未達標
+</code></pre>
+<hr />
+<h2 id="rr">加入 RR 配對觀察池建議</h2>
+<p>當以下條件成立時，系統建議將該檔加入 <code>配對表.xlsx</code>：</p>
+<pre><code>monthly ≥ 60
+AND weekly ≥ 60
+AND amount_rank ≤ 60（主流性高）
+AND rr_pair_count == 0（尚無對手）
+AND lifecycle_stage ∈ {forming, expanding}
+</code></pre>
+<hr />
+<h2 id="_4">輸入 → 輸出</h2>
+<table>
+<thead>
+<tr>
+<th>輸入（讀）</th>
+<th>輸出（寫）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DuckDB <code>price</code> 表（~365 日 OHLCV）</td>
+<td><code>data/output/stock_ops.json</code></td>
+</tr>
+<tr>
+<td><code>data/output/market.json</code></td>
+<td><code>data/output/stock_ops.html</code></td>
+</tr>
+<tr>
+<td><code>data/output/hotflow.json</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>data/output/n_pattern.json</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>data/output/{rr,rrr,custom_pairs,dynamic_rr}.json</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>stockHisData/database/sector_map.json</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_5">不會做的事（明確界線）</h2>
+<ul>
+<li><strong>不執行交易</strong>：只給建議，沒有 broker 整合</li>
+<li><strong>不做空</strong>：嚴格只給多方訊號，「減碼」是退場不是放空</li>
+<li><strong>不做下跌攤平</strong>：禁止；只允許「突破加碼」</li>
+<li><strong>不依賴 KD/MACD</strong>：所有判斷都基於價格、量、結構</li>
+<li><strong>不取代 RR/RRR Agent</strong>：本 Agent 是統合層，仍需 RR/RRR 提供換股訊號</li>
+</ul>
+<hr />
+<h2 id="agent">與其他 Agent 的關係</h2>
+<pre><code>┌─────────────────────────────────────────────┐
+│  M1 market_structure → 市場 Gate              │
+│  M3 hotflow → 主流性 (amount_rank, hotflow_score, lifecycle) │
+│  M4 n_pattern → 波段確認 (補充參考)            │
+│  RR/RRR/Dynamic/自選 → 配對對手               │
+└──────────────────────┬──────────────────────┘
+                       ▼
+         ┌────────────────────────────┐
+         │   stock_ops.py             │
+         │   (整合 → 階段 + 風險 +    │
+         │    停損 + 進場理由 + 風險) │
+         └────────────────────────────┘
+                       ▼
+         ┌────────────────────────────┐
+         │   stock_ops_report.py      │
+         │   → stock_ops.html         │
+         └────────────────────────────┘
+</code></pre>
+<hr />
+<h2 id="public-api">介面契約（Public API）</h2>
+<pre><code class="language-python">from src.agents.stock_ops import evaluate, save
+from src.agents.stock_ops_report import build
+
+result = evaluate()
+save(result)        # → data/output/stock_ops.json
+build()             # → data/output/stock_ops.html
+
+# orchestrator 已自動串接 in step 3d
+</code></pre>
+<hr />
+<h2 id="_6">未來擴充</h2>
+<ul>
+<li>加入「金字塔加碼」實際計算（30% → 30% → 40%）</li>
+<li>加入「移動停利」自動計算（週 MA20 為主趨勢依據）</li>
+<li>與 signal_history 結合，做歷史回測</li>
+<li>加入「主流族群同步性」檢查（同 XQ 細產業 ≥ 3 檔同步轉強加分）</li>
+<li>加入「法人連續買超」訊號</li>
+</ul>
+</body></html>

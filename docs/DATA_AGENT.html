@@ -1,0 +1,1392 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DATA_AGENT — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../index.html">← 返回主頁</a>
+<h1 id="data-agent">Data Agent 規格</h1>
+<blockquote>
+<p>對應實作：<code>C:\CludeHome\stockHisData\stock_data\</code>
+規格類別：<strong>基礎設施 Agent</strong>（與決策層 Agent 不同，不參與市場判斷）</p>
+</blockquote>
+<h2 id="_1">任務</h2>
+<p>統一管理所有台股歷史資料，作為跨 session / 跨專案的單一資料來源。
+負責：</p>
+<ul>
+<li>從外部資料源（yfinance、TWSE、TPEX、TAIFEX）抓取資料</li>
+<li>處理（編碼轉換、欄位正規化、日期對齊、ROC ↔ AD 換算）</li>
+<li>增量更新與本地快取</li>
+<li>提供讀取 API 與 CLI</li>
+</ul>
+<h2 id="_2">輸入</h2>
+<table>
+<thead>
+<tr>
+<th>來源</th>
+<th>種類</th>
+<th>端點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yfinance</td>
+<td>個股 OHLCV / 指數 / 匯率 / VIX</td>
+<td>Python lib</td>
+</tr>
+<tr>
+<td>TWSE</td>
+<td>上市三大法人（每日全市場）</td>
+<td><code>https://www.twse.com.tw/rwd/zh/fund/T86</code></td>
+</tr>
+<tr>
+<td>TPEX</td>
+<td>上櫃三大法人歷史</td>
+<td><code>https://www.tpex.org.tw/www/zh-tw/insti/dailyTrade</code></td>
+</tr>
+<tr>
+<td>TPEX</td>
+<td>上櫃三大法人最新</td>
+<td><code>https://www.tpex.org.tw/openapi/v1/tpex_3insti_daily_trading</code></td>
+</tr>
+<tr>
+<td>TAIFEX</td>
+<td>臺股期貨未平倉</td>
+<td><code>https://www.taifex.com.tw/cht/3/futContractsDateDown</code></td>
+</tr>
+<tr>
+<td>TWSE</td>
+<td>上市公司基本資料（產業別 28 大類）</td>
+<td><code>https://openapi.twse.com.tw/v1/opendata/t187ap03_L</code></td>
+</tr>
+<tr>
+<td>TPEX</td>
+<td>上櫃公司基本資料（產業別）</td>
+<td><code>https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap03_O</code></td>
+</tr>
+<tr>
+<td>references</td>
+<td>XQ 產業/細產業/市值對照（1,935 檔，60 大類、545 細產業、含市值）</td>
+<td><code>C:\CludeHome\references\industry_sub.csv</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">輸出</h2>
+<p>採用 <strong>raw / processed / database</strong> 三層分層。</p>
+<h3 id="processed">processed/（主要層）</h3>
+<table>
+<thead>
+<tr>
+<th>路徑</th>
+<th>內容</th>
+<th>欄位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>processed/price/{symbol}.csv</code></td>
+<td>個股日 OHLCV</td>
+<td>date, open, high, low, close, volume</td>
+</tr>
+<tr>
+<td><code>processed/index/{TWII|OTCI}.csv</code></td>
+<td>指數 OHLCV</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><code>processed/macro/{USDTWD|VIX}.csv</code></td>
+<td>總經序列</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><code>processed/3insti/{symbol}.csv</code></td>
+<td>三大法人（TWSE + TPEX 合併）</td>
+<td>date, foreign, trust, dealer, total（股數）</td>
+</tr>
+<tr>
+<td><code>processed/futures/taifex_oi.csv</code></td>
+<td>臺股期貨未平倉</td>
+<td>date, foreign_tx_oi_net, trust_tx_oi_net, dealer_tx_oi_net</td>
+</tr>
+</tbody>
+</table>
+<h3 id="database">database/（元層）</h3>
+<table>
+<thead>
+<tr>
+<th>路徑</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>database/symbol_names.json</code></td>
+<td>代號 → 股名快取（JSON dict，1,935 筆）</td>
+</tr>
+<tr>
+<td><code>database/market_map.json</code></td>
+<td>代號 → TWSE/TPEX 對照（從官方 OpenAPI 抓）</td>
+</tr>
+<tr>
+<td><code>database/sector_map.json</code></td>
+<td><strong>三軌產業對照表</strong> — 每檔含 official 28 類 + 自建 theme + XQ 細產業 + 真實市值（億元）</td>
+</tr>
+<tr>
+<td><code>database/update_log.csv</code></td>
+<td>抓取紀錄（timestamp, source, rows, extra）</td>
+</tr>
+<tr>
+<td><code>database/stocks.duckdb</code></td>
+<td>DuckDB 主庫（price/indices/institutional/futures/macro/symbols/signal_history/update_log）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="raw">raw/（預留）</h3>
+<p>目前為空。未來如需保留原始 dump，按下列結構寫入：</p>
+<table>
+<thead>
+<tr>
+<th>計畫路徑</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>raw/twse/T86_{YYYYMMDD}.json</code></td>
+<td>TWSE T86 整份 JSON dump</td>
+</tr>
+<tr>
+<td><code>raw/tpex/dailyTrade_{YYYYMMDD}.json</code></td>
+<td>TPEX dailyTrade 整份 JSON dump</td>
+</tr>
+<tr>
+<td><code>raw/taifex/futContracts_{YYYYMMDD}.csv</code></td>
+<td>TAIFEX 整份 CSV dump</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sector_mapjson">sector_map.json 結構（三軌產業對照）</h3>
+<p>由 <code>python -m stock_data.build_sector_map</code> 重建。整合三個資料來源：</p>
+<pre><code class="language-json">{
+  &quot;2330&quot;: {
+    &quot;name&quot;:               &quot;台積電&quot;,
+    &quot;market&quot;:             &quot;TWSE&quot;,
+
+    &quot;ind_code&quot;:           &quot;24&quot;,
+    &quot;official&quot;:           &quot;24_半導體業&quot;,
+
+    &quot;theme&quot;:              [&quot;AI&quot;, &quot;晶圓代工&quot;, &quot;權值股&quot;],
+
+    &quot;market_cap_billion&quot;: 587371.66,
+    &quot;xq_industry&quot;:        &quot;上市半導體&quot;,
+    &quot;xq_subindustry&quot;:     &quot;晶圓代工&quot;,
+    &quot;xq_all_subs&quot;:        [&quot;晶圓代工&quot;, &quot;IC製造&quot;],
+    &quot;xq_status&quot;:          &quot;全球第一大晶圓代工廠&quot;
+  }
+}
+</code></pre>
+<p><strong>三軌用途比較</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>來源</th>
+<th>粒度</th>
+<th>適用場景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>official</code> (TWSE/TPEX OpenAPI)</td>
+<td>28 大類</td>
+<td>法規合規、官方參照</td>
+</tr>
+<tr>
+<td><code>theme</code> (手刻 seed + 規則)</td>
+<td>自訂 ~30 種</td>
+<td>主題式輪動分析、AI/權值股等概念標籤</td>
+</tr>
+<tr>
+<td><code>xq_industry</code> (XQ 60 類，含上市/上櫃)</td>
+<td>60 大類</td>
+<td>中性精細分類，含市場別</td>
+</tr>
+<tr>
+<td><code>xq_subindustry</code> (XQ 545 種)</td>
+<td>細產業</td>
+<td><strong>資金集中度（HHI）核心算法用</strong></td>
+</tr>
+<tr>
+<td><code>xq_all_subs</code> (XQ 多標籤)</td>
+<td>1-30 標籤/檔</td>
+<td>多角度搜尋（如「找所有有 LED 的股」）</td>
+</tr>
+<tr>
+<td><code>market_cap_billion</code></td>
+<td>真實市值（億元）</td>
+<td>中小型 vs 大型權值股分類</td>
+</tr>
+</tbody>
+</table>
+<p><strong>載入器</strong>：</p>
+<pre><code class="language-python">from stock_data.xq_industry import load_xq_industry
+xq = load_xq_industry()
+xq['2330']  # {'name': '台積電', 'market_cap_billion': 587371.66, ...}
+</code></pre>
+<p><strong>更新頻率</strong>：手動，每月 1 次（XQ csv 由使用者匯出更新）</p>
+<h2 id="_4">否決條件（失敗處理）</h2>
+<table>
+<thead>
+<tr>
+<th>情境</th>
+<th>行為</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>個別 fetch 拋例外</td>
+<td>log warning，跳過該日 / 該檔，繼續下一個</td>
+</tr>
+<tr>
+<td>個股 .TW / .TWO 都失敗</td>
+<td>若有本地快取則用快取；否則 raise</td>
+</tr>
+<tr>
+<td>TWSE 該日無資料（假日 / 尚未公布）</td>
+<td>跳過該日</td>
+</tr>
+<tr>
+<td>TPEX OpenAPI 失敗</td>
+<td>log warning，不影響 TWSE 部分</td>
+</tr>
+<tr>
+<td>編碼錯誤</td>
+<td>嘗試 ms950 → big5 → cp950，最後 errors="replace"</td>
+</tr>
+<tr>
+<td>本地 CSV 損毀</td>
+<td>log warning，視同無資料；重抓</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">不會做的事（明確界線）</h2>
+<ul>
+<li>不分析、不評分、不下交易建議</li>
+<li>不持有狀態（無 session / DB / 鎖）</li>
+<li>不處理盤中即時報價（盤中即時用 XQ DDE，由消費者自行處理）</li>
+<li>不爬主力分點、不查借券、不抓基本面（之後再加，需另立規格）</li>
+<li>不替任何專案做特定欄位處理（如月線重採樣由消費者呼叫 <code>load_price(timeframe="monthly")</code> 處理）</li>
+</ul>
+<h2 id="public-api">介面契約（Public API）</h2>
+<p>任何呼叫端可預期：</p>
+<ol>
+<li>所有 <code>load_*</code> 函式回傳 pandas DataFrame，索引為 DatetimeIndex（無時區）</li>
+<li>缺資料時不靜默回空 — 會 raise RuntimeError 或 KeyError</li>
+<li><code>refresh=False</code> 強制只讀本地，不打網路</li>
+<li>所有 <code>fetch_*</code> 函式皆為<strong>冪等增量</strong>：重複呼叫安全，重複 fetch 同一日會 overwrite 該日</li>
+<li>所有寫入採 <code>keep="last"</code> — 同日新資料會覆蓋舊資料</li>
+<li>不刪除任何既有資料</li>
+</ol>
+<h2 id="agent">與其他 Agent 的關係</h2>
+<pre><code>┌───────────────────────────────────────┐
+│  決策層 Agent（market_structure /     │
+│   n_shape / rrr_pair / rs_zscore /    │
+│   chip_filter / risk / execution）    │
+└──────────────────┬────────────────────┘
+                   │ load_price / load_institutional / ...
+                   ▼
+        ┌──────────────────────┐
+        │  Data Agent          │  ← 本規格
+        │  (stock_data 套件)   │
+        └──────────┬───────────┘
+                   │ HTTP / yfinance
+                   ▼
+        ┌──────────────────────┐
+        │  外部資料源          │
+        │  TWSE / TPEX /       │
+        │  TAIFEX / yfinance   │
+        └──────────────────────┘
+</code></pre>
+<hr />
+<h1 id="session">操作手冊（給後續 session / 維護者）</h1>
+<blockquote>
+<p>以下內容是已經驗證過、能用、踩過坑的實作細節。
+修改 Data Agent 前先讀這節，可省 90% 重新踩坑時間。</p>
+</blockquote>
+<h2 id="1">1. 穩定資料來源規格</h2>
+<h3 id="11-twse-t86">1.1 TWSE T86（上市三大法人，每日全市場）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>細節</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>URL</td>
+<td><code>https://www.twse.com.tw/rwd/zh/fund/T86?date={YYYYMMDD}&amp;selectType=ALLBUT0999&amp;response=json</code></td>
+</tr>
+<tr>
+<td>方法</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>日期格式</td>
+<td><code>YYYYMMDD</code>（無分隔符，如 <code>20260521</code>）</td>
+</tr>
+<tr>
+<td>編碼</td>
+<td>UTF-8 (JSON)</td>
+</tr>
+<tr>
+<td>回傳形狀</td>
+<td><code>{"stat": "OK" | "很抱歉...", "fields": [...], "data": [[...], ...]}</code></td>
+</tr>
+<tr>
+<td>一次回</td>
+<td>全市場 ~1,300 檔</td>
+</tr>
+<tr>
+<td>公布時間</td>
+<td>17:30 ~ 18:00</td>
+</tr>
+<tr>
+<td>建議 throttle</td>
+<td>≥ 1.5 s/req</td>
+</tr>
+</tbody>
+</table>
+<p><strong>欄位索引（已於 2026-05 驗證，請以實作中的 <code>_T86_IDX</code> 為準）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>idx</th>
+<th>欄位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>證券代號</td>
+</tr>
+<tr>
+<td>1</td>
+<td>證券名稱</td>
+</tr>
+<tr>
+<td>4</td>
+<td>外陸資買賣超（不含外資自營商）</td>
+</tr>
+<tr>
+<td>7</td>
+<td>外資自營商買賣超</td>
+</tr>
+<tr>
+<td>10</td>
+<td>投信買賣超</td>
+</tr>
+<tr>
+<td>11</td>
+<td>自營商買賣超</td>
+</tr>
+<tr>
+<td>18</td>
+<td>三大法人買賣超合計</td>
+</tr>
+</tbody>
+</table>
+<p>數值欄位含逗號（<code>"156,969,558"</code>），可為負，可能空字串或 <code>"--"</code>。</p>
+<h3 id="12-tpex-dailytrade-rwd">1.2 TPEX dailyTrade RWD（上櫃三大法人，<strong>有歷史</strong>）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>細節</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>URL</td>
+<td><code>https://www.tpex.org.tw/www/zh-tw/insti/dailyTrade?date={YYYY/MM/DD}&amp;type=Daily&amp;se=AL&amp;id=</code></td>
+</tr>
+<tr>
+<td>日期格式</td>
+<td>AD <code>YYYY/MM/DD</code>（民國 <code>115/05/22</code> 也通）</td>
+</tr>
+<tr>
+<td>編碼</td>
+<td>UTF-8 (JSON)</td>
+</tr>
+<tr>
+<td>回傳形狀</td>
+<td><code>{"columnNum": 25, "tables": [{"title", "date", "fields", "data"}, ...], "stat"}</code></td>
+</tr>
+<tr>
+<td>一次回</td>
+<td>全 OTC ~900 檔</td>
+</tr>
+<tr>
+<td>公布時間</td>
+<td>17:30 ~ 18:00</td>
+</tr>
+<tr>
+<td>建議 throttle</td>
+<td>≥ 1.4 s/req</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ <code>columnNum = 25</code> 但 <code>fields</code> 實際只有 <strong>24</strong> 個（不要相信 columnNum）。</p>
+<p><strong>欄位索引（24 個）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>idx</th>
+<th>欄位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>代號</td>
+</tr>
+<tr>
+<td>1</td>
+<td>名稱</td>
+</tr>
+<tr>
+<td>2-4</td>
+<td>外陸資 買 / 賣 / 買賣超（不含外資自營商）</td>
+</tr>
+<tr>
+<td>5-7</td>
+<td>外資自營商 買 / 賣 / 買賣超</td>
+</tr>
+<tr>
+<td>8-10</td>
+<td><strong>外資合計</strong> 買 / 賣 / 買賣超</td>
+</tr>
+<tr>
+<td>11-13</td>
+<td><strong>投信</strong> 買 / 賣 / 買賣超</td>
+</tr>
+<tr>
+<td>14-16</td>
+<td>自營商（自行買賣）</td>
+</tr>
+<tr>
+<td>17-19</td>
+<td>自營商（避險）</td>
+</tr>
+<tr>
+<td>20-22</td>
+<td><strong>自營商合計</strong> 買 / 賣 / 買賣超</td>
+</tr>
+<tr>
+<td>23</td>
+<td>三大法人買賣超合計</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-tpex-openapi">1.3 TPEX OpenAPI（上櫃三大法人，<strong>僅最新一日</strong>）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>細節</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>URL</td>
+<td><code>https://www.tpex.org.tw/openapi/v1/tpex_3insti_daily_trading</code></td>
+</tr>
+<tr>
+<td><strong>⚠️ 不接受 date 參數</strong></td>
+<td>永遠回最新交易日的資料</td>
+</tr>
+<tr>
+<td>日期欄位 <code>Date</code></td>
+<td>民國 7 碼字串，<code>"1150522"</code> = 民國 115/05/22 = 2026/05/22</td>
+</tr>
+<tr>
+<td>ROC → AD 換算</td>
+<td><code>yyy=int(roc[:-4]); year = yyy + 1911</code></td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ 欄位名稱混亂，需 <strong>hardcode 精確字串比對</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>含義</th>
+<th>JSON key（注意 leading space 與括號）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>外陸資（不含外資自營商）</td>
+<td><code>"Foreign Investors include Mainland Area Investors (Foreign Dealers excluded)-Difference"</code></td>
+</tr>
+<tr>
+<td>同上（另一處 leading space 變體）</td>
+<td><code>" Foreign Investors include Mainland Area Investors (Foreign Dealers excluded)-Total Sell"</code></td>
+</tr>
+<tr>
+<td>外資自營商</td>
+<td><code>"ForeignDealers-Difference"</code></td>
+</tr>
+<tr>
+<td>投信</td>
+<td><code>"SecuritiesInvestmentTrustCompanies-Difference"</code></td>
+</tr>
+<tr>
+<td>自營合計</td>
+<td><code>"Dealers-Difference"</code></td>
+</tr>
+<tr>
+<td>三大法人合計</td>
+<td><code>"TotalDifference"</code></td>
+</tr>
+</tbody>
+</table>
+<p>用途：每日例行只想補最新一日時用此（單次 call，快）。要歷史請走 RWD endpoint。</p>
+<h3 id="14-taifex">1.4 TAIFEX 三大法人未平倉</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>細節</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>URL</td>
+<td><code>https://www.taifex.com.tw/cht/3/futContractsDateDown?queryStartDate={YYYY/MM/DD}&amp;queryEndDate={YYYY/MM/DD}</code></td>
+</tr>
+<tr>
+<td>日期格式</td>
+<td>AD <code>YYYY/MM/DD</code></td>
+</tr>
+<tr>
+<td><strong>編碼</strong></td>
+<td><strong>ms950 / big5 / cp950</strong>（<strong>不是 UTF-8</strong>）</td>
+</tr>
+<tr>
+<td>回傳形狀</td>
+<td>CSV，1 日約 67 列；要 filter <code>商品名稱 == "臺股期貨"</code> 三列（外資 / 投信 / 自營）</td>
+</tr>
+<tr>
+<td>公布時間</td>
+<td>15:00 ~ 15:30</td>
+</tr>
+<tr>
+<td>建議 throttle</td>
+<td>≥ 1.2 s/req</td>
+</tr>
+</tbody>
+</table>
+<p><strong>CSV 欄位（重要的）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>idx</th>
+<th>欄位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>日期</td>
+</tr>
+<tr>
+<td>1</td>
+<td>商品名稱（filter <code>"臺股期貨"</code>）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>身份別（<code>"外資及陸資"</code> / <code>"投信"</code> / <code>"自營商"</code>）</td>
+</tr>
+<tr>
+<td>9</td>
+<td>多方未平倉口數</td>
+</tr>
+<tr>
+<td>11</td>
+<td>空方未平倉口數</td>
+</tr>
+<tr>
+<td><strong>13</strong></td>
+<td><strong>多空未平倉口數淨額</strong> ← 我們要的數字</td>
+</tr>
+<tr>
+<td>14</td>
+<td>多空未平倉契約金額淨額（千元）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="15-yfinance-ohlcv">1.5 yfinance（個股 / 指數 / 匯率 OHLCV）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>細節</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>套件</td>
+<td><code>pip install yfinance</code>（驗證版本 1.3.0）</td>
+</tr>
+<tr>
+<td>上市後綴</td>
+<td><code>{code}.TW</code>（如 <code>2330.TW</code>）</td>
+</tr>
+<tr>
+<td>上櫃後綴</td>
+<td><code>{code}.TWO</code>（如 <code>6488.TWO</code>）</td>
+</tr>
+<tr>
+<td>指數</td>
+<td><code>^TWII</code> (加權) / <code>^TWOII</code> (櫃買) / <code>^VIX</code> / <code>^SOX</code> / <code>^NDX</code></td>
+</tr>
+<tr>
+<td>匯率</td>
+<td><code>TWD=X</code> (USD/TWD)</td>
+</tr>
+<tr>
+<td>必加參數</td>
+<td><code>progress=False, auto_adjust=True, actions=False</code></td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ <strong>新版 (≥1.3) 回 MultiIndex columns</strong> 即使單一 ticker：</p>
+<pre><code class="language-python">if isinstance(df.columns, pd.MultiIndex):
+    df.columns = [c[0] for c in df.columns]
+</code></pre>
+<p>⚠️ <strong>不知上市 / 上櫃時</strong>：先試 <code>.TW</code>，失敗再 <code>.TWO</code>（已實作於 <code>fetch_price</code>）。</p>
+<h3 id="16-references-industry_subcsv">1.6 references / industry_sub.csv（代號股名對照）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>細節</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>路徑</td>
+<td><code>C:\CludeHome\references\industry_sub.csv</code></td>
+</tr>
+<tr>
+<td><strong>編碼</strong></td>
+<td><strong>cp950</strong></td>
+</tr>
+<tr>
+<td>行數</td>
+<td>1,938（資料約 1,935 筆有效代號）</td>
+</tr>
+<tr>
+<td>格式</td>
+<td><strong>不是純 CSV</strong>：tab + comma 混用，部份欄位含逗號但未完整 quote</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ pandas <code>read_csv</code> <strong>直接讀會 ParserError</strong>。正解：</p>
+<pre><code class="language-python">import csv, re
+mapping = {}
+with open(REF_CSV, encoding=&quot;cp950&quot;) as f:
+    for i, ln in enumerate(f):
+        if i &lt; 3:               # 跳過 metadata 與欄位 header
+            continue
+        row = next(csv.reader([ln]))
+        for j, v in enumerate(row):
+            v = v.strip()
+            if re.match(r&quot;^\d{4,5}[A-Z]?\.(TW|TWO)$&quot;, v):
+                code = v.split(&quot;.&quot;)[0]
+                name = row[j + 1].strip().strip('&quot;')
+                mapping[code] = name
+                break
+</code></pre>
+<hr />
+<h2 id="2">2. 編碼處理速查表</h2>
+<table>
+<thead>
+<tr>
+<th>來源</th>
+<th>編碼</th>
+<th>處理方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TWSE T86 (JSON)</td>
+<td>UTF-8</td>
+<td><code>r.read().decode("utf-8")</code></td>
+</tr>
+<tr>
+<td>TPEX RWD / OpenAPI (JSON)</td>
+<td>UTF-8</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>TAIFEX CSV</strong></td>
+<td><strong>ms950 / big5 / cp950</strong></td>
+<td>依序嘗試，最後 <code>errors="replace"</code></td>
+</tr>
+<tr>
+<td><strong>industry_sub.csv</strong></td>
+<td><strong>cp950</strong></td>
+<td><code>open(p, encoding="cp950")</code></td>
+</tr>
+<tr>
+<td>寫出本地 CSV</td>
+<td>UTF-8</td>
+<td><code>df.to_csv(p, encoding="utf-8")</code></td>
+</tr>
+<tr>
+<td>PowerShell 顯示中文</td>
+<td>UTF-8</td>
+<td><code>$env:PYTHONIOENCODING="utf-8"</code> 避免 mojibake</td>
+</tr>
+</tbody>
+</table>
+<p>通用嘗試邏輯（已用於 <code>_fetch_taifex_one_day</code>）：</p>
+<pre><code class="language-python">text = None
+for enc in (&quot;ms950&quot;, &quot;big5&quot;, &quot;cp950&quot;):
+    try:
+        text = raw.decode(enc); break
+    except UnicodeDecodeError:
+        continue
+if text is None:
+    text = raw.decode(&quot;ms950&quot;, errors=&quot;replace&quot;)
+</code></pre>
+<hr />
+<h2 id="3">3. 踩坑經驗（按重要性排序）</h2>
+<h3 id="_6">編碼 / 解析</h3>
+<ol>
+<li>
+<p><strong>TAIFEX CSV 不是 UTF-8</strong> → <code>UnicodeDecodeError</code>
+   解：嘗試 <code>ms950</code> → <code>big5</code> → <code>cp950</code>，最後 <code>errors="replace"</code></p>
+</li>
+<li>
+<p><strong>industry_sub.csv 用 pandas read_csv 直接讀必炸</strong>（"Expected N fields, saw M"）
+   解：用 <code>csv.reader([ln])</code> 逐行 + 正規表達式找代號 <code>^\d{4,5}[A-Z]?\.(TW|TWO)$</code></p>
+</li>
+<li>
+<p><strong>TPEX OpenAPI 欄位名稱前面有 leading space</strong>
+   <code>" Foreign Investors include Mainland..."</code> 不是 <code>"Foreign..."</code>
+   解：hardcode 精確字串（含前置空白）對應</p>
+</li>
+<li>
+<p><strong>TWSE T86 row 長度不固定</strong>（某些日子部分 row 欄位少於 19） → <code>IndexError</code>
+   解：<code>if len(row) &lt; max(_T86_IDX.values()) + 1: continue</code></p>
+</li>
+<li>
+<p><strong>數值字串含逗號</strong> <code>"156,969,558"</code> 直接 <code>int()</code> 炸
+   解：自寫 <code>_parse_num(s)</code> 處理逗號 / 空字串 / <code>--</code> / 浮點 fallback</p>
+</li>
+</ol>
+<h3 id="pandas">Pandas / 型別</h3>
+<ol>
+<li>
+<p><strong>date 欄型別混雜</strong> → <code>'&lt;' not supported between instances of 'str' and 'Timestamp'</code>
+   發生在 append 新 row 與既有 CSV 合併排序時
+   解：新 row 建構用 <code>pd.Timestamp(d)</code>；<code>read_csv(..., parse_dates=["date"])</code>；寫出 <code>date_format="%Y-%m-%d"</code></p>
+</li>
+<li>
+<p><strong>同日重複寫入造成重複列</strong>
+   解：concat 前先 <code>df = df[df["date"] != new_ts]</code> 去舊</p>
+</li>
+<li>
+<p><strong>yfinance 新版 MultiIndex columns</strong>（即使單一 ticker）
+   解：<code>df.columns = [c[0] for c in df.columns]</code> 攤平</p>
+</li>
+</ol>
+<h3 id="api">API 行為</h3>
+<ol>
+<li>
+<p><strong>TPEX OpenAPI 忽略 date 參數</strong>（永遠回最新）
+   解：歷史走 RWD endpoint；OpenAPI 只用來補最新一日</p>
+</li>
+<li>
+<p><strong>TPEX <code>columnNum</code> 與實際 <code>fields</code> 不符</strong>（25 vs 24）
+    解：以 <code>fields</code> array 長度為準</p>
+</li>
+<li>
+<p><strong>TPEX 歷史 endpoint 接受兩種日期</strong>（民國 / AD 都通）
+    解：統一傳 AD <code>YYYY/MM/DD</code> 即可</p>
+</li>
+<li>
+<p><strong>股票代號 .TW vs .TWO</strong>
+    上市 = <code>.TW</code>（2330.TW），上櫃 = <code>.TWO</code>（6488.TWO）
+    不知道時：先試 .TW 失敗再 .TWO（已實作於 <code>fetch_price</code>）</p>
+</li>
+<li>
+<p><strong>TWSE T86 當日資料 17:30 後才出</strong>
+    14:30 收盤馬上跑只能拿到 <code>stat = "很抱歉..."</code></p>
+</li>
+</ol>
+<h3 id="_7">排程 / 流程</h3>
+<ol>
+<li>
+<p><strong>業務日 ≠ 國定假日</strong>
+    <code>_business_days()</code> 只跳週末，沒考慮春節 / 中秋 / 228 / 雙十 / 補班
+    假日 fetcher 回空 dict 但無 error → 設計上接受</p>
+</li>
+<li>
+<p><strong>PowerShell 與 git-bash 引號互不相容</strong>
+    Bash here-string 跨平台炸，PowerShell <code>"\"</code>轉義常出錯
+    解：寫獨立 <code>.py</code> 檔再 <code>python -m</code>，不要在 shell 拼複雜命令</p>
+</li>
+<li>
+<p><strong>per-symbol loop 抓 T86 / TPEX 是天大浪費</strong>
+    這兩個 endpoint 一次 call 回全市場 1,300 / 900 檔
+    解：永遠 <strong>per-day loop</strong>，不要 per-symbol loop</p>
+</li>
+</ol>
+<hr />
+<h2 id="4">4. 效率心法</h2>
+<table>
+<thead>
+<tr>
+<th>做法</th>
+<th>為什麼</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TWSE / TPEX 一次抓全市場</strong></td>
+<td>T86 一次 ~1,300 檔 / TPEX 一次 ~900 檔；per-symbol loop 是 1,300× 慢</td>
+</tr>
+<tr>
+<td><strong>TAIFEX 與 TWSE 平行跑</strong></td>
+<td>不同網域 / 不同 rate-limit pool，雙 process 並行省一半時間</td>
+</tr>
+<tr>
+<td><strong>本地最新 &lt; today - 3 才打網路</strong></td>
+<td><code>_need_refresh()</code> 的 3 自然日 grace；連續週末不會誤觸發</td>
+</tr>
+<tr>
+<td><strong>fetch_* 函式增量且冪等</strong></td>
+<td>反覆呼叫安全；同日 fetch 兩次只是覆蓋同 row</td>
+</tr>
+<tr>
+<td><strong>「指定 symbol 都已有的日期交集」才算 covered</strong></td>
+<td>擴大 symbol set 時新檔自動補；老檔不再重抓</td>
+</tr>
+<tr>
+<td><strong>throttle 寫死在 fetch 函式內</strong></td>
+<td>不要靠呼叫端自律</td>
+</tr>
+<tr>
+<td><strong>yfinance 三件套</strong></td>
+<td><code>progress=False, auto_adjust=True, actions=False</code> 必加</td>
+</tr>
+<tr>
+<td><strong>大量補抓走背景</strong></td>
+<td>250 日 × 1.5s ≈ 7 分鐘；用 <code>run_in_background</code> 別佔 foreground</td>
+</tr>
+<tr>
+<td><strong>進度與結果寫 log 檔</strong></td>
+<td>背景任務無法 print 觀察，靠 <code>meta/update_log.csv</code> 與 <code>logs/*.txt</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5">5. 公布時間與排程建議</h2>
+<table>
+<thead>
+<tr>
+<th>時間（台北）</th>
+<th>已可抓</th>
+<th>還不能抓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>14:30 收盤</td>
+<td>—</td>
+<td>三大法人、futures、yfinance</td>
+</tr>
+<tr>
+<td>15:00 ~ 15:30</td>
+<td><strong>TAIFEX 期貨 OI</strong></td>
+<td>三大法人</td>
+</tr>
+<tr>
+<td>15:30 ~ 16:00</td>
+<td><strong>yfinance 個股 / 指數</strong></td>
+<td>三大法人</td>
+</tr>
+<tr>
+<td>17:30 ~ 18:00</td>
+<td><strong>TWSE T86</strong> / <strong>TPEX dailyTrade</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>18:00 之後</strong></td>
+<td><strong>全部</strong> ✓（建議排程時點）</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Windows Task Scheduler 範本</strong>：
+- 觸發：週一~週五 18:00
+- 動作：<code>python -m stock_data update --all --symbols &lt;清單&gt; --days 5</code>
+- 重試：失敗時 15 分鐘後重試 1 次
+- 記得用 <code>--days 5</code>（增量），不要每次都 250 日</p>
+<hr />
+<h2 id="6">6. 偵錯指引（症狀 → 可能原因 → 修法）</h2>
+<table>
+<thead>
+<tr>
+<th>症狀</th>
+<th>可能原因</th>
+<th>修法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stat = "很抱歉..."</code></td>
+<td>假日 / 當日尚未公布 / 日期格式錯</td>
+<td>檢查 weekday、改 18:00 後跑、確認 <code>YYYYMMDD</code></td>
+</tr>
+<tr>
+<td><code>UnicodeDecodeError</code></td>
+<td>TAIFEX CSV 用 UTF-8 解</td>
+<td>改 ms950 嘗試鏈</td>
+</tr>
+<tr>
+<td><code>Expected N fields, saw M</code></td>
+<td>industry_sub.csv 用 pandas 讀</td>
+<td>改 <code>csv.reader</code> 逐行</td>
+</tr>
+<tr>
+<td><code>IndexError: list index out of range</code></td>
+<td>T86 某些 row 欄位少</td>
+<td>加 <code>min_len</code> 檢查</td>
+</tr>
+<tr>
+<td>重複的同日資料</td>
+<td>沒去舊就 append</td>
+<td>concat 前 filter</td>
+</tr>
+<tr>
+<td><code>'&lt;' not supported between instances of 'str' and 'Timestamp'</code></td>
+<td>date 型別混雜</td>
+<td>統一轉 Timestamp</td>
+</tr>
+<tr>
+<td>抓 60+ 檔超慢</td>
+<td>per-symbol loop 呼叫 T86</td>
+<td>改 per-day（一次回全市場）</td>
+</tr>
+<tr>
+<td>yfinance columns 怪怪的</td>
+<td>新版 MultiIndex</td>
+<td>攤平</td>
+</tr>
+<tr>
+<td>TPEX 歷史抓不到</td>
+<td>用了 OpenAPI</td>
+<td>改 RWD endpoint</td>
+</tr>
+<tr>
+<td>同一 fetcher 跑兩次很慢</td>
+<td>refresh 機制誤判</td>
+<td>看 <code>_need_refresh</code> 的 grace_days</td>
+</tr>
+<tr>
+<td>半夜跑當日沒資料</td>
+<td>TWSE 公布前</td>
+<td>把排程改到 18:00 後</td>
+</tr>
+<tr>
+<td>上櫃股 chip 永遠空</td>
+<td>TWSE T86 不含上櫃</td>
+<td>走 <code>fetch_tpex_historical()</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7">7. 既有實作交叉索引</h2>
+<table>
+<thead>
+<tr>
+<th>想做的事</th>
+<th>該看哪個檔 / 函式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>抓單檔個股</td>
+<td><code>fetchers.fetch_price(symbol)</code></td>
+</tr>
+<tr>
+<td>抓指數</td>
+<td><code>fetchers.fetch_index(name)</code></td>
+</tr>
+<tr>
+<td>抓總經</td>
+<td><code>fetchers.fetch_macro(key)</code></td>
+</tr>
+<tr>
+<td>抓 TWSE 三大法人（多日）</td>
+<td><code>fetchers.fetch_institutional(days, symbols)</code></td>
+</tr>
+<tr>
+<td>抓 TPEX 上櫃三大法人歷史</td>
+<td><code>fetchers.fetch_tpex_historical(days, symbols)</code></td>
+</tr>
+<tr>
+<td>抓 TAIFEX 期貨 OI</td>
+<td><code>fetchers.fetch_futures(days)</code></td>
+</tr>
+<tr>
+<td>一鍵更新所有來源</td>
+<td><code>fetchers.fetch_all(symbols, sources)</code></td>
+</tr>
+<tr>
+<td>解析 T86 row</td>
+<td><code>_fetch_twse_one_day</code>（內含 <code>_T86_IDX</code>）</td>
+</tr>
+<tr>
+<td>解析 TPEX row</td>
+<td><code>_fetch_tpex_one_day</code>（內含 <code>_TPEX_IDX</code>）</td>
+</tr>
+<tr>
+<td>解析 TAIFEX CSV</td>
+<td><code>_fetch_taifex_one_day</code>（內含編碼嘗試）</td>
+</tr>
+<tr>
+<td>數值字串 → int</td>
+<td><code>_parse_num</code></td>
+</tr>
+<tr>
+<td>業務日生成</td>
+<td><code>_business_days(days)</code></td>
+</tr>
+<tr>
+<td>增量需要 fetch 的日期</td>
+<td><code>fetch_*</code> 內的 <code>full_coverage_days</code> 邏輯</td>
+</tr>
+<tr>
+<td>同日去舊再 append</td>
+<td><code>_append_insti_day</code></td>
+</tr>
+<tr>
+<td>寫 update log</td>
+<td><code>_log_update(source, n_rows, extra)</code></td>
+</tr>
+<tr>
+<td>代號 → 股名</td>
+<td><code>symbol_meta.name(code)</code></td>
+</tr>
+<tr>
+<td>配對標籤</td>
+<td><code>symbol_meta.pair_label(a, b)</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<hr />
+<h1 id="duckdb">DuckDB 操作節</h1>
+<blockquote>
+<p>對應實作：<code>stock_data/db.py</code> + <code>stock_data/queries.py</code>
+DB 檔案：<code>database/stocks.duckdb</code></p>
+</blockquote>
+<h2 id="duckdb_1">為什麼用 DuckDB</h2>
+<p>擴大到全市場（~2,700 檔）後，原本 pandas + CSV 的 cross-section 與 window 查詢太慢。
+DuckDB columnar + vectorized 引擎，分析查詢比 SQLite 快 10-100×。詳見專案根 README 對照表。</p>
+<h2 id="81-schema7-4">8.1 Schema（7 張表 + 4 個索引）</h2>
+<pre><code class="language-sql">price          (symbol, date, open, high, low, close, volume)              PK (symbol, date), idx date
+institutional  (symbol, date, &quot;foreign&quot;, trust, dealer, total)              PK (symbol, date), idx date
+futures        (date, foreign_tx_oi_net, trust_tx_oi_net, dealer_tx_oi_net) PK date
+indices        (name, date, OHLCV)                                          PK (name, date),   idx date
+macro          (key,  date, OHLCV)                                          PK (key,  date),   idx date
+symbols        (symbol, name, market, industry_group)                       PK symbol
+update_log     (ts, source, rows, extra)                                    log-only
+</code></pre>
+<p>關鍵設計：
+- <code>date</code> 用 <code>DATE</code> 而非 <code>TIMESTAMP</code>（PK 比對時不會被時分秒搞亂）
+- 同表所有寫入使用 <code>INSERT INTO ... ON CONFLICT (...) DO UPDATE SET ...</code>，確保冪等
+- <code>"foreign"</code> 因與 <code>FOREIGN KEY</code> 同字，<strong>所有 SQL 都要用雙引號包覆</strong></p>
+<h2 id="82">8.2 連線與冪等寫入</h2>
+<pre><code class="language-python">from stock_data import db_connect, db_query
+
+# 一般讀
+df = db_query(&quot;SELECT * FROM price WHERE symbol = ? AND date &gt;= ?&quot;, [&quot;2330&quot;, &quot;2025-01-01&quot;])
+
+# 自行管理 connection（多次查詢時較快）
+con = db_connect(read_only=True)
+df1 = con.execute(&quot;SELECT ...&quot;).df()
+df2 = con.execute(&quot;SELECT ...&quot;).df()
+con.close()
+</code></pre>
+<p>寫入透過 upsert helpers（不寫原生 SQL）：</p>
+<pre><code class="language-python">from stock_data import (
+    upsert_price, upsert_index, upsert_macro,
+    upsert_institutional_day, upsert_futures_rows,
+)
+upsert_price(&quot;2330&quot;, df)                    # df 含 date(index), OHLCV
+upsert_institutional_day(date(2026,5,22),   # 單日多 symbol 一次寫
+    {&quot;2330&quot;: {&quot;foreign&quot;:..., &quot;trust&quot;:..., &quot;dealer&quot;:..., &quot;total&quot;:...}, ...})
+upsert_futures_rows([{&quot;date&quot;:..., &quot;foreign_tx_oi_net&quot;:..., ...}])
+</code></pre>
+<h2 id="83-queriespy">8.3 高階查詢輔助（queries.py）</h2>
+<table>
+<thead>
+<tr>
+<th>函式</th>
+<th>用途</th>
+<th>典型耗時</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>get_price(symbol, start, end)</code></td>
+<td>單股 OHLCV</td>
+<td>&lt; 50 ms</td>
+</tr>
+<tr>
+<td><code>get_institutional(symbol, ...)</code></td>
+<td>單股法人歷史</td>
+<td>&lt; 30 ms</td>
+</tr>
+<tr>
+<td><code>cross_section(date)</code></td>
+<td>某日全市場（price + 法人 + 期貨）</td>
+<td>&lt; 100 ms</td>
+</tr>
+<tr>
+<td><code>pair_aligned(a, b, days)</code></td>
+<td>兩股對齊收盤</td>
+<td>&lt; 30 ms</td>
+</tr>
+<tr>
+<td><code>pair_rs(a, b, days)</code></td>
+<td>RS = ln(A/B) + Z60 內建 window</td>
+<td>&lt; 30 ms</td>
+</tr>
+<tr>
+<td><code>top_gainers(window, limit)</code></td>
+<td>全市場 N 日報酬 top</td>
+<td>&lt; 80 ms</td>
+</tr>
+<tr>
+<td><code>chip_screen(min_foreign_5d=...)</code></td>
+<td>5 日法人累計篩選</td>
+<td>&lt; 60 ms</td>
+</tr>
+<tr>
+<td><code>sector_summary(symbols, ...)</code></td>
+<td>族群 / 子集摘要</td>
+<td>&lt; 50 ms</td>
+</tr>
+<tr>
+<td><code>list_symbols(industry_group, name_like)</code></td>
+<td>元表搜尋</td>
+<td>&lt; 30 ms</td>
+</tr>
+<tr>
+<td><code>symbols_with_data()</code></td>
+<td>哪些 symbol 有 price 資料</td>
+<td>&lt; 50 ms</td>
+</tr>
+</tbody>
+</table>
+<h2 id="84-dual-write">8.4 Dual-write 機制</h2>
+<p><code>fetchers.py</code> 內所有 <code>fetch_*</code> 函式在寫 CSV 後<strong>同時</strong> upsert 進 DuckDB：</p>
+<ul>
+<li>開關：<code>fetchers.DUAL_WRITE_DB = True/False</code></li>
+<li>失敗安全：DB upsert 失敗只 <code>log.warning</code>，<strong>不中斷</strong> CSV 主流程</li>
+<li>內部包裝：<code>_db_upsert(fn_name, *args)</code> 處理 try/except</li>
+</ul>
+<p>這是讓 DB 從 fetcher 一直保持與 CSV 同步的關鍵。</p>
+<h2 id="85-duckdb-specific">8.5 踩坑與 DuckDB-specific 陷阱</h2>
+<h3 id="a-foreign">A. <code>"foreign"</code> 必須引號</h3>
+<pre><code class="language-sql">-- 錯
+SELECT foreign FROM institutional;
+-- 對
+SELECT &quot;foreign&quot; FROM institutional;
+</code></pre>
+<p>原因：<code>FOREIGN</code> 是 SQL 關鍵字（FOREIGN KEY 用），DuckDB parser 看到沒引號的 <code>foreign</code> 後面跟著 <code>FROM</code> 或型別會困惑。
+建議：在所有 SQL 中<strong>永遠</strong>寫 <code>"foreign"</code>，即使在 column list 上。</p>
+<h3 id="b-cast-parameter-binding">B. CAST 不能用 parameter binding</h3>
+<pre><code class="language-sql">-- 錯（DuckDB Parser Error）
+WHERE date &gt; (DATE ? - INTERVAL '10 days')
+-- 對
+WHERE date &gt; CAST(? AS DATE) - INTERVAL 10 DAY
+</code></pre>
+<h3 id="c-interval-parameter">C. INTERVAL 字面值不能用 parameter</h3>
+<pre><code class="language-sql">-- 錯
+WHERE date &gt; today_date - INTERVAL '? days'
+-- 對：在 Python 端組字串
+sql = f&quot;WHERE date &gt; today_date - INTERVAL {n_days} DAY&quot;
+</code></pre>
+<h3 id="d-insert-column">D. INSERT 時 column 順序要對</h3>
+<pre><code class="language-python">df_in = df[all_cols]  # 重排欄位順序與 schema 一致
+con.execute(f&quot;INSERT INTO price ({cols_sql}) SELECT {cols_sql} FROM df_in ...&quot;)
+</code></pre>
+<h3 id="e-dataframe-conregister">E. DataFrame 註冊用 <code>con.register</code></h3>
+<pre><code class="language-python">con.register(&quot;df_in&quot;, df_in)
+try:
+    con.execute(&quot;INSERT INTO t SELECT * FROM df_in ON CONFLICT (...) DO UPDATE SET ...&quot;)
+finally:
+    con.unregister(&quot;df_in&quot;)  # 解綁避免污染後續 query
+</code></pre>
+<h3 id="f-date">F. date 型別處理</h3>
+<p>DataFrame 的 date 欄要先轉 <code>dt.date</code>（不要保留 datetime64[ns]），否則 ON CONFLICT 比對失敗：</p>
+<pre><code class="language-python">df[&quot;date&quot;] = pd.to_datetime(df[&quot;date&quot;]).dt.date
+</code></pre>
+<h3 id="g-primary-key">G. PRIMARY KEY 衝突處理</h3>
+<p>所有 upsert 用 <code>ON CONFLICT (key_cols) DO UPDATE SET col1=EXCLUDED.col1, ...</code>。
+不要用 <code>INSERT OR REPLACE</code>（PostgreSQL 才支援，DuckDB 雖然能跑但語意有微差）。</p>
+<h3 id="h">H. 多進程寫衝突</h3>
+<p>DuckDB 像 SQLite 是 single-writer。同時兩個 process 寫會 raise IO error。
+解：fetcher 串行跑（默認）；若必須並行，加 retry-with-backoff。</p>
+<h3 id="i-read_only">I. read_only 模式提升讀效能</h3>
+<p>唯讀 query 用 <code>db_connect(read_only=True)</code>，DuckDB 會略過 WAL 處理，多進程也安全：</p>
+<pre><code class="language-python">con = db_connect(read_only=True)
+</code></pre>
+<h2 id="86-sql">8.6 常用 SQL 範本</h2>
+<h3 id="_8">全市場最新一日截面</h3>
+<pre><code class="language-sql">SELECT p.symbol, s.name, p.close, p.volume,
+       i.&quot;foreign&quot;, i.trust, i.dealer
+FROM price p
+LEFT JOIN symbols s        USING (symbol)
+LEFT JOIN institutional i  ON p.symbol = i.symbol AND p.date = i.date
+WHERE p.date = (SELECT MAX(date) FROM price);
+</code></pre>
+<h3 id="n-ranking">N 日報酬 ranking</h3>
+<pre><code class="language-sql">WITH ranked AS (
+    SELECT symbol, date, close,
+           LAG(close, 5) OVER (PARTITION BY symbol ORDER BY date) AS close_5d
+    FROM price
+)
+SELECT symbol, ROUND((close - close_5d) / close_5d * 100, 2) AS ret_5d
+FROM ranked
+WHERE date = (SELECT MAX(date) FROM price) AND close_5d IS NOT NULL
+ORDER BY ret_5d DESC LIMIT 20;
+</code></pre>
+<h3 id="rs-z60">配對 RS + Z60</h3>
+<pre><code class="language-sql">WITH base AS (
+    SELECT p1.date, LN(p1.close / p2.close) AS rs
+    FROM price p1 JOIN price p2 ON p1.date = p2.date
+    WHERE p1.symbol = '2382' AND p2.symbol = '2330'
+    ORDER BY p1.date
+)
+SELECT date, rs,
+       (rs - AVG(rs) OVER (ORDER BY date ROWS 59 PRECEDING)) /
+       NULLIF(STDDEV_POP(rs) OVER (ORDER BY date ROWS 59 PRECEDING), 0) AS z60
+FROM base;
+</code></pre>
+<h3 id="asof-join-cadence">三表 ASOF JOIN（對齊不同 cadence 用）</h3>
+<pre><code class="language-sql">SELECT p.date, p.close, i.&quot;foreign&quot;, f.foreign_tx_oi_net
+FROM price p
+ASOF JOIN institutional i ON p.symbol = i.symbol AND p.date &gt;= i.date
+ASOF JOIN futures f       ON p.date &gt;= f.date
+WHERE p.symbol = '2330'
+ORDER BY p.date DESC LIMIT 10;
+</code></pre>
+<h2 id="87">8.7 維護操作</h2>
+<pre><code class="language-python"># 初始化（首次 / 換機器）
+from stock_data import db_init_schema, db_migrate_from_csv
+db_init_schema()
+db_migrate_from_csv()
+
+# 健康檢查
+from stock_data import db_status
+print(db_status())
+
+# 重建 DB（從 CSV 完整 reload）
+db_migrate_from_csv()  # 冪等，DELETE + INSERT
+</code></pre>
+<p>效能參考（單機）：
+- migrate_from_csv（64K price + 14K insti + 233 futures + 2K indices + 2K macro + 1.9K symbols）：~1.7 秒
+- DB 檔案大小：~9 MB（比 CSV 總和小約 40%）</p>
+<hr />
+<h2 id="_9">維運</h2>
+<ul>
+<li>每日例行：<code>python -m stock_data update --all --symbols (清單) --days 5</code></li>
+<li>健康檢查：<code>python -m stock_data status</code></li>
+<li>大量回補：<code>python -m stock_data update --source 3insti --days 250 --symbols ...</code></li>
+<li>DB 同步：fetcher 自動 dual-write，<strong>無需手動</strong></li>
+<li>DB 重建（極端情況）：<code>python -c "from stock_data import db_migrate_from_csv; db_migrate_from_csv()"</code></li>
+</ul>
+<h2 id="_10">未來擴充方向</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>優先度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主力分點淨買賣（前 15 大券商）</td>
+<td>中</td>
+</tr>
+<tr>
+<td>借券餘額（TWSE 借券歸還日報）</td>
+<td>中</td>
+</tr>
+<tr>
+<td>ETF 成分股權重（集保 / 各 ETF 發行商）</td>
+<td>低</td>
+</tr>
+<tr>
+<td>產業子指數（電子、半導體、金融等）</td>
+<td>中</td>
+</tr>
+<tr>
+<td>個股財務指標（EPS、ROE、現金股利）</td>
+<td>低</td>
+</tr>
+<tr>
+<td>排程化更新（Windows Task Scheduler 範本）</td>
+<td>中</td>
+</tr>
+<tr>
+<td>資料品質檢查（缺值偵測、異常值警示）</td>
+<td>中</td>
+</tr>
+<tr>
+<td>共用至遠端儲存（GitHub Actions 雲端同步）</td>
+<td>低</td>
+</tr>
+</tbody>
+</table>
+</body></html>

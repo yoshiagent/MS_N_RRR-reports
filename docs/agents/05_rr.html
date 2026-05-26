@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>05_rr — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../../index.html">← 返回主頁</a>
+<h1 id="rr-agent-relative-rotation">RR Agent — Relative Rotation（相對輪動）</h1>
+<h2 id="_1">任務</h2>
+<p>簡版相對輪動策略。對任意兩檔多頭股票，用 <strong>RS 對 RS_MA20 的穿越</strong> 觸發換股訊號，
+追隨當前較強的一邊。訊號較頻繁、適合趨勢追隨。</p>
+<p>與 <strong>RRR</strong>（共振輪動，見 <code>05_rrr.md</code>）並存：
+- <strong>RR</strong>：寬鬆，跟著趨勢走
+- <strong>RRR</strong>：嚴格，要求 RS 有 cycle / phase / 雙邊極端，等折返才換</p>
+<h2 id="_2">核心公式</h2>
+<pre><code>RS         = ln(close_A / close_B)
+RS_MA20    = 20 日 rolling mean of RS
+RS_MA60    = 60 日 rolling mean
+side       = &quot;A&quot; 若 RS &gt; RS_MA20，否則 &quot;B&quot;
+</code></pre>
+<h2 id="_3">訊號邏輯</h2>
+<table>
+<thead>
+<tr>
+<th>條件</th>
+<th>訊號</th>
+<th>含義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RS 在近 5 日從 ≤ MA20 上穿至 &gt; MA20</td>
+<td><code>switch_to_A</code></td>
+<td>A 重新轉強，換到 A</td>
+</tr>
+<tr>
+<td>RS 在近 5 日從 ≥ MA20 下穿至 &lt; MA20</td>
+<td><code>switch_to_B</code></td>
+<td>B 重新轉強，換到 B</td>
+</tr>
+<tr>
+<td>RS &gt; MA20 且無近期穿越</td>
+<td><code>hold_A</code></td>
+<td>A 持續優勢</td>
+</tr>
+<tr>
+<td>RS &lt; MA20 且無近期穿越</td>
+<td><code>hold_B</code></td>
+<td>B 持續優勢</td>
+</tr>
+<tr>
+<td>資料 / 波動不足</td>
+<td><code>no_pair</code></td>
+<td>不評估</td>
+</tr>
+</tbody>
+</table>
+<p>近 5 日穿越視窗（<code>CROSS_WINDOW = 5</code>）可調。</p>
+<h2 id="confidence-0-100">Confidence 計分 (0-100)</h2>
+<pre><code>base   = min(60, |RS - MA20| / |MA20| × 100% × 20 分)   # 距離強度
+bonus  = min(40, |MA20 5日變化| × 80 分)                # MA20 斜率強度
+conf   = base + bonus
+</code></pre>
+<p>距離 1%（MA20 與 RS 差 1%）= +20 分，最多 +60；MA20 斜率快 = 加 bonus。</p>
+<h2 id="_4">配對篩選條件</h2>
+<ul>
+<li>共同歷史 ≥ 80 個交易日</li>
+<li>兩檔年化波動皆 ≥ 10%</li>
+</ul>
+<p>比 RRR 寬鬆很多，幾乎任何流動性 OK 的多頭配對都能評估。</p>
+<h2 id="_5">輸入</h2>
+<table>
+<thead>
+<tr>
+<th>來源</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上游：N-Pattern Agent</td>
+<td>candidate 清單（多頭結構過關的個股）</td>
+</tr>
+<tr>
+<td>Data Agent</td>
+<td>個股日線 OHLCV（<code>load_prices_bulk</code> 一次撈）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">輸出</h2>
+<h3 id="json">單一配對 JSON</h3>
+<pre><code class="language-json">{
+  &quot;pair&quot;: [&quot;2330&quot;, &quot;2308&quot;],
+  &quot;as_of&quot;: &quot;2026-05-22&quot;,
+  &quot;rs&quot;: -0.0123,
+  &quot;rs_ma20&quot;: -0.0156,
+  &quot;rs_ma60&quot;: -0.0102,
+  &quot;distance_pct&quot;: 21.5,
+  &quot;ma20_slope_5d&quot;: 0.0034,
+  &quot;crossed_days_ago&quot;: 3,
+  &quot;side&quot;: &quot;A&quot;,
+  &quot;signal&quot;: &quot;switch_to_A&quot;,
+  &quot;confidence&quot;: 73,
+  &quot;vol_a&quot;: 0.255,
+  &quot;vol_b&quot;: 0.412,
+  &quot;reason&quot;: [...]
+}
+</code></pre>
+<h3 id="_7">批次輸出</h3>
+<ul>
+<li><code>data/output/rr.html</code> — 視覺報告</li>
+<li><code>data/output/rr.json</code> — 結構化原始資料</li>
+</ul>
+<h2 id="agent">與其他 Agent 的關係</h2>
+<pre><code>Market Structure
+    ↓
+HotFlow Agent          ── 篩選主流候選池
+    ↓
+N-Pattern Agent        ── 通過結構評分
+    ↓
+┌─────────┐ ┌─────────┐
+│ RR      │ │ RRR     │ ← 兩策略並列；用同一候選池但邏輯不同
+└─────────┘ └─────────┘
+    ↓           ↓
+Risk Control（共用）
+    ↓
+Final Report
+</code></pre>
+<h2 id="rrr">與 RRR 對照表</h2>
+<table>
+<thead>
+<tr>
+<th>面向</th>
+<th>RR（本 Agent）</th>
+<th>RRR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>訊號來源</td>
+<td>RS 對 MA20 穿越</td>
+<td>Z60 極端折返</td>
+</tr>
+<tr>
+<td>配對篩選</td>
+<td>寬鬆（波動、歷史）</td>
+<td>嚴格（cycle / phase / 雙邊極端）</td>
+</tr>
+<tr>
+<td>訊號頻率</td>
+<td>較多（趨勢追隨）</td>
+<td>較少（等極端反轉）</td>
+</tr>
+<tr>
+<td>思維</td>
+<td>Trend following</td>
+<td>Mean reversion</td>
+</tr>
+<tr>
+<td>風控</td>
+<td>取部位較保守（無 chip 加強）</td>
+<td>風控 gate 嚴格</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">未來擴充</h2>
+<ol>
+<li>加入「過早穿越過濾」：穿越時 MA20 斜率太平則不算</li>
+<li>區分「快 RR」（MA10 穿）與「慢 RR」（MA60 穿）</li>
+<li>引入交易頻率上限：同一配對冷卻期</li>
+<li>加 chip / market_state 過濾，與 RRR 共用 risk_control</li>
+<li>回測：歷史 RR 訊號的 hit rate 與 vs RRR 的對比</li>
+</ol>
+<h2 id="_9">實作位置</h2>
+<ul>
+<li>規格：<code>agents/05_rr.md</code>（本檔）</li>
+<li>程式：<code>src/agents/rr_pair.py</code></li>
+<li>報告：<code>src/agents/rr_report.py</code> → <code>data/output/rr.html</code></li>
+<li>CLI：<code>python -m src.agents.rr_pair</code></li>
+</ul>
+</body></html>

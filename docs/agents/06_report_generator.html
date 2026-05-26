@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>06_report_generator — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../../index.html">← 返回主頁</a>
+<h1 id="execution-agent">Execution Agent</h1>
+<h2 id="_1">任務</h2>
+<p>彙整所有上游 Agent 的結果，產生每日或每週摘要報告。
+這是使用者實際看到的最終輸出。</p>
+<h2 id="8">報告結構（固定 8 段）</h2>
+<ol>
+<li>市場狀態（來自 <code>market_structure_agent</code>）</li>
+<li>可觀察族群（依產業 / 主題分類的強勢族群）</li>
+<li>N 型候選股（來自 <code>n_shape_agent</code>，依分數排序）</li>
+<li>RRR 配對清單（來自 <code>rrr_pair_agent</code>，依 rrr_score 排序）</li>
+<li>今日 RS / Z-score 訊號（來自 <code>rs_zscore_agent</code>）</li>
+<li>籌碼警示（來自 <code>chip_agent</code>，列出 warning / reject 名單）</li>
+<li>風控建議（來自 <code>risk_agent</code>）</li>
+<li>最終行動建議（彙整後給出可執行清單）</li>
+</ol>
+<h2 id="_2">輸入資料</h2>
+<ul>
+<li>上游所有 Agent 的輸出 JSON</li>
+<li>報告週期設定（daily / weekly）</li>
+<li>輸出目錄：<code>data/output/</code></li>
+</ul>
+<h2 id="_3">輸出格式</h2>
+<ul>
+<li>主要：HTML（依使用者規則，文件輸出一律使用 HTML）</li>
+<li>附帶：JSON（供其他系統串接）</li>
+<li>命名：<code>MS_NRRR_{YYYYMMDD}_{daily|weekly}.html</code></li>
+</ul>
+<h2 id="_4">內容要點</h2>
+<ul>
+<li>報告必須能讓使用者一頁看完當日決策</li>
+<li>「最終行動建議」段必須明確：哪一檔換到哪一檔、換多少比例、依據是什麼</li>
+<li>若市場狀態為 <code>exit</code>，最終行動建議須明確顯示「停止積極換股」</li>
+</ul>
+<h2 id="_5">否決條件</h2>
+<ul>
+<li>上游任一 Agent 缺資料時，該段顯示 <code>N/A</code> 並標示原因，不可猜測</li>
+<li><code>risk_agent</code> 未放行的訊號，不可出現在「最終行動建議」段</li>
+</ul>
+<h2 id="agent">與其他 Agent 的關係</h2>
+<ul>
+<li>下游無，是最終輸出</li>
+<li>不做任何判斷，只做彙整與呈現</li>
+</ul>
+<h2 id="_6">未來擴充方向</h2>
+<ul>
+<li>加入歷史訊號追蹤（每個建議的後續表現）</li>
+<li>加入績效歸因（哪個 Agent 的訊號最有效）</li>
+<li>加入互動式 HTML（可展開細節、可篩選）</li>
+<li>加入 Email / Line / Telegram 推播</li>
+</ul>
+</body></html>

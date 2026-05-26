@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OPERATIONS — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../index.html">← 返回主頁</a>
+<h1 id="ms_n_rrrrr-vera">MS_N_RR/RRR Ver.A 日常操作手冊</h1>
+<p>實際操作 Ver.A 的指南。報告維護、配對調整、通知重設、故障排除。</p>
+<p>最後更新：2026-05-25</p>
+<hr />
+<h2 id="_1">一、每日自動執行（已設定，不需手動）</h2>
+<p>Windows Task Scheduler 任務：<code>MS_N_RRR_Daily</code></p>
+<ul>
+<li><strong>時間</strong>：週一~週五 18:00（台股收盤 + 30 分鐘）</li>
+<li><strong>動作</strong>：執行 <code>python -m src.orchestrator</code></li>
+<li><strong>日誌</strong>：<code>data/logs/orchestrator_{YYYYMMDD}.log</code></li>
+<li><strong>產出</strong>：報告 + GitHub Pages + Telegram + Email</li>
+</ul>
+<h3 id="_2">查看狀態</h3>
+<pre><code class="language-powershell">Get-ScheduledTaskInfo -TaskName MS_N_RRR_Daily       # 看上次執行時間
+Get-ScheduledTask -TaskName MS_N_RRR_Daily           # 看是否啟用
+</code></pre>
+<h3 id="_3">立即手動觸發排程</h3>
+<pre><code class="language-powershell">Start-ScheduledTask -TaskName MS_N_RRR_Daily
+</code></pre>
+<h3 id="_4">暫停 / 啟用</h3>
+<pre><code class="language-powershell">Disable-ScheduledTask -TaskName MS_N_RRR_Daily       # 暫停
+Enable-ScheduledTask  -TaskName MS_N_RRR_Daily       # 恢復
+Unregister-ScheduledTask -TaskName MS_N_RRR_Daily    # 完全移除
+</code></pre>
+<h3 id="_5">重新註冊</h3>
+<pre><code class="language-powershell">cd C:\CludeHome\projects\MS_N_RRR
+powershell -ExecutionPolicy Bypass -File scripts\install_scheduler.ps1
+</code></pre>
+<hr />
+<h2 id="orchestrator">二、手動執行 orchestrator</h2>
+<h3 id="_6">完整跑（含抓資料 + 通知）</h3>
+<pre><code class="language-powershell">cd C:\CludeHome\projects\MS_N_RRR
+python -m src.orchestrator
+</code></pre>
+<h3 id="_7">只重生報告（不打網路、不發通知）</h3>
+<pre><code class="language-powershell">python -m src.orchestrator --skip-fetch --skip-notify
+</code></pre>
+<p><strong>何時用</strong>：調整完 xlsx / 改完程式 / 修完 bug，想立刻看效果。</p>
+<h3 id="_8">只跳過抓資料</h3>
+<pre><code class="language-powershell">python -m src.orchestrator --skip-fetch
+</code></pre>
+<h3 id="github">跳過部署（除錯時不推 GitHub）</h3>
+<pre><code class="language-powershell">python -m src.orchestrator --skip-deploy
+</code></pre>
+<h3 id="step">查看 step 結果</h3>
+<p>每次跑完 orchestrator 都會寫一份 summary JSON：</p>
+<pre><code class="language-powershell"># 最近一次的 run summary
+ls data/signals/run_*.json | sort -Property LastWriteTime -Descending | select -First 1 | cat
+</code></pre>
+<p>裡面有所有 step 的 OK/SKIPPED/FAIL 狀態。</p>
+<hr />
+<h2 id="_9">三、看報告</h2>
+<h3 id="_10">線上版（自動每日更新）</h3>
+<ul>
+<li>主頁：https://yoshiagent.github.io/MS_N_RRR-reports/</li>
+<li>加入瀏覽器書籤即可</li>
+</ul>
+<h3 id="_11">本地版（最新一刻）</h3>
+<pre><code class="language-powershell"># 主頁
+start data\output\index.html
+
+# 各子頁
+start data\output\ms_dashboard.html      # MS-Agent v2 監控中心（推薦每日先看）
+start data\output\hotflow.html
+start data\output\n_pattern.html
+start data\output\rr.html
+start data\output\rrr.html
+start data\output\dynamic_rr.html
+start data\output\custom_pairs.html
+start data\output\nan_xin_chart.html
+start data\output\structure_chart.html
+</code></pre>
+<h3 id="ms-agent-v2">MS-Agent v2 監控中心日常查看指南</h3>
+<p><strong><code>ms_dashboard.html</code> 是每日進場前的「總開關」</strong>，建議養成每天先看的習慣：</p>
+<ol>
+<li><strong>8 欄總覽</strong> — 一眼掌握市場結構/主流/擴散/Breadth/法人/RR/溫度/風險 8 個維度</li>
+<li><strong>市場溫度</strong> — 0-100，看大字色塊</li>
+<li>0-20 ❄ 冰冷 → 現金為王</li>
+<li>20-40 🌤 回暖 → 分批進場</li>
+<li>40-60 ♨ 溫熱 → 標準部位</li>
+<li>60-80 🔥 過熱 → 獲利減碼</li>
+<li>80-100 🌋 沸騰 → 準備出場</li>
+<li><strong>RR 環境</strong> — 6 條件達標數</li>
+<li>≥ 70 ✅ → 積極 RR 操作</li>
+<li>40-70 ⚠ → 標準</li>
+<li>&lt; 40 🛑 → <strong>暫停 dynamic_rr 新進場</strong></li>
+<li><strong>大盤風險</strong> — 7 訊號觸發數</li>
+<li>0-1 🟢 → 100% 部位</li>
+<li>2-3 🟡 → 75%</li>
+<li>4-5 🟠 → 50%</li>
+<li>≥6 🔴 → 25%（<strong>強制減倉</strong>）</li>
+<li><strong>HotFlow Lifecycle</strong> — 主流分佈</li>
+<li><code>expanding</code> 多 → 健康輪動期</li>
+<li><code>fading</code> 多 → 主流退潮、行情末期</li>
+<li><code>overheating</code> 多 → 高檔過熱，警示出場</li>
+</ol>
+<h3 id="7">歷史備份（近 7 日）</h3>
+<p>主頁底部「5. 歷史備份」區塊有近 7 日的 snapshot 連結。
+本地：<code>data/output/backup/{YYYY-MM-DD}/index.html</code></p>
+<hr />
+<h2 id="_12">四、自選配對維護</h2>
+<h3 id="_13">編輯配對表</h3>
+<p>打開 <code>C:\CludeHome\projects\MS_N_RRR\配對表.xlsx</code>，sheet <code>自選</code>：</p>
+<pre><code>序號 | 代號 | 股名       | 圖表連結（可選）
+ 1   | 8046 | 南電       |
+ 2   | 3037 | 欣興       |
+ 3   | 3006 | 晶豪科     |
+ 4   | 3035 | 智原       |
+ 5   | 2344 | 華邦電     |
+ 6   | 2408 | 南亞科     |
+ 7   | 2049 | 上銀       |
+ 8   | 4576 | 大銀微系統 |
+ 9   | 9921 | 巨大       |
+10   | 9914 | 美利達     |
+</code></pre>
+<p><strong>規則</strong>：
+- 依序兩兩成對（1+2, 3+4, ...）
+- 奇數列數量自動跳過最後一個（11 檔仍 5 組）
+- 「圖表連結」可填外部 URL；留空則自動用內建 pair_chart 產出</p>
+<h3 id="sector">新增配對 → 加 sector 描述</h3>
+<p>若新配對的產業描述需要客製化（不是「同產業」），編輯 <code>src/agents/custom_pairs.py</code>：</p>
+<pre><code class="language-python">PAIR_SECTOR_MAP = {
+    1: &quot;PCB 載板（ABF）&quot;,
+    2: &quot;IC 設計&quot;,
+    3: &quot;電子業&quot;,
+    4: &quot;滾珠螺桿&quot;,
+    5: &quot;自行車&quot;,
+    6: &quot;你的新產業&quot;,  # 新增
+}
+</code></pre>
+<h3 id="_14">重新產出</h3>
+<pre><code class="language-powershell">python -m src.orchestrator --skip-fetch --skip-notify
+</code></pre>
+<p>完成後：
+- <code>data/output/custom_pairs.html</code> 表格更新
+- <code>data/output/pair_{a}_{b}.html</code> 新組對應的互動圖
+- 主頁「自選配對」卡更新</p>
+<hr />
+<h2 id="email-telegram">五、通知系統（Email + Telegram）</h2>
+<h3 id="_15">配置檔位置</h3>
+<p><code>config/notify.local.yaml</code>（<strong>不入 git</strong>；範本參見 <code>config/notify.example.yaml</code>）</p>
+<p>格式：</p>
+<pre><code class="language-yaml">telegram:
+  enabled: true
+  bot_token: &quot;&lt;YOUR_BOT_TOKEN&gt;&quot;     # 由 @BotFather 取得
+  chat_id:   &quot;&lt;YOUR_CHAT_ID&gt;&quot;       # 由 getUpdates 取得
+
+email:
+  enabled: true
+  smtp_host: smtp.gmail.com
+  smtp_port: 587
+  smtp_user: &quot;&lt;your-email@gmail.com&gt;&quot;
+  smtp_pass: &quot;&lt;YOUR_APP_PASSWORD&gt;&quot;   # 16 字元 Gmail App Password
+  to:        &quot;&lt;your-email@gmail.com&gt;&quot;
+</code></pre>
+<p>⚠ <strong>絕不要把實際 token / password 寫進 OPERATIONS.md、INTEGRATIONS.md
+或任何會被部署到 GitHub Pages 的檔案</strong>。本檔在 orchestrator 跑時
+會被 <code>_sync_docs_to_output()</code> 轉成 HTML 推上公開 repo。
+真實憑證只放在 <code>config/notify.local.yaml</code>（已在 <code>.gitignore</code>）。</p>
+<h3 id="_16">測試通知</h3>
+<pre><code class="language-powershell">python -c &quot;from src.notify import send_daily; send_daily()&quot;
+</code></pre>
+<h3 id="telegram-bot-token">Telegram 重設 bot token</h3>
+<ol>
+<li>開 Telegram 找 <code>@BotFather</code></li>
+<li><code>/newbot</code> → 取新 token</li>
+<li>開啟新 bot 隨便傳一則訊息給它</li>
+<li>瀏覽器開 <code>https://api.telegram.org/bot&lt;新TOKEN&gt;/getUpdates</code></li>
+<li>找 <code>"chat":{"id":...}</code> 取 chat_id</li>
+<li>更新 <code>config/notify.local.yaml</code></li>
+</ol>
+<h3 id="email-gmail-app-password">Email 重設 Gmail App Password</h3>
+<ol>
+<li>開 https://myaccount.google.com/apppasswords</li>
+<li>建立新「應用程式密碼」（16 字元）</li>
+<li>更新 <code>config/notify.local.yaml</code> 的 <code>smtp_pass</code>（去掉空格）</li>
+</ol>
+<h3 id="_17">暫停通知</h3>
+<p>編輯 <code>config/notify.local.yaml</code>：</p>
+<pre><code class="language-yaml">telegram:
+  enabled: false
+email:
+  enabled: false
+</code></pre>
+<hr />
+<h2 id="_18">六、版本控管</h2>
+<h3 id="_19">看異動</h3>
+<pre><code class="language-powershell">cd C:\CludeHome\projects\MS_N_RRR
+git status
+git diff
+git log --oneline -10
+</code></pre>
+<h3 id="_20">提交變更</h3>
+<pre><code class="language-powershell">git add &lt;files&gt;
+git commit -m &quot;簡短訊息&quot;
+</code></pre>
+<p><strong>不要 push</strong>（無遠端 repo；本地 git 只記錄歷史）。</p>
+<h3 id="repodataoutput">報告 repo（data/output/）</h3>
+<p><code>data/output/</code> 是另一個獨立 git repo（remote: <code>yoshiagent/MS_N_RRR-reports</code>）。
+由 <code>scripts/deploy_reports.py</code> 自動 add / commit / push，<strong>不需手動操作</strong>。</p>
+<p>如需手動推：</p>
+<pre><code class="language-powershell">cd data\output
+git add -A
+git commit -m &quot;manual update&quot;
+git push origin main
+</code></pre>
+<hr />
+<h2 id="agent">七、新增 / 修改 Agent</h2>
+<h3 id="agent_1">加新 Agent</h3>
+<ol>
+<li>在 <code>src/agents/xxx.py</code> 寫實作（讀中央 stockHisData、寫 <code>data/output/xxx.json</code>）</li>
+<li>在 <code>agents/06_xxx.md</code>（或對應 step 編號）寫規格</li>
+<li>在 <code>src/orchestrator.py</code> 加 step：
+   <code>python
+   from src.agents import xxx as xxx_agent
+   _, err = _run_step(logger, "11. New Agent", xxx_agent.run)
+   summary_meta["steps"]["new_agent"] = "OK" if not err else "FAIL"</code></li>
+<li>在 <code>src/agents/index_builder.py</code> 加對應卡片 / 連結</li>
+<li>跑 <code>python -m src.orchestrator --skip-fetch --skip-notify</code> 驗證</li>
+</ol>
+<h3 id="_21">改既有參數</h3>
+<ul>
+<li><strong>市場結構閾值</strong>：<code>config/parameters.yaml</code> 的 <code>market_exit_threshold</code> / <code>market_warning_threshold</code></li>
+<li><strong>RR/RRR Z 門檻</strong>：<code>config/parameters.yaml</code> 的 <code>zscore_upper</code> / <code>zscore_lower</code>（但 RR 會被 dynamic_z_threshold 覆蓋）</li>
+<li><strong>規則</strong>：<code>config/rules.yaml</code>（不做空、單股部位上限等）</li>
+<li><strong>股池</strong>：<code>config/stock_pool.yaml</code></li>
+</ul>
+<hr />
+<h2 id="_22">八、資料層維護</h2>
+<h3 id="_23">看中央資料層狀態</h3>
+<pre><code class="language-powershell">cd C:\CludeHome\stockHisData
+python -m stock_data --help
+python -m stock_data status
+</code></pre>
+<h3 id="_24">全量補資料（一次抓回所有歷史）</h3>
+<pre><code class="language-powershell">cd C:\CludeHome\projects\MS_N_RRR
+python -m src.orchestrator   # 預設增量
+# 全量需要直接呼叫 fetch_all 並指定 days 較大
+python -c &quot;from stock_data import fetch_all; fetch_all(insti_days=120, futures_days=90)&quot;
+</code></pre>
+<h3 id="_25">看某檔個股資料</h3>
+<pre><code class="language-powershell">python -c &quot;from src.shared import data_loader as dl; print(dl.load_price('8046').tail(5))&quot;
+</code></pre>
+<h3 id="_26">檢查資料新鮮度</h3>
+<pre><code class="language-powershell">python -c &quot;
+from src.shared import data_loader as dl
+for sym in ['8046', '3037', '2330']:
+    df = dl.load_price(sym)
+    print(f'{sym}  最新: {df.index.max().date()}  共 {len(df)} 筆')
+&quot;
+</code></pre>
+<hr />
+<h2 id="_27">九、故障排除</h2>
+<h3 id="_28">報告沒更新</h3>
+<ol>
+<li>查排程器：<code>Get-ScheduledTaskInfo MS_N_RRR_Daily</code></li>
+<li>看日誌：<code>data/logs/orchestrator_{今天}.log</code></li>
+<li>手動跑：<code>python -m src.orchestrator --skip-fetch --skip-notify</code>，看哪個 step FAIL</li>
+</ol>
+<h3 id="telegram">Telegram 未收到</h3>
+<ol>
+<li>確認 <code>config/notify.local.yaml</code> 的 <code>telegram.enabled: true</code></li>
+<li>測試：<code>python -c "from src.notify.telegram import test; test('hi')"</code></li>
+<li>看是否 bot 被 Telegram 鎖（換新 token，見 § 五）</li>
+</ol>
+<h3 id="email">Email 未收到</h3>
+<ol>
+<li>確認 Gmail App Password 還有效</li>
+<li>測試：<code>python -c "from src.notify.email import test; test()"</code></li>
+<li>看 Gmail 是否進了 spam</li>
+</ol>
+<h3 id="chart">某配對沒產 chart</h3>
+<ol>
+<li>看 <code>data/output/custom_pairs.json</code> 的 <code>chart_status</code>：</li>
+<li><code>built</code> → 成功</li>
+<li><code>from_xlsx</code> → 用 xlsx URL（沒有跑內建 build）</li>
+<li><code>build_failed: xxx</code> → 看 error 通常是缺資料</li>
+<li>若是缺資料：<code>python -c "from src.shared import data_loader as dl; dl.load_price('XXXX')"</code></li>
+<li>若需抓新個股：<code>python -c "from stock_data import fetch_price; fetch_price('XXXX')"</code></li>
+</ol>
+<h3 id="_29">主頁進階指標掉資料</h3>
+<ul>
+<li>看 <code>market.json</code> 是否有 <code>regime</code> 欄位</li>
+<li>沒有 → <code>structure_zscore</code> 模組失敗，跑 <code>python -m src.shared.structure_zscore</code> debug</li>
+<li>通常是中央 <code>processed/3insti/market_aggregate.csv</code> 或 <code>processed/options/foreign_opt.csv</code> 過舊</li>
+</ul>
+<h3 id="orchestrator-step">orchestrator 卡在某 step</h3>
+<ul>
+<li>看 <code>data/logs/orchestrator_{date}.log</code> 最後幾行</li>
+<li>多半是網路 timeout（yfinance / TWSE）</li>
+<li>解法：<code>--skip-fetch</code> 跑一次，確認後續 step 正常</li>
+</ul>
+<h3 id="git-push">git push 失敗</h3>
+<ul>
+<li><code>cd data/output &amp;&amp; git status</code> 看是否有未 commit</li>
+<li>若 remote rejected：<code>git pull --rebase origin main</code> 後再 push</li>
+</ul>
+<hr />
+<h2 id="_30">十、檔案位置速查表</h2>
+<table>
+<thead>
+<tr>
+<th>想看</th>
+<th>位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主頁本地</td>
+<td><code>data/output/index.html</code></td>
+</tr>
+<tr>
+<td>主頁線上</td>
+<td>https://yoshiagent.github.io/MS_N_RRR-reports/</td>
+</tr>
+<tr>
+<td>各 Agent JSON</td>
+<td><code>data/output/{agent}.json</code></td>
+</tr>
+<tr>
+<td>執行日誌</td>
+<td><code>data/logs/orchestrator_{date}.log</code></td>
+</tr>
+<tr>
+<td>run summary</td>
+<td><code>data/signals/run_{ts}.json</code></td>
+</tr>
+<tr>
+<td>自選配對清單</td>
+<td><code>配對表.xlsx</code>（不入 git）</td>
+</tr>
+<tr>
+<td>系統參數</td>
+<td><code>config/parameters.yaml</code></td>
+</tr>
+<tr>
+<td>通知憑證</td>
+<td><code>config/notify.local.yaml</code>（不入 git）</td>
+</tr>
+<tr>
+<td>中央資料層</td>
+<td><code>C:\CludeHome\stockHisData\processed\</code></td>
+</tr>
+<tr>
+<td>Agent 規格</td>
+<td><code>agents/02_*.md</code> ~ <code>06_*.md</code></td>
+</tr>
+<tr>
+<td>整合史</td>
+<td><code>INTEGRATIONS.md</code></td>
+</tr>
+<tr>
+<td>架構文件</td>
+<td><code>ARCHITECTURE.md</code></td>
+</tr>
+<tr>
+<td>系統入口</td>
+<td><code>README.md</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="claude">十一、Claude 接手時告知的最少資訊</h2>
+<p>如果叫 Claude 維護 Ver.A，告訴他：</p>
+<blockquote>
+<p>系統名稱：<strong>MS_N_RR/RRR Ver.A</strong>
+路徑：<code>C:\CludeHome\projects\MS_N_RRR</code>
+先讀：<code>ARCHITECTURE.md</code> + <code>INTEGRATIONS.md</code>
+現況：跑 <code>python -m src.orchestrator --skip-fetch --skip-notify</code> 看 step 結果</p>
+</blockquote>
+<p>剩下他會自己摸出來。</p>
+</body></html>
