@@ -22,6 +22,10 @@
     .tag-a { background:#064e3b; color:#6ee7b7; }
     .tag-b { background:#422006; color:#fcd34d; }
     .tag-c { background:#4c0519; color:#fda4af; }
+    .lc-pill { display:inline-block; padding:2px 8px; border-radius:10px;
+               font-size:11px; font-weight:bold; margin-left:6px;
+               background:#1e293b; }
+    .lc-days { color:#94a3b8; font-size:10px; margin-left:3px; font-weight:normal; }
     .sigs { color:#cbd5e1; font-size:13px; margin-top:6px; }
     .sigs li { margin-left:18px; }
     .sub-bar { display:grid; grid-template-columns: repeat(7,1fr); gap:6px; margin-top:8px; font-size:11px; }
@@ -87,7 +91,7 @@
     </style></head><body>
 <a class="back-link" href="index.html">← 返回主頁</a>
 <h1>HotFlow Agent — 主流形成偵測</h1>
-<div class="sub">資料日：2026-05-25 ｜ 產生時間：2026-05-26 03:19</div>
+<div class="sub">資料日：2026-05-25 ｜ 產生時間：2026-05-26 08:46</div>
 <div>
     <span class="stat">掃描 1935 檔</span>
     <span class="stat">過前置 52</span>
@@ -105,7 +109,7 @@
       <span class="name">祥碩</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A5269" target="_blank" rel="noopener" title="TradingView 圖表 — 5269" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">5269</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 98</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 98</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>71.9</div>
   </div>
@@ -114,18 +118,18 @@
 （本檔原始值：13.10）'><strong>5日名次斜率 (PR)</strong>93</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：12）'><strong>20日上榜天數 (PR)</strong>40</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.69）'><strong>成交金額Z分數60日 (PR)</strong>56</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.56）'><strong>成交金額擴張倍數 (PR)</strong>58</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>56</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.56）'><strong>成交金額擴張倍數 (PR)</strong>58</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>56</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：14.70）'><strong>週MA20斜率 (PR)</strong>69</div></div>
   <div class="met-row">
-    <span>收盤 <b>1535.0</b></span>
-    <span>金額 <b>3297M</b></span>
-    <span>名次 <b>#35</b></span>
-    <span>20日上榜 <b>12</b></span>
-    <span>5d 報酬 <b>+10.4%</b></span>
-    <span>20d 報酬 <b>+18.5%</b></span>
-    <span>RS 對大盤 <b>+6.4%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+14.70</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>1535.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>3297M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#35</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>12</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+10.4%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+18.5%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+6.4%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+14.70</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 進前 2%</li><li>名次 5d 斜率 +13.1</li><li>20日上榜 12 天</li><li>RS 轉強且週MA20 向上</li></ul>
 </div>
@@ -135,7 +139,7 @@
       <span class="name">智原</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3035" target="_blank" rel="noopener" title="TradingView 圖表 — 3035" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3035</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 96</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 96</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>67.6</div>
   </div>
@@ -144,18 +148,18 @@
 （本檔原始值：20.30）'><strong>5日名次斜率 (PR)</strong>98</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：11）'><strong>20日上榜天數 (PR)</strong>36</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：2.20）'><strong>成交金額Z分數60日 (PR)</strong>94</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：3.67）'><strong>成交金額擴張倍數 (PR)</strong>98</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>54</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：3.67）'><strong>成交金額擴張倍數 (PR)</strong>98</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>54</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：1.60）'><strong>週MA20斜率 (PR)</strong>33</div></div>
   <div class="met-row">
-    <span>收盤 <b>218.5</b></span>
-    <span>金額 <b>6628M</b></span>
-    <span>名次 <b>#25</b></span>
-    <span>20日上榜 <b>11</b></span>
-    <span>5d 報酬 <b>+13.2%</b></span>
-    <span>20d 報酬 <b>+18.1%</b></span>
-    <span>RS 對大盤 <b>+6.0%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+1.60</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>218.5</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>6628M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#25</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>11</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+13.2%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+18.1%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+6.0%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+1.60</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 進前 4%</li><li>名次 5d 斜率 +20.3</li><li>20日上榜 11 天</li><li>RS 轉強且週MA20 向上</li></ul>
 </div>
@@ -165,7 +169,7 @@
       <span class="name">上銀</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2049" target="_blank" rel="noopener" title="TradingView 圖表 — 2049" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2049</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 90</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 90</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>65.6</div>
   </div>
@@ -174,18 +178,18 @@
 （本檔原始值：8.20）'><strong>5日名次斜率 (PR)</strong>62</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：13）'><strong>20日上榜天數 (PR)</strong>45</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.54）'><strong>成交金額Z分數60日 (PR)</strong>44</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.37）'><strong>成交金額擴張倍數 (PR)</strong>50</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>79</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.37）'><strong>成交金額擴張倍數 (PR)</strong>50</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>79</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：8.83）'><strong>週MA20斜率 (PR)</strong>65</div></div>
   <div class="met-row">
-    <span>收盤 <b>395.0</b></span>
-    <span>金額 <b>3103M</b></span>
-    <span>名次 <b>#36</b></span>
-    <span>20日上榜 <b>13</b></span>
-    <span>5d 報酬 <b>+4.4%</b></span>
-    <span>20d 報酬 <b>+34.6%</b></span>
-    <span>RS 對大盤 <b>+22.5%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+8.83</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>395.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>3103M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#36</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>13</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+4.4%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+34.6%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+22.5%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+8.83</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 進前 10%</li><li>名次 5d 斜率 +8.2</li><li>20日上榜 13 天</li><li>RS 轉強且週MA20 向上</li></ul>
 </div>
@@ -195,7 +199,7 @@
       <span class="name">環球晶</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6488" target="_blank" rel="noopener" title="TradingView 圖表 — 6488" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6488</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 81</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 81</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>59.9</div>
   </div>
@@ -204,18 +208,18 @@
 （本檔原始值：12.90）'><strong>5日名次斜率 (PR)</strong>90</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：16）'><strong>20日上榜天數 (PR)</strong>58</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.20）'><strong>成交金額Z分數60日 (PR)</strong>35</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.19）'><strong>成交金額擴張倍數 (PR)</strong>36</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.19）'><strong>成交金額擴張倍數 (PR)</strong>36</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：18.04）'><strong>週MA20斜率 (PR)</strong>75</div></div>
   <div class="met-row">
-    <span>收盤 <b>788.0</b></span>
-    <span>金額 <b>4488M</b></span>
-    <span>名次 <b>#31</b></span>
-    <span>20日上榜 <b>16</b></span>
-    <span>5d 報酬 <b>+12.9%</b></span>
-    <span>20d 報酬 <b>+35.4%</b></span>
-    <span>RS 對大盤 <b>+23.3%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+18.04</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>788.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>4488M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#31</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>16</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+12.9%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+35.4%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+23.3%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+18.04</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 進前 19%</li><li>名次 5d 斜率 +12.9</li><li>20日上榜 16 天</li><li>RS 轉強且週MA20 向上</li></ul>
 </div></div></details><details class='section'><summary title='B 級觀察中：60-70 分，部分條件未齊全；持續追蹤'><span class='label'>B 觀察中</span><span class='count-badge b'>9 檔</span></summary><div class='body'>
@@ -225,7 +229,7 @@
       <span class="name">大銀微系統</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4576" target="_blank" rel="noopener" title="TradingView 圖表 — 4576" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">4576</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 100</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 100</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>72.2</div>
   </div>
@@ -234,18 +238,18 @@
 （本檔原始值：11.20）'><strong>5日名次斜率 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：2）'><strong>20日上榜天數 (PR)</strong>21</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：1.18）'><strong>成交金額Z分數60日 (PR)</strong>69</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：2.27）'><strong>成交金額擴張倍數 (PR)</strong>90</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>96</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：2.27）'><strong>成交金額擴張倍數 (PR)</strong>90</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>96</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：7.65）'><strong>週MA20斜率 (PR)</strong>64</div></div>
   <div class="met-row">
-    <span>收盤 <b>277.0</b></span>
-    <span>金額 <b>1905M</b></span>
-    <span>名次 <b>#45</b></span>
-    <span>20日上榜 <b>2</b></span>
-    <span>5d 報酬 <b>+7.2%</b></span>
-    <span>20d 報酬 <b>+54.8%</b></span>
-    <span>RS 對大盤 <b>+42.6%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+7.65</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>277.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>1905M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#45</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>2</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+7.2%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+54.8%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+42.6%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+7.65</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 進前 0%（未完全達 A 級）</li></ul>
 </div>
@@ -255,7 +259,7 @@
       <span class="name">正文</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4906" target="_blank" rel="noopener" title="TradingView 圖表 — 4906" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">4906</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 88</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 88</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>64.2</div>
   </div>
@@ -264,18 +268,18 @@
 （本檔原始值：11.60）'><strong>5日名次斜率 (PR)</strong>85</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：2）'><strong>20日上榜天數 (PR)</strong>21</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.61）'><strong>成交金額Z分數60日 (PR)</strong>50</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.69）'><strong>成交金額擴張倍數 (PR)</strong>67</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>75</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.69）'><strong>成交金額擴張倍數 (PR)</strong>67</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>75</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：0.65）'><strong>週MA20斜率 (PR)</strong>15</div></div>
   <div class="met-row">
-    <span>收盤 <b>44.3</b></span>
-    <span>金額 <b>2099M</b></span>
-    <span>名次 <b>#43</b></span>
-    <span>20日上榜 <b>2</b></span>
-    <span>5d 報酬 <b>+13.9%</b></span>
-    <span>20d 報酬 <b>+29.3%</b></span>
-    <span>RS 對大盤 <b>+17.2%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+0.65</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>44.3</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>2099M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#43</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>2</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+13.9%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+29.3%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+17.2%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+0.65</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 進前 12%（未完全達 A 級）</li></ul>
 </div>
@@ -285,7 +289,7 @@
       <span class="name">飛捷</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6206</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 83</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 83</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>60.2</div>
   </div>
@@ -294,18 +298,18 @@
 （本檔原始值：8.60）'><strong>5日名次斜率 (PR)</strong>65</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：1）'><strong>20日上榜天數 (PR)</strong>10</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：1.19）'><strong>成交金額Z分數60日 (PR)</strong>71</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：2.39）'><strong>成交金額擴張倍數 (PR)</strong>92</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>85</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：2.39）'><strong>成交金額擴張倍數 (PR)</strong>92</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>85</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：2.13）'><strong>週MA20斜率 (PR)</strong>38</div></div>
   <div class="met-row">
-    <span>收盤 <b>144.0</b></span>
-    <span>金額 <b>467M</b></span>
-    <span>名次 <b>#58</b></span>
-    <span>20日上榜 <b>1</b></span>
-    <span>5d 報酬 <b>+10.8%</b></span>
-    <span>20d 報酬 <b>+36.5%</b></span>
-    <span>RS 對大盤 <b>+24.4%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+2.13</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>144.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>467M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#58</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>1</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+10.8%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+36.5%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+24.4%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+2.13</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 進前 17%（未完全達 A 級）</li></ul>
 </div>
@@ -315,7 +319,7 @@
       <span class="name">創見</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2451" target="_blank" rel="noopener" title="TradingView 圖表 — 2451" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2451</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 79</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 79</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>58.6</div>
   </div>
@@ -324,18 +328,18 @@
 （本檔原始值：11.40）'><strong>5日名次斜率 (PR)</strong>83</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：14）'><strong>20日上榜天數 (PR)</strong>50</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：-0.31）'><strong>成交金額Z分數60日 (PR)</strong>15</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：0.78）'><strong>成交金額擴張倍數 (PR)</strong>14</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>67</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：0.78）'><strong>成交金額擴張倍數 (PR)</strong>14</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>67</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：6.86）'><strong>週MA20斜率 (PR)</strong>60</div></div>
   <div class="met-row">
-    <span>收盤 <b>311.0</b></span>
-    <span>金額 <b>1948M</b></span>
-    <span>名次 <b>#44</b></span>
-    <span>20日上榜 <b>14</b></span>
-    <span>5d 報酬 <b>-5.3%</b></span>
-    <span>20d 報酬 <b>+23.2%</b></span>
-    <span>RS 對大盤 <b>+11.1%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+6.86</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>311.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>1948M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#44</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>14</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>-5.3%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+23.2%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+11.1%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+6.86</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 進前 21%（未完全達 A 級）</li></ul>
 </div>
@@ -345,7 +349,7 @@
       <span class="name">昇達科</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3491" target="_blank" rel="noopener" title="TradingView 圖表 — 3491" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3491</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 75</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 75</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>57.9</div>
   </div>
@@ -354,18 +358,18 @@
 （本檔原始值：1.30）'><strong>5日名次斜率 (PR)</strong>23</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：14）'><strong>20日上榜天數 (PR)</strong>50</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：2.03）'><strong>成交金額Z分數60日 (PR)</strong>90</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：2.49）'><strong>成交金額擴張倍數 (PR)</strong>94</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>77</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：2.49）'><strong>成交金額擴張倍數 (PR)</strong>94</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>77</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：58.91）'><strong>週MA20斜率 (PR)</strong>90</div></div>
   <div class="met-row">
-    <span>收盤 <b>2090.0</b></span>
-    <span>金額 <b>7485M</b></span>
-    <span>名次 <b>#22</b></span>
-    <span>20日上榜 <b>14</b></span>
-    <span>5d 報酬 <b>+12.7%</b></span>
-    <span>20d 報酬 <b>+33.1%</b></span>
-    <span>RS 對大盤 <b>+21.0%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+58.91</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>2090.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>7485M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#22</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>14</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+12.7%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+33.1%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+21.0%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+58.91</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 進前 25%（未完全達 A 級）</li></ul>
 </div>
@@ -375,7 +379,7 @@
       <span class="name">元大金</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2885" target="_blank" rel="noopener" title="TradingView 圖表 — 2885" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2885</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 73</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 73</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>57.0</div>
   </div>
@@ -384,18 +388,18 @@
 （本檔原始值：11.00）'><strong>5日名次斜率 (PR)</strong>79</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：1）'><strong>20日上榜天數 (PR)</strong>10</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.91）'><strong>成交金額Z分數60日 (PR)</strong>64</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.26）'><strong>成交金額擴張倍數 (PR)</strong>44</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>46</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.26）'><strong>成交金額擴張倍數 (PR)</strong>44</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>46</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：0.79）'><strong>週MA20斜率 (PR)</strong>21</div></div>
   <div class="met-row">
-    <span>收盤 <b>56.1</b></span>
-    <span>金額 <b>1609M</b></span>
-    <span>名次 <b>#46</b></span>
-    <span>20日上榜 <b>1</b></span>
-    <span>5d 報酬 <b>+3.3%</b></span>
-    <span>20d 報酬 <b>+12.3%</b></span>
-    <span>RS 對大盤 <b>+0.2%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+0.79</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>56.1</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>1609M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#46</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>1</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+3.3%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+12.3%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+0.2%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+0.79</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 進前 27%（未完全達 A 級）</li></ul>
 </div>
@@ -405,7 +409,7 @@
       <span class="name">華邦電</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2344" target="_blank" rel="noopener" title="TradingView 圖表 — 2344" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2344</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 67</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 67</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>55.8</div>
   </div>
@@ -414,18 +418,18 @@
 （本檔原始值：1.60）'><strong>5日名次斜率 (PR)</strong>27</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：20）'><strong>20日上榜天數 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：2.70）'><strong>成交金額Z分數60日 (PR)</strong>98</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：2.23）'><strong>成交金額擴張倍數 (PR)</strong>88</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>88</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：2.23）'><strong>成交金額擴張倍數 (PR)</strong>88</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>88</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：2.32）'><strong>週MA20斜率 (PR)</strong>40</div></div>
   <div class="met-row">
-    <span>收盤 <b>128.5</b></span>
-    <span>金額 <b>45894M</b></span>
-    <span>名次 <b>#3</b></span>
-    <span>20日上榜 <b>20</b></span>
-    <span>5d 報酬 <b>-1.5%</b></span>
-    <span>20d 報酬 <b>+45.7%</b></span>
-    <span>RS 對大盤 <b>+33.6%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+2.32</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>128.5</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>45894M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#3</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>20</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>-1.5%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+45.7%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+33.6%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+2.32</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 進前 33%（未完全達 A 級）</li></ul>
 </div>
@@ -435,7 +439,7 @@
       <span class="name">聯電</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2303" target="_blank" rel="noopener" title="TradingView 圖表 — 2303" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2303</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 65</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 65</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>54.9</div>
   </div>
@@ -444,18 +448,18 @@
 （本檔原始值：0.00）'><strong>5日名次斜率 (PR)</strong>14</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：20）'><strong>20日上榜天數 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：2.42）'><strong>成交金額Z分數60日 (PR)</strong>96</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：3.03）'><strong>成交金額擴張倍數 (PR)</strong>96</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>98</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：3.03）'><strong>成交金額擴張倍數 (PR)</strong>96</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>98</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：3.04）'><strong>週MA20斜率 (PR)</strong>44</div></div>
   <div class="met-row">
-    <span>收盤 <b>125.0</b></span>
-    <span>金額 <b>42594M</b></span>
-    <span>名次 <b>#4</b></span>
-    <span>20日上榜 <b>20</b></span>
-    <span>5d 報酬 <b>+12.6%</b></span>
-    <span>20d 報酬 <b>+67.8%</b></span>
-    <span>RS 對大盤 <b>+55.7%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+3.04</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>125.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>42594M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#4</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>20</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+12.6%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+67.8%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+55.7%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+3.04</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 進前 35%（未完全達 A 級）</li></ul>
 </div>
@@ -465,7 +469,7 @@
       <span class="name">鴻海</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2317" target="_blank" rel="noopener" title="TradingView 圖表 — 2317" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2317</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 62</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 62</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>52.3</div>
   </div>
@@ -474,18 +478,18 @@
 （本檔原始值：2.00）'><strong>5日名次斜率 (PR)</strong>32</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：20）'><strong>20日上榜天數 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：1.47）'><strong>成交金額Z分數60日 (PR)</strong>79</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.87）'><strong>成交金額擴張倍數 (PR)</strong>77</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>52</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.87）'><strong>成交金額擴張倍數 (PR)</strong>77</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>52</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：1.29）'><strong>週MA20斜率 (PR)</strong>29</div></div>
   <div class="met-row">
-    <span>收盤 <b>261.0</b></span>
-    <span>金額 <b>31984M</b></span>
-    <span>名次 <b>#5</b></span>
-    <span>20日上榜 <b>20</b></span>
-    <span>5d 報酬 <b>+5.0%</b></span>
-    <span>20d 報酬 <b>+17.8%</b></span>
-    <span>RS 對大盤 <b>+5.7%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+1.29</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>261.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>31984M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#5</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>20</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+5.0%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+17.8%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+5.7%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+1.29</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 進前 38%（未完全達 A 級）</li></ul>
 </div></div></details><details class='section'><summary title='C 級過熱或排除：&lt; 60 分，可能已飆漲完畢或結構轉空，不建議追入'><span class='label'>C 過熱或排除</span><span class='count-badge c'>39 檔</span></summary><div class='body'>
@@ -495,7 +499,7 @@
       <span class="name">台新新光金</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2887" target="_blank" rel="noopener" title="TradingView 圖表 — 2887" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2887</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 94</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 94</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>67.2</div>
   </div>
@@ -504,18 +508,18 @@
 （本檔原始值：13.10）'><strong>5日名次斜率 (PR)</strong>93</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：2）'><strong>20日上榜天數 (PR)</strong>21</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：1.80）'><strong>成交金額Z分數60日 (PR)</strong>83</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.74）'><strong>成交金額擴張倍數 (PR)</strong>71</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>10</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.74）'><strong>成交金額擴張倍數 (PR)</strong>71</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>10</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：0.16）'><strong>週MA20斜率 (PR)</strong>8</div></div>
   <div class="met-row">
-    <span>收盤 <b>23.3</b></span>
-    <span>金額 <b>3477M</b></span>
-    <span>名次 <b>#34</b></span>
-    <span>20日上榜 <b>2</b></span>
-    <span>5d 報酬 <b>-0.6%</b></span>
-    <span>20d 報酬 <b>-2.7%</b></span>
-    <span>RS 對大盤 <b>-14.8%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↓</b></span>
-    <span>週MA20 斜率 <b>+0.16</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>23.3</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>3477M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#34</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>2</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>-0.6%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>-2.7%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>-14.8%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↓</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+0.16</b></span>
   </div>
   <ul class="sigs"><li>RS 未轉強</li></ul>
 </div>
@@ -525,7 +529,7 @@
       <span class="name">英業達</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2356</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 92</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 92</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>66.1</div>
   </div>
@@ -534,18 +538,18 @@
 （本檔原始值：23.00）'><strong>5日名次斜率 (PR)</strong>100</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：5）'><strong>20日上榜天數 (PR)</strong>25</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：4.48）'><strong>成交金額Z分數60日 (PR)</strong>100</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：5.99）'><strong>成交金額擴張倍數 (PR)</strong>100</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>83</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：5.99）'><strong>成交金額擴張倍數 (PR)</strong>100</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>83</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：0.66）'><strong>週MA20斜率 (PR)</strong>17</div></div>
   <div class="met-row">
-    <span>收盤 <b>65.4</b></span>
-    <span>金額 <b>8812M</b></span>
-    <span>名次 <b>#20</b></span>
-    <span>20日上榜 <b>5</b></span>
-    <span>5d 報酬 <b>+26.0%</b></span>
-    <span>20d 報酬 <b>+36.0%</b></span>
-    <span>RS 對大盤 <b>+23.9%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+0.66</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>65.4</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>8812M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#20</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>5</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+26.0%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+36.0%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+23.9%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+0.66</b></span>
   </div>
   <ul class="sigs"><li>5日漲幅 26.0% &gt; 25%</li></ul>
 </div>
@@ -555,7 +559,7 @@
       <span class="name">國泰金</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2882" target="_blank" rel="noopener" title="TradingView 圖表 — 2882" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2882</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 86</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 86</span><span class='lc-pill' style='background:#065f46;color:#10b981' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>62.8</div>
   </div>
@@ -564,18 +568,18 @@
 （本檔原始值：7.60）'><strong>5日名次斜率 (PR)</strong>54</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：7）'><strong>20日上榜天數 (PR)</strong>31</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：1.80）'><strong>成交金額Z分數60日 (PR)</strong>85</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.78）'><strong>成交金額擴張倍數 (PR)</strong>73</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>38</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.78）'><strong>成交金額擴張倍數 (PR)</strong>73</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>38</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：0.27）'><strong>週MA20斜率 (PR)</strong>10</div></div>
   <div class="met-row">
-    <span>收盤 <b>81.5</b></span>
-    <span>金額 <b>3985M</b></span>
-    <span>名次 <b>#33</b></span>
-    <span>20日上榜 <b>7</b></span>
-    <span>5d 報酬 <b>+6.1%</b></span>
-    <span>20d 報酬 <b>+8.8%</b></span>
-    <span>RS 對大盤 <b>-3.3%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↓</b></span>
-    <span>週MA20 斜率 <b>+0.27</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>81.5</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>3985M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#33</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>7</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+6.1%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+8.8%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>-3.3%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↓</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+0.27</b></span>
   </div>
   <ul class="sigs"><li>RS 未轉強</li></ul>
 </div>
@@ -585,7 +589,7 @@
       <span class="name">京元電子</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2449" target="_blank" rel="noopener" title="TradingView 圖表 — 2449" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2449</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 85</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 85</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>60.5</div>
   </div>
@@ -594,18 +598,18 @@
 （本檔原始值：5.40）'><strong>5日名次斜率 (PR)</strong>48</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：20）'><strong>20日上榜天數 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：2.03）'><strong>成交金額Z分數60日 (PR)</strong>88</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：2.07）'><strong>成交金額擴張倍數 (PR)</strong>83</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>42</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：2.07）'><strong>成交金額擴張倍數 (PR)</strong>83</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>42</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：3.66）'><strong>週MA20斜率 (PR)</strong>48</div></div>
   <div class="met-row">
-    <span>收盤 <b>317.0</b></span>
-    <span>金額 <b>16946M</b></span>
-    <span>名次 <b>#12</b></span>
-    <span>20日上榜 <b>20</b></span>
-    <span>5d 報酬 <b>+7.5%</b></span>
-    <span>20d 報酬 <b>+10.8%</b></span>
-    <span>RS 對大盤 <b>-1.3%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↓</b></span>
-    <span>週MA20 斜率 <b>+3.66</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>317.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>16946M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#12</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>20</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+7.5%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+10.8%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>-1.3%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↓</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+3.66</b></span>
   </div>
   <ul class="sigs"><li>RS 未轉強</li></ul>
 </div>
@@ -615,7 +619,7 @@
       <span class="name">聯茂</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6213" target="_blank" rel="noopener" title="TradingView 圖表 — 6213" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6213</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 77</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 77</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>58.5</div>
   </div>
@@ -624,18 +628,18 @@
 （本檔原始值：13.80）'><strong>5日名次斜率 (PR)</strong>96</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：7）'><strong>20日上榜天數 (PR)</strong>31</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：-0.08）'><strong>成交金額Z分數60日 (PR)</strong>23</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：0.93）'><strong>成交金額擴張倍數 (PR)</strong>23</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>8</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：0.93）'><strong>成交金額擴張倍數 (PR)</strong>23</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>8</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：7.62）'><strong>週MA20斜率 (PR)</strong>62</div></div>
   <div class="met-row">
-    <span>收盤 <b>267.0</b></span>
-    <span>金額 <b>4101M</b></span>
-    <span>名次 <b>#32</b></span>
-    <span>20日上榜 <b>7</b></span>
-    <span>5d 報酬 <b>+9.0%</b></span>
-    <span>20d 報酬 <b>-3.3%</b></span>
-    <span>RS 對大盤 <b>-15.4%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↓</b></span>
-    <span>週MA20 斜率 <b>+7.62</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>267.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>4101M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#32</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>7</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+9.0%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>-3.3%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>-15.4%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↓</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+7.62</b></span>
   </div>
   <ul class="sigs"><li>RS 未轉強</li></ul>
 </div>
@@ -645,7 +649,7 @@
       <span class="name">南電</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8046" target="_blank" rel="noopener" title="TradingView 圖表 — 8046" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">8046</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 71</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 71</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>56.6</div>
   </div>
@@ -654,18 +658,18 @@
 （本檔原始值：7.00）'><strong>5日名次斜率 (PR)</strong>52</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：20）'><strong>20日上榜天數 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：2.09）'><strong>成交金額Z分數60日 (PR)</strong>92</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：2.14）'><strong>成交金額擴張倍數 (PR)</strong>86</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>17</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：2.14）'><strong>成交金額擴張倍數 (PR)</strong>86</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>17</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：30.80）'><strong>週MA20斜率 (PR)</strong>77</div></div>
   <div class="met-row">
-    <span>收盤 <b>884.0</b></span>
-    <span>金額 <b>27241M</b></span>
-    <span>名次 <b>#6</b></span>
-    <span>20日上榜 <b>20</b></span>
-    <span>5d 報酬 <b>+11.8%</b></span>
-    <span>20d 報酬 <b>+1.1%</b></span>
-    <span>RS 對大盤 <b>-11.0%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↓</b></span>
-    <span>週MA20 斜率 <b>+30.80</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>884.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>27241M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#6</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>20</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+11.8%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+1.1%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>-11.0%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↓</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+30.80</b></span>
   </div>
   <ul class="sigs"><li>RS 未轉強</li></ul>
 </div>
@@ -675,7 +679,7 @@
       <span class="name">瑞昱</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2379" target="_blank" rel="noopener" title="TradingView 圖表 — 2379" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2379</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 69</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 69</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>55.9</div>
   </div>
@@ -684,18 +688,18 @@
 （本檔原始值：9.80）'><strong>5日名次斜率 (PR)</strong>72</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：7）'><strong>20日上榜天數 (PR)</strong>31</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.34）'><strong>成交金額Z分數60日 (PR)</strong>36</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.19）'><strong>成交金額擴張倍數 (PR)</strong>35</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>35</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.19）'><strong>成交金額擴張倍數 (PR)</strong>35</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>35</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：3.57）'><strong>週MA20斜率 (PR)</strong>46</div></div>
   <div class="met-row">
-    <span>收盤 <b>583.0</b></span>
-    <span>金額 <b>2394M</b></span>
-    <span>名次 <b>#39</b></span>
-    <span>20日上榜 <b>7</b></span>
-    <span>5d 報酬 <b>+4.1%</b></span>
-    <span>20d 報酬 <b>+8.2%</b></span>
-    <span>RS 對大盤 <b>-3.9%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↓</b></span>
-    <span>週MA20 斜率 <b>+3.57</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>583.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>2394M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#39</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>7</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+4.1%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+8.2%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>-3.9%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↓</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+3.57</b></span>
   </div>
   <ul class="sigs"><li>RS 未轉強</li></ul>
 </div>
@@ -705,7 +709,7 @@
       <span class="name">士電</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1503" target="_blank" rel="noopener" title="TradingView 圖表 — 1503" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">1503</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 64</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 64</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>52.8</div>
   </div>
@@ -714,18 +718,18 @@
 （本檔原始值：9.60）'><strong>5日名次斜率 (PR)</strong>69</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：1）'><strong>20日上榜天數 (PR)</strong>10</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.82）'><strong>成交金額Z分數60日 (PR)</strong>60</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.70）'><strong>成交金額擴張倍數 (PR)</strong>69</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>29</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.70）'><strong>成交金額擴張倍數 (PR)</strong>69</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>29</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：1.23）'><strong>週MA20斜率 (PR)</strong>25</div></div>
   <div class="met-row">
-    <span>收盤 <b>201.5</b></span>
-    <span>金額 <b>938M</b></span>
-    <span>名次 <b>#53</b></span>
-    <span>20日上榜 <b>1</b></span>
-    <span>5d 報酬 <b>+8.3%</b></span>
-    <span>20d 報酬 <b>+5.5%</b></span>
-    <span>RS 對大盤 <b>-6.6%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↓</b></span>
-    <span>週MA20 斜率 <b>+1.23</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>201.5</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>938M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#53</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>1</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+8.3%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+5.5%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>-6.6%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↓</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+1.23</b></span>
   </div>
   <ul class="sigs"><li>RS 未轉強</li></ul>
 </div>
@@ -735,7 +739,7 @@
       <span class="name">揚明光</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3504" target="_blank" rel="noopener" title="TradingView 圖表 — 3504" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3504</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 60</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 60</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>51.9</div>
   </div>
@@ -744,18 +748,18 @@
 （本檔原始值：8.00）'><strong>5日名次斜率 (PR)</strong>60</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：1）'><strong>20日上榜天數 (PR)</strong>10</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.69）'><strong>成交金額Z分數60日 (PR)</strong>54</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.99）'><strong>成交金額擴張倍數 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>71</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.99）'><strong>成交金額擴張倍數 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>71</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：1.27）'><strong>週MA20斜率 (PR)</strong>27</div></div>
   <div class="met-row">
-    <span>收盤 <b>82.7</b></span>
-    <span>金額 <b>267M</b></span>
-    <span>名次 <b>#61</b></span>
-    <span>20日上榜 <b>1</b></span>
-    <span>5d 報酬 <b>+9.8%</b></span>
-    <span>20d 報酬 <b>+24.7%</b></span>
-    <span>RS 對大盤 <b>+12.6%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+1.27</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>82.7</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>267M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#61</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>1</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+9.8%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+24.7%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+12.6%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+1.27</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 未達 top 40%</li></ul>
 </div>
@@ -765,7 +769,7 @@
       <span class="name">聯詠</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3034" target="_blank" rel="noopener" title="TradingView 圖表 — 3034" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3034</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 58</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 58</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>51.9</div>
   </div>
@@ -774,18 +778,18 @@
 （本檔原始值：12.50）'><strong>5日名次斜率 (PR)</strong>88</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：12）'><strong>20日上榜天數 (PR)</strong>40</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.11）'><strong>成交金額Z分數60日 (PR)</strong>29</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.08）'><strong>成交金額擴張倍數 (PR)</strong>29</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>50</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.08）'><strong>成交金額擴張倍數 (PR)</strong>29</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>50</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：5.51）'><strong>週MA20斜率 (PR)</strong>54</div></div>
   <div class="met-row">
-    <span>收盤 <b>489.0</b></span>
-    <span>金額 <b>2370M</b></span>
-    <span>名次 <b>#40</b></span>
-    <span>20日上榜 <b>12</b></span>
-    <span>5d 報酬 <b>+2.8%</b></span>
-    <span>20d 報酬 <b>+17.0%</b></span>
-    <span>RS 對大盤 <b>+4.9%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+5.51</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>489.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>2370M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#40</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>12</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+2.8%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+17.0%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+4.9%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+5.51</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 未達 top 40%</li></ul>
 </div>
@@ -795,7 +799,7 @@
       <span class="name">技嘉</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2376" target="_blank" rel="noopener" title="TradingView 圖表 — 2376" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2376</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 56</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 56</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>51.4</div>
   </div>
@@ -804,18 +808,18 @@
 （本檔原始值：-1.90）'><strong>5日名次斜率 (PR)</strong>4</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：14）'><strong>20日上榜天數 (PR)</strong>50</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：1.12）'><strong>成交金額Z分數60日 (PR)</strong>67</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.92）'><strong>成交金額擴張倍數 (PR)</strong>79</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>62</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.92）'><strong>成交金額擴張倍數 (PR)</strong>79</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>62</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：4.22）'><strong>週MA20斜率 (PR)</strong>52</div></div>
   <div class="met-row">
-    <span>收盤 <b>336.5</b></span>
-    <span>金額 <b>5754M</b></span>
-    <span>名次 <b>#28</b></span>
-    <span>20日上榜 <b>14</b></span>
-    <span>5d 報酬 <b>+1.8%</b></span>
-    <span>20d 報酬 <b>+21.0%</b></span>
-    <span>RS 對大盤 <b>+8.9%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+4.22</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>336.5</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>5754M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#28</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>14</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+1.8%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+21.0%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+8.9%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+4.22</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 未達 top 40%</li></ul>
 </div>
@@ -825,7 +829,7 @@
       <span class="name">智易</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3596" target="_blank" rel="noopener" title="TradingView 圖表 — 3596" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3596</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 54</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 54</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>50.6</div>
   </div>
@@ -834,18 +838,18 @@
 （本檔原始值：8.80）'><strong>5日名次斜率 (PR)</strong>67</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：1）'><strong>20日上榜天數 (PR)</strong>10</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.73）'><strong>成交金額Z分數60日 (PR)</strong>58</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.42）'><strong>成交金額擴張倍數 (PR)</strong>54</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>48</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.42）'><strong>成交金額擴張倍數 (PR)</strong>54</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>48</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：0.76）'><strong>週MA20斜率 (PR)</strong>19</div></div>
   <div class="met-row">
-    <span>收盤 <b>189.0</b></span>
-    <span>金額 <b>594M</b></span>
-    <span>名次 <b>#57</b></span>
-    <span>20日上榜 <b>1</b></span>
-    <span>5d 報酬 <b>+3.3%</b></span>
-    <span>20d 報酬 <b>+14.9%</b></span>
-    <span>RS 對大盤 <b>+2.8%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+0.76</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>189.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>594M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#57</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>1</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+3.3%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+14.9%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+2.8%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+0.76</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 未達 top 40%</li></ul>
 </div>
@@ -855,7 +859,7 @@
       <span class="name">大立光</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3008" target="_blank" rel="noopener" title="TradingView 圖表 — 3008" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3008</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 52</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 52</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>50.2</div>
   </div>
@@ -864,18 +868,18 @@
 （本檔原始值：-3.10）'><strong>5日名次斜率 (PR)</strong>2</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：15）'><strong>20日上榜天數 (PR)</strong>55</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.41）'><strong>成交金額Z分數60日 (PR)</strong>38</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.38）'><strong>成交金額擴張倍數 (PR)</strong>52</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>94</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.38）'><strong>成交金額擴張倍數 (PR)</strong>52</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>94</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：58.21）'><strong>週MA20斜率 (PR)</strong>88</div></div>
   <div class="met-row">
-    <span>收盤 <b>3845.0</b></span>
-    <span>金額 <b>5520M</b></span>
-    <span>名次 <b>#29</b></span>
-    <span>20日上榜 <b>15</b></span>
-    <span>5d 報酬 <b>+16.9%</b></span>
-    <span>20d 報酬 <b>+52.6%</b></span>
-    <span>RS 對大盤 <b>+40.5%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+58.21</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>3845.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>5520M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#29</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>15</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+16.9%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+52.6%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+40.5%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+58.21</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 未達 top 40%</li></ul>
 </div>
@@ -885,7 +889,7 @@
       <span class="name">廣達</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2382" target="_blank" rel="noopener" title="TradingView 圖表 — 2382" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2382</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 50</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 50</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>50.1</div>
   </div>
@@ -894,18 +898,18 @@
 （本檔原始值：2.00）'><strong>5日名次斜率 (PR)</strong>32</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：20）'><strong>20日上榜天數 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：2.01）'><strong>成交金額Z分數60日 (PR)</strong>86</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：2.14）'><strong>成交金額擴張倍數 (PR)</strong>85</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>12</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：2.14）'><strong>成交金額擴張倍數 (PR)</strong>85</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>12</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：2.35）'><strong>週MA20斜率 (PR)</strong>42</div></div>
   <div class="met-row">
-    <span>收盤 <b>316.5</b></span>
-    <span>金額 <b>14789M</b></span>
-    <span>名次 <b>#14</b></span>
-    <span>20日上榜 <b>20</b></span>
-    <span>5d 報酬 <b>+5.5%</b></span>
-    <span>20d 報酬 <b>-2.0%</b></span>
-    <span>RS 對大盤 <b>-14.1%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↓</b></span>
-    <span>週MA20 斜率 <b>+2.35</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>316.5</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>14789M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#14</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>20</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+5.5%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>-2.0%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>-14.1%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↓</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+2.35</b></span>
   </div>
   <ul class="sigs"><li>RS 未轉強</li></ul>
 </div>
@@ -915,7 +919,7 @@
       <span class="name">萬海</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2615</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 48</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 48</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>49.8</div>
   </div>
@@ -924,18 +928,18 @@
 （本檔原始值：10.80）'><strong>5日名次斜率 (PR)</strong>77</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：1）'><strong>20日上榜天數 (PR)</strong>10</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.15）'><strong>成交金額Z分數60日 (PR)</strong>33</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.20）'><strong>成交金額擴張倍數 (PR)</strong>38</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>44</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.20）'><strong>成交金額擴張倍數 (PR)</strong>38</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>44</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：0.03）'><strong>週MA20斜率 (PR)</strong>2</div></div>
   <div class="met-row">
-    <span>收盤 <b>83.3</b></span>
-    <span>金額 <b>1554M</b></span>
-    <span>名次 <b>#47</b></span>
-    <span>20日上榜 <b>1</b></span>
-    <span>5d 報酬 <b>+8.3%</b></span>
-    <span>20d 報酬 <b>+12.3%</b></span>
-    <span>RS 對大盤 <b>+0.2%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+0.03</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>83.3</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>1554M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#47</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>1</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+8.3%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+12.3%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+0.2%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+0.03</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 未達 top 40%</li></ul>
 </div>
@@ -945,7 +949,7 @@
       <span class="name">燿華</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2367" target="_blank" rel="noopener" title="TradingView 圖表 — 2367" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2367</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 46</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 46</span><span class='lc-pill' style='background:#065f46;color:#10b981' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>49.5</div>
   </div>
@@ -954,18 +958,18 @@
 （本檔原始值：6.10）'><strong>5日名次斜率 (PR)</strong>50</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：12）'><strong>20日上榜天數 (PR)</strong>40</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.15）'><strong>成交金額Z分數60日 (PR)</strong>31</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.14）'><strong>成交金額擴張倍數 (PR)</strong>31</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>64</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.14）'><strong>成交金額擴張倍數 (PR)</strong>31</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>64</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：1.90）'><strong>週MA20斜率 (PR)</strong>36</div></div>
   <div class="met-row">
-    <span>收盤 <b>70.1</b></span>
-    <span>金額 <b>6617M</b></span>
-    <span>名次 <b>#26</b></span>
-    <span>20日上榜 <b>12</b></span>
-    <span>5d 報酬 <b>+9.0%</b></span>
-    <span>20d 報酬 <b>+22.1%</b></span>
-    <span>RS 對大盤 <b>+10.0%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+1.90</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>70.1</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>6617M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#26</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>12</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+9.0%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+22.1%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+10.0%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+1.90</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 未達 top 40%</li></ul>
 </div>
@@ -975,7 +979,7 @@
       <span class="name">緯穎</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6669" target="_blank" rel="noopener" title="TradingView 圖表 — 6669" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6669</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 44</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 44</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>49.2</div>
   </div>
@@ -984,18 +988,18 @@
 （本檔原始值：5.30）'><strong>5日名次斜率 (PR)</strong>45</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：20）'><strong>20日上榜天數 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.60）'><strong>成交金額Z分數60日 (PR)</strong>48</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.33）'><strong>成交金額擴張倍數 (PR)</strong>46</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>60</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.33）'><strong>成交金額擴張倍數 (PR)</strong>46</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>60</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：50.08）'><strong>週MA20斜率 (PR)</strong>85</div></div>
   <div class="met-row">
-    <span>收盤 <b>5610.0</b></span>
-    <span>金額 <b>11854M</b></span>
-    <span>名次 <b>#16</b></span>
-    <span>20日上榜 <b>20</b></span>
-    <span>5d 報酬 <b>+10.2%</b></span>
-    <span>20d 報酬 <b>+21.0%</b></span>
-    <span>RS 對大盤 <b>+8.9%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+50.08</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>5610.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>11854M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#16</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>20</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+10.2%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+21.0%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+8.9%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+50.08</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 未達 top 40%</li></ul>
 </div>
@@ -1005,7 +1009,7 @@
       <span class="name">晶豪科</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3006" target="_blank" rel="noopener" title="TradingView 圖表 — 3006" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3006</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 42</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 42</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>48.9</div>
   </div>
@@ -1014,18 +1018,18 @@
 （本檔原始值：0.70）'><strong>5日名次斜率 (PR)</strong>19</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：19）'><strong>20日上榜天數 (PR)</strong>60</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：0.90）'><strong>成交金額Z分數60日 (PR)</strong>62</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.63）'><strong>成交金額擴張倍數 (PR)</strong>62</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>92</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.63）'><strong>成交金額擴張倍數 (PR)</strong>62</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>92</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：6.73）'><strong>週MA20斜率 (PR)</strong>58</div></div>
   <div class="met-row">
-    <span>收盤 <b>229.0</b></span>
-    <span>金額 <b>6822M</b></span>
-    <span>名次 <b>#23</b></span>
-    <span>20日上榜 <b>19</b></span>
-    <span>5d 報酬 <b>-9.1%</b></span>
-    <span>20d 報酬 <b>+48.2%</b></span>
-    <span>RS 對大盤 <b>+36.1%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+6.73</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>229.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>6822M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#23</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>19</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>-9.1%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+48.2%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+36.1%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+6.73</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 未達 top 40%</li></ul>
 </div>
@@ -1035,7 +1039,7 @@
       <span class="name">穩懋</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3105" target="_blank" rel="noopener" title="TradingView 圖表 — 3105" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3105</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 40</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 40</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>48.4</div>
   </div>
@@ -1044,18 +1048,18 @@
 （本檔原始值：4.90）'><strong>5日名次斜率 (PR)</strong>42</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：20）'><strong>20日上榜天數 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：1.22）'><strong>成交金額Z分數60日 (PR)</strong>75</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.68）'><strong>成交金額擴張倍數 (PR)</strong>65</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>14</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.68）'><strong>成交金額擴張倍數 (PR)</strong>65</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>14</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：16.14）'><strong>週MA20斜率 (PR)</strong>73</div></div>
   <div class="met-row">
-    <span>收盤 <b>543.0</b></span>
-    <span>金額 <b>22947M</b></span>
-    <span>名次 <b>#9</b></span>
-    <span>20日上榜 <b>20</b></span>
-    <span>5d 報酬 <b>+20.5%</b></span>
-    <span>20d 報酬 <b>-0.7%</b></span>
-    <span>RS 對大盤 <b>-12.8%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↓</b></span>
-    <span>週MA20 斜率 <b>+16.14</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>543.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>22947M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#9</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>20</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+20.5%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>-0.7%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>-12.8%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↓</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+16.14</b></span>
   </div>
   <ul class="sigs"><li>RS 未轉強</li></ul>
 </div>
@@ -1065,7 +1069,7 @@
       <span class="name">日月光投控</span>
       <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3711" target="_blank" rel="noopener" title="TradingView 圖表 — 3711" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3711</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
-      <span style="color:#94a3b8; font-size:12px; margin-left:6px;">PR 38</span>
+      <span style="color:#94a3b8; font-size:12px; margin-left:6px;" title="PR (percentile rank)：本檔主流評分在當日通過前置條件的股票群中的百分位排名（100 = 全市場第 1 名）">PR 38</span><span class='lc-pill' style='background:#1e293b;color:#94a3b8' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
     <div class="score" title="主流評分 = 7 個 PR 維度加權合成（0-100）；HotFlowScore 算法詳見頁底策略卡"><span class="lbl">主流評分</span>47.5</div>
   </div>
@@ -1074,18 +1078,18 @@
 （本檔原始值：1.40）'><strong>5日名次斜率 (PR)</strong>25</div><div class='sub-cell' title='【顯示為 PR 0-100】近 20 個交易日中名次進入前 100 的天數（原始值 0-20）；PR 越高=上榜頻率排前面
 （本檔原始值：20）'><strong>20日上榜天數 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額 60 日 Z-score = (當日 − 60日均) / 60日std；PR 越高=相對歷史量能爆發程度排前面
 （本檔原始值：1.71）'><strong>成交金額Z分數60日 (PR)</strong>81</div><div class='sub-cell' title='【顯示為 PR 0-100】成交金額擴張倍數 = 當日金額 / 過去 60 日平均金額；PR 越高=量能擴張速度排前面
-（本檔原始值：1.67）'><strong>成交金額擴張倍數 (PR)</strong>64</div><div class='sub-cell' title='【顯示為 PR 0-100】相對強度(RS) 多維度合成；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>69</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
+（本檔原始值：1.67）'><strong>成交金額擴張倍數 (PR)</strong>64</div><div class='sub-cell' title='【顯示為 PR 0-100】= 50%×RS趨勢(0/1×100) + 50%×PR(近20日相對大盤超額報酬)；PR 越高=相對大盤表現越強'><strong>RS 綜合分 (PR)</strong>69</div><div class='sub-cell' title='【顯示為 PR 0-100】週 MA20 線性斜率（OLS 對近 5 週）；PR 越高=上升斜率排前面
 （本檔原始值：15.88）'><strong>週MA20斜率 (PR)</strong>71</div></div>
   <div class="met-row">
-    <span>收盤 <b>617.0</b></span>
-    <span>金額 <b>16398M</b></span>
-    <span>名次 <b>#13</b></span>
-    <span>20日上榜 <b>20</b></span>
-    <span>5d 報酬 <b>+21.0%</b></span>
-    <span>20d 報酬 <b>+24.4%</b></span>
-    <span>RS 對大盤 <b>+12.3%</b></span>
-    <span title="相對強度(RS) 趨勢：站上 MA20 且 MA20 ↑ 為多頭">RS趨勢 <b>↑</b></span>
-    <span>週MA20 斜率 <b>+15.88</b></span>
+    <span title="當日收盤價（新台幣）">收盤 <b>617.0</b></span>
+    <span title="當日成交金額 = 收盤 × 成交量（百萬元）">金額 <b>16398M</b></span>
+    <span title="當日成交金額在全市場 ~1,935 檔中的名次（#1 = 第 1 名）">名次 <b>#13</b></span>
+    <span title="近 20 個交易日中名次進入前 100 的天數（原始值 0-20）">20日上榜 <b>20</b></span>
+    <span title="近 5 個交易日的累積報酬率">5d 報酬 <b>+21.0%</b></span>
+    <span title="近 20 個交易日的累積報酬率">20d 報酬 <b>+24.4%</b></span>
+    <span title="個股 20 日報酬 − TWII 20 日報酬（正值=20 日內超越大盤的幅度）">RS 對大盤 <b>+12.3%</b></span>
+    <span title="相對強度(RS) 趨勢：RS 的 20 日均（rs_ma20）斜率向上=↑、向下=↓">RS趨勢 <b>↑</b></span>
+    <span title="週 MA20 線性斜率（OLS 對近 5 週的 weekly MA20）；單位=元/週，正值=上升">週MA20 斜率 <b>+15.88</b></span>
   </div>
   <ul class="sigs"><li>HotFlow 未達 top 40%</li></ul>
 </div><div class='sub'>… 另有 19 檔，見 CSV / JSON</div></div></details>

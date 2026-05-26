@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>07_ms_agent_v2 — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:20px 24px 80px; max-width:980px; margin:auto;
+       background:#0d1117; color:#e2e8f0;
+       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.7; font-size:15px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+h1, h2, h3, h4 { color:#93c5fd; line-height:1.4; margin:24px 0 10px; }
+h1 { font-size:24px; border-bottom:1px solid #2d3f55; padding-bottom:8px; }
+h2 { font-size:20px; }
+h3 { font-size:16px; color:#cbd5e1; }
+h4 { font-size:14px; color:#94a3b8; }
+p, li { color:#cbd5e1; }
+strong { color:#e2e8f0; }
+hr { border:none; border-top:1px solid #2d3f55; margin:24px 0; }
+a { color:#60a5fa; }
+a:hover { color:#93c5fd; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+code { font-family: ui-monospace, Consolas, monospace; background:#1e293b;
+       color:#7dd3fc; padding:1px 6px; border-radius:3px; font-size:13px; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:6px;
+      padding:12px 14px; overflow-x:auto; }
+pre code { background:transparent; padding:0; color:#e2e8f0; font-size:12px; }
+table { border-collapse:collapse; margin:12px 0; font-size:13px; }
+th, td { padding:6px 12px; border:1px solid #334155; text-align:left; }
+th { background:#1e293b; color:#94a3b8; }
+blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b;
+             margin:12px 0; color:#cbd5e1; }
+</style>
+</head><body>
+<a class="back-link" href="../../index.html">← 返回主頁</a>
+<h1 id="ms-agent-v2-market-structure-agent-v2">MS-Agent v2 規格（Market Structure Agent v2）</h1>
+<blockquote>
+<p>對應實作：
+- <code>src/agents/ms_breadth.py</code>
+- <code>src/agents/ms_diffusion.py</code>
+- <code>src/agents/hotflow_lifecycle.py</code>
+- <code>src/agents/ms_temperature.py</code>
+- <code>src/agents/ms_risk.py</code>
+- <code>src/agents/ms_dashboard.py</code></p>
+<p>規格類別：<strong>整合決策層 Agent</strong>（合成多個既有 agent 的輸出）</p>
+</blockquote>
+<hr />
+<h2 id="_1">任務</h2>
+<p><strong>「市場結構監控中心」</strong> — 不預測明天漲跌，持續監控資金如何流動，
+提前發現主流、提前發現主流退潮、找出 RR 最佳環境、找出末升段風險。</p>
+<p>設計理念：</p>
+<blockquote>
+<p>偏向「資金流分析」而非單純技術分析。
+不依賴 KD / MACD / 單一技術指標。
+優先觀察：資金流、成交金額、市場結構、主流擴散、Breadth、法人方向。</p>
+</blockquote>
+<hr />
+<h2 id="6">6 模組架構</h2>
+<pre><code>┌─────────────────────────────────────────────────────┐
+│  M1 指數結構（既有 market_structure.py）              │
+│  M5 法人結構（合入 M1 的 structure_zscore.py）        │
+└──────────────────────┬──────────────────────────────┘
+                       │
+┌──────────────────────┴──────────────────────────────┐
+│  M2 ms_breadth        市場廣度 4 指標                │
+│  M3 ms_diffusion      資金擴散（核心，最高權重）      │
+│  M4 hotflow_lifecycle 主流 4 階段狀態機 + 歷史回放    │
+│  M6 ms_risk           大盤層級 7 訊號                │
+└──────────────────────┬──────────────────────────────┘
+                       │
+┌──────────────────────┴──────────────────────────────┐
+│  ms_temperature   合成：市場溫度 + RR 環境分          │
+│  ms_dashboard     整合視覺化（ms_dashboard.html）     │
+└─────────────────────────────────────────────────────┘
+</code></pre>
+<hr />
+<h2 id="m2-ms_breadthpy">M2 — 市場廣度（ms_breadth.py）</h2>
+<p><strong>4 指標</strong> → 合成 breadth_score (0-100)：</p>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>計算</th>
+<th>權重</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>advance_decline_ratio</td>
+<td>今日上漲家數 / (上漲 + 下跌)</td>
+<td>0.30</td>
+</tr>
+<tr>
+<td>new_high_20d_count</td>
+<td>收盤 ≥ 過去 20 日 max 的家數比</td>
+<td>0.25</td>
+</tr>
+<tr>
+<td>above_ma20_pct</td>
+<td>收盤 &gt; MA20 的全市場比例</td>
+<td>0.30</td>
+</tr>
+<tr>
+<td>otc_strength</td>
+<td>OTC 站MA20 比 - TWSE 站MA20 比</td>
+<td>0.15</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4 級分類</strong>：healthy ≥ 70 / mixed ≥ 50 / weak ≥ 30 / panic &lt; 30</p>
+<p><strong>資料源</strong>：DuckDB <code>price</code> 表（全市場 ~1,935 檔，最近 60 個交易日）</p>
+<p><strong>選 as_of 邏輯</strong>：取最近一個「全市場齊全（≥ 1000 檔）」的交易日，避免取到只有 universe 子集的最新日。</p>
+<hr />
+<h2 id="m3-ms_diffusionpy">M3 — 資金擴散（ms_diffusion.py，核心權重最高）</h2>
+<p><strong>5 指標</strong> → 合成 diffusion_score (0-100)：</p>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>計算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new_in_top100_5d</td>
+<td>今日 Top100 ∩ 5 日前 Top100 的差集大小</td>
+</tr>
+<tr>
+<td>smallcap_pct</td>
+<td>Top100 中市值 &lt; 1000 億的比例（<strong>XQ 真實市值</strong>）</td>
+</tr>
+<tr>
+<td>sector_hhi</td>
+<td>XQ 細產業 545 種的 HHI 指數（<strong>主要 HHI</strong>）</td>
+</tr>
+<tr>
+<td>theme_hhi</td>
+<td>自建主題 HHI（次要參考）</td>
+</tr>
+<tr>
+<td>ai_sector_pct</td>
+<td>AI 族群佔 Top100 成交額比例</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4 級分類</strong>（依 diffusion_score + HHI 綜合判斷）：
+- <code>over_concentrated</code> — HHI ≥ 2500（不管 score 多少）
+- <code>expanding</code>         — score ≥ 65
+- <code>stable</code>            — score ≥ 40
+- <code>narrowing</code>         — score &lt; 40</p>
+<p><strong>HHI 設計重點</strong>：</p>
+<blockquote>
+<p>用 <strong>XQ 細產業（545 種）</strong> 算 HHI 而非官方 28 大類。
+因半導體 + 電子零組件 天然佔台股大半，用官方算永遠 over_concentrated，失去敏感度。
+XQ 細產業範圍：&lt; 500 真正分散、500-1500 健康、&gt; 2500 才警示。</p>
+</blockquote>
+<p><strong>資料源</strong>：
+- DuckDB <code>price</code> 表（最近 10 日 Top 300）
+- <code>stockHisData/database/sector_map.json</code>（三軌產業 + XQ 市值）</p>
+<hr />
+<h2 id="m4-hotflow-lifecyclehotflow_lifecyclepy">M4 — HotFlow Lifecycle（hotflow_lifecycle.py）</h2>
+<p>升級舊版 A/B/C 靜態分類為「4 階段生命週期」狀態機。</p>
+<p><strong>5 狀態</strong>（依優先序判斷）：</p>
+<table>
+<thead>
+<tr>
+<th>階段</th>
+<th>條件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>overheating</code> 🔥</td>
+<td>score_pr ≥ 95 且 5 日漲幅 ≥ 20%</td>
+</tr>
+<tr>
+<td><code>fading</code>      📉</td>
+<td>5 日 hotflow_score 斜率 ≤ -5 且 20日上榜下降 ≥ 2</td>
+</tr>
+<tr>
+<td><code>expanding</code>   📈</td>
+<td>20 日上榜 ≥ 7 日 且 同 XQ 細產業 ≥ 3 檔同步入榜</td>
+</tr>
+<tr>
+<td><code>forming</code>     🌱</td>
+<td>5 日 hotflow_score 斜率 ≥ +5 且 20 日上榜 ≤ 9</td>
+</tr>
+<tr>
+<td><code>dormant</code>     💤</td>
+<td>以上皆不符</td>
+</tr>
+</tbody>
+</table>
+<p><strong>狀態持久化</strong>：
+- 跨日 state：<code>data/processed/hotflow_lifecycle_state.json</code>
+  - 每檔記錄 stage / stage_first_seen / score_history[5d] / persist_history[5d]
+  - 自動清理 30 日內未見的 stale 檔
+- 每日歷史：<code>data/processed/lifecycle_history.csv</code>
+  - 每行：date / forming / expanding / overheating / fading / dormant
+  - 給未來「主流形成 → 退潮全過程」回測使用</p>
+<p><strong>整合進 hotflow.html</strong>：每張卡片右上加 <code>lc-pill</code> 顯示階段（含「第 N 日」）。</p>
+<hr />
+<h2 id="m6-ms_riskpy">M6 — 大盤層級風險（ms_risk.py）</h2>
+<p><strong>7 訊號</strong>（每觸發一個 +1）：</p>
+<table>
+<thead>
+<tr>
+<th>編號</th>
+<th>訊號</th>
+<th>觸發條件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>高檔爆量</td>
+<td>TAIEX 創 60 日新高 且 量 &gt; 60日均 × 1.5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>權值股獨強</td>
+<td>Top100 中 ≥ 3000 億的佔比 ≥ 50%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>OTC 轉弱</td>
+<td>OTC 站MA20 - TWSE 站MA20 &lt; -5%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>主流退潮</td>
+<td>M4 fading 檔數 ≥ 30%</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Breadth 下降</td>
+<td>M2 breadth_score &lt; 50</td>
+</tr>
+<tr>
+<td>6</td>
+<td>法人轉保守</td>
+<td>M1 market_structure_score &lt; -0.30</td>
+</tr>
+<tr>
+<td>7</td>
+<td>成交過度集中</td>
+<td>M3 XQ 細產業 HHI ≥ 2500</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4 級分級 → 部位上限</strong>：
+| 觸發數 | 等級 | 部位上限 |
+|---|---|---|
+| 0-1 | 🟢 正常       | 100% |
+| 2-3 | 🟡 警告區     | 75% |
+| 4-5 | 🟠 防守區     | 50% |
+| ≥ 6 | 🔴 出清區     | 25% |</p>
+<hr />
+<h2 id="ms_temperaturepy">市場溫度（ms_temperature.py）</h2>
+<p><strong>8 因子加權合成（0-100）</strong>：</p>
+<pre><code>market_temperature =
+    M2 breadth_score        × 0.20
+  + M3 diffusion_score      × 0.25   ← 最重
+  + M4 hotflow_strength     × 0.15
+  + M5 institutional_flow   × 0.15
+  + amount_expansion        × 0.10   (尚未完整實作，用 50 中性)
+  + otc_strength            × 0.10
+  + volatility (VIX 反向)    × 0.05
+</code></pre>
+<p><strong>5 級分類</strong>：
+| 範圍 | 標籤 | 操作建議 |
+|---|---|---|
+| 0-20   | ❄ 冰冷   | 空頭防守（現金為王） |
+| 20-40  | 🌤 回暖  | 初升段（分批進場） |
+| 40-60  | ♨ 溫熱   | 健康多頭（標準部位） |
+| 60-80  | 🔥 過熱  | 高檔震盪（獲利減碼） |
+| 80-100 | 🌋 沸騰  | 末升段風險（準備出場） |</p>
+<hr />
+<h2 id="rr-ms_temperaturepy">RR 環境分（同檔 ms_temperature.py）</h2>
+<p><strong>6 條件加總（0-100）</strong>：</p>
+<pre><code>+20  if OTC 強於 TWSE（otc_strength_diff &gt; 0）
++25  if M3 diffusion_state == &quot;expanding&quot;
++15  if Top100 換手率 &gt; 15%
++15  if Top100 換手率 &gt; 20%
++15  if Breadth above_ma20 在 [0.40, 0.80] 範圍（權值穩定）
++10  if Top100 中型以下 &gt; 30%
+</code></pre>
+<p><strong>3 級分類</strong>：
+- ≥ 70：✅ RR 黃金期（建議積極 RR 操作）
+- 40-70：⚠ RR 中性（標準部位）
+- &lt; 40：🛑 RR 不利（暫停 dynamic_rr 新進場）</p>
+<hr />
+<h2 id="_2">輸入 → 輸出</h2>
+<table>
+<thead>
+<tr>
+<th>輸入（讀）</th>
+<th>輸出（寫）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DuckDB <code>price</code> / <code>indices</code></td>
+<td><code>data/output/ms_breadth.json</code></td>
+</tr>
+<tr>
+<td><code>database/sector_map.json</code></td>
+<td><code>data/output/ms_diffusion.json</code></td>
+</tr>
+<tr>
+<td><code>data/output/hotflow.json</code></td>
+<td><code>data/processed/hotflow_lifecycle_state.json</code></td>
+</tr>
+<tr>
+<td><code>data/output/market.json</code></td>
+<td><code>data/processed/lifecycle_history.csv</code></td>
+</tr>
+<tr>
+<td>M1-M6 所有 .json</td>
+<td><code>data/output/ms_temperature.json</code></td>
+</tr>
+<tr>
+<td>M1-M6 所有 .json</td>
+<td><code>data/output/ms_risk.json</code></td>
+</tr>
+<tr>
+<td>全部</td>
+<td><code>data/output/ms_dashboard.html</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_3">否決條件（失敗處理）</h2>
+<table>
+<thead>
+<tr>
+<th>情境</th>
+<th>行為</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sector_map.json 缺漏</td>
+<td>跳過 M3 / M4 lifecycle 中的同產業判斷；其他模組正常</td>
+</tr>
+<tr>
+<td>hotflow.json 缺漏</td>
+<td>M4 lifecycle 與 M6 訊號 4 跳過</td>
+</tr>
+<tr>
+<td>任一子模組 raise</td>
+<td>orchestrator log warning，繼續下一模組</td>
+</tr>
+<tr>
+<td>dashboard 任一輸入缺</td>
+<td>顯示「—」並標 muted 樣式</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_4">不會做的事（明確界線）</h2>
+<ul>
+<li>不做個股買賣決策（那是 RR / RRR / Dynamic RR 的工作）</li>
+<li>不取代既有 risk_control.py（仍由它做個股層級風控）</li>
+<li>不影響原本 market_structure 主頁的渲染（並列存在，不取代）</li>
+<li>不直接修改 hotflow 主要邏輯（lifecycle 是疊加的注解，不改評分）</li>
+<li>不爬新資料源（純粹合成既有資料）</li>
+</ul>
+<hr />
+<h2 id="agent">與其他 Agent 的關係</h2>
+<pre><code>       ┌──────────────────┐    market_structure_score
+       │  M1 market_struct ├─────────────────┐
+       └─────────┬────────┘                 ▼
+                 │            ┌─────────────────────────┐
+       ┌─────────▼─────────┐  │    ms_temperature       │
+       │  M4 hotflow       │  │  (market_temperature +  │
+       │  + lifecycle      ├─►│   rr_environment)       │
+       └─────────┬─────────┘  └────────────┬────────────┘
+                 │                         │
+       ┌─────────▼─────────┐               │  rr_env_score
+       │  M2 ms_breadth    │               │
+       └─────────┬─────────┘               ▼
+                 │            ┌─────────────────────────┐
+       ┌─────────▼─────────┐  │  dynamic_rr.py         │
+       │  M3 ms_diffusion  ├─►│  (依 RR Env 調整冷卻期) │
+       └─────────┬─────────┘  └─────────────────────────┘
+                 │
+       ┌─────────▼─────────┐
+       │  M6 ms_risk       │
+       └─────────┬─────────┘
+                 │
+       ┌─────────▼─────────┐
+       │  ms_dashboard.html│
+       └───────────────────┘
+</code></pre>
+<hr />
+<h2 id="public-api">介面契約（Public API）</h2>
+<pre><code class="language-python"># 個別呼叫
+from src.agents.ms_breadth import compute as m2_compute
+from src.agents.ms_diffusion import compute as m3_compute
+from src.agents.ms_temperature import compute as t_compute
+from src.agents.ms_risk import compute as r_compute
+from src.agents.ms_dashboard import build as dash_build
+from src.agents.hotflow_lifecycle import annotate_hotflow
+
+# orchestrator 已自動串接 in step 3c
+# 手動執行：python -m src.agents.ms_dashboard
+</code></pre>
+<p>所有 <code>compute()</code> 函式回傳 dict，皆可呼叫對應 <code>save()</code> 寫入 JSON。
+<code>build()</code> 回傳 Path（html 輸出檔位置）。</p>
+<hr />
+<h2 id="_5">未來擴充</h2>
+<ul>
+<li>M3 補「amount_expansion」（全市場成交額 60d Z-score）</li>
+<li>M4 lifecycle 加「主流持續率」（fading 後 5 日是否再進 forming）</li>
+<li>建 backtest framework 跑 <code>lifecycle_history.csv</code> 的「主流形成 → 退潮全程」回測</li>
+<li>RR Env 反向餵 dynamic_rr.py 的冷卻期（已預留 hook，但實作待補）</li>
+</ul>
+</body></html>

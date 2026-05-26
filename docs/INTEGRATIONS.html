@@ -39,7 +39,7 @@ blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b
 <a class="back-link" href="../index.html">← 返回主頁</a>
 <h1 id="ms_n_rrrrr-vera">MS_N_RR/RRR Ver.A 整合史與再整合指南</h1>
 <p>本文件記錄已整合進 Ver.A 的外部專案／模組，並提供未來再整合（或重新整合）所需的完整資訊。</p>
-<p>最後更新：2026-05-25</p>
+<p>最後更新：2026-05-26</p>
 <hr />
 <h2 id="_1">整合史時間軸</h2>
 <table>
@@ -121,11 +121,119 @@ blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b
 <td>bb740d8</td>
 <td><strong>整合 3 延伸</strong>：pair_chart 通用化，5 組配對全部有完整 Plotly 圖表</td>
 </tr>
+<tr>
+<td>2026-05-26</td>
+<td>—</td>
+<td><strong>整合 4 P1+P2+P3</strong>：MS-Agent v2 Session 1 — sector_map（雙軌）+ ms_breadth + ms_diffusion</td>
+</tr>
+<tr>
+<td>2026-05-26</td>
+<td>—</td>
+<td><strong>整合 4 P1b</strong>：XQ industry_sub.csv 加入資料層，sector_map 升級為三軌（官方/自建/XQ）</td>
+</tr>
+<tr>
+<td>2026-05-26</td>
+<td>—</td>
+<td><strong>整合 4 P4+P5+P6</strong>：MS-Agent v2 Session 2 — hotflow lifecycle（4 階段+歷史回放）+ Temperature + RR Env + Risk</td>
+</tr>
+<tr>
+<td>2026-05-26</td>
+<td>—</td>
+<td><strong>整合 4 P7+P8+P9</strong>：MS-Agent v2 Session 3 — ms_dashboard.html 獨立頁 + 主頁入口卡 + 策略卡 + 完整規格</td>
+</tr>
 </tbody>
 </table>
 <hr />
-<h2 id="1-nrr">整合 1：姊妹專案 市場結構NRR</h2>
+<h2 id="4ms-agent-v2">整合 4：MS-Agent v2（市場結構監控中心）</h2>
 <h3 id="_2">來源</h3>
+<ul>
+<li>使用者規格 — 「不預測漲跌，持續監控資金如何流動」</li>
+<li>6 模組架構（M1-M6）+ Market Temperature + RR Environment + Market Risk</li>
+</ul>
+<h3 id="_3">提供的能力</h3>
+<ol>
+<li><strong>雙軌→三軌 sector_map</strong> — 官方 28 類 + 自建主題 + XQ 545 細產業（含真實市值）</li>
+<li><strong>市場 Breadth (M2)</strong> — 4 指標合成 0-100 分（healthy/mixed/weak/panic）</li>
+<li><strong>資金擴散 (M3)</strong> — HHI（用 XQ 細產業）+ 新進榜 + 中型佔比（用 XQ 真實市值）</li>
+<li><strong>HotFlow lifecycle (M4)</strong> — 形成/擴散/過熱/退潮/靜止 5 狀態機 + 跨日 state + 歷史回放</li>
+<li><strong>市場溫度</strong> — 8 因子加權合成（5 級分類）</li>
+<li><strong>RR 環境分</strong> — 6 條件加總（3 級分類，影響 dynamic_rr）</li>
+<li><strong>大盤層級風險 (M6)</strong> — 7 訊號偵測 + 部位上限自動調整</li>
+</ol>
+<h3 id="_4">實作位置</h3>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>行數</th>
+<th>職責</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stockHisData/stock_data/xq_industry.py</code></td>
+<td>110</td>
+<td>XQ CSV loader（big5 編碼）</td>
+</tr>
+<tr>
+<td><code>stockHisData/stock_data/build_sector_map.py</code></td>
+<td>380</td>
+<td>三軌整合，產出 sector_map.json</td>
+</tr>
+<tr>
+<td><code>src/agents/ms_breadth.py</code></td>
+<td>170</td>
+<td>M2 Breadth</td>
+</tr>
+<tr>
+<td><code>src/agents/ms_diffusion.py</code></td>
+<td>230</td>
+<td>M3 Diffusion（核心）</td>
+</tr>
+<tr>
+<td><code>src/agents/hotflow_lifecycle.py</code></td>
+<td>260</td>
+<td>M4 lifecycle 狀態機 + 歷史回放</td>
+</tr>
+<tr>
+<td><code>src/agents/ms_temperature.py</code></td>
+<td>210</td>
+<td>市場溫度 + RR 環境分</td>
+</tr>
+<tr>
+<td><code>src/agents/ms_risk.py</code></td>
+<td>220</td>
+<td>M6 大盤層級風險</td>
+</tr>
+<tr>
+<td><code>src/agents/ms_dashboard.py</code></td>
+<td>410</td>
+<td>整合視覺化（ms_dashboard.html）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">設計重點</h3>
+<ol>
+<li><strong>資料層整合</strong>：XQ industry_sub.csv（big5）由使用者匯出，每月手動更新；其他資料由 OpenAPI 自動抓</li>
+<li><strong>HHI 主鍵用 XQ 細產業而非官方 28 類</strong>：因半導體+電子零組件天然佔台股大半，用官方算永遠 over_concentrated 失去敏感度</li>
+<li><strong>市值用 XQ 真實值</strong>：取代之前的「排名 proxy」（之前用 rank≥21 假定為中小型，錯誤）</li>
+<li><strong>lifecycle state 持久化</strong>：跨日追蹤、自動清理 30 日 stale 檔</li>
+<li><strong>獨立頁不取代主頁</strong>：第 7 個子頁 ms_dashboard.html，主頁加入口卡（保守整合，可隨時改取代）</li>
+<li><strong>as_of 邏輯</strong>：選「最近一個全市場齊全（≥1000 檔）」交易日，避免取到只有 universe 子集的不完整日</li>
+</ol>
+<h3 id="_6">再整合時的踩坑提醒</h3>
+<ol>
+<li><strong>XQ CSV 編碼是 big5 / cp950，不是 utf-8</strong> — 用 <code>errors="replace"</code> 處理少數無法解碼字</li>
+<li><strong>TWSE OpenAPI 公司代號是 <code>公司代號</code> 中文 key，TPEX 是 <code>SecuritiesCompanyCode</code> 英文 key</strong> — 格式不同</li>
+<li><strong>stocks.duckdb 不在 <code>master.duckdb</code> 而是 <code>stocks.duckdb</code></strong> — 容易記錯</li>
+<li><strong>5/25 全市場資料只有 67 檔（DEFAULT_UNIVERSE）</strong>：需 fetch 才會更新到 ~1,935 檔；as_of 選最近齊全日避免誤判</li>
+<li><strong>lifecycle 第一天跑會幾乎全 dormant</strong>：因 score_history / persist_history 才剛開始累積，斜率算不出來</li>
+<li><strong>sector_map.json 重建後 ms_diffusion 才會生效</strong>：兩者有依賴關係</li>
+<li><strong>ms_temperature 依賴所有 M1-M6 JSON 已生成</strong>：在 orchestrator 中放在 hotflow 後面才對</li>
+</ol>
+<hr />
+<h2 id="1-nrr">整合 1：姊妹專案 市場結構NRR</h2>
+<h3 id="_7">來源</h3>
 <ul>
 <li><strong>位置</strong>：<code>C:\CludeHome\projects\市場結構NRR</code></li>
 <li><strong>規模</strong>：~4,560 行 Python（27 個 .py）</li>
@@ -133,7 +241,7 @@ blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b
 <li><strong>GitHub Pages</strong>：https://yoshiagent.github.io/market-structure-nrr/</li>
 <li><strong>每日 18:00 自動跑</strong>：<code>python run_daily.py</code></li>
 </ul>
-<h3 id="_3">提供的能力</h3>
+<h3 id="_8">提供的能力</h3>
 <ol>
 <li>60 日滾動 Z-score 市場結構模型</li>
 <li>5 級 regime 分類（strong_bull / mild_bull / neutral / mild_bear / strong_bear）</li>
@@ -182,13 +290,13 @@ dynamic_z_threshold:
 - <code>load_etf_volume()</code> — code 強制讀為 string（避免 00919→919）</p>
 <p><strong>seed 既有歷史資料</strong>：一次性從姊妹專案 <code>data/raw/</code> 複製到中央 <code>processed/</code>，避免重抓 487 天。</p>
 <p><strong>驗證</strong>：演算法輸出與姊妹專案完全一致（<code>regime=mild_bull</code>, <code>market_structure_score=0.588</code>）。</p>
-<h3 id="_4">未整合（可參考的素材）</h3>
+<h3 id="_9">未整合（可參考的素材）</h3>
 <ul>
 <li><code>triggers.py</code>（事件偵測 7 類，282 行）— 用於未來 Phase 2</li>
 <li><code>build_weekly.py</code>（週報，497 行）— 用於未來 Phase 3</li>
 <li>11 組 RR 配對清單 + 7 檔 ETF 清單 — 可作為自選配對表的擴充來源</li>
 </ul>
-<h3 id="_5">再整合時的踩坑提醒</h3>
+<h3 id="_10">再整合時的踩坑提醒</h3>
 <ol>
 <li><strong>路徑含中文</strong>：<code>C:\CludeHome\projects\市場結構NRR\</code> — Python 用 raw string <code>r"..."</code> 處理</li>
 <li><strong>encoding</strong>：姊妹專案 raw CSV 用 <code>utf-8-sig</code>（BOM），中央用 <code>utf-8</code></li>
@@ -201,19 +309,19 @@ dynamic_z_threshold:
 </ol>
 <hr />
 <h2 id="2-custom_pairs">整合 2：自選配對表 custom_pairs</h2>
-<h3 id="_6">來源</h3>
+<h3 id="_11">來源</h3>
 <ul>
 <li><strong>使用者提供</strong>：<code>配對表.xlsx</code>（不入 git）</li>
 <li><strong>Sheet</strong>：<code>自選</code></li>
 <li><strong>結構</strong>：<code>序號 | 代號 | 股名 | 圖表連結（可選）</code></li>
 <li><strong>規則</strong>：依序兩兩成對</li>
 </ul>
-<h3 id="_7">實作位置</h3>
+<h3 id="_12">實作位置</h3>
 <ul>
 <li><code>src/agents/custom_pairs.py</code> — xlsx 解析 + RR 評估</li>
 <li><code>src/agents/custom_pairs_report.py</code> — 詳細頁 HTML</li>
 </ul>
-<h3 id="_8">設計重點</h3>
+<h3 id="_13">設計重點</h3>
 <ol>
 <li><strong>xlsx 不入 git</strong>：個人股票清單，且 Excel 二進位 diff 不友善</li>
 <li><strong>容錯設計</strong>：xlsx 不存在 → orchestrator step 標 <code>SKIP (no xlsx)</code>，不中斷主流程</li>
@@ -264,7 +372,7 @@ dynamic_z_threshold:
 </tr>
 </tbody>
 </table>
-<h3 id="_9">再整合時的踩坑提醒</h3>
+<h3 id="_14">再整合時的踩坑提醒</h3>
 <ol>
 <li><strong>xlsx code 欄位</strong>：pandas 讀出可能是 int 或 float，需要 <code>_normalize_code()</code> 統一處理</li>
 <li><strong>sheet 名容錯</strong>：優先抓 <code>自選</code>，找不到取 sheet 0</li>
@@ -273,14 +381,14 @@ dynamic_z_threshold:
 </ol>
 <hr />
 <h2 id="3-dashboard">整合 3：南電/欣興 配對交易 dashboard</h2>
-<h3 id="_10">來源</h3>
+<h3 id="_15">來源</h3>
 <ul>
 <li><strong>位置</strong>：<code>C:\CludeHome\projects\南電欣興配對交易\</code> + 散落 <code>C:\CludeHome\projects\</code> 根目錄</li>
 <li><strong>規模</strong>：~1,058 行（chart_gen.py 699 + pair_health.py 144 + update_daily.py 215）</li>
 <li><strong>GitHub repo</strong>：<code>yoshiagent/nan-xin-pairs-trading</code></li>
 <li><strong>GitHub Pages</strong>：https://yoshiagent.github.io/nan-xin-pairs-trading/</li>
 </ul>
-<h3 id="_11">設計目標</h3>
+<h3 id="_16">設計目標</h3>
 <p><strong>完整保留原 換股線圖_互動版.html 的 UI 與互動模式</strong>（用戶明確要求）：
 - 完整 Plotly 3 subplot（價格 / 價差+Z60 / Z60+BB）
 - 自訂可拖曳 tooltip + 十字線（buildCrosshair、findNearest）
@@ -345,7 +453,7 @@ if Z60 &lt; -1.5 and 當日 Z60 &gt; 前日 Z60: 換成南電（A）
 </tbody>
 </table>
 <p><strong>warn_total</strong>：0 → GREEN ／ 1 → YELLOW ／ 2+ → RED</p>
-<h3 id="_12">移植做法</h3>
+<h3 id="_17">移植做法</h3>
 <ol>
 <li><strong>檔案位置</strong>：</li>
 <li><code>src/shared/pair_health.py</code> ← 1:1 從 <code>pair_health.py</code> 搬入</li>
@@ -497,7 +605,7 @@ if Z60 &lt; -1.5 and 當日 Z60 &gt; 前日 Z60: 換成南電（A）
 </table>
 <p><strong>處置策略</strong>：這些散落腳本的功能<strong>已被 Ver.A 的 <code>pair_chart.py</code> 通用版取代</strong>。要把對應配對加進 Ver.A，只需編輯 <code>配對表.xlsx</code> 即可，不需動程式碼。</p>
 <p>未來可考慮把這些散落腳本歸檔到 <code>_legacy/</code>（請使用者確認後再做）。</p>
-<h3 id="_13">再整合時的踩坑提醒</h3>
+<h3 id="_18">再整合時的踩坑提醒</h3>
 <ol>
 <li><strong>HTML 內 JS 是 f-string</strong>：所有 <code>{</code> / <code>}</code> 在 f-string 內要 escape 成 <code>{{</code> / <code>}}</code>；改 JS 時注意</li>
 <li><strong>共整合 p 值需要 statsmodels</strong>：<code>pip install statsmodels</code></li>
@@ -505,7 +613,7 @@ if Z60 &lt; -1.5 and 當日 Z60 &gt; 前日 Z60: 換成南電（A）
 <li><strong>chart_url 從 xlsx 第 4 欄覆蓋 vs 內建檔名</strong>：內建 build 永遠跑（即使 xlsx 有外部 URL），保證 health 燈號有值</li>
 </ol>
 <hr />
-<h2 id="_14">重新整合既有專案的通用步驟</h2>
+<h2 id="_19">重新整合既有專案的通用步驟</h2>
 <p>未來若要把另一個 <code>C:\CludeHome\projects\xxx</code> 整合進 Ver.A，依此 checklist：</p>
 <h3 id="phase-0">Phase 0：盤點來源</h3>
 <ol>
@@ -547,7 +655,7 @@ if Z60 &lt; -1.5 and 當日 Z60 &gt; 前日 Z60: 換成南電（A）
 <li>對應的 <code>yoshiagent/xxx</code> repo 可選擇繼續推（雙寫）或停止</li>
 <li>散落根目錄的 .py 腳本歸檔到 <code>_legacy/</code></li>
 </ol>
-<h3 id="_15">驗收標準</h3>
+<h3 id="_20">驗收標準</h3>
 <ul>
 <li>每個 Phase 都能獨立 commit</li>
 <li>Phase 1 完成後，數值與原專案完全對齊</li>
@@ -555,21 +663,21 @@ if Z60 &lt; -1.5 and 當日 Z60 &gt; 前日 Z60: 換成南電（A）
 <li><code>python -m src.orchestrator --skip-fetch --skip-notify</code> 全綠</li>
 </ul>
 <hr />
-<h2 id="_16">已知未來整合候選</h2>
-<h3 id="_17">高優先度</h3>
+<h2 id="_21">已知未來整合候選</h2>
+<h3 id="_22">高優先度</h3>
 <ul>
 <li><strong>姊妹專案 triggers.py 事件偵測</strong>（已搬演算法，未接通知）</li>
 <li><strong>姊妹專案 build_weekly.py 週報</strong>（497 行 Plotly + 累積分析）</li>
 <li><strong>散落 .py 配對腳本</strong>（7+ 組）— 用 pair_chart 通用版替代後封存</li>
 </ul>
-<h3 id="_18">中優先度</h3>
+<h3 id="_23">中優先度</h3>
 <ul>
 <li><strong>姊妹專案 6 策略回測對照</strong>（<code>src/backtest/run_backtest.py</code> 328 行）</li>
 <li><strong>C:\CludeHome\projects\ABF交易系統</strong>（未盤點）</li>
 <li><strong>C:\CludeHome\projects\IC產業鏈</strong>（未盤點）</li>
 <li><strong>C:\CludeHome\projects\3Pstrategy</strong>（未盤點）</li>
 </ul>
-<h3 id="_19">低優先度</h3>
+<h3 id="_24">低優先度</h3>
 <ul>
 <li><strong>C:\CludeHome\projects\XQ_DDE / XQ_XS</strong>（XQ Global 相關，與 Ver.A 不直接相關）</li>
 </ul>

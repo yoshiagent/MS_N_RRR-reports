@@ -87,8 +87,18 @@ blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b
 <td><code>https://www.taifex.com.tw/cht/3/futContractsDateDown</code></td>
 </tr>
 <tr>
+<td>TWSE</td>
+<td>上市公司基本資料（產業別 28 大類）</td>
+<td><code>https://openapi.twse.com.tw/v1/opendata/t187ap03_L</code></td>
+</tr>
+<tr>
+<td>TPEX</td>
+<td>上櫃公司基本資料（產業別）</td>
+<td><code>https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap03_O</code></td>
+</tr>
+<tr>
 <td>references</td>
-<td>代號 ↔ 股名對照</td>
+<td>XQ 產業/細產業/市值對照（1,935 檔，60 大類、545 細產業、含市值）</td>
 <td><code>C:\CludeHome\references\industry_sub.csv</code></td>
 </tr>
 </tbody>
@@ -146,12 +156,20 @@ blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b
 <td>代號 → 股名快取（JSON dict，1,935 筆）</td>
 </tr>
 <tr>
+<td><code>database/market_map.json</code></td>
+<td>代號 → TWSE/TPEX 對照（從官方 OpenAPI 抓）</td>
+</tr>
+<tr>
+<td><code>database/sector_map.json</code></td>
+<td><strong>三軌產業對照表</strong> — 每檔含 official 28 類 + 自建 theme + XQ 細產業 + 真實市值（億元）</td>
+</tr>
+<tr>
 <td><code>database/update_log.csv</code></td>
 <td>抓取紀錄（timestamp, source, rows, extra）</td>
 </tr>
 <tr>
-<td><code>database/(future)/...</code></td>
-<td>預留：衍生指標、SQLite 索引、Parquet 快照</td>
+<td><code>database/stocks.duckdb</code></td>
+<td>DuckDB 主庫（price/indices/institutional/futures/macro/symbols/signal_history/update_log）</td>
 </tr>
 </tbody>
 </table>
@@ -179,6 +197,74 @@ blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b
 </tr>
 </tbody>
 </table>
+<h3 id="sector_mapjson">sector_map.json 結構（三軌產業對照）</h3>
+<p>由 <code>python -m stock_data.build_sector_map</code> 重建。整合三個資料來源：</p>
+<pre><code class="language-json">{
+  &quot;2330&quot;: {
+    &quot;name&quot;:               &quot;台積電&quot;,
+    &quot;market&quot;:             &quot;TWSE&quot;,
+
+    &quot;ind_code&quot;:           &quot;24&quot;,
+    &quot;official&quot;:           &quot;24_半導體業&quot;,
+
+    &quot;theme&quot;:              [&quot;AI&quot;, &quot;晶圓代工&quot;, &quot;權值股&quot;],
+
+    &quot;market_cap_billion&quot;: 587371.66,
+    &quot;xq_industry&quot;:        &quot;上市半導體&quot;,
+    &quot;xq_subindustry&quot;:     &quot;晶圓代工&quot;,
+    &quot;xq_all_subs&quot;:        [&quot;晶圓代工&quot;, &quot;IC製造&quot;],
+    &quot;xq_status&quot;:          &quot;全球第一大晶圓代工廠&quot;
+  }
+}
+</code></pre>
+<p><strong>三軌用途比較</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>來源</th>
+<th>粒度</th>
+<th>適用場景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>official</code> (TWSE/TPEX OpenAPI)</td>
+<td>28 大類</td>
+<td>法規合規、官方參照</td>
+</tr>
+<tr>
+<td><code>theme</code> (手刻 seed + 規則)</td>
+<td>自訂 ~30 種</td>
+<td>主題式輪動分析、AI/權值股等概念標籤</td>
+</tr>
+<tr>
+<td><code>xq_industry</code> (XQ 60 類，含上市/上櫃)</td>
+<td>60 大類</td>
+<td>中性精細分類，含市場別</td>
+</tr>
+<tr>
+<td><code>xq_subindustry</code> (XQ 545 種)</td>
+<td>細產業</td>
+<td><strong>資金集中度（HHI）核心算法用</strong></td>
+</tr>
+<tr>
+<td><code>xq_all_subs</code> (XQ 多標籤)</td>
+<td>1-30 標籤/檔</td>
+<td>多角度搜尋（如「找所有有 LED 的股」）</td>
+</tr>
+<tr>
+<td><code>market_cap_billion</code></td>
+<td>真實市值（億元）</td>
+<td>中小型 vs 大型權值股分類</td>
+</tr>
+</tbody>
+</table>
+<p><strong>載入器</strong>：</p>
+<pre><code class="language-python">from stock_data.xq_industry import load_xq_industry
+xq = load_xq_industry()
+xq['2330']  # {'name': '台積電', 'market_cap_billion': 587371.66, ...}
+</code></pre>
+<p><strong>更新頻率</strong>：手動，每月 1 次（XQ csv 由使用者匯出更新）</p>
 <h2 id="_4">否決條件（失敗處理）</h2>
 <table>
 <thead>

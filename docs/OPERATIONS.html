@@ -99,13 +99,40 @@ ls data/signals/run_*.json | sort -Property LastWriteTime -Descending | select -
 start data\output\index.html
 
 # 各子頁
+start data\output\ms_dashboard.html      # MS-Agent v2 監控中心（推薦每日先看）
 start data\output\hotflow.html
 start data\output\n_pattern.html
 start data\output\rr.html
 start data\output\rrr.html
+start data\output\dynamic_rr.html
 start data\output\custom_pairs.html
 start data\output\nan_xin_chart.html
+start data\output\structure_chart.html
 </code></pre>
+<h3 id="ms-agent-v2">MS-Agent v2 監控中心日常查看指南</h3>
+<p><strong><code>ms_dashboard.html</code> 是每日進場前的「總開關」</strong>，建議養成每天先看的習慣：</p>
+<ol>
+<li><strong>8 欄總覽</strong> — 一眼掌握市場結構/主流/擴散/Breadth/法人/RR/溫度/風險 8 個維度</li>
+<li><strong>市場溫度</strong> — 0-100，看大字色塊</li>
+<li>0-20 ❄ 冰冷 → 現金為王</li>
+<li>20-40 🌤 回暖 → 分批進場</li>
+<li>40-60 ♨ 溫熱 → 標準部位</li>
+<li>60-80 🔥 過熱 → 獲利減碼</li>
+<li>80-100 🌋 沸騰 → 準備出場</li>
+<li><strong>RR 環境</strong> — 6 條件達標數</li>
+<li>≥ 70 ✅ → 積極 RR 操作</li>
+<li>40-70 ⚠ → 標準</li>
+<li>&lt; 40 🛑 → <strong>暫停 dynamic_rr 新進場</strong></li>
+<li><strong>大盤風險</strong> — 7 訊號觸發數</li>
+<li>0-1 🟢 → 100% 部位</li>
+<li>2-3 🟡 → 75%</li>
+<li>4-5 🟠 → 50%</li>
+<li>≥6 🔴 → 25%（<strong>強制減倉</strong>）</li>
+<li><strong>HotFlow Lifecycle</strong> — 主流分佈</li>
+<li><code>expanding</code> 多 → 健康輪動期</li>
+<li><code>fading</code> 多 → 主流退潮、行情末期</li>
+<li><code>overheating</code> 多 → 高檔過熱，警示出場</li>
+</ol>
 <h3 id="7">歷史備份（近 7 日）</h3>
 <p>主頁底部「5. 歷史備份」區塊有近 7 日的 snapshot 連結。
 本地：<code>data/output/backup/{YYYY-MM-DD}/index.html</code></p>
