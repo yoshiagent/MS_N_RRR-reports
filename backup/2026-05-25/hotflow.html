@@ -26,6 +26,47 @@
                font-size:11px; font-weight:bold; margin-left:6px;
                background:#1e293b; }
     .lc-days { color:#94a3b8; font-size:10px; margin-left:3px; font-weight:normal; }
+    /* === 進場決策四維檢查 === */
+    .entry-decision {
+        background: rgba(59,130,246,0.06);
+        border-left: 3px solid #60a5fa;
+        padding: 8px 12px;
+        margin-top: 8px;
+        border-radius: 0 4px 4px 0;
+    }
+    .ed-title {
+        color: #93c5fd;
+        font-size: 11px;
+        font-weight: bold;
+        margin-bottom: 6px;
+        letter-spacing: 0.5px;
+    }
+    .ed-row {
+        font-size: 12px;
+        color: #cbd5e1;
+        line-height: 1.7;
+        display: flex;
+        gap: 8px;
+        align-items: baseline;
+    }
+    .ed-row .ed-num { color: #94a3b8; min-width: 16px; flex-shrink: 0; }
+    .ed-row .ed-mark { font-size: 14px; min-width: 18px; flex-shrink: 0; }
+    .ed-row .ed-label { color: #cbd5e1; min-width: 110px; flex-shrink: 0; }
+    .ed-row .ed-detail { color: #94a3b8; flex: 1; word-break: break-word; }
+    .ed-row.pass .ed-mark { color: #6ee7b7; }
+    .ed-row.warn .ed-mark { color: #fcd34d; }
+    .ed-row.fail .ed-mark { color: #fda4af; }
+    .ed-row.fail .ed-label { color: #fda4af; }
+    .ed-summary {
+        margin-top: 6px;
+        padding-top: 6px;
+        border-top: 1px dashed #2d3f55;
+        font-size: 11px;
+        color: #94a3b8;
+    }
+    .ed-summary .ed-go { color:#6ee7b7; font-weight:bold; }
+    .ed-summary .ed-caution { color:#fcd34d; font-weight:bold; }
+    .ed-summary .ed-stop { color:#fda4af; font-weight:bold; }
     .sigs { color:#cbd5e1; font-size:13px; margin-top:6px; }
     .sigs li { margin-left:18px; }
     .sub-bar { display:grid; grid-template-columns: repeat(7,1fr); gap:6px; margin-top:8px; font-size:11px; }
@@ -92,7 +133,7 @@
 <a class="back-link" href="index.html">← 返回主頁</a>
 <a class="back-link" href="nomenclature.html" style="margin-left:6px" title="所有指標的中英文對照、公式、方向、範例">📖 名詞對照表</a>
 <h1>HotFlow Agent — 主流形成偵測</h1>
-<div class="sub">資料日：2026-05-25 ｜ 產生時間：2026-05-26 10:18</div>
+<div class="sub">資料日：2026-05-25 ｜ 產生時間：2026-05-26 13:31</div>
 <div>
     <span class="stat">掃描 1935 檔</span>
     <span class="stat">過前置 52</span>
@@ -162,6 +203,8 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+14.70</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 2%（全市場 PR）</li><li>近 5 日名次推進速度 +13.1 &gt; 0（資金推升中）</li><li>近 20 日上榜 12 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row fail' title='N-Pattern Agent 判定為 reject：&lt; 50 分，結構未成形'><span class='ed-num'>①</span><span class='ed-mark'>✗</span><span class='ed-label'>N-Pattern 波段</span><span class='ed-detail'>N 型不成立（0 分）</span></div><div class='ed-row fail' title='本檔股票未出現在任何 RR/RRR/Dynamic RR/自選配對的訊號中。HotFlow 是『主流偵測』獨立 agent，不一定有對手；可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為多頭（≥ 75 分），建議積極部位'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>多頭 83/100</span></div><div class='ed-row pass' title='市場溫度 62.8 🔥 過熱｜RR 環境 100 ✅ RR 黃金期｜大盤風險 0/7 🟢 正常
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>✓</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡62.8 🎯100 🚨0/7</span></div><div class='ed-summary' title='四維中 2 項阻擋、0 項警示、2 項通過'>綜合判斷：<span class='ed-stop'>⛔ 不建議進場</span></div></div>
 </div>
 <div class="card">
   <div class="card-head">
@@ -211,6 +254,8 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+1.60</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 4%（全市場 PR）</li><li>近 5 日名次推進速度 +20.3 &gt; 0（資金推升中）</li><li>近 20 日上榜 11 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 N-Pattern Agent 的篩選範圍內（可能因 HotFlow 候選池與 N-Pattern 篩選不同）'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>N-Pattern 波段</span><span class='ed-detail'>未進入 N-Pattern 評估池</span></div><div class='ed-row pass' title='在 RR/RRR/Dynamic RR/自選配對中共找到 2 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>自選：晶豪科 (換 B)｜動態 RR：晶豪科 (尚未持倉，等待 Z 達門檻)</span></div><div class='ed-row pass' title='市場結構為多頭（≥ 75 分），建議積極部位'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>多頭 83/100</span></div><div class='ed-row pass' title='市場溫度 62.8 🔥 過熱｜RR 環境 100 ✅ RR 黃金期｜大盤風險 0/7 🟢 正常
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>✓</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡62.8 🎯100 🚨0/7</span></div><div class='ed-summary' title='四維中 3 項通過、1 項警示'>綜合判斷：<span class='ed-go'>✅ 主要條件齊備（1 項待留意）</span></div></div>
 </div>
 <div class="card">
   <div class="card-head">
@@ -260,6 +305,8 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+8.83</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 10%（全市場 PR）</li><li>近 5 日名次推進速度 +8.2 &gt; 0（資金推升中）</li><li>近 20 日上榜 13 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 N-Pattern Agent 的篩選範圍內（可能因 HotFlow 候選池與 N-Pattern 篩選不同）'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>N-Pattern 波段</span><span class='ed-detail'>未進入 N-Pattern 評估池</span></div><div class='ed-row pass' title='在 RR/RRR/Dynamic RR/自選配對中共找到 2 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>自選：大銀微系統 (換 A)｜動態 RR：大銀微系統 (尚未持倉，等待 Z 達門檻)</span></div><div class='ed-row pass' title='市場結構為多頭（≥ 75 分），建議積極部位'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>多頭 83/100</span></div><div class='ed-row pass' title='市場溫度 62.8 🔥 過熱｜RR 環境 100 ✅ RR 黃金期｜大盤風險 0/7 🟢 正常
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>✓</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡62.8 🎯100 🚨0/7</span></div><div class='ed-summary' title='四維中 3 項通過、1 項警示'>綜合判斷：<span class='ed-go'>✅ 主要條件齊備（1 項待留意）</span></div></div>
 </div>
 <div class="card">
   <div class="card-head">
@@ -309,6 +356,8 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+18.04</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 19%（全市場 PR）</li><li>近 5 日名次推進速度 +12.9 &gt; 0（資金推升中）</li><li>近 20 日上榜 16 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row fail' title='N-Pattern Agent 判定為 reject：&lt; 50 分，結構未成形'><span class='ed-num'>①</span><span class='ed-mark'>✗</span><span class='ed-label'>N-Pattern 波段</span><span class='ed-detail'>N 型不成立（0 分）</span></div><div class='ed-row fail' title='本檔股票未出現在任何 RR/RRR/Dynamic RR/自選配對的訊號中。HotFlow 是『主流偵測』獨立 agent，不一定有對手；可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為多頭（≥ 75 分），建議積極部位'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>多頭 83/100</span></div><div class='ed-row pass' title='市場溫度 62.8 🔥 過熱｜RR 環境 100 ✅ RR 黃金期｜大盤風險 0/7 🟢 正常
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>✓</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡62.8 🎯100 🚨0/7</span></div><div class='ed-summary' title='四維中 2 項阻擋、0 項警示、2 項通過'>綜合判斷：<span class='ed-stop'>⛔ 不建議進場</span></div></div>
 </div></div></details><details class='section'><summary title='B 級觀察中：主流評分百分位 60-80（PR 前 40% 但未達 A 級條件）
 部分條件未齊全；持續追蹤但不直接進場'><span class='label'>B 觀察中</span><span class='count-badge b'>9 檔</span></summary><div class='body'>
 <div class="card">
@@ -359,6 +408,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+7.65</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 0%（未完全達 A 級條件）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -408,6 +458,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+0.65</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 12%（未完全達 A 級條件）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -457,6 +508,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+2.13</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 17%（未完全達 A 級條件）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -506,6 +558,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+6.86</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 21%（未完全達 A 級條件）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -555,6 +608,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+58.91</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 25%（未完全達 A 級條件）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -604,6 +658,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+0.79</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 27%（未完全達 A 級條件）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -653,6 +708,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+2.32</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 33%（未完全達 A 級條件）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -702,6 +758,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+3.04</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 35%（未完全達 A 級條件）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -751,6 +808,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+1.29</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 38%（未完全達 A 級條件）</li></ul>
+  
 </div></div></details><details class='section'><summary title='C 級過熱或排除：主流評分百分位 &lt; 60，或觸發以下任一過熱/結構轉弱條件
   ・近 5 日漲幅 &gt; 25% — 漲過頭
   ・量能Z &gt; 3 但近20日上榜 &lt; 2 — 單日爆量但無持續性
@@ -805,6 +863,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+0.16</b></span>
   </div>
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -854,6 +913,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+0.66</b></span>
   </div>
   <ul class="sigs"><li>近 5 日漲幅 26.0% &gt; 25% — 漲過頭</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -903,6 +963,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+0.27</b></span>
   </div>
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -952,6 +1013,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+3.66</b></span>
   </div>
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1001,6 +1063,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+7.62</b></span>
   </div>
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1050,6 +1113,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+30.80</b></span>
   </div>
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1099,6 +1163,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+3.57</b></span>
   </div>
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1148,6 +1213,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+1.23</b></span>
   </div>
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1197,6 +1263,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+1.27</b></span>
   </div>
   <ul class="sigs"><li>主流評分未進入全市場前 40%</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1246,6 +1313,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+5.51</b></span>
   </div>
   <ul class="sigs"><li>主流評分未進入全市場前 40%</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1295,6 +1363,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+4.22</b></span>
   </div>
   <ul class="sigs"><li>主流評分未進入全市場前 40%</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1344,6 +1413,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+0.76</b></span>
   </div>
   <ul class="sigs"><li>主流評分未進入全市場前 40%</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1393,6 +1463,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+58.21</b></span>
   </div>
   <ul class="sigs"><li>主流評分未進入全市場前 40%</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1442,6 +1513,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+2.35</b></span>
   </div>
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1491,6 +1563,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+0.03</b></span>
   </div>
   <ul class="sigs"><li>主流評分未進入全市場前 40%</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1540,6 +1613,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+1.90</b></span>
   </div>
   <ul class="sigs"><li>主流評分未進入全市場前 40%</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1589,6 +1663,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+50.08</b></span>
   </div>
   <ul class="sigs"><li>主流評分未進入全市場前 40%</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1638,6 +1713,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+6.73</b></span>
   </div>
   <ul class="sigs"><li>主流評分未進入全市場前 40%</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1687,6 +1763,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+16.14</b></span>
   </div>
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
+  
 </div>
 <div class="card">
   <div class="card-head">
@@ -1736,6 +1813,7 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+15.88</b></span>
   </div>
   <ul class="sigs"><li>主流評分未進入全市場前 40%</li></ul>
+  
 </div><div class='sub'>… 另有 19 檔，見 CSV / JSON</div></div></details>
 <div style="box-sizing:border-box;width:100%;padding:24px 20px 24px;background:#0d1117;color:#94a3b8;font-size:13px;line-height:2;border-top:1px solid #1e293b;margin-top:24px;"><div style="max-width:1180px;margin:0 auto;"><div style="color:#93c5fd;font-size:14px;font-weight:bold;border-left:3px solid #3b82f6;padding-left:10px;margin-bottom:16px;">HotFlow — 策略與用法</div><div style="display:flex;flex-wrap:wrap;gap:16px;"><div style="flex:1;min-width:240px;background:#111827;border-radius:8px;padding:14px 16px;"><div style="color:#e2e8f0;font-weight:bold;margin-bottom:8px;">🔥 什麼是 HotFlow（主流偵測）</div>偵測「全市場資金流向哪裡」的 Agent。<br>每日對全市場約 1,935 檔股票打分，把資金流入最強的個股篩出來。<br><b style="color:#e2e8f0">不做買賣決策</b>，僅作為下游 N-Pattern / RR / RRR 的候選池。</div><div style="flex:1;min-width:240px;background:#111827;border-radius:8px;padding:14px 16px;"><div style="color:#e2e8f0;font-weight:bold;margin-bottom:8px;">📊 主流評分算法</div><b>7 個維度</b> → 各自做極端值修剪(winsorize) → 換算成『百分位排名』(PR, 0-100) → 加權加總：<br><code style="color:#7dd3fc;font-size:11px;line-height:1.8;display:block;margin:8px 0">名次推進動能（1日） × 0.25<br>名次推進速度（近5日） × 0.20<br>近20日上榜天數 × 0.15<br>量能爆發程度（60日Z） × 0.15<br>量能擴張倍數（vs 60日均） × 0.10<br>相對大盤綜合分 × 0.10<br>週線20均斜率 × 0.05<br><span style="color:#94a3b8">────────────────</span><br><span style="color:#94a3b8">合計權重 = 1.00</span></code>最終為 0-100 分。<br><span style="color:#64748b;font-size:11px">※ 每個維度的『百分位排名』顯示在個股卡中段；滑鼠移上去（手機則點擊）看 tooltip 對照本檔原始值<br>※ ★ 關鍵：「名次」和「名次分數」方向相反 — 名次數字越小越好（#1 = 最佳）；名次分數越大越好（100 = 第 1 名翻轉而來）。所有「斜率/動能」指標都是用『名次分數』算的，斜率正 = 表現變好。<br>※ 權重表從 <code>hotflow.WEIGHTS</code> 即時讀取，改程式碼後此頁自動同步</span></div><div style="flex:1;min-width:240px;background:#111827;border-radius:8px;padding:14px 16px;"><div style="color:#e2e8f0;font-weight:bold;margin-bottom:8px;">🟢 A 級條件（主流形成中）</div><span style="color:#6ee7b7">A 主流形成中</span>：主流評分百分位 ≥ 80（PR 前 20%）<br><b>且</b>同時符合以下 5 條件：<br>① 名次推進速度 > 0（5 日內名次正在前進）<br>② 近 20 日上榜 ≥ 3 日（持續被資金關注）<br>③ 相對強弱趨勢向上（相對強弱 20 均向上）<br>④ 週線 20 均向上（中長期多頭）<br>⑤ 近 5 日漲幅 ≤ 25%（未過熱）<br>→ 下游 RR/RRR 配對的優先候選。</div><div style="flex:1;min-width:240px;background:#111827;border-radius:8px;padding:14px 16px;"><div style="color:#e2e8f0;font-weight:bold;margin-bottom:8px;">🟡 B 觀察 / 🔴 C 排除</div><span style="color:#fcd34d">B 觀察中</span>：主流評分百分位 60-80，但 A 級 5 條件未全部達標<br><span style="color:#fda4af">C 過熱或排除</span>：以下任一：<br>・主流評分百分位 &lt; 60<br>・近 5 日漲幅 &gt; 25%（漲過頭）<br>・量能 Z 分數 &gt; 3 但近 20 日上榜 &lt; 2（單日爆量無持續性）<br>・相對強弱未轉強（弱於大盤）<br>・週線 20 均下彎（中長期空頭）<br><br><span style="color:#64748b">三個區塊預設僅 A 級展開，B/C 點擊展開檢視。</span></div><div style="flex:1;min-width:240px;background:#111827;border-radius:8px;padding:14px 16px;"><div style="color:#e2e8f0;font-weight:bold;margin-bottom:8px;">🎯 用法建議</div><b style="color:#e2e8f0">不要直接買 A 級</b>。HotFlow 只告訴你「主流在哪」，具體進場時機要看：<br>① N-Pattern 是否成立（波段結構）<br>② RR / RRR 是否有可配對輪動的對手<br>③ 市場結構是否允許（市場狀態 ≥ 中性）<br>④ MS-Agent v2 監控（市場溫度、RR 環境、風險訊號）</div><div style="flex:1;min-width:240px;background:#111827;border-radius:8px;padding:14px 16px;"><div style="color:#e2e8f0;font-weight:bold;margin-bottom:8px;">🔄 資料新鮮度</div>每日 18:00 排程器自動更新（TWSE/TPEX 17:30 公布後）。<br>若主頁顯示資料日(as_of)與今天不一致，代表 fetch 階段網路逾時，可手動跑 <code>python -m src.agents.hotflow</code>。</div></div></div></div>
 <footer>HotFlow Agent v0.2 ｜ 不做買賣決策，僅供下游 N-shape / RRR Agent 使用</footer>

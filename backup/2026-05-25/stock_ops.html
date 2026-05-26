@@ -1,0 +1,2468 @@
+<!doctype html>
+<html lang='zh-Hant'><head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>📈 股票操作 Agent — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:24px 20px 80px; max-width:1200px; margin:auto;
+       background:#080e18; color:#e2e8f0;
+       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.6; }
+h1 { font-size:22px; margin:0 0 4px; }
+h2 { font-size:17px; color:#93c5fd; border-bottom:1px solid #2d3f55;
+     padding-bottom:6px; margin:24px 0 12px; }
+.sub { color:#94a3b8; font-size:13px; margin-bottom:18px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color:#7dd3fc;
+       padding:1px 6px; border-radius:3px; font-size:12px; }
+
+/* market gate */
+.gate { background:#131f2e; border:1px solid #2d3f55; border-radius:8px;
+        padding:12px 16px; margin-bottom:18px; }
+.gate-head { display:flex; justify-content:space-between; align-items:baseline; }
+.gate-status { font-size:18px; font-weight:bold; }
+.gate-status.ok { color:#6ee7b7; }
+.gate-status.fail { color:#fda4af; }
+.gate-row { font-size:13px; color:#cbd5e1; margin-top:4px; }
+
+/* 階段統計 */
+.stage-stats { display:grid; grid-template-columns:repeat(5,1fr); gap:8px;
+               margin-bottom:18px; }
+.stage-card { background:#131f2e; border:1px solid #2d3f55; border-radius:8px;
+              padding:10px; text-align:center; }
+.stage-card .num { font-size:28px; font-weight:bold; line-height:1; }
+.stage-card .lbl { font-size:12px; margin-top:4px; }
+
+/* table */
+table { width:100%; border-collapse:collapse; font-size:12px; margin-top:6px; }
+th, td { padding:6px 8px; border-bottom:1px solid #1e293b; text-align:left; vertical-align:top; }
+th { background:#0f1a2c; color:#94a3b8; font-weight:normal; font-size:11px;
+     position:sticky; top:0; }
+tr:hover { background:rgba(59,130,246,0.06); }
+
+.stage-pill { display:inline-block; padding:2px 8px; border-radius:10px;
+              font-size:11px; font-weight:bold; }
+.risk-pill { display:inline-block; padding:2px 8px; border-radius:10px;
+             font-size:11px; font-weight:bold; }
+
+/* 個股詳細卡 */
+.detail-card { background:#131f2e; border:1px solid #2d3f55; border-radius:8px;
+               padding:14px 16px; margin-bottom:12px; }
+.detail-head { display:flex; justify-content:space-between; align-items:baseline;
+               flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+.detail-name { font-size:18px; font-weight:bold; }
+.detail-name .code { color:#94a3b8; font-size:14px; margin-left:6px; }
+.detail-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+
+.metric-row { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr));
+              gap:6px; margin:8px 0; }
+.metric { background:#0f1a2c; padding:6px 10px; border-radius:4px; font-size:12px;
+          display:flex; justify-content:space-between; align-items:baseline; }
+.metric .lbl { color:#94a3b8; }
+.metric .val { font-weight:bold; }
+.metric .val.good { color:#6ee7b7; }
+.metric .val.warn { color:#fcd34d; }
+.metric .val.bad  { color:#fda4af; }
+
+.reasons-list, .risks-list { margin:6px 0 0; padding-left:18px; font-size:12px; }
+.reasons-list li { color:#cbd5e1; }
+.risks-list li { color:#fcd34d; }
+
+.stop-loss { background:rgba(239,68,68,0.08); border-left:3px solid #ef4444;
+             padding:6px 10px; margin-top:8px; border-radius:0 4px 4px 0;
+             font-size:12px; color:#fda4af; }
+.add-rr { background:rgba(96,165,250,0.08); border-left:3px solid #60a5fa;
+          padding:6px 10px; margin-top:8px; border-radius:0 4px 4px 0;
+          font-size:12px; color:#93c5fd; }
+
+footer { color:#64748b; font-size:12px; margin-top:30px;
+         border-top:1px solid #2d3f55; padding-top:12px; }
+</style>
+</head><body>
+<a class="back-link" href="index.html">← 返回主頁</a>
+<a class="back-link" href="nomenclature.html" style="margin-left:6px" title="所有指標的中英文對照、公式、方向、範例">📖 名詞對照表</a>
+
+<h1>📈 股票操作 Agent — 佈局／加碼／持有建議</h1>
+<div class="sub">
+  資料日：2026-05-25 ｜ 產生時間：2026-05-26 13:31
+  ｜ 候選池：HotFlow A+B  ∪  N-Pattern candidate/watch  ∪  配對表.xlsx
+</div>
+
+<h2>1. 市場結構 Gate（必要條件）</h2>
+<div class='gate' title='市場結構偏多必要條件：加權週MA20↑ + OTC不弱 + 法人未明顯偏空'><div class='gate-head'><div><strong>市場狀態：</strong>多頭</div><div class='gate-status ok'>✅ 允許進場</div></div><div class='gate-row'>✓ 市場狀態 多頭 83/100</div><div class='gate-row'>✓ 加權週線 100/100</div><div class='gate-row'>✓ 櫃買週線 100/100</div><div class='gate-row'>✓ 外資台指期 44/100</div></div>
+
+<h2>2. 5 階段分佈</h2>
+<div class='stage-stats'><div class='stage-card' title='趨勢確認 + 突破前波高 + 量放大 → 真正獲利來源（金字塔加碼）'><div class='num' style='color:#fb923c'>🔥 2</div><div class='lbl' style='color:#fb923c'>加碼</div></div><div class='stage-card' title='月✓週✓ + 日線修正接近完成 → 先卡位（建議 20-40%）'><div class='num' style='color:#6ee7b7'>🌱 4</div><div class='lbl' style='color:#6ee7b7'>佈局</div></div><div class='stage-card' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'><div class='num' style='color:#93c5fd'>📊 13</div><div class='lbl' style='color:#93c5fd'>持有</div></div><div class='stage-card' title='月或週結構未達標，尚不適合進場'><div class='num' style='color:#94a3b8'>👀 24</div><div class='lbl' style='color:#94a3b8'>觀察</div></div><div class='stage-card' title='結構轉弱（Z60 &lt; -1 或週MA20 下彎）→ 退場'><div class='num' style='color:#fda4af'>📉 1</div><div class='lbl' style='color:#fda4af'>減碼</div></div></div><div style='color:#94a3b8;font-size:13px;margin-bottom:8px'>候選池：<strong style='color:#e2e8f0'>44</strong> 檔｜風險分佈：A: 2 ｜ B: 29 ｜ C: 13｜建議加入 RR 配對池：0 檔</div>
+
+<h2>3. 個股詳細（依階段分組）</h2>
+<details open style='margin-top:14px'><summary style='cursor:pointer;font-size:16px;color:#fb923c;font-weight:bold;padding:6px 0' title='趨勢確認 + 突破前波高 + 量放大 → 真正獲利來源（金字塔加碼）'>🔥 加碼（2 檔）</summary><div style='margin-top:8px'><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A8299" target="_blank" rel="noopener" title="TradingView 圖表 — 8299" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">群聯</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A8299" target="_blank" rel="noopener" title="TradingView 圖表 — 8299" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">8299</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#fb923c33;color:#fb923c' title='趨勢確認 + 突破前波高 + 量放大 → 真正獲利來源（金字塔加碼）'>🔥 加碼</span><span class='risk-pill' style='background:#10b98133;color:#10b981' title='全部條件齊備（月✓週✓日 + 主流性 + RR 對手 + 市場多頭）'>風險 A</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#fb923c'>30%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val good'>修正完成+重新轉強</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+0.08 / +0.06</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+3.14</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.83</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 紅K吞噬</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>44.8</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#10</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>34 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>2480.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：紅K吞噬</li><li>回檔量縮（5d/20d=0.83）+ Z60 反轉</li><li>已有 34 組 RR 配對對手</li><li>成交金額名次 #10（前 30）</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>2296.8</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -7.39%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 2345 (換 A) ｜ RR: 3105 (換 B) ｜ RR: 2308 (換 B)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6488" target="_blank" rel="noopener" title="TradingView 圖表 — 6488" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">環球晶</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6488" target="_blank" rel="noopener" title="TradingView 圖表 — 6488" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6488</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#fb923c33;color:#fb923c' title='趨勢確認 + 突破前波高 + 量放大 → 真正獲利來源（金字塔加碼）'>🔥 加碼</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#fb923c'>30%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val good'>修正完成+重新轉強</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+0.45 / -0.21</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+3.00</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.53</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>59.9</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#31</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>788.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點 + 5日平台突破</li><li>回檔量縮（5d/20d=0.53）+ Z60 反轉</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>無 RR 配對對手，輪動切換機會少</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>765.27</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -2.88%</span></div></div></div></details><details open style='margin-top:14px'><summary style='cursor:pointer;font-size:16px;color:#6ee7b7;font-weight:bold;padding:6px 0' title='月✓週✓ + 日線修正接近完成 → 先卡位（建議 20-40%）'>🌱 佈局（4 檔）</summary><div style='margin-top:8px'><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4576" target="_blank" rel="noopener" title="TradingView 圖表 — 4576" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">大銀微系統</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4576" target="_blank" rel="noopener" title="TradingView 圖表 — 4576" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">4576</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#6ee7b733;color:#6ee7b7' title='月✓週✓ + 日線修正接近完成 → 先卡位（建議 20-40%）'>🌱 佈局</span><span class='risk-pill' style='background:#10b98133;color:#10b981' title='全部條件齊備（月✓週✓日 + 主流性 + RR 對手 + 市場多頭）'>風險 A</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#6ee7b7'>30%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>80/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val good'>修正完成+重新轉強</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+0.29 / -0.07</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+3.64</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.70</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 帶量紅K + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val good'>72.2</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#45</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>2 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>277.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>重新轉強：突破前日高點 + 帶量紅K + 5日平台突破</li><li>回檔量縮（5d/20d=0.70）+ Z60 反轉</li><li>已有 2 組 RR 配對對手</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>259.38</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -6.36%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>自選: 上銀 (換 A) ｜ 動態RR: 上銀 ()</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2408" target="_blank" rel="noopener" title="TradingView 圖表 — 2408" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">南亞科</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2408" target="_blank" rel="noopener" title="TradingView 圖表 — 2408" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2408</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#6ee7b733;color:#6ee7b7' title='月✓週✓ + 日線修正接近完成 → 先卡位（建議 20-40%）'>🌱 佈局</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#6ee7b7'>20%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>65/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>修正完成中</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+0.35 / +0.86</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+3.02</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.95</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>47.2</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#2</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>2 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>296.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>已有 2 組 RR 配對對手</li><li>成交金額名次 #2（前 30）</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線尚未突破 12 月區間頂部</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>262.84</strong> <span style='color:#94a3b8'>（5日平台低點 -1%）｜距離 -11.20%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>自選: 華邦電 (續抱 A) ｜ 動態RR: 華邦電 ()</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2603" target="_blank" rel="noopener" title="TradingView 圖表 — 2603" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">長榮</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2603" target="_blank" rel="noopener" title="TradingView 圖表 — 2603" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2603</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#6ee7b733;color:#6ee7b7' title='月✓週✓ + 日線修正接近完成 → 先卡位（建議 20-40%）'>🌱 佈局</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#6ee7b7'>20%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>65/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>修正完成中</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+0.27 / +0.90</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+4.17</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val warn'>1.86</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>47.4</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#27</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>37 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>214.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>已有 37 組 RR 配對對手</li><li>成交金額名次 #27（前 30）</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>回檔量未縮，主力可能未休息完畢</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>193.54</strong> <span style='color:#94a3b8'>（5日平台低點 -1%）｜距離 -9.56%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 8299 (換 B) ｜ RR: 3105 (換 B) ｜ RR: 3380 (換 B)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3006" target="_blank" rel="noopener" title="TradingView 圖表 — 3006" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">晶豪科</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3006" target="_blank" rel="noopener" title="TradingView 圖表 — 3006" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3006</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#6ee7b733;color:#6ee7b7' title='月✓週✓ + 日線修正接近完成 → 先卡位（建議 20-40%）'>🌱 佈局</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#6ee7b7'>20%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>65/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>修正完成中</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+0.28 / +0.73</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.34</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>1.00</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>48.9</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#23</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>2 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>229.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>已有 2 組 RR 配對對手</li><li>成交金額名次 #23（前 30）</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>213.84</strong> <span style='color:#94a3b8'>（5日平台低點 -1%）｜距離 -6.62%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>自選: 智原 (換 B) ｜ 動態RR: 智原 ()</div></div></div></details><details open style='margin-top:14px'><summary style='cursor:pointer;font-size:16px;color:#93c5fd;font-weight:bold;padding:6px 0' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'>📊 持有（13 檔）</summary><div style='margin-top:8px'><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2049" target="_blank" rel="noopener" title="TradingView 圖表 — 2049" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">上銀</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2049" target="_blank" rel="noopener" title="TradingView 圖表 — 2049" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2049</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#93c5fd33;color:#93c5fd' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'>📊 持有</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#93c5fd'>100%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+0.86 / +0.44</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.11</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.82</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val good'>65.6</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#36</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>2 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>395.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點 + 5日平台突破</li><li>已有 2 組 RR 配對對手</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>374.22</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -5.26%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>自選: 大銀微系統 (換 A) ｜ 動態RR: 大銀微系統 ()</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">飛捷</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6206</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#93c5fd33;color:#93c5fd' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'>📊 持有</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#93c5fd'>100%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+1.66 / +1.49</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+4.26</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.96</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val good'>60.2</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val warn'>#58</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>144.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點 + 5日平台突破</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>無 RR 配對對手，輪動切換機會少</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>138.1</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -4.10%</span></div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2344" target="_blank" rel="noopener" title="TradingView 圖表 — 2344" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">華邦電</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2344" target="_blank" rel="noopener" title="TradingView 圖表 — 2344" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2344</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#93c5fd33;color:#93c5fd' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'>📊 持有</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#93c5fd'>100%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+1.03 / +0.96</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+3.00</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.96</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 帶量紅K</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>55.8</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#3</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>2 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>128.50</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點 + 帶量紅K</li><li>已有 2 組 RR 配對對手</li><li>成交金額名次 #3（前 30）</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>117.81</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -8.32%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>自選: 南亞科 (續抱 A) ｜ 動態RR: 南亞科 ()</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2376" target="_blank" rel="noopener" title="TradingView 圖表 — 2376" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">技嘉</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2376" target="_blank" rel="noopener" title="TradingView 圖表 — 2376" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2376</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#93c5fd33;color:#93c5fd' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'>📊 持有</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#93c5fd'>100%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+0.80 / +0.23</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+3.13</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val warn'>1.16</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>51.4</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#28</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>336.50</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點</li><li>成交金額名次 #28（前 30）</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>無 RR 配對對手，輪動切換機會少</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>327.69</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -2.62%</span></div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2379" target="_blank" rel="noopener" title="TradingView 圖表 — 2379" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">瑞昱</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2379" target="_blank" rel="noopener" title="TradingView 圖表 — 2379" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2379</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#93c5fd33;color:#93c5fd' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'>📊 持有</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#93c5fd'>100%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+0.53 / +0.43</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.30</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.87</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>55.9</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#39</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>36 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>583.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點</li><li>已有 36 組 RR 配對對手</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>572.22</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -1.85%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 3105 (換 B) ｜ RR: 8299 (換 B) ｜ RR: 2451 (換 A)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4906" target="_blank" rel="noopener" title="TradingView 圖表 — 4906" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">正文</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4906" target="_blank" rel="noopener" title="TradingView 圖表 — 4906" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">4906</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#93c5fd33;color:#93c5fd' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'>📊 持有</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#93c5fd'>100%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>80/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+1.07 / +0.21</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+4.18</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.84</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 帶量紅K + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val good'>64.2</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#43</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>44.30</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>重新轉強：突破前日高點 + 帶量紅K + 5日平台突破</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>無 RR 配對對手，輪動切換機會少</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>41.38</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -6.59%</span></div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3035" target="_blank" rel="noopener" title="TradingView 圖表 — 3035" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">智原</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3035" target="_blank" rel="noopener" title="TradingView 圖表 — 3035" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3035</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#93c5fd33;color:#93c5fd' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'>📊 持有</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#93c5fd'>100%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>85/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+1.61 / +1.30</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+4.09</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val warn'>1.04</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 帶量紅K + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val good'>67.6</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#25</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>2 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>218.50</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>重新轉強：突破前日高點 + 帶量紅K + 5日平台突破</li><li>已有 2 組 RR 配對對手</li><li>成交金額名次 #25（前 30）</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>206.91</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -5.30%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>自選: 晶豪科 (換 B) ｜ 動態RR: 晶豪科 ()</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3380" target="_blank" rel="noopener" title="TradingView 圖表 — 3380" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">明泰</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3380" target="_blank" rel="noopener" title="TradingView 圖表 — 3380" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3380</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#93c5fd33;color:#93c5fd' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'>📊 持有</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#93c5fd'>100%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>75/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+1.04 / +0.45</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.11</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val warn'>1.21</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 帶量紅K + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>35.1</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val warn'>#62</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>34 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>35.80</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>重新轉強：突破前日高點 + 帶量紅K + 5日平台突破</li><li>已有 34 組 RR 配對對手</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>34.7</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -3.07%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 8299 (換 B) ｜ RR: 2451 (換 B) ｜ RR: 2891 (換 B)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2303" target="_blank" rel="noopener" title="TradingView 圖表 — 2303" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">聯電</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2303" target="_blank" rel="noopener" title="TradingView 圖表 — 2303" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2303</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#93c5fd33;color:#93c5fd' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'>📊 持有</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#93c5fd'>100%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>80/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+1.51 / +0.94</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.62</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.96</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 帶量紅K + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>54.9</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#4</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>125.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>重新轉強：突破前日高點 + 帶量紅K + 5日平台突破</li><li>成交金額名次 #4（前 30）</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>無 RR 配對對手，輪動切換機會少</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>111.87</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -10.50%</span></div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2317" target="_blank" rel="noopener" title="TradingView 圖表 — 2317" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">鴻海</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2317" target="_blank" rel="noopener" title="TradingView 圖表 — 2317" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2317</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#93c5fd33;color:#93c5fd' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'>📊 持有</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#93c5fd'>100%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>80/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+0.78 / +0.27</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+3.19</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.78</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 帶量紅K + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>52.3</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#5</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>261.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>重新轉強：突破前日高點 + 帶量紅K + 5日平台突破</li><li>成交金額名次 #5（前 30）</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>無 RR 配對對手，輪動切換機會少</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>252.45</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -3.28%</span></div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2882" target="_blank" rel="noopener" title="TradingView 圖表 — 2882" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">國泰金</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2882" target="_blank" rel="noopener" title="TradingView 圖表 — 2882" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2882</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#93c5fd33;color:#93c5fd' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'>📊 持有</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#93c5fd'>100%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>80/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+1.33 / +0.80</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.19</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val warn'>1.14</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val good'>62.8</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>expanding</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#33</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>35 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>81.50</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點 + 5日平台突破</li><li>HotFlow lifecycle = expanding</li><li>已有 35 組 RR 配對對手</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>77.91</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -4.40%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 3105 (換 B) ｜ RR: 3380 (換 B) ｜ RR: 2451 (換 B)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3491" target="_blank" rel="noopener" title="TradingView 圖表 — 3491" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">昇達科</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3491" target="_blank" rel="noopener" title="TradingView 圖表 — 3491" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3491</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#93c5fd33;color:#93c5fd' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'>📊 持有</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#93c5fd'>100%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>70/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+1.45 / +0.72</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.05</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val warn'>1.49</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>57.9</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#22</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>2090.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>重新轉強：突破前日高點 + 5日平台突破</li><li>成交金額名次 #22（前 30）</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>無 RR 配對對手，輪動切換機會少</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>1975.05</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -5.50%</span></div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">中信金</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2891</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#93c5fd33;color:#93c5fd' title='主升段中（Z60 &gt; 0.5）→ 不加碼但保有部位'>📊 持有</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#93c5fd'>100%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>75/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+1.16 / +1.51</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.47</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val warn'>1.17</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>44.7</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>expanding</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#38</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>36 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>57.30</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>HotFlow lifecycle = expanding</li><li>已有 36 組 RR 配對對手</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>53.86</strong> <span style='color:#94a3b8'>（5日平台低點 -1%）｜距離 -6.00%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 3380 (換 B) ｜ RR: 8299 (換 B) ｜ RR: 3105 (換 B)</div></div></div></details><details style='margin-top:14px'><summary style='cursor:pointer;font-size:16px;color:#94a3b8;font-weight:bold;padding:6px 0' title='月或週結構未達標，尚不適合進場'>👀 觀察（24 檔）</summary><div style='margin-top:8px'><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2451" target="_blank" rel="noopener" title="TradingView 圖表 — 2451" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">創見</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2451" target="_blank" rel="noopener" title="TradingView 圖表 — 2451" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2451</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>盤整</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-0.28 / -0.04</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.78</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.51</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>58.6</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#44</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>33 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>311.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>已有 33 組 RR 配對對手</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>301.83</strong> <span style='color:#94a3b8'>（日 MA20 -1%）｜距離 -2.95%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 2449 (換 B) ｜ RR: 3105 (換 B) ｜ RR: 4977 (換 B)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2308" target="_blank" rel="noopener" title="TradingView 圖表 — 2308" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">台達電</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2308" target="_blank" rel="noopener" title="TradingView 圖表 — 2308" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2308</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>盤整</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-0.18 / -1.28</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.33</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.97</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>44.5</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#7</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>32 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>2290.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點 + 5日平台突破</li><li>已有 32 組 RR 配對對手</li><li>成交金額名次 #7（前 30）</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>2163.15</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -5.54%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 2330 (換 B) ｜ RR: 8299 (換 B) ｜ RR: 3017 (換 B)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2368" target="_blank" rel="noopener" title="TradingView 圖表 — 2368" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">金像電</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2368" target="_blank" rel="noopener" title="TradingView 圖表 — 2368" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2368</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>盤整</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-0.54 / -1.28</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.29</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.98</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>44.9</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>expanding</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#19</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>27 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>1425.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點 + 5日平台突破</li><li>HotFlow lifecycle = expanding</li><li>已有 27 組 RR 配對對手</li><li>成交金額名次 #19（前 30）</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>1346.4</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -5.52%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 3105 (換 B) ｜ RR: 3017 (換 A) ｜ RR: 6213 (換 A)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3037" target="_blank" rel="noopener" title="TradingView 圖表 — 3037" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">欣興</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3037" target="_blank" rel="noopener" title="TradingView 圖表 — 3037" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3037</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>盤整</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-0.03 / -0.14</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+1.57</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.95</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>42.6</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>expanding</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#8</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>2 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>990.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點 + 5日平台突破</li><li>HotFlow lifecycle = expanding</li><li>已有 2 組 RR 配對對手</li><li>成交金額名次 #8（前 30）</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>968.22</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -2.20%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>自選: 南電 () ｜ 動態RR: 南電 ()</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4977" target="_blank" rel="noopener" title="TradingView 圖表 — 4977" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">眾達-KY</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4977" target="_blank" rel="noopener" title="TradingView 圖表 — 4977" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">4977</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>盤整</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-0.56 / -1.06</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.64</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.50</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 帶量紅K + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>44.5</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#50</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>31 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>230.50</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點 + 帶量紅K + 5日平台突破</li><li>已有 31 組 RR 配對對手</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>219.78</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -4.65%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 2451 (換 B) ｜ RR: 3260 (換 A) ｜ RR: 2603 (換 B)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2382" target="_blank" rel="noopener" title="TradingView 圖表 — 2382" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">廣達</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2382" target="_blank" rel="noopener" title="TradingView 圖表 — 2382" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2382</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>85/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>盤整</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-0.72 / -0.79</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+3.42</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val warn'>1.48</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>50.1</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#14</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>36 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>316.50</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>已有 36 組 RR 配對對手</li><li>成交金額名次 #14（前 30）</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>285.62</strong> <span style='color:#94a3b8'>（5日平台低點 -1%）｜距離 -9.76%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 2449 (換 B) ｜ RR: 3105 (換 B) ｜ RR: 3260 (換 A)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2330" target="_blank" rel="noopener" title="TradingView 圖表 — 2330" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">台積電</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2330" target="_blank" rel="noopener" title="TradingView 圖表 — 2330" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2330</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>80/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>盤整</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-0.07 / -0.53</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.34</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.79</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>27.9</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#1</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>35 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>2310.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>重新轉強：突破前日高點 + 5日平台突破</li><li>已有 35 組 RR 配對對手</li><li>成交金額名次 #1（前 30）</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>2252.25</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -2.50%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 2308 (換 B) ｜ RR: 3105 (換 B) ｜ RR: 3380 (換 B)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2885" target="_blank" rel="noopener" title="TradingView 圖表 — 2885" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">元大金</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2885" target="_blank" rel="noopener" title="TradingView 圖表 — 2885" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2885</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>80/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>盤整</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-0.24 / -0.57</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+3.67</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.99</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>57.0</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#46</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>56.10</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>重新轉強：突破前日高點</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>無 RR 配對對手，輪動切換機會少</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>54.35</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -3.12%</span></div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1303" target="_blank" rel="noopener" title="TradingView 圖表 — 1303" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">南亞</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1303" target="_blank" rel="noopener" title="TradingView 圖表 — 1303" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">1303</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>65/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>盤整</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-0.39 / -0.48</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val warn'>+1.47</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.71</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>37.6</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#37</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>36 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>87.10</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>已有 36 組 RR 配對對手</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線尚未突破 12 月區間頂部</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>79.6</strong> <span style='color:#94a3b8'>（5日平台低點 -1%）｜距離 -8.61%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 3105 (換 B) ｜ RR: 3380 (換 B) ｜ RR: 4977 (換 A)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6213" target="_blank" rel="noopener" title="TradingView 圖表 — 6213" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">聯茂</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6213" target="_blank" rel="noopener" title="TradingView 圖表 — 6213" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6213</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>65/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>85/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>盤整</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-0.90 / -1.05</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+4.34</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val warn'>1.05</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>58.5</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#32</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>37 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>267.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>週 MA20 向上</li><li>已有 37 組 RR 配對對手</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線尚未突破 12 月區間頂部</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>227.7</strong> <span style='color:#94a3b8'>（5日平台低點 -1%）｜距離 -14.72%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 3260 (換 A) ｜ RR: 2368 (換 A) ｜ RR: 8046 (換 B)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3260" target="_blank" rel="noopener" title="TradingView 圖表 — 3260" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">威剛</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3260" target="_blank" rel="noopener" title="TradingView 圖表 — 3260" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3260</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>65/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>80/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>盤整</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-0.82 / -0.67</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.82</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.54</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>42.0</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#21</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>29 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>407.50</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>週 MA20 向上</li><li>已有 29 組 RR 配對對手</li><li>成交金額名次 #21（前 30）</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線尚未突破 12 月區間頂部</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>381.15</strong> <span style='color:#94a3b8'>（5日平台低點 -1%）｜距離 -6.47%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 3105 (換 A) ｜ RR: 4977 (換 A) ｜ RR: 2382 (換 A)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2449" target="_blank" rel="noopener" title="TradingView 圖表 — 2449" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">京元電子</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2449" target="_blank" rel="noopener" title="TradingView 圖表 — 2449" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2449</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#ef444433;color:#ef4444' title='結構不齊或市場警戒'>風險 C</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val warn'>55/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+0.66 / -0.36</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+3.18</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.83</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 帶量紅K + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val good'>60.5</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#12</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>31 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>317.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點 + 帶量紅K + 5日平台突破</li><li>已有 31 組 RR 配對對手</li><li>成交金額名次 #12（前 30）</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線結構未明確（可能仍在底部整理）</li><li>月線尚未突破 12 月區間頂部</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>299.48</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -5.53%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 2451 (換 B) ｜ RR: 2382 (換 B) ｜ RR: 3105 (換 B)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8046" target="_blank" rel="noopener" title="TradingView 圖表 — 8046" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">南電</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8046" target="_blank" rel="noopener" title="TradingView 圖表 — 8046" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">8046</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#ef444433;color:#ef4444' title='結構不齊或市場警戒'>風險 C</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val warn'>55/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>已轉弱</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-1.13 / -0.71</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+1.94</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val warn'>1.00</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>56.6</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#6</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>38 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>884.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>已有 38 組 RR 配對對手</li><li>成交金額名次 #6（前 30）</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線結構未明確（可能仍在底部整理）</li><li>月線尚未突破 12 月區間頂部</li><li>Z60 &lt; -1，結構已轉弱</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>757.35</strong> <span style='color:#94a3b8'>（5日平台低點 -1%）｜距離 -14.33%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 3105 (換 B) ｜ RR: 3380 (換 B) ｜ RR: 4977 (換 A)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3105" target="_blank" rel="noopener" title="TradingView 圖表 — 3105" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">穩懋</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3105" target="_blank" rel="noopener" title="TradingView 圖表 — 3105" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3105</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#ef444433;color:#ef4444' title='結構不齊或市場警戒'>風險 C</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>90/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val warn'>55/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>盤整</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-0.20 / -0.40</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.94</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.99</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>48.4</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#9</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>22 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>543.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>重新轉強：突破前日高點 + 5日平台突破</li><li>已有 22 組 RR 配對對手</li><li>成交金額名次 #9（前 30）</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>週線結構未明確</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>532.62</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -1.91%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 3260 (換 A) ｜ RR: 2379 (換 B) ｜ RR: 8299 (換 B)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3017" target="_blank" rel="noopener" title="TradingView 圖表 — 3017" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">奇鋐</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3017" target="_blank" rel="noopener" title="TradingView 圖表 — 3017" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3017</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#ef444433;color:#ef4444' title='結構不齊或市場警戒'>風險 C</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val warn'>55/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>85/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>盤整</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-0.96 / -1.20</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.45</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.77</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>41.7</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#15</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>33 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>2575.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>週 MA20 向上</li><li>已有 33 組 RR 配對對手</li><li>成交金額名次 #15（前 30）</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線結構未明確（可能仍在底部整理）</li><li>月線尚未突破 12 月區間頂部</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>2277.0</strong> <span style='color:#94a3b8'>（5日平台低點 -1%）｜距離 -11.57%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 2308 (換 B) ｜ RR: 2368 (換 A) ｜ RR: 2449 (換 B)</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3034" target="_blank" rel="noopener" title="TradingView 圖表 — 3034" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">聯詠</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3034" target="_blank" rel="noopener" title="TradingView 圖表 — 3034" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3034</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#ef444433;color:#ef4444' title='結構不齊或市場警戒'>風險 C</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val warn'>20/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+0.64 / +0.67</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+4.42</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.91</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>51.9</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#40</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>489.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線結構未明確（可能仍在底部整理）</li><li>月線尚未突破 12 月區間頂部</li><li>無 RR 配對對手，輪動切換機會少</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>453.92</strong> <span style='color:#94a3b8'>（5日平台低點 -1%）｜距離 -7.17%</span></div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A5269" target="_blank" rel="noopener" title="TradingView 圖表 — 5269" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">祥碩</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A5269" target="_blank" rel="noopener" title="TradingView 圖表 — 5269" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">5269</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#ef444433;color:#ef4444' title='結構不齊或市場警戒'>風險 C</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val warn'>20/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+1.11 / +0.73</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+3.17</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.75</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val good'>71.9</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#35</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>1535.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點 + 5日平台突破</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線結構未明確（可能仍在底部整理）</li><li>月線尚未突破 12 月區間頂部</li><li>無 RR 配對對手，輪動切換機會少</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>1499.85</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -2.29%</span></div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1301" target="_blank" rel="noopener" title="TradingView 圖表 — 1301" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">台塑</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1301" target="_blank" rel="noopener" title="TradingView 圖表 — 1301" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">1301</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#ef444433;color:#ef4444' title='結構不齊或市場警戒'>風險 C</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>65/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val warn'>50/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>已轉弱</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-1.21 / -1.18</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+1.91</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.84</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>37.5</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val warn'>#52</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>44.80</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>週 MA20 向上</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>週線結構未明確</li><li>月線尚未突破 12 月區間頂部</li><li>Z60 &lt; -1，結構已轉弱</li><li>無 RR 配對對手，輪動切換機會少</li></ul></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3231" target="_blank" rel="noopener" title="TradingView 圖表 — 3231" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">緯創</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3231" target="_blank" rel="noopener" title="TradingView 圖表 — 3231" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3231</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#ef444433;color:#ef4444' title='結構不齊或市場警戒'>風險 C</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val warn'>35/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>70/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+1.25 / +0.54</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.72</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val warn'>1.05</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 帶量紅K + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>0.0</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>—</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val warn'>#9999</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>149.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點 + 帶量紅K + 5日平台突破</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線結構未明確（可能仍在底部整理）</li><li>月線尚未突破 12 月區間頂部</li><li>無 RR 配對對手，輪動切換機會少</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>145.53</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -2.33%</span></div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3596" target="_blank" rel="noopener" title="TradingView 圖表 — 3596" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">智易</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3596" target="_blank" rel="noopener" title="TradingView 圖表 — 3596" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3596</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#ef444433;color:#ef4444' title='結構不齊或市場警戒'>風險 C</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val warn'>20/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>80/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+1.10 / +1.23</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+3.27</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val warn'>1.07</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>50.6</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val warn'>#57</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>189.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>週 MA20 向上</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線結構未明確（可能仍在底部整理）</li><li>月線尚未突破 12 月區間頂部</li><li>無 RR 配對對手，輪動切換機會少</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>173.25</strong> <span style='color:#94a3b8'>（5日平台低點 -1%）｜距離 -8.33%</span></div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">萬海</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2615</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#ef444433;color:#ef4444' title='結構不齊或市場警戒'>風險 C</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val warn'>30/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>65/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+1.68 / +2.26</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+5.37</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val warn'>1.83</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>49.8</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#47</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>83.30</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>週 MA20 向上</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線結構未明確（可能仍在底部整理）</li><li>月線尚未突破 12 月區間頂部</li><li>無 RR 配對對手，輪動切換機會少</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>73.66</strong> <span style='color:#94a3b8'>（5日平台低點 -1%）｜距離 -11.57%</span></div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2887" target="_blank" rel="noopener" title="TradingView 圖表 — 2887" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">台新新光金</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2887" target="_blank" rel="noopener" title="TradingView 圖表 — 2887" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2887</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#ef444433;color:#ef4444' title='結構不齊或市場警戒'>風險 C</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val warn'>55/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val warn'>30/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>盤整</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-0.62 / +0.08</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+1.58</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val warn'>1.12</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val good'>67.2</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#34</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val warn'>0 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>23.30</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>週 MA20 向上</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線結構未明確（可能仍在底部整理）</li><li>週線結構未明確</li><li>月線尚未突破 12 月區間頂部</li><li>無 RR 配對對手，輪動切換機會少</li></ul></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A9921" target="_blank" rel="noopener" title="TradingView 圖表 — 9921" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">巨大</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A9921" target="_blank" rel="noopener" title="TradingView 圖表 — 9921" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">9921</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#ef444433;color:#ef4444' title='結構不齊或市場警戒'>風險 C</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val warn'>20/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val warn'>30/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+0.54 / +0.81</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+3.23</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.66</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>0.0</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>—</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val warn'>#9999</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>2 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>69.50</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>已有 2 組 RR 配對對手</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線結構未明確（可能仍在底部整理）</li><li>週線結構未明確</li><li>月線尚未突破 12 月區間頂部</li></ul><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>自選: 美利達 (換 B) ｜ 動態RR: 美利達 ()</div></div><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A9914" target="_blank" rel="noopener" title="TradingView 圖表 — 9914" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">美利達</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A9914" target="_blank" rel="noopener" title="TradingView 圖表 — 9914" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">9914</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#94a3b833;color:#94a3b8' title='月或週結構未達標，尚不適合進場'>👀 觀察</span><span class='risk-pill' style='background:#ef444433;color:#ef4444' title='結構不齊或市場警戒'>風險 C</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#94a3b8'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val warn'>0/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val warn'>25/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val warn'>主升段持續</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>+1.84 / +1.97</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+4.57</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.96</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val warn'>✗</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>0.0</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>—</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val warn'>#9999</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>2 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>68.20</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>已有 2 組 RR 配對對手</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>月線結構未明確（可能仍在底部整理）</li><li>週線結構未明確</li><li>月線尚未突破 12 月區間頂部</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>61.34</strong> <span style='color:#94a3b8'>（日 MA20 -1%）｜距離 -10.06%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>自選: 巨大 (換 B) ｜ 動態RR: 巨大 ()</div></div></div></details><details style='margin-top:14px'><summary style='cursor:pointer;font-size:16px;color:#fda4af;font-weight:bold;padding:6px 0' title='結構轉弱（Z60 &lt; -1 或週MA20 下彎）→ 退場'>📉 減碼（1 檔）</summary><div style='margin-top:8px'><div class='detail-card'><div class='detail-head'><div class='detail-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2345" target="_blank" rel="noopener" title="TradingView 圖表 — 2345" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">智邦</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2345" target="_blank" rel="noopener" title="TradingView 圖表 — 2345" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2345</a>)</span></div><div class='detail-actions'><span class='stage-pill' style='background:#fda4af33;color:#fda4af' title='結構轉弱（Z60 &lt; -1 或週MA20 下彎）→ 退場'>📉 減碼</span><span class='risk-pill' style='background:#fcd34d33;color:#fcd34d' title='主要條件齊備但有 1-3 項警示'>風險 B</span><span style='color:#94a3b8;font-size:12px'>建議部位 <strong style='color:#fda4af'>0%</strong></span></div></div>
+    <div class='metric-row'>
+      <div class='metric' title='月線分數（0-100）：月MA10上彎 + 月K突破12月區間 + 月量放大 + 底底高'>
+        <span class='lbl'>月線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='週線分數（0-100）：週MA20向上 + 站上MA20 + HH/HL + 斜率加速'>
+        <span class='lbl'>週線</span>
+        <span class='val good'>100/100</span>
+      </div>
+      <div class='metric' title='日線修正狀態：依 Z60 與過熱史判斷'>
+        <span class='lbl'>日線狀態</span>
+        <span class='val bad'>已轉弱</span>
+      </div>
+      <div class='metric' title='Z60（MA20 乖離率的 60 日標準化）：當前 vs 昨日；正向變化代表修正可能結束'>
+        <span class='lbl'>Z60 今/昨</span>
+        <span class='val'>-1.09 / -1.44</span>
+      </div>
+      <div class='metric' title='過去 60 日 Z60 最大值；≥ +1.5 表示曾過熱（有主升段動能）'>
+        <span class='lbl'>近60日 Z60 高</span>
+        <span class='val good'>+2.16</span>
+      </div>
+      <div class='metric' title='近 5 日均量 / 20 日均量；&lt; 1 為量縮，代表主力未撤退'>
+        <span class='lbl'>量比 5d/20d</span>
+        <span class='val good'>0.76</span>
+      </div>
+      <div class='metric' title='重新轉強訊號（多項擇一）：突破前日高 / 紅K吞噬 / 帶量紅K / 5日平台突破'>
+        <span class='lbl'>重新轉強</span>
+        <span class='val good'>✓ 突破前日高點 + 5日平台突破</span>
+      </div>
+      <div class='metric' title='HotFlow 主流評分（0-100）：成交額名次、量能擴張、相對強弱等 7 維加權'>
+        <span class='lbl'>主流評分</span>
+        <span class='val warn'>36.7</span>
+      </div>
+      <div class='metric' title='HotFlow lifecycle 階段：forming/expanding/overheating/fading/dormant'>
+        <span class='lbl'>Lifecycle</span>
+        <span class='val'>dormant</span>
+      </div>
+      <div class='metric' title='當日成交金額在全市場 ~1,935 檔中的名次（#1 = 最大）'>
+        <span class='lbl'>成交額名次</span>
+        <span class='val good'>#24</span>
+      </div>
+      <div class='metric' title='本檔出現在 RR/RRR/動態 RR/自選配對中的對手組數'>
+        <span class='lbl'>RR 配對對手</span>
+        <span class='val good'>28 組</span>
+      </div>
+      <div class='metric' title='收盤價（新台幣元）'>
+        <span class='lbl'>收盤</span>
+        <span class='val'>2540.00</span>
+      </div>
+    </div>
+    <div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#6ee7b7'>📌 進場理由：</strong></div><ul class='reasons-list'><li>月 MA10 上彎</li><li>月線突破 12 月區間頂部</li><li>週 MA20 向上</li><li>週線底底高 + 頂頂高</li><li>重新轉強：突破前日高點 + 5日平台突破</li><li>已有 28 組 RR 配對對手</li><li>成交金額名次 #24（前 30）</li></ul><div style='color:#cbd5e1;font-size:12px;margin-top:6px'><strong style='color:#fcd34d'>⚠ 失敗風險：</strong></div><ul class='risks-list'><li>Z60 &lt; -1，結構已轉弱</li></ul><div class='stop-loss' title='結構停損（長線保護短線）：跌破即出場'>🛑 停損位置：<strong>2479.95</strong> <span style='color:#94a3b8'>（轉強 K 低點 -1%）｜距離 -2.36%</span></div><div style='color:#94a3b8;font-size:12px;margin-top:6px'><strong style='color:#93c5fd'>🔄 已配對：</strong>RR: 8299 (換 A) ｜ RR: 2308 (換 B) ｜ RR: 3105 (換 B)</div></div></div></details>
+
+<footer>
+股票操作 Agent ｜ 由 <code>src/agents/stock_ops.py</code> 評估、<code>stock_ops_report.py</code> 渲染<br>
+資料來源：DuckDB price 表 + market.json + hotflow.json + n_pattern.json + RR/RRR/動態RR/自選配對<br>
+規格：<code>agents/08_stock_ops.md</code>
+</footer>
+
+<style id='MS_N_RRR_tooltip_inject_v2'>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid #475569;
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>
