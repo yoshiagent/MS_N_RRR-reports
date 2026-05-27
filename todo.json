@@ -161,6 +161,21 @@
       ]
     },
     {
+      "id": "T-206",
+      "category": "n_shape",
+      "title": "依規範對齊：加入「破底翻進行中」狀態識別",
+      "source": "docs/N形與股票箱_規範.md (Part 2 ③ 新增)",
+      "description": "規範 Part 2 第 3 種情況：『破底翻進行中』— 已跌破 SL 後又出現有效反彈嘗試站回，尚未形成新 N 形。這是台股『最後一跌』後關鍵反轉訊號，目前 n_shape 沒對應狀態，建議在 broken 後加偵測：跌破 SL 後 N 週內 close > prev_high → 視為破底翻進行中。若進一步形成新 HH+HL → 升級為『重回 N 形』(規範 Part 2 第 4 種，部分對應現有 resumed_uptrend)。",
+      "benefit": "提早抓底部反轉訊號，捕捉熊市過後的反轉個股",
+      "effort": "M",
+      "priority": "P1",
+      "status": "planned",
+      "files": [
+        "src/agents/n_shape.py 加 'reversing' 狀態",
+        "src/agents/box_structure.py"
+      ]
+    },
+    {
       "id": "T-301",
       "category": "box",
       "title": "加入日線輔助分析",
@@ -402,5 +417,5 @@
       "status": "planned"
     }
   ],
-  "generated_at": "2026-05-27 19:11"
+  "generated_at": "2026-05-27 22:58"
 }
