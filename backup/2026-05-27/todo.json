@@ -117,6 +117,65 @@
       "status": "planned"
     },
     {
+      "id": "T-203",
+      "category": "n_shape",
+      "title": "依規範對齊：加入「開始反彈」對稱判斷",
+      "source": "docs/N形與股票箱_規範.md",
+      "description": "規範第 2 項：『收盤突破前一根 K 棒最高點 → 開始反彈』。目前 _analyze_pullback_state 只實作了『開始回檔』(close < prev_low)，應補上對稱的反彈判斷，讓系統能同時偵測『回檔開始』與『反彈開始』。",
+      "benefit": "完整的雙向結構偵測，與規範對齊",
+      "effort": "S",
+      "priority": "P1",
+      "status": "planned",
+      "files": [
+        "src/agents/box_structure.py 的 _analyze_pullback_state"
+      ]
+    },
+    {
+      "id": "T-204",
+      "category": "n_shape",
+      "title": "依規範對齊：N 形分類改為 3 級 (C1/C2/破壞)",
+      "source": "docs/N形與股票箱_規範.md",
+      "description": "規範第 6 項：N 形 3 級分類『C1 觀察 / C2 延續 / 跌破SL 破壞』。目前 n_shape.py 是 4 級（進行中/觀察中/破壞中/已破壞）。考慮把『進行中』和『C2 延續』對齊（突破 SH），把『破壞中』和『已破壞』合併為『跌破 SL』。",
+      "benefit": "與使用者習慣的 3 級分類一致",
+      "effort": "M",
+      "priority": "P2",
+      "status": "planned",
+      "files": [
+        "src/agents/n_shape.py",
+        "agents/09_n_shape.md"
+      ]
+    },
+    {
+      "id": "T-205",
+      "category": "n_shape",
+      "title": "依規範對齊：swing 偵測改為「事件驅動 + 往前找」",
+      "source": "docs/N形與股票箱_規範.md",
+      "description": "規範第 3/4 項：『開始回檔/反彈後 → 確認非盤整後 → 往前找 SH/SL』。目前用 pivot left/right=2 的左右確認法（需等右邊 2 根才形成）。改為事件驅動：偵測到開始回檔/反彈訊號後，往前回找最近的 swing high/low。這也是 2454 聯發科持續創新高無法形成新 SH 問題的根本解法。",
+      "benefit": "更貼近實務操作；解決飆漲股 pivot 偵測延遲問題",
+      "effort": "L",
+      "priority": "P1",
+      "status": "planned",
+      "files": [
+        "src/agents/n_shape.py",
+        "src/agents/box_structure.py"
+      ]
+    },
+    {
+      "id": "T-206",
+      "category": "n_shape",
+      "title": "依規範對齊：加入「破底翻進行中」狀態識別 ✅ 已完成",
+      "source": "docs/N形與股票箱_規範.md (Part 2 ③ 新增)",
+      "description": "✅ 已實作：n_shape 加 'reversing' (破底翻進行中) + 'resumed_n' (重回 N 形) 兩個狀態。今日結果：17 檔含重回 N 形訊號（強反轉），14 檔含破底翻訊號。",
+      "benefit": "提早抓底部反轉訊號，捕捉熊市過後的反轉個股",
+      "effort": "M",
+      "priority": "P1",
+      "status": "done",
+      "files": [
+        "src/agents/n_shape.py",
+        "src/agents/n_shape_report.py"
+      ]
+    },
+    {
       "id": "T-301",
       "category": "box",
       "title": "加入日線輔助分析",
@@ -358,5 +417,5 @@
       "status": "planned"
     }
   ],
-  "generated_at": "2026-05-27 18:00"
+  "generated_at": "2026-05-28 18:00"
 }
