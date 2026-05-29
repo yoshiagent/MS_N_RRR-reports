@@ -1,0 +1,421 @@
+{
+  "todos": [
+    {
+      "id": "T-001",
+      "category": "immediate",
+      "title": "深度回檔（>50%）自動降至 Stage 3",
+      "source": "box_structure",
+      "description": "目前若週線箱高 > 50%（例 5269 祥碩、3037 某段），仍可能被歸為 Stage 2 主升段。實際上這種「腰斬式回檔」更像熊市反彈，應該自動降級到 Stage 3 高位震盪。",
+      "benefit": "避免誤判巨幅震盪股票為健康主升段",
+      "effort": "XS",
+      "priority": "P1",
+      "status": "planned",
+      "files": [
+        "src/agents/box_structure.py 的 _classify_stage()"
+      ]
+    },
+    {
+      "id": "T-002",
+      "category": "immediate",
+      "title": "Stage 4 判斷加入「reset」機制",
+      "source": "box_structure",
+      "description": "目前 28 檔被歸 Stage 4（佔 67 檔中 42%），偏多。若股票後續反彈站回箱內並形成新有效 SH，應該重置 Stage（從 Stage 1 開始算）。",
+      "benefit": "避免過去某次跌破 SL 永久標記，反映現況",
+      "effort": "S",
+      "priority": "P1",
+      "status": "planned",
+      "files": [
+        "src/agents/box_structure.py 的 _classify_stage()"
+      ]
+    },
+    {
+      "id": "T-003",
+      "category": "immediate",
+      "title": "週線略破底（< 3%）的容忍機制",
+      "source": "n_shape / box_structure",
+      "description": "如 6488 環球晶週線前低 417 → 新低 407（破底 -2.4%）被判已破壞，但實務上 < 3% 應視為雜訊。可調整 NOISE_TOL_LOW（n_shape）或加 SL 破底容忍（box_structure）。",
+      "benefit": "減少雜訊誤判，貼近實務操作",
+      "effort": "XS",
+      "priority": "P1",
+      "status": "planned",
+      "files": [
+        "src/agents/n_shape.py",
+        "src/agents/box_structure.py"
+      ]
+    },
+    {
+      "id": "T-101",
+      "category": "algorithm",
+      "title": "swing window 動態調整",
+      "source": "n_shape / box_structure",
+      "description": "目前 swing window 固定（日=3, 週=2, 月=1）。對高波動股應放大、低波動股縮小。可依 ATR/Close 自動調整。",
+      "benefit": "降低高波動股的假 swing、提高低波動股的敏感度",
+      "effort": "M",
+      "priority": "P2",
+      "status": "planned",
+      "files": [
+        "src/agents/n_shape.py",
+        "src/agents/box_structure.py"
+      ]
+    },
+    {
+      "id": "T-102",
+      "category": "algorithm",
+      "title": "回檔幅度進階定義（Fibonacci）",
+      "source": "n_shape / box_structure",
+      "description": "目前回檔幅度單純用 %。可加入 Fibonacci 0.382 / 0.618 / 0.786 區分回檔健康度：0.382 = 強勢、0.618 = 中性、> 0.786 = 弱勢。",
+      "benefit": "更精細的回檔品質判斷",
+      "effort": "M",
+      "priority": "P2",
+      "status": "planned"
+    },
+    {
+      "id": "T-103",
+      "category": "algorithm",
+      "title": "成交量整合進 swing 判斷",
+      "source": "n_shape",
+      "description": "目前 n_shape 純看價格 swing，未考慮量。可加入：「回檔量縮」加分、「破底放量」減分。",
+      "benefit": "量價結合提升結構辨識準確度",
+      "effort": "M",
+      "priority": "P2",
+      "status": "planned"
+    },
+    {
+      "id": "T-104",
+      "category": "algorithm",
+      "title": "時間衰減（recency weighting）",
+      "source": "n_shape / box_structure",
+      "description": "太久遠的 swing 信號對當下參考性低。可加入時間衰減（半衰期 ~3 個月）。",
+      "benefit": "避免被陳舊結構誤導",
+      "effort": "S",
+      "priority": "P3",
+      "status": "planned"
+    },
+    {
+      "id": "T-201",
+      "category": "n_shape",
+      "title": "整合進進場決策（第 ⑤ 維）",
+      "source": "n_shape",
+      "description": "目前 entry_decision 是 4 維。可把 n_shape 的三時段一致進行中作為第 ⑤ 維加分。",
+      "benefit": "進場決策更全面",
+      "effort": "S",
+      "priority": "P1",
+      "status": "planned",
+      "files": [
+        "src/shared/entry_decision.py"
+      ]
+    },
+    {
+      "id": "T-202",
+      "category": "n_shape",
+      "title": "壓縮（compression）狀態識別",
+      "source": "n_shape",
+      "description": "目前只判 4 狀態。可加入「壓縮整理」狀態：HL 與 LH 都極接近（差 < 1.5%）但未形成有效 swing 對。",
+      "benefit": "減少「觀察中」雜訊，更精準分類",
+      "effort": "M",
+      "priority": "P2",
+      "status": "planned"
+    },
+    {
+      "id": "T-203",
+      "category": "n_shape",
+      "title": "依規範對齊：加入「開始反彈」對稱判斷",
+      "source": "docs/N形與股票箱_規範.md",
+      "description": "規範第 2 項：『收盤突破前一根 K 棒最高點 → 開始反彈』。目前 _analyze_pullback_state 只實作了『開始回檔』(close < prev_low)，應補上對稱的反彈判斷，讓系統能同時偵測『回檔開始』與『反彈開始』。",
+      "benefit": "完整的雙向結構偵測，與規範對齊",
+      "effort": "S",
+      "priority": "P1",
+      "status": "planned",
+      "files": [
+        "src/agents/box_structure.py 的 _analyze_pullback_state"
+      ]
+    },
+    {
+      "id": "T-204",
+      "category": "n_shape",
+      "title": "依規範對齊：N 形分類改為 3 級 (C1/C2/破壞)",
+      "source": "docs/N形與股票箱_規範.md",
+      "description": "規範第 6 項：N 形 3 級分類『C1 觀察 / C2 延續 / 跌破SL 破壞』。目前 n_shape.py 是 4 級（進行中/觀察中/破壞中/已破壞）。考慮把『進行中』和『C2 延續』對齊（突破 SH），把『破壞中』和『已破壞』合併為『跌破 SL』。",
+      "benefit": "與使用者習慣的 3 級分類一致",
+      "effort": "M",
+      "priority": "P2",
+      "status": "planned",
+      "files": [
+        "src/agents/n_shape.py",
+        "agents/09_n_shape.md"
+      ]
+    },
+    {
+      "id": "T-205",
+      "category": "n_shape",
+      "title": "依規範對齊：swing 偵測改為「事件驅動 + 往前找」",
+      "source": "docs/N形與股票箱_規範.md",
+      "description": "規範第 3/4 項：『開始回檔/反彈後 → 確認非盤整後 → 往前找 SH/SL』。目前用 pivot left/right=2 的左右確認法（需等右邊 2 根才形成）。改為事件驅動：偵測到開始回檔/反彈訊號後，往前回找最近的 swing high/low。這也是 2454 聯發科持續創新高無法形成新 SH 問題的根本解法。",
+      "benefit": "更貼近實務操作；解決飆漲股 pivot 偵測延遲問題",
+      "effort": "L",
+      "priority": "P1",
+      "status": "planned",
+      "files": [
+        "src/agents/n_shape.py",
+        "src/agents/box_structure.py"
+      ]
+    },
+    {
+      "id": "T-206",
+      "category": "n_shape",
+      "title": "依規範對齊：加入「破底翻進行中」狀態識別 ✅ 已完成",
+      "source": "docs/N形與股票箱_規範.md (Part 2 ③ 新增)",
+      "description": "✅ 已實作：n_shape 加 'reversing' (破底翻進行中) + 'resumed_n' (重回 N 形) 兩個狀態。今日結果：17 檔含重回 N 形訊號（強反轉），14 檔含破底翻訊號。",
+      "benefit": "提早抓底部反轉訊號，捕捉熊市過後的反轉個股",
+      "effort": "M",
+      "priority": "P1",
+      "status": "done",
+      "files": [
+        "src/agents/n_shape.py",
+        "src/agents/n_shape_report.py"
+      ]
+    },
+    {
+      "id": "T-301",
+      "category": "box",
+      "title": "加入日線輔助分析",
+      "source": "box_structure",
+      "description": "目前 box_structure 只看週線。可加入日線：當週線 Stage 2 但日線 stage 4 → 短線停利警示。",
+      "benefit": "提供短線進出場時機（規格第 9、10 點）",
+      "effort": "L",
+      "priority": "P1",
+      "status": "planned"
+    },
+    {
+      "id": "T-302",
+      "category": "box",
+      "title": "假突破偵測精準化",
+      "source": "box_structure",
+      "description": "目前假突破偵測：SL 後 5 根內突破 SH 又收盤跌回。可加入「突破後最大反彈幅度」「跌回深度」等細項。",
+      "benefit": "區分「真假突破」更精準",
+      "effort": "S",
+      "priority": "P2",
+      "status": "planned"
+    },
+    {
+      "id": "T-303",
+      "category": "box",
+      "title": "互動視覺化（plotly 箱形圖）",
+      "source": "box_structure",
+      "description": "目前箱以表格呈現。可加 plotly 互動圖：K 線 + 箱底箱頂視覺線 + Stage 標記。",
+      "benefit": "視覺化提升結構理解",
+      "effort": "L",
+      "priority": "P2",
+      "status": "planned"
+    },
+    {
+      "id": "T-401",
+      "category": "stock_ops",
+      "title": "金字塔加碼實際計算",
+      "source": "stock_ops",
+      "description": "目前 stock_ops 給「加碼 30%」建議但未自動計算第 2/3 次加碼點位（突破前波高 X% 時）。可加入動態加碼計畫表。",
+      "benefit": "完整的部位管理（規格第五 B 點）",
+      "effort": "M",
+      "priority": "P1",
+      "status": "planned"
+    },
+    {
+      "id": "T-402",
+      "category": "stock_ops",
+      "title": "移動停利自動計算",
+      "source": "stock_ops",
+      "description": "目前停損計算基於結構。可加入移動停利：依週MA20 自動上移止盈點。",
+      "benefit": "持股的動態風險管理",
+      "effort": "M",
+      "priority": "P1",
+      "status": "planned"
+    },
+    {
+      "id": "T-403",
+      "category": "stock_ops",
+      "title": "主流族群同步性檢查加分",
+      "source": "stock_ops",
+      "description": "目前評估個股獨立。可加入「同 XQ 細產業 ≥ 3 檔同步 Stage 2」加分。",
+      "benefit": "資金輪動的族群驗證",
+      "effort": "S",
+      "priority": "P2",
+      "status": "planned"
+    },
+    {
+      "id": "T-404",
+      "category": "stock_ops",
+      "title": "法人連續買超訊號",
+      "source": "stock_ops",
+      "description": "可加入「外資/投信連續 N 日同向買超」作為輔助訊號。",
+      "benefit": "籌碼面驗證",
+      "effort": "S",
+      "priority": "P2",
+      "status": "planned"
+    },
+    {
+      "id": "T-501",
+      "category": "ms_agent",
+      "title": "amount_expansion 全市場 60d Z 補齊",
+      "source": "ms_temperature",
+      "description": "目前 amount_expansion subscore 暫用中性 50。應補齊：全市場成交額 60 日 Z-score。",
+      "benefit": "市場溫度更精準",
+      "effort": "S",
+      "priority": "P1",
+      "status": "planned",
+      "files": [
+        "src/agents/ms_temperature.py"
+      ]
+    },
+    {
+      "id": "T-502",
+      "category": "ms_agent",
+      "title": "lifecycle 主流持續率",
+      "source": "hotflow_lifecycle",
+      "description": "可統計：fading 後 5 日內是否再進 forming（主流回潮率）。",
+      "benefit": "判斷主流退潮是否為短暫修正",
+      "effort": "S",
+      "priority": "P2",
+      "status": "planned"
+    },
+    {
+      "id": "T-503",
+      "category": "ms_agent",
+      "title": "RR Env 反向餵 dynamic_rr 冷卻期",
+      "source": "ms_temperature → dynamic_rr",
+      "description": "目前 RR Env 分只顯示在 dashboard。應實際影響 dynamic_rr：RR Env < 40 → 冷卻期延長。",
+      "benefit": "閉環自動調整",
+      "effort": "S",
+      "priority": "P1",
+      "status": "planned",
+      "files": [
+        "src/agents/dynamic_rr.py"
+      ]
+    },
+    {
+      "id": "T-601",
+      "category": "integration",
+      "title": "進場決策擴展到 N-Pattern 報告",
+      "source": "entry_decision",
+      "description": "目前進場決策只在 hotflow / custom_pairs 顯示。可加到 n_pattern.html candidate stocks。",
+      "benefit": "所有候選股都看到統一決策",
+      "effort": "S",
+      "priority": "P2",
+      "status": "planned"
+    },
+    {
+      "id": "T-602",
+      "category": "integration",
+      "title": "stock_ops 整合 box_structure stage",
+      "source": "stock_ops → box_structure",
+      "description": "目前 stock_ops 用自己的月/週/日評分判 stage。可改為直接讀 box_structure.json 的 Stage 1-4，邏輯更一致。",
+      "benefit": "避免兩個 agent 的 stage 結論衝突",
+      "effort": "M",
+      "priority": "P1",
+      "status": "planned"
+    },
+    {
+      "id": "T-603",
+      "category": "integration",
+      "title": "建立統一 stock_profile.html 個股資訊頁",
+      "source": "全系統",
+      "description": "對每檔在多個 Agent 出現的個股，可彙總成單一 stock_profile.html，顯示在 HotFlow/N-Pattern/RR/RRR/N-Shape/Box 中的所有訊息。",
+      "benefit": "一處看完該股全部 agent 結論",
+      "effort": "XL",
+      "priority": "P2",
+      "status": "planned"
+    },
+    {
+      "id": "T-701",
+      "category": "backtest",
+      "title": "Lifecycle 歷史回測",
+      "source": "hotflow_lifecycle",
+      "description": "已有 lifecycle_history.csv 累積資料。可建立回測框架：「forming → expanding → fading」全過程的後續報酬統計。",
+      "benefit": "驗證 lifecycle 分類的實際價值",
+      "effort": "L",
+      "priority": "P2",
+      "status": "planned",
+      "files": [
+        "data/processed/lifecycle_history.csv"
+      ]
+    },
+    {
+      "id": "T-702",
+      "category": "backtest",
+      "title": "Box Stage 2 標的後續報酬統計",
+      "source": "box_structure",
+      "description": "建立 box_structure_history.csv 累積資料，回測 Stage 2 標的後續 5/10/20 個交易日的平均報酬。",
+      "benefit": "驗證箱結構分類的預測力",
+      "effort": "L",
+      "priority": "P2",
+      "status": "planned"
+    },
+    {
+      "id": "T-703",
+      "category": "backtest",
+      "title": "全 agent 信號歷史回測 framework",
+      "source": "全系統",
+      "description": "建立統一回測 framework，可對任一 agent 的歷史信號做後續報酬統計。",
+      "benefit": "資料驅動的 agent 優化",
+      "effort": "XL",
+      "priority": "P2",
+      "status": "planned"
+    },
+    {
+      "id": "T-801",
+      "category": "data",
+      "title": "XQ industry_sub.csv 自動更新",
+      "source": "stockHisData",
+      "description": "目前 XQ 對照表需手動匯出更新。可建立自動化提醒（每月 1 號 email 提醒）。",
+      "benefit": "減少人工維護",
+      "effort": "S",
+      "priority": "P3",
+      "status": "planned"
+    },
+    {
+      "id": "T-802",
+      "category": "data",
+      "title": "新增 shares_outstanding 取得真實流通股數",
+      "source": "stockHisData",
+      "description": "目前用 XQ 市值。但 XQ 市值是上次更新時的，盤中波動會失準。可加 shares_outstanding 欄位，每日計算 mcap = close × shares。",
+      "benefit": "市值資料即時化",
+      "effort": "M",
+      "priority": "P3",
+      "status": "planned"
+    },
+    {
+      "id": "T-901",
+      "category": "ops",
+      "title": "GitHub Pages 真正私有化",
+      "source": "deployment",
+      "description": "目前公開 + robots.txt。完工後考慮：Cloudflare Pages + Access OR Vercel Hobby + Edge Middleware。",
+      "benefit": "資料隱私",
+      "effort": "M",
+      "priority": "P2",
+      "status": "blocked",
+      "note": "用戶說「等整個完工後再處理」"
+    },
+    {
+      "id": "T-902",
+      "category": "ops",
+      "title": "通知系統優化 — 條件式 push",
+      "source": "notify",
+      "description": "目前每日固定推送。可改為條件式：MS-Agent v2 風險升級、Stage 4 新增、A 級候選變動才推送。",
+      "benefit": "減少資訊疲勞",
+      "effort": "S",
+      "priority": "P2",
+      "status": "planned"
+    },
+    {
+      "id": "T-903",
+      "category": "ops",
+      "title": "Orchestrator 失敗自動重試",
+      "source": "orchestrator",
+      "description": "目前 fetch 失敗會 log warning 但不重試。可加：失敗 step 自動重試 1 次（5 分鐘後）。",
+      "benefit": "提高自動更新成功率",
+      "effort": "S",
+      "priority": "P3",
+      "status": "planned"
+    }
+  ],
+  "generated_at": "2026-05-29 18:00"
+}
