@@ -294,7 +294,7 @@
       "category": "n_shape",
       "title": "RR / RRR 合併為「輪動換股 Agent」",
       "source": "使用者規劃",
-      "description": "目前 RR (簡版 RS_MA20 穿越) + RRR (嚴格版 Z60 折返) + Dynamic RR + 自選配對 共 4 個配對 agent，功能重複度高。建議整合為單一『輪動換股 Agent』，承擔兩大任務：\n  1. 從股池配對（輪動）— 接受 HotFlow A/B 候選池 或 配對表 為輸入\n  2. 呈現換股時機 — 含互動圖表（仿 custom_pairs.html 的 plotly K 線 + Z60 視覺）\n\n名稱候選：\n  • 輪動換股 Agent (rotation_switch_agent) ⭐\n  • 配對輪動 Agent (pair_rotation_agent)\n  • RR Pro\n\n整合方案：\n  • 共用底層 rs_zscore.py\n  • 統一輸出 schema，含 loose + strict 兩種訊號\n  • 單一報告頁，支援篩選/切換\n  • 保留 Dynamic RR 的 vol-adaptive 機制\n  • 自選配對作為「強制候選」加入結果",
+      "description": "目前 RR (簡版 RS_MA20 穿越) + RRR (嚴格版 Z60 折返) + Dynamic RR + 自選配對 共 4 個配對 agent，功能重複度高。建議整合為單一『輪動換股 Agent』，承擔兩大任務：\n  1. 從股池配對（輪動）— 接受 HotFlow A/B 候選池 或 配對表 為輸入\n  2. 呈現換股時機 — 含互動圖表（仿 custom_pairs.html 的 plotly K 線 + Z60 視覺）\n\n名稱候選：\n  • 輪動換股 Agent (rotation_switch_agent) ⭐\n  • 配對輪動 Agent (pair_rotation_agent)\n  • RR Pro\n\n整合方案：\n  • 共用底層 rs_zscore.py\n  • 統一輸出 schema，含 loose + strict 兩種訊號\n  • 單一報告頁，支援篩選/切換\n  • 保留 Dynamic RR 的 vol-adaptive 機制\n  • 自選配對作為「強制候選」加入結果\n  • ✅ 9 狀態 + 流程 2 已完成 (M1-M3)，本項目可開工",
       "benefit": "減少 4 agents 重複；單一視角看所有換股訊號；訊號質量提升",
       "effort": "L",
       "priority": "P1",
@@ -306,7 +306,66 @@
         "src/agents/custom_pairs.py",
         "→ src/agents/rotation_switch.py"
       ],
-      "note": "在 9 狀態 + 流程 2 重整後再做，可受惠於 healthy 篩選"
+      "note": "✅ M1-M3 流程 2 已完成；現可繼承 healthy_pair 標記"
+    },
+    {
+      "id": "T-300",
+      "category": "n_shape",
+      "title": "9 + 3 + 1 狀態系統重構（M1）",
+      "source": "使用者規劃 + 規範 Part 2",
+      "description": "從原 7 狀態升級為 9 + 3 + 1：\n  • 9 主狀態 = 3 位置 (箱上/箱內/箱下) × 3 方向 (向上/向下/特殊)\n  • 3 修飾詞 = 突破確認中 / 跌破確認中 / 壓縮整理\n  • 1 unknown\n  • 純資料定義在 src/shared/state_grid.py\n  • 方向用近 3 根 close 斜率；盤整用 ATR×1.5 範圍\n  • 假突破用 5 根 K 棒窗格偵測",
+      "benefit": "更細緻、更貼近實務的狀態分類；可作為下游 filter 依據",
+      "effort": "XL",
+      "priority": "P0",
+      "status": "done",
+      "files": [
+        "src/shared/state_grid.py",
+        "src/shared/swing_core.py",
+        "src/agents/n_shape.py",
+        "src/agents/box_structure.py",
+        "src/agents/state_grid_preview.py"
+      ]
+    },
+    {
+      "id": "T-301",
+      "category": "integration",
+      "title": "流程 2: N-Shape healthy filter 串入 pipeline（M2）",
+      "source": "使用者規劃",
+      "description": "新流程：HotFlow → N-Shape → Stock Ops (healthy filter) → RR/RRR/Custom/Dynamic (state tagging)\n  • src/shared/n_shape_lookup.py — 共用查詢 + tag_pair helper\n  • stock_ops 加 7 欄 + healthy 進 risk_level\n  • RR/RRR/Custom/Dynamic 各加 12 欄 (A_*/B_*/healthy_pair)\n  • entry_decision ① 維加 N 形 hint\n  • orchestrator n_shape 移到 stock_ops 前",
+      "benefit": "下游 agent 可依 N 形健康度過濾候選；訊號質量提升",
+      "effort": "L",
+      "priority": "P0",
+      "status": "done",
+      "files": [
+        "src/shared/n_shape_lookup.py",
+        "src/agents/stock_ops.py",
+        "src/agents/rr_report.py",
+        "src/agents/rrr_report.py",
+        "src/agents/custom_pairs.py",
+        "src/agents/dynamic_rr.py",
+        "src/shared/entry_decision.py",
+        "src/orchestrator.py"
+      ]
+    },
+    {
+      "id": "T-302",
+      "category": "integration",
+      "title": "9 狀態 UI 視覺：漏斗 + pill + 健康度 badge（M3）",
+      "source": "使用者規劃",
+      "description": "  • 主頁加流程 2 漏斗（HotFlow → N-Shape → Stock Ops → Pairs）\n  • 主頁加 N 形 9 狀態 3×3 mini-grid 卡片\n  • stock_ops_report 每檔加 N 形 pill + healthy badge + modifier 角標\n  • 4 個 pair report (RR/RRR/Custom/Dynamic) 每組加 A/B 雙股 state pill + healthy_pair badge\n  • 共用 helper：src/shared/pair_pills.py",
+      "benefit": "視覺化 9 狀態系統與流程 2 全鏈；單頁可看到健康度判定",
+      "effort": "L",
+      "priority": "P1",
+      "status": "done",
+      "files": [
+        "src/agents/index_builder.py",
+        "src/agents/stock_ops_report.py",
+        "src/agents/rr_report.py",
+        "src/agents/rrr_report.py",
+        "src/agents/custom_pairs_report.py",
+        "src/agents/dynamic_rr_report.py",
+        "src/shared/pair_pills.py"
+      ]
     },
     {
       "id": "T-601",
@@ -434,5 +493,5 @@
       "status": "planned"
     }
   ],
-  "generated_at": "2026-05-31 19:43"
+  "generated_at": "2026-05-31 19:58"
 }
