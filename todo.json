@@ -46,16 +46,15 @@
     {
       "id": "T-101",
       "category": "algorithm",
-      "title": "swing window 動態調整",
+      "title": "swing window 動態調整 ✅ 已由三階段偵測取代",
       "source": "n_shape / box_structure",
-      "description": "目前 swing window 固定（日=3, 週=2, 月=1）。對高波動股應放大、低波動股縮小。可依 ATR/Close 自動調整。",
+      "description": "✅ 已實作：改用 find_swings_3stage（事件驅動 + ATR 自適應），不再使用固定 swing window。ATR 倍數自動調整為各股波動率。",
       "benefit": "降低高波動股的假 swing、提高低波動股的敏感度",
       "effort": "M",
       "priority": "P2",
-      "status": "planned",
+      "status": "done",
       "files": [
-        "src/agents/n_shape.py",
-        "src/agents/box_structure.py"
+        "src/shared/swing_core.py find_swings_3stage"
       ]
     },
     {
@@ -119,15 +118,15 @@
     {
       "id": "T-203",
       "category": "n_shape",
-      "title": "依規範對齊：加入「開始反彈」對稱判斷",
+      "title": "依規範對齊：加入「開始反彈」對稱判斷 ✅ 已完成",
       "source": "docs/N形與股票箱_規範.md",
-      "description": "規範第 2 項：『收盤突破前一根 K 棒最高點 → 開始反彈』。目前 _analyze_pullback_state 只實作了『開始回檔』(close < prev_low)，應補上對稱的反彈判斷，讓系統能同時偵測『回檔開始』與『反彈開始』。",
+      "description": "✅ 已實作：find_swings_3stage 對稱實作 SH/SL：「開始回檔」(close < prev_low) 與「開始反彈」(close > prev_high) 都已內建。SL-01 = close > Candidate SL K 棒最高點，與 SH-01 完全鏡像。",
       "benefit": "完整的雙向結構偵測，與規範對齊",
       "effort": "S",
       "priority": "P1",
-      "status": "planned",
+      "status": "done",
       "files": [
-        "src/agents/box_structure.py 的 _analyze_pullback_state"
+        "src/shared/swing_core.py find_swings_3stage"
       ]
     },
     {
@@ -148,16 +147,15 @@
     {
       "id": "T-205",
       "category": "n_shape",
-      "title": "依規範對齊：swing 偵測改為「事件驅動 + 往前找」",
+      "title": "依規範對齊：swing 偵測改為「事件驅動 + 往前找」 ✅ 已完成",
       "source": "docs/N形與股票箱_規範.md",
-      "description": "規範第 3/4 項：『開始回檔/反彈後 → 確認非盤整後 → 往前找 SH/SL』。目前用 pivot left/right=2 的左右確認法（需等右邊 2 根才形成）。改為事件驅動：偵測到開始回檔/反彈訊號後，往前回找最近的 swing high/low。這也是 2454 聯發科持續創新高無法形成新 SH 問題的根本解法。",
+      "description": "✅ 已實作：find_swings_3stage 採事件驅動 Candidate/Confirmed 雙態追蹤。持續創高時 candidate 自動更新（不卡在 2 個月前），跌破前低時觸發確認。完全解決 2454 聯發科 / 6488 環球晶 pivot 偵測延遲問題（無需 hack）。",
       "benefit": "更貼近實務操作；解決飆漲股 pivot 偵測延遲問題",
       "effort": "L",
       "priority": "P1",
-      "status": "planned",
+      "status": "done",
       "files": [
-        "src/agents/n_shape.py",
-        "src/agents/box_structure.py"
+        "src/shared/swing_core.py find_swings_3stage"
       ]
     },
     {
@@ -417,5 +415,5 @@
       "status": "planned"
     }
   ],
-  "generated_at": "2026-05-31 11:16"
+  "generated_at": "2026-05-31 14:41"
 }
