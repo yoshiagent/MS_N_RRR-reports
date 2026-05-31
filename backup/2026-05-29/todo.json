@@ -290,6 +290,25 @@
       ]
     },
     {
+      "id": "T-220",
+      "category": "n_shape",
+      "title": "RR / RRR 合併為「輪動換股 Agent」",
+      "source": "使用者規劃",
+      "description": "目前 RR (簡版 RS_MA20 穿越) + RRR (嚴格版 Z60 折返) + Dynamic RR + 自選配對 共 4 個配對 agent，功能重複度高。建議整合為單一『輪動換股 Agent』，承擔兩大任務：\n  1. 從股池配對（輪動）— 接受 HotFlow A/B 候選池 或 配對表 為輸入\n  2. 呈現換股時機 — 含互動圖表（仿 custom_pairs.html 的 plotly K 線 + Z60 視覺）\n\n名稱候選：\n  • 輪動換股 Agent (rotation_switch_agent) ⭐\n  • 配對輪動 Agent (pair_rotation_agent)\n  • RR Pro\n\n整合方案：\n  • 共用底層 rs_zscore.py\n  • 統一輸出 schema，含 loose + strict 兩種訊號\n  • 單一報告頁，支援篩選/切換\n  • 保留 Dynamic RR 的 vol-adaptive 機制\n  • 自選配對作為「強制候選」加入結果",
+      "benefit": "減少 4 agents 重複；單一視角看所有換股訊號；訊號質量提升",
+      "effort": "L",
+      "priority": "P1",
+      "status": "planned",
+      "files": [
+        "src/agents/rr_pair.py",
+        "src/agents/rrr_pair.py",
+        "src/agents/dynamic_rr.py",
+        "src/agents/custom_pairs.py",
+        "→ src/agents/rotation_switch.py"
+      ],
+      "note": "在 9 狀態 + 流程 2 重整後再做，可受惠於 healthy 篩選"
+    },
+    {
       "id": "T-601",
       "category": "integration",
       "title": "進場決策擴展到 N-Pattern 報告",
@@ -415,5 +434,5 @@
       "status": "planned"
     }
   ],
-  "generated_at": "2026-05-31 14:41"
+  "generated_at": "2026-05-31 19:43"
 }
