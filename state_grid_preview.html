@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang='zh-Hant'><head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>🎯 9+3+1 狀態設計預覽 — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:24px 20px 80px; max-width:1200px; margin:auto;
+       background:#080e18; color:#e2e8f0;
+       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.65; }
+h1 { font-size:24px; margin:0 0 6px; }
+h2 { font-size:18px; color:#93c5fd; border-bottom:1px solid #2d3f55;
+     padding-bottom:6px; margin:28px 0 14px; }
+.sub { color:#94a3b8; font-size:13px; margin-bottom:18px; }
+.preview-banner { background:rgba(252,211,77,0.08); border-left:3px solid #fcd34d;
+                  padding:10px 14px; margin-bottom:18px; border-radius:0 6px 6px 0;
+                  font-size:13px; color:#fcd34d; }
+code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color:#7dd3fc;
+       padding:1px 6px; border-radius:3px; font-size:12px; }
+
+/* 9 宮格 */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+}
+.cell {
+    background: #131f2e;
+    border: 2px solid;
+    border-radius: 8px;
+    padding: 14px 16px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.cell-head {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+.cell-icon { font-size: 24px; }
+.cell-label { font-size: 16px; font-weight: bold; }
+.cell-key {
+    color: #64748b;
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 11px;
+    margin-left: auto;
+}
+.cell-row { font-size: 12px; line-height: 1.7; }
+.cell-row .lbl { color: #94a3b8; min-width: 50px; display: inline-block; }
+.cell-row .val { color: #cbd5e1; }
+.cell-condition { color: #94a3b8; font-size: 11px; line-height: 1.6;
+                  background: #07111e; padding: 6px 8px; border-radius: 4px;
+                  font-family: ui-monospace, Consolas, monospace; }
+.cell-operation { font-weight: bold; padding: 6px 8px; border-radius: 4px;
+                  background: rgba(255,255,255,0.04); font-size: 13px;
+                  margin-top: auto; }
+.cell-rule { color: #64748b; font-size: 10px; margin-top: 4px; }
+.cell-old { color: #fcd34d; font-size: 10px; }
+
+/* 標題列 (row/col labels) */
+.headers-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+.header-cell {
+    text-align: center;
+    color: #93c5fd;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 6px 0;
+    background: #0f1a2c;
+    border-radius: 6px;
+}
+.row-with-label {
+    display: grid;
+    grid-template-columns: 80px repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.row-label {
+    background: #0f1a2c;
+    border-radius: 6px;
+    color: #93c5fd;
+    font-size: 13px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+/* 修飾詞 */
+.modifiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+}
+.modifier-card {
+    background: #131f2e;
+    border: 1px dashed;
+    border-radius: 8px;
+    padding: 14px 16px;
+}
+.modifier-applies {
+    color: #94a3b8;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+/* unknown */
+.unknown-card {
+    background: #131f2e;
+    border: 1px solid #2d3f55;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 24px;
+}
+
+/* 對照表 */
+.mapping {
+    background: #131f2e;
+    border: 1px solid #2d3f55;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    font-size: 13px;
+}
+.mapping table { width: 100%; border-collapse: collapse; }
+.mapping th, .mapping td { padding: 6px 12px; text-align: left;
+                            border-bottom: 1px solid #1e293b; }
+.mapping th { color: #94a3b8; font-weight: normal; font-size: 11px; }
+.mapping .arrow { color: #fb923c; }
+
+/* 參數表 */
+.params {
+    background: #131f2e;
+    border: 1px solid #2d3f55;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+}
+.params-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+}
+.param-cell {
+    background: #0f1a2c;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+.param-cell .name { color: #93c5fd; font-family: ui-monospace, Consolas, monospace;
+                    font-size: 11px; }
+.param-cell .value { color: #fcd34d; font-weight: bold; font-size: 14px; margin-top: 2px; }
+.param-cell .desc { color: #94a3b8; font-size: 10px; margin-top: 2px; }
+
+/* 決策清單 */
+.decisions {
+    background: rgba(96,165,250,0.05);
+    border: 1px solid #60a5fa;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+}
+.decisions h3 { color: #60a5fa; margin: 0 0 10px; font-size: 16px; }
+.decisions ol { padding-left: 20px; margin: 0; }
+.decisions li { color: #cbd5e1; margin: 6px 0; font-size: 13px; line-height: 1.7; }
+.decisions li strong { color: #e2e8f0; }
+.decisions .recommend { color: #6ee7b7; font-weight: bold; }
+
+footer { color:#64748b; font-size:12px; margin-top:30px;
+         border-top:1px solid #2d3f55; padding-top:12px; }
+</style>
+</head><body>
+<h1>🎯 9 + 3 + 1 狀態系統 — 設計預覽</h1>
+<div class="sub">產生時間：2026-05-31 16:06:10 ｜ Phase 1 設計層級 ｜ 尚未實作 classify_n_state</div>
+
+<div class="preview-banner">
+🟡 <strong>這是設計預覽頁，僅供 review。</strong>
+classify_n_state 尚未改寫，n_shape.html / box_structure.html 仍跑舊 7 狀態邏輯。
+本頁顯示新狀態定義、條件、操作含意、與舊→新映射。
+</div>
+
+<h2>📐 設計原則</h2>
+<div style="background:#131f2e;border:1px solid #2d3f55;border-radius:8px;padding:14px 18px;margin-bottom:18px;font-size:13px;line-height:1.8;color:#cbd5e1">
+<strong style="color:#93c5fd">2D 正交：位置 × 方向</strong><br>
+• <strong>3 位置</strong>：箱上 (above SH) / 箱內 (between SL & SH) / 箱下 (below SL)<br>
+• <strong>3 方向</strong>：向上 (近 3 根 close 斜率 &gt; 0) / 向下 (斜率 &lt; 0) / 特殊（假突破/盤整/破底翻）<br>
+• <strong>3 修飾詞</strong>：突破確認中、跌破確認中、壓縮整理（不破壞 9 宮對稱）<br>
+• <strong>1 unknown</strong>：資料不足（獨立）
+</div>
+
+<h2>🗺 9 宮格主結構</h2>
+<div class='headers-row'><div></div><div class='header-cell'>向上 →</div><div class='header-cell'>向下 ↓</div><div class='header-cell'>特殊 ⚡</div></div><div class='row-with-label'><div class='row-label'>箱上 above</div><div class='cell' style='border-color:#10b981'><div class='cell-head'><span class='cell-icon'>🟢</span><span class='cell-label' style='color:#10b981'>箱上推進</span><span class='cell-key'>above_up</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>close &gt; 最近 confirmed SH，且近 3 根 close 斜率 &gt; 0</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>突破前 SH 後持續向上推進，N 形延續最強訊號</span></div><div class='cell-operation' style='color:#10b981'>🟢 續抱 / 加碼（趨勢確認）</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ② N 形延續</span><span class='cell-old'>舊：running</span></div></div><div class='cell' style='border-color:#fcd34d'><div class='cell-head'><span class='cell-icon'>🟡</span><span class='cell-label' style='color:#fcd34d'>箱上回測</span><span class='cell-key'>above_down</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>close &gt; 最近 confirmed SH，但近 3 根 close 斜率 &lt; 0</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>曾突破 SH，現回測中。若 SH 守住 → 健康回檔；若跌回箱內 → 假突破</span></div><div class='cell-operation' style='color:#fcd34d'>🟡 警戒（測 SH 是否變支撐）</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ② 延伸（健康回檔）</span><span class='cell-old'>舊：running</span></div></div><div class='cell' style='border-color:#fb923c'><div class='cell-head'><span class='cell-icon'>⚠</span><span class='cell-label' style='color:#fb923c'>箱上假突破</span><span class='cell-key'>above_fake</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>曾 close &gt; SH，但近 N 根（預設 5）K 棒內 close 又跌回箱內</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>假突破：突破 SH 後快速被打回，主力可能在出貨。比 broken 更早期的警示訊號</span></div><div class='cell-operation' style='color:#fb923c'>🔴 立即減碼（突破失敗）</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範新增（實務常見）</span><span class='cell-old'>舊：breaking</span></div></div></div><div class='row-with-label'><div class='row-label'>箱內 in</div><div class='cell' style='border-color:#60a5fa'><div class='cell-head'><span class='cell-icon'>🔵</span><span class='cell-label' style='color:#60a5fa'>箱內向上</span><span class='cell-key'>inbox_up</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>SL ≤ close ≤ SH，且近 3 根 close 斜率 &gt; 0</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>箱內向上測試 SH，若突破則進入 N 形延續；若失敗則回箱內整理</span></div><div class='cell-operation' style='color:#60a5fa'>🔵 觀察突破，預備進場</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ① N 形觀察（偏多）</span><span class='cell-old'>舊：watching</span></div></div><div class='cell' style='border-color:#fb923c'><div class='cell-head'><span class='cell-icon'>🟠</span><span class='cell-label' style='color:#fb923c'>箱內向下</span><span class='cell-key'>inbox_down</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>SL ≤ close ≤ SH，且近 3 根 close 斜率 &lt; 0</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>箱內向下測試 SL，若跌破則進入破壞區；若守住則回箱內整理</span></div><div class='cell-operation' style='color:#fb923c'>🟠 警戒 SL，預備減碼</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ① N 形觀察（偏空）</span><span class='cell-old'>舊：breaking</span></div></div><div class='cell' style='border-color:#94a3b8'><div class='cell-head'><span class='cell-icon'>⚪</span><span class='cell-label' style='color:#94a3b8'>箱內盤整</span><span class='cell-key'>inbox_side</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>SL ≤ close ≤ SH，且近 5 根 close 範圍 ≤ ATR × 1.5（橫盤）</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>箱內橫盤，無明確方向。若伴隨量縮 + 接近箱頂 → 升級為「壓縮整理」修飾詞</span></div><div class='cell-operation' style='color:#94a3b8'>⚪ 等待方向，不動作</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ① N 形觀察（中性）</span><span class='cell-old'>舊：watching</span></div></div></div><div class='row-with-label'><div class='row-label'>箱下 below</div><div class='cell' style='border-color:#60a5fa'><div class='cell-head'><span class='cell-icon'>🔄</span><span class='cell-label' style='color:#60a5fa'>箱下反彈</span><span class='cell-key'>below_up</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>close &lt; 最近 confirmed SL，但近 3 根 close 斜率 &gt; 0</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>跌破 SL 後嘗試反彈，若成功站回 SL → 進入「箱下破底翻」；若失敗 → 回到向下持續</span></div><div class='cell-operation' style='color:#60a5fa'>🔄 觀察反彈強度（破底翻機會）</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ③ 破底翻進行中</span><span class='cell-old'>舊：reversing</span></div></div><div class='cell' style='border-color:#ef4444'><div class='cell-head'><span class='cell-icon'>🔴</span><span class='cell-label' style='color:#ef4444'>箱下持續</span><span class='cell-key'>below_down</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>close &lt; 最近 confirmed SL，且近 3 根 close 斜率 &lt; 0</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>跌破 SL 後持續創低，N 形已破壞且無反彈跡象</span></div><div class='cell-operation' style='color:#ef4444'>🔴 停損 / 退出</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ③ N 形破壞</span><span class='cell-old'>舊：broken</span></div></div><div class='cell' style='border-color:#10b981'><div class='cell-head'><span class='cell-icon'>⚡</span><span class='cell-label' style='color:#10b981'>箱下破底翻</span><span class='cell-key'>below_recovery</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>曾跌破 SL，但 close 已站回 SL 之上（或形成新 HH + HL）</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>破底翻成功 — 跌破後反轉站回，可能是底部反轉訊號。對應規範 ④ 重回 N 形</span></div><div class='cell-operation' style='color:#10b981'>⚡ 機會（謹慎進場 + 設停損）</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ④ 重回 N 形</span><span class='cell-old'>舊：resumed_n</span></div></div></div>
+
+<h2>⚡ 3 修飾詞（角標 / tooltip 顯示）</h2>
+<div class='modifiers-grid'><div class='modifier-card' style='border-color:#fcd34d'><div class='cell-head'><span class='cell-icon'>⏳</span><span class='cell-label' style='color:#fcd34d'>突破確認中</span><span class='cell-key'>breakout_pending</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>close 剛突破 SH，但未滿確認窗（預設 3 根 K 棒）</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>突破與假突破的過渡狀態，最高警覺期</span></div><div class='cell-operation' style='color:#fcd34d'>⏳ 先觀察 — 等 3 根確認是真突破還是假突破</div><div class='modifier-applies'>套用於：<code>above_up、above_down</code></div></div><div class='modifier-card' style='border-color:#fcd34d'><div class='cell-head'><span class='cell-icon'>⏳</span><span class='cell-label' style='color:#fcd34d'>跌破確認中</span><span class='cell-key'>breakdown_pending</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>close 剛跌破 SL，但未滿確認窗（預設 3 根 K 棒）</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>跌破與破底翻的過渡狀態，最高警覺期</span></div><div class='cell-operation' style='color:#fcd34d'>⏳ 先觀察 — 等 3 根確認是真跌破還是破底翻</div><div class='modifier-applies'>套用於：<code>below_down</code></div></div><div class='modifier-card' style='border-color:#fb923c'><div class='cell-head'><span class='cell-icon'>⚡</span><span class='cell-label' style='color:#fb923c'>壓縮整理</span><span class='cell-key'>compression</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>箱內盤整 + 量縮 + 接近 SH 上半部</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>規範特別提到的概念 — 量價收斂於高檔，多頭壓縮約 80% 突破上行</span></div><div class='cell-operation' style='color:#fb923c'>⚡ 預備進場 — 高機率即將突破</div><div class='modifier-applies'>套用於：<code>inbox_side</code></div></div></div>
+
+<h2>⚪ 資料不足（獨立）</h2>
+<div class='unknown-card' style='border-color:#94a3b8'><div class='cell-head'><span class='cell-icon'>⚪</span><span class='cell-label' style='color:#94a3b8'>資料不足</span><span class='cell-key'>unknown</span></div><div class='cell-condition'>無 confirmed SH/SL 或歷史 K 棒不足（如月線 &lt; 24 根）</div><div class='cell-row' style='margin-top:6px'><span class='lbl'>說明</span><span class='val'>常見於新股、月線資料初期、或極端持續創高無回檔的少數狀況</span></div><div class='cell-operation' style='color:#94a3b8;margin-top:6px'>⚪ 觀察 — 等待結構形成</div></div>
+
+<h2>🔄 舊 7 狀態 → 新狀態 映射</h2>
+<div class='mapping'><table><thead><tr><th>舊 7 狀態</th><th></th><th>新狀態 key</th><th>新狀態標籤</th></tr></thead><tbody><tr><td><code>running</code></td><td class='arrow'>→</td><td><code>above_up</code></td><td>🟢 箱上推進</td></tr><tr><td><code>watching</code></td><td class='arrow'>→</td><td><code>inbox_up</code></td><td>🔵 箱內向上</td></tr><tr><td><code>breaking</code></td><td class='arrow'>→</td><td><code>inbox_down</code></td><td>🟠 箱內向下</td></tr><tr><td><code>broken</code></td><td class='arrow'>→</td><td><code>below_down</code></td><td>🔴 箱下持續</td></tr><tr><td><code>reversing</code></td><td class='arrow'>→</td><td><code>below_up</code></td><td>🔄 箱下反彈</td></tr><tr><td><code>resumed_n</code></td><td class='arrow'>→</td><td><code>below_recovery</code></td><td>⚡ 箱下破底翻</td></tr><tr><td><code>unknown</code></td><td class='arrow'>→</td><td><code>unknown</code></td><td>⚪ 資料不足</td></tr></tbody></table><div style='color:#94a3b8;font-size:11px;margin-top:8px'>⚠ <code>watching</code> 預設映射到 <code>inbox_up</code>，但實際依方向再細分為 <code>inbox_up</code> / <code>inbox_down</code> / <code>inbox_side</code>。</div></div>
+
+<h2>⚙ 設定常數</h2>
+<div class='params'><div class='params-grid'><div class='param-cell'><div class='name'>DIRECTION_SLOPE_BARS</div><div class='value'>3</div><div class='desc'>方向判斷：近 N 根 close 算斜率</div></div><div class='param-cell'><div class='name'>SIDEWAYS_LOOKBACK_BARS</div><div class='value'>5</div><div class='desc'>盤整判斷：近 N 根 close 範圍</div></div><div class='param-cell'><div class='name'>SIDEWAYS_ATR_MULT</div><div class='value'>1.5</div><div class='desc'>盤整判斷：範圍 ÷ ATR ≤ 此值</div></div><div class='param-cell'><div class='name'>FAKE_BREAKOUT_WINDOW</div><div class='value'>5</div><div class='desc'>假突破時間窗：突破後 N 根內跌回</div></div><div class='param-cell'><div class='name'>BREAKOUT_PENDING_BARS</div><div class='value'>3</div><div class='desc'>突破/跌破確認：未滿 N 根</div></div><div class='param-cell'><div class='name'>COMPRESSION_LOOKBACK</div><div class='value'>5</div><div class='desc'>壓縮整理：盤整窗格</div></div><div class='param-cell'><div class='name'>COMPRESSION_VOL_RATIO</div><div class='value'>0.8</div><div class='desc'>壓縮整理：近 N 根均量 ÷ 20 根均量</div></div><div class='param-cell'><div class='name'>COMPRESSION_NEAR_SH_PCT</div><div class='value'>0.7</div><div class='desc'>壓縮整理：close 落在箱體上方比例</div></div></div></div>
+
+
+<div class="decisions">
+<h3>🚩 用戶決策清單（請 review 後回覆）</h3>
+<ol>
+  <li><strong>9 + 3 + 1 結構合理嗎？</strong>
+    <br>有沒有想新增/移除/合併的狀態？特別是 above_down 與 above_fake 的區隔是否清楚？
+  </li>
+  <li><strong>條件閾值合理嗎？</strong>
+    <br>方向斜率用近 3 根、盤整用近 5 根 + ATR×1.5、假突破窗 5 根 — 太嚴/太鬆？
+  </li>
+  <li><strong>命名格式</strong>：目前同時顯示 <code>above_up</code>（key）+ 「箱上推進」（label）。
+    <br><span class="recommend">⭐ 推薦：報告主顯示中文標籤，tooltip 內展示 key 與條件</span>
+  </li>
+  <li><strong>修飾詞顯示</strong>：
+    <br>(a) tooltip 內標註  (b) 主標籤旁加角標 ⏳/⚡  (c) 獨立 pill
+    <br><span class="recommend">⭐ 推薦：(a) tooltip + (b) 主標籤加角標（雙重保險）</span>
+  </li>
+  <li><strong>修飾詞優先序</strong>：當多個修飾詞同時觸發（如 compression + breakout_pending），
+    顯示哪個？建議 breakout/breakdown > compression。
+  </li>
+  <li><strong>是否要顯示舊→新映射過渡標籤</strong>？
+    <br>例如：「⏳ 箱上推進（原 running）」過渡期顯示 1-2 個月。
+  </li>
+  <li><strong>盤整 vs 箱內向上/向下的優先序</strong>：
+    <br>若斜率近乎 0 + 範圍小於 ATR×1.5 → 算盤整？
+    <br>若斜率正但仍在窄範圍內 → 算 inbox_up 還是 inbox_side？
+    <br><span class="recommend">⭐ 推薦：先判盤整 → 否則才看斜率</span>
+  </li>
+</ol>
+</div>
+
+
+<footer>
+本頁由 <code>src/agents/state_grid_preview.py</code> 渲染<br>
+狀態定義：<code>src/shared/state_grid.py</code><br>
+回覆設計決定後，將進入 Phase 2 (方向/盤整偵測 helpers) → Phase 3 (classify_n_state 重寫)
+</footer>
+</body></html>
