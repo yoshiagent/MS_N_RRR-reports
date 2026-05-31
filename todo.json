@@ -311,7 +311,7 @@
     {
       "id": "T-300",
       "category": "n_shape",
-      "title": "9 + 3 + 1 狀態系統重構（M1）",
+      "title": "多時段箱型狀態 9 + 3 + 1 系統重構（M1）",
       "source": "使用者規劃 + 規範 Part 2",
       "description": "從原 7 狀態升級為 9 + 3 + 1：\n  • 9 主狀態 = 3 位置 (箱上/箱內/箱下) × 3 方向 (向上/向下/特殊)\n  • 3 修飾詞 = 突破確認中 / 跌破確認中 / 壓縮整理\n  • 1 unknown\n  • 純資料定義在 src/shared/state_grid.py\n  • 方向用近 3 根 close 斜率；盤整用 ATR×1.5 範圍\n  • 假突破用 5 根 K 棒窗格偵測",
       "benefit": "更細緻、更貼近實務的狀態分類；可作為下游 filter 依據",
@@ -350,7 +350,7 @@
     {
       "id": "T-302",
       "category": "integration",
-      "title": "9 狀態 UI 視覺：漏斗 + pill + 健康度 badge（M3）",
+      "title": "多時段箱型狀態 UI 視覺：漏斗 + pill + 健康度 badge（M3）",
       "source": "使用者規劃",
       "description": "  • 主頁加流程 2 漏斗（HotFlow → N-Shape → Stock Ops → Pairs）\n  • 主頁加 N 形 9 狀態 3×3 mini-grid 卡片\n  • stock_ops_report 每檔加 N 形 pill + healthy badge + modifier 角標\n  • 4 個 pair report (RR/RRR/Custom/Dynamic) 每組加 A/B 雙股 state pill + healthy_pair badge\n  • 共用 helper：src/shared/pair_pills.py",
       "benefit": "視覺化 9 狀態系統與流程 2 全鏈；單頁可看到健康度判定",
@@ -493,5 +493,5 @@
       "status": "planned"
     }
   ],
-  "generated_at": "2026-05-31 20:38"
+  "generated_at": "2026-05-31 20:56"
 }
