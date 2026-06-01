@@ -119,7 +119,7 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 
 <h1>🌀 RRR Resonance — 共振配對偵測 <span style="color:#fcd34d;font-size:14px">v3 雙因子強化版</span></h1>
 <div class="sub">
-  資料日：2026-06-01 00:00:00 ｜ 產生時間：2026-06-01 09:38
+  資料日：2026-06-01 00:00:00 ｜ 產生時間：2026-06-01 10:13
   ｜ Lookback：<strong>252 天</strong>
   ｜ Schema：<code>v3_multi_factor</code>
 </div>
@@ -166,7 +166,7 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
   </div>
   <div class="stat-cell" title="L1 = 週期接近且相關不過高">
     <div class="label">L1 通過</div>
-    <div class="value yellow">266</div>
+    <div class="value yellow">245</div>
   </div>
   <div class="stat-cell" title="L2 = PLV ≥ 0.55 且 |Δφ-180°| ≤ 36°">
     <div class="label">L2 通過</div>
@@ -338,16 +338,6 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
   <text x="-3" y="33" font-size="7" fill="#10b981">理想 180°</text>
   <line x1="30" y1="30" x2="6.0" y2="20.1" stroke="#fcd34d" stroke-width="2.5"/>
   <circle cx="6.0" cy="20.1" r="3" fill="#fcd34d"/>
-</svg>
-<div class='phase-info'><strong>相位視覺化</strong>：黃色指針 = 兩股實際相位差<br><span class='hint'>右側藍 0° = 完全同相｜左側綠 180° = 完全反相（理想配對）</span></div></div></div><div class='pair-card l1'><div class='pair-head'><div class='pair-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3260" target="_blank" rel="noopener" title="TradingView 圖表 — 3260" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">威剛</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3260" target="_blank" rel="noopener" title="TradingView 圖表 — 3260" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3260</a>)</span><span class='pair-arrow'>⇄</span><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6488" target="_blank" rel="noopener" title="TradingView 圖表 — 6488" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">環球晶</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6488" target="_blank" rel="noopener" title="TradingView 圖表 — 6488" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6488</a>)</span></div><div class='pair-score' title='綜合分 0-100：cycle_match 20% + PLV 30% + 反相度 25% + 殘差負相關 10% + 滾動穩定 15%'>44<span class='lbl'>/ 100</span></div></div><div class='pair-pills-row'><span class='pp-row'><span class='pp-label'>A</span><span class='pp-pill' style='background:#10b98122;color:#10b981' title='多時段箱型狀態（週線）：above_up'>🟢 箱上推進</span><span class='pp-arrow'>·</span><span class='pp-label'>B</span><span class='pp-pill' style='background:#10b98122;color:#10b981' title='多時段箱型狀態（週線）：above_up'>🟢 箱上推進</span><span class='pp-health' style='background:#10b98122;color:#10b981' title='pair_health = both_healthy：兩股 N 形狀態交集判斷'>✅ 兩股皆健康</span></span> <span class='beta-cell' title='雙因子 β：TWII (大盤) + OTCI (中小型/科技)。R² = 雙因子總解釋力；獨立性 = 1−R²，個股獨立變異占比，越高越有輪動空間'>A: β_T=+0.39 β_O=-0.43 獨立=99% R²=1% ｜ B: β_T=+0.34 β_O=+1.10 獨立=75% R²=25%</span></div><div class='metric-grid'><div class='metric-cell' title='A 股的主週期（autocorrelation 偵測）'><span class='lbl'>T_A</span><span class='val'>22 天</span></div><div class='metric-cell' title='B 股的主週期'><span class='lbl'>T_B</span><span class='val'>24 天</span></div><div class='metric-cell' title='min(T_A, T_B) / max(T_A, T_B)：週期接近度，1.0 = 完全相同'><span class='lbl'>週期 match</span><span class='val green'>92%</span></div><div class='metric-cell' title='殘差相關（扣除 TWII β 後）— 真實獨立性；< 0 = 真反相'><span class='lbl'>ρ 殘差</span><span class='val yellow'>+0.12</span></div><div class='metric-cell' title='原始相關（含市場效應）— 通常為正，因為都跟大盤連動'><span class='lbl'>ρ 原始</span><span class='val yellow'>+0.08</span></div><div class='metric-cell' title='Phase Locking Value：相位差穩定度 0-1'><span class='lbl'>PLV</span><span class='val red'>0.28</span></div><div class='metric-cell' title='Hilbert 瞬時相位差的環形平均，180° = 完全反相'><span class='lbl'>相位差</span><span class='val'>169°</span></div><div class='metric-cell' title='|Δφ - 180°|，越小越接近反相理想'><span class='lbl'>距 180°</span><span class='val green'>11°</span></div><div class='metric-cell' title='T_avg / 2 — 完整反相週期一半的換股建議頻率'><span class='lbl'>建議換股頻</span><span class='val'>12 天</span></div></div><div class='phase-vis'>
-<svg class="phase-svg" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="30" cy="30" r="26" fill="none" stroke="#2d3f55" stroke-width="1.5"/>
-  <line x1="30" y1="30" x2="56" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.5"/>
-  <line x1="30" y1="30" x2="4" y2="30" stroke="#10b981" stroke-width="2" opacity="0.5" stroke-dasharray="2,2"/>
-  <text x="58" y="33" font-size="7" fill="#3b82f6">A</text>
-  <text x="-3" y="33" font-size="7" fill="#10b981">理想 180°</text>
-  <line x1="30" y1="30" x2="4.5" y2="25.2" stroke="#fcd34d" stroke-width="2.5"/>
-  <circle cx="4.5" cy="25.2" r="3" fill="#fcd34d"/>
 </svg>
 <div class='phase-info'><strong>相位視覺化</strong>：黃色指針 = 兩股實際相位差<br><span class='hint'>右側藍 0° = 完全同相｜左側綠 180° = 完全反相（理想配對）</span></div></div></div><div class='pair-card l1'><div class='pair-head'><div class='pair-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2105" target="_blank" rel="noopener" title="TradingView 圖表 — 2105" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">正新</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2105" target="_blank" rel="noopener" title="TradingView 圖表 — 2105" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2105</a>)</span><span class='pair-arrow'>⇄</span><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2886" target="_blank" rel="noopener" title="TradingView 圖表 — 2886" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">兆豐金</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2886" target="_blank" rel="noopener" title="TradingView 圖表 — 2886" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2886</a>)</span></div><div class='pair-score' title='綜合分 0-100：cycle_match 20% + PLV 30% + 反相度 25% + 殘差負相關 10% + 滾動穩定 15%'>43<span class='lbl'>/ 100</span></div></div><div class='pair-pills-row'><span class='pp-row'><span class='pp-label'>A</span><span class='pp-pill' style='background:#94a3b822;color:#94a3b8' title='多時段箱型狀態（週線）：inbox_side'>⚪ 箱內盤整</span><span class='pp-arrow'>·</span><span class='pp-label'>B</span><span class='pp-pill' style='background:#94a3b822;color:#94a3b8' title='多時段箱型狀態（週線）：inbox_side'>⚪ 箱內盤整</span><span class='pp-health' style='background:#94a3b822;color:#94a3b8' title='pair_health = none：兩股 N 形狀態交集判斷'>⚠ 兩股皆觀望/弱</span></span> <span class='beta-cell' title='雙因子 β：TWII (大盤) + OTCI (中小型/科技)。R² = 雙因子總解釋力；獨立性 = 1−R²，個股獨立變異占比，越高越有輪動空間'>A: β_T=+0.02 β_O=+0.12 獨立=98% R²=2% ｜ B: β_T=+0.18 β_O=-0.16 獨立=97% R²=3%</span></div><div class='metric-grid'><div class='metric-cell' title='A 股的主週期（autocorrelation 偵測）'><span class='lbl'>T_A</span><span class='val'>12 天</span></div><div class='metric-cell' title='B 股的主週期'><span class='lbl'>T_B</span><span class='val'>13 天</span></div><div class='metric-cell' title='min(T_A, T_B) / max(T_A, T_B)：週期接近度，1.0 = 完全相同'><span class='lbl'>週期 match</span><span class='val green'>92%</span></div><div class='metric-cell' title='殘差相關（扣除 TWII β 後）— 真實獨立性；< 0 = 真反相'><span class='lbl'>ρ 殘差</span><span class='val yellow'>+0.14</span></div><div class='metric-cell' title='原始相關（含市場效應）— 通常為正，因為都跟大盤連動'><span class='lbl'>ρ 原始</span><span class='val yellow'>+0.14</span></div><div class='metric-cell' title='Phase Locking Value：相位差穩定度 0-1'><span class='lbl'>PLV</span><span class='val red'>0.05</span></div><div class='metric-cell' title='Hilbert 瞬時相位差的環形平均，180° = 完全反相'><span class='lbl'>相位差</span><span class='val'>178°</span></div><div class='metric-cell' title='|Δφ - 180°|，越小越接近反相理想'><span class='lbl'>距 180°</span><span class='val green'>2°</span></div><div class='metric-cell' title='T_avg / 2 — 完整反相週期一半的換股建議頻率'><span class='lbl'>建議換股頻</span><span class='val'>6 天</span></div></div><div class='phase-vis'>
 <svg class="phase-svg" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
@@ -529,34 +519,62 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
   <line x1="30" y1="30" x2="56.0" y2="29.6" stroke="#fcd34d" stroke-width="2.5"/>
   <circle cx="56.0" cy="29.6" r="3" fill="#fcd34d"/>
 </svg>
+<div class='phase-info'><strong>相位視覺化</strong>：黃色指針 = 兩股實際相位差<br><span class='hint'>右側藍 0° = 完全同相｜左側綠 180° = 完全反相（理想配對）</span></div></div></div><div class='pair-card l1'><div class='pair-head'><div class='pair-name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2603" target="_blank" rel="noopener" title="TradingView 圖表 — 2603" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">長榮</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2603" target="_blank" rel="noopener" title="TradingView 圖表 — 2603" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2603</a>)</span><span class='pair-arrow'>⇄</span><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2887" target="_blank" rel="noopener" title="TradingView 圖表 — 2887" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">台新新光金</a><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2887" target="_blank" rel="noopener" title="TradingView 圖表 — 2887" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2887</a>)</span></div><div class='pair-score' title='綜合分 0-100：cycle_match 20% + PLV 30% + 反相度 25% + 殘差負相關 10% + 滾動穩定 15%'>36<span class='lbl'>/ 100</span></div></div><div class='pair-pills-row'><span class='pp-row'><span class='pp-label'>A</span><span class='pp-pill' style='background:#60a5fa22;color:#60a5fa' title='多時段箱型狀態（週線）：inbox_up'>🔵 箱內向上</span><span class='pp-arrow'>·</span><span class='pp-label'>B</span><span class='pp-pill' style='background:#94a3b822;color:#94a3b8' title='多時段箱型狀態（週線）：inbox_side'>⚪ 箱內盤整</span><span class='pp-health' style='background:#fcd34d22;color:#fcd34d' title='pair_health = a_only：兩股 N 形狀態交集判斷'>🟡 A 健康 / B 觀望</span></span> <span class='beta-cell' title='雙因子 β：TWII (大盤) + OTCI (中小型/科技)。R² = 雙因子總解釋力；獨立性 = 1−R²，個股獨立變異占比，越高越有輪動空間'>A: β_T=+0.07 β_O=+0.04 獨立=99% R²=1% ｜ B: β_T=+0.21 β_O=-0.28 獨立=97% R²=3%</span></div><div class='metric-grid'><div class='metric-cell' title='A 股的主週期（autocorrelation 偵測）'><span class='lbl'>T_A</span><span class='val'>37 天</span></div><div class='metric-cell' title='B 股的主週期'><span class='lbl'>T_B</span><span class='val'>38 天</span></div><div class='metric-cell' title='min(T_A, T_B) / max(T_A, T_B)：週期接近度，1.0 = 完全相同'><span class='lbl'>週期 match</span><span class='val green'>97%</span></div><div class='metric-cell' title='殘差相關（扣除 TWII β 後）— 真實獨立性；< 0 = 真反相'><span class='lbl'>ρ 殘差</span><span class='val yellow'>+0.06</span></div><div class='metric-cell' title='原始相關（含市場效應）— 通常為正，因為都跟大盤連動'><span class='lbl'>ρ 原始</span><span class='val yellow'>+0.06</span></div><div class='metric-cell' title='Phase Locking Value：相位差穩定度 0-1'><span class='lbl'>PLV</span><span class='val yellow'>0.54</span></div><div class='metric-cell' title='Hilbert 瞬時相位差的環形平均，180° = 完全反相'><span class='lbl'>相位差</span><span class='val'>66°</span></div><div class='metric-cell' title='|Δφ - 180°|，越小越接近反相理想'><span class='lbl'>距 180°</span><span class='val red'>114°</span></div><div class='metric-cell' title='T_avg / 2 — 完整反相週期一半的換股建議頻率'><span class='lbl'>建議換股頻</span><span class='val'>19 天</span></div></div><div class='phase-vis'>
+<svg class="phase-svg" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="30" cy="30" r="26" fill="none" stroke="#2d3f55" stroke-width="1.5"/>
+  <line x1="30" y1="30" x2="56" y2="30" stroke="#3b82f6" stroke-width="1.5" opacity="0.5"/>
+  <line x1="30" y1="30" x2="4" y2="30" stroke="#10b981" stroke-width="2" opacity="0.5" stroke-dasharray="2,2"/>
+  <text x="58" y="33" font-size="7" fill="#3b82f6">A</text>
+  <text x="-3" y="33" font-size="7" fill="#10b981">理想 180°</text>
+  <line x1="30" y1="30" x2="40.6" y2="6.2" stroke="#fcd34d" stroke-width="2.5"/>
+  <circle cx="40.6" cy="6.2" r="3" fill="#fcd34d"/>
+</svg>
 <div class='phase-info'><strong>相位視覺化</strong>：黃色指針 = 兩股實際相位差<br><span class='hint'>右側藍 0° = 完全同相｜左側綠 180° = 完全反相（理想配對）</span></div></div></div>
 
 
-<h2>5. 📊 回測驗證（過去 365 日）</h2>
+<h2>5. 📊 回測驗證 — 多期 + 含交易成本</h2>
 <div style="background:#0f1a2c;border:1px solid #2d3f55;border-radius:8px;padding:12px 16px;margin-bottom:12px;font-size:13px;color:#cbd5e1">
 <strong style="color:#93c5fd">策略</strong>：用兩股殘差差距 <code>gap = Σ(r_A_resid − r_B_resid)</code>，
 Z = (gap − MA60) / STD60；Z ≥ +2.0 換 B、Z ≤ −2.0 換 A。
 對照 50/50 等權買持。
-<br><br>
-<strong style="color:#fcd34d">勝率：</strong>50% （2 / 4 對勝出買持）
-<strong style="color:#10b981">｜ 整體平均超額：</strong>+62.9%
-<strong style="color:#10b981">｜ ⭐ 穩定對平均超額：</strong>+116.2%
+<br>
+<strong style="color:#fcd34d">交易成本</strong>：每次換股 <code>0.585%</code>
+(賣方 0.1425% 手續費 + 0.3% 證交稅 + 買方 0.1425% 手續費)
 </div>
+
+<h3 style="color:#93c5fd;font-size:14px;margin-top:14px">📅 多期回測對照</h3>
+<table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:6px">
+<thead><tr style="background:#0f1a2c;color:#94a3b8">
+<th style="padding:6px 8px">回測期</th>
+<th style="padding:6px 8px">測試對</th>
+<th style="padding:6px 8px">勝率</th>
+<th style="text-align:right;padding:6px 8px">平均超額</th>
+<th style="text-align:right;padding:6px 8px">⭐ 穩定對超額</th>
+<th style="padding:6px 8px">平均換股</th>
+<th style="text-align:right;padding:6px 8px">成本拖累</th>
+</tr></thead>
+<tbody style="color:#cbd5e1"><tr><td style='text-align:center'><strong>180 天</strong></td><td style='text-align:center'>4</td><td style='text-align:center'>75%</td><td style='text-align:right;font-weight:bold' class='green'>+7.4%</td><td style='text-align:right;font-weight:bold' class='red'>-6.2%</td><td style='text-align:center'>1.8</td><td style='text-align:right;color:#fda4af'>+1.49%</td></tr><tr><td style='text-align:center'><strong>365 天</strong></td><td style='text-align:center'>4</td><td style='text-align:center'>50%</td><td style='text-align:right;font-weight:bold' class='green'>+55.8%</td><td style='text-align:right;font-weight:bold' class='green'>+104.9%</td><td style='text-align:center'>4.2</td><td style='text-align:right;color:#fda4af'>+6.65%</td></tr><tr><td style='text-align:center'><strong>730 天</strong></td><td style='text-align:center'>4</td><td style='text-align:center'>25%</td><td style='text-align:right;font-weight:bold' class='red'>-50.0%</td><td style='text-align:right;font-weight:bold' class='red'>-96.2%</td><td style='text-align:center'>6.5</td><td style='text-align:right;color:#fda4af'>+6.54%</td></tr></tbody>
+</table>
+
+<div style='background:rgba(239,68,68,0.08);border-left:3px solid #ef4444;padding:10px 14px;margin:12px 0;border-radius:0 6px 6px 0;font-size:13px;color:#fda4af'><strong>⚠ 警示：跨期穩定性</strong>：在 180d / 365d / 730d 三個期間都勝出買持的配對 <strong>0 對</strong>。表示當前 v3 算法找到的『穩定對』可能是<strong>過度擬合特定時段</strong>，需配合風控、不可盲信。</div>
+
+<h3 style="color:#93c5fd;font-size:14px;margin-top:14px">📋 365 天主結果（net 含成本）</h3>
 <table style="width:100%;border-collapse:collapse;font-size:12px">
 <thead><tr style="background:#0f1a2c;color:#94a3b8">
 <th style="text-align:left;padding:6px 8px">配對</th>
 <th style="padding:6px 8px">穩定</th>
-<th style="text-align:right;padding:6px 8px">策略 %</th>
+<th style="text-align:right;padding:6px 8px">策略 %（net）</th>
+<th style="text-align:right;padding:6px 8px">毛 %</th>
 <th style="text-align:right;padding:6px 8px">買持 %</th>
 <th style="text-align:right;padding:6px 8px">超額 %</th>
 <th style="padding:6px 8px">Sharpe</th>
 <th style="padding:6px 8px">MaxDD</th>
 <th style="padding:6px 8px">換股</th>
 </tr></thead>
-<tbody style="color:#cbd5e1"><tr><td><strong>金像電</strong> <span style='color:#94a3b8'>/</span> <strong>正文</strong> <span style='color:#64748b;font-size:11px'>(2368/4906)</span></td><td style='text-align:center'>✅</td><td style='text-align:right'>+461.1%</td><td style='text-align:right;color:#94a3b8'>+223.0%</td><td style='text-align:right;font-weight:bold' class='green'>+238.2%</td><td style='text-align:center'>2.15</td><td style='text-align:center;color:#fda4af'>-41.7%</td><td style='text-align:center'>6</td></tr><tr><td><strong>華航</strong> <span style='color:#94a3b8'>/</span> <strong>緯創</strong> <span style='color:#64748b;font-size:11px'>(2610/3231)</span></td><td style='text-align:center'>✅</td><td style='text-align:right'>+4.4%</td><td style='text-align:right;color:#94a3b8'>+10.1%</td><td style='text-align:right;font-weight:bold' class='red'>-5.7%</td><td style='text-align:center'>0.10</td><td style='text-align:center;color:#fda4af'>-32.1%</td><td style='text-align:center'>4</td></tr><tr><td><strong>中信金</strong> <span style='color:#94a3b8'>/</span> <strong>明泰</strong> <span style='color:#64748b;font-size:11px'>(2891/3380)</span></td><td style='text-align:center'>—</td><td style='text-align:right'>+54.5%</td><td style='text-align:right;color:#94a3b8'>+32.7%</td><td style='text-align:right;font-weight:bold' class='green'>+21.8%</td><td style='text-align:center'>0.88</td><td style='text-align:center;color:#fda4af'>-28.0%</td><td style='text-align:center'>4</td></tr><tr><td><strong>緯創</strong> <span style='color:#94a3b8'>/</span> <strong>巨大</strong> <span style='color:#64748b;font-size:11px'>(3231/9921)</span></td><td style='text-align:center'>—</td><td style='text-align:right'>-20.6%</td><td style='text-align:right;color:#94a3b8'>-17.9%</td><td style='text-align:right;font-weight:bold' class='red'>-2.8%</td><td style='text-align:center'>-0.38</td><td style='text-align:center;color:#fda4af'>-37.2%</td><td style='text-align:center'>3</td></tr></tbody>
+<tbody style="color:#cbd5e1"><tr><td><strong>金像電</strong> <span style='color:#94a3b8'>/</span> <strong>正文</strong> <span style='color:#64748b;font-size:11px'>(2368/4906)</span></td><td style='text-align:center'>✅</td><td style='text-align:right'>+436.1%</td><td style='text-align:right;color:#64748b;font-size:11px'>+455.3%</td><td style='text-align:right;color:#94a3b8'>+220.4%</td><td style='text-align:right;font-weight:bold' class='green'>+215.7%</td><td style='text-align:center'>2.09</td><td style='text-align:center;color:#fda4af'>-41.7%</td><td style='text-align:center'>6</td></tr><tr><td><strong>華航</strong> <span style='color:#94a3b8'>/</span> <strong>緯創</strong> <span style='color:#64748b;font-size:11px'>(2610/3231)</span></td><td style='text-align:center'>✅</td><td style='text-align:right'>+2.4%</td><td style='text-align:right;color:#64748b;font-size:11px'>+4.8%</td><td style='text-align:right;color:#94a3b8'>+8.3%</td><td style='text-align:right;font-weight:bold' class='red'>-6.0%</td><td style='text-align:center'>0.05</td><td style='text-align:center;color:#fda4af'>-32.1%</td><td style='text-align:center'>4</td></tr><tr><td><strong>中信金</strong> <span style='color:#94a3b8'>/</span> <strong>明泰</strong> <span style='color:#64748b;font-size:11px'>(2891/3380)</span></td><td style='text-align:center'>—</td><td style='text-align:right'>+53.5%</td><td style='text-align:right;color:#64748b;font-size:11px'>+57.1%</td><td style='text-align:right;color:#94a3b8'>+34.5%</td><td style='text-align:right;font-weight:bold' class='green'>+19.0%</td><td style='text-align:center'>0.86</td><td style='text-align:center;color:#fda4af'>-28.5%</td><td style='text-align:center'>4</td></tr><tr><td><strong>緯創</strong> <span style='color:#94a3b8'>/</span> <strong>巨大</strong> <span style='color:#64748b;font-size:11px'>(3231/9921)</span></td><td style='text-align:center'>—</td><td style='text-align:right'>-24.8%</td><td style='text-align:right;color:#64748b;font-size:11px'>-23.5%</td><td style='text-align:right;color:#94a3b8'>-19.1%</td><td style='text-align:right;font-weight:bold' class='red'>-5.7%</td><td style='text-align:center'>-0.47</td><td style='text-align:center;color:#fda4af'>-38.5%</td><td style='text-align:center'>3</td></tr></tbody>
 </table>
 <div style="color:#64748b;font-size:11px;margin-top:8px">
-回測假設：無交易成本、收盤價成交、100% 倉位切換、起始持 A
+回測假設：收盤價成交、100% 倉位切換、起始持 A、含交易成本（0.585% / 換股）
 </div>
 
 
