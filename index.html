@@ -175,36 +175,66 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
 </style>
 </head><body>
 <h1>MS_N_RR/RRR Ver.A 報告中心</h1>
-<div class="sub">資料日：2026-06-01 ｜ 產生時間：2026-06-01 15:41</div>
+<div class="sub">資料日：2026-06-01 ｜ 產生時間：2026-06-01 16:11</div>
 
 
 <div class="funnel-wrap">
-  <div class="funnel-title">🔁 流程 2：主流選股 → 9 狀態 → 健康過濾 → 配對
-    <span class="badge">M2 上線</span>
+  <div class="funnel-title">🔁 流程：主流選股 → 多時段箱型 → 健康過濾 → 配對訊號
+    <span class="badge">2026-06-01</span>
   </div>
   <div class="funnel">
-    <div class="funnel-stage green" title="HotFlow A 級（主流形成中）+ B 級（觀察中）合計，作為下游候選池起點">
+    <div class="funnel-stage green" title="① HotFlow 主流偵測 — 全市場 ~1,935 檔個股按 7 個 PR 維度合成主流評分 0-100。
+數字 17 = A 級 (9) + B 級 (8) 個股總數
+  A 級：主流形成中（PR ≥ 80 + 5 條件全達標）
+  B 級：觀察中（PR 60-80 但 5 條件未全部達標）
+C 級會被排除不進入下游池（過熱或結構轉空）
+作用：作為配對發現與 Stock Ops 的候選池起點">
       <div class="stage-name">① HotFlow A+B</div>
       <div class="stage-num">17</div>
-      <div class="stage-extra">主流候選</div>
+      <div class="stage-extra">主流候選 (A=9/B=8)</div>
     </div>
     <div class="funnel-arrow">→</div>
-    <div class="funnel-stage blue" title="多時段箱型狀態 Agent：對候選池跑 9 + 3 + 1 狀態分類（日/週/月三時段）">
+    <div class="funnel-stage blue" title="② 多時段箱型狀態 — 對候選池跑 9 主狀態 + 3 修飾詞 + 1 unknown 分類。
+數字 67 = 進入箱型偵測池的候選股數
+副資訊「三時段一致 21」= 日/週/月三時段都在「箱上推進 / 箱上回測」家族的個股數，代表「真正進入波段上升」最強訊號
+
+9 主狀態 = 3 位置（箱上/箱內/箱下）× 3 方向（向上/向下/特殊）
+位置：close 與最近 confirmed SH/SL 的關係
+方向：近 3 根 close 斜率">
       <div class="stage-name">② 多時段箱型 9 狀態</div>
       <div class="stage-num">67</div>
       <div class="stage-extra">三時段一致 21 檔</div>
     </div>
     <div class="funnel-arrow">→</div>
-    <div class="funnel-stage amber" title="Stock Ops 篩出符合健康箱型家族（above_up / above_down / below_recovery / inbox_up）的候選">
-      <div class="stage-name">③ Stock Ops Healthy</div>
+    <div class="funnel-stage amber" title="③ 操作 Agent healthy filter — 篩出箱型 healthy 家族的個股。
+數字 33/47 = healthy 數 / 操作 Agent 候選總數
+健康占比 70% = healthy ÷ 候選總數
+
+『健康家族』定義：
+  • above_up（箱上推進）
+  • above_down（箱上回測，仍在 SH 之上）
+  • below_recovery（破底翻成功）
+  • inbox_up（箱內向上嘗試突破）
+
+非健康族（above_fake 假突破 / below_down 持續跌 / inbox_down 箱內向下）會被排除或降級為「觀察」">
+      <div class="stage-name">③ 操作 Agent Healthy</div>
       <div class="stage-num">33/47</div>
       <div class="stage-extra">健康占比 70%</div>
     </div>
     <div class="funnel-arrow">→</div>
-    <div class="funnel-stage orange" title="RSR + RRR + 自選 + 動態 RSR 中兩股皆 healthy 的配對訊號">
+    <div class="funnel-stage orange" title="④ Healthy Pair 訊號 — 配對中兩股皆 healthy 的訊號數。
+數字 259/344 = 兩股皆 healthy 的配對 / 總配對數
+
+明細：
+  RSR (相對強度輪動)：190/190
+  RRR (Z60 共振輪動)：65/144
+  自選配對：2/5
+  動態 RSR：2/5
+
+『healthy_pair=True』表示配對中 A 股 + B 股都屬於箱型 healthy 家族，可優先採信換股訊號">
       <div class="stage-name">④ Healthy Pair 訊號</div>
       <div class="stage-num">259/344</div>
-      <div class="stage-extra">RR/RRR/Custom/Dynamic</div>
+      <div class="stage-extra">RSR 190 / RRR 65 / 自選 2 / 動態 2</div>
     </div>
   </div>
 </div>
