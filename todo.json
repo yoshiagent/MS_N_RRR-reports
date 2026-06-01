@@ -309,6 +309,26 @@
       "note": "✅ M1-M3 流程 2 已完成；現可繼承 healthy_pair 標記"
     },
     {
+      "id": "T-305",
+      "category": "integration",
+      "title": "M5 流程 3：配對發現 + 操作 Agent 整合（已完成）",
+      "source": "使用者規劃 2026-06-01",
+      "description": "依使用者澄清的流程重構：\n  HotFlow → 多時段箱型 healthy filter\n    ├ RSR 配對發現 (rr_pair) → 系統配對池\n    └ RRR Resonance 配對發現 → 系統配對池\n  + 自選配對表 → 自選配對池\n  → 操作 Agent (合併 n_pattern 5 維評分 + stock_ops 5 階段)\n  → 5 階段建議（加碼/佈局/持有/觀察/減碼）+ 進場決策四維\n\n次要訊號保留為「觀察/績效用」：\n  RRR 共振輪動 (Z60 折返)\n  動態 RSR (vol-adaptive 3 段)\n\n主要改動：\n  • RSR 輸入改為 stock_ops 中 n_shape_healthy=True 的池\n  • 操作 Agent (stock_ops) 加 n_pattern 5 維 + pair_signals 欄位\n  • 主頁卡標籤化「次要」+ 報告頁 banner\n  • 晨報換股訊號分主/次區塊\n  • 主頁「股票操作 Agent」→「操作 Agent ⭐」",
+      "benefit": "釐清訊號層級 / 統一操作入口 / 簡化決策路徑",
+      "effort": "M",
+      "priority": "P0",
+      "status": "done",
+      "files": [
+        "src/orchestrator.py",
+        "src/agents/stock_ops.py",
+        "src/agents/index_builder.py",
+        "src/agents/rrr_report.py",
+        "src/agents/dynamic_rr_report.py",
+        "src/agents/daily_briefing.py",
+        "src/agents/stock_ops_report.py"
+      ]
+    },
+    {
       "id": "T-300",
       "category": "n_shape",
       "title": "多時段箱型狀態 9 + 3 + 1 系統重構（M1）",
@@ -527,5 +547,5 @@
       "status": "planned"
     }
   ],
-  "generated_at": "2026-06-01 15:30"
+  "generated_at": "2026-06-01 18:00"
 }

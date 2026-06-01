@@ -71,7 +71,7 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 
 <h1>🗄 DuckDB 資料庫健康檢查</h1>
 <div class='sub'>
-  資料日：2026-06-01 ｜ 產生時間：2026-06-01 15:29:55
+  資料日：2026-06-01 ｜ 產生時間：2026-06-01 18:00:03
   ｜ 來源：<code>stockHisData/stock_data/db_health.py</code>
   ｜ 每日 orchestrator step 0 自動執行
 </div>
@@ -116,10 +116,10 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
     &quot;price&quot;: 2050939,
     &quot;indices&quot;: 2129,
     &quot;institutional&quot;: 469191,
-    &quot;futures&quot;: 238,
-    &quot;macro&quot;: 3353,
+    &quot;futures&quot;: 239,
+    &quot;macro&quot;: 3354,
     &quot;symbols&quot;: 1935,
-    &quot;signal_history&quot;: 53504,
+    &quot;signal_history&quot;: 53884,
     &quot;update_log&quot;: 1
   }
 }</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>重複資料</span><span class='check-cat'>🛡 資料完整性</span><span class='check-pill' style='background:#10b98133;color:#10b981'>healthy</span></div><div class='check-msg'>price 表無重複 (symbol, date) 配對</div><details class='detail'><summary>查看細節</summary><pre>{
@@ -132,22 +132,22 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
   &quot;zero_vol_pct&quot;: 1.26
 }</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>關鍵指數完整性</span><span class='check-cat'>📊 資料覆蓋</span><span class='check-pill' style='background:#10b98133;color:#10b981'>healthy</span></div><div class='check-msg'>全部 2 個關鍵指數齊全</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;latest_per_index&quot;: {
-    &quot;TWII&quot;: {
-      &quot;last_date&quot;: &quot;2026-06-01&quot;,
-      &quot;rows&quot;: 1066
-    },
     &quot;OTCI&quot;: {
       &quot;last_date&quot;: &quot;2026-05-29&quot;,
       &quot;rows&quot;: 1063
+    },
+    &quot;TWII&quot;: {
+      &quot;last_date&quot;: &quot;2026-06-01&quot;,
+      &quot;rows&quot;: 1066
     }
   }
 }</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>輔助資料時效</span><span class='check-cat'>📅 資料時效</span><span class='check-pill' style='background:#10b98133;color:#10b981'>healthy</span></div><div class='check-msg'>期貨/總經/三大法人皆 ≤ 7 天</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;futures&quot;: {
-    &quot;last_date&quot;: &quot;2026-05-29&quot;,
-    &quot;days_lag&quot;: 3
+    &quot;last_date&quot;: &quot;2026-06-01&quot;,
+    &quot;days_lag&quot;: 0
   },
   &quot;macro&quot;: {
-    &quot;VIX&quot;: &quot;2026-05-29&quot;,
+    &quot;VIX&quot;: &quot;2026-06-01&quot;,
     &quot;SOX&quot;: &quot;2026-05-22&quot;,
     &quot;USDTWD&quot;: &quot;2026-06-01&quot;
   },
