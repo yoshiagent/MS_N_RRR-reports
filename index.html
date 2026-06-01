@@ -175,11 +175,11 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
 </style>
 </head><body>
 <h1>MS_N_RR/RRR Ver.A 報告中心</h1>
-<div class="sub">資料日：2026-06-01 ｜ 產生時間：2026-06-01 16:31</div>
+<div class="sub">資料日：2026-06-01 ｜ 產生時間：2026-06-01 17:31</div>
 
 
 <div class="funnel-wrap">
-  <div class="funnel-title">🔁 流程：主流選股 (HotFlow) → 多時段箱型 (N-Shape) → 健康過濾 (Healthy Filter) → 配對訊號 (Pair Signals)
+  <div class="funnel-title">🔁 流程：主流選股 → 多時段箱型 → 健康過濾 → 配對訊號
     <span class="badge">2026-06-01</span>
   </div>
   <div class="funnel">
@@ -189,7 +189,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
   B 級：觀察中（PR 60-80 但 5 條件未全部達標）
 C 級會被排除不進入下游池（過熱或結構轉空）
 作用：作為配對發現與操作 Agent (Stock Ops) 的候選池起點">
-      <div class="stage-name">① 主流偵測 (HotFlow) A+B</div>
+      <div class="stage-name">① 主流偵測 A+B</div>
       <div class="stage-num">17</div>
       <div class="stage-extra">主流候選 (A=9/B=8)</div>
     </div>
@@ -201,7 +201,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 9 主狀態 = 3 位置（箱上/箱內/箱下）× 3 方向（向上/向下/特殊）
 位置：close 與最近 confirmed SH/SL 的關係
 方向：近 3 根 close 斜率">
-      <div class="stage-name">② 多時段箱型 (N-Shape) 9 狀態</div>
+      <div class="stage-name">② 多時段箱型 9 狀態</div>
       <div class="stage-num">67</div>
       <div class="stage-extra">三時段一致 21 檔</div>
     </div>
@@ -217,7 +217,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
   • 箱內向上 (inbox_up)
 
 非健康族（假突破 above_fake / 持續跌 below_down / 箱內向下 inbox_down）會被排除或降級為「觀察」">
-      <div class="stage-name">③ 操作 Agent (Stock Ops) 健康篩選</div>
+      <div class="stage-name">③ 操作 Agent 健康篩選</div>
       <div class="stage-num">33/47</div>
       <div class="stage-extra">健康占比 70%</div>
     </div>
@@ -232,7 +232,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
   動態相對強度輪動 (Dynamic RSR)：2/5
 
 『健康配對 (healthy_pair=True)』表示配對中 A 股 + B 股都屬於箱型健康家族，可優先採信換股訊號">
-      <div class="stage-name">④ 健康配對 (Healthy Pair) 訊號</div>
+      <div class="stage-name">④ 健康配對訊號</div>
       <div class="stage-num">259/344</div>
       <div class="stage-extra">RSR 190 / RRR 65 / 自選 2 / 動態 2</div>
     </div>
@@ -298,16 +298,16 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 
 <h2>2. 系統流程 (Main Pipeline) — 主訊號路徑</h2>
 <div style="color:#94a3b8;font-size:12px;margin-bottom:8px">
-主流偵測 (HotFlow) ➝ 多時段箱型 (N-Shape) healthy filter ➝ 配對發現（RSR / RRR Resonance）➝ + 自選池 (Custom Pairs) ➝ <b style="color:#fb923c">操作 Agent (Stock Ops) ⭐</b>
+主流偵測 ➝ 多時段箱型健康過濾 ➝ 配對發現（RSR / RRR Resonance）➝ + 自選池 ➝ <b style="color:#fb923c">操作 Agent ⭐</b>
 </div>
 
 <h3 style="font-size:14px;color:#94a3b8;margin:14px 0 6px;border-left:3px solid #3b82f6;padding-left:10px">
-  ① 環境與主流 (Environment & HotFlow) — 系統選股入口
+  ① 環境與主流 — 系統選股入口
 </h3>
 <div class="summary-grid">
   
     <div class="summary-card">
-      <div class="head"><div class="title" title="MS-Agent v2：市場結構監控中心，整合 M1-M6 + 溫度 + RR 環境 + 風險">MS-Agent v2 監控</div><div class="icon">🎛</div></div>
+      <div class="head"><div class="title" title="MS-Agent v2：市場結構監控中心，整合 M1-M6 + 溫度 + RR 環境 + 風險">市場結構監控</div><div class="icon">🎛</div></div>
       <div class="dist" style="font-size:11px;color:#64748b">市場結構監控中心 ｜ M1-M6 整合</div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px">
         <div title="市場溫度 0-100：8 因子加權合成" style="text-align:center;padding:6px;background:#0f1a2c;border-radius:4px">
@@ -328,7 +328,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
     
   
     <div class="summary-card">
-      <div class="head"><div class="title" title="主流偵測 (HotFlow)：全市場 ~1,935 檔股票的主流偵測 Agent，按 7 個 PR 維度加權成主流評分 0-100，分成 A/B/C 三級">主流偵測 (HotFlow)</div><div class="icon">🔥</div></div>
+      <div class="head"><div class="title" title="主流偵測 (HotFlow)：全市場 ~1,935 檔股票的主流偵測 Agent，按 7 個 PR 維度加權成主流評分 0-100，分成 A/B/C 三級">主流偵測</div><div class="icon">🔥</div></div>
       <div class="dist" title="A=主流形成中（≥70分），B=觀察中（60-70），C=過熱排除（<60 或結構轉空）">
         <span class="green">A 9</span> ／
         <span class="yellow">B 8</span> ／
@@ -341,12 +341,12 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 </div>
 
 <h3 style="font-size:14px;color:#94a3b8;margin:14px 0 6px;border-left:3px solid #60a5fa;padding-left:10px">
-  ② 多時段箱型狀態 (N-Shape) — 健康過濾 (Healthy Filter)
+  ② 多時段箱型狀態 — 健康過濾
 </h3>
 <div class="summary-grid">
   
     <div class="summary-card">
-      <div class="head"><div class="title" title="多時段箱型狀態 (N-Shape)：日/週/月 × 9 主狀態 + 3 修飾詞；箱型 = 位置(箱上/箱內/箱下) × 方向(向上/向下/特殊)；N 形為 above_up 狀態的別稱">多時段箱型狀態 (N-Shape)</div><div class="icon">🔁</div></div>
+      <div class="head"><div class="title" title="多時段箱型狀態 (N-Shape)：日/週/月 × 9 主狀態 + 3 修飾詞；箱型 = 位置(箱上/箱內/箱下) × 方向(向上/向下/特殊)；N 形為 above_up 狀態的別稱">多時段箱型狀態</div><div class="icon">🔁</div></div>
       <div class="dist" title="週線分佈：箱上(綠) / 箱內(藍灰) / 箱下(紅)">
         <span class="green">三時段一致 21</span> ／
         <span class="yellow">破底翻成功 0</span> ／
@@ -360,12 +360,12 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 </div>
 
 <h3 style="font-size:14px;color:#94a3b8;margin:14px 0 6px;border-left:3px solid #10b981;padding-left:10px">
-  ③ 配對發現 (Pair Discovery) — 並列輸出系統配對池
+  ③ 配對發現 — 並列輸出系統配對池
 </h3>
 <div class="summary-grid">
   
     <div class="summary-card">
-      <div class="head"><div class="title" title="相對強度輪動 (RSR)：Relative Strength Rotation 簡版。RS=ln(A/B)，靠 RS 的 20 日均穿越觸發換股，訊號多但雜訊較大">相對強度輪動 (RSR)</div><div class="icon">🔁</div></div>
+      <div class="head"><div class="title" title="相對強度輪動 (RSR)：Relative Strength Rotation 簡版。RS=ln(A/B)，靠 RS 的 20 日均穿越觸發換股，訊號多但雜訊較大">相對強度輪動</div><div class="icon">🔁</div></div>
       <div class="dist" style="font-size:11px;color:#64748b" title="RS = ln(A 收盤 / B 收盤)；MA20 = RS 的 20 日均；穿越=由下往上(switch_to_A) 或由上往下(switch_to_B)">簡版：RS_MA20 穿越觸發</div>
       <div class="dist" title="配對=評估的配對數；換股=今日 switch 訊號；續抱=維持原持倉的訊號">
         <span class="green">配對 190</span> ／
@@ -378,7 +378,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
     
   
     <div class="summary-card">
-      <div class="head"><div class="title" title="共振配對 (RRR Resonance) v3：雙因子 (TWII+OTCI) 去因子化 + 滾動穩定性 + 1 年回測驗證">共振配對 (RRR Resonance)</div><div class="icon">🌀</div></div>
+      <div class="head"><div class="title" title="共振配對 (RRR Resonance) v3：雙因子 (TWII+OTCI) 去因子化 + 滾動穩定性 + 1 年回測驗證">共振配對</div><div class="icon">🌀</div></div>
       <div class="dist" title="L1 = 週期接近 + 殘差弱相關；L2 = PLV ≥ 0.55 + |Δφ-180°| ≤ 36°；穩定 = 滾動 ≥ 67% 子窗達標">
         <span class="yellow">L1 245</span> ／
         <span class="green">L2 4</span> ／
@@ -393,7 +393,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 </div>
 
 <h3 style="font-size:14px;color:#94a3b8;margin:14px 0 6px;border-left:3px solid #fcd34d;padding-left:10px">
-  ④ 自選配對池 (Custom Pairs)
+  ④ 自選配對池
 </h3>
 <div class="summary-grid">
   
@@ -412,12 +412,12 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 </div>
 
 <h3 style="font-size:14px;color:#fb923c;margin:14px 0 6px;border-left:3px solid #fb923c;padding-left:10px">
-  ⑤ 操作 Agent (Stock Ops) ⭐ — 今日操作主入口（5 階段建議）
+  ⑤ 操作 Agent ⭐ — 今日操作主入口（5 階段建議）
 </h3>
 <div class="summary-grid">
   
     <div class="summary-card" style="border:2px solid #fb923c">
-      <div class="head"><div class="title" title="操作 Agent (Stock Ops) ⭐：今日操作主入口；整合 主流偵測 (HotFlow) + 多時段箱型 + 波段進場結構 5 維 + 配對訊號 + 進場決策四維 → 5 階段建議">操作 Agent (Stock Ops) ⭐</div><div class="icon">🎯</div></div>
+      <div class="head"><div class="title" title="操作 Agent (Stock Ops) ⭐：今日操作主入口；整合 主流偵測 (HotFlow) + 多時段箱型 + 波段進場結構 5 維 + 配對訊號 + 進場決策四維 → 5 階段建議">操作 Agent ⭐</div><div class="icon">🎯</div></div>
       <div class="dist" title="加碼/佈局/持有/觀察/減碼 5 階段">
         <span class="green">加 2</span> ／
         <span class="green">佈 6</span> ／
@@ -441,7 +441,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 <div class="summary-grid">
   
     <div class="summary-card">
-      <div class="head"><div class="title" title="波段進場結構 (N-Pattern)：5 維綜合評分（月線突破×25 + 週MA20×25 + 週底底高×20 + 回測MA20不破×15 + 量縮修正×15）；≥ 70 分 = 結構齊備">波段進場結構 (N-Pattern)</div><div class="icon">📈</div></div>
+      <div class="head"><div class="title" title="波段進場結構 (N-Pattern)：5 維綜合評分（月線突破×25 + 週MA20×25 + 週底底高×20 + 回測MA20不破×15 + 量縮修正×15）；≥ 70 分 = 結構齊備">波段進場結構</div><div class="icon">📈</div></div>
       <div class="dist" title="候選=N型成立（≥70分），觀察=部分維度未到位（50-69），否決=不符合 N 型（<50）">
         <span class="green">候選 25</span> ／
         <span class="yellow">觀察 2</span> ／
@@ -453,7 +453,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
     
   
     <div class="summary-card">
-      <div class="head"><div class="title" title="共振輪動 (RRR)：Relative Rotation with Resonance 嚴格版。三維評分（cycle + phase + mean_reversion）+ Z60 折返 + 風控閘三層篩選，追求高勝率低頻換股">共振輪動 (RRR)</div><div class="icon">🔄</div></div>
+      <div class="head"><div class="title" title="共振輪動 (RRR)：Relative Rotation with Resonance 嚴格版。三維評分（cycle + phase + mean_reversion）+ Z60 折返 + 風控閘三層篩選，追求高勝率低頻換股">共振輪動</div><div class="icon">🔄</div></div>
       <div class="dist" style="font-size:11px;color:#64748b" title="cycle = Z60 在視窗內的零軸交叉次數（規律性）；雙邊極端折返 = 兩側都曾觸 ±2 才換股">嚴格版：cycle + 雙邊極端折返</div>
       <div class="dist" title="配對=tradable 的兩兩配對組數；換股=今日 switch 訊號數；放行=通過風控閘的訊號（主頁只顯示放行）">
         <span class="green">配對 144</span> ／
@@ -466,7 +466,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
     
   
     <div class="summary-card">
-      <div class="head"><div class="title" title="回測 (Backtest)：歷史 Z60 折返訊號的勝率與超額報酬統計，驗證 RSR/RRR 策略在真實價格上的表現">回測 (Backtest)</div><div class="icon">📊</div></div>
+      <div class="head"><div class="title" title="回測 (Backtest)：歷史 Z60 折返訊號的勝率與超額報酬統計，驗證 RSR/RRR 策略在真實價格上的表現">回測</div><div class="icon">📊</div></div>
       <div class="dist">近 4 年 Z60 折返訊號回測 · 81 KB</div>
       <div class="top3"><div class='item muted'>跑 python -m src.backtest.engine</div></div>
       <a class='detail-link' href='backtest.html'>看完整回測報告 →</a>
@@ -478,7 +478,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 <div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">飛捷</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6206</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2379" target="_blank" rel="noopener" title="TradingView 圖表 — 2379" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">瑞昱</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2379" target="_blank" rel="noopener" title="TradingView 圖表 — 2379" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2379</a>) <span class='meta'>Z60=-1.2 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">飛捷</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6206</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2603" target="_blank" rel="noopener" title="TradingView 圖表 — 2603" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">長榮</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2603" target="_blank" rel="noopener" title="TradingView 圖表 — 2603" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2603</a>) <span class='meta'>Z60=1.21 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3034" target="_blank" rel="noopener" title="TradingView 圖表 — 3034" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">聯詠</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3034" target="_blank" rel="noopener" title="TradingView 圖表 — 3034" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3034</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">中信金</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2891</a>) <span class='meta'>Z60=0.29 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3034" target="_blank" rel="noopener" title="TradingView 圖表 — 3034" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">聯詠</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3034" target="_blank" rel="noopener" title="TradingView 圖表 — 3034" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3034</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2603" target="_blank" rel="noopener" title="TradingView 圖表 — 2603" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">長榮</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2603" target="_blank" rel="noopener" title="TradingView 圖表 — 2603" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2603</a>) <span class='meta'>Z60=0.85 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">飛捷</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6206</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">中信金</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2891</a>) <span class='meta'>Z60=0.89 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">飛捷</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6206</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2449" target="_blank" rel="noopener" title="TradingView 圖表 — 2449" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">京元電子</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2449" target="_blank" rel="noopener" title="TradingView 圖表 — 2449" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2449</a>) <span class='meta'>Z60=0.98 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2449" target="_blank" rel="noopener" title="TradingView 圖表 — 2449" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">京元電子</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2449" target="_blank" rel="noopener" title="TradingView 圖表 — 2449" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2449</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3596" target="_blank" rel="noopener" title="TradingView 圖表 — 3596" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">智易</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3596" target="_blank" rel="noopener" title="TradingView 圖表 — 3596" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3596</a>) <span class='meta'>Z60=0.56 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='action-card'><div class='main'>賣 <span style='color:#94a3b8'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">飛捷</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6206</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2882" target="_blank" rel="noopener" title="TradingView 圖表 — 2882" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">國泰金</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2882" target="_blank" rel="noopener" title="TradingView 圖表 — 2882" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2882</a>) <span class='meta'>Z60=0.81 ｜ conf=90</span></div><div class='pos'>100%</div></div><div class='muted' style='font-size:12px;margin-top:6px'>… 另有 69 筆放行，見 <a href='rrr.html' style='color:#60a5fa'>RRR 詳細頁</a></div>
 
 <h2>5. 詳細報告 (Detail Reports)</h2>
-<div class='detail-grid'><a class='detail-link' href='stock_ops.html' ><div class='icon'>🎯</div><div class='title'>📈 操作 Agent (Stock Ops) ⭐</div><div class='desc'>今日操作主入口 — 5 階段建議 + A/B/C 風險 + 整合波段進場結構 5 維 + 配對訊號 + 進場決策四維</div></a><a class='detail-link' href='box_structure.html' ><div class='icon'>📦</div><div class='title'>📦 股票箱結構分析 (Box Structure)</div><div class='desc'>週線箱結構：有效 SH/SL + 5 類箱體 + 4 階段 + 趨勢劣化評分 0-100</div></a><a class='detail-link' href='n_shape.html' ><div class='icon'>🔁</div><div class='title'>🔁 多時段箱型狀態 (N-Shape)</div><div class='desc'>日/週/月 × 9 主狀態 + 3 修飾詞；箱型分析（含 N 形）</div></a><a class='detail-link' href='db_health.html' ><div class='icon'>🗄</div><div class='title'>🗄 資料庫健康 (DB Health)</div><div class='desc'>DuckDB 9 項健康檢查（表結構/時效/重複/無效值/覆蓋率）+ 自動修復</div></a><a class='detail-link' href='todo.html' ><div class='icon'>📋</div><div class='title'>📋 待辦事項 (TODO)</div><div class='desc'>系統已知限制與未來擴充清單（30+ 項 / 10 分類）</div></a><a class='detail-link' href='nomenclature.html' ><div class='icon'>📚</div><div class='title'>📖 名詞對照表 (Glossary)</div><div class='desc'>系統所有名詞/變數/公式的統一說明（共 40+ 名詞、10 分類）</div></a><a class='detail-link' href='ms_dashboard.html' ><div class='icon'>🎛</div><div class='title'>市場結構監控中心 (MS-Agent v2)</div><div class='desc'>市場溫度 + RR 環境 + 風險 + 主流 lifecycle 整合儀表板</div></a><a class='detail-link' href='structure_chart.html' ><div class='icon'>📉</div><div class='title'>市場結構歷史 (Market Structure)</div><div class='desc'>TAIEX + ETF/Foreign 雙線 + 綜合分趨勢</div></a><a class='detail-link' href='hotflow.html' ><div class='icon'>🔥</div><div class='title'>主流偵測 (HotFlow)</div><div class='desc'>全市場 ~1,935 檔的 A/B/C 分類 + 4 階段 lifecycle</div></a><a class='detail-link' href='n_pattern.html' ><div class='icon'>📈</div><div class='title'>波段進場結構 (N-Pattern)</div><div class='desc'>5 維綜合：月線突破 + 週MA20 + 回測不破 + 量縮 + 底底高（≥ 70 分=結構齊備）</div></a><a class='detail-link' href='rr.html' ><div class='icon'>🔁</div><div class='title'>相對強度輪動 (RSR)</div><div class='desc'>Relative Strength Rotation — 簡版（RS_MA20 穿越觸發）</div></a><a class='detail-link' href='rrr.html' ><div class='icon'>🔄</div><div class='title'>共振輪動 (RRR) [次要]</div><div class='desc'>Relative Rotation with Resonance — Z60 折返訊號（次要訊號，觀察/績效用）</div></a><a class='detail-link' href='rrr_resonance.html' ><div class='icon'>🌀</div><div class='title'>共振配對 (RRR Resonance)</div><div class='desc'>M4 — 從候選池找週期接近+相位 180° 的反相對（autocorrelation + Hilbert）</div></a><a class='detail-link' href='dynamic_rr.html' ><div class='icon'>⚙</div><div class='title'>動態相對強度輪動 (Dynamic RSR) [次要]</div><div class='desc'>Dynamic RSR — vol-adaptive 3 段分批（次要訊號，觀察/績效用）</div></a><a class='detail-link' href='custom_pairs.html' ><div class='icon'>⭐</div><div class='title'>自選配對 (Custom Pairs)</div><div class='desc'>配對表.xlsx 依序兩兩成對的 RSR 評估</div></a><a class='detail-link' href='backtest.html' ><div class='icon'>📊</div><div class='title'>回測報告 (Backtest)</div><div class='desc'>歷史 Z60 訊號的 hit rate 與超額報酬</div></a></div>
+<div class='detail-grid'><a class='detail-link' href='stock_ops.html' ><div class='icon'>🎯</div><div class='title'>📈 操作 Agent ⭐</div><div class='desc'>Stock Ops — 今日操作主入口；5 階段建議 + A/B/C 風險 + 整合波段進場結構 5 維 + 配對訊號 + 進場決策四維</div></a><a class='detail-link' href='box_structure.html' ><div class='icon'>📦</div><div class='title'>📦 股票箱結構分析</div><div class='desc'>Box Structure — 週線箱結構：有效 SH/SL + 5 類箱體 + 4 階段 + 趨勢劣化評分 0-100</div></a><a class='detail-link' href='n_shape.html' ><div class='icon'>🔁</div><div class='title'>🔁 多時段箱型狀態</div><div class='desc'>N-Shape — 日/週/月 × 9 主狀態 + 3 修飾詞；箱型分析（含 N 形）</div></a><a class='detail-link' href='db_health.html' ><div class='icon'>🗄</div><div class='title'>🗄 資料庫健康</div><div class='desc'>DB Health — DuckDB 9 項健康檢查（表結構/時效/重複/無效值/覆蓋率）+ 自動修復</div></a><a class='detail-link' href='todo.html' ><div class='icon'>📋</div><div class='title'>📋 待辦事項</div><div class='desc'>TODO — 系統已知限制與未來擴充清單（30+ 項 / 10 分類）</div></a><a class='detail-link' href='nomenclature.html' ><div class='icon'>📚</div><div class='title'>📖 名詞對照表</div><div class='desc'>Glossary — 系統所有名詞/變數/公式的統一說明（共 40+ 名詞、10 分類）</div></a><a class='detail-link' href='ms_dashboard.html' ><div class='icon'>🎛</div><div class='title'>市場結構監控中心</div><div class='desc'>MS-Agent v2 — 市場溫度 + RR 環境 + 風險 + 主流 lifecycle 整合儀表板</div></a><a class='detail-link' href='structure_chart.html' ><div class='icon'>📉</div><div class='title'>市場結構歷史</div><div class='desc'>Market Structure — TAIEX + ETF/Foreign 雙線 + 綜合分趨勢</div></a><a class='detail-link' href='hotflow.html' ><div class='icon'>🔥</div><div class='title'>主流偵測</div><div class='desc'>HotFlow — 全市場 ~1,935 檔的 A/B/C 分類 + 4 階段 lifecycle</div></a><a class='detail-link' href='n_pattern.html' ><div class='icon'>📈</div><div class='title'>波段進場結構</div><div class='desc'>N-Pattern — 5 維綜合：月線突破 + 週MA20 + 回測不破 + 量縮 + 底底高（≥ 70 分=結構齊備）</div></a><a class='detail-link' href='rr.html' ><div class='icon'>🔁</div><div class='title'>相對強度輪動</div><div class='desc'>RSR — Relative Strength Rotation 簡版（RS_MA20 穿越觸發）</div></a><a class='detail-link' href='rrr.html' ><div class='icon'>🔄</div><div class='title'>共振輪動 [次要]</div><div class='desc'>RRR — Relative Rotation with Resonance Z60 折返訊號（次要訊號，觀察/績效用）</div></a><a class='detail-link' href='rrr_resonance.html' ><div class='icon'>🌀</div><div class='title'>共振配對</div><div class='desc'>RRR Resonance — 從候選池找週期接近+相位 180° 的反相對（autocorrelation + Hilbert）</div></a><a class='detail-link' href='dynamic_rr.html' ><div class='icon'>⚙</div><div class='title'>動態相對強度輪動 [次要]</div><div class='desc'>Dynamic RSR — vol-adaptive 3 段分批（次要訊號，觀察/績效用）</div></a><a class='detail-link' href='custom_pairs.html' ><div class='icon'>⭐</div><div class='title'>自選配對</div><div class='desc'>Custom Pairs — 配對表.xlsx 依序兩兩成對的 RSR 評估</div></a><a class='detail-link' href='backtest.html' ><div class='icon'>📊</div><div class='title'>回測報告</div><div class='desc'>Backtest — 歷史 Z60 訊號的 hit rate 與超額報酬</div></a></div>
 
 <h2>6. 歷史備份 (Backup) — 近 7 日</h2>
 <div class='backup-grid'><a class='backup-link' href='backup/2026-06-01/index.html'>2026-06-01</a><a class='backup-link' href='backup/2026-05-29/index.html'>2026-05-29</a><a class='backup-link' href='backup/2026-05-27/index.html'>2026-05-27</a><a class='backup-link' href='backup/2026-05-25/index.html'>2026-05-25</a></div>
