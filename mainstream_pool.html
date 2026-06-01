@@ -26,6 +26,18 @@ h2 { font-size:18px; color:#93c5fd; border-bottom:1px solid #2d3f55;
 .stat-card { padding:14px; border-radius:8px; text-align:center; }
 .stat-card .lbl { color:#94a3b8; font-size:13px; }
 .stat-card .val { font-size:30px; font-weight:bold; margin-top:4px; }
+/* 可點擊統計卡：hover 浮起 + 邊框發光，提示可跳轉 */
+.stat-link { cursor:pointer; }
+.stat-card-clickable { transition: transform 0.15s, box-shadow 0.15s, background 0.15s; }
+.stat-card-clickable:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(255,255,255,0.10); filter:brightness(1.10); }
+/* 平滑捲動 */
+html { scroll-behavior:smooth; }
+/* 錨點目標短暫高亮，視覺確認 */
+:target { animation: target-highlight 1.6s ease-out; }
+@keyframes target-highlight {
+  0% { box-shadow: 0 0 0 4px rgba(252,211,77,0.6); }
+  100% { box-shadow: 0 0 0 4px rgba(252,211,77,0); }
+}
 a { color:#60a5fa; }
 </style>
 </head>
@@ -44,24 +56,36 @@ a { color:#60a5fa; }
 </div>
 
 <div class="stat-grid">
-  <div class="stat-card" style="background:#0f2c1f;border:2px solid #fb923c"
-       title="Core 主流核心池：族群 Current Leader Score 排名前 5 的成分股，通過 HotFlow ≥ 60 + N-Shape weekly healthy + 5 日報酬 ≥ -3% 三層篩選。用於『順勢追強』，但 Future Score 較低的成員即將轉弱要留意。">
-    <div class="lbl">📈 Core 主流核心池</div>
-    <div class="val" style="color:#fb923c">6</div>
-    <div style="font-size:11px;color:#94a3b8;margin-top:4px">目前領跑族群成分股</div>
-  </div>
-  <div class="stat-card" style="background:#0f1f2c;border:2px solid #60a5fa"
-       title="Candidate 主流候選池：族群 Future Leader Score 排名前 5 的成分股（排除已在 Both 池的）。用於『分批布局未來主流』，等待 Current Score 升上來確認。">
-    <div class="lbl">🌱 Candidate 主流候選池</div>
-    <div class="val" style="color:#60a5fa">7</div>
-    <div style="font-size:11px;color:#94a3b8;margin-top:4px">未來領跑族群成分股</div>
-  </div>
-  <div class="stat-card" style="background:#0f2c2c;border:2px solid #10b981"
-       title="Both 雙料池：族群同時在 Current Top 5 與 Future Top 5 — 既強又有續航力。最值得長期佈局的核心持倉。本日為 AI 服務器代工 6 虎時，全部來自 25_電腦及週邊 + 31_其他電子。">
-    <div class="lbl">🏆 Both 雙料池</div>
-    <div class="val" style="color:#10b981">6</div>
-    <div style="font-size:11px;color:#94a3b8;margin-top:4px">族群既強又有續航力 → 最強</div>
-  </div>
+  <a href="#pool-core" class="stat-link" style="text-decoration:none;color:inherit;display:block">
+    <div class="stat-card stat-card-clickable" style="background:#0f2c1f;border:2px solid #fb923c"
+         title="Core 主流核心池：族群 Current Leader Score 排名前 5 的成分股，通過 HotFlow ≥ 60 + N-Shape weekly healthy + 5 日報酬 ≥ -3% 三層篩選。用於『順勢追強』，但 Future Score 較低的成員即將轉弱要留意。
+
+點擊跳至 Core 池詳細表 ↓">
+      <div class="lbl">📈 Core 主流核心池 <span style="color:#fb923c;font-size:10px">↓ 看詳表</span></div>
+      <div class="val" style="color:#fb923c">6</div>
+      <div style="font-size:11px;color:#94a3b8;margin-top:4px">目前領跑族群成分股</div>
+    </div>
+  </a>
+  <a href="#pool-candidate" class="stat-link" style="text-decoration:none;color:inherit;display:block">
+    <div class="stat-card stat-card-clickable" style="background:#0f1f2c;border:2px solid #60a5fa"
+         title="Candidate 主流候選池：族群 Future Leader Score 排名前 5 的成分股（排除已在 Both 池的）。用於『分批布局未來主流』，等待 Current Score 升上來確認。
+
+點擊跳至 Candidate 池詳細表 ↓">
+      <div class="lbl">🌱 Candidate 主流候選池 <span style="color:#60a5fa;font-size:10px">↓ 看詳表</span></div>
+      <div class="val" style="color:#60a5fa">7</div>
+      <div style="font-size:11px;color:#94a3b8;margin-top:4px">未來領跑族群成分股</div>
+    </div>
+  </a>
+  <a href="#pool-both" class="stat-link" style="text-decoration:none;color:inherit;display:block">
+    <div class="stat-card stat-card-clickable" style="background:#0f2c2c;border:2px solid #10b981"
+         title="Both 雙料池：族群同時在 Current Top 5 與 Future Top 5 — 既強又有續航力。最值得長期佈局的核心持倉。本日為 AI 服務器代工 6 虎時，全部來自 25_電腦及週邊 + 31_其他電子。
+
+點擊跳至 Both 池詳細表 ↓">
+      <div class="lbl">🏆 Both 雙料池 <span style="color:#10b981;font-size:10px">↓ 看詳表</span></div>
+      <div class="val" style="color:#10b981">6</div>
+      <div style="font-size:11px;color:#94a3b8;margin-top:4px">族群既強又有續航力 → 最強</div>
+    </div>
+  </a>
 </div>
 
 
@@ -354,7 +378,7 @@ a { color:#60a5fa; }
 <h2 title="三池實際個股清單，含 Current/Future 分數 + HotFlow + N-Shape + 5日報酬 + 市值">🏆 三大股池 (Stock Pools)</h2>
 
 
-    <div style="background:#131f2e;border:2px solid #10b981;border-radius:8px;padding:14px 16px;margin-bottom:18px">
+    <div id="pool-both" style="background:#131f2e;border:2px solid #10b981;border-radius:8px;padding:14px 16px;margin-bottom:18px;scroll-margin-top:20px">
       <div style="font-size:15px;color:#10b981;font-weight:bold;margin-bottom:4px">🏆 Both 雙料池 (6 檔)</div>
       <div style="font-size:12px;color:#cbd5e1;margin-bottom:10px">族群同時在 Current Top 5 與 Future Top 5 — 既強又有續航力，最值得長期佈局。建議資金比 50%</div>
       <table style="width:100%;border-collapse:collapse;font-size:12px">
@@ -430,7 +454,7 @@ a { color:#60a5fa; }
     
 
 
-    <div style="background:#131f2e;border:2px solid #fb923c;border-radius:8px;padding:14px 16px;margin-bottom:18px">
+    <div id="pool-core" style="background:#131f2e;border:2px solid #fb923c;border-radius:8px;padding:14px 16px;margin-bottom:18px;scroll-margin-top:20px">
       <div style="font-size:15px;color:#fb923c;font-weight:bold;margin-bottom:4px">📈 Core 主流核心池 (6 檔)</div>
       <div style="font-size:12px;color:#cbd5e1;margin-bottom:10px">族群在 Current Top 5（目前領跑）— 順勢追強；但留意 Future 分數較低者可能即將轉弱。建議資金比 30%，停損 -5%</div>
       <table style="width:100%;border-collapse:collapse;font-size:12px">
@@ -506,7 +530,7 @@ a { color:#60a5fa; }
     
 
 
-    <div style="background:#131f2e;border:2px solid #60a5fa;border-radius:8px;padding:14px 16px;margin-bottom:18px">
+    <div id="pool-candidate" style="background:#131f2e;border:2px solid #60a5fa;border-radius:8px;padding:14px 16px;margin-bottom:18px;scroll-margin-top:20px">
       <div style="font-size:15px;color:#60a5fa;font-weight:bold;margin-bottom:4px">🌱 Candidate 主流候選池 (7 檔)</div>
       <div style="font-size:12px;color:#cbd5e1;margin-bottom:10px">族群在 Future Top 5（未來領跑候選）— 抓「即將起漲」前期；分批布局，等待 Current Score 升高確認。建議資金比 20%，分 3 批進</div>
       <table style="width:100%;border-collapse:collapse;font-size:12px">
