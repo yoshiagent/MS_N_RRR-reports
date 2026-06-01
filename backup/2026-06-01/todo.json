@@ -368,6 +368,40 @@
       ]
     },
     {
+      "id": "T-303",
+      "category": "n_shape",
+      "title": "RRR Resonance v3：觀察累積期（暫停強化，先存證據）",
+      "source": "使用者規劃",
+      "description": "v3 (雙因子 + 滾動穩定 + 1 年回測) 完成後，多期回測揭露重要警示：\n  • 180d 穩定對超額 -6%\n  • 365d 穩定對超額 +105%（極佳）\n  • 730d 穩定對超額 -96%\n  • 跨期都勝出: 0 對 → 可能過度擬合特定時段\n\n暫停演算法強化，進入觀察期：\n  1. 每日跑 orchestrator，累積 rrr_resonance.json 歷史\n  2. 1-2 週後檢視：\n     - 哪些「穩定對」持續被選出（穩定性持續）\n     - 新對是否頻繁出現（演算法穩定度）\n     - L2_stable 數量在不同市場狀態下的變化\n  3. 4 週後做 walk-forward 驗證（用累積的真實樣本）\n  4. 若 1303/5269、2368/4906 等穩定對持續被選出 → 進入下一階段\n     • 加 stop-loss（單次 -10% 強制平倉）\n     • 加 market regime filter（僅牛市開策略）\n     • 整合到 stock_ops 正式訊號\n\n觀察期間：每日只看 RRR Resonance 卡的「⭐ 穩 N」數字，不做演算法異動。",
+      "benefit": "避免過度擬合 / 確認真實 alpha 後再投入正式運作 / 累積樣本做 walk-forward",
+      "effort": "—（被動觀察 1-2 週）",
+      "priority": "P0",
+      "status": "in_progress",
+      "files": [
+        "data/output/rrr_resonance.json (每日)",
+        "data/output/rrr_resonance_backtest.json (每日)",
+        "data/output/rrr_resonance_signal_state.json (T-304 加)",
+        "data/output/rrr_resonance_signal_log.json (T-304 加)"
+      ],
+      "note": "觀察起點: 2026-06-01 ｜ 預計檢視: 2026-06-08 ~ 2026-06-15 ｜ T-304 換股訊號紀錄系統已上線 (paper-trading 自動累積)"
+    },
+    {
+      "id": "T-304",
+      "category": "n_shape",
+      "title": "RRR Resonance 換股訊號紀錄系統（paper-trading）",
+      "source": "使用者規劃",
+      "description": "每日跑完 RRR Resonance 後自動偵測訊號變化並記錄：\n  • 每日對 L2 配對算當前 Z(gap)\n  • 推導當前應持有 position (A or B，hysteresis 中間沿用)\n  • 對照昨日 state，若 position 變化 → append 換股事件到 log\n  • 新配對 → 初始化事件（init）\n  • 每次換股記錄：日期、A/B 價、Z 值、上次持倉的單股報酬率\n\n用途：T-303 觀察期累積真實樣本，後續做 walk-forward 驗證。\n\n輸出：\n  • signal_state.json（當前狀態，每日覆蓋）\n  • signal_log.json（事件日誌，append-only）\n  • RRR Resonance 頁加「6. 換股訊號累積紀錄」區塊",
+      "benefit": "把理論回測轉為實際 paper-trading 紀錄，後續可做真實 alpha 評估",
+      "effort": "S",
+      "priority": "P0",
+      "status": "done",
+      "files": [
+        "src/agents/rrr_resonance_signals.py",
+        "src/agents/rrr_resonance_report.py",
+        "src/orchestrator.py"
+      ]
+    },
+    {
       "id": "T-601",
       "category": "integration",
       "title": "進場決策擴展到 N-Pattern 報告",
@@ -493,5 +527,5 @@
       "status": "planned"
     }
   ],
-  "generated_at": "2026-06-01 10:13"
+  "generated_at": "2026-06-01 10:32"
 }
