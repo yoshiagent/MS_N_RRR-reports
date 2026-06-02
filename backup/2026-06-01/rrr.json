@@ -3,8 +3,8 @@
   "n_tradable": 144,
   "n_switches": 91,
   "n_holds": 47,
-  "n_allowed": 80,
-  "n_blocked": 64,
+  "n_allowed": 79,
+  "n_blocked": 65,
   "tradable": [
     {
       "pair": [
@@ -12874,12 +12874,11 @@
       ],
       "allowed": true,
       "position_action": "partial_switch",
-      "position_size": "50%",
+      "position_size": "75%",
       "signal": "switch_to_A",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
-        "買入端 2105 籌碼 warning → 部位 75% → 50%"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",
@@ -12965,12 +12964,11 @@
       ],
       "allowed": true,
       "position_action": "partial_switch",
-      "position_size": "50%",
+      "position_size": "75%",
       "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
-        "買入端 2105 籌碼 warning → 部位 75% → 50%"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",
@@ -14639,13 +14637,14 @@
         "8046",
         "3105"
       ],
-      "allowed": true,
-      "position_action": "partial_switch",
-      "position_size": "25%",
-      "signal": "switch_to_B",
+      "allowed": false,
+      "position_action": "hold",
+      "position_size": "0%",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "confidence=50 → conf_size 25%；取 min(市場上限, conf_size) = 25%"
+        "confidence=50 → conf_size 25%；取 min(市場上限, conf_size) = 25%",
+        "買入端 3105 籌碼 warning → 部位 25% → 0%",
+        "扣減後部位 0%"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",

@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-01 18:00:03",
-  "as_of": "2026-06-01",
+  "generated_at": "2026-06-02 18:00:03",
+  "as_of": "2026-06-02",
   "fix_applied": true,
   "overall_status": "critical",
   "summary": {
     "total": 9,
-    "healthy": 7,
+    "healthy": 6,
     "info": 1,
-    "warning": 0,
+    "warning": 1,
     "critical": 1
   },
   "checks": [
@@ -20,11 +20,11 @@
         "counts": {
           "price": 2050939,
           "indices": 2129,
-          "institutional": 469191,
+          "institutional": 469258,
           "futures": 239,
           "macro": 3354,
           "symbols": 1935,
-          "signal_history": 53884,
+          "signal_history": 54281,
           "update_log": 1
         }
       },
@@ -42,7 +42,7 @@
         "latest_count": 67,
         "second_date": "2026-05-29",
         "second_count": 67,
-        "days_lag": 0,
+        "days_lag": 1,
         "recent_5": [
           {
             "date": "2026-06-01",
@@ -122,12 +122,12 @@
     {
       "name": "輔助資料時效",
       "category": "freshness",
-      "status": "healthy",
-      "message": "期貨/總經/三大法人皆 ≤ 7 天",
+      "status": "warning",
+      "message": "macro/SOX 落後 11 天",
       "detail": {
         "futures": {
           "last_date": "2026-06-01",
-          "days_lag": 0
+          "days_lag": 1
         },
         "macro": {
           "VIX": "2026-06-01",
@@ -135,8 +135,8 @@
           "USDTWD": "2026-06-01"
         },
         "institutional": {
-          "last_date": "2026-05-29",
-          "days_lag": 3
+          "last_date": "2026-06-01",
+          "days_lag": 1
         }
       },
       "fixable": false,
@@ -147,14 +147,14 @@
       "name": "Sector map 對照表",
       "category": "coverage",
       "status": "healthy",
-      "message": "1977 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1847 ｜ 市值 1935 ｜ 6 天前更新",
+      "message": "1977 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1847 ｜ 市值 1935 ｜ 7 天前更新",
       "detail": {
         "total": 1977,
         "with_xq": 1935,
         "with_theme": 1847,
         "with_mcap": 1935,
         "xq_coverage_pct": 97.9,
-        "file_age_days": 6,
+        "file_age_days": 7,
         "last_modified": "2026-05-26 08:17"
       },
       "fixable": false,
