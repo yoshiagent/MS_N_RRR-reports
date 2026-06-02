@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-06-02 18:00:03",
+  "generated_at": "2026-06-02 22:00:25",
   "as_of": "2026-06-02",
   "fix_applied": true,
-  "overall_status": "critical",
+  "overall_status": "warning",
   "summary": {
     "total": 9,
-    "healthy": 6,
+    "healthy": 7,
     "info": 1,
     "warning": 1,
-    "critical": 1
+    "critical": 0
   },
   "checks": [
     {
@@ -18,13 +18,13 @@
       "message": "全部 8 個必要表存在",
       "detail": {
         "counts": {
-          "price": 2050939,
-          "indices": 2129,
-          "institutional": 469258,
-          "futures": 239,
+          "price": 2064070,
+          "indices": 2131,
+          "institutional": 479070,
+          "futures": 240,
           "macro": 3354,
           "symbols": 1935,
-          "signal_history": 54281,
+          "signal_history": 54677,
           "update_log": 1
         }
       },
@@ -35,34 +35,34 @@
     {
       "name": "最新日資料齊全度",
       "category": "freshness",
-      "status": "critical",
-      "message": "最近 2 天皆未達全市場齊全（67/67 檔 < 1000）",
+      "status": "healthy",
+      "message": "最新日 2026-06-02 全市場 1875 檔齊全（≥ 1000）",
       "detail": {
-        "latest_date": "2026-06-01",
-        "latest_count": 67,
-        "second_date": "2026-05-29",
-        "second_count": 67,
-        "days_lag": 1,
+        "latest_date": "2026-06-02",
+        "latest_count": 1875,
+        "second_date": "2026-06-01",
+        "second_count": 1935,
+        "days_lag": 0,
         "recent_5": [
           {
+            "date": "2026-06-02",
+            "n": 1875
+          },
+          {
             "date": "2026-06-01",
-            "n": 67
+            "n": 1935
           },
           {
             "date": "2026-05-29",
-            "n": 67
+            "n": 1935
           },
           {
             "date": "2026-05-28",
-            "n": 67
+            "n": 1935
           },
           {
             "date": "2026-05-27",
-            "n": 67
-          },
-          {
-            "date": "2026-05-26",
-            "n": 67
+            "n": 1935
           }
         ]
       },
@@ -90,9 +90,9 @@
       "detail": {
         "future_dates": 0,
         "non_positive_close": 0,
-        "zero_volume": 25939,
-        "total_rows": 2050939,
-        "zero_vol_pct": 1.26
+        "zero_volume": 28218,
+        "total_rows": 2064070,
+        "zero_vol_pct": 1.37
       },
       "fixable": true,
       "fix_applied": false,
@@ -106,12 +106,12 @@
       "detail": {
         "latest_per_index": {
           "OTCI": {
-            "last_date": "2026-05-29",
-            "rows": 1063
+            "last_date": "2026-06-01",
+            "rows": 1064
           },
           "TWII": {
-            "last_date": "2026-06-01",
-            "rows": 1066
+            "last_date": "2026-06-02",
+            "rows": 1067
           }
         }
       },
@@ -126,17 +126,17 @@
       "message": "macro/SOX 落後 11 天",
       "detail": {
         "futures": {
-          "last_date": "2026-06-01",
-          "days_lag": 1
+          "last_date": "2026-06-02",
+          "days_lag": 0
         },
         "macro": {
-          "VIX": "2026-06-01",
           "SOX": "2026-05-22",
-          "USDTWD": "2026-06-01"
+          "USDTWD": "2026-06-01",
+          "VIX": "2026-06-01"
         },
         "institutional": {
-          "last_date": "2026-06-01",
-          "days_lag": 1
+          "last_date": "2026-06-02",
+          "days_lag": 0
         }
       },
       "fixable": false,

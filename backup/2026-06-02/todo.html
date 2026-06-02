@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang='zh-Hant'><head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>📋 待辦事項 — MS_N_RR/RRR Ver.A</title>
+<style>
+* { box-sizing: border-box; }
+body { margin:0; padding:24px 20px 80px; max-width:1180px; margin:auto;
+       background:#080e18; color:#e2e8f0;
+       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       line-height:1.65; }
+h1 { font-size:22px; margin:0 0 4px; }
+h2 { font-size:17px; color:#93c5fd; border-bottom:1px solid #2d3f55;
+     padding-bottom:6px; margin:24px 0 12px; }
+.sub { color:#94a3b8; font-size:13px; margin-bottom:18px; }
+.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.back-link:hover { border-color:#3b82f6; }
+code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color:#7dd3fc;
+       padding:1px 6px; border-radius:3px; font-size:12px; }
+
+.stats { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr));
+         gap:8px; margin-bottom:16px; }
+.stat-cell { background:#131f2e; border:1px solid #2d3f55; border-radius:8px;
+             padding:10px 14px; text-align:center; }
+.stat-cell .lbl { color:#94a3b8; font-size:12px; }
+.stat-cell .val { font-size:22px; font-weight:bold; margin-top:4px; }
+
+.toc { background:#131f2e; border:1px solid #2d3f55; border-radius:8px;
+       padding:10px 14px; margin-bottom:16px; }
+.toc-items { display:flex; flex-wrap:wrap; gap:6px; }
+.toc-link { background:#0f1a2c; padding:4px 10px; border-radius:14px;
+            color:#cbd5e1; text-decoration:none; font-size:12px;
+            border:1px solid transparent; }
+.toc-link:hover { border-color:#3b82f6; color:#93c5fd; }
+.toc-link .cnt { color:#64748b; margin-left:4px; font-size:11px; }
+
+.todo-card { background:#131f2e; border:1px solid #2d3f55; border-radius:8px;
+             padding:10px 14px; margin-bottom:8px; transition:border-color 0.15s; }
+.todo-card:hover { border-color:#3b82f6; }
+.todo-head { display:flex; gap:8px; align-items:baseline; flex-wrap:wrap;
+             margin-bottom:6px; }
+.todo-id { color:#7dd3fc; font-family:ui-monospace,Consolas,monospace;
+           font-size:11px; background:#07111e; padding:2px 6px; border-radius:3px; }
+.todo-title { font-size:14px; font-weight:bold; color:#e2e8f0; flex:1; }
+.pill { display:inline-block; padding:2px 8px; border-radius:10px;
+        font-size:10px; font-weight:bold; }
+.todo-body { font-size:12px; color:#cbd5e1; margin-top:4px; line-height:1.7; }
+.todo-meta { color:#94a3b8; font-size:11px; margin-top:5px;
+             display:flex; gap:14px; flex-wrap:wrap; }
+.todo-meta strong { color:#cbd5e1; }
+.todo-note { background:rgba(252,211,77,0.08); border-left:2px solid #fcd34d;
+             padding:4px 8px; margin-top:4px; font-size:11px; color:#fcd34d;
+             border-radius:0 4px 4px 0; }
+.todo-files { color:#64748b; font-size:11px; margin-top:3px; }
+
+.category-section { margin-top:18px; }
+.cat-head { font-size:16px; color:#93c5fd; font-weight:bold; padding:6px 0;
+            border-bottom:1px solid #2d3f55; margin-bottom:8px; }
+
+footer { color:#64748b; font-size:12px; margin-top:30px;
+         border-top:1px solid #2d3f55; padding-top:12px; }
+</style>
+</head><body>
+<a class='back-link' href='index.html'>← 返回主頁</a>
+<a class='back-link' href='nomenclature.html' style='margin-left:6px'>📖 名詞對照表</a>
+
+<h1>📋 待辦事項 — MS_N_RR/RRR Ver.A</h1>
+<div class='sub'>
+  各 Agent 的已知限制與未來擴充清單 ｜ 共 45 項 / 11 分類
+  ｜ 產生時間：2026-06-02 22:01
+</div>
+
+<div style="background:#131f2e;border:1px solid #2d3f55;border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:13px;color:#cbd5e1;line-height:1.7">
+<strong style="color:#93c5fd">📐 優先級說明：</strong><br>
+🔴 <strong>P0 緊急</strong> — 影響系統正常運作或重要結果，優先處理<br>
+🟠 <strong>P1 重要</strong> — 可顯著提升準確度或使用體驗<br>
+🟡 <strong>P2 一般</strong> — 錦上添花，視時間進度安排<br>
+🔵 <strong>P3 nice-to-have</strong> — 想做但不急<br>
+<br>
+<strong style="color:#93c5fd">⏱ 工時估算：</strong>
+XS (≤ 0.5h) ｜ S (1-2h) ｜ M (半天) ｜ L (1 天) ｜ XL (2-3 天)
+</div>
+
+<h2>📊 統計</h2>
+<div class='stats'><div class='stat-cell'><div class='lbl'>項目總數</div><div class='val'>45</div></div><div class='stat-cell'><div class='lbl'>🔴 P0 緊急</div><div class='val' style='color:#ef4444'>5</div></div><div class='stat-cell'><div class='lbl'>🟠 P1 重要</div><div class='val' style='color:#fb923c'>17</div></div><div class='stat-cell'><div class='lbl'>🟡 P2 一般</div><div class='val' style='color:#fcd34d'>19</div></div><div class='stat-cell'><div class='lbl'>🔵 P3 nice-to-have</div><div class='val' style='color:#60a5fa'>4</div></div></div>
+
+<div class='toc'><div style='color:#93c5fd;font-size:13px;font-weight:bold;margin-bottom:8px'>📚 快速跳轉</div><div class='toc-items'><a class='toc-link' href='#cat-immediate'>🎯 立即可做（快速優化）<span class='cnt'>(3)</span></a><a class='toc-link' href='#cat-algorithm'>📊 評分演算法優化<span class='cnt'>(4)</span></a><a class='toc-link' href='#cat-n_shape'>🔁 多時段箱型狀態（n_shape）<span class='cnt'>(10)</span></a><a class='toc-link' href='#cat-box'>📦 股票箱結構（box_structure）<span class='cnt'>(3)</span></a><a class='toc-link' href='#cat-stock_ops'>📈 股票操作 Agent<span class='cnt'>(4)</span></a><a class='toc-link' href='#cat-ms_agent'>🎛 MS-Agent v2<span class='cnt'>(3)</span></a><a class='toc-link' href='#cat-mainstream_pool'>🏆 主流股池 + 預測監控<span class='cnt'>(4)</span></a><a class='toc-link' href='#cat-integration'>🔄 跨 Agent 整合<span class='cnt'>(6)</span></a><a class='toc-link' href='#cat-backtest'>📉 回測與驗證<span class='cnt'>(3)</span></a><a class='toc-link' href='#cat-data'>🔍 資料層擴充<span class='cnt'>(2)</span></a><a class='toc-link' href='#cat-ops'>🛡 部署與運維<span class='cnt'>(3)</span></a></div></div>
+
+<div class='category-section' id='cat-immediate'><div class='cat-head'>🎯 立即可做（快速優化）（3 項）</div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-001</span><span class='todo-title'>深度回檔（&gt;50%）自動降至 Stage 3</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='≤ 0.5h'>⏱ XS</span></div><div class='todo-body'>目前若週線箱高 &gt; 50%（例 5269 祥碩、3037 某段），仍可能被歸為 Stage 2 主升段。實際上這種「腰斬式回檔」更像熊市反彈，應該自動降級到 Stage 3 高位震盪。</div><div class='todo-meta'><span>來源：<strong>box_structure</strong></span><span>效益：<strong>避免誤判巨幅震盪股票為健康主升段</strong></span></div><div class='todo-files'>📁 src/agents/box_structure.py 的 _classify_stage()</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-002</span><span class='todo-title'>Stage 4 判斷加入「reset」機制</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>目前 28 檔被歸 Stage 4（佔 67 檔中 42%），偏多。若股票後續反彈站回箱內並形成新有效 SH，應該重置 Stage（從 Stage 1 開始算）。</div><div class='todo-meta'><span>來源：<strong>box_structure</strong></span><span>效益：<strong>避免過去某次跌破 SL 永久標記，反映現況</strong></span></div><div class='todo-files'>📁 src/agents/box_structure.py 的 _classify_stage()</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-003</span><span class='todo-title'>週線略破底（&lt; 3%）的容忍機制</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='≤ 0.5h'>⏱ XS</span></div><div class='todo-body'>如 6488 環球晶週線前低 417 → 新低 407（破底 -2.4%）被判已破壞，但實務上 &lt; 3% 應視為雜訊。可調整 NOISE_TOL_LOW（n_shape）或加 SL 破底容忍（box_structure）。</div><div class='todo-meta'><span>來源：<strong>n_shape / box_structure</strong></span><span>效益：<strong>減少雜訊誤判，貼近實務操作</strong></span></div><div class='todo-files'>📁 src/agents/n_shape.py、src/agents/box_structure.py</div></div></div><div class='category-section' id='cat-algorithm'><div class='cat-head'>📊 評分演算法優化（4 項）</div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-101</span><span class='todo-title'>swing window 動態調整 ✅ 已由三階段偵測取代</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#10b98133;color:#10b981' title=''>✅ 完成</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='半天'>⏱ M</span></div><div class='todo-body'>✅ 已實作：改用 find_swings_3stage（事件驅動 + ATR 自適應），不再使用固定 swing window。ATR 倍數自動調整為各股波動率。</div><div class='todo-meta'><span>來源：<strong>n_shape / box_structure</strong></span><span>效益：<strong>降低高波動股的假 swing、提高低波動股的敏感度</strong></span></div><div class='todo-files'>📁 src/shared/swing_core.py find_swings_3stage</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-102</span><span class='todo-title'>回檔幅度進階定義（Fibonacci）</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='半天'>⏱ M</span></div><div class='todo-body'>目前回檔幅度單純用 %。可加入 Fibonacci 0.382 / 0.618 / 0.786 區分回檔健康度：0.382 = 強勢、0.618 = 中性、&gt; 0.786 = 弱勢。</div><div class='todo-meta'><span>來源：<strong>n_shape / box_structure</strong></span><span>效益：<strong>更精細的回檔品質判斷</strong></span></div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-103</span><span class='todo-title'>成交量整合進 swing 判斷</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='半天'>⏱ M</span></div><div class='todo-body'>目前 n_shape 純看價格 swing，未考慮量。可加入：「回檔量縮」加分、「破底放量」減分。</div><div class='todo-meta'><span>來源：<strong>n_shape</strong></span><span>效益：<strong>量價結合提升結構辨識準確度</strong></span></div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-104</span><span class='todo-title'>時間衰減（recency weighting）</span><span class='pill' style='background:#60a5fa33;color:#60a5fa' title='想做但不急'>🔵 P3 nice-to-have</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>太久遠的 swing 信號對當下參考性低。可加入時間衰減（半衰期 ~3 個月）。</div><div class='todo-meta'><span>來源：<strong>n_shape / box_structure</strong></span><span>效益：<strong>避免被陳舊結構誤導</strong></span></div></div></div><div class='category-section' id='cat-n_shape'><div class='cat-head'>🔁 多時段箱型狀態（n_shape）（10 項）</div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-300</span><span class='todo-title'>多時段箱型狀態 9 + 3 + 1 系統重構（M1）</span><span class='pill' style='background:#ef444433;color:#ef4444' title='影響系統正常運作或重要結果，優先處理'>🔴 P0 緊急</span><span class='pill' style='background:#10b98133;color:#10b981' title=''>✅ 完成</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='2-3 天'>⏱ XL</span></div><div class='todo-body'>從原 7 狀態升級為 9 + 3 + 1：
+  • 9 主狀態 = 3 位置 (箱上/箱內/箱下) × 3 方向 (向上/向下/特殊)
+  • 3 修飾詞 = 突破確認中 / 跌破確認中 / 壓縮整理
+  • 1 unknown
+  • 純資料定義在 src/shared/state_grid.py
+  • 方向用近 3 根 close 斜率；盤整用 ATR×1.5 範圍
+  • 假突破用 5 根 K 棒窗格偵測</div><div class='todo-meta'><span>來源：<strong>使用者規劃 + 規範 Part 2</strong></span><span>效益：<strong>更細緻、更貼近實務的狀態分類；可作為下游 filter 依據</strong></span></div><div class='todo-files'>📁 src/shared/state_grid.py、src/shared/swing_core.py、src/agents/n_shape.py、src/agents/box_structure.py、src/agents/state_grid_preview.py</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-303</span><span class='todo-title'>RRR Resonance v3：觀察累積期（暫停強化，先存證據）</span><span class='pill' style='background:#ef444433;color:#ef4444' title='影響系統正常運作或重要結果，優先處理'>🔴 P0 緊急</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title=''>⚙ 進行中</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>⏱ —（被動觀察 1-2 週）</span></div><div class='todo-body'>v3 (雙因子 + 滾動穩定 + 1 年回測) 完成後，多期回測揭露重要警示：
+  • 180d 穩定對超額 -6%
+  • 365d 穩定對超額 +105%（極佳）
+  • 730d 穩定對超額 -96%
+  • 跨期都勝出: 0 對 → 可能過度擬合特定時段
+
+暫停演算法強化，進入觀察期：
+  1. 每日跑 orchestrator，累積 rrr_resonance.json 歷史
+  2. 1-2 週後檢視：
+     - 哪些「穩定對」持續被選出（穩定性持續）
+     - 新對是否頻繁出現（演算法穩定度）
+     - L2_stable 數量在不同市場狀態下的變化
+  3. 4 週後做 walk-forward 驗證（用累積的真實樣本）
+  4. 若 1303/5269、2368/4906 等穩定對持續被選出 → 進入下一階段
+     • 加 stop-loss（單次 -10% 強制平倉）
+     • 加 market regime filter（僅牛市開策略）
+     • 整合到 stock_ops 正式訊號
+
+觀察期間：每日只看 RRR Resonance 卡的「⭐ 穩 N」數字，不做演算法異動。</div><div class='todo-meta'><span>來源：<strong>使用者規劃</strong></span><span>效益：<strong>避免過度擬合 / 確認真實 alpha 後再投入正式運作 / 累積樣本做 walk-forward</strong></span></div><div class='todo-files'>📁 data/output/rrr_resonance.json (每日)、data/output/rrr_resonance_backtest.json (每日)、data/output/rrr_resonance_signal_state.json (T-304 加)、data/output/rrr_resonance_signal_log.json (T-304 加)</div><div class='todo-note'>💬 觀察起點: 2026-06-01 ｜ 預計檢視: 2026-06-08 ~ 2026-06-15 ｜ T-304 換股訊號紀錄系統已上線 (paper-trading 自動累積)</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-304</span><span class='todo-title'>RRR Resonance 換股訊號紀錄系統（paper-trading）</span><span class='pill' style='background:#ef444433;color:#ef4444' title='影響系統正常運作或重要結果，優先處理'>🔴 P0 緊急</span><span class='pill' style='background:#10b98133;color:#10b981' title=''>✅ 完成</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>每日跑完 RRR Resonance 後自動偵測訊號變化並記錄：
+  • 每日對 L2 配對算當前 Z(gap)
+  • 推導當前應持有 position (A or B，hysteresis 中間沿用)
+  • 對照昨日 state，若 position 變化 → append 換股事件到 log
+  • 新配對 → 初始化事件（init）
+  • 每次換股記錄：日期、A/B 價、Z 值、上次持倉的單股報酬率
+
+用途：T-303 觀察期累積真實樣本，後續做 walk-forward 驗證。
+
+輸出：
+  • signal_state.json（當前狀態，每日覆蓋）
+  • signal_log.json（事件日誌，append-only）
+  • RRR Resonance 頁加「6. 換股訊號累積紀錄」區塊</div><div class='todo-meta'><span>來源：<strong>使用者規劃</strong></span><span>效益：<strong>把理論回測轉為實際 paper-trading 紀錄，後續可做真實 alpha 評估</strong></span></div><div class='todo-files'>📁 src/agents/rrr_resonance_signals.py、src/agents/rrr_resonance_report.py、src/orchestrator.py</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-201</span><span class='todo-title'>整合進進場決策（第 ⑤ 維）</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>目前 entry_decision 是 4 維。可把 n_shape 的三時段一致進行中作為第 ⑤ 維加分。</div><div class='todo-meta'><span>來源：<strong>n_shape</strong></span><span>效益：<strong>進場決策更全面</strong></span></div><div class='todo-files'>📁 src/shared/entry_decision.py</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-203</span><span class='todo-title'>依規範對齊：加入「開始反彈」對稱判斷 ✅ 已完成</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#10b98133;color:#10b981' title=''>✅ 完成</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>✅ 已實作：find_swings_3stage 對稱實作 SH/SL：「開始回檔」(close &lt; prev_low) 與「開始反彈」(close &gt; prev_high) 都已內建。SL-01 = close &gt; Candidate SL K 棒最高點，與 SH-01 完全鏡像。</div><div class='todo-meta'><span>來源：<strong>docs/N形與股票箱_規範.md</strong></span><span>效益：<strong>完整的雙向結構偵測，與規範對齊</strong></span></div><div class='todo-files'>📁 src/shared/swing_core.py find_swings_3stage</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-205</span><span class='todo-title'>依規範對齊：swing 偵測改為「事件驅動 + 往前找」 ✅ 已完成</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#10b98133;color:#10b981' title=''>✅ 完成</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1 天'>⏱ L</span></div><div class='todo-body'>✅ 已實作：find_swings_3stage 採事件驅動 Candidate/Confirmed 雙態追蹤。持續創高時 candidate 自動更新（不卡在 2 個月前），跌破前低時觸發確認。完全解決 2454 聯發科 / 6488 環球晶 pivot 偵測延遲問題（無需 hack）。</div><div class='todo-meta'><span>來源：<strong>docs/N形與股票箱_規範.md</strong></span><span>效益：<strong>更貼近實務操作；解決飆漲股 pivot 偵測延遲問題</strong></span></div><div class='todo-files'>📁 src/shared/swing_core.py find_swings_3stage</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-206</span><span class='todo-title'>依規範對齊：加入「破底翻進行中」狀態識別 ✅ 已完成</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#10b98133;color:#10b981' title=''>✅ 完成</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='半天'>⏱ M</span></div><div class='todo-body'>✅ 已實作：n_shape 加 &#x27;reversing&#x27; (破底翻進行中) + &#x27;resumed_n&#x27; (重回 N 形) 兩個狀態。今日結果：17 檔含重回 N 形訊號（強反轉），14 檔含破底翻訊號。</div><div class='todo-meta'><span>來源：<strong>docs/N形與股票箱_規範.md (Part 2 ③ 新增)</strong></span><span>效益：<strong>提早抓底部反轉訊號，捕捉熊市過後的反轉個股</strong></span></div><div class='todo-files'>📁 src/agents/n_shape.py、src/agents/n_shape_report.py</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-220</span><span class='todo-title'>RR / RRR 合併為「輪動換股 Agent」</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1 天'>⏱ L</span></div><div class='todo-body'>目前 RSR (簡版 RS_MA20 穿越) + RRR (嚴格版 Z60 折返) + Dynamic RSR + 自選配對 共 4 個配對 agent，功能重複度高。建議整合為單一『輪動換股 Agent』，承擔兩大任務：
+  1. 從股池配對（輪動）— 接受 HotFlow A/B 候選池 或 配對表 為輸入
+  2. 呈現換股時機 — 含互動圖表（仿 custom_pairs.html 的 plotly K 線 + Z60 視覺）
+
+名稱候選：
+  • 輪動換股 Agent (rotation_switch_agent) ⭐
+  • 配對輪動 Agent (pair_rotation_agent)
+  • RR Pro
+
+整合方案：
+  • 共用底層 rs_zscore.py
+  • 統一輸出 schema，含 loose + strict 兩種訊號
+  • 單一報告頁，支援篩選/切換
+  • 保留 Dynamic RSR 的 vol-adaptive 機制
+  • 自選配對作為「強制候選」加入結果
+  • ✅ 9 狀態 + 流程 2 已完成 (M1-M3)，本項目可開工</div><div class='todo-meta'><span>來源：<strong>使用者規劃</strong></span><span>效益：<strong>減少 4 agents 重複；單一視角看所有換股訊號；訊號質量提升</strong></span></div><div class='todo-files'>📁 src/agents/rr_pair.py、src/agents/rrr_pair.py、src/agents/dynamic_rr.py、src/agents/custom_pairs.py、→ src/agents/rotation_switch.py</div><div class='todo-note'>💬 ✅ M1-M3 流程 2 已完成；現可繼承 healthy_pair 標記</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-202</span><span class='todo-title'>壓縮（compression）狀態識別</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='半天'>⏱ M</span></div><div class='todo-body'>目前只判 4 狀態。可加入「壓縮整理」狀態：HL 與 LH 都極接近（差 &lt; 1.5%）但未形成有效 swing 對。</div><div class='todo-meta'><span>來源：<strong>n_shape</strong></span><span>效益：<strong>減少「觀察中」雜訊，更精準分類</strong></span></div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-204</span><span class='todo-title'>依規範對齊：N 形分類改為 3 級 (C1/C2/破壞)</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='半天'>⏱ M</span></div><div class='todo-body'>規範第 6 項：N 形 3 級分類『C1 觀察 / C2 延續 / 跌破SL 破壞』。目前 n_shape.py 是 4 級（進行中/觀察中/破壞中/已破壞）。考慮把『進行中』和『C2 延續』對齊（突破 SH），把『破壞中』和『已破壞』合併為『跌破 SL』。</div><div class='todo-meta'><span>來源：<strong>docs/N形與股票箱_規範.md</strong></span><span>效益：<strong>與使用者習慣的 3 級分類一致</strong></span></div><div class='todo-files'>📁 src/agents/n_shape.py、agents/09_n_shape.md</div></div></div><div class='category-section' id='cat-box'><div class='cat-head'>📦 股票箱結構（box_structure）（3 項）</div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-301</span><span class='todo-title'>加入日線輔助分析</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1 天'>⏱ L</span></div><div class='todo-body'>目前 box_structure 只看週線。可加入日線：當週線 Stage 2 但日線 stage 4 → 短線停利警示。</div><div class='todo-meta'><span>來源：<strong>box_structure</strong></span><span>效益：<strong>提供短線進出場時機（規格第 9、10 點）</strong></span></div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-302</span><span class='todo-title'>假突破偵測精準化</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>目前假突破偵測：SL 後 5 根內突破 SH 又收盤跌回。可加入「突破後最大反彈幅度」「跌回深度」等細項。</div><div class='todo-meta'><span>來源：<strong>box_structure</strong></span><span>效益：<strong>區分「真假突破」更精準</strong></span></div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-303</span><span class='todo-title'>互動視覺化（plotly 箱形圖）</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1 天'>⏱ L</span></div><div class='todo-body'>目前箱以表格呈現。可加 plotly 互動圖：K 線 + 箱底箱頂視覺線 + Stage 標記。</div><div class='todo-meta'><span>來源：<strong>box_structure</strong></span><span>效益：<strong>視覺化提升結構理解</strong></span></div></div></div><div class='category-section' id='cat-stock_ops'><div class='cat-head'>📈 股票操作 Agent（4 項）</div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-401</span><span class='todo-title'>金字塔加碼實際計算</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='半天'>⏱ M</span></div><div class='todo-body'>目前 stock_ops 給「加碼 30%」建議但未自動計算第 2/3 次加碼點位（突破前波高 X% 時）。可加入動態加碼計畫表。</div><div class='todo-meta'><span>來源：<strong>stock_ops</strong></span><span>效益：<strong>完整的部位管理（規格第五 B 點）</strong></span></div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-402</span><span class='todo-title'>移動停利自動計算</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='半天'>⏱ M</span></div><div class='todo-body'>目前停損計算基於結構。可加入移動停利：依週MA20 自動上移止盈點。</div><div class='todo-meta'><span>來源：<strong>stock_ops</strong></span><span>效益：<strong>持股的動態風險管理</strong></span></div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-403</span><span class='todo-title'>主流族群同步性檢查加分</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>目前評估個股獨立。可加入「同 XQ 細產業 ≥ 3 檔同步 Stage 2」加分。</div><div class='todo-meta'><span>來源：<strong>stock_ops</strong></span><span>效益：<strong>資金輪動的族群驗證</strong></span></div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-404</span><span class='todo-title'>法人連續買超訊號</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>可加入「外資/投信連續 N 日同向買超」作為輔助訊號。</div><div class='todo-meta'><span>來源：<strong>stock_ops</strong></span><span>效益：<strong>籌碼面驗證</strong></span></div></div></div><div class='category-section' id='cat-ms_agent'><div class='cat-head'>🎛 MS-Agent v2（3 項）</div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-501</span><span class='todo-title'>amount_expansion 全市場 60d Z 補齊</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>目前 amount_expansion subscore 暫用中性 50。應補齊：全市場成交額 60 日 Z-score。</div><div class='todo-meta'><span>來源：<strong>ms_temperature</strong></span><span>效益：<strong>市場溫度更精準</strong></span></div><div class='todo-files'>📁 src/agents/ms_temperature.py</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-503</span><span class='todo-title'>RR Env 反向餵 dynamic_rr 冷卻期</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>目前 RR Env 分只顯示在 dashboard。應實際影響 dynamic_rr：RR Env &lt; 40 → 冷卻期延長。</div><div class='todo-meta'><span>來源：<strong>ms_temperature → dynamic_rr</strong></span><span>效益：<strong>閉環自動調整</strong></span></div><div class='todo-files'>📁 src/agents/dynamic_rr.py</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-502</span><span class='todo-title'>lifecycle 主流持續率</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>可統計：fading 後 5 日內是否再進 forming（主流回潮率）。</div><div class='todo-meta'><span>來源：<strong>hotflow_lifecycle</strong></span><span>效益：<strong>判斷主流退潮是否為短暫修正</strong></span></div></div></div><div class='category-section' id='cat-mainstream_pool'><div class='cat-head'>🏆 主流股池 + 預測監控（4 項）</div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-1003</span><span class='todo-title'>個股級 skill tracking — 進池後的實際報酬追蹤</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1 天'>⏱ L</span></div><div class='todo-body'>目前監控只追蹤「族群 Candidate→Core」轉換，但操作者其實關心「進池個股的後續報酬」。
+
+實作要點：
+  • 為每檔進入 Core/Candidate/Both 池的個股，紀錄當天 close + entry_tier
+  • 追蹤 D+5 / D+10 / D+20 報酬
+  • 統計三池的：
+      平均報酬 / 命中率（&gt;0% 比例）/ 最大回撤 / Sharpe
+  • 對照 baseline（同期 TWII / OTCI 報酬）算超額
+  • 池內個股按 ranking_score 分位，看 Top 5% 表現是否真的最好
+
+報告呈現：
+  • 新 section「📈 主流股池實戰績效」
+  • 三池 D+5 / D+10 / D+20 平均報酬橫條圖
+  • 個股級命中率表（含 Top 10 表現最佳 + Top 5 失準警示）</div><div class='todo-meta'><span>來源：<strong>PM Phase C 後續規劃</strong></span><span>效益：<strong>直接驗證「主流股池確實能賺錢」+ 看哪個池子報酬最好</strong></span></div><div class='todo-files'>📁 src/agents/pool_returns_tracker.py (新)、data/processed/pool_returns_history.csv (新)、src/agents/mainstream_pool_report.py</div><div class='todo-note'>💬 需資料累積 ≥ 20 個交易日（D+20 才有報酬）+ ≥ 30 檔個股樣本</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-1004</span><span class='todo-title'>A/B 對照回測 — raw 選股 vs calibrated 選股實戰績效</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1 天'>⏱ L</span></div><div class='todo-body'>校正引擎啟用後，需驗證『校正後選股是否真的比原始選股賺更多』。
+
+實作要點：
+  • 每日同時記錄兩組池：
+      A 組：用 raw future_leader_score 排序（原邏輯）
+      B 組：用 calibrated_future_score 排序（新邏輯）
+  • 兩組各算 D+5 / D+10 / D+20 報酬
+  • 統計：A vs B 哪組命中率高 / 報酬高 / Sharpe 高 / 最大回撤小
+  • 顯著性檢定（Student&#x27;s t-test）— 至少 30 樣本後才有統計意義
+
+報告呈現：
+  • 新 section「🅰🅱 校正 vs 原始 對照」
+  • A 組勝率 / 平均超額 / 月度勝率
+  • B 組同上
+  • Δ 校正帶來的增益 + 信心區間
+
+警示：若 B 組長期輸給 A 組 → 校正引擎可能損害準確度，需重新審視</div><div class='todo-meta'><span>來源：<strong>PM Phase C 後續規劃</strong></span><span>效益：<strong>用實證決定要不要繼續用校正；可能發現校正反而幫倒忙</strong></span></div><div class='todo-files'>📁 src/agents/ab_compare_tracker.py (新)、data/processed/ab_compare_history.csv (新)、src/agents/mainstream_pool_report.py</div><div class='todo-note'>💬 依賴 T-1003 個股報酬追蹤先實作；需資料累積 ≥ 30 日</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-1001</span><span class='todo-title'>Telegram 警報推播 — skill_index 跌破 1.0 主動通知</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='半天'>⏱ M</span></div><div class='todo-body'>目前監控系統會在 mainstream_pool.html 顯示警報（🟢🟡🔴），但需手動打開網頁才看得到。可擴充：當以下條件之一觸發時，主動透過 Telegram + Email 推播：
+  • skill_index 跌破 1.0（命中率不如隨機）
+  • 連續 5 日命中率衰退（rolling_7d 持續下滑）
+  • 滾動 7d 命中率 &lt; baseline × 0.8（明確失能）
+  • 樣本累積里程碑（≥10 / ≥20 / ≥30 樣本）— 通知校正/權重微調啟用
+實作要點：
+  • 沿用既有 src/notify/ 框架（Email + Telegram 已建立）
+  • 加 src/agents/prediction_alert.py 監控判斷邏輯
+  • 同一警報 24 小時內不重複推播（dedup state file）
+  • orchestrator 串接於 monitor 之後</div><div class='todo-meta'><span>來源：<strong>PM Phase C 後續規劃</strong></span><span>效益：<strong>不用手動檢查，模型衰退第一時間知道</strong></span></div><div class='todo-files'>📁 src/notify/、src/agents/prediction_alert.py (新)、src/orchestrator.py</div><div class='todo-note'>💬 需資料累積 ≥ 20 樣本後才有意義（約 2-3 週）</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-1002</span><span class='todo-title'>Regime-conditional 校正 — 多頭/盤整/空頭分別算 calibration table</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1 天'>⏱ L</span></div><div class='todo-body'>目前 calibration table 是全部歷史合算一張，但市場 regime（多頭/盤整/空頭）下預測模式可能完全不同。例：
+  • 多頭時 Future 80+ 命中率高（資金有方向，輪動順）
+  • 盤整時各 score 區間命中率均勻（無方向）
+  • 空頭時所有預測失效（resilience 不強）
+
+實作要點：
+  • prediction_monitor.py 為每個 snapshot 標記當時的 regime（讀 market.json）
+  • build_calibration_table 改為 by_regime + by_score_range 雙索引
+  • score_calibrator 依今日 regime 套用對應 calibration_factor
+  • report 顯示「多頭情境校正 table」「盤整情境校正 table」「空頭情境校正 table」
+
+效益：regime 切換時系統能立即適應，不需等全局統計拉平</div><div class='todo-meta'><span>來源：<strong>PM Phase C 後續規劃</strong></span><span>效益：<strong>regime 切換時不會被舊資料拖累，準確度提升 30%+</strong></span></div><div class='todo-files'>📁 src/agents/prediction_monitor.py、src/agents/score_calibrator.py、src/agents/mainstream_pool_report.py</div><div class='todo-note'>💬 需各 regime 都有 ≥ 20 樣本（約 2-3 個月）才有意義</div></div></div><div class='category-section' id='cat-integration'><div class='cat-head'>🔄 跨 Agent 整合（6 項）</div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-305</span><span class='todo-title'>M5 流程 3：配對發現 + 操作 Agent 整合（已完成）</span><span class='pill' style='background:#ef444433;color:#ef4444' title='影響系統正常運作或重要結果，優先處理'>🔴 P0 緊急</span><span class='pill' style='background:#10b98133;color:#10b981' title=''>✅ 完成</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='半天'>⏱ M</span></div><div class='todo-body'>依使用者澄清的流程重構：
+  HotFlow → 多時段箱型 healthy filter
+    ├ RSR 配對發現 (rr_pair) → 系統配對池
+    └ RRR Resonance 配對發現 → 系統配對池
+  + 自選配對表 → 自選配對池
+  → 操作 Agent (合併 n_pattern 5 維評分 + stock_ops 5 階段)
+  → 5 階段建議（加碼/佈局/持有/觀察/減碼）+ 進場決策四維
+
+次要訊號保留為「觀察/績效用」：
+  RRR 共振輪動 (Z60 折返)
+  動態 RSR (vol-adaptive 3 段)
+
+主要改動：
+  • RSR 輸入改為 stock_ops 中 n_shape_healthy=True 的池
+  • 操作 Agent (stock_ops) 加 n_pattern 5 維 + pair_signals 欄位
+  • 主頁卡標籤化「次要」+ 報告頁 banner
+  • 晨報換股訊號分主/次區塊
+  • 主頁「股票操作 Agent」→「操作 Agent ⭐」</div><div class='todo-meta'><span>來源：<strong>使用者規劃 2026-06-01</strong></span><span>效益：<strong>釐清訊號層級 / 統一操作入口 / 簡化決策路徑</strong></span></div><div class='todo-files'>📁 src/orchestrator.py、src/agents/stock_ops.py、src/agents/index_builder.py、src/agents/rrr_report.py、src/agents/dynamic_rr_report.py、src/agents/daily_briefing.py、src/agents/stock_ops_report.py</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-301</span><span class='todo-title'>流程 2: N-Shape healthy filter 串入 pipeline（M2）</span><span class='pill' style='background:#ef444433;color:#ef4444' title='影響系統正常運作或重要結果，優先處理'>🔴 P0 緊急</span><span class='pill' style='background:#10b98133;color:#10b981' title=''>✅ 完成</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1 天'>⏱ L</span></div><div class='todo-body'>新流程：HotFlow → N-Shape → Stock Ops (healthy filter) → RR/RRR/Custom/Dynamic (state tagging)
+  • src/shared/n_shape_lookup.py — 共用查詢 + tag_pair helper
+  • stock_ops 加 7 欄 + healthy 進 risk_level
+  • RR/RRR/Custom/Dynamic 各加 12 欄 (A_*/B_*/healthy_pair)
+  • entry_decision ① 維加 N 形 hint
+  • orchestrator n_shape 移到 stock_ops 前</div><div class='todo-meta'><span>來源：<strong>使用者規劃</strong></span><span>效益：<strong>下游 agent 可依 N 形健康度過濾候選；訊號質量提升</strong></span></div><div class='todo-files'>📁 src/shared/n_shape_lookup.py、src/agents/stock_ops.py、src/agents/rr_report.py、src/agents/rrr_report.py、src/agents/custom_pairs.py、src/agents/dynamic_rr.py、src/shared/entry_decision.py、src/orchestrator.py</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-302</span><span class='todo-title'>多時段箱型狀態 UI 視覺：漏斗 + pill + 健康度 badge（M3）</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#10b98133;color:#10b981' title=''>✅ 完成</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1 天'>⏱ L</span></div><div class='todo-body'>  • 主頁加流程 2 漏斗（HotFlow → N-Shape → Stock Ops → Pairs）
+  • 主頁加 N 形 9 狀態 3×3 mini-grid 卡片
+  • stock_ops_report 每檔加 N 形 pill + healthy badge + modifier 角標
+  • 4 個 pair report (RR/RRR/Custom/Dynamic) 每組加 A/B 雙股 state pill + healthy_pair badge
+  • 共用 helper：src/shared/pair_pills.py</div><div class='todo-meta'><span>來源：<strong>使用者規劃</strong></span><span>效益：<strong>視覺化 9 狀態系統與流程 2 全鏈；單頁可看到健康度判定</strong></span></div><div class='todo-files'>📁 src/agents/index_builder.py、src/agents/stock_ops_report.py、src/agents/rr_report.py、src/agents/rrr_report.py、src/agents/custom_pairs_report.py、src/agents/dynamic_rr_report.py、src/shared/pair_pills.py</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-602</span><span class='todo-title'>stock_ops 整合 box_structure stage</span><span class='pill' style='background:#fb923c33;color:#fb923c' title='可顯著提升準確度或使用體驗'>🟠 P1 重要</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='半天'>⏱ M</span></div><div class='todo-body'>目前 stock_ops 用自己的月/週/日評分判 stage。可改為直接讀 box_structure.json 的 Stage 1-4，邏輯更一致。</div><div class='todo-meta'><span>來源：<strong>stock_ops → box_structure</strong></span><span>效益：<strong>避免兩個 agent 的 stage 結論衝突</strong></span></div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-601</span><span class='todo-title'>進場決策擴展到 N-Pattern 報告</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>目前進場決策只在 hotflow / custom_pairs 顯示。可加到 n_pattern.html candidate stocks。</div><div class='todo-meta'><span>來源：<strong>entry_decision</strong></span><span>效益：<strong>所有候選股都看到統一決策</strong></span></div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-603</span><span class='todo-title'>建立統一 stock_profile.html 個股資訊頁</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='2-3 天'>⏱ XL</span></div><div class='todo-body'>對每檔在多個 Agent 出現的個股，可彙總成單一 stock_profile.html，顯示在 HotFlow/N-Pattern/RR/RRR/N-Shape/Box 中的所有訊息。</div><div class='todo-meta'><span>來源：<strong>全系統</strong></span><span>效益：<strong>一處看完該股全部 agent 結論</strong></span></div></div></div><div class='category-section' id='cat-backtest'><div class='cat-head'>📉 回測與驗證（3 項）</div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-701</span><span class='todo-title'>Lifecycle 歷史回測</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1 天'>⏱ L</span></div><div class='todo-body'>已有 lifecycle_history.csv 累積資料。可建立回測框架：「forming → expanding → fading」全過程的後續報酬統計。</div><div class='todo-meta'><span>來源：<strong>hotflow_lifecycle</strong></span><span>效益：<strong>驗證 lifecycle 分類的實際價值</strong></span></div><div class='todo-files'>📁 data/processed/lifecycle_history.csv</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-702</span><span class='todo-title'>Box Stage 2 標的後續報酬統計</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1 天'>⏱ L</span></div><div class='todo-body'>建立 box_structure_history.csv 累積資料，回測 Stage 2 標的後續 5/10/20 個交易日的平均報酬。</div><div class='todo-meta'><span>來源：<strong>box_structure</strong></span><span>效益：<strong>驗證箱結構分類的預測力</strong></span></div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-703</span><span class='todo-title'>全 agent 信號歷史回測 framework</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='2-3 天'>⏱ XL</span></div><div class='todo-body'>建立統一回測 framework，可對任一 agent 的歷史信號做後續報酬統計。</div><div class='todo-meta'><span>來源：<strong>全系統</strong></span><span>效益：<strong>資料驅動的 agent 優化</strong></span></div></div></div><div class='category-section' id='cat-data'><div class='cat-head'>🔍 資料層擴充（2 項）</div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-801</span><span class='todo-title'>XQ industry_sub.csv 自動更新</span><span class='pill' style='background:#60a5fa33;color:#60a5fa' title='想做但不急'>🔵 P3 nice-to-have</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>目前 XQ 對照表需手動匯出更新。可建立自動化提醒（每月 1 號 email 提醒）。</div><div class='todo-meta'><span>來源：<strong>stockHisData</strong></span><span>效益：<strong>減少人工維護</strong></span></div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-802</span><span class='todo-title'>新增 shares_outstanding 取得真實流通股數</span><span class='pill' style='background:#60a5fa33;color:#60a5fa' title='想做但不急'>🔵 P3 nice-to-have</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='半天'>⏱ M</span></div><div class='todo-body'>目前用 XQ 市值。但 XQ 市值是上次更新時的，盤中波動會失準。可加 shares_outstanding 欄位，每日計算 mcap = close × shares。</div><div class='todo-meta'><span>來源：<strong>stockHisData</strong></span><span>效益：<strong>市值資料即時化</strong></span></div></div></div><div class='category-section' id='cat-ops'><div class='cat-head'>🛡 部署與運維（3 項）</div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-901</span><span class='todo-title'>GitHub Pages 真正私有化</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#ef444433;color:#ef4444' title=''>🚧 卡關中</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='半天'>⏱ M</span></div><div class='todo-body'>目前公開 + robots.txt。完工後考慮：Cloudflare Pages + Access OR Vercel Hobby + Edge Middleware。</div><div class='todo-meta'><span>來源：<strong>deployment</strong></span><span>效益：<strong>資料隱私</strong></span></div><div class='todo-note'>💬 用戶說「等整個完工後再處理」</div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-902</span><span class='todo-title'>通知系統優化 — 條件式 push</span><span class='pill' style='background:#fcd34d33;color:#fcd34d' title='錦上添花，視時間進度安排'>🟡 P2 一般</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>目前每日固定推送。可改為條件式：MS-Agent v2 風險升級、Stage 4 新增、A 級候選變動才推送。</div><div class='todo-meta'><span>來源：<strong>notify</strong></span><span>效益：<strong>減少資訊疲勞</strong></span></div></div><div class='todo-card'><div class='todo-head'><span class='todo-id'>T-903</span><span class='todo-title'>Orchestrator 失敗自動重試</span><span class='pill' style='background:#60a5fa33;color:#60a5fa' title='想做但不急'>🔵 P3 nice-to-have</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title=''>📋 待辦</span><span class='pill' style='background:#94a3b833;color:#94a3b8' title='1-2h'>⏱ S</span></div><div class='todo-body'>目前 fetch 失敗會 log warning 但不重試。可加：失敗 step 自動重試 1 次（5 分鐘後）。</div><div class='todo-meta'><span>來源：<strong>orchestrator</strong></span><span>效益：<strong>提高自動更新成功率</strong></span></div></div></div>
+
+<footer>
+本頁由 <code>src/agents/todo_page.py</code> 渲染（單一資料源：TODOS dict）<br>
+新增/編輯項目 → 直接編輯 .py 檔的 TODOS list → 跑 <code>python -m src.agents.todo_page</code> 重生<br>
+未來可加：完成日期、實際工時統計、依優先級 RSS feed
+</footer>
+
+<style id='MS_N_RRR_tooltip_inject_v2'>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid #475569;
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>
