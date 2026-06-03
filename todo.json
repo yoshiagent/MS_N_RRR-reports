@@ -613,7 +613,25 @@
         "src/agents/mainstream_pool_report.py"
       ],
       "note": "依賴 T-1003 個股報酬追蹤先實作；需資料累積 ≥ 30 日"
+    },
+    {
+      "id": "T-1101",
+      "category": "ops",
+      "title": "Interface Phase 3 — JSON Schema (Draft 7) 嚴格驗證 + CI gate",
+      "source": "IF Phase 2 後續規劃",
+      "description": "Phase 1 (文件 + audit) 和 Phase 2 (TypedDict 共用型別 + runtime warning validator) 已完成。Phase 3 為「嚴格化 + 自動化」：\n\n1. 為每個 agent JSON 配一份正式 JSON Schema (Draft 7) 檔案\n   docs/schemas/{agent}.schema.json（如 chip_score.schema.json）\n\n2. 整合 jsonschema library 做完整驗證（vs Phase 2 只檢查 metadata + 命名）\n   src/shared/interface_validator.py 加 strict=True 模式\n\n3. 寫 unit test：每個 agent 配一份 fixture JSON 必須通過自家 schema\n   tests/test_interface_schemas.py\n\n4. CI gate：orchestrator schema 違反 → exit non-zero（vs 目前只 log warning）\n   或 GitHub Action push 前先跑 validator\n\n5. 寫 schema 自動生成工具：從 TypedDict → JSON Schema\n\n適合時機：Phase 1+2 在生產線跑 1 個月、累積足夠 audit log、確認規範可行後再做。現在做有過度工程化風險（規範還在演進）。",
+      "benefit": "強制 schema 守規，breaking change 在 CI 階段就抓到；新人入手快",
+      "effort": "L",
+      "priority": "P3",
+      "status": "planned",
+      "files": [
+        "docs/schemas/*.schema.json (新, ~20 個)",
+        "src/shared/interface_validator.py (擴充 strict mode)",
+        "tests/test_interface_schemas.py (新)",
+        ".github/workflows/validate.yml (新, 可選)"
+      ],
+      "note": "等 Phase 1+2 在 production 跑 ≥ 1 個月後再評估是否真的需要。Phase 2 的 runtime warning 已足以抓到大多數規約違反。"
     }
   ],
-  "generated_at": "2026-06-02 22:01"
+  "generated_at": "2026-06-03 16:04"
 }
