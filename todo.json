@@ -631,7 +631,25 @@
         ".github/workflows/validate.yml (新, 可選)"
       ],
       "note": "等 Phase 1+2 在 production 跑 ≥ 1 個月後再評估是否真的需要。Phase 2 的 runtime warning 已足以抓到大多數規約違反。"
+    },
+    {
+      "id": "T-1201",
+      "category": "data",
+      "title": "FinMind industry_category 接成 sector_map 第 4 軌（交叉驗證 + ETF/興櫃 補強）",
+      "source": "2026-06-03 sector_map vs FinMind 比對結果",
+      "description": "比對 1935 universe 與 FinMind TaiwanStockInfo 的 industry_category 結果：\n  - 完全相同 930 檔 (48.1%)\n  - 純後綴差異「業/類」字尾 741 檔 (38.3%)\n  - 真實不一致 264 檔 (13.6%)\n\n真實不一致 Top 5（FinMind 把細分都歸大類）：\n  半導體業 → 電子工業 71（含 2330 台積電 / 3711 日月光）\n  光電業 → 電子工業 51\n  通信網路 → 電子工業 39\n  其他電子 → 電子工業 33\n  化學工業 → 化學生技醫療 23\n\n結論：FinMind 比我們自建粗。【不取代】自建 sector_map（XQ industry_sub 細分更實用），\n      但作為「第 4 軌交叉驗證 + ETF/興櫃補強」很有價值。\n\n實作要點：\n  1. fetcher_finmind 加 fetch_finmind_stock_info() 抓 TaiwanStockInfo 4122 筆\n  2. 加進 sector_map 為 finmind_industry 第 4 軌（與 official / theme / xq_sub 並列）\n  3. 4 軌投票：official + xq_sub + theme + finmind 一致 → 高信心；不一致 → flag\n  4. ETF / 興櫃股自動補強（自建覆蓋差）\n  5. 每週 cron 重抓一次（分類偶有變動）\n  6. sector_rotation 報告頁顯示「跨軌一致度」徽章\n\n適合時機：Mainstream Pool 跑穩後再加；現在沒 blocker。",
+      "benefit": "ETF/興櫃自動分類 + 自建 sector_map 跨來源驗證；錯誤分類更難漏網",
+      "effort": "M",
+      "priority": "P3",
+      "status": "planned",
+      "files": [
+        "stockHisData/stock_data/fetcher_finmind.py (加 fetch_finmind_stock_info)",
+        "stockHisData/stock_data/build_sector_map.py (加第 4 軌)",
+        "data/output/sector_map_audit.json (已產出 264 筆不一致樣本)",
+        "src/agents/sector_rotation_report.py (加跨軌一致度顯示)"
+      ],
+      "note": "比對 audit 結果已產出 data/output/sector_map_audit.json 供人工 review。FinMind 純當交叉驗證，不替換自建。"
     }
   ],
-  "generated_at": "2026-06-03 18:31"
+  "generated_at": "2026-06-03 19:42"
 }
