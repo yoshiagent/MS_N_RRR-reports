@@ -1,0 +1,55 @@
+{
+  "as_of": "2026-06-04",
+  "market_state": "bullish",
+  "score": 80,
+  "subscores": {
+    "twii_daily": 90,
+    "twii_weekly": 100,
+    "twii_monthly": 100,
+    "otci_weekly": 90,
+    "fx": 60,
+    "vix": 80,
+    "foreign_oi": 18,
+    "trust_oi": 87,
+    "dealer_oi": 60
+  },
+  "reason": [
+    "日線：收盤 > 日MA20、收盤 > 日MA60、日MA20 斜率向上",
+    "週線：收盤 > 週MA20、週MA20 斜率向上、近 4 週新高",
+    "月線：月收 > 月MA10、月MA10 斜率向上",
+    "OTC 週線：收盤 > 週MA20、週MA20 斜率向上",
+    "匯率：USDTWD 偏離 60日均 -0.55%（中性）",
+    "VIX=16.1（恐慌指數偏低）",
+    "外資台指期：未平倉 -69,476 口（外資淨空 > 6 萬（深空））；趨勢 5d 均 < 20d 均 5000 口（空單加碼）",
+    "投信台指期：未平倉 +51,858 口（投信淨多 ≥ 4 萬（強多））；趨勢 5d 均 > 20d 均 3000 口（持續加碼）",
+    "自營台指期：未平倉 +3,219 口（自營淨多 < 8000）；趨勢 5d 均略高於 20d 均",
+    "Z-score 模型：foreign_pressure=+1.29、etf_support=+0.17、市場結構分=-1.13（strong_bear）；RR 動態 Z 門檻=1.5"
+  ],
+  "allowed_action": "aggressive",
+  "foreign_pressure_score": 1.295,
+  "etf_support_score": 0.166,
+  "market_structure_score": -1.129,
+  "regime": "strong_bear",
+  "dynamic_z_threshold": 1.5,
+  "taiex_above_wma20": true,
+  "z_subscores": {
+    "Z_foreign_spot": -1.606,
+    "Z_foreign_fut": -2.668,
+    "Z_usdtwd": 0.065,
+    "Z_sox": null,
+    "Z_trust": -0.238,
+    "Z_hidiv_vol": null,
+    "Z_mkt_dd_narrow": 1.247,
+    "Z_etf_holder": null
+  },
+  "raw_values": {
+    "foreign_spot_billion": -808.8,
+    "trust_billion": 32.4,
+    "foreign_fut_net_oi": -69476,
+    "foreign_opt_pcr_net": 3.998,
+    "usdtwd": 31.481,
+    "taiex": 45677.46,
+    "taiex_drawdown": -0.0168
+  },
+  "z_stale_inputs": []
+}
