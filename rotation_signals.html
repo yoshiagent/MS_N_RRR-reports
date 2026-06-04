@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang='zh-Hant'>
+<head>
+<meta charset='utf-8'>
+<title>🔄 換股建議 ｜ MS_N_RR/RRR Ver.A</title>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<style>
+:root{ --bg:#0f172a; --card:#1e293b; --card2:#162033; --border:#334155;
+       --text:#e2e8f0; --muted:#94a3b8; --accent:#60a5fa;
+       --good:#10b981; --warn:#fbbf24; --bad:#ef4444; }
+*{ box-sizing: border-box; }
+body{ margin:0; background:var(--bg); color:var(--text);
+      font-family:"Segoe UI",-apple-system,sans-serif; padding:20px;
+      max-width: 1400px; margin: 0 auto; }
+h1{ font-size:26px; margin:0 0 6px 0; }
+h2{ font-size:18px; margin:24px 0 10px 0;
+    border-bottom:2px solid var(--border); padding-bottom:6px; }
+.meta{ color:var(--muted); font-size:13px; margin-bottom:18px; }
+a{ color:var(--accent); }
+
+.banner{ background:var(--card); border:1px solid var(--border);
+         border-radius:10px; padding:14px 18px; margin-bottom:18px; }
+.banner .row{ display:flex; gap:24px; flex-wrap:wrap; align-items:baseline; }
+.banner .num{ font-size:28px; font-weight:700; }
+.urg-grid{ display:grid; gap:10px;
+           grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+           margin: 10px 0; }
+.urg-stat{ background:#0f1729; border-radius:6px; padding:10px 12px;
+           text-align:center; }
+.urg-stat .num{ font-size:24px; font-weight:700; }
+.urg-stat .lbl{ font-size:12px; color:var(--muted); margin-top:2px; }
+
+.intro{ background:#0a141f; border-left:3px solid var(--accent);
+        padding:10px 14px; margin: 10px 0; border-radius:4px;
+        font-size: 13px; color: var(--muted); }
+.intro b{ color: var(--text); }
+
+.pair-card{ display:grid; grid-template-columns: 1fr auto 1fr;
+            gap: 14px; align-items: center;
+            background:var(--card); border:1px solid var(--border);
+            border-radius:8px; padding:12px 14px; margin-bottom: 10px; }
+.pair-card.urg-S{ border-left: 4px solid #ef4444; }
+.pair-card.urg-A{ border-left: 4px solid #f97316; }
+.pair-card.urg-B{ border-left: 4px solid #fbbf24; }
+.pair-side{ display:flex; flex-direction:column; gap: 4px; }
+.pair-side .sym-line{ font-size:15px; }
+.pair-side .sym{ font-weight:700; }
+.pair-side .name{ color: var(--text); }
+.pair-side .meta-line{ font-size:11px; color:var(--muted); }
+.pair-side .badges{ display:flex; gap:4px; flex-wrap:wrap; margin-top: 2px; }
+.pair-arrow{ font-size: 18px; color: var(--accent); text-align:center; }
+.pair-arrow .urg{ display:block; font-weight:700; font-size: 12px; margin-top: 4px; }
+.pair-arrow .urg-sub{ font-size: 10px; color: var(--muted); }
+
+.pill{ padding:1px 6px; border-radius:8px; font-size:10px;
+       font-weight:600; display:inline-block; }
+.pill.utad{ background:#ef444433; color:#ef4444; }
+.pill.spring{ background:#10b98133; color:#10b981; }
+.pill.same-sector{ background:#60a5fa33; color:#60a5fa; }
+.pill.ds{ background:#ef444422; color:#ef4444; }
+.pill.as{ background:#10b98122; color:#10b981; }
+.pill.phase{ background:#33415544; color:var(--muted); }
+
+.alternates{ background:#0f1729; padding:8px 12px; margin-top: 4px;
+             border-radius:4px; font-size: 11px; }
+.alternates .title{ color:var(--muted); margin-bottom: 3px; }
+
+.filter-bar{ display:flex; gap:8px; margin: 10px 0; flex-wrap: wrap; align-items:center; }
+.filter-bar input{ background:#0f1729; border:1px solid var(--border);
+                   color:var(--text); padding:6px 10px; border-radius:6px;
+                   font-size:13px; min-width: 220px; }
+.btn{ background:var(--card2); border:1px solid var(--border);
+      color:var(--text); padding:6px 14px; border-radius:6px;
+      font-size:12px; cursor:pointer; }
+.btn.active{ background:var(--accent); color:#0f172a; border-color:var(--accent); }
+.btn:hover:not(.active){ border-color:var(--accent); }
+
+.hidden{ display: none; }
+footer{ margin-top:30px; color:var(--muted); font-size:12px; text-align:center;
+        padding-top:14px; border-top:1px solid var(--border); }
+</style>
+</head>
+<body>
+<h1>🔄 換股建議 (Rotation Signals)</h1>
+<div class='meta'>
+  資料日 <strong>2026-06-03</strong> ｜ 產生時間 2026-06-04 14:40:18.917104 ｜
+  <a href='index.html'>← 回主頁</a>
+</div>
+
+<div class='banner'>
+  <div class='row'>
+    <div><span class='num' style='color:var(--accent)'>14</span>
+         <span style='color:var(--muted);margin-left:6px;'>個換股配對</span></div>
+    <div><span class='num' style='color:var(--bad)'>14</span>
+         <span style='color:var(--muted);margin-left:6px;'>檔派發中持有 (DS≥40)</span></div>
+    <div><span class='num' style='color:var(--good)'>27</span>
+         <span style='color:var(--muted);margin-left:6px;'>檔吸籌中候選 (AS≥50)</span></div>
+  </div>
+  <div class='urg-grid'>
+    <div class='urg-stat'>
+      <div class='num' style='color:#ef4444'>🔴 0</div>
+      <div class='lbl'>S 強烈換股 (urgency≥60)</div>
+    </div>
+    <div class='urg-stat'>
+      <div class='num' style='color:#f97316'>🟠 4</div>
+      <div class='lbl'>A 建議換股 (40-60)</div>
+    </div>
+    <div class='urg-stat'>
+      <div class='num' style='color:#fbbf24'>🟡 10</div>
+      <div class='lbl'>B 觀察換股 (20-40)</div>
+    </div>
+    <div class='urg-stat'>
+      <div class='num' style='color:var(--accent)'>🎯 2</div>
+      <div class='lbl'>同族群配對</div>
+    </div>
+  </div>
+</div>
+
+<div class='intro'>
+  <b>🔄 Rotation Signal</b> = Distribution Score 對撞 Accumulation Score 的「換股決策層」。<br>
+  <b>邏輯</b>：手上派發中（DS 高）→ 候選池吸籌中（AS 高）→ 計算 swap_urgency = max(0, DS-40) + max(0, AS-40) + 同族群 +10。<br>
+  <b>使用</b>：手上 DS &lt; 40 → 不急（延遲換股，繼續持有）；DS ≥ 60 + 候選 AS ≥ 60 → 強烈換股建議。<br>
+  🎯 同族群配對 = 族群輪動觀（內部資金移動）；🌋 持有股 UTAD = Distribution Phase C 訊號；🌱 候選股 Spring = Accumulation Phase C 訊號。
+</div>
+
+<div class='filter-bar'>
+  <label style='color:var(--muted);font-size:12px'>🔍</label>
+  <input id='search' type='text' placeholder='代號 / 名稱 / 族群 搜尋' />
+  <button class='btn active' data-filter='all'>全部 (14)</button>
+  <button class='btn' data-filter='S'>🔴 S 強烈 (0)</button>
+  <button class='btn' data-filter='A'>🟠 A 級+ (4)</button>
+  <button class='btn' data-filter='sameSect'>🎯 同族群 (2)</button>
+</div>
+
+<div style='margin-top: 14px'><div class='pair-card urg-A' data-urg='A_recommend' data-same-sect='0' data-search='3035 智原 2610 華航 24_半導體業 15_航運業'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>3035</span> <span class='name'>智原</span></div><div class='meta-line'>族群: 24_半導體業 ｜ 來源: custom</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 59 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#f97316'>🟠 建議換股</span><span class='urg-sub'>urgency 48</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2610</span> <span class='name'>華航</span></div><div class='meta-line' style='text-align: right'>族群: 15_航運業</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 69 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 67, urg 46) ｜ 4923 力士 (AS 51, urg 41)</div></div><div class='pair-card urg-A' data-urg='A_recommend' data-same-sect='1' data-search='2474 可成 3324 雙鴻 31_其他電子 31_其他電子'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>2474</span> <span class='name'>可成</span></div><div class='meta-line'>族群: 31_其他電子 ｜ 來源: mainstream_core,strong_safe</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 54 (B)</span><span class='pill phase'>Phase B（派發建倉）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#f97316'>🟠 建議換股</span><span class='urg-sub'>urgency 44</span><div style='font-size:10px;margin-top:3px'><span style='color:#60a5fa'>🎯 同族群</span></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>3324</span> <span class='name'>雙鴻</span></div><div class='meta-line' style='text-align: right'>族群: 31_其他電子</div><div class='badges' style='justify-content: flex-end'><span class='pill as'>AS 61 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2610 華航 (AS 69, urg 42) ｜ 2884 玉山金 (AS 67, urg 40)</div></div><div class='pair-card urg-A' data-urg='A_recommend' data-same-sect='0' data-search='4938 和碩 2610 華航 25_電腦及週邊設備 15_航運業'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>4938</span> <span class='name'>和碩</span></div><div class='meta-line'>族群: 25_電腦及週邊設備 ｜ 來源: mainstream_core</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 52 (B)</span><span class='pill phase'>Phase B（派發建倉）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#f97316'>🟠 建議換股</span><span class='urg-sub'>urgency 41</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2610</span> <span class='name'>華航</span></div><div class='meta-line' style='text-align: right'>族群: 15_航運業</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 69 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 67, urg 39) ｜ 3706 神達 (AS 54, urg 36)</div></div><div class='pair-card urg-A' data-urg='A_recommend' data-same-sect='0' data-search='9921 巨大 2610 華航 37_運動休閒 15_航運業'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>9921</span> <span class='name'>巨大</span></div><div class='meta-line'>族群: 37_運動休閒 ｜ 來源: custom</div><div class='badges'><span class='pill ds'>DS 52 (B)</span><span class='pill phase'>Phase B（派發建倉）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#f97316'>🟠 建議換股</span><span class='urg-sub'>urgency 41</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2610</span> <span class='name'>華航</span></div><div class='meta-line' style='text-align: right'>族群: 15_航運業</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 69 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 67, urg 39) ｜ 3324 雙鴻 (AS 61, urg 33)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='1' data-search='2312 金寶 3324 雙鴻 31_其他電子 31_其他電子'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>2312</span> <span class='name'>金寶</span></div><div class='meta-line'>族群: 31_其他電子 ｜ 來源: mainstream_core</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 47 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 37</span><div style='font-size:10px;margin-top:3px'><span style='color:#60a5fa'>🎯 同族群</span></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>3324</span> <span class='name'>雙鴻</span></div><div class='meta-line' style='text-align: right'>族群: 31_其他電子</div><div class='badges' style='justify-content: flex-end'><span class='pill as'>AS 61 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2610 華航 (AS 69, urg 35) ｜ 2884 玉山金 (AS 67, urg 33)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='2454 聯發科 2610 華航 24_半導體業 15_航運業'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>2454</span> <span class='name'>聯發科</span></div><div class='meta-line'>族群: 24_半導體業 ｜ 來源: mainstream_core,mainstream_can</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 47 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 35</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2610</span> <span class='name'>華航</span></div><div class='meta-line' style='text-align: right'>族群: 15_航運業</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 69 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 67, urg 33) ｜ 4923 力士 (AS 51, urg 28)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='2409 友達 2610 華航 26_光電業 15_航運業'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>2409</span> <span class='name'>友達</span></div><div class='meta-line'>族群: 26_光電業 ｜ 來源: strong_overheated</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 46 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 35</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2610</span> <span class='name'>華航</span></div><div class='meta-line' style='text-align: right'>族群: 15_航運業</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 69 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 67, urg 33) ｜ 3324 雙鴻 (AS 61, urg 27)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='6147 頎邦 2610 華航 24_半導體業 15_航運業'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>6147</span> <span class='name'>頎邦</span></div><div class='meta-line'>族群: 24_半導體業 ｜ 來源: mainstream_core,strong_safe</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 46 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 34</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2610</span> <span class='name'>華航</span></div><div class='meta-line' style='text-align: right'>族群: 15_航運業</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 69 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 67, urg 33) ｜ 4923 力士 (AS 51, urg 27)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='3537 堡達 2610 華航 28_電子零組件 15_航運業'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>3537</span> <span class='name'>堡達</span></div><div class='meta-line'>族群: 28_電子零組件 ｜ 來源: mainstream_core,strong_off_ind</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 43 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 31</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2610</span> <span class='name'>華航</span></div><div class='meta-line' style='text-align: right'>族群: 15_航運業</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 69 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 67, urg 29) ｜ 3324 雙鴻 (AS 61, urg 23)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='2377 微星 2610 華航 25_電腦及週邊設備 15_航運業'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>2377</span> <span class='name'>微星</span></div><div class='meta-line'>族群: 25_電腦及週邊設備 ｜ 來源: mainstream_core</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 42 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 31</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2610</span> <span class='name'>華航</span></div><div class='meta-line' style='text-align: right'>族群: 15_航運業</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 69 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 67, urg 29) ｜ 3706 神達 (AS 54, urg 26)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='2379 瑞昱 2610 華航 24_半導體業 15_航運業'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>2379</span> <span class='name'>瑞昱</span></div><div class='meta-line'>族群: 24_半導體業 ｜ 來源: mainstream_core</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 41 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 30</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2610</span> <span class='name'>華航</span></div><div class='meta-line' style='text-align: right'>族群: 15_航運業</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 69 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 67, urg 28) ｜ 4923 力士 (AS 51, urg 23)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='6488 環球晶 2610 華航 24_半導體業 15_航運業'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>6488</span> <span class='name'>環球晶</span></div><div class='meta-line'>族群: 24_半導體業 ｜ 來源: strong_overheated</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 41 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 29</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2610</span> <span class='name'>華航</span></div><div class='meta-line' style='text-align: right'>族群: 15_航運業</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 69 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 67, urg 28) ｜ 4923 力士 (AS 51, urg 22)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='2382 廣達 2610 華航 25_電腦及週邊設備 15_航運業'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>2382</span> <span class='name'>廣達</span></div><div class='meta-line'>族群: 25_電腦及週邊設備 ｜ 來源: mainstream_core,mainstream_can</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 40 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 29</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2610</span> <span class='name'>華航</span></div><div class='meta-line' style='text-align: right'>族群: 15_航運業</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 69 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 67, urg 27) ｜ 3706 神達 (AS 54, urg 24)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='3450 聯鈞 2610 華航 24_半導體業 15_航運業'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>3450</span> <span class='name'>聯鈞</span></div><div class='meta-line'>族群: 24_半導體業 ｜ 來源: mainstream_core</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 40 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 29</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2610</span> <span class='name'>華航</span></div><div class='meta-line' style='text-align: right'>族群: 15_航運業</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 69 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 67, urg 27) ｜ 4923 力士 (AS 51, urg 22)</div></div></div>
+
+<footer>
+  Rotation Signals ｜ <code>src/agents/rotation_signals.py</code> ｜
+  入料：<code>distribution_score.json</code> × <code>accumulation_pool.json</code> ×
+  <code>sector_constituents.json</code>
+</footer>
+
+<script>
+document.querySelectorAll('.btn[data-filter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.btn[data-filter]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.pair-card').forEach(c => {
+      const urg = c.dataset.urg;
+      const sameSect = c.dataset.sameSect === '1';
+      let show = true;
+      if (f === 'S') show = urg === 'S_strong';
+      else if (f === 'A') show = urg === 'A_recommend' || urg === 'S_strong';
+      else if (f === 'sameSect') show = sameSect;
+      c.classList.toggle('hidden', !show);
+    });
+  });
+});
+
+const sb = document.getElementById('search');
+if (sb) {
+  sb.addEventListener('input', () => {
+    const q = sb.value.trim().toLowerCase();
+    document.querySelectorAll('.pair-card').forEach(c => {
+      const txt = c.dataset.search || '';
+      const match = !q || txt.includes(q);
+      c.classList.toggle('hidden', !match);
+    });
+  });
+}
+</script>
+</body>
+</html>
