@@ -1,10 +1,10 @@
 {
   "as_of": "2026-06-05",
-  "n_tradable": 134,
-  "n_switches": 72,
-  "n_holds": 55,
-  "n_allowed": 56,
-  "n_blocked": 78,
+  "n_tradable": 132,
+  "n_switches": 76,
+  "n_holds": 51,
+  "n_allowed": 60,
+  "n_blocked": 72,
   "tradable": [
     {
       "pair": [
@@ -773,6 +773,57 @@
     },
     {
       "pair": [
+        "6206",
+        "3324"
+      ],
+      "rrr_score": 86,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=40.6%(100) / B=69.7%(70)",
+        "[phase] 日報酬相關 +0.24",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.16, min=-2.83）"
+      ],
+      "subscores": {
+        "volatility": 85,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.406,
+          "vol_b": 0.697
+        },
+        "phase": {
+          "corr": 0.239
+        },
+        "cycle": {
+          "zero_crossings": 7
+        },
+        "mean_reversion": {
+          "z_max": 3.16,
+          "z_min": -2.83,
+          "span": 5.99
+        }
+      },
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
+    },
+    {
+      "pair": [
         "1301",
         "3017"
       ],
@@ -1283,97 +1334,46 @@
     },
     {
       "pair": [
-        "8299",
-        "3034"
+        "3034",
+        "3324"
       ],
       "rrr_score": 83,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=88.3%(40) / B=39.9%(100)",
-        "[phase] 日報酬相關 +0.26",
-        "[cycle] 近 120 日 Z60 零軸交叉 4 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.36, min=-2.03）"
-      ],
-      "subscores": {
-        "volatility": 70,
-        "phase": 70,
-        "cycle": 90,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.883,
-          "vol_b": 0.399
-        },
-        "phase": {
-          "corr": 0.256
-        },
-        "cycle": {
-          "zero_crossings": 4
-        },
-        "mean_reversion": {
-          "z_max": 2.36,
-          "z_min": -2.03,
-          "span": 4.4
-        }
-      },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "inbox_side",
-      "B_label": "箱內盤整",
-      "B_icon": "⚪",
-      "B_color": "#94a3b8",
-      "B_modifiers": [],
-      "B_healthy": false,
-      "healthy_pair": false,
-      "pair_health": "a_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "1301"
-      ],
-      "rrr_score": 83,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=88.3%(40) / B=45.2%(100)",
+        "[volatility] 年化波動 A=39.8%(100) / B=69.7%(70)",
         "[phase] 日報酬相關 +0.25",
-        "[cycle] 近 120 日 Z60 零軸交叉 8 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+3.16, min=-2.48）"
+        "[cycle] 近 120 日 Z60 零軸交叉 13 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.83, min=-2.59）"
       ],
       "subscores": {
-        "volatility": 70,
+        "volatility": 85,
         "phase": 70,
-        "cycle": 90,
+        "cycle": 75,
         "mean_reversion": 100
       },
       "details": {
         "volatility": {
-          "vol_a": 0.883,
-          "vol_b": 0.452
+          "vol_a": 0.398,
+          "vol_b": 0.697
         },
         "phase": {
-          "corr": 0.253
+          "corr": 0.248
         },
         "cycle": {
-          "zero_crossings": 8
+          "zero_crossings": 13
         },
         "mean_reversion": {
-          "z_max": 3.16,
-          "z_min": -2.48,
-          "span": 5.64
+          "z_max": 2.83,
+          "z_min": -2.59,
+          "span": 5.41
         }
       },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
       "A_modifiers": [],
-      "A_healthy": true,
+      "A_healthy": false,
       "B_state": "inbox_side",
       "B_label": "箱內盤整",
       "B_icon": "⚪",
@@ -1381,58 +1381,7 @@
       "B_modifiers": [],
       "B_healthy": false,
       "healthy_pair": false,
-      "pair_health": "a_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "2379"
-      ],
-      "rrr_score": 83,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=88.3%(40) / B=45.7%(100)",
-        "[phase] 日報酬相關 +0.24",
-        "[cycle] 近 120 日 Z60 零軸交叉 4 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.45, min=-2.09）"
-      ],
-      "subscores": {
-        "volatility": 70,
-        "phase": 70,
-        "cycle": 90,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.883,
-          "vol_b": 0.457
-        },
-        "phase": {
-          "corr": 0.244
-        },
-        "cycle": {
-          "zero_crossings": 4
-        },
-        "mean_reversion": {
-          "z_max": 2.45,
-          "z_min": -2.09,
-          "span": 4.54
-        }
-      },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
+      "pair_health": "none"
     },
     {
       "pair": [
@@ -1484,57 +1433,6 @@
       "B_healthy": false,
       "healthy_pair": false,
       "pair_health": "none"
-    },
-    {
-      "pair": [
-        "1301",
-        "2454"
-      ],
-      "rrr_score": 83,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=45.7%(100) / B=76.3%(40)",
-        "[phase] 日報酬相關 +0.19",
-        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.95, min=-3.57）"
-      ],
-      "subscores": {
-        "volatility": 70,
-        "phase": 70,
-        "cycle": 90,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.457,
-          "vol_b": 0.763
-        },
-        "phase": {
-          "corr": 0.19
-        },
-        "cycle": {
-          "zero_crossings": 7
-        },
-        "mean_reversion": {
-          "z_max": 2.95,
-          "z_min": -3.57,
-          "span": 6.52
-        }
-      },
-      "A_state": "inbox_side",
-      "A_label": "箱內盤整",
-      "A_icon": "⚪",
-      "A_color": "#94a3b8",
-      "A_modifiers": [],
-      "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": false,
-      "pair_health": "b_only"
     },
     {
       "pair": [
@@ -1997,312 +1895,6 @@
     },
     {
       "pair": [
-        "2367",
-        "2454"
-      ],
-      "rrr_score": 79,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=62.2%(70) / B=76.3%(40)",
-        "[phase] 日報酬相關 +0.24",
-        "[cycle] 近 120 日 Z60 零軸交叉 8 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+3.26, min=-2.59）"
-      ],
-      "subscores": {
-        "volatility": 55,
-        "phase": 70,
-        "cycle": 90,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.622,
-          "vol_b": 0.763
-        },
-        "phase": {
-          "corr": 0.24
-        },
-        "cycle": {
-          "zero_crossings": 8
-        },
-        "mean_reversion": {
-          "z_max": 3.26,
-          "z_min": -2.59,
-          "span": 5.85
-        }
-      },
-      "A_state": "inbox_side",
-      "A_label": "箱內盤整",
-      "A_icon": "⚪",
-      "A_color": "#94a3b8",
-      "A_modifiers": [],
-      "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": false,
-      "pair_health": "b_only"
-    },
-    {
-      "pair": [
-        "3504",
-        "8299"
-      ],
-      "rrr_score": 79,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=59.4%(70) / B=88.3%(40)",
-        "[phase] 日報酬相關 +0.25",
-        "[cycle] 近 120 日 Z60 零軸交叉 12 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.93, min=-2.45）"
-      ],
-      "subscores": {
-        "volatility": 55,
-        "phase": 70,
-        "cycle": 90,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.594,
-          "vol_b": 0.883
-        },
-        "phase": {
-          "corr": 0.251
-        },
-        "cycle": {
-          "zero_crossings": 12
-        },
-        "mean_reversion": {
-          "z_max": 2.93,
-          "z_min": -2.45,
-          "span": 5.38
-        }
-      },
-      "A_state": "above_down",
-      "A_label": "箱上回測",
-      "A_icon": "🟡",
-      "A_color": "#fcd34d",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "8299",
-        "2345"
-      ],
-      "rrr_score": 79,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=88.3%(40) / B=74.8%(70)",
-        "[phase] 日報酬相關 +0.28",
-        "[cycle] 近 120 日 Z60 零軸交叉 12 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.67, min=-2.16）"
-      ],
-      "subscores": {
-        "volatility": 55,
-        "phase": 70,
-        "cycle": 90,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.883,
-          "vol_b": 0.748
-        },
-        "phase": {
-          "corr": 0.277
-        },
-        "cycle": {
-          "zero_crossings": 12
-        },
-        "mean_reversion": {
-          "z_max": 2.67,
-          "z_min": -2.16,
-          "span": 4.83
-        }
-      },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_down",
-      "B_label": "箱上回測",
-      "B_icon": "🟡",
-      "B_color": "#fcd34d",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "8299",
-        "3017"
-      ],
-      "rrr_score": 79,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=88.3%(40) / B=69.8%(70)",
-        "[phase] 日報酬相關 +0.09",
-        "[cycle] 近 120 日 Z60 零軸交叉 4 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+3.76, min=-2.12）"
-      ],
-      "subscores": {
-        "volatility": 55,
-        "phase": 70,
-        "cycle": 90,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.883,
-          "vol_b": 0.698
-        },
-        "phase": {
-          "corr": 0.088
-        },
-        "cycle": {
-          "zero_crossings": 4
-        },
-        "mean_reversion": {
-          "z_max": 3.76,
-          "z_min": -2.12,
-          "span": 5.87
-        }
-      },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "8299",
-        "2383"
-      ],
-      "rrr_score": 79,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=88.3%(40) / B=72.1%(70)",
-        "[phase] 日報酬相關 +0.29",
-        "[cycle] 近 120 日 Z60 零軸交叉 6 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.90, min=-2.17）"
-      ],
-      "subscores": {
-        "volatility": 55,
-        "phase": 70,
-        "cycle": 90,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.883,
-          "vol_b": 0.721
-        },
-        "phase": {
-          "corr": 0.292
-        },
-        "cycle": {
-          "zero_crossings": 6
-        },
-        "mean_reversion": {
-          "z_max": 2.9,
-          "z_min": -2.17,
-          "span": 5.07
-        }
-      },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_down",
-      "B_label": "箱上回測",
-      "B_icon": "🟡",
-      "B_color": "#fcd34d",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "8299",
-        "2368"
-      ],
-      "rrr_score": 79,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=88.3%(40) / B=74.7%(70)",
-        "[phase] 日報酬相關 +0.28",
-        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.45, min=-2.25）"
-      ],
-      "subscores": {
-        "volatility": 55,
-        "phase": 70,
-        "cycle": 90,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.883,
-          "vol_b": 0.747
-        },
-        "phase": {
-          "corr": 0.279
-        },
-        "cycle": {
-          "zero_crossings": 9
-        },
-        "mean_reversion": {
-          "z_max": 2.45,
-          "z_min": -2.25,
-          "span": 4.71
-        }
-      },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_down",
-      "B_label": "箱上回測",
-      "B_icon": "🟡",
-      "B_color": "#fcd34d",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "2345",
         "1301"
       ],
@@ -2762,16 +2354,16 @@
     },
     {
       "pair": [
-        "3017",
-        "2454"
+        "2383",
+        "3260"
       ],
       "rrr_score": 79,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=70.5%(70) / B=76.3%(40)",
-        "[phase] 日報酬相關 +0.28",
-        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+3.01, min=-2.63）"
+        "[volatility] 年化波動 A=70.3%(70) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.23",
+        "[cycle] 近 120 日 Z60 零軸交叉 4 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.23, min=-2.28）"
       ],
       "subscores": {
         "volatility": 55,
@@ -2781,31 +2373,31 @@
       },
       "details": {
         "volatility": {
-          "vol_a": 0.705,
-          "vol_b": 0.763
+          "vol_a": 0.703,
+          "vol_b": 0.904
         },
         "phase": {
-          "corr": 0.279
+          "corr": 0.227
         },
         "cycle": {
-          "zero_crossings": 7
+          "zero_crossings": 4
         },
         "mean_reversion": {
-          "z_max": 3.01,
-          "z_min": -2.63,
-          "span": 5.64
+          "z_max": 2.23,
+          "z_min": -2.28,
+          "span": 4.51
         }
       },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
       "A_modifiers": [],
       "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
       "B_modifiers": [],
       "B_healthy": true,
       "healthy_pair": true,
@@ -2819,7 +2411,7 @@
       "rrr_score": 79,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=74.7%(70) / B=85.0%(40)",
+        "[volatility] 年化波動 A=74.0%(70) / B=84.8%(40)",
         "[phase] 日報酬相關 +0.22",
         "[cycle] 近 120 日 Z60 零軸交叉 9 次",
         "[mean_reversion] Z60 雙邊觸極端（max=+2.84, min=-2.82）"
@@ -2832,11 +2424,11 @@
       },
       "details": {
         "volatility": {
-          "vol_a": 0.747,
-          "vol_b": 0.85
+          "vol_a": 0.74,
+          "vol_b": 0.848
         },
         "phase": {
-          "corr": 0.225
+          "corr": 0.224
         },
         "cycle": {
           "zero_crossings": 9
@@ -2915,6 +2507,57 @@
     },
     {
       "pair": [
+        "3711",
+        "3260"
+      ],
+      "rrr_score": 79,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=66.3%(70) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.21",
+        "[cycle] 近 120 日 Z60 零軸交叉 6 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.04, min=-2.88）"
+      ],
+      "subscores": {
+        "volatility": 55,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.663,
+          "vol_b": 0.904
+        },
+        "phase": {
+          "corr": 0.212
+        },
+        "cycle": {
+          "zero_crossings": 6
+        },
+        "mean_reversion": {
+          "z_max": 2.04,
+          "z_min": -2.88,
+          "span": 4.91
+        }
+      },
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
         "2367",
         "3034"
       ],
@@ -2966,6 +2609,57 @@
     },
     {
       "pair": [
+        "2379",
+        "3324"
+      ],
+      "rrr_score": 78,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=44.6%(100) / B=69.7%(70)",
+        "[phase] 日報酬相關 +0.04",
+        "[cycle] 近 120 日 Z60 零軸交叉 16 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.33, min=-2.67）"
+      ],
+      "subscores": {
+        "volatility": 85,
+        "phase": 70,
+        "cycle": 55,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.446,
+          "vol_b": 0.697
+        },
+        "phase": {
+          "corr": 0.043
+        },
+        "cycle": {
+          "zero_crossings": 16
+        },
+        "mean_reversion": {
+          "z_max": 2.33,
+          "z_min": -2.67,
+          "span": 5.0
+        }
+      },
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
+    },
+    {
+      "pair": [
         "2449",
         "2345"
       ],
@@ -3014,57 +2708,6 @@
       "B_healthy": true,
       "healthy_pair": false,
       "pair_health": "b_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "2330"
-      ],
-      "rrr_score": 77,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=88.3%(40) / B=35.5%(100)",
-        "[phase] 日報酬相關 +0.38",
-        "[cycle] 近 120 日 Z60 零軸交叉 8 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.57, min=-2.18）"
-      ],
-      "subscores": {
-        "volatility": 70,
-        "phase": 50,
-        "cycle": 90,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.883,
-          "vol_b": 0.355
-        },
-        "phase": {
-          "corr": 0.381
-        },
-        "cycle": {
-          "zero_crossings": 8
-        },
-        "mean_reversion": {
-          "z_max": 2.57,
-          "z_min": -2.18,
-          "span": 4.75
-        }
-      },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
     },
     {
       "pair": [
@@ -3170,54 +2813,54 @@
     },
     {
       "pair": [
-        "2330",
-        "2454"
+        "3596",
+        "3324"
       ],
       "rrr_score": 77,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=35.4%(100) / B=76.3%(40)",
-        "[phase] 日報酬相關 +0.35",
-        "[cycle] 近 120 日 Z60 零軸交叉 8 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.62, min=-3.57）"
+        "[volatility] 年化波動 A=40.4%(100) / B=69.7%(70)",
+        "[phase] 日報酬相關 +0.30",
+        "[cycle] 近 120 日 Z60 零軸交叉 13 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.26, min=-3.44）"
       ],
       "subscores": {
-        "volatility": 70,
+        "volatility": 85,
         "phase": 50,
-        "cycle": 90,
+        "cycle": 75,
         "mean_reversion": 100
       },
       "details": {
         "volatility": {
-          "vol_a": 0.354,
-          "vol_b": 0.763
+          "vol_a": 0.404,
+          "vol_b": 0.697
         },
         "phase": {
-          "corr": 0.354
+          "corr": 0.303
         },
         "cycle": {
-          "zero_crossings": 8
+          "zero_crossings": 13
         },
         "mean_reversion": {
-          "z_max": 2.62,
-          "z_min": -3.57,
-          "span": 6.19
+          "z_max": 2.26,
+          "z_min": -3.44,
+          "span": 5.71
         }
       },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
       "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
+      "A_healthy": false,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
       "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "none"
     },
     {
       "pair": [
@@ -3320,6 +2963,57 @@
       "B_healthy": false,
       "healthy_pair": false,
       "pair_health": "none"
+    },
+    {
+      "pair": [
+        "2367",
+        "3260"
+      ],
+      "rrr_score": 76,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=62.2%(70) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.23",
+        "[cycle] 近 120 日 Z60 零軸交叉 14 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.08, min=-3.51）"
+      ],
+      "subscores": {
+        "volatility": 55,
+        "phase": 70,
+        "cycle": 75,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.622,
+          "vol_b": 0.904
+        },
+        "phase": {
+          "corr": 0.225
+        },
+        "cycle": {
+          "zero_crossings": 14
+        },
+        "mean_reversion": {
+          "z_max": 3.08,
+          "z_min": -3.51,
+          "span": 6.58
+        }
+      },
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": false,
+      "pair_health": "b_only"
     },
     {
       "pair": [
@@ -3527,108 +3221,6 @@
     },
     {
       "pair": [
-        "8299",
-        "8046"
-      ],
-      "rrr_score": 76,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=88.3%(40) / B=83.9%(40)",
-        "[phase] 日報酬相關 +0.27",
-        "[cycle] 近 120 日 Z60 零軸交叉 6 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.54, min=-2.05）"
-      ],
-      "subscores": {
-        "volatility": 40,
-        "phase": 70,
-        "cycle": 90,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.883,
-          "vol_b": 0.839
-        },
-        "phase": {
-          "corr": 0.273
-        },
-        "cycle": {
-          "zero_crossings": 6
-        },
-        "mean_reversion": {
-          "z_max": 2.54,
-          "z_min": -2.05,
-          "span": 4.59
-        }
-      },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "inbox_side",
-      "B_label": "箱內盤整",
-      "B_icon": "⚪",
-      "B_color": "#94a3b8",
-      "B_modifiers": [],
-      "B_healthy": false,
-      "healthy_pair": false,
-      "pair_health": "a_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "3596"
-      ],
-      "rrr_score": 76,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=88.3%(40) / B=40.3%(100)",
-        "[phase] 日報酬相關 +0.28",
-        "[cycle] 近 120 日 Z60 零軸交叉 8 次",
-        "[mean_reversion] Z60 單邊觸極端（max=+2.88, min=-1.50）"
-      ],
-      "subscores": {
-        "volatility": 70,
-        "phase": 70,
-        "cycle": 90,
-        "mean_reversion": 75
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.883,
-          "vol_b": 0.403
-        },
-        "phase": {
-          "corr": 0.279
-        },
-        "cycle": {
-          "zero_crossings": 8
-        },
-        "mean_reversion": {
-          "z_max": 2.88,
-          "z_min": -1.5,
-          "span": 4.38
-        }
-      },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "inbox_side",
-      "B_label": "箱內盤整",
-      "B_icon": "⚪",
-      "B_color": "#94a3b8",
-      "B_modifiers": [],
-      "B_healthy": false,
-      "healthy_pair": false,
-      "pair_health": "a_only"
-    },
-    {
-      "pair": [
         "6206",
         "3017"
       ],
@@ -3686,8 +3278,8 @@
       "rrr_score": 76,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=43.7%(100) / B=85.0%(40)",
-        "[phase] 日報酬相關 +0.22",
+        "[volatility] 年化波動 A=40.6%(100) / B=84.8%(40)",
+        "[phase] 日報酬相關 +0.21",
         "[cycle] 近 120 日 Z60 零軸交叉 7 次",
         "[mean_reversion] Z60 單邊觸極端（max=+2.00, min=-3.08）"
       ],
@@ -3699,11 +3291,11 @@
       },
       "details": {
         "volatility": {
-          "vol_a": 0.437,
-          "vol_b": 0.85
+          "vol_a": 0.406,
+          "vol_b": 0.848
         },
         "phase": {
-          "corr": 0.218
+          "corr": 0.214
         },
         "cycle": {
           "zero_crossings": 7
@@ -3712,6 +3304,57 @@
           "z_max": 2.0,
           "z_min": -3.08,
           "span": 5.07
+        }
+      },
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "6206",
+        "3260"
+      ],
+      "rrr_score": 76,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=40.6%(100) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.22",
+        "[cycle] 近 120 日 Z60 零軸交叉 5 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.71, min=-3.45）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.406,
+          "vol_b": 0.904
+        },
+        "phase": {
+          "corr": 0.221
+        },
+        "cycle": {
+          "zero_crossings": 5
+        },
+        "mean_reversion": {
+          "z_max": 1.71,
+          "z_min": -3.45,
+          "span": 5.16
         }
       },
       "A_state": "above_up",
@@ -3788,7 +3431,7 @@
       "rrr_score": 76,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=39.9%(100) / B=85.0%(40)",
+        "[volatility] 年化波動 A=39.8%(100) / B=84.8%(40)",
         "[phase] 日報酬相關 +0.18",
         "[cycle] 近 120 日 Z60 零軸交叉 4 次",
         "[mean_reversion] Z60 單邊觸極端（max=+1.55, min=-3.28）"
@@ -3801,11 +3444,11 @@
       },
       "details": {
         "volatility": {
-          "vol_a": 0.399,
-          "vol_b": 0.85
+          "vol_a": 0.398,
+          "vol_b": 0.848
         },
         "phase": {
-          "corr": 0.177
+          "corr": 0.178
         },
         "cycle": {
           "zero_crossings": 4
@@ -3814,6 +3457,57 @@
           "z_max": 1.55,
           "z_min": -3.28,
           "span": 4.83
+        }
+      },
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": false,
+      "pair_health": "b_only"
+    },
+    {
+      "pair": [
+        "3034",
+        "3260"
+      ],
+      "rrr_score": 76,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=39.8%(100) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.20",
+        "[cycle] 近 120 日 Z60 零軸交叉 5 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.02, min=-3.60）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.398,
+          "vol_b": 0.904
+        },
+        "phase": {
+          "corr": 0.204
+        },
+        "cycle": {
+          "zero_crossings": 5
+        },
+        "mean_reversion": {
+          "z_max": 1.02,
+          "z_min": -3.6,
+          "span": 4.62
         }
       },
       "A_state": "inbox_side",
@@ -3885,15 +3579,15 @@
     {
       "pair": [
         "8046",
-        "2454"
+        "3260"
       ],
       "rrr_score": 76,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=84.5%(40) / B=76.3%(40)",
-        "[phase] 日報酬相關 +0.18",
-        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.88, min=-2.24）"
+        "[volatility] 年化波動 A=84.5%(40) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.22",
+        "[cycle] 近 120 日 Z60 零軸交叉 8 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.22, min=-3.88）"
       ],
       "subscores": {
         "volatility": 40,
@@ -3904,18 +3598,18 @@
       "details": {
         "volatility": {
           "vol_a": 0.845,
-          "vol_b": 0.763
+          "vol_b": 0.904
         },
         "phase": {
-          "corr": 0.185
+          "corr": 0.223
         },
         "cycle": {
-          "zero_crossings": 9
+          "zero_crossings": 8
         },
         "mean_reversion": {
-          "z_max": 2.88,
-          "z_min": -2.24,
-          "span": 5.11
+          "z_max": 2.22,
+          "z_min": -3.88,
+          "span": 6.09
         }
       },
       "A_state": "inbox_side",
@@ -3924,10 +3618,10 @@
       "A_color": "#94a3b8",
       "A_modifiers": [],
       "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
       "B_modifiers": [],
       "B_healthy": true,
       "healthy_pair": false,
@@ -3941,9 +3635,9 @@
       "rrr_score": 76,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=85.0%(40) / B=45.7%(100)",
+        "[volatility] 年化波動 A=84.8%(40) / B=44.6%(100)",
         "[phase] 日報酬相關 +0.04",
-        "[cycle] 近 120 日 Z60 零軸交叉 6 次",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
         "[mean_reversion] Z60 單邊觸極端（max=+3.27, min=-0.80）"
       ],
       "subscores": {
@@ -3954,14 +3648,14 @@
       },
       "details": {
         "volatility": {
-          "vol_a": 0.85,
-          "vol_b": 0.457
+          "vol_a": 0.848,
+          "vol_b": 0.446
         },
         "phase": {
-          "corr": 0.044
+          "corr": 0.042
         },
         "cycle": {
-          "zero_crossings": 6
+          "zero_crossings": 7
         },
         "mean_reversion": {
           "z_max": 3.27,
@@ -3986,16 +3680,67 @@
     },
     {
       "pair": [
-        "3596",
-        "2454"
+        "2379",
+        "3260"
       ],
       "rrr_score": 76,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=40.4%(100) / B=76.3%(40)",
-        "[phase] 日報酬相關 +0.28",
-        "[cycle] 近 120 日 Z60 零軸交叉 6 次",
-        "[mean_reversion] Z60 單邊觸極端（max=+0.89, min=-3.77）"
+        "[volatility] 年化波動 A=44.6%(100) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.25",
+        "[cycle] 近 120 日 Z60 零軸交叉 5 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.57, min=-3.39）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.446,
+          "vol_b": 0.904
+        },
+        "phase": {
+          "corr": 0.254
+        },
+        "cycle": {
+          "zero_crossings": 5
+        },
+        "mean_reversion": {
+          "z_max": 1.57,
+          "z_min": -3.39,
+          "span": 4.96
+        }
+      },
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "3596",
+        "3260"
+      ],
+      "rrr_score": 76,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=40.4%(100) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.27",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+0.35, min=-3.49）"
       ],
       "subscores": {
         "volatility": 70,
@@ -4006,18 +3751,18 @@
       "details": {
         "volatility": {
           "vol_a": 0.404,
-          "vol_b": 0.763
+          "vol_b": 0.904
         },
         "phase": {
-          "corr": 0.281
+          "corr": 0.273
         },
         "cycle": {
-          "zero_crossings": 6
+          "zero_crossings": 7
         },
         "mean_reversion": {
-          "z_max": 0.89,
-          "z_min": -3.77,
-          "span": 4.66
+          "z_max": 0.35,
+          "z_min": -3.49,
+          "span": 3.84
         }
       },
       "A_state": "inbox_side",
@@ -4026,10 +3771,10 @@
       "A_color": "#94a3b8",
       "A_modifiers": [],
       "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
       "B_modifiers": [],
       "B_healthy": true,
       "healthy_pair": false,
@@ -4343,6 +4088,57 @@
     },
     {
       "pair": [
+        "2449",
+        "3324"
+      ],
+      "rrr_score": 74,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=68.8%(70) / B=69.7%(70)",
+        "[phase] 日報酬相關 +0.37",
+        "[cycle] 近 120 日 Z60 零軸交叉 13 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.36, min=-3.08）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 50,
+        "cycle": 75,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.688,
+          "vol_b": 0.697
+        },
+        "phase": {
+          "corr": 0.37
+        },
+        "cycle": {
+          "zero_crossings": 13
+        },
+        "mean_reversion": {
+          "z_max": 2.36,
+          "z_min": -3.08,
+          "span": 5.44
+        }
+      },
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "none"
+    },
+    {
+      "pair": [
         "2367",
         "3037"
       ],
@@ -4400,7 +4196,7 @@
       "rrr_score": 74,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=62.2%(70) / B=85.0%(40)",
+        "[volatility] 年化波動 A=62.2%(70) / B=84.8%(40)",
         "[phase] 日報酬相關 +0.52",
         "[cycle] 近 120 日 Z60 零軸交叉 6 次",
         "[mean_reversion] Z60 雙邊觸極端（max=+3.00, min=-2.58）"
@@ -4414,10 +4210,10 @@
       "details": {
         "volatility": {
           "vol_a": 0.622,
-          "vol_b": 0.85
+          "vol_b": 0.848
         },
         "phase": {
-          "corr": 0.523
+          "corr": 0.522
         },
         "cycle": {
           "zero_crossings": 6
@@ -4493,57 +4289,6 @@
       "B_healthy": false,
       "healthy_pair": false,
       "pair_health": "a_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "2308"
-      ],
-      "rrr_score": 74,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=88.3%(40) / B=62.4%(70)",
-        "[phase] 日報酬相關 +0.44",
-        "[cycle] 近 120 日 Z60 零軸交叉 5 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.10, min=-2.53）"
-      ],
-      "subscores": {
-        "volatility": 55,
-        "phase": 50,
-        "cycle": 90,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.883,
-          "vol_b": 0.624
-        },
-        "phase": {
-          "corr": 0.444
-        },
-        "cycle": {
-          "zero_crossings": 5
-        },
-        "mean_reversion": {
-          "z_max": 2.1,
-          "z_min": -2.53,
-          "span": 4.63
-        }
-      },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
     },
     {
       "pair": [
@@ -4655,7 +4400,7 @@
       "rrr_score": 74,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=69.8%(70) / B=85.0%(40)",
+        "[volatility] 年化波動 A=70.5%(70) / B=84.8%(40)",
         "[phase] 日報酬相關 +0.37",
         "[cycle] 近 120 日 Z60 零軸交叉 4 次",
         "[mean_reversion] Z60 雙邊觸極端（max=+3.00, min=-2.39）"
@@ -4668,8 +4413,8 @@
       },
       "details": {
         "volatility": {
-          "vol_a": 0.698,
-          "vol_b": 0.85
+          "vol_a": 0.705,
+          "vol_b": 0.848
         },
         "phase": {
           "corr": 0.37
@@ -4802,14 +4547,65 @@
     },
     {
       "pair": [
+        "8046",
+        "3324"
+      ],
+      "rrr_score": 74,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=84.5%(40) / B=69.7%(70)",
+        "[phase] 日報酬相關 +0.40",
+        "[cycle] 近 120 日 Z60 零軸交叉 4 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.53, min=-3.15）"
+      ],
+      "subscores": {
+        "volatility": 55,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.845,
+          "vol_b": 0.697
+        },
+        "phase": {
+          "corr": 0.4
+        },
+        "cycle": {
+          "zero_crossings": 4
+        },
+        "mean_reversion": {
+          "z_max": 3.53,
+          "z_min": -3.15,
+          "span": 6.68
+        }
+      },
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "none"
+    },
+    {
+      "pair": [
         "2383",
         "3491"
       ],
       "rrr_score": 74,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=72.1%(70) / B=85.0%(40)",
-        "[phase] 日報酬相關 +0.36",
+        "[volatility] 年化波動 A=70.3%(70) / B=84.8%(40)",
+        "[phase] 日報酬相關 +0.35",
         "[cycle] 近 120 日 Z60 零軸交叉 9 次",
         "[mean_reversion] Z60 雙邊觸極端（max=+2.94, min=-2.64）"
       ],
@@ -4821,11 +4617,11 @@
       },
       "details": {
         "volatility": {
-          "vol_a": 0.721,
-          "vol_b": 0.85
+          "vol_a": 0.703,
+          "vol_b": 0.848
         },
         "phase": {
-          "corr": 0.356
+          "corr": 0.354
         },
         "cycle": {
           "zero_crossings": 9
@@ -4904,57 +4700,6 @@
     },
     {
       "pair": [
-        "2383",
-        "2454"
-      ],
-      "rrr_score": 74,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=70.3%(70) / B=76.3%(40)",
-        "[phase] 日報酬相關 +0.39",
-        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+3.25, min=-2.57）"
-      ],
-      "subscores": {
-        "volatility": 55,
-        "phase": 50,
-        "cycle": 90,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.703,
-          "vol_b": 0.763
-        },
-        "phase": {
-          "corr": 0.385
-        },
-        "cycle": {
-          "zero_crossings": 9
-        },
-        "mean_reversion": {
-          "z_max": 3.25,
-          "z_min": -2.57,
-          "span": 5.81
-        }
-      },
-      "A_state": "above_down",
-      "A_label": "箱上回測",
-      "A_icon": "🟡",
-      "A_color": "#fcd34d",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "2368",
         "2330"
       ],
@@ -5006,64 +4751,13 @@
     },
     {
       "pair": [
-        "2368",
-        "2454"
-      ],
-      "rrr_score": 74,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=74.0%(70) / B=76.3%(40)",
-        "[phase] 日報酬相關 +0.30",
-        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+3.16, min=-2.40）"
-      ],
-      "subscores": {
-        "volatility": 55,
-        "phase": 50,
-        "cycle": 90,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.74,
-          "vol_b": 0.763
-        },
-        "phase": {
-          "corr": 0.302
-        },
-        "cycle": {
-          "zero_crossings": 7
-        },
-        "mean_reversion": {
-          "z_max": 3.16,
-          "z_min": -2.4,
-          "span": 5.56
-        }
-      },
-      "A_state": "above_down",
-      "A_label": "箱上回測",
-      "A_icon": "🟡",
-      "A_color": "#fcd34d",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "3491",
         "3711"
       ],
       "rrr_score": 74,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=85.0%(40) / B=66.3%(70)",
+        "[volatility] 年化波動 A=84.8%(40) / B=66.3%(70)",
         "[phase] 日報酬相關 +0.34",
         "[cycle] 近 120 日 Z60 零軸交叉 4 次",
         "[mean_reversion] Z60 雙邊觸極端（max=+2.67, min=-2.28）"
@@ -5076,11 +4770,11 @@
       },
       "details": {
         "volatility": {
-          "vol_a": 0.85,
+          "vol_a": 0.848,
           "vol_b": 0.663
         },
         "phase": {
-          "corr": 0.336
+          "corr": 0.339
         },
         "cycle": {
           "zero_crossings": 4
@@ -5159,38 +4853,38 @@
     },
     {
       "pair": [
-        "3711",
-        "2454"
+        "2330",
+        "3324"
       ],
       "rrr_score": 74,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=66.3%(70) / B=76.3%(40)",
-        "[phase] 日報酬相關 +0.48",
-        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.93, min=-2.64）"
+        "[volatility] 年化波動 A=35.4%(100) / B=69.7%(70)",
+        "[phase] 日報酬相關 +0.46",
+        "[cycle] 近 120 日 Z60 零軸交叉 12 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.62, min=-0.89）"
       ],
       "subscores": {
-        "volatility": 55,
+        "volatility": 85,
         "phase": 50,
         "cycle": 90,
-        "mean_reversion": 100
+        "mean_reversion": 75
       },
       "details": {
         "volatility": {
-          "vol_a": 0.663,
-          "vol_b": 0.763
+          "vol_a": 0.354,
+          "vol_b": 0.697
         },
         "phase": {
-          "corr": 0.481
+          "corr": 0.459
         },
         "cycle": {
-          "zero_crossings": 7
+          "zero_crossings": 12
         },
         "mean_reversion": {
-          "z_max": 2.93,
-          "z_min": -2.64,
-          "span": 5.57
+          "z_max": 2.62,
+          "z_min": -0.89,
+          "span": 3.5
         }
       },
       "A_state": "above_up",
@@ -5199,27 +4893,27 @@
       "A_color": "#10b981",
       "A_modifiers": [],
       "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
       "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
     },
     {
       "pair": [
         "2308",
-        "2454"
+        "3260"
       ],
       "rrr_score": 74,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=63.1%(70) / B=76.3%(40)",
-        "[phase] 日報酬相關 +0.46",
-        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+3.11, min=-2.14）"
+        "[volatility] 年化波動 A=63.1%(70) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.36",
+        "[cycle] 近 120 日 Z60 零軸交叉 6 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.04, min=-3.46）"
       ],
       "subscores": {
         "volatility": 55,
@@ -5230,18 +4924,18 @@
       "details": {
         "volatility": {
           "vol_a": 0.631,
-          "vol_b": 0.763
+          "vol_b": 0.904
         },
         "phase": {
-          "corr": 0.459
+          "corr": 0.363
         },
         "cycle": {
-          "zero_crossings": 7
+          "zero_crossings": 6
         },
         "mean_reversion": {
-          "z_max": 3.11,
-          "z_min": -2.14,
-          "span": 5.25
+          "z_max": 2.04,
+          "z_min": -3.46,
+          "span": 5.5
         }
       },
       "A_state": "above_up",
@@ -5250,10 +4944,10 @@
       "A_color": "#10b981",
       "A_modifiers": [],
       "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
       "B_modifiers": [],
       "B_healthy": true,
       "healthy_pair": true,
@@ -5312,16 +5006,16 @@
     },
     {
       "pair": [
-        "3504",
-        "3491"
+        "2449",
+        "3260"
       ],
       "rrr_score": 72,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=59.4%(70) / B=85.0%(40)",
-        "[phase] 日報酬相關 +0.20",
-        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
-        "[mean_reversion] Z60 單邊觸極端（max=+1.52, min=-2.45）"
+        "[volatility] 年化波動 A=68.8%(70) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.30",
+        "[cycle] 近 120 日 Z60 零軸交叉 6 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.32, min=-3.28）"
       ],
       "subscores": {
         "volatility": 55,
@@ -5331,8 +5025,59 @@
       },
       "details": {
         "volatility": {
-          "vol_a": 0.594,
-          "vol_b": 0.85
+          "vol_a": 0.688,
+          "vol_b": 0.904
+        },
+        "phase": {
+          "corr": 0.298
+        },
+        "cycle": {
+          "zero_crossings": 6
+        },
+        "mean_reversion": {
+          "z_max": 1.32,
+          "z_min": -3.28,
+          "span": 4.61
+        }
+      },
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": false,
+      "pair_health": "b_only"
+    },
+    {
+      "pair": [
+        "3504",
+        "3491"
+      ],
+      "rrr_score": 72,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=59.1%(70) / B=84.8%(40)",
+        "[phase] 日報酬相關 +0.20",
+        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.52, min=-2.44）"
+      ],
+      "subscores": {
+        "volatility": 55,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.591,
+          "vol_b": 0.848
         },
         "phase": {
           "corr": 0.198
@@ -5342,8 +5087,110 @@
         },
         "mean_reversion": {
           "z_max": 1.52,
-          "z_min": -2.45,
+          "z_min": -2.44,
           "span": 3.96
+        }
+      },
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "3504",
+        "3260"
+      ],
+      "rrr_score": 72,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=59.1%(70) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.22",
+        "[cycle] 近 120 日 Z60 零軸交叉 5 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.38, min=-3.38）"
+      ],
+      "subscores": {
+        "volatility": 55,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.591,
+          "vol_b": 0.904
+        },
+        "phase": {
+          "corr": 0.216
+        },
+        "cycle": {
+          "zero_crossings": 5
+        },
+        "mean_reversion": {
+          "z_max": 1.38,
+          "z_min": -3.38,
+          "span": 4.76
+        }
+      },
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "2345",
+        "3260"
+      ],
+      "rrr_score": 72,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=74.6%(70) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.26",
+        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.85, min=-2.57）"
+      ],
+      "subscores": {
+        "volatility": 55,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.746,
+          "vol_b": 0.904
+        },
+        "phase": {
+          "corr": 0.26
+        },
+        "cycle": {
+          "zero_crossings": 9
+        },
+        "mean_reversion": {
+          "z_max": 1.85,
+          "z_min": -2.57,
+          "span": 4.42
         }
       },
       "A_state": "above_down",
@@ -5401,6 +5248,159 @@
       "A_label": "箱上推進",
       "A_icon": "🟢",
       "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
+    },
+    {
+      "pair": [
+        "2368",
+        "3260"
+      ],
+      "rrr_score": 72,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=74.0%(70) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.27",
+        "[cycle] 近 120 日 Z60 零軸交叉 12 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.10, min=-1.99）"
+      ],
+      "subscores": {
+        "volatility": 55,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.74,
+          "vol_b": 0.904
+        },
+        "phase": {
+          "corr": 0.272
+        },
+        "cycle": {
+          "zero_crossings": 12
+        },
+        "mean_reversion": {
+          "z_max": 2.1,
+          "z_min": -1.99,
+          "span": 4.09
+        }
+      },
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "2330",
+        "3260"
+      ],
+      "rrr_score": 72,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=35.4%(100) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.26",
+        "[cycle] 近 120 日 Z60 零軸交叉 14 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.02, min=-3.69）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 75,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.354,
+          "vol_b": 0.904
+        },
+        "phase": {
+          "corr": 0.255
+        },
+        "cycle": {
+          "zero_crossings": 14
+        },
+        "mean_reversion": {
+          "z_max": 1.02,
+          "z_min": -3.69,
+          "span": 4.71
+        }
+      },
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "3260",
+        "3324"
+      ],
+      "rrr_score": 72,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=90.4%(40) / B=69.7%(70)",
+        "[phase] 日報酬相關 +0.19",
+        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+4.15, min=-0.87）"
+      ],
+      "subscores": {
+        "volatility": 55,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.904,
+          "vol_b": 0.697
+        },
+        "phase": {
+          "corr": 0.191
+        },
+        "cycle": {
+          "zero_crossings": 9
+        },
+        "mean_reversion": {
+          "z_max": 4.15,
+          "z_min": -0.87,
+          "span": 5.02
+        }
+      },
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
       "A_modifiers": [],
       "A_healthy": true,
       "B_state": "inbox_side",
@@ -5873,159 +5873,6 @@
     },
     {
       "pair": [
-        "2449",
-        "2454"
-      ],
-      "rrr_score": 70,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=68.8%(70) / B=76.3%(40)",
-        "[phase] 日報酬相關 +0.33",
-        "[cycle] 近 120 日 Z60 零軸交叉 13 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.08, min=-3.97）"
-      ],
-      "subscores": {
-        "volatility": 55,
-        "phase": 50,
-        "cycle": 75,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.688,
-          "vol_b": 0.763
-        },
-        "phase": {
-          "corr": 0.328
-        },
-        "cycle": {
-          "zero_crossings": 13
-        },
-        "mean_reversion": {
-          "z_max": 2.08,
-          "z_min": -3.97,
-          "span": 6.05
-        }
-      },
-      "A_state": "inbox_side",
-      "A_label": "箱內盤整",
-      "A_icon": "⚪",
-      "A_color": "#94a3b8",
-      "A_modifiers": [],
-      "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": false,
-      "pair_health": "b_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "6206"
-      ],
-      "rrr_score": 70,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=88.3%(40) / B=43.7%(100)",
-        "[phase] 日報酬相關 +0.35",
-        "[cycle] 近 120 日 Z60 零軸交叉 10 次",
-        "[mean_reversion] Z60 單邊觸極端（max=+2.29, min=-1.96）"
-      ],
-      "subscores": {
-        "volatility": 70,
-        "phase": 50,
-        "cycle": 90,
-        "mean_reversion": 75
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.883,
-          "vol_b": 0.437
-        },
-        "phase": {
-          "corr": 0.352
-        },
-        "cycle": {
-          "zero_crossings": 10
-        },
-        "mean_reversion": {
-          "z_max": 2.29,
-          "z_min": -1.96,
-          "span": 4.25
-        }
-      },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "8299",
-        "3711"
-      ],
-      "rrr_score": 70,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=88.3%(40) / B=66.3%(70)",
-        "[phase] 日報酬相關 +0.33",
-        "[cycle] 近 120 日 Z60 零軸交叉 13 次",
-        "[mean_reversion] Z60 雙邊觸極端（max=+2.64, min=-2.40）"
-      ],
-      "subscores": {
-        "volatility": 55,
-        "phase": 50,
-        "cycle": 75,
-        "mean_reversion": 100
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.883,
-          "vol_b": 0.663
-        },
-        "phase": {
-          "corr": 0.331
-        },
-        "cycle": {
-          "zero_crossings": 13
-        },
-        "mean_reversion": {
-          "z_max": 2.64,
-          "z_min": -2.4,
-          "span": 5.04
-        }
-      },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "2345",
         "6206"
       ],
@@ -6134,7 +5981,7 @@
       "rrr_score": 70,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=74.8%(70) / B=85.0%(40)",
+        "[volatility] 年化波動 A=74.6%(70) / B=84.8%(40)",
         "[phase] 日報酬相關 +0.31",
         "[cycle] 近 120 日 Z60 零軸交叉 3 次",
         "[mean_reversion] Z60 雙邊觸極端（max=+2.34, min=-2.88）"
@@ -6147,11 +5994,11 @@
       },
       "details": {
         "volatility": {
-          "vol_a": 0.748,
-          "vol_b": 0.85
+          "vol_a": 0.746,
+          "vol_b": 0.848
         },
         "phase": {
-          "corr": 0.307
+          "corr": 0.311
         },
         "cycle": {
           "zero_crossings": 3
@@ -6230,6 +6077,57 @@
     },
     {
       "pair": [
+        "2345",
+        "3324"
+      ],
+      "rrr_score": 70,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=74.6%(70) / B=69.7%(70)",
+        "[phase] 日報酬相關 +0.41",
+        "[cycle] 近 120 日 Z60 零軸交叉 5 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.07, min=-0.48）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.746,
+          "vol_b": 0.697
+        },
+        "phase": {
+          "corr": 0.414
+        },
+        "cycle": {
+          "zero_crossings": 5
+        },
+        "mean_reversion": {
+          "z_max": 3.07,
+          "z_min": -0.48,
+          "span": 3.54
+        }
+      },
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
+    },
+    {
+      "pair": [
         "6206",
         "2308"
       ],
@@ -6262,57 +6160,6 @@
           "z_max": 0.61,
           "z_min": -3.12,
           "span": 3.73
-        }
-      },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "6206",
-        "2454"
-      ],
-      "rrr_score": 70,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=40.6%(100) / B=76.3%(40)",
-        "[phase] 日報酬相關 +0.33",
-        "[cycle] 近 120 日 Z60 零軸交叉 4 次",
-        "[mean_reversion] Z60 單邊觸極端（max=+1.47, min=-3.19）"
-      ],
-      "subscores": {
-        "volatility": 70,
-        "phase": 50,
-        "cycle": 90,
-        "mean_reversion": 75
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.406,
-          "vol_b": 0.763
-        },
-        "phase": {
-          "corr": 0.327
-        },
-        "cycle": {
-          "zero_crossings": 4
-        },
-        "mean_reversion": {
-          "z_max": 1.47,
-          "z_min": -3.19,
-          "span": 4.67
         }
       },
       "A_state": "above_up",
@@ -6380,6 +6227,57 @@
       "B_healthy": false,
       "healthy_pair": false,
       "pair_health": "none"
+    },
+    {
+      "pair": [
+        "1301",
+        "3260"
+      ],
+      "rrr_score": 70,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=45.7%(100) / B=90.4%(40)",
+        "[phase] 日報酬相關 +0.32",
+        "[cycle] 近 120 日 Z60 零軸交叉 11 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+0.51, min=-3.77）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.457,
+          "vol_b": 0.904
+        },
+        "phase": {
+          "corr": 0.316
+        },
+        "cycle": {
+          "zero_crossings": 11
+        },
+        "mean_reversion": {
+          "z_max": 0.51,
+          "z_min": -3.77,
+          "span": 4.29
+        }
+      },
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": false,
+      "pair_health": "b_only"
     },
     {
       "pair": [
@@ -6491,9 +6389,9 @@
       "rrr_score": 70,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=83.9%(40) / B=85.0%(40)",
+        "[volatility] 年化波動 A=84.5%(40) / B=84.8%(40)",
         "[phase] 日報酬相關 +0.32",
-        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[cycle] 近 120 日 Z60 零軸交叉 8 次",
         "[mean_reversion] Z60 雙邊觸極端（max=+3.28, min=-2.59）"
       ],
       "subscores": {
@@ -6504,14 +6402,14 @@
       },
       "details": {
         "volatility": {
-          "vol_a": 0.839,
-          "vol_b": 0.85
+          "vol_a": 0.845,
+          "vol_b": 0.848
         },
         "phase": {
-          "corr": 0.324
+          "corr": 0.325
         },
         "cycle": {
-          "zero_crossings": 7
+          "zero_crossings": 8
         },
         "mean_reversion": {
           "z_max": 3.28,
@@ -6542,7 +6440,7 @@
       "rrr_score": 70,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=86.3%(40) / B=85.0%(40)",
+        "[volatility] 年化波動 A=85.7%(40) / B=84.8%(40)",
         "[phase] 日報酬相關 +0.43",
         "[cycle] 近 120 日 Z60 零軸交叉 6 次",
         "[mean_reversion] Z60 雙邊觸極端（max=+2.91, min=-2.76）"
@@ -6555,11 +6453,11 @@
       },
       "details": {
         "volatility": {
-          "vol_a": 0.863,
-          "vol_b": 0.85
+          "vol_a": 0.857,
+          "vol_b": 0.848
         },
         "phase": {
-          "corr": 0.434
+          "corr": 0.435
         },
         "cycle": {
           "zero_crossings": 6
@@ -6695,7 +6593,7 @@
       "rrr_score": 70,
       "status": "tradable",
       "reason": [
-        "[volatility] 年化波動 A=85.0%(40) / B=35.5%(100)",
+        "[volatility] 年化波動 A=84.8%(40) / B=35.4%(100)",
         "[phase] 日報酬相關 +0.34",
         "[cycle] 近 120 日 Z60 零軸交叉 4 次",
         "[mean_reversion] Z60 單邊觸極端（max=+2.73, min=-0.86）"
@@ -6708,11 +6606,11 @@
       },
       "details": {
         "volatility": {
-          "vol_a": 0.85,
-          "vol_b": 0.355
+          "vol_a": 0.848,
+          "vol_b": 0.354
         },
         "phase": {
-          "corr": 0.339
+          "corr": 0.343
         },
         "cycle": {
           "zero_crossings": 4
@@ -6727,57 +6625,6 @@
       "A_label": "箱上回測",
       "A_icon": "🟡",
       "A_color": "#fcd34d",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "2379",
-        "2454"
-      ],
-      "rrr_score": 70,
-      "status": "tradable",
-      "reason": [
-        "[volatility] 年化波動 A=44.6%(100) / B=76.3%(40)",
-        "[phase] 日報酬相關 +0.31",
-        "[cycle] 近 120 日 Z60 零軸交叉 4 次",
-        "[mean_reversion] Z60 單邊觸極端（max=+1.02, min=-3.47）"
-      ],
-      "subscores": {
-        "volatility": 70,
-        "phase": 50,
-        "cycle": 90,
-        "mean_reversion": 75
-      },
-      "details": {
-        "volatility": {
-          "vol_a": 0.446,
-          "vol_b": 0.763
-        },
-        "phase": {
-          "corr": 0.306
-        },
-        "cycle": {
-          "zero_crossings": 4
-        },
-        "mean_reversion": {
-          "z_max": 1.02,
-          "z_min": -3.47,
-          "span": 4.49
-        }
-      },
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
       "A_modifiers": [],
       "A_healthy": true,
       "B_state": "above_up",
@@ -6839,6 +6686,57 @@
       "B_healthy": true,
       "healthy_pair": true,
       "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "2308",
+        "3324"
+      ],
+      "rrr_score": 70,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=63.1%(70) / B=69.7%(70)",
+        "[phase] 日報酬相關 +0.53",
+        "[cycle] 近 120 日 Z60 零軸交叉 4 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.15, min=-1.52）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.631,
+          "vol_b": 0.697
+        },
+        "phase": {
+          "corr": 0.528
+        },
+        "cycle": {
+          "zero_crossings": 4
+        },
+        "mean_reversion": {
+          "z_max": 3.15,
+          "z_min": -1.52,
+          "span": 4.68
+        }
+      },
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
     }
   ],
   "signals": [
@@ -6906,19 +6804,19 @@
     },
     {
       "pair": [
-        "8299",
-        "1301"
+        "6206",
+        "3324"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": 3.9276,
-      "zscore": 0.91,
+      "as_of": "2026-06-05",
+      "rs_value": -2.0598,
+      "zscore": 1.12,
       "signal": "switch_to_B",
       "confidence": 90,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=+3.9276, Z60=+0.91",
-        "近 20 日 Z 範圍 [+0.91, +3.16]",
-        "近期 Z 極大 +3.16 已折返至 +0.91（≤ +1.2） → 賣 8299 換 1301"
+        "as_of=2026-06-05",
+        "RS=-2.0598, Z60=+1.12",
+        "近 20 日 Z 範圍 [+0.11, +3.16]",
+        "近期 Z 極大 +3.16 已折返至 +1.12（≤ +1.2） → 賣 6206 換 3324"
       ],
       "A_state": "above_up",
       "A_label": "箱上推進",
@@ -7061,6 +6959,37 @@
     },
     {
       "pair": [
+        "3034",
+        "3324"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": -0.8136,
+      "zscore": 0.74,
+      "signal": "switch_to_B",
+      "confidence": 80,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=-0.8136, Z60=+0.74",
+        "近 20 日 Z 範圍 [-0.37, +2.62]",
+        "近期 Z 極大 +2.62 已折返至 +0.74（≤ +1.2） → 賣 3034 換 3324"
+      ],
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "none"
+    },
+    {
+      "pair": [
         "1301",
         "3711"
       ],
@@ -7089,68 +7018,6 @@
       "B_healthy": true,
       "healthy_pair": false,
       "pair_health": "b_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "2330"
-      ],
-      "as_of": "2026-06-04",
-      "rs_value": 0.0786,
-      "zscore": 0.82,
-      "signal": "switch_to_B",
-      "confidence": 80,
-      "reason": [
-        "as_of=2026-06-04",
-        "RS=+0.0786, Z60=+0.82",
-        "近 20 日 Z 範圍 [+0.75, +2.57]",
-        "近期 Z 極大 +2.57 已折返至 +0.82（≤ +1.2） → 賣 8299 換 2330"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "8299",
-        "3596"
-      ],
-      "as_of": "2026-06-04",
-      "rs_value": 2.6191,
-      "zscore": 1.09,
-      "signal": "switch_to_B",
-      "confidence": 80,
-      "reason": [
-        "as_of=2026-06-04",
-        "RS=+2.6191, Z60=+1.09",
-        "近 20 日 Z 範圍 [+0.93, +2.88]",
-        "近期 Z 極大 +2.88 已折返至 +1.09（≤ +1.2） → 賣 8299 換 3596"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "inbox_side",
-      "B_label": "箱內盤整",
-      "B_icon": "⚪",
-      "B_color": "#94a3b8",
-      "B_modifiers": [],
-      "B_healthy": false,
-      "healthy_pair": false,
-      "pair_health": "a_only"
     },
     {
       "pair": [
@@ -7203,37 +7070,6 @@
       "A_label": "箱上回測",
       "A_icon": "🟡",
       "A_color": "#fcd34d",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "2379",
-        "2454"
-      ],
-      "as_of": "2026-06-05",
-      "rs_value": -1.9002,
-      "zscore": -1.16,
-      "signal": "switch_to_A",
-      "confidence": 80,
-      "reason": [
-        "as_of=2026-06-05",
-        "RS=-1.9002, Z60=-1.16",
-        "近 20 日 Z 範圍 [-2.87, -1.16]",
-        "近期 Z 極小 -2.87 已折返至 -1.16（≥ -1.2） → 賣 2454 換 2379"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
       "A_modifiers": [],
       "A_healthy": true,
       "B_state": "above_up",
@@ -7340,99 +7176,6 @@
     },
     {
       "pair": [
-        "8299",
-        "3034"
-      ],
-      "as_of": "2026-06-04",
-      "rs_value": 1.6632,
-      "zscore": 0.93,
-      "signal": "switch_to_B",
-      "confidence": 70,
-      "reason": [
-        "as_of=2026-06-04",
-        "RS=+1.6632, Z60=+0.93",
-        "近 20 日 Z 範圍 [+0.25, +2.11]",
-        "近期 Z 極大 +2.11 已折返至 +0.93（≤ +1.2） → 賣 8299 換 3034"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "inbox_side",
-      "B_label": "箱內盤整",
-      "B_icon": "⚪",
-      "B_color": "#94a3b8",
-      "B_modifiers": [],
-      "B_healthy": false,
-      "healthy_pair": false,
-      "pair_health": "a_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "2379"
-      ],
-      "as_of": "2026-06-04",
-      "rs_value": 1.4194,
-      "zscore": 0.61,
-      "signal": "switch_to_B",
-      "confidence": 70,
-      "reason": [
-        "as_of=2026-06-04",
-        "RS=+1.4194, Z60=+0.61",
-        "近 20 日 Z 範圍 [+0.50, +2.35]",
-        "近期 Z 極大 +2.35 已折返至 +0.61（≤ +1.2） → 賣 8299 換 2379"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "3504",
-        "8299"
-      ],
-      "as_of": "2026-06-04",
-      "rs_value": -3.4673,
-      "zscore": -0.22,
-      "signal": "switch_to_A",
-      "confidence": 70,
-      "reason": [
-        "as_of=2026-06-04",
-        "RS=-3.4673, Z60=-0.22",
-        "近 20 日 Z 範圍 [-2.45, +0.96]",
-        "近期 Z 極小 -2.45 已折返至 -0.22（≥ -1.2） → 賣 8299 換 3504"
-      ],
-      "A_state": "above_down",
-      "A_label": "箱上回測",
-      "A_icon": "🟡",
-      "A_color": "#fcd34d",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "2345",
         "1301"
       ],
@@ -7495,6 +7238,68 @@
     },
     {
       "pair": [
+        "2383",
+        "3260"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": 2.4501,
+      "zscore": 0.94,
+      "signal": "switch_to_B",
+      "confidence": 70,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=+2.4501, Z60=+0.94",
+        "近 20 日 Z 範圍 [+0.49, +2.06]",
+        "近期 Z 極大 +2.06 已折返至 +0.94（≤ +1.2） → 賣 2383 換 3260"
+      ],
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "3711",
+        "3260"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": 0.314,
+      "zscore": 1.13,
+      "signal": "switch_to_B",
+      "confidence": 70,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=+0.3140, Z60=+1.13",
+        "近 20 日 Z 範圍 [+0.46, +2.04]",
+        "近期 Z 極大 +2.04 已折返至 +1.13（≤ +1.2） → 賣 3711 換 3260"
+      ],
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
         "3504",
         "2345"
       ],
@@ -7529,16 +7334,16 @@
         "3491",
         "2379"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": 1.1394,
-      "zscore": 0.05,
+      "as_of": "2026-06-05",
+      "rs_value": 1.1017,
+      "zscore": -0.46,
       "signal": "switch_to_B",
       "confidence": 70,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=+1.1394, Z60=+0.05",
+        "as_of=2026-06-05",
+        "RS=+1.1017, Z60=-0.46",
         "近 20 日 Z 範圍 [-0.80, +2.34]",
-        "近期 Z 極大 +2.34 已折返至 +0.05（≤ +1.2） → 賣 3491 換 2379"
+        "近期 Z 極大 +2.34 已折返至 -0.46（≤ +1.2） → 賣 3491 換 2379"
       ],
       "A_state": "above_down",
       "A_label": "箱上回測",
@@ -7591,16 +7396,16 @@
         "3491",
         "3711"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": 1.1904,
-      "zscore": -0.89,
+      "as_of": "2026-06-05",
+      "rs_value": 1.21,
+      "zscore": -0.73,
       "signal": "switch_to_A",
       "confidence": 70,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=+1.1904, Z60=-0.89",
+        "as_of=2026-06-05",
+        "RS=+1.2100, Z60=-0.73",
         "近 20 日 Z 範圍 [-2.02, -0.16]",
-        "近期 Z 極小 -2.02 已折返至 -0.89（≥ -1.2） → 賣 3711 換 3491"
+        "近期 Z 極小 -2.02 已折返至 -0.73（≥ -1.2） → 賣 3711 換 3491"
       ],
       "A_state": "above_down",
       "A_label": "箱上回測",
@@ -7612,6 +7417,68 @@
       "B_label": "箱上推進",
       "B_icon": "🟢",
       "B_color": "#10b981",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "2330",
+        "3324"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": 0.7564,
+      "zscore": 0.78,
+      "signal": "switch_to_B",
+      "confidence": 70,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=+0.7564, Z60=+0.78",
+        "近 20 日 Z 範圍 [-0.61, +2.40]",
+        "近期 Z 極大 +2.40 已折返至 +0.78（≤ +1.2） → 賣 2330 換 3324"
+      ],
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
+    },
+    {
+      "pair": [
+        "2308",
+        "3260"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": 1.6968,
+      "zscore": 1.07,
+      "signal": "switch_to_B",
+      "confidence": 70,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=+1.6968, Z60=+1.07",
+        "近 20 日 Z 範圍 [+0.43, +2.04]",
+        "近期 Z 極大 +2.04 已折返至 +1.07（≤ +1.2） → 賣 2308 換 3260"
+      ],
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
       "B_modifiers": [],
       "B_healthy": true,
       "healthy_pair": true,
@@ -7684,16 +7551,16 @@
         "2345",
         "3491"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": 0.2525,
-      "zscore": 0.38,
+      "as_of": "2026-06-05",
+      "rs_value": 0.2522,
+      "zscore": 0.37,
       "signal": "switch_to_B",
       "confidence": 70,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=+0.2525, Z60=+0.38",
+        "as_of=2026-06-05",
+        "RS=+0.2522, Z60=+0.37",
         "近 20 日 Z 範圍 [-0.63, +2.15]",
-        "近期 Z 極大 +2.15 已折返至 +0.38（≤ +1.2） → 賣 2345 換 3491"
+        "近期 Z 極大 +2.15 已折返至 +0.37（≤ +1.2） → 賣 2345 換 3491"
       ],
       "A_state": "above_down",
       "A_label": "箱上回測",
@@ -7709,6 +7576,37 @@
       "B_healthy": true,
       "healthy_pair": true,
       "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "2345",
+        "3324"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": 0.8079,
+      "zscore": 0.73,
+      "signal": "switch_to_B",
+      "confidence": 70,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=+0.8079, Z60=+0.73",
+        "近 20 日 Z 範圍 [+0.23, +2.18]",
+        "近期 Z 極大 +2.18 已折返至 +0.73（≤ +1.2） → 賣 2345 換 3324"
+      ],
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
     },
     {
       "pair": [
@@ -7740,6 +7638,37 @@
       "B_healthy": true,
       "healthy_pair": true,
       "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "2308",
+        "3324"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": 0.7285,
+      "zscore": 0.88,
+      "signal": "switch_to_B",
+      "confidence": 70,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=+0.7285, Z60=+0.88",
+        "近 20 日 Z 範圍 [+0.48, +2.04]",
+        "近期 Z 極大 +2.04 已折返至 +0.88（≤ +1.2） → 賣 2308 換 3324"
+      ],
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
     },
     {
       "pair": [
@@ -8053,37 +7982,6 @@
     },
     {
       "pair": [
-        "8299",
-        "2368"
-      ],
-      "as_of": "2026-06-04",
-      "rs_value": 0.6477,
-      "zscore": 0.63,
-      "signal": "switch_to_B",
-      "confidence": 50,
-      "reason": [
-        "as_of=2026-06-04",
-        "RS=+0.6477, Z60=+0.63",
-        "近 20 日 Z 範圍 [-0.11, +1.50]",
-        "近期 Z 極大 +1.50 已折返至 +0.63（≤ +1.2） → 賣 8299 換 2368"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_down",
-      "B_label": "箱上回測",
-      "B_icon": "🟡",
-      "B_color": "#fcd34d",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "2345",
         "2379"
       ],
@@ -8211,16 +8109,16 @@
         "2368",
         "3491"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": -0.3677,
-      "zscore": -0.1,
+      "as_of": "2026-06-05",
+      "rs_value": -0.3863,
+      "zscore": -0.23,
       "signal": "switch_to_B",
       "confidence": 50,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=-0.3677, Z60=-0.10",
+        "as_of=2026-06-05",
+        "RS=-0.3863, Z60=-0.23",
         "近 20 日 Z 範圍 [-0.99, +1.57]",
-        "近期 Z 極大 +1.57 已折返至 -0.10（≤ +1.2） → 賣 2368 換 3491"
+        "近期 Z 極大 +1.57 已折返至 -0.23（≤ +1.2） → 賣 2368 換 3491"
       ],
       "A_state": "above_down",
       "A_label": "箱上回測",
@@ -8428,16 +8326,16 @@
         "6206",
         "3491"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": -2.6339,
-      "zscore": 0.46,
+      "as_of": "2026-06-05",
+      "rs_value": -2.6156,
+      "zscore": 0.71,
       "signal": "switch_to_B",
       "confidence": 50,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=-2.6339, Z60=+0.46",
+        "as_of=2026-06-05",
+        "RS=-2.6156, Z60=+0.71",
         "近 20 日 Z 範圍 [-0.92, +2.00]",
-        "近期 Z 極大 +2.00 已折返至 +0.46（≤ +1.2） → 賣 6206 換 3491"
+        "近期 Z 極大 +2.00 已折返至 +0.71（≤ +1.2） → 賣 6206 換 3491"
       ],
       "A_state": "above_up",
       "A_label": "箱上推進",
@@ -8459,16 +8357,16 @@
         "3034",
         "3491"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": -1.3832,
-      "zscore": -0.27,
+      "as_of": "2026-06-05",
+      "rs_value": -1.3694,
+      "zscore": -0.07,
       "signal": "switch_to_A",
       "confidence": 50,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=-1.3832, Z60=-0.27",
+        "as_of=2026-06-05",
+        "RS=-1.3694, Z60=-0.07",
         "近 20 日 Z 範圍 [-1.89, +1.55]",
-        "近期 Z 極小 -1.89 已折返至 -0.27（≥ -1.2） → 賣 3491 換 3034"
+        "近期 Z 極小 -1.89 已折返至 -0.07（≥ -1.2） → 賣 3491 換 3034"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",
@@ -8577,6 +8475,37 @@
       "B_healthy": true,
       "healthy_pair": false,
       "pair_health": "b_only"
+    },
+    {
+      "pair": [
+        "2449",
+        "3324"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": -1.2772,
+      "zscore": -0.25,
+      "signal": "switch_to_A",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=-1.2772, Z60=-0.25",
+        "近 20 日 Z 範圍 [-1.68, +1.93]",
+        "近期 Z 極小 -1.68 已折返至 -0.25（≥ -1.2） → 賣 3324 換 2449"
+      ],
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "none"
     },
     {
       "pair": [
@@ -8704,19 +8633,50 @@
     },
     {
       "pair": [
-        "2383",
-        "3491"
+        "8046",
+        "3324"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": 0.907,
-      "zscore": 0.43,
+      "as_of": "2026-06-05",
+      "rs_value": -0.2728,
+      "zscore": 0.42,
       "signal": "switch_to_B",
       "confidence": 50,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=+0.9070, Z60=+0.43",
+        "as_of=2026-06-05",
+        "RS=-0.2728, Z60=+0.42",
+        "近 20 日 Z 範圍 [+0.11, +1.58]",
+        "近期 Z 極大 +1.58 已折返至 +0.42（≤ +1.2） → 賣 8046 換 3324"
+      ],
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "none"
+    },
+    {
+      "pair": [
+        "2383",
+        "3491"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": 0.9261,
+      "zscore": 0.53,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=+0.9261, Z60=+0.53",
         "近 20 日 Z 範圍 [+0.17, +1.72]",
-        "近期 Z 極大 +1.72 已折返至 +0.43（≤ +1.2） → 賣 2383 換 3491"
+        "近期 Z 極大 +1.72 已折返至 +0.53（≤ +1.2） → 賣 2383 換 3491"
       ],
       "A_state": "above_down",
       "A_label": "箱上回測",
@@ -8800,16 +8760,78 @@
         "3504",
         "3491"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": -3.1873,
-      "zscore": 0.48,
+      "as_of": "2026-06-05",
+      "rs_value": -3.1746,
+      "zscore": 0.62,
       "signal": "switch_to_B",
       "confidence": 50,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=-3.1873, Z60=+0.48",
+        "as_of=2026-06-05",
+        "RS=-3.1746, Z60=+0.62",
         "近 20 日 Z 範圍 [-1.09, +1.52]",
-        "近期 Z 極大 +1.52 已折返至 +0.48（≤ +1.2） → 賣 3504 換 3491"
+        "近期 Z 極大 +1.52 已折返至 +0.62（≤ +1.2） → 賣 3504 換 3491"
+      ],
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "2345",
+        "3260"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": 1.7762,
+      "zscore": 0.95,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=+1.7762, Z60=+0.95",
+        "近 20 日 Z 範圍 [+0.21, +1.60]",
+        "近期 Z 極大 +1.60 已折返至 +0.95（≤ +1.2） → 賣 2345 換 3260"
+      ],
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "2368",
+        "3260"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": 1.1378,
+      "zscore": 0.58,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=+1.1378, Z60=+0.58",
+        "近 20 日 Z 範圍 [-0.36, +1.57]",
+        "近期 Z 極大 +1.57 已折返至 +0.58（≤ +1.2） → 賣 2368 換 3260"
       ],
       "A_state": "above_down",
       "A_label": "箱上回測",
@@ -8986,16 +9008,16 @@
         "3037",
         "3491"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": -0.6973,
-      "zscore": 0.87,
+      "as_of": "2026-06-05",
+      "rs_value": -0.7295,
+      "zscore": 0.67,
       "signal": "switch_to_B",
       "confidence": 50,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=-0.6973, Z60=+0.87",
+        "as_of=2026-06-05",
+        "RS=-0.7295, Z60=+0.67",
         "近 20 日 Z 範圍 [+0.63, +1.68]",
-        "近期 Z 極大 +1.68 已折返至 +0.87（≤ +1.2） → 賣 3037 換 3491"
+        "近期 Z 極大 +1.68 已折返至 +0.67（≤ +1.2） → 賣 3037 換 3491"
       ],
       "A_state": "above_down",
       "A_label": "箱上回測",
@@ -9017,16 +9039,16 @@
         "3491",
         "2330"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": -0.2014,
-      "zscore": 0.25,
+      "as_of": "2026-06-05",
+      "rs_value": -0.2007,
+      "zscore": 0.23,
       "signal": "switch_to_B",
       "confidence": 50,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=-0.2014, Z60=+0.25",
+        "as_of=2026-06-05",
+        "RS=-0.2007, Z60=+0.23",
         "近 20 日 Z 範圍 [-0.85, +1.74]",
-        "近期 Z 極大 +1.74 已折返至 +0.25（≤ +1.2） → 賣 3491 換 2330"
+        "近期 Z 極大 +1.74 已折返至 +0.23（≤ +1.2） → 賣 3491 換 2330"
       ],
       "A_state": "above_down",
       "A_label": "箱上回測",
@@ -9324,37 +9346,6 @@
     },
     {
       "pair": [
-        "1301",
-        "2454"
-      ],
-      "as_of": "2026-06-05",
-      "rs_value": -4.4766,
-      "zscore": -1.35,
-      "signal": "hold_B",
-      "confidence": 30,
-      "reason": [
-        "as_of=2026-06-05",
-        "RS=-4.4766, Z60=-1.35",
-        "近 20 日 Z 範圍 [-3.20, -1.35]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-1.35）"
-      ],
-      "A_state": "inbox_side",
-      "A_label": "箱內盤整",
-      "A_icon": "⚪",
-      "A_color": "#94a3b8",
-      "A_modifiers": [],
-      "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": false,
-      "pair_health": "b_only"
-    },
-    {
-      "pair": [
         "3017",
         "2379"
       ],
@@ -9510,130 +9501,6 @@
     },
     {
       "pair": [
-        "2367",
-        "2454"
-      ],
-      "as_of": "2026-06-05",
-      "rs_value": -4.2216,
-      "zscore": -1.36,
-      "signal": "hold_B",
-      "confidence": 30,
-      "reason": [
-        "as_of=2026-06-05",
-        "RS=-4.2216, Z60=-1.36",
-        "近 20 日 Z 範圍 [-2.47, -1.36]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-1.36）"
-      ],
-      "A_state": "inbox_side",
-      "A_label": "箱內盤整",
-      "A_icon": "⚪",
-      "A_color": "#94a3b8",
-      "A_modifiers": [],
-      "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": false,
-      "pair_health": "b_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "2345"
-      ],
-      "as_of": "2026-06-04",
-      "rs_value": 0.0275,
-      "zscore": 0.24,
-      "signal": "hold_A",
-      "confidence": 30,
-      "reason": [
-        "as_of=2026-06-04",
-        "RS=+0.0275, Z60=+0.24",
-        "近 20 日 Z 範圍 [-0.54, +1.04]",
-        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.24）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_down",
-      "B_label": "箱上回測",
-      "B_icon": "🟡",
-      "B_color": "#fcd34d",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "8299",
-        "3017"
-      ],
-      "as_of": "2026-06-04",
-      "rs_value": -0.0492,
-      "zscore": 0.61,
-      "signal": "hold_A",
-      "confidence": 30,
-      "reason": [
-        "as_of=2026-06-04",
-        "RS=-0.0492, Z60=+0.61",
-        "近 20 日 Z 範圍 [+0.36, +1.23]",
-        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.61）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "8299",
-        "2383"
-      ],
-      "as_of": "2026-06-04",
-      "rs_value": -0.6271,
-      "zscore": 0.06,
-      "signal": "hold_A",
-      "confidence": 30,
-      "reason": [
-        "as_of=2026-06-04",
-        "RS=-0.6271, Z60=+0.06",
-        "近 20 日 Z 範圍 [-0.99, +0.45]",
-        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.06）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_down",
-      "B_label": "箱上回測",
-      "B_icon": "🟡",
-      "B_color": "#fcd34d",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "2345",
         "8046"
       ],
@@ -9696,37 +9563,6 @@
     },
     {
       "pair": [
-        "3017",
-        "2454"
-      ],
-      "as_of": "2026-06-05",
-      "rs_value": -0.5031,
-      "zscore": -1.48,
-      "signal": "hold_B",
-      "confidence": 30,
-      "reason": [
-        "as_of=2026-06-05",
-        "RS=-0.5031, Z60=-1.48",
-        "近 20 日 Z 範圍 [-2.44, -1.44]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-1.48）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "2367",
         "3034"
       ],
@@ -9755,6 +9591,37 @@
       "B_healthy": false,
       "healthy_pair": false,
       "pair_health": "none"
+    },
+    {
+      "pair": [
+        "2379",
+        "3324"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": -0.546,
+      "zscore": 1.43,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=-0.5460, Z60=+1.43",
+        "近 20 日 Z 範圍 [-0.16, +2.33]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+1.43）"
+      ],
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
     },
     {
       "pair": [
@@ -9789,34 +9656,34 @@
     },
     {
       "pair": [
-        "2330",
-        "2454"
+        "3596",
+        "3324"
       ],
       "as_of": "2026-06-05",
-      "rs_value": -0.5978,
-      "zscore": -1.39,
-      "signal": "hold_B",
+      "rs_value": -1.7625,
+      "zscore": 0.12,
+      "signal": "hold_A",
       "confidence": 30,
       "reason": [
         "as_of=2026-06-05",
-        "RS=-0.5978, Z60=-1.39",
-        "近 20 日 Z 範圍 [-3.32, -1.39]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-1.39）"
+        "RS=-1.7625, Z60=+0.12",
+        "近 20 日 Z 範圍 [-1.38, +1.25]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.12）"
       ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
       "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
+      "A_healthy": false,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
       "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "none"
     },
     {
       "pair": [
@@ -9882,34 +9749,34 @@
     },
     {
       "pair": [
-        "8299",
-        "8046"
+        "2367",
+        "3260"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": 1.0779,
-      "zscore": 0.29,
-      "signal": "hold_A",
+      "as_of": "2026-06-05",
+      "rs_value": -1.8991,
+      "zscore": -0.63,
+      "signal": "hold_B",
       "confidence": 30,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=+1.0779, Z60=+0.29",
-        "近 20 日 Z 範圍 [-0.47, +0.78]",
-        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.29）"
+        "as_of=2026-06-05",
+        "RS=-1.8991, Z60=-0.63",
+        "近 20 日 Z 範圍 [-1.47, -0.15]",
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.63）"
       ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
       "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "inbox_side",
-      "B_label": "箱內盤整",
-      "B_icon": "⚪",
-      "B_color": "#94a3b8",
+      "A_healthy": false,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
       "B_modifiers": [],
-      "B_healthy": false,
+      "B_healthy": true,
       "healthy_pair": false,
-      "pair_health": "a_only"
+      "pair_health": "b_only"
     },
     {
       "pair": [
@@ -9944,6 +9811,37 @@
     },
     {
       "pair": [
+        "6206",
+        "3260"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": -1.0915,
+      "zscore": 1.42,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=-1.0915, Z60=+1.42",
+        "近 20 日 Z 範圍 [+0.18, +1.71]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+1.42）"
+      ],
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
         "3034",
         "2368"
       ],
@@ -9957,6 +9855,37 @@
         "RS=-0.9831, Z60=+0.21",
         "近 20 日 Z 範圍 [-0.77, +0.56]",
         "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.21）"
+      ],
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": false,
+      "pair_health": "b_only"
+    },
+    {
+      "pair": [
+        "3034",
+        "3260"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": 0.1547,
+      "zscore": 1.02,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=+0.1547, Z60=+1.02",
+        "近 20 日 Z 範圍 [-0.03, +1.02]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+1.02）"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",
@@ -10006,19 +9935,19 @@
     },
     {
       "pair": [
-        "3596",
-        "2454"
+        "8046",
+        "3260"
       ],
       "as_of": "2026-06-05",
-      "rs_value": -3.1167,
-      "zscore": -1.28,
-      "signal": "hold_B",
+      "rs_value": 0.6955,
+      "zscore": 0.59,
+      "signal": "hold_A",
       "confidence": 30,
       "reason": [
         "as_of=2026-06-05",
-        "RS=-3.1167, Z60=-1.28",
-        "近 20 日 Z 範圍 [-2.61, -1.28]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-1.28）"
+        "RS=+0.6955, Z60=+0.59",
+        "近 20 日 Z 範圍 [+0.18, +1.36]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.59）"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",
@@ -10026,10 +9955,41 @@
       "A_color": "#94a3b8",
       "A_modifiers": [],
       "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": false,
+      "pair_health": "b_only"
+    },
+    {
+      "pair": [
+        "3596",
+        "3260"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": -0.7942,
+      "zscore": 0.35,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=-0.7942, Z60=+0.35",
+        "近 20 日 Z 範圍 [-0.91, +0.35]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.35）"
+      ],
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
       "B_modifiers": [],
       "B_healthy": true,
       "healthy_pair": false,
@@ -10133,16 +10093,16 @@
         "2367",
         "3491"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": -3.4485,
-      "zscore": -1.38,
+      "as_of": "2026-06-05",
+      "rs_value": -3.4231,
+      "zscore": -1.21,
       "signal": "hold_B",
       "confidence": 30,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=-3.4485, Z60=-1.38",
+        "as_of=2026-06-05",
+        "RS=-3.4231, Z60=-1.21",
         "近 20 日 Z 範圍 [-1.76, -0.56]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-1.38）"
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-1.21）"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",
@@ -10158,37 +10118,6 @@
       "B_healthy": true,
       "healthy_pair": false,
       "pair_health": "b_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "2308"
-      ],
-      "as_of": "2026-06-04",
-      "rs_value": 0.062,
-      "zscore": -0.14,
-      "signal": "hold_B",
-      "confidence": 30,
-      "reason": [
-        "as_of=2026-06-04",
-        "RS=+0.0620, Z60=-0.14",
-        "近 20 日 Z 範圍 [-0.75, +0.92]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.14）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
     },
     {
       "pair": [
@@ -10226,16 +10155,16 @@
         "3017",
         "3491"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": 0.3291,
-      "zscore": -0.23,
+      "as_of": "2026-06-05",
+      "rs_value": 0.2954,
+      "zscore": -0.54,
       "signal": "hold_B",
       "confidence": 30,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=+0.3291, Z60=-0.23",
+        "as_of=2026-06-05",
+        "RS=+0.2954, Z60=-0.54",
         "近 20 日 Z 範圍 [-1.50, +0.91]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.23）"
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.54）"
       ],
       "A_state": "above_up",
       "A_label": "箱上推進",
@@ -10285,68 +10214,6 @@
     },
     {
       "pair": [
-        "3711",
-        "2454"
-      ],
-      "as_of": "2026-06-05",
-      "rs_value": -2.0085,
-      "zscore": -1.5,
-      "signal": "hold_B",
-      "confidence": 30,
-      "reason": [
-        "as_of=2026-06-05",
-        "RS=-2.0085, Z60=-1.50",
-        "近 20 日 Z 範圍 [-2.64, -1.21]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-1.50）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "2308",
-        "2454"
-      ],
-      "as_of": "2026-06-05",
-      "rs_value": -0.6257,
-      "zscore": -1.48,
-      "signal": "hold_B",
-      "confidence": 30,
-      "reason": [
-        "as_of=2026-06-05",
-        "RS=-0.6257, Z60=-1.48",
-        "近 20 日 Z 範圍 [-2.14, -1.43]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-1.48）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "3504",
         "1301"
       ],
@@ -10378,6 +10245,68 @@
     },
     {
       "pair": [
+        "2449",
+        "3260"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": -0.3089,
+      "zscore": 0.11,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=-0.3089, Z60=+0.11",
+        "近 20 日 Z 範圍 [-1.22, +0.50]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.11）"
+      ],
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": false,
+      "pair_health": "b_only"
+    },
+    {
+      "pair": [
+        "3504",
+        "3260"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": -1.6506,
+      "zscore": 1.3,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=-1.6506, Z60=+1.30",
+        "近 20 日 Z 範圍 [-1.02, +1.38]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+1.30）"
+      ],
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
         "6206",
         "8046"
       ],
@@ -10396,6 +10325,68 @@
       "A_label": "箱上推進",
       "A_icon": "🟢",
       "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
+    },
+    {
+      "pair": [
+        "2330",
+        "3260"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": 1.7247,
+      "zscore": 1.02,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=+1.7247, Z60=+1.02",
+        "近 20 日 Z 範圍 [-0.66, +1.02]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+1.02）"
+      ],
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "3260",
+        "3324"
+      ],
+      "as_of": "2026-06-05",
+      "rs_value": -0.9683,
+      "zscore": -0.35,
+      "signal": "hold_B",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-06-05",
+        "RS=-0.9683, Z60=-0.35",
+        "近 20 日 Z 範圍 [-0.87, +1.27]",
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.35）"
+      ],
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
       "A_modifiers": [],
       "A_healthy": true,
       "B_state": "inbox_side",
@@ -10533,99 +10524,6 @@
     },
     {
       "pair": [
-        "2449",
-        "2454"
-      ],
-      "as_of": "2026-06-05",
-      "rs_value": -2.6314,
-      "zscore": -1.43,
-      "signal": "hold_B",
-      "confidence": 30,
-      "reason": [
-        "as_of=2026-06-05",
-        "RS=-2.6314, Z60=-1.43",
-        "近 20 日 Z 範圍 [-3.28, -1.43]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-1.43）"
-      ],
-      "A_state": "inbox_side",
-      "A_label": "箱內盤整",
-      "A_icon": "⚪",
-      "A_color": "#94a3b8",
-      "A_modifiers": [],
-      "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": false,
-      "pair_health": "b_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "6206"
-      ],
-      "as_of": "2026-06-04",
-      "rs_value": 2.9139,
-      "zscore": 0.43,
-      "signal": "hold_A",
-      "confidence": 30,
-      "reason": [
-        "as_of=2026-06-04",
-        "RS=+2.9139, Z60=+0.43",
-        "近 20 日 Z 範圍 [-0.48, +1.46]",
-        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.43）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "8299",
-        "3711"
-      ],
-      "as_of": "2026-06-04",
-      "rs_value": 1.4704,
-      "zscore": -0.2,
-      "signal": "hold_B",
-      "confidence": 30,
-      "reason": [
-        "as_of=2026-06-04",
-        "RS=+1.4704, Z60=-0.20",
-        "近 20 日 Z 範圍 [-1.14, +0.97]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.20）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "2345",
         "6206"
       ],
@@ -10688,34 +10586,34 @@
     },
     {
       "pair": [
-        "6206",
-        "2454"
+        "1301",
+        "3260"
       ],
       "as_of": "2026-06-05",
-      "rs_value": -3.4141,
-      "zscore": -1.25,
+      "rs_value": -2.154,
+      "zscore": -0.2,
       "signal": "hold_B",
       "confidence": 30,
       "reason": [
         "as_of=2026-06-05",
-        "RS=-3.4141, Z60=-1.25",
-        "近 20 日 Z 範圍 [-2.35, -1.06]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-1.25）"
+        "RS=-2.1540, Z60=-0.20",
+        "近 20 日 Z 範圍 [-1.39, -0.20]",
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.20）"
       ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
       "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
+      "A_healthy": false,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
       "B_modifiers": [],
       "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
+      "healthy_pair": false,
+      "pair_health": "b_only"
     },
     {
       "pair": [
@@ -10753,16 +10651,16 @@
         "8046",
         "3491"
       ],
-      "as_of": "2026-06-04",
-      "rs_value": -0.7979,
-      "zscore": 0.18,
-      "signal": "hold_A",
+      "as_of": "2026-06-05",
+      "rs_value": -0.8285,
+      "zscore": -0.02,
+      "signal": "hold_B",
       "confidence": 30,
       "reason": [
-        "as_of=2026-06-04",
-        "RS=-0.7979, Z60=+0.18",
-        "近 20 日 Z 範圍 [-0.62, +1.31]",
-        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.18）"
+        "as_of=2026-06-05",
+        "RS=-0.8285, Z60=-0.02",
+        "近 20 日 Z 範圍 [-0.62, +1.20]",
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.02）"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",
@@ -10874,92 +10772,30 @@
     },
     {
       "pair": [
-        "8046",
-        "2454"
+        "2379",
+        "3260"
       ],
       "as_of": "2026-06-05",
-      "rs_value": -1.627,
-      "zscore": -1.67,
+      "rs_value": 0.4223,
+      "zscore": 1.57,
       "signal": "no_action",
       "confidence": 25,
       "reason": [
         "as_of=2026-06-05",
-        "RS=-1.6270, Z60=-1.67",
-        "近 20 日 Z 範圍 [-2.24, -1.08]",
-        "Z=-1.67 ≤ -1.5（A 過弱，等待折返）"
+        "RS=+0.4223, Z60=+1.57",
+        "近 20 日 Z 範圍 [-0.72, +1.57]",
+        "Z=+1.57 ≥ +1.5（A 過強，等待折返）"
       ],
-      "A_state": "inbox_side",
-      "A_label": "箱內盤整",
-      "A_icon": "⚪",
-      "A_color": "#94a3b8",
-      "A_modifiers": [],
-      "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": false,
-      "pair_health": "b_only"
-    },
-    {
-      "pair": [
-        "2383",
-        "2454"
-      ],
-      "as_of": "2026-06-05",
-      "rs_value": 0.1276,
-      "zscore": -1.62,
-      "signal": "no_action",
-      "confidence": 25,
-      "reason": [
-        "as_of=2026-06-05",
-        "RS=+0.1276, Z60=-1.62",
-        "近 20 日 Z 範圍 [-2.10, -0.45]",
-        "Z=-1.62 ≤ -1.5（A 過弱，等待折返）"
-      ],
-      "A_state": "above_down",
-      "A_label": "箱上回測",
-      "A_icon": "🟡",
-      "A_color": "#fcd34d",
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
       "A_modifiers": [],
       "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "2368",
-        "2454"
-      ],
-      "as_of": "2026-06-05",
-      "rs_value": -1.1848,
-      "zscore": -1.64,
-      "signal": "no_action",
-      "confidence": 25,
-      "reason": [
-        "as_of=2026-06-05",
-        "RS=-1.1848, Z60=-1.64",
-        "近 20 日 Z 範圍 [-2.40, -1.17]",
-        "Z=-1.64 ≤ -1.5（A 過弱，等待折返）"
-      ],
-      "A_state": "above_down",
-      "A_label": "箱上回測",
-      "A_icon": "🟡",
-      "A_color": "#fcd34d",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
       "B_modifiers": [],
       "B_healthy": true,
       "healthy_pair": true,
@@ -11056,8 +10892,8 @@
     },
     {
       "pair": [
-        "8299",
-        "1301"
+        "6206",
+        "3324"
       ],
       "allowed": true,
       "position_action": "full_switch",
@@ -11198,6 +11034,34 @@
     },
     {
       "pair": [
+        "3034",
+        "3324"
+      ],
+      "allowed": true,
+      "position_action": "full_switch",
+      "position_size": "100%",
+      "signal": "switch_to_B",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "confidence=80 → conf_size 100%；取 min(市場上限, conf_size) = 100%"
+      ],
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "none"
+    },
+    {
+      "pair": [
         "1301",
         "3711"
       ],
@@ -11223,63 +11087,6 @@
       "B_healthy": true,
       "healthy_pair": false,
       "pair_health": "b_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "2330"
-      ],
-      "allowed": true,
-      "position_action": "partial_switch",
-      "position_size": "75%",
-      "signal": "switch_to_B",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "confidence=80 → conf_size 100%；取 min(市場上限, conf_size) = 100%",
-        "買入端 2330 籌碼 warning → 部位 100% → 75%"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "8299",
-        "3596"
-      ],
-      "allowed": true,
-      "position_action": "full_switch",
-      "position_size": "100%",
-      "signal": "switch_to_B",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "confidence=80 → conf_size 100%；取 min(市場上限, conf_size) = 100%"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "inbox_side",
-      "B_label": "箱內盤整",
-      "B_icon": "⚪",
-      "B_color": "#94a3b8",
-      "B_modifiers": [],
-      "B_healthy": false,
-      "healthy_pair": false,
-      "pair_health": "a_only"
     },
     {
       "pair": [
@@ -11326,34 +11133,6 @@
       "A_label": "箱上回測",
       "A_icon": "🟡",
       "A_color": "#fcd34d",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "2379",
-        "2454"
-      ],
-      "allowed": true,
-      "position_action": "full_switch",
-      "position_size": "100%",
-      "signal": "switch_to_A",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "confidence=80 → conf_size 100%；取 min(市場上限, conf_size) = 100%"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
       "A_modifiers": [],
       "A_healthy": true,
       "B_state": "above_up",
@@ -11452,90 +11231,6 @@
     },
     {
       "pair": [
-        "8299",
-        "3034"
-      ],
-      "allowed": true,
-      "position_action": "partial_switch",
-      "position_size": "75%",
-      "signal": "switch_to_B",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "inbox_side",
-      "B_label": "箱內盤整",
-      "B_icon": "⚪",
-      "B_color": "#94a3b8",
-      "B_modifiers": [],
-      "B_healthy": false,
-      "healthy_pair": false,
-      "pair_health": "a_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "2379"
-      ],
-      "allowed": true,
-      "position_action": "partial_switch",
-      "position_size": "75%",
-      "signal": "switch_to_B",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "3504",
-        "8299"
-      ],
-      "allowed": true,
-      "position_action": "partial_switch",
-      "position_size": "75%",
-      "signal": "switch_to_A",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
-      ],
-      "A_state": "above_down",
-      "A_label": "箱上回測",
-      "A_icon": "🟡",
-      "A_color": "#fcd34d",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "2345",
         "1301"
       ],
@@ -11589,6 +11284,62 @@
       "B_healthy": true,
       "healthy_pair": false,
       "pair_health": "b_only"
+    },
+    {
+      "pair": [
+        "2383",
+        "3260"
+      ],
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "75%",
+      "signal": "switch_to_B",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
+      ],
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "3711",
+        "3260"
+      ],
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "75%",
+      "signal": "switch_to_B",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
+      ],
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
     },
     {
       "pair": [
@@ -11705,6 +11456,62 @@
     },
     {
       "pair": [
+        "2330",
+        "3324"
+      ],
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "75%",
+      "signal": "switch_to_B",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
+      ],
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
+    },
+    {
+      "pair": [
+        "2308",
+        "3260"
+      ],
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "75%",
+      "signal": "switch_to_B",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
+      ],
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
         "3034",
         "3711"
       ],
@@ -11790,6 +11597,34 @@
     },
     {
       "pair": [
+        "2345",
+        "3324"
+      ],
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "75%",
+      "signal": "switch_to_B",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
+      ],
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
+    },
+    {
+      "pair": [
         "2383",
         "2308"
       ],
@@ -11815,6 +11650,34 @@
       "B_healthy": true,
       "healthy_pair": true,
       "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "2308",
+        "3324"
+      ],
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "75%",
+      "signal": "switch_to_B",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
+      ],
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
     },
     {
       "pair": [
@@ -12102,34 +11965,6 @@
     },
     {
       "pair": [
-        "8299",
-        "2368"
-      ],
-      "allowed": true,
-      "position_action": "partial_switch",
-      "position_size": "25%",
-      "signal": "switch_to_B",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "confidence=50 → conf_size 25%；取 min(市場上限, conf_size) = 25%"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_down",
-      "B_label": "箱上回測",
-      "B_icon": "🟡",
-      "B_color": "#fcd34d",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "2345",
         "2379"
       ],
@@ -12582,6 +12417,34 @@
     },
     {
       "pair": [
+        "2449",
+        "3324"
+      ],
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "25%",
+      "signal": "switch_to_A",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "confidence=50 → conf_size 25%；取 min(市場上限, conf_size) = 25%"
+      ],
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "none"
+    },
+    {
+      "pair": [
         "2367",
         "3037"
       ],
@@ -12696,6 +12559,34 @@
     },
     {
       "pair": [
+        "8046",
+        "3324"
+      ],
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "25%",
+      "signal": "switch_to_B",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "confidence=50 → conf_size 25%；取 min(市場上限, conf_size) = 25%"
+      ],
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "none"
+    },
+    {
+      "pair": [
         "2383",
         "3491"
       ],
@@ -12794,6 +12685,62 @@
         "confidence=50 → conf_size 25%；取 min(市場上限, conf_size) = 25%",
         "買入端 3491 籌碼 warning → 部位 25% → 0%",
         "扣減後部位 0%"
+      ],
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "2345",
+        "3260"
+      ],
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "25%",
+      "signal": "switch_to_B",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "confidence=50 → conf_size 25%；取 min(市場上限, conf_size) = 25%"
+      ],
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "2368",
+        "3260"
+      ],
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "25%",
+      "signal": "switch_to_B",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "confidence=50 → conf_size 25%；取 min(市場上限, conf_size) = 25%"
       ],
       "A_state": "above_down",
       "A_label": "箱上回測",
@@ -13254,33 +13201,6 @@
     },
     {
       "pair": [
-        "1301",
-        "2454"
-      ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 B（持有提示，未觸極端，不主動換股）"
-      ],
-      "A_state": "inbox_side",
-      "A_label": "箱內盤整",
-      "A_icon": "⚪",
-      "A_color": "#94a3b8",
-      "A_modifiers": [],
-      "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": false,
-      "pair_health": "b_only"
-    },
-    {
-      "pair": [
         "3017",
         "2379"
       ],
@@ -13413,114 +13333,6 @@
       "B_healthy": true,
       "healthy_pair": false,
       "pair_health": "b_only"
-    },
-    {
-      "pair": [
-        "2367",
-        "2454"
-      ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 B（持有提示，未觸極端，不主動換股）"
-      ],
-      "A_state": "inbox_side",
-      "A_label": "箱內盤整",
-      "A_icon": "⚪",
-      "A_color": "#94a3b8",
-      "A_modifiers": [],
-      "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": false,
-      "pair_health": "b_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "2345"
-      ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_down",
-      "B_label": "箱上回測",
-      "B_icon": "🟡",
-      "B_color": "#fcd34d",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "8299",
-        "3017"
-      ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "8299",
-        "2383"
-      ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_down",
-      "B_label": "箱上回測",
-      "B_icon": "🟡",
-      "B_color": "#fcd34d",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
     },
     {
       "pair": [
@@ -13578,33 +13390,6 @@
     },
     {
       "pair": [
-        "3017",
-        "2454"
-      ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 B（持有提示，未觸極端，不主動換股）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "2367",
         "3034"
       ],
@@ -13629,6 +13414,33 @@
       "B_healthy": false,
       "healthy_pair": false,
       "pair_health": "none"
+    },
+    {
+      "pair": [
+        "2379",
+        "3324"
+      ],
+      "allowed": false,
+      "position_action": "hold",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
+      ],
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
     },
     {
       "pair": [
@@ -13659,30 +13471,30 @@
     },
     {
       "pair": [
-        "2330",
-        "2454"
+        "3596",
+        "3324"
       ],
       "allowed": false,
       "position_action": "hold",
       "position_size": "0%",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 B（持有提示，未觸極端，不主動換股）"
+        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
       ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
       "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
+      "A_healthy": false,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
       "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "none"
     },
     {
       "pair": [
@@ -13740,30 +13552,30 @@
     },
     {
       "pair": [
-        "8299",
-        "8046"
+        "2367",
+        "3260"
       ],
       "allowed": false,
       "position_action": "hold",
       "position_size": "0%",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
+        "訊號＝續抱 B（持有提示，未觸極端，不主動換股）"
       ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
       "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "inbox_side",
-      "B_label": "箱內盤整",
-      "B_icon": "⚪",
-      "B_color": "#94a3b8",
+      "A_healthy": false,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
       "B_modifiers": [],
-      "B_healthy": false,
+      "B_healthy": true,
       "healthy_pair": false,
-      "pair_health": "a_only"
+      "pair_health": "b_only"
     },
     {
       "pair": [
@@ -13794,8 +13606,62 @@
     },
     {
       "pair": [
+        "6206",
+        "3260"
+      ],
+      "allowed": false,
+      "position_action": "hold",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
+      ],
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
         "3034",
         "2368"
+      ],
+      "allowed": false,
+      "position_action": "hold",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
+      ],
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": false,
+      "pair_health": "b_only"
+    },
+    {
+      "pair": [
+        "3034",
+        "3260"
       ],
       "allowed": false,
       "position_action": "hold",
@@ -13848,15 +13714,15 @@
     },
     {
       "pair": [
-        "3596",
-        "2454"
+        "8046",
+        "3260"
       ],
       "allowed": false,
       "position_action": "hold",
       "position_size": "0%",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 B（持有提示，未觸極端，不主動換股）"
+        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",
@@ -13864,10 +13730,37 @@
       "A_color": "#94a3b8",
       "A_modifiers": [],
       "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": false,
+      "pair_health": "b_only"
+    },
+    {
+      "pair": [
+        "3596",
+        "3260"
+      ],
+      "allowed": false,
+      "position_action": "hold",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
+      ],
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
       "B_modifiers": [],
       "B_healthy": true,
       "healthy_pair": false,
@@ -13983,33 +13876,6 @@
     },
     {
       "pair": [
-        "8299",
-        "2308"
-      ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 B（持有提示，未觸極端，不主動換股）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "2345",
         "2368"
       ],
@@ -14091,60 +13957,6 @@
     },
     {
       "pair": [
-        "3711",
-        "2454"
-      ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 B（持有提示，未觸極端，不主動換股）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "2308",
-        "2454"
-      ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 B（持有提示，未觸極端，不主動換股）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "3504",
         "1301"
       ],
@@ -14172,6 +13984,60 @@
     },
     {
       "pair": [
+        "2449",
+        "3260"
+      ],
+      "allowed": false,
+      "position_action": "hold",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
+      ],
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": false,
+      "pair_health": "b_only"
+    },
+    {
+      "pair": [
+        "3504",
+        "3260"
+      ],
+      "allowed": false,
+      "position_action": "hold",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
+      ],
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
         "6206",
         "8046"
       ],
@@ -14186,6 +14052,60 @@
       "A_label": "箱上推進",
       "A_icon": "🟢",
       "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
+    },
+    {
+      "pair": [
+        "2330",
+        "3260"
+      ],
+      "allowed": false,
+      "position_action": "hold",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
+      ],
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
+      "A_modifiers": [],
+      "A_healthy": true,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
+      "B_modifiers": [],
+      "B_healthy": true,
+      "healthy_pair": true,
+      "pair_health": "both_healthy"
+    },
+    {
+      "pair": [
+        "3260",
+        "3324"
+      ],
+      "allowed": false,
+      "position_action": "hold",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 多頭 → 最大部位 100%",
+        "訊號＝續抱 B（持有提示，未觸極端，不主動換股）"
+      ],
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
       "A_modifiers": [],
       "A_healthy": true,
       "B_state": "inbox_side",
@@ -14307,87 +14227,6 @@
     },
     {
       "pair": [
-        "2449",
-        "2454"
-      ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 B（持有提示，未觸極端，不主動換股）"
-      ],
-      "A_state": "inbox_side",
-      "A_label": "箱內盤整",
-      "A_icon": "⚪",
-      "A_color": "#94a3b8",
-      "A_modifiers": [],
-      "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": false,
-      "pair_health": "b_only"
-    },
-    {
-      "pair": [
-        "8299",
-        "6206"
-      ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "8299",
-        "3711"
-      ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 B（持有提示，未觸極端，不主動換股）"
-      ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
         "2345",
         "6206"
       ],
@@ -14442,8 +14281,8 @@
     },
     {
       "pair": [
-        "6206",
-        "2454"
+        "1301",
+        "3260"
       ],
       "allowed": false,
       "position_action": "hold",
@@ -14452,20 +14291,20 @@
         "市場狀態 多頭 → 最大部位 100%",
         "訊號＝續抱 B（持有提示，未觸極端，不主動換股）"
       ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
       "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
+      "A_healthy": false,
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
       "B_modifiers": [],
       "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
+      "healthy_pair": false,
+      "pair_health": "b_only"
     },
     {
       "pair": [
@@ -14504,7 +14343,7 @@
       "position_size": "0%",
       "risk_reason": [
         "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝續抱 A（持有提示，未觸極端，不主動換股）"
+        "訊號＝續抱 B（持有提示，未觸極端，不主動換股）"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",
@@ -14604,8 +14443,8 @@
     },
     {
       "pair": [
-        "8046",
-        "2454"
+        "2379",
+        "3260"
       ],
       "allowed": false,
       "position_action": "hold",
@@ -14614,70 +14453,16 @@
         "市場狀態 多頭 → 最大部位 100%",
         "訊號＝不動作（不換股）"
       ],
-      "A_state": "inbox_side",
-      "A_label": "箱內盤整",
-      "A_icon": "⚪",
-      "A_color": "#94a3b8",
-      "A_modifiers": [],
-      "A_healthy": false,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": false,
-      "pair_health": "b_only"
-    },
-    {
-      "pair": [
-        "2383",
-        "2454"
-      ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝不動作（不換股）"
-      ],
-      "A_state": "above_down",
-      "A_label": "箱上回測",
-      "A_icon": "🟡",
-      "A_color": "#fcd34d",
+      "A_state": "above_up",
+      "A_label": "箱上推進",
+      "A_icon": "🟢",
+      "A_color": "#10b981",
       "A_modifiers": [],
       "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
-    },
-    {
-      "pair": [
-        "2368",
-        "2454"
-      ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
-      "risk_reason": [
-        "市場狀態 多頭 → 最大部位 100%",
-        "訊號＝不動作（不換股）"
-      ],
-      "A_state": "above_down",
-      "A_label": "箱上回測",
-      "A_icon": "🟡",
-      "A_color": "#fcd34d",
-      "A_modifiers": [],
-      "A_healthy": true,
-      "B_state": "above_up",
-      "B_label": "箱上推進",
-      "B_icon": "🟢",
-      "B_color": "#10b981",
+      "B_state": "above_down",
+      "B_label": "箱上回測",
+      "B_icon": "🟡",
+      "B_color": "#fcd34d",
       "B_modifiers": [],
       "B_healthy": true,
       "healthy_pair": true,

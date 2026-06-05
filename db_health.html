@@ -71,7 +71,7 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 
 <h1>🗄 DuckDB 資料庫健康檢查</h1>
 <div class='sub'>
-  資料日：2026-06-05 ｜ 產生時間：2026-06-05 18:00:05
+  資料日：2026-06-05 ｜ 產生時間：2026-06-05 18:30:48
   ｜ 來源：<code>stockHisData/stock_data/db_health.py</code>
   ｜ 每日 orchestrator step 0 自動執行
 </div>
@@ -83,41 +83,41 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 <h2>📋 詳細檢查項目（依嚴重性排序）</h2>
 <div class='check-card warning'><div class='check-head'><span class='check-icon'>⚠</span><span class='check-name'>輔助資料時效</span><span class='check-cat'>📅 資料時效</span><span class='check-pill' style='background:#fcd34d33;color:#fcd34d'>warning</span></div><div class='check-msg'>macro/SOX 落後 14 天</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;futures&quot;: {
-    &quot;last_date&quot;: &quot;2026-06-04&quot;,
-    &quot;days_lag&quot;: 1
+    &quot;last_date&quot;: &quot;2026-06-05&quot;,
+    &quot;days_lag&quot;: 0
   },
   &quot;macro&quot;: {
-    &quot;VIX&quot;: &quot;2026-06-03&quot;,
-    &quot;USDTWD&quot;: &quot;2026-06-04&quot;,
-    &quot;SOX&quot;: &quot;2026-05-22&quot;
+    &quot;VIX&quot;: &quot;2026-06-05&quot;,
+    &quot;SOX&quot;: &quot;2026-05-22&quot;,
+    &quot;USDTWD&quot;: &quot;2026-06-04&quot;
   },
   &quot;institutional&quot;: {
-    &quot;last_date&quot;: &quot;2026-06-04&quot;,
-    &quot;days_lag&quot;: 1
+    &quot;last_date&quot;: &quot;2026-06-05&quot;,
+    &quot;days_lag&quot;: 0
   }
 }</pre></details></div><div class='check-card info'><div class='check-head'><span class='check-icon'>ℹ</span><span class='check-name'>Update log 時效</span><span class='check-cat'>📋 Update log</span><span class='check-pill' style='background:#60a5fa33;color:#60a5fa'>info</span></div><div class='check-msg'>共 1 個資料源；最新紀錄 2026-05-24 10:19:45.706960</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;db_migrate_from_csv&quot;: &quot;2026-05-24 10:19:45.706960&quot;
 }</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>DuckDB 表結構</span><span class='check-cat'>🗂 表結構</span><span class='check-pill' style='background:#10b98133;color:#10b981'>healthy</span></div><div class='check-msg'>全部 8 個必要表存在</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;counts&quot;: {
-    &quot;price&quot;: 2089465,
+    &quot;price&quot;: 2090332,
     &quot;indices&quot;: 2138,
-    &quot;institutional&quot;: 524322,
-    &quot;futures&quot;: 242,
-    &quot;macro&quot;: 3359,
+    &quot;institutional&quot;: 544552,
+    &quot;futures&quot;: 243,
+    &quot;macro&quot;: 3361,
     &quot;symbols&quot;: 1935,
-    &quot;signal_history&quot;: 58868,
+    &quot;signal_history&quot;: 59576,
     &quot;update_log&quot;: 1
   }
-}</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>最新日資料齊全度</span><span class='check-cat'>📅 資料時效</span><span class='check-pill' style='background:#10b98133;color:#10b981'>healthy</span></div><div class='check-msg'>最新日 2026-06-05 全市場 1055 檔齊全（≥ 1000）</div><details class='detail'><summary>查看細節</summary><pre>{
+}</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>最新日資料齊全度</span><span class='check-cat'>📅 資料時效</span><span class='check-pill' style='background:#10b98133;color:#10b981'>healthy</span></div><div class='check-msg'>最新日 2026-06-05 全市場 1922 檔齊全（≥ 1000）</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;latest_date&quot;: &quot;2026-06-05&quot;,
-  &quot;latest_count&quot;: 1055,
+  &quot;latest_count&quot;: 1922,
   &quot;second_date&quot;: &quot;2026-06-04&quot;,
   &quot;second_count&quot;: 1933,
   &quot;days_lag&quot;: 0,
   &quot;recent_5&quot;: [
     {
       &quot;date&quot;: &quot;2026-06-05&quot;,
-      &quot;n&quot;: 1055
+      &quot;n&quot;: 1922
     },
     {
       &quot;date&quot;: &quot;2026-06-04&quot;,
@@ -142,7 +142,7 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
   &quot;future_dates&quot;: 0,
   &quot;non_positive_close&quot;: 0,
   &quot;zero_volume&quot;: 28236,
-  &quot;total_rows&quot;: 2089465,
+  &quot;total_rows&quot;: 2090332,
   &quot;zero_vol_pct&quot;: 1.35
 }</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>關鍵指數完整性</span><span class='check-cat'>📊 資料覆蓋</span><span class='check-pill' style='background:#10b98133;color:#10b981'>healthy</span></div><div class='check-msg'>全部 2 個關鍵指數齊全</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;latest_per_index&quot;: {
