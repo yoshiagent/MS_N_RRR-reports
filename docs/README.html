@@ -41,6 +41,22 @@ blockquote { border-left:3px solid #3b82f6; padding:8px 14px; background:#1e293b
 <p>台股長多換股輪動決策系統。<strong>不做空、不追極端值、等折返才換</strong>。</p>
 <p>主頁：<a href="https://yoshiagent.github.io/MS_N_RRR-reports/">https://yoshiagent.github.io/MS_N_RRR-reports/</a></p>
 <hr />
+<h2 id="v2-6">⭐ V.2 投資公司角色制 — 6 層投資長指揮鏈</h2>
+<pre><code>L0 MS Agent (CIO 投資長)    判市場階段 → 給下游 directive (phase/bias/master_weight/discipline)
+L1 Universe Selector       接 CIO bias 統合 3 池 (HOT/STRONG/BASE) → 最終 ~100 檔
+L2 V.1 Feature Agents       9 個現成研究員 (shsl/n_shape/box/chip/fund/...)
+L3 Master Score (9 名人)    Wyckoff/Minervini/ONeil/Weinstein/Darvas/
+                            Livermore/Lynch/Fisher/Buffett → composite
+L4 Decision Agent          composite Top K → paper portfolio (倉位/cash)
+L5 Discipline Agent        gate-keeper (PASS/WARN/VETO) per MS discipline_policy
+L6 Performance Agent       portfolio history + 9 名人對 final picks 的貢獻佔比
+</code></pre>
+<p>詳細規範: <a href="docs/V2_ARCHITECTURE.md"><code>docs/V2_ARCHITECTURE.md</code></a> ｜
+<a href="docs/MS_AGENT_OUTPUT_SCHEMA.md"><code>docs/MS_AGENT_OUTPUT_SCHEMA.md</code></a> ｜
+<a href="docs/MASTER_SCORE_ARCHITECTURE.md"><code>docs/MASTER_SCORE_ARCHITECTURE.md</code></a></p>
+<p>V.2 基於 V.1 守門員 (audit 22/22 + tests 23/23 + GitHub Actions CI),
+是「業務語意層升級」而非技術重寫.</p>
+<hr />
 <h2 id="_1">一句話描述</h2>
 <p>每天 18:00（台股收盤 + 30 分鐘）自動跑：
 <strong>抓資料 → 評估市場 → 偵測主流 → 找配對 → 風控 → 產 HTML 報告 → 部署 GitHub Pages → 推 Email + Telegram。</strong></p>
