@@ -175,7 +175,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
 </style>
 </head><body>
 <h1>MS_N_RR/RRR Ver.A 報告中心</h1>
-<div class="sub">資料日：2026-06-08 ｜ 產生時間：2026-06-08 21:07</div>
+<div class="sub">資料日：2026-06-08 ｜ 產生時間：2026-06-08 21:33</div>
 
 
 <div class="funnel-wrap">
@@ -242,6 +242,105 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 
 <h2>1. 市場結構 (Market Structure) — 總開關</h2>
 
+<div style="background:linear-gradient(135deg,#1e1b4b,#0f172a);padding:18px;
+            border-radius:12px;margin-bottom:24px;border:2px solid #a855f7">
+  <div style="color:#fbbf24;font-weight:bold;font-size:16px;margin-bottom:14px;text-align:center">
+    🏢 業務流程 — 候選股池 → 3 維分析 → 投資委員會 → 基金經理 → 風控 → 績效
+  </div>
+
+  <!-- 4 池候選股池 -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px">
+    <div style="background:#7f1d1d;padding:8px 10px;border-radius:8px;text-align:center;
+                border-left:4px solid #ef4444">
+      <div style="color:#fbbf24;font-size:10px">熱門股</div>
+      <div style="color:#fff;font-weight:bold;font-size:16px">683</div>
+      <div style="color:#fca5a5;font-size:9px">成交金額 (hotflow)</div>
+    </div>
+    <div style="background:#14532d;padding:8px 10px;border-radius:8px;text-align:center;
+                border-left:4px solid #22c55e">
+      <div style="color:#fbbf24;font-size:10px">強勢股</div>
+      <div style="color:#fff;font-weight:bold;font-size:16px">80</div>
+      <div style="color:#86efac;font-size:9px">漲幅 (strong_stocks)</div>
+    </div>
+    <div style="background:#1e3a8a;padding:8px 10px;border-radius:8px;text-align:center;
+                border-left:4px solid #3b82f6">
+      <div style="color:#fbbf24;font-size:10px">打底股</div>
+      <div style="color:#fff;font-weight:bold;font-size:16px">75</div>
+      <div style="color:#93c5fd;font-size:9px">底部整理 (accumulation)</div>
+    </div>
+    <div style="background:#581c87;padding:8px 10px;border-radius:8px;text-align:center;
+                border-left:4px solid #a855f7">
+      <div style="color:#fbbf24;font-size:10px">自選股</div>
+      <div style="color:#fff;font-weight:bold;font-size:16px">10</div>
+      <div style="color:#d8b4fe;font-size:9px">使用者自選 (custom_pool)</div>
+    </div>
+  </div>
+
+  <!-- 箭頭 + 候選股池總結 -->
+  <div style="text-align:center;color:#94a3b8;font-size:12px;margin:6px 0">↓</div>
+  <div style="background:#0f1a2c;padding:8px 14px;border-radius:6px;
+              text-align:center;border:1px dashed #fbbf24;margin-bottom:10px">
+    <span style="color:#fbbf24;font-weight:bold;font-size:13px">候選股池</span>
+    <span style="color:#94a3b8;font-size:11px"> · MS 投資長加權合成 <b style="color:#fff">105</b> 檔
+      (universe_selector) · <i style="color:#64748b">後續不再擴大範圍</i></span>
+  </div>
+
+  <!-- 3 維分析 (送 FS) -->
+  <div style="text-align:center;color:#94a3b8;font-size:12px;margin:6px 0">↓ 不篩選, 全送 FS</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px">
+    <div style="background:#0c4a6e;padding:8px;border-radius:6px;text-align:center;border-top:3px solid #0ea5e9">
+      <div style="color:#7dd3fc;font-size:11px;font-weight:bold">技術面</div>
+      <div style="color:#cbd5e1;font-size:10px;margin-top:2px">
+        shsl · n_shape · box · cga · wyckoff_phase
+      </div>
+    </div>
+    <div style="background:#7c2d12;padding:8px;border-radius:6px;text-align:center;border-top:3px solid #f97316">
+      <div style="color:#fed7aa;font-size:11px;font-weight:bold">籌碼面</div>
+      <div style="color:#cbd5e1;font-size:10px;margin-top:2px">
+        chip_agent_v2 · accumulation · distribution
+      </div>
+    </div>
+    <div style="background:#831843;padding:8px;border-radius:6px;text-align:center;border-top:3px solid #ec4899">
+      <div style="color:#fbcfe8;font-size:11px;font-weight:bold">基本面</div>
+      <div style="color:#cbd5e1;font-size:10px;margin-top:2px">
+        fundamental_score (d1-d5)
+      </div>
+    </div>
+  </div>
+
+  <!-- 投資委員會評分 (送 FS) -->
+  <div style="text-align:center;color:#94a3b8;font-size:12px;margin:6px 0">↓ 送 FS</div>
+  <div style="background:linear-gradient(90deg,#581c87,#9333ea);padding:10px;border-radius:8px;
+              text-align:center;margin-bottom:10px">
+    <div style="color:#fff;font-weight:bold;font-size:13px">👥 投資委員會 (9 位名人合議)</div>
+    <div style="color:#e9d5ff;font-size:10px;margin-top:3px">
+      Wyckoff · Minervini · ONeil · Weinstein · Darvas · Livermore · Lynch · Fisher · Buffett →
+      <b style="color:#fbbf24">Composite 239 檔</b>
+    </div>
+  </div>
+
+  <!-- Decision → Discipline → Performance -->
+  <div style="text-align:center;color:#94a3b8;font-size:12px;margin:6px 0">↓</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+    <div style="background:#14532d;padding:8px;border-radius:6px;text-align:center;border-top:3px solid #22c55e">
+      <div style="color:#86efac;font-size:11px;font-weight:bold">💼 基金經理 (Decision)</div>
+      <div style="color:#fff;font-size:13px;font-weight:bold">15 檔持倉</div>
+    </div>
+    <div style="background:#78350f;padding:8px;border-radius:6px;text-align:center;border-top:3px solid #f59e0b">
+      <div style="color:#fde68a;font-size:11px;font-weight:bold">🛡 風控長 (Discipline)</div>
+      <div style="color:#fff;font-size:11px">PASS / WARN / VETO</div>
+    </div>
+    <div style="background:#0f4944;padding:8px;border-radius:6px;text-align:center;border-top:3px solid #ef4444">
+      <div style="color:#a7f3d0;font-size:11px;font-weight:bold">📈 績效追蹤 (Paper)</div>
+      <div style="color:#ef4444;font-size:11px;font-weight:bold">
+        NT$998,815 (-0.12%)
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
     <div class="market-box">
       <div>
         <span class="market-state state-warning" title="由 9 項 subscore 加權合成總分後分級：≥75=多頭(積極)、55-75=警戒(觀望)、35-55=防禦(減倉)、&lt;35=出場">警示</span>
@@ -298,7 +397,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 
 <h2>2. 系統流程 (Main Pipeline) — 主訊號路徑</h2>
 <div style="color:#94a3b8;font-size:12px;margin-bottom:8px">
-主流偵測 ➝ 多時段箱型健康過濾 ➝ 配對發現（RSR / RRR Resonance）➝ + 自選池 ➝ <b style="color:#fb923c">操作 Agent ⭐</b>
+熱門偵測 ➝ 多時段箱型健康過濾 ➝ 配對發現（RSR / RRR Resonance）➝ + 自選池 ➝ <b style="color:#fb923c">操作 Agent ⭐</b>
 </div>
 
 <h3 style="font-size:14px;color:#94a3b8;margin:14px 0 6px;border-left:3px solid #a855f7;padding-left:10px">
@@ -367,20 +466,21 @@ C 級會被排除不進入下游池（過熱或結構轉空）
   
     <div class="summary-card" style="border-left:5px solid #06b6d4">
       <div class="head">
-        <div class="title" title="V.2 L1 — 接 MS Agent candidate_bias 統合 3 池 (HOT/STRONG/BASE) → 最終 universe">
-          🎲 選股層 (Universe) <span style="font-size:10px;color:#94a3b8;font-weight:normal">(L1, 3 池)</span>
+        <div class="title" title="V.2 L1 — 接 MS Agent candidate_bias 統合 4 池 (熱門/強勢/打底/自選) → 最終 universe">
+          🎲 選股層 (Universe) <span style="font-size:10px;color:#94a3b8;font-weight:normal">(L1, 4 池)</span>
         </div>
         <div class="icon">🎲</div>
       </div>
       <div class="dist" style="font-size:11px;color:#64748b">
-        bias h20/s30/b50 ｜ final 95
+        bias h20/s30/b50 ｜ final 105
       </div>
-      <div style="display:flex;gap:4px;margin-top:6px">
-        <span style="background:#ef4444;color:#fff;padding:2px 6px;border-radius:8px;font-size:10px;font-weight:bold">HOT 20</span>
-        <span style="background:#22c55e;color:#fff;padding:2px 6px;border-radius:8px;font-size:10px;font-weight:bold">STRONG 27</span>
-        <span style="background:#3b82f6;color:#fff;padding:2px 6px;border-radius:8px;font-size:10px;font-weight:bold">BASE 48</span>
+      <div style="display:flex;gap:4px;margin-top:6px;flex-wrap:wrap">
+        <span style="background:#ef4444;color:#fff;padding:2px 6px;border-radius:8px;font-size:10px;font-weight:bold">熱門 20</span>
+        <span style="background:#22c55e;color:#fff;padding:2px 6px;border-radius:8px;font-size:10px;font-weight:bold">強勢 27</span>
+        <span style="background:#3b82f6;color:#fff;padding:2px 6px;border-radius:8px;font-size:10px;font-weight:bold">打底 48</span>
+        <span style="background:#a855f7;color:#fff;padding:2px 6px;border-radius:8px;font-size:10px;font-weight:bold">自選 10</span>
       </div>
-      <div style="margin-top:8px"><div style='padding:4px 8px;background:#0f1a2c;border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:#3b82f6'>#1</b> 2890 永豐金</span><span style='color:#94a3b8;font-size:10px'>BASE/50.0</span></div><div style='padding:4px 8px;background:#0f1a2c;border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:#3b82f6'>#2</b> 2884 玉山金</span><span style='color:#94a3b8;font-size:10px'>BASE/49.3</span></div><div style='padding:4px 8px;background:#0f1a2c;border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:#3b82f6'>#3</b> 2637 慧洋-KY</span><span style='color:#94a3b8;font-size:10px'>BASE/48.6</span></div><div style='padding:4px 8px;background:#0f1a2c;border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:#3b82f6'>#4</b> 2882 國泰金</span><span style='color:#94a3b8;font-size:10px'>BASE/48.0</span></div><div style='padding:4px 8px;background:#0f1a2c;border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:#3b82f6'>#5</b> 2027 大成鋼</span><span style='color:#94a3b8;font-size:10px'>BASE/47.3</span></div></div>
+      <div style="margin-top:8px"><div style='padding:4px 8px;background:#0f1a2c;border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:#3b82f6'>#1</b> 2344 華邦電</span><span style='color:#94a3b8;font-size:10px'>CUSTOM/100.0</span></div><div style='padding:4px 8px;background:#0f1a2c;border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:#3b82f6'>#2</b> 2408 南亞科</span><span style='color:#94a3b8;font-size:10px'>CUSTOM/88.9</span></div><div style='padding:4px 8px;background:#0f1a2c;border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:#3b82f6'>#3</b> 3037 欣興</span><span style='color:#94a3b8;font-size:10px'>CUSTOM/77.8</span></div><div style='padding:4px 8px;background:#0f1a2c;border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:#3b82f6'>#4</b> 2049 上銀</span><span style='color:#94a3b8;font-size:10px'>CUSTOM/66.7</span></div><div style='padding:4px 8px;background:#0f1a2c;border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:#3b82f6'>#5</b> 8046 南電</span><span style='color:#94a3b8;font-size:10px'>CUSTOM/55.6</span></div></div>
       <div style="font-size:10px;color:#64748b;margin-top:6px">下游: Master Score / Decision</div>
     </div>
     
