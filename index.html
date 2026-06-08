@@ -175,7 +175,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
 </style>
 </head><body>
 <h1>MS_N_RR/RRR Ver.A 報告中心</h1>
-<div class="sub">資料日：2026-06-08 ｜ 產生時間：2026-06-08 22:17</div>
+<div class="sub">資料日：2026-06-08 ｜ 產生時間：2026-06-08 22:28</div>
 
 
 <div class="funnel-wrap">
@@ -279,13 +279,23 @@ C 級會被排除不進入下游池（過熱或結構轉空）
     </div>
   </div>
 
-  <!-- 箭頭 + 候選股池總結 -->
-  <div style="text-align:center;color:#94a3b8;font-size:12px;margin:6px 0">↓</div>
-  <div style="background:#0f1a2c;padding:8px 14px;border-radius:6px;
-              text-align:center;border:1px dashed #fbbf24;margin-bottom:10px">
-    <span style="color:#fbbf24;font-weight:bold;font-size:13px">候選股池</span>
-    <span style="color:#94a3b8;font-size:11px"> · MS 投資長加權合成 <b style="color:#fff">258</b> 檔
-      (universe_selector) · <i style="color:#64748b">後續不再擴大範圍</i></span>
+  <!-- 箭頭 + 候選股池總結 (含實際計算說明) -->
+  <div style="text-align:center;color:#94a3b8;font-size:12px;margin:6px 0">↓ 4 池 union (不再依 MS bias 限額)</div>
+  <div title="候選股池計算公式 (V.2 Phase J 修正後):&#10;&#10;4 池原始和  = 熱門 185 + 強勢 80 + 打底 75 + 自選 10 = 350 檔&#10;扣重複     = 92 檔 (4 池交叉重複, set union dedup)&#10;候選股池   = 258 檔&#10;&#10;之前版本依 MS candidate_bias 限額 (hot top 20 / strong top 30 / base top 50) → ~104 檔&#10;V.2 Phase J 改為 4 池完整 union, MS bias 改影響後續「排序權重」, 不縮減 universe 大小&#10;&#10;「後續皆以此股池分析(不再擴大範圍)」"
+       style="background:#0f1a2c;padding:10px 14px;border-radius:6px;
+              text-align:center;border:1px dashed #fbbf24;margin-bottom:10px;cursor:help">
+    <div style="color:#fbbf24;font-weight:bold;font-size:13px">候選股池</div>
+    <div style="color:#cbd5e1;font-size:11px;margin-top:3px">
+      4 池 union: 185 + 80 + 75 + 10 =
+      <b style="color:#fff">350</b>
+      <span style="color:#94a3b8"> − 重複 </span>
+      <b style="color:#fca5a5">92</b>
+      <span style="color:#94a3b8"> = </span>
+      <b style="color:#fbbf24;font-size:14px">258 檔</b>
+    </div>
+    <div style="color:#64748b;font-size:10px;margin-top:2px">
+      <i>後續皆以此股池分析 · 不再擴大範圍</i>
+    </div>
   </div>
 
   <!-- 3 維分析 (送 FS) -->
@@ -322,10 +332,46 @@ C 級會被排除不進入下游池（過熱或結構轉空）
     </div>
   </div>
 
+  <!-- MS Agent (CIO) → PM 投資指引 (Advisory) -->
+  <div style="text-align:center;color:#94a3b8;font-size:12px;margin:6px 0">↓ MS 投資長 提供 3 大建議給 基金經理人 參考</div>
+  <div style="background:linear-gradient(90deg,#1e3a8a,#312e81);padding:10px 14px;
+              border-radius:8px;margin-bottom:10px;border:1px solid #6366f1">
+    <div style="color:#a5b4fc;font-weight:bold;font-size:12px;margin-bottom:6px;text-align:center">
+      🎩 MS 投資長 (CIO) · 投資指引 — 提供 PM 參考 (非強制)
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+      <div title="MS 觀察當前 phase=UNCLEAR → 給 PM 池子權重建議:&#10;熱門權重 20 · 強勢權重 30 · 打底權重 50&#10;&#10;此 weight 影響 universe_selector 排序 (weighted_score = normalized × ms_weight / 100), 排序高者在 Decision 階段優先納入 portfolio, 但不限縮 universe 大小"
+           style="background:#1e1b4b;padding:7px;border-radius:5px;border-left:3px solid #818cf8;cursor:help">
+        <div style="color:#fbbf24;font-size:10px;font-weight:bold">① 候選股池偏好 (candidate_bias)</div>
+        <div style="color:#cbd5e1;font-size:10px;margin-top:3px">
+          熱門 <b style="color:#fff">20</b> · 強勢 <b style="color:#fff">30</b> · 打底 <b style="color:#fff">50</b>
+        </div>
+        <div style="color:#94a3b8;font-size:9px;margin-top:2px">影響排序 · 不縮減 universe</div>
+      </div>
+      <div title="MS 依 phase + risk_mode 計算紀律框架:&#10;單股上限 15% · 總曝險上限 49% · 現金最低 51%&#10;允許新加倉: True&#10;Action bias: MAINTAIN&#10;&#10;此框架由 Discipline Agent (CRO) 強制執行, PM 必須遵守"
+           style="background:#1e1b4b;padding:7px;border-radius:5px;border-left:3px solid #818cf8;cursor:help">
+        <div style="color:#fbbf24;font-size:10px;font-weight:bold">② 紀律框架 (discipline_policy)</div>
+        <div style="color:#cbd5e1;font-size:10px;margin-top:3px">
+          單股≤<b style="color:#fff">15%</b> · 總曝險≤<b style="color:#fff">49%</b> · 現金≥<b style="color:#fff">51%</b>
+        </div>
+        <div style="color:#94a3b8;font-size:9px;margin-top:2px">Action: <b style="color:#fbbf24">MAINTAIN</b> · 新倉: 允許</div>
+      </div>
+      <div title="MS 依 phase 推薦 9 名人投票權重 (master_weight_policy):&#10;Wyckoff 12 · Minervini 11 · ONeil 11 (top 3)&#10;&#10;影響 master_composite (投資委員會) 計算各股 composite_score 時的名人投票權重&#10;Phase 不同, top 名人不同:&#10;ACCUMULATION → Wyckoff/Buffett · EARLY_BULL → ONeil/Minervini · MARKUP → Livermore/Darvas · LATE_BULL → Weinstein · DISTRIBUTION → 風控名人優先"
+           style="background:#1e1b4b;padding:7px;border-radius:5px;border-left:3px solid #818cf8;cursor:help">
+        <div style="color:#fbbf24;font-size:10px;font-weight:bold">③ 名人投票權重 (master_weight)</div>
+        <div style="color:#cbd5e1;font-size:10px;margin-top:3px">
+          Top 3: <b style="color:#fff">Wyckoff 12 · Minervini 11 · ONeil 11</b>
+        </div>
+        <div style="color:#94a3b8;font-size:9px;margin-top:2px">Phase=UNCLEAR · Risk=DEFENSIVE</div>
+      </div>
+    </div>
+  </div>
+
   <!-- Decision → Discipline → Performance -->
-  <div style="text-align:center;color:#94a3b8;font-size:12px;margin:6px 0">↓</div>
+  <div style="text-align:center;color:#94a3b8;font-size:12px;margin:6px 0">↓ PM 參考 MS 建議 + 自主判斷</div>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
-    <div style="background:#14532d;padding:8px;border-radius:6px;text-align:center;border-top:3px solid #22c55e">
+    <div title="基金經理 (PM) 接收 MS 投資長 3 大建議後, 在 universe 內依 composite_score 自主排序選股:&#10;1. 候選股池偏好影響 universe_selector 內 weighted_score 排序&#10;2. 投資委員會 (9 名人) 已用 MS master_weight 加權算出 composite_score&#10;3. 紀律框架限制 max_pos / max_exposure / cash_min&#10;PM 在這 3 個建議框架內, 對 top composite_score 股票配置部位"
+         style="background:#14532d;padding:8px;border-radius:6px;text-align:center;border-top:3px solid #22c55e;cursor:help">
       <div style="color:#86efac;font-size:11px;font-weight:bold">💼 基金經理 (Decision)</div>
       <div style="color:#fff;font-size:13px;font-weight:bold">15 檔持倉</div>
     </div>
