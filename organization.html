@@ -5,14 +5,13 @@
 body{font-family:'Segoe UI','Microsoft JhengHei',sans-serif;background:#0f172a;
      color:#e2e8f0;padding:24px;margin:0;line-height:1.5}
 .banner{background:linear-gradient(90deg,#1e1b4b,#0f172a);padding:24px;
-        border-radius:12px;margin-bottom:24px;border:2px solid #4c1d95;
-        text-align:center}
+        border-radius:12px;margin-bottom:24px;border:2px solid #4c1d95;text-align:center}
 .banner h1{margin:0;color:#fbbf24;font-size:26px}
 .banner p{margin:8px 0 0;color:#cbd5e1}
-.section-title{margin:30px 0 14px;padding:8px 14px;font-size:18px;border-radius:6px}
-.exec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+.section-title{margin:30px 0 14px;padding:8px 14px;font-size:18px;border-radius:6px;color:#fff}
+.exec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
            gap:14px;margin-bottom:30px}
-.dept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:12px}
+.dept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:12px}
 table{border-collapse:collapse;width:100%;background:#1e293b;border-radius:8px;
       overflow:hidden;margin-top:16px}
 th{background:#334155;padding:10px;text-align:left;color:#fbbf24;font-size:13px}
@@ -24,8 +23,11 @@ a:hover{text-decoration:underline}
            background:#1e293b;border-radius:14px;color:#94a3b8;font-size:12px}
 .flow-loop{background:#1e293b;padding:16px;border-radius:10px;margin-top:24px;
            border-left:4px solid #ec4899;font-size:13px}
-.flow-loop pre{margin:8px 0;color:#cbd5e1;font-size:11px;font-family:'Consolas','Courier New',monospace}
+.flow-loop pre{margin:8px 0;color:#cbd5e1;font-size:11px;
+                font-family:'Consolas','Courier New',monospace}
 code{font-family:'Consolas','Courier New',monospace}
+.format-note{background:#1e293b;padding:10px 14px;border-radius:6px;margin-bottom:14px;
+              color:#94a3b8;font-size:12px;border-left:3px solid #fbbf24}
 </style></head><body>
 
 <a href="index.html" class="back-link">← 返回主頁</a>
@@ -35,281 +37,1246 @@ code{font-family:'Consolas','Courier New',monospace}
   <p>把 Agent 體系映射到真實投資顧問公司</p>
   <p style="font-size:11px;color:#94a3b8;margin-top:12px">
     📋 <a href="docs/V2_ORGANIZATION.html" style="color:#fbbf24">完整規範</a> ｜
-    🏛 <a href="docs/V2_ARCHITECTURE.html" style="color:#fbbf24">6 層架構</a>
+    🏛 <a href="docs/V2_ARCHITECTURE.html" style="color:#fbbf24">V.2 6 層架構</a>
   </p>
 </div>
 
+<div class="format-note">
+  <b style="color:#fbbf24">呈現格式</b>:
+  <span style="color:#e2e8f0">中文職稱</span> ·
+  <span style="color:#fbbf24">英文 (English Title)</span> ·
+  <code style="color:#a5f3fc">對應程式名稱</code>
+</div>
+
 <!-- 三巨頭 -->
-<h2 class="section-title" style="background:linear-gradient(90deg,#3b82f6,#a855f7,#ef4444);color:#fff">
-  ⭐ 高階主管 — CEO / CIO / CRO
+<h2 class="section-title" style="background:linear-gradient(90deg,#3b82f6,#a855f7,#ef4444)">
+  ⭐ 高階主管 — 執行長 / 投資長 / 風控長
 </h2>
 <div class="exec-grid">
   
     <div style="background:linear-gradient(135deg,#3b82f633,#0f172a);
                 padding:20px;border-radius:12px;border:2px solid #3b82f6;
-                text-align:center;min-width:180px">
+                text-align:center;min-width:200px">
       <div style="font-size:42px">👔</div>
-      <div style="color:#3b82f6;font-weight:bold;font-size:16px;margin-top:8px">
-        CEO 執行長
+      <div style="color:#3b82f6;font-weight:bold;font-size:18px;margin-top:8px">
+        執行長
       </div>
-      <div style="font-size:11px;color:#94a3b8;margin:6px 0;
+      <div style="font-size:12px;color:#fbbf24;margin-top:4px">
+        CEO
+      </div>
+      <div style="font-size:11px;color:#94a3b8;margin:8px 0 6px;
                   padding:4px 8px;background:rgba(0,0,0,0.3);border-radius:4px">
-        <code>orchestrator.py</code>
+        <code style="color:#a5f3fc">orchestrator.py</code>
       </div>
-      <div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 流程控管</div><div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 任務分派</div><div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 排程</div><div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 合規檢核</div>
+      <div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 流程控管</div><div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 任務分派</div><div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 排程</div>
     </div>
     
     <div style="background:linear-gradient(135deg,#a855f733,#0f172a);
                 padding:20px;border-radius:12px;border:2px solid #a855f7;
-                text-align:center;min-width:180px">
+                text-align:center;min-width:200px">
       <div style="font-size:42px">🎯</div>
-      <div style="color:#a855f7;font-weight:bold;font-size:16px;margin-top:8px">
-        CIO 投資長
+      <div style="color:#a855f7;font-weight:bold;font-size:18px;margin-top:8px">
+        投資長
       </div>
-      <div style="font-size:11px;color:#94a3b8;margin:6px 0;
+      <div style="font-size:12px;color:#fbbf24;margin-top:4px">
+        CIO
+      </div>
+      <div style="font-size:11px;color:#94a3b8;margin:8px 0 6px;
                   padding:4px 8px;background:rgba(0,0,0,0.3);border-radius:4px">
-        <code>ms_agent/ (V.2)</code>
+        <code style="color:#a5f3fc">ms_agent/ (V.2)</code>
       </div>
-      <div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 判市場階段</div><div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 給下游 directive</div><div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• master_weight + candidate_bias + discipline</div>
+      <div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 判市場階段</div><div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 給下游 directive</div>
     </div>
     
     <div style="background:linear-gradient(135deg,#ef444433,#0f172a);
                 padding:20px;border-radius:12px;border:2px solid #ef4444;
-                text-align:center;min-width:180px">
+                text-align:center;min-width:200px">
       <div style="font-size:42px">🛡</div>
-      <div style="color:#ef4444;font-weight:bold;font-size:16px;margin-top:8px">
-        CRO 風控長
+      <div style="color:#ef4444;font-weight:bold;font-size:18px;margin-top:8px">
+        風控長
       </div>
-      <div style="font-size:11px;color:#94a3b8;margin:6px 0;
+      <div style="font-size:12px;color:#fbbf24;margin-top:4px">
+        CRO
+      </div>
+      <div style="font-size:11px;color:#94a3b8;margin:8px 0 6px;
                   padding:4px 8px;background:rgba(0,0,0,0.3);border-radius:4px">
-        <code>discipline_agent + risk_control</code>
+        <code style="color:#a5f3fc">discipline_agent + risk_control</code>
       </div>
-      <div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 個股 gate-keeper</div><div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 大盤風控</div><div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• PASS/WARN/VETO</div>
+      <div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 個股 gate-keeper</div><div style='font-size:11px;color:#cbd5e1;margin-top:2px'>• 大盤風控</div>
     </div>
     
 </div>
 
 <!-- 前台 -->
-<h2 class="section-title" style="background:#1e3a8a;color:#fff">
+<h2 class="section-title" style="background:#1e3a8a">
   💼 前台 Front Office — 投資業務
 </h2>
 <div class="dept-grid">
   
     <div style="background:#1e293b;padding:14px;border-radius:10px;
                 border-top:4px solid #8b5cf6;margin-bottom:14px">
-      <div style="display:flex;justify-content:space-between;align-items:baseline">
-        <h3 style="margin:0;color:#8b5cf6;font-size:15px">首席市場策略師 CMS</h3>
-        <span style="font-size:11px;color:#64748b">報 CIO</span>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
+        <h3 style="margin:0;color:#8b5cf6;font-size:15px">首席市場策略師團隊</h3>
+        <span style="font-size:11px;color:#64748b">Chief Market Strategist (CMS) · 報 CIO</span>
       </div>
-      <div style='margin-top:10px'><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #8b5cf6'><code style='color:#e2e8f0'>ms_breadth</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #8b5cf6'><code style='color:#e2e8f0'>ms_diffusion</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #8b5cf6'><code style='color:#e2e8f0'>ms_temperature</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #8b5cf6'><code style='color:#e2e8f0'>ms_risk</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #8b5cf6'><code style='color:#e2e8f0'>market_structure</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #8b5cf6'><code style='color:#e2e8f0'>sector_rotation</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #8b5cf6'><code style='color:#e2e8f0'>sector_lead_lag</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #8b5cf6'><code style='color:#e2e8f0'>rrg_kinematics</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #8b5cf6'><code style='color:#e2e8f0'>hotflow_lifecycle</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #8b5cf6'><code style='color:#e2e8f0'>ms_dashboard</code></div></div>
-      <div style='margin-top:8px;font-size:11px;color:#94a3b8;font-style:italic'>判市場結構與情緒,給 CIO 做決策的基礎</div>
+      <div style='margin-top:10px'>
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #8b5cf6;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        市場廣度分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Breadth Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>ms_breadth</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #8b5cf6;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        資金擴散分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Diffusion Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>ms_diffusion</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #8b5cf6;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        市場溫度分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Temperature Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>ms_temperature</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #8b5cf6;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        風險訊號分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Risk Signal Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>ms_risk</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #8b5cf6;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        市場結構分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Market Structure Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>market_structure</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #8b5cf6;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        族群輪動分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Sector Rotation Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>sector_rotation, sector_lead_lag</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #8b5cf6;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        動量學分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Kinematics Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>rrg_kinematics</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #8b5cf6;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        主流偵測分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>HotFlow Lifecycle Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>hotflow_lifecycle</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #8b5cf6;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        市場儀表板維護員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Dashboard Owner</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>ms_dashboard</code>
+      </div>
+    </div>
+    </div>
     </div>
     
     <div style="background:#1e293b;padding:14px;border-radius:10px;
                 border-top:4px solid #6366f1;margin-bottom:14px">
-      <div style="display:flex;justify-content:space-between;align-items:baseline">
-        <h3 style="margin:0;color:#6366f1;font-size:15px">研究部 Research Department</h3>
-        <span style="font-size:11px;color:#64748b">報 CIO · 3 組 + 1 委員會</span>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
+        <h3 style="margin:0;color:#6366f1;font-size:15px">研究部</h3>
+        <span style="font-size:11px;color:#64748b">Research Department · 報 CIO</span>
       </div>
       
-            <div style='margin-top:10px;padding:8px;background:rgba(0,0,0,0.2);
+            <div style='margin-top:12px;padding:10px;background:rgba(0,0,0,0.2);
                         border-radius:6px;border-left:3px solid #6366f1'>
               <div style='color:#6366f1;font-weight:bold;font-size:13px'>
-                技術分析組</div>
-              <div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>shsl_agent</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>n_shape</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>box_structure</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>cga_agent</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>wyckoff_phase</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>wyckoff_adaptive</code></div>
+                技術分析組 <span style="color:#64748b;font-weight:normal;font-size:11px">
+                  · Technical Analysis</span>
+              </div>
+              
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        波段結構分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Swing Structure Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>shsl_agent</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        多時段箱型分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Multi-Timeframe Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>n_shape</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        股票箱結構分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Box Structure Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>box_structure</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        K 線幾何分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Candle Geometry Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>cga_agent</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        Wyckoff 分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Wyckoff Phase Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>wyckoff_phase, wyckoff_adaptive</code>
+      </div>
+    </div>
+    
             </div>
             
-            <div style='margin-top:10px;padding:8px;background:rgba(0,0,0,0.2);
+            <div style='margin-top:12px;padding:10px;background:rgba(0,0,0,0.2);
                         border-radius:6px;border-left:3px solid #6366f1'>
               <div style='color:#6366f1;font-weight:bold;font-size:13px'>
-                籌碼分析組</div>
-              <div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>chip_agent_v2</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>accumulation_agent</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>distribution_agent</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>chip_filter</code></div>
+                籌碼分析組 <span style="color:#64748b;font-weight:normal;font-size:11px">
+                  · Chip Analysis</span>
+              </div>
+              
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        籌碼評分分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Chip Score Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>chip_agent_v2</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        吸籌偵測分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Accumulation Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>accumulation_agent</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        派發偵測分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Distribution Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>distribution_agent</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        籌碼濾網工程師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Chip Filter Engineer</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>chip_filter</code>
+      </div>
+    </div>
+    
             </div>
             
-            <div style='margin-top:10px;padding:8px;background:rgba(0,0,0,0.2);
+            <div style='margin-top:12px;padding:10px;background:rgba(0,0,0,0.2);
                         border-radius:6px;border-left:3px solid #6366f1'>
               <div style='color:#6366f1;font-weight:bold;font-size:13px'>
-                基本面組</div>
-              <div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>fundamental_score</code></div>
+                基本面組 <span style="color:#64748b;font-weight:normal;font-size:11px">
+                  · Fundamental Analysis</span>
+              </div>
+              
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        基本面分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Fundamental Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>fundamental_score</code>
+      </div>
+    </div>
+    
             </div>
             
-            <div style='margin-top:10px;padding:8px;background:rgba(0,0,0,0.2);
+            <div style='margin-top:12px;padding:10px;background:rgba(0,0,0,0.2);
                         border-radius:6px;border-left:3px solid #6366f1'>
               <div style='color:#6366f1;font-weight:bold;font-size:13px'>
-                選股委員會 (Universe Construction)</div>
-              <div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>universe_selector ⭐</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>hotflow (熱門池)</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>strong_stocks (強勢池)</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>accumulation_pool (打底池)</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>mainstream_pool</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>emerging_leader</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>sector_constituents</code></div>
+                選股委員會 <span style="color:#64748b;font-weight:normal;font-size:11px">
+                  · Universe Construction · 研究部子單位</span>
+              </div>
+              
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        選股長 ⭐
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Universe Head</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>universe_selector (V.2 L1)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        熱門股研究員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Hot Stocks Researcher</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>hotflow</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        強勢股研究員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Strong Stocks Researcher</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>strong_stocks</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        打底股研究員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Base Stocks Researcher</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>accumulation_pool</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        主流股池研究員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Mainstream Pool Researcher</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>mainstream_pool, emerging_leader</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #6366f1;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        族群成分研究員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Sector Constituents Researcher</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>sector_constituents</code>
+      </div>
+    </div>
+    
             </div>
             
-      
     </div>
     
     <div style="background:#1e293b;padding:14px;border-radius:10px;
                 border-top:4px solid #a855f7;margin-bottom:14px">
-      <div style="display:flex;justify-content:space-between;align-items:baseline">
-        <h3 style="margin:0;color:#a855f7;font-size:15px">投資委員會 Investment Committee</h3>
-        <span style="font-size:11px;color:#64748b">CIO 主持 · 9 位委員 + 合議制</span>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
+        <h3 style="margin:0;color:#a855f7;font-size:15px">投資委員會 (9 位委員)</h3>
+        <span style="font-size:11px;color:#64748b">Investment Committee · CIO 主持</span>
       </div>
       
-        <div style='display:grid;grid-template-columns:repeat(3,1fr);gap:6px;
-                    margin-top:10px'>
-          <div style='padding:8px;background:#3b82f622;border-radius:6px;border-left:3px solid #3b82f6;text-align:center'><div style='color:#3b82f6;font-weight:bold;font-size:13px'>Wyckoff</div><div style='color:#94a3b8;font-size:10px;margin-top:2px'>結構派</div></div><div style='padding:8px;background:#22c55e22;border-radius:6px;border-left:3px solid #22c55e;text-align:center'><div style='color:#22c55e;font-weight:bold;font-size:13px'>Minervini</div><div style='color:#94a3b8;font-size:10px;margin-top:2px'>動能 SEPA</div></div><div style='padding:8px;background:#10b98122;border-radius:6px;border-left:3px solid #10b981;text-align:center'><div style='color:#10b981;font-weight:bold;font-size:13px'>ONeil</div><div style='color:#94a3b8;font-size:10px;margin-top:2px'>動能 CANSLIM</div></div><div style='padding:8px;background:#06b6d422;border-radius:6px;border-left:3px solid #06b6d4;text-align:center'><div style='color:#06b6d4;font-weight:bold;font-size:13px'>Weinstein</div><div style='color:#94a3b8;font-size:10px;margin-top:2px'>結構 Stage</div></div><div style='padding:8px;background:#fbbf2422;border-radius:6px;border-left:3px solid #fbbf24;text-align:center'><div style='color:#fbbf24;font-weight:bold;font-size:13px'>Darvas</div><div style='color:#94a3b8;font-size:10px;margin-top:2px'>箱型 Box</div></div><div style='padding:8px;background:#f9731622;border-radius:6px;border-left:3px solid #f97316;text-align:center'><div style='color:#f97316;font-weight:bold;font-size:13px'>Livermore</div><div style='color:#94a3b8;font-size:10px;margin-top:2px'>趨勢 Pivot</div></div><div style='padding:8px;background:#a855f722;border-radius:6px;border-left:3px solid #a855f7;text-align:center'><div style='color:#a855f7;font-weight:bold;font-size:13px'>Lynch</div><div style='color:#94a3b8;font-size:10px;margin-top:2px'>GARP 成長</div></div><div style='padding:8px;background:#ec489922;border-radius:6px;border-left:3px solid #ec4899;text-align:center'><div style='color:#ec4899;font-weight:bold;font-size:13px'>Fisher</div><div style='color:#94a3b8;font-size:10px;margin-top:2px'>Quality 成長</div></div><div style='padding:8px;background:#ef444422;border-radius:6px;border-left:3px solid #ef4444;text-align:center'><div style='color:#ef4444;font-weight:bold;font-size:13px'>Buffett</div><div style='color:#94a3b8;font-size:10px;margin-top:2px'>Value 價值</div></div>
-        </div>
-        <div style='margin-top:10px;padding:6px;background:#0f1a2c;border-radius:4px;
-                    font-size:11px;color:#e2e8f0'>
-          🎯 合議制: <code>master_score/ensemble.py (composite_score)</code>
+    <div style="background:linear-gradient(135deg,#fbbf2433,#0f172a);
+                padding:12px;border-radius:8px;border-left:4px solid #fbbf24;
+                text-align:center;margin-top:10px">
+      <div style="color:#fbbf24;font-weight:bold;font-size:15px">投資委員會主席 ⭐</div>
+      <div style="color:#fbbf24;font-size:11px;margin-top:2px">IC Chair</div>
+      <code style="color:#a5f3fc;font-size:11px;background:rgba(0,0,0,0.3);
+                   padding:2px 6px;border-radius:3px;margin-top:4px;display:inline-block">
+        master_score/ensemble
+      </code>
+    </div>
+    
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px">
+        
+        <div style='padding:8px;background:#3b82f622;border-radius:6px;
+                    border-left:3px solid #3b82f6'>
+          <div style='color:#3b82f6;font-weight:bold;font-size:12px'>結構派委員</div>
+          <div style='color:#fbbf24;font-size:10px;margin-top:1px'>Wyckoff Member</div>
+          <code style='color:#a5f3fc;font-size:9px;background:rgba(0,0,0,0.3);
+                       padding:1px 4px;border-radius:3px;margin-top:3px;display:inline-block'>
+            master_score/wyckoff
+          </code>
+          <div style='color:#94a3b8;font-size:10px;margin-top:3px'>· 結構派</div>
         </div>
         
-      
+        <div style='padding:8px;background:#22c55e22;border-radius:6px;
+                    border-left:3px solid #22c55e'>
+          <div style='color:#22c55e;font-weight:bold;font-size:12px'>SEPA 動能委員</div>
+          <div style='color:#fbbf24;font-size:10px;margin-top:1px'>Minervini (SEPA) Member</div>
+          <code style='color:#a5f3fc;font-size:9px;background:rgba(0,0,0,0.3);
+                       padding:1px 4px;border-radius:3px;margin-top:3px;display:inline-block'>
+            master_score/minervini
+          </code>
+          <div style='color:#94a3b8;font-size:10px;margin-top:3px'>· 動能 SEPA</div>
+        </div>
+        
+        <div style='padding:8px;background:#10b98122;border-radius:6px;
+                    border-left:3px solid #10b981'>
+          <div style='color:#10b981;font-weight:bold;font-size:12px'>CANSLIM 動能委員</div>
+          <div style='color:#fbbf24;font-size:10px;margin-top:1px'>O&#x27;Neil (CANSLIM) Member</div>
+          <code style='color:#a5f3fc;font-size:9px;background:rgba(0,0,0,0.3);
+                       padding:1px 4px;border-radius:3px;margin-top:3px;display:inline-block'>
+            master_score/oneil
+          </code>
+          <div style='color:#94a3b8;font-size:10px;margin-top:3px'>· 動能 CANSLIM</div>
+        </div>
+        
+        <div style='padding:8px;background:#06b6d422;border-radius:6px;
+                    border-left:3px solid #06b6d4'>
+          <div style='color:#06b6d4;font-weight:bold;font-size:12px'>Stage 結構委員</div>
+          <div style='color:#fbbf24;font-size:10px;margin-top:1px'>Weinstein (Stage) Member</div>
+          <code style='color:#a5f3fc;font-size:9px;background:rgba(0,0,0,0.3);
+                       padding:1px 4px;border-radius:3px;margin-top:3px;display:inline-block'>
+            master_score/weinstein
+          </code>
+          <div style='color:#94a3b8;font-size:10px;margin-top:3px'>· 結構 Stage</div>
+        </div>
+        
+        <div style='padding:8px;background:#fbbf2422;border-radius:6px;
+                    border-left:3px solid #fbbf24'>
+          <div style='color:#fbbf24;font-weight:bold;font-size:12px'>箱型派委員</div>
+          <div style='color:#fbbf24;font-size:10px;margin-top:1px'>Darvas (Box) Member</div>
+          <code style='color:#a5f3fc;font-size:9px;background:rgba(0,0,0,0.3);
+                       padding:1px 4px;border-radius:3px;margin-top:3px;display:inline-block'>
+            master_score/darvas
+          </code>
+          <div style='color:#94a3b8;font-size:10px;margin-top:3px'>· 箱型</div>
+        </div>
+        
+        <div style='padding:8px;background:#f9731622;border-radius:6px;
+                    border-left:3px solid #f97316'>
+          <div style='color:#f97316;font-weight:bold;font-size:12px'>趨勢交易委員</div>
+          <div style='color:#fbbf24;font-size:10px;margin-top:1px'>Livermore (Pivot) Member</div>
+          <code style='color:#a5f3fc;font-size:9px;background:rgba(0,0,0,0.3);
+                       padding:1px 4px;border-radius:3px;margin-top:3px;display:inline-block'>
+            master_score/livermore
+          </code>
+          <div style='color:#94a3b8;font-size:10px;margin-top:3px'>· 趨勢 Pivot</div>
+        </div>
+        
+        <div style='padding:8px;background:#a855f722;border-radius:6px;
+                    border-left:3px solid #a855f7'>
+          <div style='color:#a855f7;font-weight:bold;font-size:12px'>GARP 成長委員</div>
+          <div style='color:#fbbf24;font-size:10px;margin-top:1px'>Lynch (GARP) Member</div>
+          <code style='color:#a5f3fc;font-size:9px;background:rgba(0,0,0,0.3);
+                       padding:1px 4px;border-radius:3px;margin-top:3px;display:inline-block'>
+            master_score/lynch
+          </code>
+          <div style='color:#94a3b8;font-size:10px;margin-top:3px'>· GARP 成長</div>
+        </div>
+        
+        <div style='padding:8px;background:#ec489922;border-radius:6px;
+                    border-left:3px solid #ec4899'>
+          <div style='color:#ec4899;font-weight:bold;font-size:12px'>品質成長委員</div>
+          <div style='color:#fbbf24;font-size:10px;margin-top:1px'>Fisher (Quality) Member</div>
+          <code style='color:#a5f3fc;font-size:9px;background:rgba(0,0,0,0.3);
+                       padding:1px 4px;border-radius:3px;margin-top:3px;display:inline-block'>
+            master_score/fisher
+          </code>
+          <div style='color:#94a3b8;font-size:10px;margin-top:3px'>· Quality</div>
+        </div>
+        
+        <div style='padding:8px;background:#ef444422;border-radius:6px;
+                    border-left:3px solid #ef4444'>
+          <div style='color:#ef4444;font-weight:bold;font-size:12px'>價值派委員</div>
+          <div style='color:#fbbf24;font-size:10px;margin-top:1px'>Buffett (Value) Member</div>
+          <code style='color:#a5f3fc;font-size:9px;background:rgba(0,0,0,0.3);
+                       padding:1px 4px;border-radius:3px;margin-top:3px;display:inline-block'>
+            master_score/buffett
+          </code>
+          <div style='color:#94a3b8;font-size:10px;margin-top:3px'>· Value</div>
+        </div>
+        
+      </div>
     </div>
     
     <div style="background:#1e293b;padding:14px;border-radius:10px;
                 border-top:4px solid #22c55e;margin-bottom:14px">
-      <div style="display:flex;justify-content:space-between;align-items:baseline">
-        <h3 style="margin:0;color:#22c55e;font-size:15px">投資組合部 Portfolio Management</h3>
-        <span style="font-size:11px;color:#64748b">基金經理人</span>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
+        <h3 style="margin:0;color:#22c55e;font-size:15px">投資組合部</h3>
+        <span style="font-size:11px;color:#64748b">Portfolio Management</span>
       </div>
-      <div style='margin-top:10px'><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #22c55e'><code style='color:#e2e8f0'>decision_agent (V.2 L4) ⭐</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #22c55e'><code style='color:#e2e8f0'>rotation_signals</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #22c55e'><code style='color:#e2e8f0'>stock_ops</code></div></div>
-      
+      <div style='margin-top:10px'>
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        基金經理人 ⭐
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>PM (Portfolio Manager)</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>decision_agent (V.2 L4)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        換股輪動策略員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Rotation Strategist</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>rotation_signals</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        個股操作員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Stock Operator</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>stock_ops</code>
+      </div>
+    </div>
+    </div>
     </div>
     
     <div style="background:#1e293b;padding:14px;border-radius:10px;
                 border-top:4px solid #0ea5e9;margin-bottom:14px">
-      <div style="display:flex;justify-content:space-between;align-items:baseline">
-        <h3 style="margin:0;color:#0ea5e9;font-size:15px">配對交易部 Pair Trading Desk</h3>
-        <span style="font-size:11px;color:#64748b">前台獨立 Alpha 業務</span>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
+        <h3 style="margin:0;color:#0ea5e9;font-size:15px">配對交易部</h3>
+        <span style="font-size:11px;color:#64748b">Pair Trading Desk · 前台 Alpha 業務</span>
       </div>
-      <div style='margin-top:10px'><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #0ea5e9'><code style='color:#e2e8f0'>rr_pair (RSR)</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #0ea5e9'><code style='color:#e2e8f0'>rrr_pair</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #0ea5e9'><code style='color:#e2e8f0'>rrr_resonance</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #0ea5e9'><code style='color:#e2e8f0'>dynamic_rr</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #0ea5e9'><code style='color:#e2e8f0'>custom_pairs</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #0ea5e9'><code style='color:#e2e8f0'>custom_pool</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #0ea5e9'><code style='color:#e2e8f0'>rcga_pair (GA 自適應)</code></div></div>
-      
+      <div style='margin-top:10px'>
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #0ea5e9;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        配對交易主管
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Head of Pair Trading</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>(統籌以下)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #0ea5e9;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        簡版配對策略員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>RSR Strategist</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>rr_pair</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #0ea5e9;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        嚴版配對策略員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>RRR Strategist</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>rrr_pair</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #0ea5e9;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        共振配對策略員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Resonance Strategist</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>rrr_resonance</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #0ea5e9;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        動態配對策略員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Dynamic RR Strategist</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>dynamic_rr</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #0ea5e9;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        自選配對主管
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Custom Pairs Head</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>custom_pairs, custom_pool</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #0ea5e9;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        量化配對策略員 (GA)
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Quant Pair Strategist</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>rcga_pair</code>
+      </div>
+    </div>
+    </div>
+    </div>
+    
+</div>
+
+<!-- CRO 風控部 -->
+<h2 class="section-title" style="background:#7f1d1d">
+  🛡 風控部 — 報 CEO, 獨立於 CIO
+</h2>
+<div class="dept-grid">
+  
+    <div style="background:#1e293b;padding:14px;border-radius:10px;
+                border-top:4px solid #ef4444;margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
+        <h3 style="margin:0;color:#ef4444;font-size:15px">風控部</h3>
+        <span style="font-size:11px;color:#64748b">Risk Management · 報 CEO, 獨立於 CIO</span>
+      </div>
+      <div style='margin-top:10px'>
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #ef4444;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        風控長 ⭐
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>CRO</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>discipline_agent (V.2 L5)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #ef4444;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        大盤風控分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Macro Risk Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>risk_control.py, ms_risk</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #ef4444;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        待辦警示員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Alert Officer</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>todo</code>
+      </div>
+    </div>
+    </div>
     </div>
     
 </div>
 
 <!-- 中台 -->
-<h2 class="section-title" style="background:#831843;color:#fff">
+<h2 class="section-title" style="background:#831843">
   📊 中台 Middle Office — 績效追蹤 + 合規檢核
 </h2>
 <div class="dept-grid">
   
     <div style="background:#1e293b;padding:14px;border-radius:10px;
                 border-top:4px solid #ec4899;margin-bottom:14px">
-      <div style="display:flex;justify-content:space-between;align-items:baseline">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
         <h3 style="margin:0;color:#ec4899;font-size:15px">績效分析部</h3>
-        <span style="font-size:11px;color:#64748b">中台 · Skill Feedback Loop</span>
+        <span style="font-size:11px;color:#64748b">Performance Analytics · 中台</span>
       </div>
-      <div style='margin-top:10px'><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #ec4899'><code style='color:#e2e8f0'>performance_agent (V.2 L6) ⭐</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #ec4899'><code style='color:#e2e8f0'>prediction_monitor</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #ec4899'><code style='color:#e2e8f0'>score_calibrator</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #ec4899'><code style='color:#e2e8f0'>mainstream_pool_history</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #ec4899'><code style='color:#e2e8f0'>skill_index (7 日 rolling, α=0.30)</code></div></div>
-      
+      <div style='margin-top:10px'>
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #ec4899;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        績效分析主管
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Head of Performance Analytics</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>(統籌以下)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #ec4899;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        績效分析師 ⭐
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Performance Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>performance_agent (V.2 L6)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #ec4899;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        預測監督員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Prediction Monitor</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>prediction_monitor</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #ec4899;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        模型校正員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Model Calibrator</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>score_calibrator</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #ec4899;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        主流池歷史分析師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Pool History Analyst</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>mainstream_pool_history</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #ec4899;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        Skill 校正工程師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Skill Calibration Engineer</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>skill_index loop (V.2 G.2)</code>
+      </div>
+    </div>
+    </div>
     </div>
     
     <div style="background:#1e293b;padding:14px;border-radius:10px;
                 border-top:4px solid #f59e0b;margin-bottom:14px">
-      <div style="display:flex;justify-content:space-between;align-items:baseline">
-        <h3 style="margin:0;color:#f59e0b;font-size:15px">合規法遵部</h3>
-        <span style="font-size:11px;color:#64748b">中台 · V.1 守門員系統</span>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
+        <h3 style="margin:0;color:#f59e0b;font-size:15px">法遵部</h3>
+        <span style="font-size:11px;color:#64748b">Compliance · 中台 · 報 CEO</span>
       </div>
-      <div style='margin-top:10px'><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #f59e0b'><code style='color:#e2e8f0'>audit_v1_compliance.py (R1-R5 規則)</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #f59e0b'><code style='color:#e2e8f0'>interface_validator.py</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #f59e0b'><code style='color:#e2e8f0'>test_fs_interfaces.py (23 tests)</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #f59e0b'><code style='color:#e2e8f0'>pre-commit hook (本地)</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #f59e0b'><code style='color:#e2e8f0'>GitHub Actions CI (遠端)</code></div><div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;margin-top:4px;font-size:12px;border-left:3px solid #f59e0b'><code style='color:#e2e8f0'>V1_MIGRATION_GUIDE.md (SOP)</code></div></div>
-      
+      <div style='margin-top:10px'>
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #f59e0b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        法遵長 ⭐
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>CCO (Chief Compliance Officer)</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>(統籌以下)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #f59e0b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        規範稽核員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Compliance Auditor</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>scripts/audit_v1_compliance.py</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #f59e0b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        介面驗證員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Interface Validator</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>src/shared/interface_validator.py</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #f59e0b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        品質工程師 (QA)
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>QA Engineer</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>tests/test_fs_interfaces.py</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #f59e0b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        本地守門員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Local Gatekeeper</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>.git/hooks/pre-commit</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #f59e0b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        遠端守門員 (CI)
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Remote Gatekeeper</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>.github/workflows/v1_ci.yml</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #f59e0b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        SOP 文檔員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>SOP Documentation Owner</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>docs/V1_MIGRATION_GUIDE.md</code>
+      </div>
+    </div>
+    </div>
     </div>
     
 </div>
 
 <!-- 後台 -->
-<h2 class="section-title" style="background:#1e3a3a;color:#fff">
+<h2 class="section-title" style="background:#1e3a3a">
   💻 後台 Back Office — 資訊系統 + 報告發布
 </h2>
 <div class="dept-grid">
   
     <div style="background:#1e293b;padding:14px;border-radius:10px;
                 border-top:4px solid #64748b;margin-bottom:14px">
-      <div style="display:flex;justify-content:space-between;align-items:baseline">
-        <h3 style="margin:0;color:#64748b;font-size:15px">資訊部 IT</h3>
-        <span style="font-size:11px;color:#64748b">後台 · DBA + Pipeline + Framework</span>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
+        <h3 style="margin:0;color:#64748b;font-size:15px">資訊部</h3>
+        <span style="font-size:11px;color:#64748b">IT Department · 後台 · 報 CEO</span>
       </div>
-      
-            <div style='margin-top:10px;padding:8px;background:rgba(0,0,0,0.2);
-                        border-radius:6px;border-left:3px solid #64748b'>
-              <div style='color:#64748b;font-weight:bold;font-size:13px'>
-                中央資料庫 + 抓取</div>
-              <div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>stockHisData/ (DuckDB)</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>fetcher_finmind</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>auto_data_refresh</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>data_loader</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>trading_day</code></div>
-            </div>
-            
-            <div style='margin-top:10px;padding:8px;background:rgba(0,0,0,0.2);
-                        border-radius:6px;border-left:3px solid #64748b'>
-              <div style='color:#64748b;font-weight:bold;font-size:13px'>
-                V.1 FS 介面層</div>
-              <div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>fs_ohlcv</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>fs_chip</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>fs_snapshot</code></div>
-            </div>
-            
-            <div style='margin-top:10px;padding:8px;background:rgba(0,0,0,0.2);
-                        border-radius:6px;border-left:3px solid #64748b'>
-              <div style='color:#64748b;font-weight:bold;font-size:13px'>
-                Feature Store + Workflow</div>
-              <div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>feature_store.py</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>workflow.py (atomic + watermark + history)</code></div>
-            </div>
-            
-            <div style='margin-top:10px;padding:8px;background:rgba(0,0,0,0.2);
-                        border-radius:6px;border-left:3px solid #64748b'>
-              <div style='color:#64748b;font-weight:bold;font-size:13px'>
-                自適應框架</div>
-              <div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>universal_adaptive/ (UAA)</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>rcga/ (Regime-Conditional GA)</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>5 Adapters (Wyckoff/Chip/Acc/Dist/RcgaPair)</code></div>
-            </div>
-            
-            <div style='margin-top:10px;padding:8px;background:rgba(0,0,0,0.2);
-                        border-radius:6px;border-left:3px solid #64748b'>
-              <div style='color:#64748b;font-weight:bold;font-size:13px'>
-                健康監控</div>
-              <div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>db_health_check</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>data_validator</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>backup.py (7 日輪轉)</code></div>
-            </div>
-            
-      
+      <div style='margin-top:10px'>
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #64748b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        資訊長 ⭐
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>CTO (Chief Technology Officer)</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>(統籌以下)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #64748b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        資料庫管理員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>DBA</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>stockHisData/ (DuckDB)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #64748b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        資料工程師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Data Engineer</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>fetcher_finmind, auto_data_refresh, data_loader, trading_day</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #64748b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        介面架構師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Interface Architect</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>fs_ohlcv, fs_chip, fs_snapshot</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #64748b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        平台工程師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Platform Engineer</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>feature_store.py, workflow.py</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #64748b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        自適應框架工程師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Adaptive Framework Engineer</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>universal_adaptive/ (UAA), rcga/</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #64748b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        Adapter 整合工程師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Adapter Integration Engineer</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>5 Adapters (Wyckoff/Chip/Acc/Dist/RcgaPair)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #64748b;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        維運工程師 (SRE)
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Site Reliability Engineer</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>db_health_check, data_validator, backup.py</code>
+      </div>
+    </div>
+    </div>
     </div>
     
     <div style="background:#1e293b;padding:14px;border-radius:10px;
                 border-top:4px solid #06b6d4;margin-bottom:14px">
-      <div style="display:flex;justify-content:space-between;align-items:baseline">
-        <h3 style="margin:0;color:#06b6d4;font-size:15px">報告發布部</h3>
-        <span style="font-size:11px;color:#64748b">後台 · HTML + 通知</span>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
+        <h3 style="margin:0;color:#06b6d4;font-size:15px">出版部</h3>
+        <span style="font-size:11px;color:#64748b">Reporting &amp; Communication · 後台 · 報 CEO</span>
       </div>
-      
-            <div style='margin-top:10px;padding:8px;background:rgba(0,0,0,0.2);
-                        border-radius:6px;border-left:3px solid #06b6d4'>
-              <div style='color:#06b6d4;font-weight:bold;font-size:13px'>
-                HTML 報告</div>
-              <div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>index_builder.py (主頁)</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>*_report.py (~13 子頁)</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>nomenclature_page</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>system_flow.py</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>tooltip_inject</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>chart_buttons</code></div>
-            </div>
-            
-            <div style='margin-top:10px;padding:8px;background:rgba(0,0,0,0.2);
-                        border-radius:6px;border-left:3px solid #06b6d4'>
-              <div style='color:#06b6d4;font-weight:bold;font-size:13px'>
-                部署 + 通知</div>
-              <div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>deploy_reports.py (GitHub Pages)</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>src/notify/ (Email + Telegram)</code></div><div style='padding:3px 8px;background:#0f1a2c;border-radius:3px;margin-top:2px;font-size:11px'><code style='color:#cbd5e1'>daily_briefing</code></div>
-            </div>
-            
-      
+      <div style='margin-top:10px'>
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #06b6d4;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        出版部主管
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Head of Publishing</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>(統籌以下)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #06b6d4;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        主頁編輯
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Homepage Editor</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>index_builder.py</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #06b6d4;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        報告編輯
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Reports Editor</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>13 個 *_report.py</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #06b6d4;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        文檔員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Documentation Owner</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>nomenclature_page, system_flow.py</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #06b6d4;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        組織架構員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Organization Chart Owner</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>organization_chart.py (V.2 Phase I)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #06b6d4;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        UI/UX 工程師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>UI Engineer</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>tooltip_inject.py, chart_buttons.py</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #06b6d4;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        部署工程師
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Deploy Engineer</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>scripts/deploy_reports.py (GitHub Pages)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #06b6d4;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        通訊員
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Communications</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>src/notify/, daily_briefing</code>
+      </div>
+    </div>
+    </div>
     </div>
     
 </div>
 
 <!-- V.2 6 層架構對應 -->
-<h2 class="section-title" style="background:#581c87;color:#fff">
-  🗺️ V.2 6 層架構 ↔ 組織部門對應
+<h2 class="section-title" style="background:#581c87">
+  🗺️ V.2 6 層架構 ↔ 組織職位對應
 </h2>
 <table>
-  <thead><tr><th>V.2 Layer</th><th>對應部門</th></tr></thead>
-  <tbody><tr><td style='padding:6px;color:#fbbf24;font-weight:bold'>L0 MS Agent</td><td style='padding:6px;color:#e2e8f0'>🎯 CIO 投資長</td></tr><tr><td style='padding:6px;color:#fbbf24;font-weight:bold'>L1 Universe Selector</td><td style='padding:6px;color:#e2e8f0'>🔬 研究部-選股委員會</td></tr><tr><td style='padding:6px;color:#fbbf24;font-weight:bold'>L2 V.1 Feature Agents</td><td style='padding:6px;color:#e2e8f0'>🔬 研究部 (3 組)</td></tr><tr><td style='padding:6px;color:#fbbf24;font-weight:bold'>L3 Master Score (9 名人)</td><td style='padding:6px;color:#e2e8f0'>👥 投資委員會</td></tr><tr><td style='padding:6px;color:#fbbf24;font-weight:bold'>L4 Decision Agent</td><td style='padding:6px;color:#e2e8f0'>💼 投資組合部 (基金經理)</td></tr><tr><td style='padding:6px;color:#fbbf24;font-weight:bold'>L5 Discipline Agent</td><td style='padding:6px;color:#e2e8f0'>🛡 CRO 風控長</td></tr><tr><td style='padding:6px;color:#fbbf24;font-weight:bold'>L6 Performance Agent</td><td style='padding:6px;color:#e2e8f0'>📊 中台-績效分析部</td></tr></tbody>
+  <thead><tr>
+    <th>V.2 Layer</th>
+    <th>中文職稱</th>
+    <th>英文</th>
+    <th>程式名</th>
+  </tr></thead>
+  <tbody><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L0 MS Agent</td><td style='padding:8px;color:#e2e8f0'>投資長</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>CIO</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>ms_agent/</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L1 Universe Selector</td><td style='padding:8px;color:#e2e8f0'>選股長</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>Universe Head</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>universe_selector</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L2 V.1 Feature Agents</td><td style='padding:8px;color:#e2e8f0'>研究部</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>Research Department</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>9 V.1 Agents</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L3 Master Score</td><td style='padding:8px;color:#e2e8f0'>投資委員會</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>Investment Committee</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>master_score/*</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L4 Decision Agent</td><td style='padding:8px;color:#e2e8f0'>基金經理人</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>PM (Portfolio Manager)</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>decision_agent</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L5 Discipline Agent</td><td style='padding:8px;color:#e2e8f0'>風控長</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>CRO</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>discipline_agent</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L6 Performance Agent</td><td style='padding:8px;color:#e2e8f0'>績效分析師</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>Performance Analyst</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>performance_agent</code></td></tr></tbody>
 </table>
 
-<!-- Skill Feedback Loop 視覺化 -->
+<!-- Skill Feedback Loop -->
 <div class="flow-loop">
   <div style="color:#ec4899;font-weight:bold;font-size:15px;margin-bottom:8px">
     ↻ Skill Feedback Loop (跨部門協作)
   </div>
-  <pre>中台 績效分析部 (Performance Agent)
-    └─ 7 日 rolling skill_index
+  <pre>績效分析師 (Performance Analyst — performance_agent)
+    └─ 7 日 rolling avg of contribution → skill_index
                 ↓ feedback (α=0.30)
-CIO 投資長 (ms_agent.master_weighter)
+投資長 (CIO — ms_agent.master_weighter)
     └─ base × 70% + skill × 30%
                 ↓
-  影響投資委員會權重 → 影響基金經理人 composite_score
+  影響投資委員會 (IC) 權重
+                ↓
+  影響基金經理人 (PM) composite_score
                 ↓
         新一輪 paper portfolio
                 ↺ 自我修正 (7 日 window 自然遺忘)</pre>
@@ -318,9 +1285,9 @@ CIO 投資長 (ms_agent.master_weighter)
 <div style="margin-top:30px;padding:16px;background:#1e293b;border-radius:8px;
             font-size:12px;color:#94a3b8;line-height:1.7">
   <b style="color:#fbbf24">完整投資顧問公司 = V.1 (後台守門員) + V.2 (前台業務) + 中台 (績效+合規) + CEO/Orchestrator</b><br>
-  - <b>V.1 純獨立架構</b>: 後台 IT (資訊部) + 中台 (合規法遵) 的底層守門員<br>
-  - <b>V.2 投資公司角色制</b>: 前台投資業務 + 中台績效分析<br>
-  - <b>守門員雙層</b>: pre-commit hook (本地) + GitHub Actions CI (遠端)
+  - <b>V.1 純獨立架構</b>: 後台 IT (資訊部) + 中台 (法遵部) 的底層守門員<br>
+  - <b>V.2 角色制改造</b>: 前台投資業務 + 中台績效分析<br>
+  - <b>守門員雙層</b>: 本地 pre-commit + 遠端 GitHub Actions CI
 </div>
 
 </body></html>
