@@ -175,7 +175,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
 </style>
 </head><body>
 <h1>MS_N_RR/RRR Ver.A 報告中心</h1>
-<div class="sub">資料日：2026-06-08 ｜ 產生時間：2026-06-08 22:03</div>
+<div class="sub">資料日：2026-06-08 ｜ 產生時間：2026-06-08 22:09</div>
 
 
 <div class="funnel-wrap">
@@ -249,26 +249,30 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 
   <!-- 4 池候選股池 -->
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px">
-    <div style="background:#7f1d1d;padding:8px 10px;border-radius:8px;text-align:center;
-                border-left:4px solid #ef4444">
+    <div title="熱門股 (主流偵測 A+B) — hotflow Agent 對全市場 ~683 檔個股按 7 個 PR 維度合成主流評分 0-100,分成 A/B/C 三級,候選股池只收 A+B (C=無視/排除)。&#10;&#10;A 主流形成中 (PR ≥ 80 + 5 條件全達標): 39 檔&#10;B 加速 (PR ≥ 70 + 部分條件): 146 檔&#10;C 無視/排除: 498 檔&#10;&#10;依成交金額排行篩選 (HotFlow 概念 = 資金熱度)"
+         style="background:#7f1d1d;padding:8px 10px;border-radius:8px;text-align:center;
+                border-left:4px solid #ef4444;cursor:help">
       <div style="color:#fbbf24;font-size:10px">熱門股</div>
-      <div style="color:#fff;font-weight:bold;font-size:16px">683</div>
-      <div style="color:#fca5a5;font-size:9px">成交金額 (hotflow)</div>
+      <div style="color:#fff;font-weight:bold;font-size:16px">185</div>
+      <div style="color:#fca5a5;font-size:9px">主流偵測 A+B (A=39 B=146)</div>
     </div>
-    <div style="background:#14532d;padding:8px 10px;border-radius:8px;text-align:center;
-                border-left:4px solid #22c55e">
+    <div title="強勢股 — strong_stocks Agent 依漲幅 + 連續漲停 + RS 相對強度 篩出近期表現最強的 ~80 檔。&#10;依漲幅排行篩選"
+         style="background:#14532d;padding:8px 10px;border-radius:8px;text-align:center;
+                border-left:4px solid #22c55e;cursor:help">
       <div style="color:#fbbf24;font-size:10px">強勢股</div>
       <div style="color:#fff;font-weight:bold;font-size:16px">80</div>
       <div style="color:#86efac;font-size:9px">漲幅 (strong_stocks)</div>
     </div>
-    <div style="background:#1e3a8a;padding:8px 10px;border-radius:8px;text-align:center;
-                border-left:4px solid #3b82f6">
+    <div title="打底股 — accumulation_pool Agent 用 Wyckoff Spring + ATR 收縮 + 長期橫盤偵測底部整理階段, 找出 ~75 檔吸籌候選。&#10;底部整理 (Wyckoff Phase A-D)"
+         style="background:#1e3a8a;padding:8px 10px;border-radius:8px;text-align:center;
+                border-left:4px solid #3b82f6;cursor:help">
       <div style="color:#fbbf24;font-size:10px">打底股</div>
       <div style="color:#fff;font-weight:bold;font-size:16px">75</div>
       <div style="color:#93c5fd;font-size:9px">底部整理 (accumulation)</div>
     </div>
-    <div style="background:#581c87;padding:8px 10px;border-radius:8px;text-align:center;
-                border-left:4px solid #a855f7">
+    <div title="自選股 — custom_pool 從 配對表.xlsx 讀取使用者自選 ~10 檔, 必入 universe 不受 MS bias 配額限制。&#10;使用者自選 (overlay)"
+         style="background:#581c87;padding:8px 10px;border-radius:8px;text-align:center;
+                border-left:4px solid #a855f7;cursor:help">
       <div style="color:#fbbf24;font-size:10px">自選股</div>
       <div style="color:#fff;font-weight:bold;font-size:16px">10</div>
       <div style="color:#d8b4fe;font-size:9px">使用者自選 (custom_pool)</div>
