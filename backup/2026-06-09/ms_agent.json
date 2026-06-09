@@ -1,0 +1,105 @@
+{
+  "as_of": "2026-06-09",
+  "schema_version": "v2",
+  "market_phase": {
+    "value": "MARKUP",
+    "confidence": 79,
+    "confidence_band": "HIGH",
+    "reason": [
+      "站上 MA20 比例 62.0%, 多頭整齊",
+      "資金擴散仍在擴張",
+      "新高股比例 12.3%, 主升段表徵",
+      "溫度 61 主升段熱度",
+      "另符合: EARLY_BULL"
+    ]
+  },
+  "risk_mode": {
+    "value": "DEFENSIVE",
+    "confidence": 85,
+    "confidence_band": "HIGH",
+    "reason": [
+      "🚨 TWII Z250=+2.38σ 過熱 (>+2σ, ~2.3% 機率) — Phase B 強制降風險"
+    ]
+  },
+  "market_structure": {
+    "taiex_trend": "SIDEWAYS",
+    "otc_trend": "DOWN",
+    "leadership": "LARGE_CAP",
+    "breadth_status": "EXPANDING",
+    "volume_status": "NORMAL"
+  },
+  "rotation_status": {
+    "value": "NONE",
+    "leading_sectors": [],
+    "weakening_sectors": []
+  },
+  "candidate_bias": {
+    "hot_stock_weight": 35,
+    "strong_stock_weight": 55,
+    "base_stock_weight": 10,
+    "preferred_pool": [
+      "STRONG",
+      "HOT",
+      "BASE"
+    ],
+    "reason": [
+      "主升段應優先選擇強勢延續股",
+      "熱門股可作為資金流確認"
+    ]
+  },
+  "master_weight_policy": {
+    "Wyckoff": 0,
+    "Minervini": 30,
+    "ONeil": 25,
+    "Weinstein": 10,
+    "Darvas": 15,
+    "Livermore": 20,
+    "Lynch": 0,
+    "Fisher": 0,
+    "Buffett": 0
+  },
+  "discipline_policy": {
+    "max_position_ratio_per_stock": 25,
+    "max_total_exposure": 68,
+    "allow_new_position": true,
+    "allow_add_position": true,
+    "stop_loss_strictness": "HIGH",
+    "cash_minimum_ratio": 32
+  },
+  "orchestrator_instruction": {
+    "action_bias": "EXPAND",
+    "priority": [
+      "優先評估強勢股池",
+      "熱門股需避免追高",
+      "打底股只保留接近突破者"
+    ],
+    "warning": [
+      "若成交金額放大但指數不漲, 需提高派發警戒"
+    ]
+  },
+  "transition_signals": {
+    "next_likely_phase": "MARKUP",
+    "confidence": 0,
+    "early_warning_days": 0,
+    "triggers": [],
+    "note": "無階段轉換訊號"
+  },
+  "skill_feedback": {
+    "active": false,
+    "skill_index": {},
+    "n_days_with_data": 1,
+    "alpha": 0.0,
+    "alpha_mode": "off",
+    "avg_skill_std": 0.0,
+    "skill_source": "off",
+    "phase_days_current": 0
+  },
+  "summary": {
+    "phase": "MARKUP",
+    "risk_mode": "DEFENSIVE",
+    "action_bias": "EXPAND",
+    "skill_feedback_active": false
+  },
+  "generated_at": "2026-06-09T18:00:39",
+  "available": true
+}
