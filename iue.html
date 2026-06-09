@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<title>IUE · Investment Universe Engine</title>
+<style>
+  body { background:#0f172a; color:#e2e8f0; font-family:Segoe UI,system-ui,sans-serif;
+         padding:20px; max-width:1300px; margin:0 auto }
+  h1 { color:#fbbf24; border-bottom:2px solid #fbbf24; padding-bottom:8px }
+  h2 { color:#a5b4fc; margin-top:30px }
+  table { width:100%; border-collapse:collapse; background:#1e293b;
+          border-radius:8px; overflow:hidden; margin:12px 0 }
+  th, td { padding:7px 10px; border-bottom:1px solid #334155 }
+  th { background:#312e81; color:#fbbf24; text-align:left; font-size:12px }
+  td { font-size:12px }
+  .card { background:#1e293b; padding:14px; border-radius:8px; margin-bottom:14px;
+          border-left:4px solid #818cf8 }
+  .stat { display:inline-block; margin-right:24px; padding:6px 0 }
+  .stat-label { color:#94a3b8; font-size:11px }
+  .stat-val { color:#fff; font-weight:bold; font-size:22px }
+  a { color:#7dd3fc }
+  code { background:#0f1a2c; padding:1px 5px; border-radius:3px;
+          font-size:11px; color:#fbbf24 }
+</style></head><body>
+<h1>🏛 IUE · Investment Universe Engine</h1>
+<p><a href="index.html">← 回主頁</a> · <span style="color:#94a3b8">IUE Phase 2 (attention + 3-tier pool + lifecycle)</span></p>
+
+<div class="card">
+  <div style="color:#fbbf24;font-weight:bold;margin-bottom:6px">投資哲學</div>
+  <div style="color:#cbd5e1">Scanner finds opportunities. IUE manages opportunities. PM converts opportunities into portfolio.</div>
+  <div style="color:#94a3b8;font-size:12px;margin-top:8px">
+    IUE 不選股、不買賣 — 只負責建立與維護「可投資股票宇宙」, 給 PM 乾淨、穩定、
+    有 lifecycle 管理的股票池。
+  </div>
+</div>
+
+<h2>📊 3 層 Pool 統計</h2>
+<div class="card">
+  <span class="stat"><span class="stat-label">Universe (4 池 union)</span><br>
+    <span class="stat-val">258</span></span>
+  <span class="stat"><span class="stat-label">Candidate Pool</span><br>
+    <span class="stat-val" style="color:#94a3b8">258</span></span>
+  <span class="stat"><span class="stat-label">Watch Pool (AS≥40)</span><br>
+    <span class="stat-val" style="color:#f97316">191</span></span>
+  <span class="stat"><span class="stat-label">Investment Pool (AS≥60 + 風控)</span><br>
+    <span class="stat-val" style="color:#22c55e">35</span></span>
+  <span class="stat"><span class="stat-label">Avg AS (Investment)</span><br>
+    <span class="stat-val">70.3</span></span>
+</div>
+
+<div class="card" style="border-left-color:#fbbf24">
+  <b style="color:#fbbf24">Attention Score 公式 (0-100)</b><br>
+  <code>AS = HotScore × 0.3
+       + MomentumScore × 0.3
+       + StructureScore × 0.2
+       + ChipScore × 0.2</code>
+  <br><br>
+  <b>Investment Pool Hard Filter:</b><br>
+  • AS ≥ 60<br>
+  • box_structure degradation_score &lt; 50<br>
+  • distribution_score &lt; 75 (不在派發中)
+</div>
+
+<h2>🔄 Lifecycle 狀態分佈</h2>
+<div style="color:#94a3b8;font-size:12px;margin-bottom:8px">
+  6 狀態機: NEW → EMERGING → LEADER → MATURE → DECLINING → REMOVED ·
+  追蹤 258 檔成員 · 含 decay 中的 missing 標的
+</div>
+<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:10px 0">
+  
+        <div style="background:#1e1b4b;padding:8px;border-radius:6px;text-align:center;
+                    border-left:3px solid #a5b4fc">
+          <div style="color:#a5b4fc;font-size:10px;font-weight:bold">NEW</div>
+          <div style="color:#fff;font-size:18px;font-weight:bold">0</div>
+          <div style="color:#94a3b8;font-size:10px">0.0%</div>
+        </div>
+        <div style="background:#1e3a8a;padding:8px;border-radius:6px;text-align:center;
+                    border-left:3px solid #93c5fd">
+          <div style="color:#93c5fd;font-size:10px;font-weight:bold">EMERGING</div>
+          <div style="color:#fff;font-size:18px;font-weight:bold">258</div>
+          <div style="color:#94a3b8;font-size:10px">100.0%</div>
+        </div>
+        <div style="background:#14532d;padding:8px;border-radius:6px;text-align:center;
+                    border-left:3px solid #86efac">
+          <div style="color:#86efac;font-size:10px;font-weight:bold">LEADER</div>
+          <div style="color:#fff;font-size:18px;font-weight:bold">0</div>
+          <div style="color:#94a3b8;font-size:10px">0.0%</div>
+        </div>
+        <div style="background:#3f6212;padding:8px;border-radius:6px;text-align:center;
+                    border-left:3px solid #bef264">
+          <div style="color:#bef264;font-size:10px;font-weight:bold">MATURE</div>
+          <div style="color:#fff;font-size:18px;font-weight:bold">0</div>
+          <div style="color:#94a3b8;font-size:10px">0.0%</div>
+        </div>
+        <div style="background:#7c2d12;padding:8px;border-radius:6px;text-align:center;
+                    border-left:3px solid #fed7aa">
+          <div style="color:#fed7aa;font-size:10px;font-weight:bold">DECLINING</div>
+          <div style="color:#fff;font-size:18px;font-weight:bold">0</div>
+          <div style="color:#94a3b8;font-size:10px">0.0%</div>
+        </div>
+        <div style="background:#581c87;padding:8px;border-radius:6px;text-align:center;
+                    border-left:3px solid #d8b4fe">
+          <div style="color:#d8b4fe;font-size:10px;font-weight:bold">REMOVED</div>
+          <div style="color:#fff;font-size:18px;font-weight:bold">0</div>
+          <div style="color:#94a3b8;font-size:10px">0.0%</div>
+        </div>
+</div>
+
+<h2>📅 今日異動 (Changes Today)</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0">
+  <div>
+    <h3 style="color:#86efac;font-size:14px;border-bottom:1px solid #14532d;padding-bottom:4px">
+      🆕 New Entries (0)</h3>
+    <table><tbody><tr><td colspan="3" style="color:#64748b">無</td></tr></tbody></table>
+  </div>
+  <div>
+    <h3 style="color:#fbbf24;font-size:14px;border-bottom:1px solid #78350f;padding-bottom:4px">
+      ⬆️ Upgraded (0)</h3>
+    <table><tbody><tr><td colspan="3" style="color:#64748b">無</td></tr></tbody></table>
+  </div>
+  <div>
+    <h3 style="color:#fb923c;font-size:14px;border-bottom:1px solid #7c2d12;padding-bottom:4px">
+      ⬇️ Downgraded (0)</h3>
+    <table><tbody><tr><td colspan="3" style="color:#64748b">無</td></tr></tbody></table>
+  </div>
+  <div>
+    <h3 style="color:#f87171;font-size:14px;border-bottom:1px solid #7f1d1d;padding-bottom:4px">
+      ❌ Removed (0)</h3>
+    <table><tbody><tr><td colspan="3" style="color:#64748b">無</td></tr></tbody></table>
+  </div>
+</div>
+
+<h2>🎯 PM 路由 (available_for)</h2>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0">
+  
+        <div style="background:#1e293b;padding:12px;border-radius:8px;
+                    border-left:4px solid #6366f1">
+          <div style="color:#a5b4fc;font-weight:bold;font-size:13px">
+            趨勢成長 PM</div>
+          <div style="color:#94a3b8;font-size:11px;margin-top:2px">
+            可用 <b style="color:#fff">35</b> 檔
+          </div>
+          <div style="color:#cbd5e1;font-size:12px;margin-top:6px">
+            <b>2344</b>(100) · <b>2357</b>(90) · <b>2324</b>(88) · <b>2382</b>(86) · <b>3231</b>(83)
+          </div>
+        </div>
+        <div style="background:#1e293b;padding:12px;border-radius:8px;
+                    border-left:4px solid #6366f1">
+          <div style="color:#a5b4fc;font-weight:bold;font-size:13px">
+            品質價值 PM</div>
+          <div style="color:#94a3b8;font-size:11px;margin-top:2px">
+            可用 <b style="color:#fff">10</b> 檔
+          </div>
+          <div style="color:#cbd5e1;font-size:12px;margin-top:6px">
+            <b>2344</b>(100) · <b>2408</b>(82) · <b>3037</b>(80) · <b>1409</b>(70) · <b>3528</b>(64)
+          </div>
+        </div>
+        <div style="background:#1e293b;padding:12px;border-radius:8px;
+                    border-left:4px solid #6366f1">
+          <div style="color:#a5b4fc;font-weight:bold;font-size:13px">
+            相對輪動 PM</div>
+          <div style="color:#94a3b8;font-size:11px;margin-top:2px">
+            可用 <b style="color:#fff">35</b> 檔
+          </div>
+          <div style="color:#cbd5e1;font-size:12px;margin-top:6px">
+            <b>2344</b>(100) · <b>2357</b>(90) · <b>2324</b>(88) · <b>2382</b>(86) · <b>3231</b>(83)
+          </div>
+        </div>
+        <div style="background:#1e293b;padding:12px;border-radius:8px;
+                    border-left:4px solid #6366f1">
+          <div style="color:#a5b4fc;font-weight:bold;font-size:13px">
+            資金流 PM</div>
+          <div style="color:#94a3b8;font-size:11px;margin-top:2px">
+            可用 <b style="color:#fff">35</b> 檔
+          </div>
+          <div style="color:#cbd5e1;font-size:12px;margin-top:6px">
+            <b>2344</b>(100) · <b>2357</b>(90) · <b>2324</b>(88) · <b>2382</b>(86) · <b>3231</b>(83)
+          </div>
+        </div>
+        <div style="background:#1e293b;padding:12px;border-radius:8px;
+                    border-left:4px solid #6366f1">
+          <div style="color:#a5b4fc;font-weight:bold;font-size:13px">
+            轉機 PM</div>
+          <div style="color:#94a3b8;font-size:11px;margin-top:2px">
+            可用 <b style="color:#fff">10</b> 檔
+          </div>
+          <div style="color:#cbd5e1;font-size:12px;margin-top:6px">
+            <b>2344</b>(100) · <b>2408</b>(82) · <b>3037</b>(80) · <b>1409</b>(70) · <b>3528</b>(64)
+          </div>
+        </div>
+        <div style="background:#1e293b;padding:12px;border-radius:8px;
+                    border-left:4px solid #6366f1">
+          <div style="color:#a5b4fc;font-weight:bold;font-size:13px">
+            防禦型 PM</div>
+          <div style="color:#94a3b8;font-size:11px;margin-top:2px">
+            可用 <b style="color:#fff">3</b> 檔
+          </div>
+          <div style="color:#cbd5e1;font-size:12px;margin-top:6px">
+            <b>2344</b>(100) · <b>2408</b>(82) · <b>3037</b>(80)
+          </div>
+        </div>
+</div>
+
+<h2>💎 Investment Pool (35 檔)</h2>
+<table>
+  <thead><tr>
+    <th>標的</th><th>AS</th><th>來源</th>
+    <th>Hot</th><th>Mom</th><th>Struct</th><th>Chip</th>
+    <th>可用 PM</th>
+  </tr></thead>
+  <tbody>
+        <tr>
+          <td><b>2344</b> 華邦電</td>
+          <td style="text-align:right;color:#22c55e;font-weight:bold">
+              100.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span><span style="background:#581c87;color:#d8b4fe;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">CUSTOM</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">99</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">60</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Defensive, Rotation</td>
+        </tr>
+        <tr>
+          <td><b>2357</b> 華碩</td>
+          <td style="text-align:right;color:#22c55e;font-weight:bold">
+              90.5</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">96</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">58</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>2324</b> 仁寶</td>
+          <td style="text-align:right;color:#22c55e;font-weight:bold">
+              88.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">40</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>2382</b> 廣達</td>
+          <td style="text-align:right;color:#22c55e;font-weight:bold">
+              85.8</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">89</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">46</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>3231</b> 緯創</td>
+          <td style="text-align:right;color:#22c55e;font-weight:bold">
+              83.1</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">70</td>
+          <td style="text-align:right">95</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">68</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>2492</b> 華新科</td>
+          <td style="text-align:right;color:#22c55e;font-weight:bold">
+              82.5</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">70</td>
+          <td style="text-align:right">85</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">80</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>2408</b> 南亞科</td>
+          <td style="text-align:right;color:#22c55e;font-weight:bold">
+              82.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#581c87;color:#d8b4fe;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">CUSTOM</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">60</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Defensive, Rotation</td>
+        </tr>
+        <tr>
+          <td><b>2353</b> 宏碁</td>
+          <td style="text-align:right;color:#22c55e;font-weight:bold">
+              81.5</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">70</td>
+          <td style="text-align:right">98</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">56</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>2474</b> 可成</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              79.9</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">86</td>
+          <td style="text-align:right">88</td>
+          <td style="text-align:right">32</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>3037</b> 欣興</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              79.6</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#581c87;color:#d8b4fe;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">CUSTOM</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">48</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Defensive, Rotation</td>
+        </tr>
+        <tr>
+          <td><b>8043</b> 蜜望實</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              78.2</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">69</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">38</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>1503</b> 士電</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              77.2</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">91</td>
+          <td style="text-align:right">60</td>
+          <td style="text-align:right">39</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>6127</b> 九豪</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              70.3</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">45</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">34</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>1409</b> 新纖</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              69.8</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="text-align:right">70</td>
+          <td style="text-align:right">68</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">43</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>4931</b> 新盛力</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              68.5</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">34</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">42</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>1563</b> 巧新</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              68.5</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">70</td>
+          <td style="text-align:right">58</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">51</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>3234</b> 光環</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              65.4</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">70</td>
+          <td style="text-align:right">50</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">47</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>3312</b> 弘憶股</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              64.2</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">70</td>
+          <td style="text-align:right">49</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">43</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>3528</b> 安馳</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              63.6</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="text-align:right">70</td>
+          <td style="text-align:right">48</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">42</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>2317</b> 鴻海</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              63.6</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">68</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>2881</b> 富邦金</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              62.8</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">64</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>6274</b> 台燿</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              62.4</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">62</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>6285</b> 啟碁</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              62.2</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">61</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>3042</b> 晶技</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              61.8</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">59</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>6446</b> 藥華藥</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              61.8</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">59</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>2376</b> 技嘉</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              61.6</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">58</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>2327</b> 國巨*</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              61.2</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">56</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>3189</b> 景碩</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              61.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">55</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>2882</b> 國泰金</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              61.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">55</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>8996</b> 高力</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              60.8</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">54</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>3406</b> 玉晶光</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              60.8</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">54</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>6223</b> 旺矽</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              60.8</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">54</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>4542</b> 科嶠</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              60.6</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="text-align:right">70</td>
+          <td style="text-align:right">38</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">42</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>2603</b> 長榮</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              60.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">50</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr>
+        <tr>
+          <td><b>3357</b> 臺慶科</td>
+          <td style="text-align:right;color:#fbbf24;font-weight:bold">
+              60.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">100</td>
+          <td style="text-align:right">50</td>
+          <td style="font-size:11px;color:#94a3b8">
+              Capital_Flow, Rotation, Trend_Growth</td>
+        </tr></tbody>
+</table>
+
+<h2>👁 Watch Pool — 未達 Investment (30 檔顯示 top 30)</h2>
+<div style="color:#94a3b8;font-size:12px;margin-bottom:8px">
+  在 Watch 但未進 Investment 的標的, 顯示卡住原因
+</div>
+<table>
+  <thead><tr>
+    <th>標的</th><th>AS</th><th>來源</th><th>未通過原因</th>
+  </tr></thead>
+  <tbody>
+        <tr>
+          <td><b>2883</b> 凱基金</td>
+          <td style="text-align:right;color:#f97316">
+              59.8</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>2356</b> 英業達</td>
+          <td style="text-align:right;color:#f97316">
+              59.8</td>
+          <td><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>2493</b> 揚博</td>
+          <td style="text-align:right;color:#f97316">
+              59.7</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>6139</b> 亞翔</td>
+          <td style="text-align:right;color:#f97316">
+              59.2</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>3008</b> 大立光</td>
+          <td style="text-align:right;color:#f97316">
+              59.2</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>2059</b> 川湖</td>
+          <td style="text-align:right;color:#f97316">
+              59.2</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>4938</b> 和碩</td>
+          <td style="text-align:right;color:#f97316">
+              58.8</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>7769</b> 鴻勁</td>
+          <td style="text-align:right;color:#f97316">
+              58.4</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>4958</b> 臻鼎-KY</td>
+          <td style="text-align:right;color:#f97316">
+              58.2</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>2303</b> 聯電</td>
+          <td style="text-align:right;color:#f97316">
+              58.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>6239</b> 力成</td>
+          <td style="text-align:right;color:#f97316">
+              58.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>2472</b> 立隆電</td>
+          <td style="text-align:right;color:#f97316">
+              57.2</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>2454</b> 聯發科</td>
+          <td style="text-align:right;color:#f97316">
+              57.2</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>2890</b> 永豐金</td>
+          <td style="text-align:right;color:#f97316">
+              57.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>3049</b> 精金</td>
+          <td style="text-align:right;color:#f97316">
+              56.5</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>8064</b> 東捷</td>
+          <td style="text-align:right;color:#f97316">
+              56.4</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>4549</b> 桓達</td>
+          <td style="text-align:right;color:#f97316">
+              56.2</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>3015</b> 全漢</td>
+          <td style="text-align:right;color:#f97316">
+              56.1</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>4923</b> 力士</td>
+          <td style="text-align:right;color:#f97316">
+              55.5</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>2887</b> 台新新光金</td>
+          <td style="text-align:right;color:#f97316">
+              55.4</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>1303</b> 南亞</td>
+          <td style="text-align:right;color:#f97316">
+              55.4</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>3362</b> 先進光</td>
+          <td style="text-align:right;color:#f97316">
+              55.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>3045</b> 台灣大</td>
+          <td style="text-align:right;color:#f97316">
+              54.2</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>6451</b> 訊芯-KY</td>
+          <td style="text-align:right;color:#f97316">
+              54.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>9933</b> 中鼎</td>
+          <td style="text-align:right;color:#f97316">
+              54.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>2027</b> 大成鋼</td>
+          <td style="text-align:right;color:#f97316">
+              53.8</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>8926</b> 台汽電</td>
+          <td style="text-align:right;color:#f97316">
+              53.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>6282</b> 康舒</td>
+          <td style="text-align:right;color:#f97316">
+              53.0</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>6488</b> 環球晶</td>
+          <td style="text-align:right;color:#f97316">
+              52.8</td>
+          <td><span style="background:#14532d;color:#86efac;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">MOMENTUM</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr>
+        <tr>
+          <td><b>5309</b> 系統電</td>
+          <td style="text-align:right;color:#f97316">
+              52.6</td>
+          <td><span style="background:#7f1d1d;color:#fca5a5;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">HOT</span><span style="background:#1e3a8a;color:#93c5fd;padding:1px 5px;border-radius:3px;font-size:10px;margin-right:2px">BASE</span></td>
+          <td style="font-size:11px;color:#fca5a5">AS&lt;60</td>
+        </tr></tbody>
+</table>
+
+<p style="color:#64748b;font-size:11px;margin-top:30px">
+  IUE Phase 1 · as_of=2026-06-09 ·
+  Phase 2 (lifecycle + decay) / Phase 3 (upgrade/downgrade rules) 待建
+</p>
+</body></html>
