@@ -685,7 +685,24 @@
         "src/orchestrator.py ([3d-fpe] step)"
       ],
       "note": "依賴: T-1301 觀察期結束 (~2026-06-23)。若該期間 TTM PE 訊號命中率 ≥ 70%, 可降為 P3; 若 < 60%, 升 P1 立即做。"
+    },
+    {
+      "id": "T-1303",
+      "category": "algorithm",
+      "title": "分點 lite 集中度 — 三大法人合成版 (FinMind Backer 免費路徑)",
+      "source": "2026-06-09 user 詢問「使用分點資料計算籌碼集中度有效嗎?」",
+      "description": "分點資料 (券商分點) 是台股最強籌碼工具，但 FinMind TaiwanStockTradingDailyReport\n需要 Sponsor 級訂閱 (USD ~35/月)。User 目前 Backer 級可改用「合成 lite 版」。\n\n現有可用資料 (Backer):\n  ✅ TaiwanStockInstitutionalInvestorsBuySell  三大法人買賣超 (日更)\n  ✅ TaiwanStockHoldingSharesPer               股權分散 (週更, 已實作)\n  ✅ TaiwanStockShareholding                   外資持股率 (日更, 已實作)\n\n合成「分點 lite 集中度」對標真分點核心指標:\n  ✅ CR3 集中度 = 三法人買賣超 / 個股當日成交額\n  ✅ 法人連續鎖籌天數 (連續 N 日同向買超)\n  ✅ 三維對齊 (已實作: 大戶+外資+集中度)\n  ✅ 法人 net flow 比例 (外資/投信/自營商)\n  ❌ 點石神券商 (無法 — 法人總額混合)\n  ❌ 隔日沖偵測 (無法 — 沒有單一券商分行)\n  ❌ 摩根/瑞銀/美林單獨追蹤 (無法)\n\n預期命中率: 65-70% (vs Sponsor 級 80-85%)\n\n實作架構:\n  新建 src/agents/broker_lite.py:\n    compute_cr3(symbol)           # 三法人 CR3 集中度\n    compute_consecutive(symbol)   # 法人連續鎖籌天數\n    compute_net_flow_split(sym)   # 三法人 net flow 占比\n    compose_signal(symbol)        # 合成訊號 (法人吸籌/出貨/中性)\n  整合進 chip_concentration:\n    每股新增 cr3 / cr5 / consecutive_days / institutional_signal 欄位\n  Dossier section 升級:\n    新增 法人 CR3 集中度 子段\n    新增 連續鎖籌日數 sparkline\n\n依 T-1301 觀察期結果決策升級到真正分點 (Plan B 路徑):\n  - 若合成版命中率 ≥ 70% → 達標, 不需升 Sponsor (省 USD 420/年)\n  - 若命中率 50-70%    → 考慮升 Sponsor 加上完整分點\n  - 若命中率 < 50%     → 分點概念對自選股無效, 不升級\n\n(若決定升 Sponsor, 新建 T-1304 完整分點 Agent: 點石神 + 隔日沖 + CR15)",
+      "benefit": "用免費資料逼近分點集中度概念 ~70% 效果；先驗證概念有效性, 再決定要不要花錢升 Sponsor",
+      "effort": "S",
+      "priority": "P2",
+      "status": "planned",
+      "files": [
+        "src/agents/broker_lite.py (新建)",
+        "src/agents/chip_concentration.py (整合 CR3 + 連續鎖籌)",
+        "src/agents/stock_dossier_report.py (加 section)"
+      ],
+      "note": "依賴: T-1301 觀察期結束。FinMind Sponsor 訂閱: https://finmindtrade.com/analysis/#/Sponsor/sponsor (USD ~35/月)。Plan A→B 路徑: 先做 lite 版證明概念, 再決定升 Sponsor 升級到真分點。"
     }
   ],
-  "generated_at": "2026-06-09 19:07"
+  "generated_at": "2026-06-09 19:17"
 }
