@@ -649,9 +649,25 @@
         "src/agents/sector_rotation_report.py (加跨軌一致度顯示)"
       ],
       "note": "比對 audit 結果已產出 data/output/sector_map_audit.json 供人工 review。FinMind 純當交叉驗證，不替換自建。"
+    },
+    {
+      "id": "T-1301",
+      "category": "backtest",
+      "title": "觀察一週新訊號實際表現 (TWII Z / PE 河流 / 籌碼集中 / 個股 Z 雙)",
+      "source": "2026-06-09 session 完成 8 項升級 (commit be09f7d~c595e25)",
+      "description": "本 session 完成 8 個重大升級，需觀察 ≥ 1 週實際走勢驗證訊號品質：\n\n新訊號清單（皆已上線）：\n  1. TWII Z250 過熱警示（market_zscore） — 今日 +2.38σ OVERHEATED\n  2. PE 河流圖（pe_river） — 2330 公允價 1612 vs 實際 2295 (+42%)\n  3. 籌碼集中度 4 Phase（chip_concentration）\n     - 主力吸籌訊號（大戶加碼 + 散戶減碼）\n     - Z 異常吸籌警示 (8 週 Z ≥ +2σ)\n     - 三維對齊（大戶+外資+集中度）\n  4. 個股雙 Z-score（stock_zscore） — Price Z250 + Volume Z60\n     - 雙過熱（派發風險）/ 止跌爆量（轉強訊號）\n\n今日觀察基準（2026-06-09，TWII 44,704）：\n  本週主力吸籌 3 檔：8046 / 2408 / 9921\n  本週主力出貨 7 檔\n  Top 5 hottest (Price Z250)：\n    3037 +2.37σ / 8046 +2.18σ / 2344 +2.09σ\n    2408 +2.05σ / 2330 +1.86σ\n\n驗證項目（追蹤 7-14 天）：\n  □ TWII Z 過熱後 1-2 週是否真的修正？\n  □ 2330 PE 河流圖「公允價偏離 +42%」是否在 1 個月內收斂？\n  □ 8046 / 2408「大戶吸籌 + 價過熱」是否仍持續上漲？\n  □ 出貨 7 檔（主要中小型）下週是否相對弱勢？\n  □ 個股 Price Z250 過熱 5 檔是否進入修正？\n\n下次決策依據：\n  訊號命中 ≥ 60% → 保留並加進更多 PM 加分權重\n  命中 30-60%   → 調整閾值（Z threshold, signal cutoff）\n  命中 < 30%    → 移除或重新設計",
+      "benefit": "用實際走勢驗證新訊號品質，避免過度信任未經回測的指標；得到調整閾值/權重的客觀依據",
+      "effort": "S",
+      "priority": "P1",
+      "status": "in_progress",
+      "files": [
+        "data/output/dossier/*.html (每日刷新觀察)",
+        "data/output/chip_concentration.html (週六更新)",
+        "data/output/market_zscore.json (每日)",
+        "data/output/stock_zscore.json (每日)"
+      ],
+      "note": "驗證週期：2026-06-09 起算 7-14 天 (~2026-06-16 ~ 06-23 完成)。若 TWII Z 過熱後一週內未修正，需檢討 zone 閾值是否過嚴。"
     }
   ],
-  "generated_at": "2026-06-09 18:37",
-  "schema_version": "v1",
-  "available": true
+  "generated_at": "2026-06-09 19:03"
 }
