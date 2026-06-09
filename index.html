@@ -2,7 +2,7 @@
 <html lang="zh-Hant"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MS_N_RR/RRR Ver.A 報告中心</title>
+<title>Huang's AI Investment Company (HAIIC) — 主控台 (Master Console)</title>
 <style>
 * { box-sizing: border-box; }
 body { margin:0; padding:24px 20px 80px; max-width:1180px; margin:auto;
@@ -174,49 +174,49 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
        padding:1px 6px; border-radius:3px; font-size:12px; }
 </style>
 </head><body>
-<h1>MS_N_RR/RRR Ver.A 報告中心</h1>
-<div class="sub">資料日：2026-06-08 ｜ 產生時間：2026-06-09 14:01</div>
+<h1>Huang's AI Investment Company (HAIIC) — 主控台 (Master Console)</h1>
+<div class="sub">資料日：2026-06-08 ｜ 產生時間：2026-06-09 14:15</div>
 
 <!-- 快捷導覽 — 投資公司結構性入口 (最上方) -->
 <div style="background:linear-gradient(90deg,#1e1b4b,#312e81);padding:10px 14px;
             border-radius:8px;margin:14px 0 18px;border:1px solid #a78bfa;
             display:flex;align-items:center;flex-wrap:wrap;gap:10px">
-  <span style="color:#fbbf24;font-weight:bold;font-size:13px">⚓ 結構導覽</span>
+  <span style="color:#fbbf24;font-weight:bold;font-size:13px">⚓ 結構導覽 (Structure Navigation)</span>
   <a href="organization.html"
      title="投資公司組織架構 — 6 層 18+ 部門 / Agent (CIO / Research / IC / PM / CRO / Performance)"
      style="background:#fbbf24;color:#0f172a;padding:5px 12px;border-radius:5px;
             text-decoration:none;font-weight:bold;font-size:12px">
-    🏢 組織架構
+    🏢 組織架構 (Organization)
   </a>
   <a href="iue.html"
      title="IUE — Investment Universe Engine · Research Operations Dept"
      style="background:#312e81;color:#c4b5fd;padding:5px 10px;border-radius:5px;
             text-decoration:none;font-size:12px;border:1px solid #6366f1">
-    🏛 IUE
+    🏛 投資宇宙引擎 (IUE)
   </a>
   <a href="pm_trend_growth.html"
      title="Trend Growth PM · 趨勢成長基金經理人"
      style="background:#064e3b;color:#6ee7b7;padding:5px 10px;border-radius:5px;
             text-decoration:none;font-size:12px;border:1px solid #10b981">
-    💼 Trend Growth PM
+    💼 趨勢成長 PM (Trend Growth)
   </a>
   <a href="paper_portfolio.html"
      title="Paper Portfolio · 模擬交易追蹤 (E.2/E.3 真實 pnl + 交易成本)"
      style="background:#0f4944;color:#a7f3d0;padding:5px 10px;border-radius:5px;
             text-decoration:none;font-size:12px;border:1px solid #14b8a6">
-    📈 Paper Portfolio
+    📈 模擬倉位 (Paper Portfolio)
   </a>
   <a href="docs/V2_ARCHITECTURE.html"
      title="V.2 6 層投資公司架構 (CIO / Research / IC / PM / Risk / Performance)"
      style="background:#1e293b;color:#cbd5e1;padding:5px 10px;border-radius:5px;
             text-decoration:none;font-size:12px;border:1px solid #475569">
-    📋 V.2 架構
+    📋 V.2 架構 (Architecture)
   </a>
   <a href="system_flow.html"
      title="系統流程圖 — 所有 Agent 依賴關係"
      style="background:#1e293b;color:#cbd5e1;padding:5px 10px;border-radius:5px;
             text-decoration:none;font-size:12px;border:1px solid #475569">
-    🔄 系統流程
+    🔄 系統流程 (System Flow)
   </a>
 </div>
 
@@ -487,73 +487,10 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
 
 
 
-<div class="funnel-wrap">
-  <div class="funnel-title">🔁 流程：主流選股 → 多時段箱型 → 健康過濾 → 配對訊號
-    <span class="badge">2026-06-08</span>
-  </div>
-  <div class="funnel">
-    <div class="funnel-stage green" title="① 主流偵測 (HotFlow) — 全市場 ~1,935 檔個股按 7 個 PR 維度合成主流評分 0-100。
-數字 185 = A 級 (39) + B 級 (146) 個股總數
-  A 級：主流形成中（PR ≥ 80 + 5 條件全達標）
-  B 級：觀察中（PR 60-80 但 5 條件未全部達標）
-C 級會被排除不進入下游池（過熱或結構轉空）
-作用：作為配對發現與操作 Agent (Stock Ops) 的候選池起點">
-      <div class="stage-name">① 主流偵測 A+B</div>
-      <div class="stage-num">185</div>
-      <div class="stage-extra">主流候選 (A=39/B=146)</div>
-    </div>
-    <div class="funnel-arrow">→</div>
-    <div class="funnel-stage blue" title="② 多時段箱型狀態 (N-Shape) — 對候選池跑 9 主狀態 + 3 修飾詞 + 1 unknown 分類。
-數字 232 = 進入箱型偵測池的候選股數
-副資訊「三時段一致 58」= 日/週/月三時段都在「箱上推進 / 箱上回測」家族的個股數，代表「真正進入波段上升」最強訊號
-
-9 主狀態 = 3 位置（箱上/箱內/箱下）× 3 方向（向上/向下/特殊）
-位置：close 與最近 confirmed SH/SL 的關係
-方向：近 3 根 close 斜率">
-      <div class="stage-name">② 多時段箱型 9 狀態</div>
-      <div class="stage-num">232</div>
-      <div class="stage-extra">三時段一致 58 檔</div>
-    </div>
-    <div class="funnel-arrow">→</div>
-    <div class="funnel-stage amber" title="③ 操作 Agent (Stock Ops) 健康過濾 — 篩出箱型健康 (Healthy) 家族的個股。
-數字 187/220 = 健康數 (Healthy) / 操作 Agent 候選總數
-健康占比 85% = Healthy ÷ 候選總數
-
-『健康家族 (Healthy Family)』定義：
-  • 箱上推進 (above_up)
-  • 箱上回測 (above_down)
-  • 破底翻成功 (below_recovery)
-  • 箱內向上 (inbox_up)
-
-非健康族（假突破 above_fake / 持續跌 below_down / 箱內向下 inbox_down）會被排除或降級為「觀察」">
-      <div class="stage-name">③ 操作 Agent 健康篩選</div>
-      <div class="stage-num">187/220</div>
-      <div class="stage-extra">健康占比 85%</div>
-    </div>
-    <div class="funnel-arrow">→</div>
-    <div class="funnel-stage orange" title="④ 健康配對 (Healthy Pair) 訊號 — 配對中兩股皆為健康的訊號數。
-數字 355/413 = 兩股皆健康 (Healthy) 的配對 / 總配對數
-
-明細：
-  相對強度輪動 (RSR)：253/253
-  共振輪動 (RRR)：98/150
-  自選配對 (Custom Pairs)：2/5
-  動態相對強度輪動 (Dynamic RSR)：2/5
-
-『健康配對 (healthy_pair=True)』表示配對中 A 股 + B 股都屬於箱型健康家族，可優先採信換股訊號">
-      <div class="stage-name">④ 健康配對訊號</div>
-      <div class="stage-num">355/413</div>
-      <div class="stage-extra">RSR 253 / RRR 98 / 自選 2 / 動態 2</div>
-    </div>
-  </div>
-</div>
-
-
-
 <div style="background:linear-gradient(135deg,#1e1b4b,#0f172a);padding:18px;
             border-radius:12px;margin-bottom:24px;border:2px solid #a855f7">
   <div style="color:#fbbf24;font-weight:bold;font-size:16px;margin-bottom:14px;text-align:center">
-    🏢 業務流程 — 候選股池 → 3 維分析 → 投資委員會 → 基金經理 → 風控 → 績效
+    🏢 業務流程 (Business Pipeline) — 候選股池 (Universe) → 3 維分析 (Analytics) → 投資委員會 (IC) → 基金經理 (PM) → 風控 (CRO) → 績效 (Performance)
   </div>
 
   <!-- 4 池候選股池 -->
@@ -1261,6 +1198,77 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 <div style="color:#94a3b8;font-size:12px;margin-bottom:8px">
 非主要操作依據；用於對照、回測、研究下游可改進方向。
 </div>
+
+<!-- V.1 配對交易部專屬流程 (從主頁頂端移下來) -->
+<div style="background:rgba(14,165,233,0.08);border-left:3px solid #0ea5e9;
+            padding:10px 14px;border-radius:6px;margin-bottom:14px;font-size:12px;color:#94a3b8">
+  🔁 <b style="color:#7dd3fc">配對交易部專屬流程 (Pair Trading Desk Pipeline)</b>
+  — V.1 個股 + 配對選股 4 階段:
+  <span style="color:#cbd5e1">主流選股 (HotFlow) → 多時段箱型 (Box Structure) → 健康過濾 (Healthy Filter) → 配對訊號 (Pair Signals)</span>
+</div>
+
+<div class="funnel-wrap">
+  <div class="funnel-title">🔁 流程：主流選股 → 多時段箱型 → 健康過濾 → 配對訊號
+    <span class="badge">2026-06-08</span>
+  </div>
+  <div class="funnel">
+    <div class="funnel-stage green" title="① 主流偵測 (HotFlow) — 全市場 ~1,935 檔個股按 7 個 PR 維度合成主流評分 0-100。
+數字 185 = A 級 (39) + B 級 (146) 個股總數
+  A 級：主流形成中（PR ≥ 80 + 5 條件全達標）
+  B 級：觀察中（PR 60-80 但 5 條件未全部達標）
+C 級會被排除不進入下游池（過熱或結構轉空）
+作用：作為配對發現與操作 Agent (Stock Ops) 的候選池起點">
+      <div class="stage-name">① 主流偵測 A+B</div>
+      <div class="stage-num">185</div>
+      <div class="stage-extra">主流候選 (A=39/B=146)</div>
+    </div>
+    <div class="funnel-arrow">→</div>
+    <div class="funnel-stage blue" title="② 多時段箱型狀態 (N-Shape) — 對候選池跑 9 主狀態 + 3 修飾詞 + 1 unknown 分類。
+數字 232 = 進入箱型偵測池的候選股數
+副資訊「三時段一致 58」= 日/週/月三時段都在「箱上推進 / 箱上回測」家族的個股數，代表「真正進入波段上升」最強訊號
+
+9 主狀態 = 3 位置（箱上/箱內/箱下）× 3 方向（向上/向下/特殊）
+位置：close 與最近 confirmed SH/SL 的關係
+方向：近 3 根 close 斜率">
+      <div class="stage-name">② 多時段箱型 9 狀態</div>
+      <div class="stage-num">232</div>
+      <div class="stage-extra">三時段一致 58 檔</div>
+    </div>
+    <div class="funnel-arrow">→</div>
+    <div class="funnel-stage amber" title="③ 操作 Agent (Stock Ops) 健康過濾 — 篩出箱型健康 (Healthy) 家族的個股。
+數字 187/220 = 健康數 (Healthy) / 操作 Agent 候選總數
+健康占比 85% = Healthy ÷ 候選總數
+
+『健康家族 (Healthy Family)』定義：
+  • 箱上推進 (above_up)
+  • 箱上回測 (above_down)
+  • 破底翻成功 (below_recovery)
+  • 箱內向上 (inbox_up)
+
+非健康族（假突破 above_fake / 持續跌 below_down / 箱內向下 inbox_down）會被排除或降級為「觀察」">
+      <div class="stage-name">③ 操作 Agent 健康篩選</div>
+      <div class="stage-num">187/220</div>
+      <div class="stage-extra">健康占比 85%</div>
+    </div>
+    <div class="funnel-arrow">→</div>
+    <div class="funnel-stage orange" title="④ 健康配對 (Healthy Pair) 訊號 — 配對中兩股皆為健康的訊號數。
+數字 355/413 = 兩股皆健康 (Healthy) 的配對 / 總配對數
+
+明細：
+  相對強度輪動 (RSR)：253/253
+  共振輪動 (RRR)：98/150
+  自選配對 (Custom Pairs)：2/5
+  動態相對強度輪動 (Dynamic RSR)：2/5
+
+『健康配對 (healthy_pair=True)』表示配對中 A 股 + B 股都屬於箱型健康家族，可優先採信換股訊號">
+      <div class="stage-name">④ 健康配對訊號</div>
+      <div class="stage-num">355/413</div>
+      <div class="stage-extra">RSR 253 / RRR 98 / 自選 2 / 動態 2</div>
+    </div>
+  </div>
+</div>
+
+
 <div class="summary-grid">
   
     <div class="summary-card">
@@ -1310,7 +1318,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 <div class='docs-grid'><a class='doc-link' href='docs/README.html'><div>README</div><div class='doc-type'>系統入口導覽</div></a><a class='doc-link' href='docs/ARCHITECTURE.html'><div>ARCHITECTURE</div><div class='doc-type'>完整架構 + 目錄對照</div></a><a class='doc-link' href='docs/INTEGRATIONS.html'><div>INTEGRATIONS</div><div class='doc-type'>整合史 + 再整合指南</div></a><a class='doc-link' href='docs/OPERATIONS.html'><div>OPERATIONS</div><div class='doc-type'>日常操作手冊</div></a><a class='doc-link' href='docs/DATA_AGENT.html'><div>DATA_AGENT</div><div class='doc-type'>中央資料層</div></a><a class='doc-link' href='docs/agents/02_market_structure.html'><div>02_market_structure</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='docs/agents/03_hotflow.html'><div>03_hotflow</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='docs/agents/04_n_pattern.html'><div>04_n_pattern</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='docs/agents/05_rr.html'><div>05_rr</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='docs/agents/05_rrr.html'><div>05_rrr</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='docs/agents/05_rs_zscore.html'><div>05_rs_zscore</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='docs/agents/06_chip_filter.html'><div>06_chip_filter</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='docs/agents/06_report_generator.html'><div>06_report_generator</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='docs/agents/06_risk_control.html'><div>06_risk_control</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='docs/agents/07_ms_agent_v2.html'><div>07_ms_agent_v2</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='docs/agents/08_stock_ops.html'><div>08_stock_ops</div><div class='doc-type'>Agent 規格</div></a><a class='doc-link' href='docs/agents/10_box_structure.html'><div>10_box_structure</div><div class='doc-type'>Agent 規格</div></a></div>
 
 <footer>
-MS_N_RR/RRR Ver.A Report Center ｜ 由 <code>src/agents/index_builder.py</code> 產生<br>
+HAIIC 主控台 (Master Console) ｜ 由 (Generated by) <code>src/agents/index_builder.py</code><br>
 主頁與子頁採固定檔名方便書籤，每日跑完 orchestrator 自動 snapshot 至 <code>backup/2026-06-08/</code>，保留 7 日。
 </footer>
 
