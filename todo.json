@@ -667,7 +667,25 @@
         "data/output/stock_zscore.json (每日)"
       ],
       "note": "驗證週期：2026-06-09 起算 7-14 天 (~2026-06-16 ~ 06-23 完成)。若 TWII Z 過熱後一週內未修正，需檢討 zone 閾值是否過嚴。"
+    },
+    {
+      "id": "T-1302",
+      "category": "algorithm",
+      "title": "預估本益比 (Forward PE) — 月營收外推法 + PEG (待觀察期後評估)",
+      "source": "2026-06-09 user 詢問「能取得預估本益比嗎?」",
+      "description": "FinMind 沒有分析師預估 (IBES/FactSet) 資料，但可自算 Forward PE：\n\n推薦方法 — 月營收外推法 (台股法人實戰 SOP):\n  Forward EPS = 最近 N 月營收 × 預估淨利率 / 流通股本\n  其中:\n    預估淨利率 = 近 4 季 (淨利 / 營收) 平均\n    N = 3 (積極) / 6 (基準) / 12 (保守)\n\n範例 (2330):\n  TTM PE = 30.86 (歷史 96 分位 🔴)\n  Forward PE (基準) ≈ 32  → 估值仍偏貴\n  Forward PE (積極) ≈ 25  → 若成長持續則合理\n\n額外可算 5 衍生指標:\n  1. PEG = Forward PE / 預估成長率 (Peter Lynch < 1 = 便宜)\n  2. EPS YoY (Forward 對比去年同期)\n  3. PE-Forward Discount = (TTM PE - Forward PE) / TTM PE\n  4. EPS 動量 (最近 3 月 vs 前 3 月營收)\n  5. 盈餘修正 (本月推估 vs 上月推估)\n\nPE 河流圖 v3 (規劃):\n  現有「股價 vs TTM PE 河道」之上疊加 Forward PE 點 (紅星)\n  一眼看出 TTM 與 Forward 的 spread\n\nDossier 新 section:\n  📊 預估本益比 (Forward PE)\n    保守 / 基準 / 積極 三檔\n    PEG + EPS YoY + 盈餘修正方向\n\n為何 P2 不急做:\n  - 現有 TTM PE 河流圖 + Z-score + 籌碼集中度已能判定多數情境\n  - T-1301 觀察期結束後若發現 TTM PE 預測力不足, 再升級到 Forward PE\n  - 月營收外推準度 65-75% (台股學術實證), 不算完美但夠用",
+      "benefit": "用 Forward PE + PEG 補上「未來預期」維度, 對成長股估值更貼近實戰；外資法人 SOP 對標升級",
+      "effort": "M",
+      "priority": "P2",
+      "status": "planned",
+      "files": [
+        "src/agents/forward_pe.py (新建)",
+        "src/agents/pe_river.py (河流圖 v3 加 Forward 點)",
+        "src/agents/stock_dossier_report.py (加 section)",
+        "src/orchestrator.py ([3d-fpe] step)"
+      ],
+      "note": "依賴: T-1301 觀察期結束 (~2026-06-23)。若該期間 TTM PE 訊號命中率 ≥ 70%, 可降為 P3; 若 < 60%, 升 P1 立即做。"
     }
   ],
-  "generated_at": "2026-06-09 19:03"
+  "generated_at": "2026-06-09 19:07"
 }
