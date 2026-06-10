@@ -1,113 +1,191 @@
 <!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>南欣換股 — 籌碼確認 case study</title>
+<title>多配對換股 — 籌碼 case study</title>
 <style>body{background:#0b1220;color:#e2e8f0;font-family:Microsoft JhengHei,sans-serif;
-max-width:920px;margin:0 auto;padding:24px 16px;}a{color:#60a5fa;}</style></head><body>
+max-width:980px;margin:0 auto;padding:24px 16px;}a{color:#60a5fa;}</style></head><body>
 <div style="margin-bottom:6px;"><a href="nan_xin_chart.html">← 南欣換股線圖</a></div>
-<h1 style="font-size:22px;color:#93c5fd;">🔀 南欣換股 — 籌碼確認 case study</h1>
+<h1 style="font-size:22px;color:#93c5fd;">🔀 多配對換股 — 籌碼確認 case study</h1>
 <div style="background:#1e293b;border-radius:8px;padding:12px 16px;color:#cbd5e1;font-size:13px;line-height:1.7;">
-<b style="color:#fbbf24;">誠實聲明：</b>南欣可得歷史只有 <b>3 次</b>換股（N=3），這是
-<b>個案觀察 (case study)</b>，<u>不是統計回測</u>，不可用來宣稱「可靠度提升 X%」。
-目的：用歷史 as-of 重建的 RCR 籌碼層，看它在 3 個真實換股時刻提供了什麼資訊
-（Z60 喊換股時，籌碼是確認還是示警），以及事後對錯。<br>
-方法：CSA 逐日 backfill 券商分點（as-of，無 look-ahead）→ RCR → 換股確認燈號；
-事後相對報酬 = 換進股票 vs 換出股票 後 20 交易日的報酬差。
+<b style="color:#fbbf24;">誠實聲明：</b>5 個配對 / 17 個月只有 <b>8 次</b>真實換股
+（這些配對高度共整，換股稀疏）。屬<b>個案彙整</b>，<u>非統計推論</u>，不可宣稱「提升 X%」。
+8 個事件只夠看方向性線索，不夠正式校準門檻。<br>
+方法：CSA 逐日 as-of backfill 券商分點（無 look-ahead）→ 籌碼分差 / RCR → 對照事後
+20 交易日相對報酬（換進 − 換出）。
 </div>
 <div style="margin:16px 0;display:flex;gap:10px;flex-wrap:wrap;">
-  <div style="flex:1;min-width:120px;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 14px;text-align:center;">
-    <div style="color:#22c55e;font-size:24px;font-weight:bold;">0</div><div style="color:#94a3b8;font-size:12px;">籌碼支持</div></div>
-  <div style="flex:1;min-width:120px;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 14px;text-align:center;">
-    <div style="color:#ef4444;font-size:24px;font-weight:bold;">0</div><div style="color:#94a3b8;font-size:12px;">籌碼反對</div></div>
-  <div style="flex:1;min-width:120px;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 14px;text-align:center;">
-    <div style="color:#64748b;font-size:24px;font-weight:bold;">3</div><div style="color:#94a3b8;font-size:12px;">籌碼中性</div></div>
-  <div style="flex:1;min-width:120px;background:#0f172a;border:1px solid #fbbf24;border-radius:8px;padding:10px 14px;text-align:center;">
-    <div style="color:#fbbf24;font-size:24px;font-weight:bold;">0</div><div style="color:#94a3b8;font-size:12px;">反對且事後換錯<br>(成功示警)</div></div>
+  <div style="flex:1;min-width:140px;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px;text-align:center;">
+    <div style="font-size:22px;font-weight:bold;color:#93c5fd;">3/8</div><div style="color:#94a3b8;font-size:12px;">Z60-only 換對</div></div>
+  <div style="flex:1;min-width:140px;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px;text-align:center;">
+    <div style="font-size:22px;font-weight:bold;color:#22c55e;">5/8</div><div style="color:#94a3b8;font-size:12px;">籌碼分差方向<br>與結果一致</div></div>
+  <div style="flex:1;min-width:140px;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px;text-align:center;">
+    <div style="font-size:22px;font-weight:bold;color:#22c55e;">4</div><div style="color:#94a3b8;font-size:12px;">硬否決可擋掉<br>的壞換股</div></div>
+  <div style="flex:1;min-width:140px;background:#0f172a;border:1px solid #fbbf24;border-radius:8px;padding:10px;text-align:center;">
+    <div style="font-size:22px;font-weight:bold;color:#fbbf24;">1</div><div style="color:#94a3b8;font-size:12px;">硬否決會誤擋<br>的好換股</div></div>
+</div>
+<div style="background:#0f172a;border:1px solid #3b82f6;border-radius:8px;padding:12px 16px;margin:6px 0 14px;color:#e2e8f0;font-size:14px;line-height:1.7;">
+<b style="color:#60a5fa;">初步傾向（8 事件，僅供參考）：</b>籌碼分差(chip_gap)的方向與事後結果一致率偏高 → 傾向用「軟傾向」(籌碼差距當 tiebreaker / 降額)，而非「硬否決」(以免擋掉對的換股)。
 </div>
 
 <div style="background:#0f172a;border:1px solid #1e293b;border-left:5px solid #ef4444;
-border-radius:10px;padding:16px 18px;margin:14px 0;">
-  <div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;">
-    <span style="font-size:16px;font-weight:bold;color:#e2e8f0;">2025-12-19</span>
-    <span style="font-size:15px;color:#93c5fd;">換成南電</span>
-    <span style="color:#94a3b8;font-size:13px;">Z60 = -2.20 σ　·　RCGA NO_EDGE</span>
-    <span style="margin-left:auto;font-size:15px;">🔴 <b style="color:#ef4444">確認不足</b>
-    <span style="color:#64748b;">可靠度 38</span></span>
+border-radius:8px;padding:12px 16px;margin:10px 0;">
+  <div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;">
+    <span style="color:#fbbf24;font-size:13px;font-weight:bold;">南電/欣興</span>
+    <span style="font-size:14px;color:#e2e8f0;">2025-12-19</span>
+    <span style="color:#93c5fd;">換成南電</span>
+    <span style="color:#94a3b8;font-size:12px;">Z60 -2.20　NO_EDGE</span>
+    <span style="margin-left:auto;">🔴 <b style="color:#ef4444">確認不足</b></span>
   </div>
-  <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
-    <div style="flex:1;min-width:200px;background:rgba(34,197,94,0.06);border:1px solid #334155;border-radius:6px;padding:8px 12px;">
-      <div style="color:#94a3b8;font-size:11px;">換進 → 南電</div>
-      <div style="color:#e2e8f0;font-size:13px;margin-top:2px;">籌碼分 37　<span style="color:#cbd5e1;">no_signal</span></div>
-    </div>
-    <div style="flex:1;min-width:200px;background:rgba(239,68,68,0.06);border:1px solid #334155;border-radius:6px;padding:8px 12px;">
-      <div style="color:#94a3b8;font-size:11px;">換出 ← 欣興</div>
-      <div style="color:#e2e8f0;font-size:13px;margin-top:2px;">籌碼分 49　<span style="color:#cbd5e1;">healthy_rotation</span></div>
-    </div>
+  <div style="margin-top:8px;color:#cbd5e1;font-size:13px;">
+    換進 <b>南電</b> 籌碼 37 (no_signal)
+    　|　換出 <b>欣興</b> 籌碼 49 (healthy_rotation)
+    　|　差距 <b style="color:#ef4444">-12</b>
+    <span style="color:#64748b;font-size:11px;">(正=籌碼偏換進方)</span>
   </div>
-  <div style="margin-top:12px;color:#e2e8f0;font-size:14px;">
-    籌碼 (RCR) 對這次換股：<b style="color:#64748b;">中性</b>
-    <span style="color:#64748b;font-size:12px;">（RCR neutral / 信心 49）</span>
-  </div>
-  <div style="margin-top:6px;font-size:14px;">
-    事後相對報酬（換進 − 換出）：<b style="color:#ef4444;">-0.7% (20 交易日)</b>
-    <span style="color:#94a3b8;">→ 換錯 ❌</span>
+  <div style="margin-top:5px;font-size:13px;">
+    RCR neutral（中性）
+    　事後相對報酬 <b style="color:#ef4444">-0.7% (20日)</b> → 換錯 ❌
   </div>
 </div>
 <div style="background:#0f172a;border:1px solid #1e293b;border-left:5px solid #ef4444;
-border-radius:10px;padding:16px 18px;margin:14px 0;">
-  <div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;">
-    <span style="font-size:16px;font-weight:bold;color:#e2e8f0;">2026-04-01</span>
-    <span style="font-size:15px;color:#93c5fd;">換成欣興</span>
-    <span style="color:#94a3b8;font-size:13px;">Z60 = +1.69 σ　·　RCGA NO_EDGE</span>
-    <span style="margin-left:auto;font-size:15px;">🔴 <b style="color:#ef4444">確認不足</b>
-    <span style="color:#64748b;">可靠度 32</span></span>
+border-radius:8px;padding:12px 16px;margin:10px 0;">
+  <div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;">
+    <span style="color:#fbbf24;font-size:13px;font-weight:bold;">南電/欣興</span>
+    <span style="font-size:14px;color:#e2e8f0;">2026-04-01</span>
+    <span style="color:#93c5fd;">換成欣興</span>
+    <span style="color:#94a3b8;font-size:12px;">Z60 +1.69　NO_EDGE</span>
+    <span style="margin-left:auto;">🔴 <b style="color:#ef4444">確認不足</b></span>
   </div>
-  <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
-    <div style="flex:1;min-width:200px;background:rgba(34,197,94,0.06);border:1px solid #334155;border-radius:6px;padding:8px 12px;">
-      <div style="color:#94a3b8;font-size:11px;">換進 → 欣興</div>
-      <div style="color:#e2e8f0;font-size:13px;margin-top:2px;">籌碼分 49　<span style="color:#cbd5e1;">distribution_warning</span></div>
-    </div>
-    <div style="flex:1;min-width:200px;background:rgba(239,68,68,0.06);border:1px solid #334155;border-radius:6px;padding:8px 12px;">
-      <div style="color:#94a3b8;font-size:11px;">換出 ← 南電</div>
-      <div style="color:#e2e8f0;font-size:13px;margin-top:2px;">籌碼分 80　<span style="color:#cbd5e1;">accumulation</span></div>
-    </div>
+  <div style="margin-top:8px;color:#cbd5e1;font-size:13px;">
+    換進 <b>欣興</b> 籌碼 49 (distribution_warning)
+    　|　換出 <b>南電</b> 籌碼 80 (accumulation)
+    　|　差距 <b style="color:#ef4444">-31</b>
+    <span style="color:#64748b;font-size:11px;">(正=籌碼偏換進方)</span>
   </div>
-  <div style="margin-top:12px;color:#e2e8f0;font-size:14px;">
-    籌碼 (RCR) 對這次換股：<b style="color:#64748b;">中性</b>
-    <span style="color:#64748b;font-size:12px;">（RCR neutral / 信心 99）</span>
-  </div>
-  <div style="margin-top:6px;font-size:14px;">
-    事後相對報酬（換進 − 換出）：<b style="color:#22c55e;">+14.7% (20 交易日)</b>
-    <span style="color:#94a3b8;">→ 換對 ✅</span>
+  <div style="margin-top:5px;font-size:13px;">
+    RCR neutral（中性）
+    　事後相對報酬 <b style="color:#22c55e">+14.7% (20日)</b> → 換對 ✅
   </div>
 </div>
 <div style="background:#0f172a;border:1px solid #1e293b;border-left:5px solid #ef4444;
-border-radius:10px;padding:16px 18px;margin:14px 0;">
-  <div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;">
-    <span style="font-size:16px;font-weight:bold;color:#e2e8f0;">2026-05-18</span>
-    <span style="font-size:15px;color:#93c5fd;">換成南電</span>
-    <span style="color:#94a3b8;font-size:13px;">Z60 = -1.77 σ　·　RCGA NO_EDGE</span>
-    <span style="margin-left:auto;font-size:15px;">🔴 <b style="color:#ef4444">確認不足</b>
-    <span style="color:#64748b;">可靠度 33</span></span>
+border-radius:8px;padding:12px 16px;margin:10px 0;">
+  <div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;">
+    <span style="color:#fbbf24;font-size:13px;font-weight:bold;">南電/欣興</span>
+    <span style="font-size:14px;color:#e2e8f0;">2026-05-18</span>
+    <span style="color:#93c5fd;">換成南電</span>
+    <span style="color:#94a3b8;font-size:12px;">Z60 -1.77　NO_EDGE</span>
+    <span style="margin-left:auto;">🔴 <b style="color:#ef4444">確認不足</b></span>
   </div>
-  <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
-    <div style="flex:1;min-width:200px;background:rgba(34,197,94,0.06);border:1px solid #334155;border-radius:6px;padding:8px 12px;">
-      <div style="color:#94a3b8;font-size:11px;">換進 → 南電</div>
-      <div style="color:#e2e8f0;font-size:13px;margin-top:2px;">籌碼分 16　<span style="color:#cbd5e1;">distribution_warning</span></div>
-    </div>
-    <div style="flex:1;min-width:200px;background:rgba(239,68,68,0.06);border:1px solid #334155;border-radius:6px;padding:8px 12px;">
-      <div style="color:#94a3b8;font-size:11px;">換出 ← 欣興</div>
-      <div style="color:#e2e8f0;font-size:13px;margin-top:2px;">籌碼分 52　<span style="color:#cbd5e1;">healthy_rotation</span></div>
-    </div>
+  <div style="margin-top:8px;color:#cbd5e1;font-size:13px;">
+    換進 <b>南電</b> 籌碼 16 (distribution_warning)
+    　|　換出 <b>欣興</b> 籌碼 52 (healthy_rotation)
+    　|　差距 <b style="color:#ef4444">-36</b>
+    <span style="color:#64748b;font-size:11px;">(正=籌碼偏換進方)</span>
   </div>
-  <div style="margin-top:12px;color:#e2e8f0;font-size:14px;">
-    籌碼 (RCR) 對這次換股：<b style="color:#64748b;">中性</b>
-    <span style="color:#64748b;font-size:12px;">（RCR neutral / 信心 76）</span>
+  <div style="margin-top:5px;font-size:13px;">
+    RCR neutral（中性）
+    　事後相對報酬 <b style="color:#ef4444">-3.2% (16日)</b> → 換錯 ❌
   </div>
-  <div style="margin-top:6px;font-size:14px;">
-    事後相對報酬（換進 − 換出）：<b style="color:#ef4444;">-3.2% (16 交易日)</b>
-    <span style="color:#94a3b8;">→ 換錯 ❌</span>
+</div>
+<div style="background:#0f172a;border:1px solid #1e293b;border-left:5px solid #ef4444;
+border-radius:8px;padding:12px 16px;margin:10px 0;">
+  <div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;">
+    <span style="color:#fbbf24;font-size:13px;font-weight:bold;">晶豪科/智原</span>
+    <span style="font-size:14px;color:#e2e8f0;">2025-08-19</span>
+    <span style="color:#93c5fd;">換成智原</span>
+    <span style="color:#94a3b8;font-size:12px;">Z60 +1.90　NO_EDGE</span>
+    <span style="margin-left:auto;">🔴 <b style="color:#ef4444">確認不足</b></span>
+  </div>
+  <div style="margin-top:8px;color:#cbd5e1;font-size:13px;">
+    換進 <b>智原</b> 籌碼 46 (no_signal)
+    　|　換出 <b>晶豪科</b> 籌碼 73 (accumulation)
+    　|　差距 <b style="color:#ef4444">-26</b>
+    <span style="color:#64748b;font-size:11px;">(正=籌碼偏換進方)</span>
+  </div>
+  <div style="margin-top:5px;font-size:13px;">
+    RCR neutral（中性）
+    　事後相對報酬 <b style="color:#ef4444">-25.7% (20日)</b> → 換錯 ❌
+  </div>
+</div>
+<div style="background:#0f172a;border:1px solid #1e293b;border-left:5px solid #ef4444;
+border-radius:8px;padding:12px 16px;margin:10px 0;">
+  <div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;">
+    <span style="color:#fbbf24;font-size:13px;font-weight:bold;">上銀/大銀微系統</span>
+    <span style="font-size:14px;color:#e2e8f0;">2025-07-31</span>
+    <span style="color:#93c5fd;">換成大銀微系統</span>
+    <span style="color:#94a3b8;font-size:12px;">Z60 +1.83　NO_EDGE</span>
+    <span style="margin-left:auto;">🔴 <b style="color:#ef4444">確認不足</b></span>
+  </div>
+  <div style="margin-top:8px;color:#cbd5e1;font-size:13px;">
+    換進 <b>大銀微系統</b> 籌碼 34 (distribution_warning)
+    　|　換出 <b>上銀</b> 籌碼 31 (distribution_warning)
+    　|　差距 <b style="color:#22c55e">+3</b>
+    <span style="color:#64748b;font-size:11px;">(正=籌碼偏換進方)</span>
+  </div>
+  <div style="margin-top:5px;font-size:13px;">
+    RCR neutral（中性）
+    　事後相對報酬 <b style="color:#22c55e">+9.7% (20日)</b> → 換對 ✅
+  </div>
+</div>
+<div style="background:#0f172a;border:1px solid #1e293b;border-left:5px solid #ef4444;
+border-radius:8px;padding:12px 16px;margin:10px 0;">
+  <div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;">
+    <span style="color:#fbbf24;font-size:13px;font-weight:bold;">上銀/大銀微系統</span>
+    <span style="font-size:14px;color:#e2e8f0;">2026-04-15</span>
+    <span style="color:#93c5fd;">換成上銀</span>
+    <span style="color:#94a3b8;font-size:12px;">Z60 -2.52　ROTATION_ZONE</span>
+    <span style="margin-left:auto;">🔴 <b style="color:#ef4444">訊號矛盾</b></span>
+  </div>
+  <div style="margin-top:8px;color:#cbd5e1;font-size:13px;">
+    換進 <b>上銀</b> 籌碼 51 (no_signal)
+    　|　換出 <b>大銀微系統</b> 籌碼 57 (no_signal)
+    　|　差距 <b style="color:#ef4444">-6</b>
+    <span style="color:#64748b;font-size:11px;">(正=籌碼偏換進方)</span>
+  </div>
+  <div style="margin-top:5px;font-size:13px;">
+    RCR neutral（中性）
+    　事後相對報酬 <b style="color:#22c55e">+8.0% (20日)</b> → 換對 ✅
+  </div>
+</div>
+<div style="background:#0f172a;border:1px solid #1e293b;border-left:5px solid #ef4444;
+border-radius:8px;padding:12px 16px;margin:10px 0;">
+  <div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;">
+    <span style="color:#fbbf24;font-size:13px;font-weight:bold;">巨大/美利達</span>
+    <span style="font-size:14px;color:#e2e8f0;">2025-08-07</span>
+    <span style="color:#93c5fd;">換成巨大</span>
+    <span style="color:#94a3b8;font-size:12px;">Z60 -2.03　NO_EDGE</span>
+    <span style="margin-left:auto;">🔴 <b style="color:#ef4444">確認不足</b></span>
+  </div>
+  <div style="margin-top:8px;color:#cbd5e1;font-size:13px;">
+    換進 <b>巨大</b> 籌碼 28 (distribution)
+    　|　換出 <b>美利達</b> 籌碼 25 (distribution)
+    　|　差距 <b style="color:#22c55e">+3</b>
+    <span style="color:#64748b;font-size:11px;">(正=籌碼偏換進方)</span>
+  </div>
+  <div style="margin-top:5px;font-size:13px;">
+    RCR neutral（中性）
+    　事後相對報酬 <b style="color:#ef4444">-8.6% (20日)</b> → 換錯 ❌
+  </div>
+</div>
+<div style="background:#0f172a;border:1px solid #1e293b;border-left:5px solid #ef4444;
+border-radius:8px;padding:12px 16px;margin:10px 0;">
+  <div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;">
+    <span style="color:#fbbf24;font-size:13px;font-weight:bold;">巨大/美利達</span>
+    <span style="font-size:14px;color:#e2e8f0;">2025-12-01</span>
+    <span style="color:#93c5fd;">換成美利達</span>
+    <span style="color:#94a3b8;font-size:12px;">Z60 +2.02　NO_EDGE</span>
+    <span style="margin-left:auto;">🔴 <b style="color:#ef4444">確認不足</b></span>
+  </div>
+  <div style="margin-top:8px;color:#cbd5e1;font-size:13px;">
+    換進 <b>美利達</b> 籌碼 58 (no_signal)
+    　|　換出 <b>巨大</b> 籌碼 80 (accumulation)
+    　|　差距 <b style="color:#ef4444">-22</b>
+    <span style="color:#64748b;font-size:11px;">(正=籌碼偏換進方)</span>
+  </div>
+  <div style="margin-top:5px;font-size:13px;">
+    RCR neutral（中性）
+    　事後相對報酬 <b style="color:#ef4444">-4.5% (20日)</b> → 換錯 ❌
   </div>
 </div>
 <div style="color:#64748b;font-size:11px;margin-top:20px;border-top:1px solid #1e293b;padding-top:10px;">
-HAIIC · Rotation Confirmation case study · CSA as-of 歷史回放 · 僅供研究，非投資建議。
+HAIIC · Rotation Confirmation 多配對 case study · CSA as-of 歷史回放 · 僅供研究，非投資建議。
 </div></body></html>
