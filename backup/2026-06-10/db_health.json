@@ -1,0 +1,193 @@
+{
+  "generated_at": "2026-06-10 18:00:04",
+  "as_of": "2026-06-10",
+  "fix_applied": true,
+  "overall_status": "warning",
+  "summary": {
+    "total": 9,
+    "healthy": 6,
+    "info": 1,
+    "warning": 2,
+    "critical": 0
+  },
+  "checks": [
+    {
+      "name": "DuckDB 表結構",
+      "category": "structure",
+      "status": "healthy",
+      "message": "全部 8 個必要表存在",
+      "detail": {
+        "counts": {
+          "price": 2094239,
+          "indices": 2144,
+          "institutional": 564198,
+          "futures": 245,
+          "macro": 3364,
+          "symbols": 1935,
+          "signal_history": 67917,
+          "update_log": 1
+        }
+      },
+      "fixable": false,
+      "fix_applied": false,
+      "fix_note": ""
+    },
+    {
+      "name": "最新日資料齊全度",
+      "category": "freshness",
+      "status": "warning",
+      "message": "最新日 2026-06-10 僅 26 檔（可能是 universe 子集）；上一日 2026-06-09 全市場 1935 檔齊全",
+      "detail": {
+        "latest_date": "2026-06-10",
+        "latest_count": 26,
+        "second_date": "2026-06-09",
+        "second_count": 1935,
+        "days_lag": 0,
+        "recent_5": [
+          {
+            "date": "2026-06-10",
+            "n": 26
+          },
+          {
+            "date": "2026-06-09",
+            "n": 1935
+          },
+          {
+            "date": "2026-06-08",
+            "n": 1934
+          },
+          {
+            "date": "2026-06-05",
+            "n": 1933
+          },
+          {
+            "date": "2026-06-04",
+            "n": 1934
+          }
+        ]
+      },
+      "fixable": false,
+      "fix_applied": false,
+      "fix_note": ""
+    },
+    {
+      "name": "重複資料",
+      "category": "integrity",
+      "status": "healthy",
+      "message": "price 表無重複 (symbol, date) 配對",
+      "detail": {
+        "duplicate_pairs": 0
+      },
+      "fixable": true,
+      "fix_applied": false,
+      "fix_note": ""
+    },
+    {
+      "name": "無效值檢查",
+      "category": "integrity",
+      "status": "healthy",
+      "message": "無未來日期、無非正價、零量比例 <5%",
+      "detail": {
+        "future_dates": 0,
+        "non_positive_close": 0,
+        "zero_volume": 28282,
+        "total_rows": 2094239,
+        "zero_vol_pct": 1.35
+      },
+      "fixable": true,
+      "fix_applied": false,
+      "fix_note": "移除未來日期 + 非正價列"
+    },
+    {
+      "name": "關鍵指數完整性",
+      "category": "coverage",
+      "status": "healthy",
+      "message": "全部 2 個關鍵指數齊全",
+      "detail": {
+        "latest_per_index": {
+          "TWII": {
+            "last_date": "2026-06-10",
+            "rows": 1073
+          },
+          "OTCI": {
+            "last_date": "2026-06-10",
+            "rows": 1071
+          }
+        }
+      },
+      "fixable": false,
+      "fix_applied": false,
+      "fix_note": ""
+    },
+    {
+      "name": "輔助資料時效",
+      "category": "freshness",
+      "status": "warning",
+      "message": "macro/SOX 落後 19 天",
+      "detail": {
+        "futures": {
+          "last_date": "2026-06-09",
+          "days_lag": 1
+        },
+        "macro": {
+          "USDTWD": "2026-06-08",
+          "VIX": "2026-06-08",
+          "SOX": "2026-05-22"
+        },
+        "institutional": {
+          "last_date": "2026-06-09",
+          "days_lag": 1
+        }
+      },
+      "fixable": false,
+      "fix_applied": false,
+      "fix_note": ""
+    },
+    {
+      "name": "Sector map 對照表",
+      "category": "coverage",
+      "status": "healthy",
+      "message": "1977 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1847 ｜ 市值 1935 ｜ 15 天前更新",
+      "detail": {
+        "total": 1977,
+        "with_xq": 1935,
+        "with_theme": 1847,
+        "with_mcap": 1935,
+        "xq_coverage_pct": 97.9,
+        "file_age_days": 15,
+        "last_modified": "2026-05-26 08:17"
+      },
+      "fixable": false,
+      "fix_applied": false,
+      "fix_note": ""
+    },
+    {
+      "name": "Market map (TWSE/TPEX)",
+      "category": "coverage",
+      "status": "healthy",
+      "message": "2095 檔 ｜ TWSE 1088 ｜ TPEX 1007",
+      "detail": {
+        "total": 2095,
+        "twse": 1088,
+        "tpex": 1007
+      },
+      "fixable": false,
+      "fix_applied": false,
+      "fix_note": ""
+    },
+    {
+      "name": "Update log 時效",
+      "category": "log",
+      "status": "info",
+      "message": "共 1 個資料源；最新紀錄 2026-05-24 10:19:45.706960",
+      "detail": {
+        "db_migrate_from_csv": "2026-05-24 10:19:45.706960"
+      },
+      "fixable": false,
+      "fix_applied": false,
+      "fix_note": ""
+    }
+  ],
+  "schema_version": "v1",
+  "available": true
+}
