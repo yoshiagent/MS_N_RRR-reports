@@ -2,7 +2,7 @@
 <html lang="zh-Hant"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Huang's AI Investment Company (HAIIC) — 主控台 (Master Console)</title>
+<title>Huang's AI Investment Company (HAIIC)</title>
 <style>
 * { box-sizing: border-box; }
 body { margin:0; padding:24px 20px 80px; max-width:1180px; margin:auto;
@@ -174,8 +174,8 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
        padding:1px 6px; border-radius:3px; font-size:12px; }
 </style>
 </head><body>
-<h1>Huang's AI Investment Company (HAIIC) — 主控台 (Master Console)</h1>
-<div class="sub">資料日：2026-06-10 ｜ 產生時間：2026-06-11 11:37</div>
+<h1>Huang's AI Investment Company (HAIIC)</h1>
+<div class="sub">資料日：2026-06-10 ｜ 產生時間：2026-06-11 15:36</div>
 
 <!-- 快捷導覽 — 投資公司結構性入口 (最上方) -->
 <div style="background:linear-gradient(90deg,#1e1b4b,#312e81);padding:10px 14px;
@@ -288,19 +288,19 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-top:5px;font-size:11px">
         <div style="background:#1e1b4b;padding:4px;border-radius:4px;text-align:center">
           <div style="color:#a5b4fc;font-size:9px">New</div>
-          <div style="color:#fff;font-weight:bold">27</div>
+          <div style="color:#fff;font-weight:bold">1</div>
         </div>
         <div style="background:#1e1b4b;padding:4px;border-radius:4px;text-align:center">
           <div style="color:#a5b4fc;font-size:9px">Upgrade</div>
-          <div style="color:#fff;font-weight:bold">3</div>
+          <div style="color:#fff;font-weight:bold">4</div>
         </div>
         <div style="background:#1e1b4b;padding:4px;border-radius:4px;text-align:center">
           <div style="color:#a5b4fc;font-size:9px">Leader</div>
-          <div style="color:#fbbf24;font-weight:bold">1</div>
+          <div style="color:#fbbf24;font-weight:bold">0</div>
         </div>
       </div>
       <div style="color:#94a3b8;font-size:9px;margin-top:3px">
-        萌芽期 (EMERGING)=236 檔追蹤中
+        萌芽期 (EMERGING)=256 檔追蹤中
       </div>
     </div>
 
@@ -565,35 +565,39 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
           🏛 IUE · Investment Universe Engine (Research Operations Dept)
         </span>
       </a>
-      <span style="color:#94a3b8;font-size:10px">
-        Phase 1 · 純 attention + 3 層 pool (lifecycle 待 Phase 2)
-      </span>
+      <a href="iue_journey.html" style="text-decoration:none"
+         title="Stock Journey — 每檔在系統的一生 (進池→Box→PM買入→換股→消失), append-only 永久履歷, Adaptive 訓練資料">
+        <span style="background:#1e1b4b;color:#c4b5fd;font-size:10px;
+                     padding:3px 8px;border-radius:4px;border:1px solid #6d28d9">
+          📜 Stock Journey 履歷
+        </span>
+      </a>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:8px">
       <div title="Candidate Pool — 4 sources union, 所有掃描器發現的標的入此池"
            style="background:#1e1b4b;padding:7px;border-radius:5px;border-left:3px solid #94a3b8;cursor:help">
         <div style="color:#cbd5e1;font-size:10px;font-weight:bold">Candidate</div>
-        <div style="color:#fff;font-size:16px;font-weight:bold">280</div>
+        <div style="color:#fff;font-size:16px;font-weight:bold">263</div>
         <div style="color:#64748b;font-size:9px">機會發現池</div>
       </div>
       <div title="Watch Pool — Attention Score ≥ 40, 追蹤中的標的"
            style="background:#7c2d12;padding:7px;border-radius:5px;border-left:3px solid #f97316;cursor:help">
         <div style="color:#fed7aa;font-size:10px;font-weight:bold">Watch (AS≥40)</div>
-        <div style="color:#fff;font-size:16px;font-weight:bold">46</div>
+        <div style="color:#fff;font-size:16px;font-weight:bold">169</div>
         <div style="color:#94a3b8;font-size:9px">追蹤觀察池</div>
       </div>
       <div title="Investment Pool — AS≥60 + 結構 + 風險 hard filter 通過, PM 可投資"
            style="background:#14532d;padding:7px;border-radius:5px;border-left:3px solid #22c55e;cursor:help">
         <div style="color:#86efac;font-size:10px;font-weight:bold">Investment (AS≥60)</div>
-        <div style="color:#fff;font-size:16px;font-weight:bold">6</div>
-        <div style="color:#94a3b8;font-size:9px">avg AS=68.81</div>
+        <div style="color:#fff;font-size:16px;font-weight:bold">28</div>
+        <div style="color:#94a3b8;font-size:9px">avg AS=66.04</div>
       </div>
-      <div title="4 sources 原始分佈 — IUE 從 4 個 scanner 接收原始信號&#10;HOT (熱門/成交金額): 182&#10;MOMENTUM (強勢漲幅): 80&#10;BASE (打底吸籌): 101&#10;CUSTOM (使用者自選): 10"
+      <div title="4 sources 原始分佈 — IUE 從 4 個 scanner 接收原始信號&#10;HOT (熱門/成交金額): 182&#10;MOMENTUM (強勢漲幅): 80&#10;BASE (打底吸籌): 85&#10;CUSTOM (使用者自選): 10"
            style="background:#1e3a8a;padding:7px;border-radius:5px;border-left:3px solid #3b82f6;cursor:help">
         <div style="color:#93c5fd;font-size:10px;font-weight:bold">4 Sources</div>
         <div style="color:#fff;font-size:11px;margin-top:2px">
           H182 · M80 ·
-          B101 · C10
+          B85 · C10
         </div>
       </div>
     </div>
@@ -604,23 +608,23 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
       
         <div style="background:#1e1b4b;padding:5px 8px;border-radius:4px;text-align:center">
           <div style="color:#a5b4fc;font-size:9px">趨勢成長</div>
-          <div style="color:#fbbf24;font-weight:bold;font-size:13px">6</div>
+          <div style="color:#22c55e;font-weight:bold;font-size:13px">28</div>
         </div>
         <div style="background:#1e1b4b;padding:5px 8px;border-radius:4px;text-align:center">
           <div style="color:#a5b4fc;font-size:9px">品質價值</div>
-          <div style="color:#64748b;font-weight:bold;font-size:13px">3</div>
+          <div style="color:#22c55e;font-weight:bold;font-size:13px">14</div>
         </div>
         <div style="background:#1e1b4b;padding:5px 8px;border-radius:4px;text-align:center">
           <div style="color:#a5b4fc;font-size:9px">相對輪動</div>
-          <div style="color:#fbbf24;font-weight:bold;font-size:13px">6</div>
+          <div style="color:#22c55e;font-weight:bold;font-size:13px">28</div>
         </div>
         <div style="background:#1e1b4b;padding:5px 8px;border-radius:4px;text-align:center">
           <div style="color:#a5b4fc;font-size:9px">資金流</div>
-          <div style="color:#fbbf24;font-weight:bold;font-size:13px">6</div>
+          <div style="color:#22c55e;font-weight:bold;font-size:13px">28</div>
         </div>
         <div style="background:#1e1b4b;padding:5px 8px;border-radius:4px;text-align:center">
           <div style="color:#a5b4fc;font-size:9px">轉機</div>
-          <div style="color:#64748b;font-weight:bold;font-size:13px">3</div>
+          <div style="color:#22c55e;font-weight:bold;font-size:13px">14</div>
         </div>
         <div style="background:#1e1b4b;padding:5px 8px;border-radius:4px;text-align:center">
           <div style="color:#a5b4fc;font-size:9px">防禦型</div>
