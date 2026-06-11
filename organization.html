@@ -757,17 +757,30 @@ code{font-family:'Consolas','Courier New',monospace}
     <div style="background:#1e293b;padding:14px;border-radius:10px;
                 border-top:4px solid #22c55e;margin-bottom:14px">
       <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
-        <h3 style="margin:0;color:#22c55e;font-size:15px"><a href='paper_portfolio.html' title='點開查看 PM 部門即時持倉與績效 — Paper Portfolio E.2/E.3 真實 pnl + 交易成本' style='color:#22c55e;text-decoration:none;border-bottom:1px dashed #22c55e'>投資組合部 🔗</a></h3>
-        <span style="font-size:11px;color:#64748b">Portfolio Management · 多策略 PM (Phase K 進行中)</span>
+        <h3 style="margin:0;color:#22c55e;font-size:15px"><a href='fund_managers.html' title='點開查看基金管理部 — CIO 依 regime 配置風格權重 + 6 風格經理競標『適不適合我的基金』+ 競標彙整 portfolio' style='color:#22c55e;text-decoration:none;border-bottom:1px dashed #22c55e'>基金管理部 🔗</a></h3>
+        <span style="font-size:11px;color:#64748b">Portfolio Dept · CIO 風格配置 × 多經理競標 (V.2 L4)</span>
       </div>
       <div style='margin-top:10px'>
     <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
                 margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
       <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
-        總基金經理人 ⭐ ⭐
+        投資長 (CIO 風格配置) ⭐ ⭐
       </div>
       <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
-        <span style='color:#fbbf24'>Chief PM (Portfolio Manager)</span>
+        <span style='color:#fbbf24'>CIO Style Allocator</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>cio_allocator (regime→風格權重)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        總基金經理人 (競標彙整) ⭐ ⭐
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Chief PM (Bid Aggregator)</span>
         <span style='color:#64748b'> — </span>
         <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
                      border-radius:3px;font-size:10px'>decision_agent (V.2 L4)</code>
@@ -777,91 +790,91 @@ code{font-family:'Consolas','Courier New',monospace}
     <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
                 margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
       <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
-        自選股 PM ⭐
+        積極成長型經理
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Growth Manager</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>fund_managers/Growth ✅</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        趨勢波段型經理
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Trend Manager</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>fund_managers/Trend ✅ (pm_trend_growth)</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        價值品質型經理
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Value Manager</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>fund_managers/Value ✅</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        相對輪動型經理
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Rotation Manager</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>fund_managers/Rotation ✅</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        核心配置型經理
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Balanced Manager</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>fund_managers/Balanced ✅</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        防禦現金型經理
+      </div>
+      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
+        <span style='color:#fbbf24'>Defensive Manager</span>
+        <span style='color:#64748b'> — </span>
+        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
+                     border-radius:3px;font-size:10px'>fund_managers/Defensive ✅</code>
+      </div>
+    </div>
+    
+    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
+                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
+      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
+        自選股 PM
       </div>
       <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
         <span style='color:#fbbf24'>Custom PM</span>
         <span style='color:#64748b'> — </span>
         <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
-                     border-radius:3px;font-size:10px'>pm_custom (Phase K-Custom ✅)</code>
-      </div>
-    </div>
-    
-    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
-                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
-      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
-        趨勢成長 PM
-      </div>
-      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
-        <span style='color:#fbbf24'>Trend Growth PM</span>
-        <span style='color:#64748b'> — </span>
-        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
-                     border-radius:3px;font-size:10px'>pm_trend_growth (Phase K-1 ✅)</code>
-      </div>
-    </div>
-    
-    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
-                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
-      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
-        品質價值 PM
-      </div>
-      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
-        <span style='color:#fbbf24'>Value Quality PM</span>
-        <span style='color:#64748b'> — </span>
-        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
-                     border-radius:3px;font-size:10px'>(Phase K-2 待建)</code>
-      </div>
-    </div>
-    
-    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
-                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
-      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
-        相對輪動 PM
-      </div>
-      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
-        <span style='color:#fbbf24'>Rotation PM</span>
-        <span style='color:#64748b'> — </span>
-        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
-                     border-radius:3px;font-size:10px'>(Phase K-3 待建)</code>
-      </div>
-    </div>
-    
-    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
-                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
-      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
-        資金流 PM
-      </div>
-      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
-        <span style='color:#fbbf24'>Capital Flow PM</span>
-        <span style='color:#64748b'> — </span>
-        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
-                     border-radius:3px;font-size:10px'>(Phase M 待建)</code>
-      </div>
-    </div>
-    
-    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
-                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
-      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
-        轉機 PM
-      </div>
-      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
-        <span style='color:#fbbf24'>Turnaround PM</span>
-        <span style='color:#64748b'> — </span>
-        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
-                     border-radius:3px;font-size:10px'>(Phase M 待建)</code>
-      </div>
-    </div>
-    
-    <div style='padding:5px 10px;background:#0f1a2c;border-radius:4px;
-                margin-top:4px;border-left:3px solid #22c55e;line-height:1.55'>
-      <div style='color:#e2e8f0;font-size:13px;font-weight:bold'>
-        防禦型 PM
-      </div>
-      <div style='color:#94a3b8;font-size:11px;margin-top:1px'>
-        <span style='color:#fbbf24'>Defensive PM</span>
-        <span style='color:#64748b'> — </span>
-        <code style='color:#a5f3fc;background:rgba(0,0,0,0.3);padding:1px 5px;
-                     border-radius:3px;font-size:10px'>(Phase L 待建)</code>
+                     border-radius:3px;font-size:10px'>pm_custom</code>
       </div>
     </div>
     
