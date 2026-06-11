@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>資金委員會 · Capital Committee</title>
+<style>
+  body { background:#0f172a;color:#e2e8f0;font-family:Segoe UI,system-ui,sans-serif;margin:0;padding:0 18px 60px }
+  a { color:#93c5fd } .wrap { max-width:1080px;margin:0 auto }
+</style></head>
+<body><div class="wrap">
+  <div style="background:linear-gradient(135deg,#1e1b4b,#0f172a);padding:22px 24px;border-radius:10px;margin:18px 0">
+    <div style="font-size:22px;font-weight:bold;color:#c4b5fd">🏛 資金委員會 · Capital Committee</div>
+    <div style="color:#94a3b8;font-size:13px;margin-top:6px">
+      Orchestrator 層彙整器 — <b>純讀</b> CMG/CHR/CSA/Box 各自 FS 輸出統一協調 (三 Agent 零耦合)。
+      籌碼鏈：<b>CMG 錢流去哪 → CHR 誰接手 → CSA 接得集中/分散 → Box 價格是否承認</b>。
+      重點抓「資金/持有者」與「價格」<b style="color:#fbbf24">背離</b>。
+    </div>
+    <div style="color:#64748b;font-size:12px;margin-top:8px">
+      資料日 2026-06-11 · 49 檔 · 背離 25 檔 ·
+      <a href="index.html">← 回主頁</a> · <a href="capital_structure.html">四維資金</a> · <a href="chr.html">CHR 輪動</a>
+    </div>
+  </div>
+  
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3481</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟢 資金價格一致</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">主力吸籌</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Accumulation</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">吸籌流入</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#14532d;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟢</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">委員會一致看多·資金價格共振</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 4 (多4/空0)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3711</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟢 資金價格一致</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">主力吸籌</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">吸籌流入</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#14532d;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟢</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">委員會一致看多·資金價格共振</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 4 (多4/空0)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2313</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">主力吸籌</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Accumulation</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">吸籌流入</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 3 高位震盪/劣化</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#14532d;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟢</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">委員會一致看多·資金價格共振</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 3 (多3/空0)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2383</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟢 資金價格一致</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">主力吸籌</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Cooling</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">吸籌流入</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#14532d;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟢</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">委員會一致看多·資金價格共振</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 3 (多3/空0)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3006</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟢 資金價格一致</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">主力吸籌</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Accumulation</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#14532d;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟢</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">委員會一致看多·資金價格共振</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 3 (多3/空0)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3042</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">主力吸籌</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">吸籌流入</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#14532d;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟢</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">委員會一致看多·資金價格共振</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 3 (多3/空0)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">4958</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">主力吸籌</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Accumulation</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">吸籌流入</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#14532d;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟢</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">委員會一致看多·資金價格共振</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 3 (多3/空0)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2049</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">短線推升</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Cooling</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">吸籌流入</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#14532d;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟢</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">偏多·多數委員同意</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 2 (多2/空0)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2303</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟢 資金價格一致</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">承接觀察</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#14532d;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟢</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">偏多·多數委員同意</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 2 (多2/空0)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2881</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">主力吸籌</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">吸籌流入</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#14532d;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟢</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">偏多·多數委員同意</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 2 (多3/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 主力默默接·價格未認(早期吸籌/底部)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3081</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">主力吸籌</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Accumulation</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">—</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#14532d;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟢</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">偏多·多數委員同意</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 2 (多2/空0)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">4576</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟢 資金價格一致</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">短線推升</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#14532d;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟢</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">偏多·多數委員同意</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 2 (多2/空0)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">8299</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟢 資金價格一致</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">短線推升</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Accumulation</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#14532d;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟢</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">偏多·多數委員同意</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 2 (多2/空0)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2344</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">主力吸籌</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Cooling</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 1 (多1/空0)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2368</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟢 資金價格一致</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Accumulation</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 1 (多2/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 價格漲·資金撤(出貨/假突破風險)</div><div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 持有者改善·錢流未跟(承接早期)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2449</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟢 資金價格一致</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">短線推升</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Accumulation</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">派發流出</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 1 (多2/空1)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2454</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟢 資金價格一致</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Accumulation</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 1 (多2/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 價格漲·資金撤(出貨/假突破風險)</div><div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 持有者改善·錢流未跟(承接早期)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3017</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟢 資金價格一致</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">短線推升</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">派發流出</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 1 (多2/空1)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3035</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">主力吸籌</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Cooling</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">吸籌流入</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 4 趨勢破壞</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 1 (多2/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 主力默默接·價格未認(早期吸籌/底部)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">6147</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">主力吸籌</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Cooling</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">吸籌流入</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 1 (多2/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 主力默默接·價格未認(早期吸籌/底部)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">6223</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">主力吸籌</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Cooling</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">—</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 1 (多1/空0)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">8046</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟢 資金價格一致</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 1 (多2/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 價格漲·資金撤(出貨/假突破風險)</div><div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 持有者改善·錢流未跟(承接早期)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">9921</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">主力吸籌</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Cooling</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">吸籌流入</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 4 趨勢破壞</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 1 (多2/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 主力默默接·價格未認(早期吸籌/底部)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2059</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Accumulation</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">—</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 0 (多1/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 持有者改善·錢流未跟(承接早期)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2301</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Accumulation</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">—</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 0 (多1/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 持有者改善·錢流未跟(承接早期)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2308</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Cooling</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 0 (多1/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 價格漲·資金撤(出貨/假突破風險)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2327</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Cooling</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 0 (多1/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 價格漲·資金撤(出貨/假突破風險)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2345</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟢 資金價格一致</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">派發流出</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 0 (多2/空2)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 價格漲·資金撤(出貨/假突破風險)</div><div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 持有者改善·錢流未跟(承接早期)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2382</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Accumulation</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 0 (多1/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 持有者改善·錢流未跟(承接早期)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2883</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">—</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 0 (多1/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 持有者改善·錢流未跟(承接早期)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3105</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Distribution</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">吸籌流入</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 0 (多2/空2)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 價格漲·資金撤(出貨/假突破風險)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3443</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">—</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 0 (多1/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 持有者改善·錢流未跟(承接早期)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3653</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Cooling</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 0 (多1/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 價格漲·資金撤(出貨/假突破風險)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3665</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">—</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 0 (多1/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 持有者改善·錢流未跟(承接早期)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">8021</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Accumulation</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">—</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 0 (多1/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 持有者改善·錢流未跟(承接早期)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">9914</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">承接觀察</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 4 趨勢破壞</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 0 (多1/空1)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 主力默默接·價格未認(早期吸籌/底部)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2330</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Cooling</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">派發流出</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 -1 (多1/空2)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 價格漲·資金撤(出貨/假突破風險)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2360</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Cooling</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">—</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 -1 (多0/空1)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2408</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">派發流出</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 -1 (多1/空2)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 持有者改善·錢流未跟(承接早期)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2409</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">派發流出</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 -1 (多1/空2)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 持有者改善·錢流未跟(承接早期)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3008</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Distribution</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">吸籌流入</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 -1 (多1/空2)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3189</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Cooling</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">派發流出</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#422006;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🟡</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">分歧·委員意見不一</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 -1 (多1/空2)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 價格漲·資金撤(出貨/假突破風險)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">2317</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#14532d;color:#4ade80;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">＋</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Improving</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">派發流出</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 4 趨勢破壞</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#450a0a;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🔴</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">偏空·多數委員看淡</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 -2 (多1/空3)</span>
+    </div>
+    <div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 主力默默接·價格未認(早期吸籌/底部)</div><div style="color:#fbbf24;font-size:12px;margin-top:3px">⚠️ 持有者改善·錢流未跟(承接早期)</div>
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3037</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Distribution</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#450a0a;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🔴</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">偏空·多數委員看淡</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 -2 (多0/空2)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3661</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Distribution</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">—</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#450a0a;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🔴</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">偏空·多數委員看淡</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 -2 (多0/空2)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">6274</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Distribution</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">中性</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">—</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#450a0a;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🔴</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">偏空·多數委員看淡</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 -2 (多0/空2)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">6669</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Cooling</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">派發流出</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 2 主升段</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#450a0a;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🔴</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">偏空·多數委員看淡</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 -2 (多0/空2)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">5289</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🟡 資金價格分歧</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Distribution</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">派發流出</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#1e293b;color:#94a3b8;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">０</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">—</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#450a0a;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🔴</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">委員會一致看空·資金價格齊跌</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 -3 (多0/空3)</span>
+    </div>
+    
+  </div>
+  <div style="background:#0f1a2c;border:1px solid #1e293b;border-radius:10px;padding:13px 15px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="color:#fbbf24;font-weight:bold;font-size:17px;font-family:monospace">3231</span>
+      <span style="color:#e2e8f0;font-size:14px"></span>
+      <span style="color:#94a3b8;font-size:11px">🔴 資金價格齊空</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CMG 錢流</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">籌碼擴散</div>
+        <div style="color:#64748b;font-size:10px">大資金×籌碼集中</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CHR 持有者</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Distribution</div>
+        <div style="color:#64748b;font-size:10px">誰正在接手</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">CSA 籌碼品質</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">派發流出</div>
+        <div style="color:#64748b;font-size:10px">集中/分散四票</div>
+      </div>
+      <div style="flex:1;min-width:150px;background:#0b1322;border-radius:6px;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px"><span style="background:#450a0a;color:#f87171;padding:1px 7px;border-radius:5px;font-weight:bold;font-size:12px">－</span>
+          <span style="color:#e2e8f0;font-size:12px;font-weight:bold">Box 價格</span></div>
+        <div style="color:#cbd5e1;font-size:12px;margin-top:4px">Stage 4 趨勢破壞</div>
+        <div style="color:#64748b;font-size:10px">趨勢是否承認</div>
+      </div></div>
+    <div style="margin-top:9px;background:#450a0a;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🔴</span>
+      <span style="color:#fff;font-weight:bold;font-size:14px">委員會一致看空·資金價格齊跌</span>
+      <span style="color:#94a3b8;font-size:11px">淨票 -4 (多0/空4)</span>
+    </div>
+    
+  </div>
+  <p style="color:#475569;font-size:11px;margin-top:20px">
+    由 <code>src/agents/capital_committee.py</code> 純讀 broker_branch(CMG/CSA) + chr + box_structure snapshot 彙整 (R7-clean)。
+    每層方向票 ＋/０/－; 委員會結論 = 四票淨額; ⚠️ = 跨層背離 (資金/持有者 vs 價格不一致)。
+  </p>
+</div></body></html>
