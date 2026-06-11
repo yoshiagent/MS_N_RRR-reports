@@ -711,8 +711,9 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid #1a2332;color:#e2e
 <div id="chrcmg" style="max-width:1000px;margin:24px auto 8px;font-family:'Segoe UI','Microsoft JhengHei',sans-serif">
   <div style="background:#0f1a2c;border:1px solid #1e293b;border-left:4px solid #a855f7;border-radius:10px;padding:14px 16px">
     <div style="color:#c4b5fd;font-weight:bold;font-size:17px">🔄 CHR · Capital Holder Rotation　×　💰 CMG 籌碼資金流向圖　×　🎯 持有者 RRG</div>
-    <div style="color:#94a3b8;font-size:12px;margin-top:4px">CHR 看「誰正在累積/出脫」(累計·張)；CMG 看「錢往哪流」(日淨流入·億)；RRG 看「四象限輪動」(吸籌/轉弱/派發/回補)。可單獨切換持有者並 ▶ 播放。</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 6px;align-items:center">
+    <div style="color:#94a3b8;font-size:12px;margin-top:4px">CHR 看「誰正在累積/出脫」(累計·張)；CMG 看「錢往哪流」(日淨流入·億)；RRG 看「四象限輪動」(吸籌/轉弱/派發/回補)。RRG 有獨立的標的/持有者/▶ 播放控制。</div>
+    <div style="color:#a855f7;font-size:11px;font-weight:bold;margin:12px 0 2px">CHR + CMG 控制</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 6px;align-items:center">
       <span style="color:#64748b;font-size:12px">標的</span>
       <button class="cc-stock" data-c="8046" onclick="ccStock('8046')">南電 8046</button>
       <button class="cc-stock" data-c="3037" onclick="ccStock('3037')">欣興 3037</button>
@@ -726,6 +727,20 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid #1a2332;color:#e2e
     </div>
     <div id="cc-chr" style="height:360px"></div>
     <div id="cc-cmg" style="height:300px;margin-top:6px"></div>
+
+    <div style="color:#fbbf24;font-size:12px;font-weight:bold;margin:18px 0 2px;border-top:1px dashed #334155;padding-top:12px">🎯 持有者輪動 RRG 控制（獨立）</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 6px;align-items:center">
+      <span style="color:#64748b;font-size:12px">標的</span>
+      <button class="rg-stock" data-c="8046" onclick="rgStock('8046')">南電 8046</button>
+      <button class="rg-stock" data-c="3037" onclick="rgStock('3037')">欣興 3037</button>
+      <span style="color:#64748b;font-size:12px;margin-left:14px">持有者</span>
+      <button class="rg-h" data-h="外資" onclick="rgHolder('外資')">外資</button>
+      <button class="rg-h" data-h="投信" onclick="rgHolder('投信')">投信</button>
+      <button class="rg-h" data-h="自營" onclick="rgHolder('自營')">自營</button>
+      <button class="rg-h" data-h="融資" onclick="rgHolder('融資')">融資</button>
+      <button class="rg-h" data-h="ALL" onclick="rgHolder('ALL')">全部</button>
+      <button id="rg-play" onclick="rgPlay()" style="margin-left:14px;background:#7c3aed;color:#fff;border:none;border-radius:6px;padding:5px 14px;cursor:pointer;font-weight:bold">▶ 播放</button>
+    </div>
     <div id="cc-rrg" style="height:420px;margin-top:6px"></div>
     <div style="color:#475569;font-size:11px;margin-top:6px">外資/投信/自營 = 日買賣超累計；融資 = 融資餘額相對起點變化。CMG 金額 = 張×close。
       RRG: CS(強度)=近20日買賣超 z 分數、CM(動能)=CS 的 10 日變化;尾巴=近 8 日軌跡。</div>
@@ -757,7 +772,7 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid #1a2332;color:#e2e
 <style>
   #chrcmg button{background:#1e293b;color:#cbd5e1;border:1px solid #334155;border-radius:6px;padding:5px 12px;cursor:pointer;font-size:13px}
   #chrcmg button.on{background:#7c3aed;color:#fff;border-color:#7c3aed;font-weight:bold}
-  #chrcmg .cc-h.off{opacity:.4}
+  #chrcmg .cc-h.off,#chrcmg .rg-h.off{opacity:.4}
 </style>
 <script>
 (function(){
@@ -765,6 +780,7 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid #1a2332;color:#e2e
   var COL = {"外資":"#ef4444","投信":"#22c55e","自營":"#3b82f6","融資":"#f59e0b","price":"#94a3b8"};
   var HOLDERS = ["外資","投信","自營","融資"];
   var state = {code:"8046", vis:{"外資":true,"投信":true,"自營":true,"融資":true}, k:0, timer:null};
+  var rstate = {code:"8046", vis:{"外資":true,"投信":true,"自營":true,"融資":true}, k:0, timer:null};
 
   function ensurePlotly(cb){
     if (window.Plotly) return cb();
@@ -803,9 +819,9 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid #1a2332;color:#e2e
     }, {displayModeBar:false,responsive:true});
   }
   function drawRRG(){
-    var d=CC[state.code], k=state.k|| d.dates.length, R=2.6, TAIL=8;
+    var d=CC[rstate.code], k=rstate.k|| d.dates.length, R=2.6, TAIL=8;
     var tr=[];
-    HOLDERS.forEach(function(h){ if(!state.vis[h]) return;
+    HOLDERS.forEach(function(h){ if(!rstate.vis[h]) return;
       var cs=d.rrg[h].cs, cm=d.rrg[h].cm, end=k, s=Math.max(0,end-TAIL);
       var xs=cs.slice(s,end), ys=cm.slice(s,end);
       if(!xs.length) return;
@@ -837,7 +853,7 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid #1a2332;color:#e2e
       yaxis:{title:"CM 動能 →",range:[-R,R],gridcolor:"#15203a",zeroline:false}
     }, {displayModeBar:false,responsive:true});
   }
-  function draw(){ drawCHR(); drawCMG(); drawRRG(); }
+  function draw(){ drawCHR(); drawCMG(); }
 
   window.ccStock=function(c){ state.code=c; state.k=0; stopPlay();
     document.querySelectorAll('#chrcmg .cc-stock').forEach(function(b){ b.classList.toggle('on', b.dataset.c===c); });
@@ -862,10 +878,36 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid #1a2332;color:#e2e
     }, 90);
   };
 
+  // —— RRG 獨立控制 (rstate, 不與 CHR/CMG 共用) ——
+  window.rgStock=function(c){ rstate.code=c; rstate.k=0; stopRPlay();
+    document.querySelectorAll('#chrcmg .rg-stock').forEach(function(b){ b.classList.toggle('on', b.dataset.c===c); });
+    drawRRG(); };
+  window.rgHolder=function(h){
+    if(h==='ALL'){ HOLDERS.forEach(function(x){rstate.vis[x]=true;}); }
+    else { rstate.vis[h]=!rstate.vis[h]; }
+    document.querySelectorAll('#chrcmg .rg-h').forEach(function(b){
+      var hh=b.dataset.h; if(hh==='ALL') return;
+      b.classList.toggle('off', !rstate.vis[hh]); });
+    drawRRG(); };
+  function stopRPlay(){ if(rstate.timer){clearInterval(rstate.timer); rstate.timer=null;}
+    var p=document.getElementById('rg-play'); if(p) p.textContent='▶ 播放'; }
+  window.rgPlay=function(){
+    if(rstate.timer){ stopRPlay(); rstate.k=0; drawRRG(); return; }
+    var n=CC[rstate.code].dates.length; rstate.k=Math.max(5,Math.floor(n*0.1));
+    document.getElementById('rg-play').textContent='⏸ 停止';
+    rstate.timer=setInterval(function(){
+      rstate.k+=Math.max(1,Math.floor(n/60));
+      if(rstate.k>=n){ rstate.k=n; drawRRG(); stopRPlay(); return; }
+      drawRRG();
+    }, 90);
+  };
+
   ensurePlotly(function(){
     document.querySelectorAll('#chrcmg .cc-stock').forEach(function(b){ b.classList.toggle('on', b.dataset.c===state.code); });
     document.querySelectorAll('#chrcmg .cc-h').forEach(function(b){ if(b.dataset.h!=='ALL') b.classList.remove('off'); });
-    draw();
+    document.querySelectorAll('#chrcmg .rg-stock').forEach(function(b){ b.classList.toggle('on', b.dataset.c===rstate.code); });
+    document.querySelectorAll('#chrcmg .rg-h').forEach(function(b){ if(b.dataset.h!=='ALL') b.classList.remove('off'); });
+    draw(); drawRRG();
   });
 })();
 </script>
