@@ -595,18 +595,18 @@ code{font-family:'Consolas','Courier New',monospace}
     <div style="background:#1e293b;padding:14px;border-radius:10px;
                 border-top:4px solid #a855f7;margin-bottom:14px">
       <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
-        <h3 style="margin:0;color:#a855f7;font-size:15px">投資委員會 (9 位委員)</h3>
-        <span style="font-size:11px;color:#64748b">Investment Committee · CIO 主持</span>
+        <h3 style="margin:0;color:#a855f7;font-size:15px">外聘評審委員會 IAB (9 位評審)</h3>
+        <span style="font-size:11px;color:#64748b">Investment Advisory Board · 用分歧度而非平均</span>
       </div>
       
     <div style="background:linear-gradient(135deg,#fbbf2433,#0f172a);
                 padding:12px;border-radius:8px;border-left:4px solid #fbbf24;
                 text-align:center;margin-top:10px">
-      <div style="color:#fbbf24;font-weight:bold;font-size:15px">投資委員會主席 ⭐</div>
-      <div style="color:#fbbf24;font-size:11px;margin-top:2px">IC Chair</div>
+      <div style="color:#fbbf24;font-weight:bold;font-size:15px">外聘評審委員會召集人 ⭐</div>
+      <div style="color:#fbbf24;font-size:11px;margin-top:2px">IAB Convener</div>
       <code style="color:#a5f3fc;font-size:11px;background:rgba(0,0,0,0.3);
                    padding:2px 6px;border-radius:3px;margin-top:4px;display:inline-block">
-        master_score/ensemble
+        iab_agent (分歧度定性) + master_score/ensemble
       </code>
     </div>
     
@@ -711,6 +711,12 @@ code{font-family:'Consolas','Courier New',monospace}
           <div style='color:#94a3b8;font-size:10px;margin-top:3px'>· Value</div>
         </div>
         
+      </div>
+      <div style="margin-top:10px;padding:8px 10px;background:#0f172a;border-radius:6px;
+                  border-left:3px solid #fbbf24;color:#cbd5e1;font-size:11px;line-height:1.6">
+        🎖 <b style="color:#fbbf24">分歧度定性</b>: 評審評分「分歧」揭露股票性格 (成長動能/結構趨勢/量價吸籌/品質價值/全能均優/弱勢)
+        → 產出 <b>stock_type</b> + <b>best_manager</b> → 路由給對應
+        <span style="color:#22c55e">基金經理 (積極成長/趨勢波段/價值品質/籌碼布局/核心配置)</span> 競標。
       </div>
     </div>
     
@@ -1451,7 +1457,7 @@ code{font-family:'Consolas','Courier New',monospace}
     <th>英文</th>
     <th>程式名</th>
   </tr></thead>
-  <tbody><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L0 MS Agent</td><td style='padding:8px;color:#e2e8f0'>投資長</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>CIO</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>ms_agent/</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L1a IUE</td><td style='padding:8px;color:#e2e8f0'>IUE 處長</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>IUE Director (Research Ops)</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>iue/ (attention+lifecycle+routing)</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L1b Universe Selector</td><td style='padding:8px;color:#e2e8f0'>選股長</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>Universe Head (4-pool union)</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>universe_selector (IUE 上游)</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L2 V.1 Feature Agents</td><td style='padding:8px;color:#e2e8f0'>研究部</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>Research Department</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>9 V.1 Agents</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L3 Master Score</td><td style='padding:8px;color:#e2e8f0'>投資委員會</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>Investment Committee</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>master_score/*</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L4 Decision Agent</td><td style='padding:8px;color:#e2e8f0'>基金經理人</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>PM (Portfolio Manager)</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>decision_agent</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L5 Discipline Agent</td><td style='padding:8px;color:#e2e8f0'>風控長</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>CRO</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>discipline_agent</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L6 Performance Agent</td><td style='padding:8px;color:#e2e8f0'>績效分析師</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>Performance Analyst</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>performance_agent</code></td></tr></tbody>
+  <tbody><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L0 MS Agent</td><td style='padding:8px;color:#e2e8f0'>投資長</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>CIO</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>ms_agent/</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L1a IUE</td><td style='padding:8px;color:#e2e8f0'>IUE 處長</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>IUE Director (Research Ops)</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>iue/ (attention+lifecycle+routing)</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L1b Universe Selector</td><td style='padding:8px;color:#e2e8f0'>選股長</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>Universe Head (4-pool union)</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>universe_selector (IUE 上游)</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L2 V.1 Feature Agents</td><td style='padding:8px;color:#e2e8f0'>研究部</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>Research Department</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>9 V.1 Agents</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L3 外聘評審委員會 IAB</td><td style='padding:8px;color:#e2e8f0'>外聘評審委員會</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>Investment Advisory Board</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>iab_agent (分歧度定性) ← master_score/*</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L4 Decision Agent</td><td style='padding:8px;color:#e2e8f0'>基金經理人</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>PM (Portfolio Manager)</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>decision_agent</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L5 Discipline Agent</td><td style='padding:8px;color:#e2e8f0'>風控長</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>CRO</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>discipline_agent</code></td></tr><tr><td style='padding:8px;color:#fbbf24;font-weight:bold'>L6 Performance Agent</td><td style='padding:8px;color:#e2e8f0'>績效分析師</td><td style='padding:8px;color:#a5f3fc;font-size:11px'>Performance Analyst</td><td style='padding:8px'><code style='color:#fbbf24;font-size:11px'>performance_agent</code></td></tr></tbody>
 </table>
 
 <!-- Skill Feedback Loop -->
