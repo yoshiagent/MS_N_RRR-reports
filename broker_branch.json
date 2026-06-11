@@ -410,10 +410,10 @@
           ],
           "quadrant": "Q1",
           "name": "Smart Accumulation",
-          "name_cn": "聰明吸籌",
+          "name_cn": "主力吸籌",
           "chip_state": "accumulation",
           "color": "#22c55e",
-          "desc": "大資金買 + 籌碼集中 (散戶→大戶); 打底/Wyckoff C·D/主流形成",
+          "desc": "大資金買 + 籌碼集中 (散戶→主力); 打底/Wyckoff C·D/主流形成",
           "velocity": {
             "dx": 0.05,
             "dy": 0.048
@@ -427,7 +427,22 @@
           "cmg_score": 35,
           "trajectory": "吸籌軌跡·轉強",
           "traj_color": "#22c55e",
-          "traj_emoji": "📈"
+          "traj_emoji": "📈",
+          "cmg_cycle": {
+            "n_days": 60,
+            "lookback": 60,
+            "q1_days_60": 40,
+            "q3_days_60": 16,
+            "q1_ratio": 0.714,
+            "q1_strength": 1.502,
+            "q3_strength": 1.289,
+            "q1_score": 1.002,
+            "q3_score": 0.344,
+            "cycle_strength": 0.658,
+            "cycle_state": "健康吸籌循環",
+            "cycle_state_color": "#22c55e",
+            "cycle_state_desc": "過去60日吸籌主導 + 現在續強 (I↔III 來回=主力波段+新資金接棒) (情境A)"
+          }
         },
         "nbc_z_window": 72,
         "nbc_topn": 15,
@@ -781,7 +796,7 @@
         },
         "overall": {
           "state": "accumulation_flow",
-          "score": 3,
+          "score": 4,
           "confidence": "高",
           "label": "吸籌流入",
           "color": "#22c55e",
@@ -1418,10 +1433,10 @@
           ],
           "quadrant": "Q1",
           "name": "Smart Accumulation",
-          "name_cn": "聰明吸籌",
+          "name_cn": "主力吸籌",
           "chip_state": "accumulation",
           "color": "#22c55e",
-          "desc": "大資金買 + 籌碼集中 (散戶→大戶); 打底/Wyckoff C·D/主流形成",
+          "desc": "大資金買 + 籌碼集中 (散戶→主力); 打底/Wyckoff C·D/主流形成",
           "velocity": {
             "dx": -0.047,
             "dy": -0.018
@@ -1436,7 +1451,22 @@
           "cmg_score": -4,
           "trajectory": "盤整/震盪",
           "traj_color": "#94a3b8",
-          "traj_emoji": "↔"
+          "traj_emoji": "↔",
+          "cmg_cycle": {
+            "n_days": 60,
+            "lookback": 60,
+            "q1_days_60": 32,
+            "q3_days_60": 27,
+            "q1_ratio": 0.542,
+            "q1_strength": 1.409,
+            "q3_strength": 1.214,
+            "q1_score": 0.751,
+            "q3_score": 0.546,
+            "cycle_strength": 0.205,
+            "cycle_state": "籌碼震盪整理",
+            "cycle_state_color": "#94a3b8",
+            "cycle_state_desc": "Q1↔Q3 多空資金交換, Accum/Distrib 未分辨 — 等最後離開 Box 方向 (情境B)"
+          }
         },
         "nbc_z_window": 72,
         "nbc_topn": 15,
@@ -1782,7 +1812,7 @@
         },
         "overall": {
           "state": "neutral",
-          "score": -1,
+          "score": 0,
           "confidence": "低",
           "label": "中性",
           "color": "#94a3b8",
@@ -2473,10 +2503,10 @@
           ],
           "quadrant": "Q3",
           "name": "Distribution",
-          "name_cn": "派發警示",
+          "name_cn": "籌碼擴散",
           "chip_state": "distribution_warning",
           "color": "#ef4444",
-          "desc": "大資金賣 + 籌碼擴散 (大戶→散戶)",
+          "desc": "大資金賣 + 籌碼擴散 (主力→散戶)",
           "velocity": {
             "dx": 0.074,
             "dy": 0.047
@@ -2490,7 +2520,22 @@
           "cmg_score": 13,
           "trajectory": "盤整/震盪",
           "traj_color": "#94a3b8",
-          "traj_emoji": "↔"
+          "traj_emoji": "↔",
+          "cmg_cycle": {
+            "n_days": 60,
+            "lookback": 60,
+            "q1_days_60": 12,
+            "q3_days_60": 41,
+            "q1_ratio": 0.226,
+            "q1_strength": 1.991,
+            "q3_strength": 1.151,
+            "q1_score": 0.398,
+            "q3_score": 0.787,
+            "cycle_strength": -0.389,
+            "cycle_state": "派發循環·小心",
+            "cycle_state_color": "#ef4444",
+            "cycle_state_desc": "過去60日派發主導, 回不到 Q1 — 承接力下降 (情境C)"
+          }
         },
         "nbc_z_window": 72,
         "nbc_topn": 15,
@@ -2876,7 +2921,7 @@
         },
         "overall": {
           "state": "neutral",
-          "score": 0,
+          "score": 1,
           "confidence": "低",
           "label": "中性",
           "color": "#94a3b8",
@@ -3578,10 +3623,10 @@
           ],
           "quadrant": "Q3",
           "name": "Distribution",
-          "name_cn": "派發警示",
+          "name_cn": "籌碼擴散",
           "chip_state": "distribution_warning",
           "color": "#ef4444",
-          "desc": "大資金賣 + 籌碼擴散 (大戶→散戶)",
+          "desc": "大資金賣 + 籌碼擴散 (主力→散戶)",
           "velocity": {
             "dx": 0.0,
             "dy": 0.006
@@ -3597,7 +3642,22 @@
           "cmg_score": -10,
           "trajectory": "盤整/震盪",
           "traj_color": "#94a3b8",
-          "traj_emoji": "↔"
+          "traj_emoji": "↔",
+          "cmg_cycle": {
+            "n_days": 60,
+            "lookback": 60,
+            "q1_days_60": 27,
+            "q3_days_60": 33,
+            "q1_ratio": 0.45,
+            "q1_strength": 1.214,
+            "q3_strength": 1.155,
+            "q1_score": 0.546,
+            "q3_score": 0.635,
+            "cycle_strength": -0.089,
+            "cycle_state": "籌碼震盪整理",
+            "cycle_state_color": "#94a3b8",
+            "cycle_state_desc": "Q1↔Q3 多空資金交換, Accum/Distrib 未分辨 — 等最後離開 Box 方向 (情境B)"
+          }
         },
         "nbc_z_window": 72,
         "nbc_topn": 15,
@@ -4011,7 +4071,7 @@
         },
         "overall": {
           "state": "neutral",
-          "score": -1,
+          "score": 0,
           "confidence": "低",
           "label": "中性",
           "color": "#94a3b8",
@@ -4625,10 +4685,10 @@
           ],
           "quadrant": "Q3",
           "name": "Distribution",
-          "name_cn": "派發警示",
+          "name_cn": "籌碼擴散",
           "chip_state": "distribution_warning",
           "color": "#ef4444",
-          "desc": "大資金賣 + 籌碼擴散 (大戶→散戶)",
+          "desc": "大資金賣 + 籌碼擴散 (主力→散戶)",
           "velocity": {
             "dx": 0.114,
             "dy": 0.092
@@ -4643,7 +4703,22 @@
           "cmg_score": 26,
           "trajectory": "盤整/震盪",
           "traj_color": "#94a3b8",
-          "traj_emoji": "↔"
+          "traj_emoji": "↔",
+          "cmg_cycle": {
+            "n_days": 60,
+            "lookback": 60,
+            "q1_days_60": 23,
+            "q3_days_60": 34,
+            "q1_ratio": 0.404,
+            "q1_strength": 1.723,
+            "q3_strength": 1.256,
+            "q1_score": 0.661,
+            "q3_score": 0.711,
+            "cycle_strength": -0.05,
+            "cycle_state": "籌碼震盪整理",
+            "cycle_state_color": "#94a3b8",
+            "cycle_state_desc": "Q1↔Q3 多空資金交換, Accum/Distrib 未分辨 — 等最後離開 Box 方向 (情境B)"
+          }
         },
         "nbc_z_window": 72,
         "nbc_topn": 15,
@@ -4985,8 +5060,8 @@
         },
         "overall": {
           "state": "accumulation_flow",
-          "score": 2,
-          "confidence": "中",
+          "score": 3,
+          "confidence": "高",
           "label": "吸籌流入",
           "color": "#22c55e",
           "emoji": "🟢"
@@ -5615,10 +5690,10 @@
           ],
           "quadrant": "Q3",
           "name": "Distribution",
-          "name_cn": "派發警示",
+          "name_cn": "籌碼擴散",
           "chip_state": "distribution_warning",
           "color": "#ef4444",
-          "desc": "大資金賣 + 籌碼擴散 (大戶→散戶)",
+          "desc": "大資金賣 + 籌碼擴散 (主力→散戶)",
           "velocity": {
             "dx": -0.199,
             "dy": -0.286
@@ -5635,7 +5710,22 @@
           "cmg_score": -77,
           "trajectory": "派發軌跡·轉弱",
           "traj_color": "#ef4444",
-          "traj_emoji": "📉"
+          "traj_emoji": "📉",
+          "cmg_cycle": {
+            "n_days": 60,
+            "lookback": 60,
+            "q1_days_60": 30,
+            "q3_days_60": 26,
+            "q1_ratio": 0.536,
+            "q1_strength": 1.184,
+            "q3_strength": 0.98,
+            "q1_score": 0.592,
+            "q3_score": 0.425,
+            "cycle_strength": 0.167,
+            "cycle_state": "籌碼震盪整理",
+            "cycle_state_color": "#94a3b8",
+            "cycle_state_desc": "Q1↔Q3 多空資金交換, Accum/Distrib 未分辨 — 等最後離開 Box 方向 (情境B)"
+          }
         },
         "nbc_z_window": 72,
         "nbc_topn": 15,
@@ -5989,8 +6079,8 @@
         },
         "overall": {
           "state": "distribution_flow",
-          "score": -3,
-          "confidence": "高",
+          "score": -2,
+          "confidence": "中",
           "label": "派發流出",
           "color": "#ef4444",
           "emoji": "🔴"
@@ -6682,10 +6772,10 @@
           ],
           "quadrant": "Q3",
           "name": "Distribution",
-          "name_cn": "派發警示",
+          "name_cn": "籌碼擴散",
           "chip_state": "distribution_warning",
           "color": "#ef4444",
-          "desc": "大資金賣 + 籌碼擴散 (大戶→散戶)",
+          "desc": "大資金賣 + 籌碼擴散 (主力→散戶)",
           "velocity": {
             "dx": 0.099,
             "dy": 0.083
@@ -6699,7 +6789,22 @@
           "cmg_score": 21,
           "trajectory": "盤整/震盪",
           "traj_color": "#94a3b8",
-          "traj_emoji": "↔"
+          "traj_emoji": "↔",
+          "cmg_cycle": {
+            "n_days": 60,
+            "lookback": 60,
+            "q1_days_60": 27,
+            "q3_days_60": 32,
+            "q1_ratio": 0.458,
+            "q1_strength": 0.994,
+            "q3_strength": 0.958,
+            "q1_score": 0.447,
+            "q3_score": 0.511,
+            "cycle_strength": -0.064,
+            "cycle_state": "籌碼震盪整理",
+            "cycle_state_color": "#94a3b8",
+            "cycle_state_desc": "Q1↔Q3 多空資金交換, Accum/Distrib 未分辨 — 等最後離開 Box 方向 (情境B)"
+          }
         },
         "nbc_z_window": 72,
         "nbc_topn": 15,
@@ -7121,7 +7226,7 @@
         },
         "overall": {
           "state": "neutral",
-          "score": -1,
+          "score": 0,
           "confidence": "低",
           "label": "中性",
           "color": "#94a3b8",
@@ -7765,10 +7870,10 @@
           ],
           "quadrant": "Q1",
           "name": "Smart Accumulation",
-          "name_cn": "聰明吸籌",
+          "name_cn": "主力吸籌",
           "chip_state": "accumulation",
           "color": "#22c55e",
-          "desc": "大資金買 + 籌碼集中 (散戶→大戶); 打底/Wyckoff C·D/主流形成",
+          "desc": "大資金買 + 籌碼集中 (散戶→主力); 打底/Wyckoff C·D/主流形成",
           "velocity": {
             "dx": 0.03,
             "dy": -0.001
@@ -7782,7 +7887,22 @@
           "cmg_score": 20,
           "trajectory": "盤整/震盪",
           "traj_color": "#94a3b8",
-          "traj_emoji": "↔"
+          "traj_emoji": "↔",
+          "cmg_cycle": {
+            "n_days": 60,
+            "lookback": 60,
+            "q1_days_60": 42,
+            "q3_days_60": 13,
+            "q1_ratio": 0.764,
+            "q1_strength": 1.529,
+            "q3_strength": 1.418,
+            "q1_score": 1.07,
+            "q3_score": 0.307,
+            "cycle_strength": 0.763,
+            "cycle_state": "健康吸籌循環",
+            "cycle_state_color": "#22c55e",
+            "cycle_state_desc": "過去60日吸籌主導 + 現在續強 (I↔III 來回=主力波段+新資金接棒) (情境A)"
+          }
         },
         "nbc_z_window": 72,
         "nbc_topn": 15,
@@ -8112,7 +8232,7 @@
         },
         "overall": {
           "state": "neutral",
-          "score": 0,
+          "score": 1,
           "confidence": "低",
           "label": "中性",
           "color": "#94a3b8",
@@ -8804,10 +8924,10 @@
           ],
           "quadrant": "Q1",
           "name": "Smart Accumulation",
-          "name_cn": "聰明吸籌",
+          "name_cn": "主力吸籌",
           "chip_state": "accumulation",
           "color": "#22c55e",
-          "desc": "大資金買 + 籌碼集中 (散戶→大戶); 打底/Wyckoff C·D/主流形成",
+          "desc": "大資金買 + 籌碼集中 (散戶→主力); 打底/Wyckoff C·D/主流形成",
           "velocity": {
             "dx": 0.032,
             "dy": -0.025
@@ -8822,7 +8942,22 @@
           "cmg_score": 3,
           "trajectory": "盤整/震盪",
           "traj_color": "#94a3b8",
-          "traj_emoji": "↔"
+          "traj_emoji": "↔",
+          "cmg_cycle": {
+            "n_days": 60,
+            "lookback": 60,
+            "q1_days_60": 27,
+            "q3_days_60": 32,
+            "q1_ratio": 0.458,
+            "q1_strength": 1.199,
+            "q3_strength": 0.906,
+            "q1_score": 0.54,
+            "q3_score": 0.483,
+            "cycle_strength": 0.057,
+            "cycle_state": "籌碼震盪整理",
+            "cycle_state_color": "#94a3b8",
+            "cycle_state_desc": "Q1↔Q3 多空資金交換, Accum/Distrib 未分辨 — 等最後離開 Box 方向 (情境B)"
+          }
         },
         "nbc_z_window": 72,
         "nbc_topn": 15,
@@ -9204,7 +9339,7 @@
         },
         "overall": {
           "state": "neutral",
-          "score": -1,
+          "score": 0,
           "confidence": "低",
           "label": "中性",
           "color": "#94a3b8",
@@ -9909,7 +10044,7 @@
           ],
           "quadrant": "Q4",
           "name": "Speculation / Momentum",
-          "name_cn": "投機·動能",
+          "name_cn": "短線推升",
           "chip_state": "speculation",
           "color": "#fb923c",
           "desc": "有人推升但籌碼沒集中 (題材行情/短線資金/高換手)",
@@ -9927,7 +10062,22 @@
           "cmg_score": -14,
           "trajectory": "盤整/震盪",
           "traj_color": "#94a3b8",
-          "traj_emoji": "↔"
+          "traj_emoji": "↔",
+          "cmg_cycle": {
+            "n_days": 60,
+            "lookback": 60,
+            "q1_days_60": 28,
+            "q3_days_60": 29,
+            "q1_ratio": 0.491,
+            "q1_strength": 1.451,
+            "q3_strength": 1.13,
+            "q1_score": 0.677,
+            "q3_score": 0.546,
+            "cycle_strength": 0.131,
+            "cycle_state": "籌碼震盪整理",
+            "cycle_state_color": "#94a3b8",
+            "cycle_state_desc": "Q1↔Q3 多空資金交換, Accum/Distrib 未分辨 — 等最後離開 Box 方向 (情境B)"
+          }
         },
         "nbc_z_window": 72,
         "nbc_topn": 15,
@@ -10349,7 +10499,7 @@
         },
         "overall": {
           "state": "neutral",
-          "score": 0,
+          "score": 1,
           "confidence": "低",
           "label": "中性",
           "color": "#94a3b8",
@@ -10612,6 +10762,6 @@
     "n_day_trade": 0,
     "n_foreign_buy": 9
   },
-  "generated_at": "2026-06-11T06:45:41",
+  "generated_at": "2026-06-11T14:15:14",
   "available": true
 }
