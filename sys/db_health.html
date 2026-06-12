@@ -6,39 +6,39 @@
 <style>
 * { box-sizing: border-box; }
 body { margin:0; padding:24px 20px 80px; max-width:1080px; margin:auto;
-       background:#080e18; color:#e2e8f0;
+       background:#f4f7fb; color:#243244;
        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
        line-height:1.65; }
 h1 { font-size:22px; margin:0 0 4px; }
-h2 { font-size:17px; color:#93c5fd; border-bottom:1px solid #2d3f55;
+h2 { font-size:17px; color:#2563eb; border-bottom:1px solid #cdd9e7;
      padding-bottom:6px; margin:24px 0 12px; }
-.sub { color:#94a3b8; font-size:13px; margin-bottom:18px; }
-.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
-             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.sub { color:#61708a; font-size:13px; margin-bottom:18px; }
+.back-link { display:inline-block; color:#2563eb; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #cdd9e7; border-radius:6px; margin-bottom:14px; }
 .back-link:hover { border-color:#3b82f6; }
-code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color:#7dd3fc;
+code { font-family: ui-monospace, Consolas, monospace; background:#f1f5f9; color:#0c7bb3;
        padding:1px 6px; border-radius:3px; font-size:12px; }
 
 /* overall banner */
-.overall-banner { background:linear-gradient(135deg,#131f2e,#0f1a2c);
-                  border:1px solid #2d3f55; border-radius:10px;
+.overall-banner { background:linear-gradient(135deg,#ffffff,#ffffff);
+                  border:1px solid #cdd9e7; border-radius:10px;
                   padding:16px 20px; margin-bottom:16px;
                   display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
 .overall-icon { font-size:48px; }
 .overall-text { flex:1; min-width:240px; }
 .overall-label { font-size:22px; font-weight:bold; margin-bottom:4px; }
-.overall-stats { color:#cbd5e1; font-size:13px; }
+.overall-stats { color:#3f4f63; font-size:13px; }
 
 /* stats grid */
 .stats { display:grid; grid-template-columns:repeat(auto-fit, minmax(110px,1fr));
          gap:8px; margin-bottom:16px; }
-.stat-cell { background:#131f2e; border:1px solid #2d3f55; border-radius:8px;
+.stat-cell { background:#ffffff; border:1px solid #cdd9e7; border-radius:8px;
              padding:10px; text-align:center; }
 .stat-cell .num { font-size:24px; font-weight:bold; }
-.stat-cell .lbl { font-size:11px; color:#94a3b8; margin-top:3px; }
+.stat-cell .lbl { font-size:11px; color:#61708a; margin-top:3px; }
 
 /* check card */
-.check-card { background:#131f2e; border:1px solid #2d3f55; border-radius:8px;
+.check-card { background:#ffffff; border:1px solid #cdd9e7; border-radius:8px;
               padding:12px 14px; margin-bottom:8px; }
 .check-card.critical { border-color:#ef4444; box-shadow:inset 3px 0 0 #ef4444; }
 .check-card.warning  { border-color:#fcd34d; box-shadow:inset 3px 0 0 #fcd34d; }
@@ -47,53 +47,53 @@ code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color
               margin-bottom:6px; }
 .check-icon { font-size:18px; }
 .check-name { font-size:14px; font-weight:bold; }
-.check-cat { color:#94a3b8; font-size:11px; }
+.check-cat { color:#61708a; font-size:11px; }
 .check-pill { display:inline-block; padding:2px 8px; border-radius:10px;
               font-size:10px; font-weight:bold; }
-.check-msg { color:#cbd5e1; font-size:13px; margin-top:4px; line-height:1.7; }
+.check-msg { color:#3f4f63; font-size:13px; margin-top:4px; line-height:1.7; }
 .check-fix { background:rgba(252,211,77,0.08); border-left:2px solid #fcd34d;
-             padding:4px 8px; margin-top:5px; font-size:11px; color:#fcd34d;
+             padding:4px 8px; margin-top:5px; font-size:11px; color:#a16207;
              border-radius:0 4px 4px 0; }
 .check-fix.applied { background:rgba(16,185,129,0.08); border-color:#10b981; color:#10b981; }
 details.detail { margin-top:5px; }
 details.detail summary { cursor:pointer; font-size:11px; color:#64748b;
                          padding:2px 0; user-select:none; }
-details.detail pre { background:#07111e; border:1px solid #1e293b;
+details.detail pre { background:#f1f5f9; border:1px solid #dbe3ee;
                      padding:8px 10px; border-radius:4px; font-size:11px;
-                     color:#cbd5e1; overflow-x:auto; line-height:1.5;
+                     color:#3f4f63; overflow-x:auto; line-height:1.5;
                      margin-top:4px; }
 
 footer { color:#64748b; font-size:12px; margin-top:30px;
-         border-top:1px solid #2d3f55; padding-top:12px; }
+         border-top:1px solid #cdd9e7; padding-top:12px; }
 </style>
 </head><body>
 <!-- GLOBAL_NAV_START -->
 <style>
-.gnav{position:sticky;top:0;z-index:99990;background:#0d1526;border-bottom:1px solid #1e293b;
+.gnav{position:sticky;top:0;z-index:99990;background:#eef2f9;border-bottom:1px solid #dbe3ee;
   font-family:'Segoe UI','Microsoft JhengHei',sans-serif;display:flex;align-items:center;
   flex-wrap:wrap;gap:2px;padding:6px 14px}
-.gnav a.gnav-home{color:#fbbf24;text-decoration:none;font-weight:bold;font-size:13px;
+.gnav a.gnav-home{color:#b45309;text-decoration:none;font-weight:bold;font-size:13px;
   padding:6px 10px;border-radius:6px}
-.gnav a.gnav-home:hover{background:#1e293b}
+.gnav a.gnav-home:hover{background:#e7edf5}
 .gnav-dd{position:relative}
-.gnav-btn{background:none;border:none;color:#cbd5e1;font-size:13px;padding:6px 10px;
+.gnav-btn{background:none;border:none;color:#3f4f63;font-size:13px;padding:6px 10px;
   cursor:pointer;border-radius:6px;font-family:inherit}
-.gnav-btn:hover,.gnav-btn.on{background:#1e293b;color:#fff}
+.gnav-btn:hover,.gnav-btn.on{background:#e7edf5;color:#1e2a3a}
 .gnav-panel{display:none;position:absolute;left:0;top:100%;min-width:230px;max-height:70vh;
-  overflow-y:auto;background:#0f1a2c;border:1px solid #334155;border-radius:8px;
-  padding:6px;box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;
+  padding:6px;box-shadow:0 8px 24px rgba(15,23,42,0.15)}
 .gnav-panel.open{display:block}
-.gnav-hd{color:#64748b;font-size:11px;padding:6px 10px 3px;border-top:1px dashed #1e293b;margin-top:3px}
+.gnav-hd{color:#64748b;font-size:11px;padding:6px 10px 3px;border-top:1px dashed #dbe3ee;margin-top:3px}
 .gnav-hd:first-child{border-top:none;margin-top:0}
-.gnav-it{display:block;color:#e2e8f0;text-decoration:none;font-size:13px;
+.gnav-it{display:block;color:#243244;text-decoration:none;font-size:13px;
   padding:6px 10px;border-radius:5px;white-space:nowrap}
-.gnav-it:hover{background:#1e293b;color:#7dd3fc}
+.gnav-it:hover{background:#e7edf5;color:#0c7bb3}
 .gnav-search{margin-left:auto;position:relative}
-.gnav-search input{background:#1e293b;border:1px solid #334155;color:#e2e8f0;
+.gnav-search input{background:#e7edf5;border:1px solid #c9d4e3;color:#243244;
   font-size:12px;padding:5px 10px;border-radius:6px;width:150px;font-family:inherit}
 .gnav-search input:focus{outline:none;border-color:#7c3aed;width:200px}
 #gnav-sr{display:none;position:absolute;right:0;top:100%;min-width:240px;max-height:60vh;
-  overflow-y:auto;background:#0f1a2c;border:1px solid #334155;border-radius:8px;padding:6px;z-index:99991}
+  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;padding:6px;z-index:99991}
 @media (max-width:760px){.gnav{padding:4px 8px}.gnav-search input{width:100px}}
 </style>
 <nav class="gnav" id="gnav">
@@ -145,6 +145,8 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 
 
 
+
+
 <a class='back-link' href='../index.html'>← 返回主頁</a>
 
 <h1>🗄 DuckDB 資料庫健康檢查</h1>
@@ -154,12 +156,12 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
   ｜ 每日 orchestrator step 0 自動執行
 </div>
 
-<div class='overall-banner'><div class='overall-icon' style='color:#fcd34d'>⚠</div><div class='overall-text'><div class='overall-label' style='color:#fcd34d'>整體狀態：警告</div><div class='overall-stats'>共 9 項檢查 ｜ <span style='color:#10b981'>✅ 7</span> ｜ <span style='color:#60a5fa'>ℹ 1</span> ｜ <span style='color:#fcd34d'>⚠ 1</span> ｜ <span style='color:#ef4444'>🔴 0</span> ｜ 已執行自動修復</div></div></div>
+<div class='overall-banner'><div class='overall-icon' style='color:#a16207'>⚠</div><div class='overall-text'><div class='overall-label' style='color:#a16207'>整體狀態：警告</div><div class='overall-stats'>共 9 項檢查 ｜ <span style='color:#10b981'>✅ 7</span> ｜ <span style='color:#2563eb'>ℹ 1</span> ｜ <span style='color:#a16207'>⚠ 1</span> ｜ <span style='color:#ef4444'>🔴 0</span> ｜ 已執行自動修復</div></div></div>
 
-<div class='stats'><div class='stat-cell'><div class='num' style='color:#10b981'>7</div><div class='lbl'>✅ 正常</div></div><div class='stat-cell'><div class='num' style='color:#60a5fa'>1</div><div class='lbl'>ℹ 資訊</div></div><div class='stat-cell'><div class='num' style='color:#fcd34d'>1</div><div class='lbl'>⚠ 警告</div></div><div class='stat-cell'><div class='num' style='color:#ef4444'>0</div><div class='lbl'>🔴 嚴重</div></div></div>
+<div class='stats'><div class='stat-cell'><div class='num' style='color:#10b981'>7</div><div class='lbl'>✅ 正常</div></div><div class='stat-cell'><div class='num' style='color:#2563eb'>1</div><div class='lbl'>ℹ 資訊</div></div><div class='stat-cell'><div class='num' style='color:#a16207'>1</div><div class='lbl'>⚠ 警告</div></div><div class='stat-cell'><div class='num' style='color:#ef4444'>0</div><div class='lbl'>🔴 嚴重</div></div></div>
 
 <h2>📋 詳細檢查項目（依嚴重性排序）</h2>
-<div class='check-card warning'><div class='check-head'><span class='check-icon'>⚠</span><span class='check-name'>輔助資料時效</span><span class='check-cat'>📅 資料時效</span><span class='check-pill' style='background:#fcd34d33;color:#fcd34d'>warning</span></div><div class='check-msg'>macro/SOX 落後 20 天</div><details class='detail'><summary>查看細節</summary><pre>{
+<div class='check-card warning'><div class='check-head'><span class='check-icon'>⚠</span><span class='check-name'>輔助資料時效</span><span class='check-cat'>📅 資料時效</span><span class='check-pill' style='background:#fcd34d33;color:#a16207'>warning</span></div><div class='check-msg'>macro/SOX 落後 20 天</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;futures&quot;: {
     &quot;last_date&quot;: &quot;2026-06-11&quot;,
     &quot;days_lag&quot;: 0
@@ -173,7 +175,7 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
     &quot;last_date&quot;: &quot;2026-06-11&quot;,
     &quot;days_lag&quot;: 0
   }
-}</pre></details></div><div class='check-card info'><div class='check-head'><span class='check-icon'>ℹ</span><span class='check-name'>Update log 時效</span><span class='check-cat'>📋 Update log</span><span class='check-pill' style='background:#60a5fa33;color:#60a5fa'>info</span></div><div class='check-msg'>共 1 個資料源；最新紀錄 2026-05-24 10:19:45.706960</div><details class='detail'><summary>查看細節</summary><pre>{
+}</pre></details></div><div class='check-card info'><div class='check-head'><span class='check-icon'>ℹ</span><span class='check-name'>Update log 時效</span><span class='check-cat'>📋 Update log</span><span class='check-pill' style='background:#60a5fa33;color:#2563eb'>info</span></div><div class='check-msg'>共 1 個資料源；最新紀錄 2026-05-24 10:19:45.706960</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;db_migrate_from_csv&quot;: &quot;2026-05-24 10:19:45.706960&quot;
 }</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>DuckDB 表結構</span><span class='check-cat'>🗂 表結構</span><span class='check-pill' style='background:#10b98133;color:#10b981'>healthy</span></div><div class='check-msg'>全部 8 個必要表存在</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;counts&quot;: {
@@ -247,8 +249,8 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
   &quot;tpex&quot;: 1007
 }</pre></details></div>
 
-<div style="background:#131f2e;border:1px solid #2d3f55;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#cbd5e1;line-height:1.7">
-<strong style="color:#93c5fd">🔧 自動修復</strong><br>
+<div style="background:#ffffff;border:1px solid #cdd9e7;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#3f4f63;line-height:1.7">
+<strong style="color:#2563eb">🔧 自動修復</strong><br>
 若整體狀態為「警告」或「嚴重」，可手動執行：<br>
 <code>cd C:\CludeHome\stockHisData && python -m stock_data.db_health --fix</code><br>
 <br>
@@ -276,8 +278,8 @@ JSON 輸出：<code>data/output/db_health.json</code>
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
   position: fixed;
-  background: #0f172a;
-  color: #e2e8f0;
+  background: #f4f7fb;
+  color: #243244;
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 12px;
@@ -286,11 +288,11 @@ JSON 輸出：<code>data/output/db_health.json</code>
   max-width: 320px;
   width: max-content;
   text-align: left;
-  border: 1px solid #475569;
+  border: 1px solid #bccadb;
   z-index: 999999;
   pointer-events: none;
   line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 12px rgba(15,23,42,0.15);
   display: none;
 }
 .tip:focus { outline: none; }

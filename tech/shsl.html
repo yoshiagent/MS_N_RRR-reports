@@ -3,9 +3,9 @@
 <meta charset="UTF-8">
 <title>SHSL — Swing High/Low Engine</title>
 <style>
-:root{ --bg:#0f172a; --card:#1e293b; --card2:#162033; --border:#334155;
-       --text:#e2e8f0; --muted:#94a3b8; --accent:#60a5fa;
-       --good:#10b981; --warn:#fbbf24; --bad:#ef4444; }
+:root{ --bg:#f4f7fb; --card:#ffffff; --card2:#eef3f9; --border:#d5dfeb;
+       --text:#243244; --muted:#61708a; --accent:#2563eb;
+       --good:#10b981; --warn:#b45309; --bad:#ef4444; }
 *{ box-sizing: border-box; }
 body{ margin:0; background:var(--bg); color:var(--text);
       font-family:"Segoe UI",-apple-system,sans-serif; padding:20px;
@@ -20,11 +20,11 @@ a{ color:var(--accent); }
          border-radius:10px; padding:14px 18px; margin-bottom:18px; }
 .banner .row{ display:flex; gap:24px; flex-wrap:wrap; align-items:baseline; }
 .banner .num{ font-size:28px; font-weight:700; }
-.banner .kpi{ background:#0f1729; border-radius:6px; padding:8px 12px;
+.banner .kpi{ background:#eef3fa; border-radius:6px; padding:8px 12px;
               display:inline-block; margin-right:8px; font-size:13px; }
 .banner .kpi b{ color:var(--accent); font-size:15px; }
 
-.intro{ background:#0a1422; border-left:3px solid var(--accent);
+.intro{ background:#e8ebef; border-left:3px solid var(--accent);
         padding:10px 14px; margin: 10px 0; border-radius:4px;
         font-size: 13px; color: var(--muted); }
 .intro b{ color: var(--text); }
@@ -45,14 +45,14 @@ a{ color:var(--accent); }
 .dist-card .lbl{ font-size:12px; color:var(--muted); margin-top:2px; }
 .dist-card .pct{ font-size:11px; color:var(--muted); margin-left:6px; }
 .dist-card.wave-up_swing   .num{ color:var(--good); }
-.dist-card.wave-rebound    .num{ color:#34d399; }
+.dist-card.wave-rebound    .num{ color:#059669; }
 .dist-card.wave-pullback   .num{ color:var(--warn); }
 .dist-card.wave-down_swing .num{ color:var(--bad); }
 .dist-card.wave-unknown    .num{ color:var(--muted); }
 
 .filter-bar{ display:flex; gap:10px; flex-wrap:wrap; margin:10px 0;
              align-items:center; }
-.filter-bar input{ background:#0f1729; border:1px solid var(--border);
+.filter-bar input{ background:#eef3fa; border:1px solid var(--border);
                    color:var(--text); padding:6px 10px; border-radius:6px;
                    font-size:13px; min-width: 220px; }
 
@@ -62,8 +62,8 @@ a{ color:var(--accent); }
                 position: sticky; top: 0; z-index: 1; }
 .shsl-table td{ padding: 5px 8px; border-bottom:1px solid #233048; }
 .shsl-table tr.row{ cursor: pointer; }
-.shsl-table tr.row:hover td{ background:#1a2540; }
-.shsl-table tr.detail-row{ background:#0f1729; }
+.shsl-table tr.row:hover td{ background:#edf0f7; }
+.shsl-table tr.detail-row{ background:#eef3fa; }
 .shsl-table tr.detail-row td{ padding: 12px 16px; }
 
 .wave-pill{ padding: 2px 10px; border-radius: 10px; font-size: 11px;
@@ -71,14 +71,14 @@ a{ color:var(--accent); }
             color: #0f172a; }
 .struct-pill{ padding: 1px 8px; border-radius: 4px; font-size: 11px;
               font-weight: 600; display: inline-block; color: #0f172a; }
-.cand-pill{ background:#f97316; color:#fff; padding:1px 6px;
+.cand-pill{ background:#f97316; color:#1e2a3a; padding:1px 6px;
             border-radius:4px; font-size:10px; font-weight:700; }
 .muted-small{ color:var(--muted); font-size:11px; }
 .strength{ display:inline-block; min-width:32px; text-align:right;
            font-variant-numeric: tabular-nums; }
 
 .detail-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
-.detail-card{ background:#0a1422; border:1px solid var(--border);
+.detail-card{ background:#e8ebef; border:1px solid var(--border);
               border-radius:6px; padding:10px 14px; }
 .detail-card h4{ margin:0 0 6px; font-size:13px; color:var(--accent); }
 .detail-list{ font-size:12px; color:var(--text); }
@@ -92,31 +92,31 @@ a{ color:var(--accent); }
 </head><body>
 <!-- GLOBAL_NAV_START -->
 <style>
-.gnav{position:sticky;top:0;z-index:99990;background:#0d1526;border-bottom:1px solid #1e293b;
+.gnav{position:sticky;top:0;z-index:99990;background:#eef2f9;border-bottom:1px solid #dbe3ee;
   font-family:'Segoe UI','Microsoft JhengHei',sans-serif;display:flex;align-items:center;
   flex-wrap:wrap;gap:2px;padding:6px 14px}
-.gnav a.gnav-home{color:#fbbf24;text-decoration:none;font-weight:bold;font-size:13px;
+.gnav a.gnav-home{color:#b45309;text-decoration:none;font-weight:bold;font-size:13px;
   padding:6px 10px;border-radius:6px}
-.gnav a.gnav-home:hover{background:#1e293b}
+.gnav a.gnav-home:hover{background:#e7edf5}
 .gnav-dd{position:relative}
-.gnav-btn{background:none;border:none;color:#cbd5e1;font-size:13px;padding:6px 10px;
+.gnav-btn{background:none;border:none;color:#3f4f63;font-size:13px;padding:6px 10px;
   cursor:pointer;border-radius:6px;font-family:inherit}
-.gnav-btn:hover,.gnav-btn.on{background:#1e293b;color:#fff}
+.gnav-btn:hover,.gnav-btn.on{background:#e7edf5;color:#1e2a3a}
 .gnav-panel{display:none;position:absolute;left:0;top:100%;min-width:230px;max-height:70vh;
-  overflow-y:auto;background:#0f1a2c;border:1px solid #334155;border-radius:8px;
-  padding:6px;box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;
+  padding:6px;box-shadow:0 8px 24px rgba(15,23,42,0.15)}
 .gnav-panel.open{display:block}
-.gnav-hd{color:#64748b;font-size:11px;padding:6px 10px 3px;border-top:1px dashed #1e293b;margin-top:3px}
+.gnav-hd{color:#64748b;font-size:11px;padding:6px 10px 3px;border-top:1px dashed #dbe3ee;margin-top:3px}
 .gnav-hd:first-child{border-top:none;margin-top:0}
-.gnav-it{display:block;color:#e2e8f0;text-decoration:none;font-size:13px;
+.gnav-it{display:block;color:#243244;text-decoration:none;font-size:13px;
   padding:6px 10px;border-radius:5px;white-space:nowrap}
-.gnav-it:hover{background:#1e293b;color:#7dd3fc}
+.gnav-it:hover{background:#e7edf5;color:#0c7bb3}
 .gnav-search{margin-left:auto;position:relative}
-.gnav-search input{background:#1e293b;border:1px solid #334155;color:#e2e8f0;
+.gnav-search input{background:#e7edf5;border:1px solid #c9d4e3;color:#243244;
   font-size:12px;padding:5px 10px;border-radius:6px;width:150px;font-family:inherit}
 .gnav-search input:focus{outline:none;border-color:#7c3aed;width:200px}
 #gnav-sr{display:none;position:absolute;right:0;top:100%;min-width:240px;max-height:60vh;
-  overflow-y:auto;background:#0f1a2c;border:1px solid #334155;border-radius:8px;padding:6px;z-index:99991}
+  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;padding:6px;z-index:99991}
 @media (max-width:760px){.gnav{padding:4px 8px}.gnav-search input{width:100px}}
 </style>
 <nav class="gnav" id="gnav">
@@ -169,6 +169,8 @@ a{ color:var(--accent); }
 
 
 
+
+
 <h1>📐 SHSL — 波段轉折引擎 <span class="muted-small">(Swing High/Low Engine)</span></h1>
 <div class="meta">
   日期: <b>2026-06-11</b> ｜ 候選股池: <b>291</b> 檔 ｜
@@ -209,7 +211,7 @@ a{ color:var(--accent); }
   <div class="dist-grid"><div class="dist-card wave-up_swing"><div class="num">7</div><div class="lbl">上漲創高 ⬆<span class="pct">(2.4%)</span></div></div><div class="dist-card wave-rebound"><div class="num">108</div><div class="lbl">反彈中 ↗<span class="pct">(37.1%)</span></div></div><div class="dist-card wave-pullback"><div class="num">176</div><div class="lbl">回檔中 ↘<span class="pct">(60.5%)</span></div></div><div class="dist-card wave-down_swing"><div class="num">0</div><div class="lbl">下跌破底 ⬇<span class="pct">(0.0%)</span></div></div><div class="dist-card wave-unknown"><div class="num">0</div><div class="lbl">未明<span class="pct">(0.0%)</span></div></div></div>
 
   <h2>結構標籤分布 (日線)</h2>
-  <div class="dist-grid"><div class="dist-card" style="border-color:#10b981"><div class="num" style="color:#10b981">176</div><div class="lbl">強升 (HH+HL)<span class="pct">(60.5%)</span></div></div><div class="dist-card" style="border-color:#fbbf24"><div class="num" style="color:#fbbf24">50</div><div class="lbl">收斂 (HL+LH)<span class="pct">(17.2%)</span></div></div><div class="dist-card" style="border-color:#f97316"><div class="num" style="color:#f97316">46</div><div class="lbl">擴張 (HH+LL)<span class="pct">(15.8%)</span></div></div><div class="dist-card" style="border-color:#ef4444"><div class="num" style="color:#ef4444">13</div><div class="lbl">強降 (LH+LL)<span class="pct">(4.5%)</span></div></div></div>
+  <div class="dist-grid"><div class="dist-card" style="border-color:#10b981"><div class="num" style="color:#10b981">176</div><div class="lbl">強升 (HH+HL)<span class="pct">(60.5%)</span></div></div><div class="dist-card" style="border-color:#fbbf24"><div class="num" style="color:#b45309">50</div><div class="lbl">收斂 (HL+LH)<span class="pct">(17.2%)</span></div></div><div class="dist-card" style="border-color:#f97316"><div class="num" style="color:#f97316">46</div><div class="lbl">擴張 (HH+LL)<span class="pct">(15.8%)</span></div></div><div class="dist-card" style="border-color:#ef4444"><div class="num" style="color:#ef4444">13</div><div class="lbl">強降 (LH+LL)<span class="pct">(4.5%)</span></div></div></div>
 
   <h2>個股清單 (日線)</h2>
   <div class="filter-bar">
@@ -238,7 +240,7 @@ a{ color:var(--accent); }
   <div class="dist-grid"><div class="dist-card wave-up_swing"><div class="num">0</div><div class="lbl">上漲創高 ⬆<span class="pct">(0.0%)</span></div></div><div class="dist-card wave-rebound"><div class="num">118</div><div class="lbl">反彈中 ↗<span class="pct">(40.5%)</span></div></div><div class="dist-card wave-pullback"><div class="num">172</div><div class="lbl">回檔中 ↘<span class="pct">(59.1%)</span></div></div><div class="dist-card wave-down_swing"><div class="num">1</div><div class="lbl">下跌破底 ⬇<span class="pct">(0.3%)</span></div></div><div class="dist-card wave-unknown"><div class="num">0</div><div class="lbl">未明<span class="pct">(0.0%)</span></div></div></div>
 
   <h2>結構標籤分布 (週線)</h2>
-  <div class="dist-grid"><div class="dist-card" style="border-color:#10b981"><div class="num" style="color:#10b981">143</div><div class="lbl">強升 (HH+HL)<span class="pct">(49.1%)</span></div></div><div class="dist-card" style="border-color:#fbbf24"><div class="num" style="color:#fbbf24">90</div><div class="lbl">收斂 (HL+LH)<span class="pct">(30.9%)</span></div></div><div class="dist-card" style="border-color:#f97316"><div class="num" style="color:#f97316">15</div><div class="lbl">擴張 (HH+LL)<span class="pct">(5.2%)</span></div></div><div class="dist-card" style="border-color:#ef4444"><div class="num" style="color:#ef4444">40</div><div class="lbl">強降 (LH+LL)<span class="pct">(13.7%)</span></div></div></div>
+  <div class="dist-grid"><div class="dist-card" style="border-color:#10b981"><div class="num" style="color:#10b981">143</div><div class="lbl">強升 (HH+HL)<span class="pct">(49.1%)</span></div></div><div class="dist-card" style="border-color:#fbbf24"><div class="num" style="color:#b45309">90</div><div class="lbl">收斂 (HL+LH)<span class="pct">(30.9%)</span></div></div><div class="dist-card" style="border-color:#f97316"><div class="num" style="color:#f97316">15</div><div class="lbl">擴張 (HH+LL)<span class="pct">(5.2%)</span></div></div><div class="dist-card" style="border-color:#ef4444"><div class="num" style="color:#ef4444">40</div><div class="lbl">強降 (LH+LL)<span class="pct">(13.7%)</span></div></div></div>
 
   <h2>個股清單 (週線)</h2>
   <div class="filter-bar">
@@ -267,7 +269,7 @@ a{ color:var(--accent); }
   <div class="dist-grid"><div class="dist-card wave-up_swing"><div class="num">12</div><div class="lbl">上漲創高 ⬆<span class="pct">(4.1%)</span></div></div><div class="dist-card wave-rebound"><div class="num">157</div><div class="lbl">反彈中 ↗<span class="pct">(54.0%)</span></div></div><div class="dist-card wave-pullback"><div class="num">118</div><div class="lbl">回檔中 ↘<span class="pct">(40.5%)</span></div></div><div class="dist-card wave-down_swing"><div class="num">4</div><div class="lbl">下跌破底 ⬇<span class="pct">(1.4%)</span></div></div><div class="dist-card wave-unknown"><div class="num">0</div><div class="lbl">未明<span class="pct">(0.0%)</span></div></div></div>
 
   <h2>結構標籤分布 (月線)</h2>
-  <div class="dist-grid"><div class="dist-card" style="border-color:#10b981"><div class="num" style="color:#10b981">16</div><div class="lbl">強升 (HH+HL)<span class="pct">(5.5%)</span></div></div><div class="dist-card" style="border-color:#fbbf24"><div class="num" style="color:#fbbf24">24</div><div class="lbl">收斂 (HL+LH)<span class="pct">(8.2%)</span></div></div><div class="dist-card" style="border-color:#f97316"><div class="num" style="color:#f97316">0</div><div class="lbl">擴張 (HH+LL)<span class="pct">(0.0%)</span></div></div><div class="dist-card" style="border-color:#ef4444"><div class="num" style="color:#ef4444">5</div><div class="lbl">強降 (LH+LL)<span class="pct">(1.7%)</span></div></div></div>
+  <div class="dist-grid"><div class="dist-card" style="border-color:#10b981"><div class="num" style="color:#10b981">16</div><div class="lbl">強升 (HH+HL)<span class="pct">(5.5%)</span></div></div><div class="dist-card" style="border-color:#fbbf24"><div class="num" style="color:#b45309">24</div><div class="lbl">收斂 (HL+LH)<span class="pct">(8.2%)</span></div></div><div class="dist-card" style="border-color:#f97316"><div class="num" style="color:#f97316">0</div><div class="lbl">擴張 (HH+LL)<span class="pct">(0.0%)</span></div></div><div class="dist-card" style="border-color:#ef4444"><div class="num" style="color:#ef4444">5</div><div class="lbl">強降 (LH+LL)<span class="pct">(1.7%)</span></div></div></div>
 
   <h2>個股清單 (月線)</h2>
   <div class="filter-bar">
@@ -326,8 +328,8 @@ function filterSymbol(tf) {
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
   position: fixed;
-  background: #0f172a;
-  color: #e2e8f0;
+  background: #f4f7fb;
+  color: #243244;
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 12px;
@@ -336,11 +338,11 @@ function filterSymbol(tf) {
   max-width: 320px;
   width: max-content;
   text-align: left;
-  border: 1px solid #475569;
+  border: 1px solid #bccadb;
   z-index: 999999;
   pointer-events: none;
   line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 12px rgba(15,23,42,0.15);
   display: none;
 }
 .tip:focus { outline: none; }
