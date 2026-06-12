@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-Hant"><head>
-<link rel="stylesheet" href="assets/site.css?v=2dca59e1">
+<link rel="stylesheet" href="assets/site.css?v=cde4b74b">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Huang's AI Investment Company (HAIIC)</title>
@@ -86,13 +86,13 @@ h2 { font-size:17px; color:var(--th-blue,#93c5fd); border-bottom:1px solid var(-
 .funnel-stage .stage-name { font-size:11px; color:var(--th-muted,#94a3b8); }
 .funnel-stage .stage-num { font-size:24px; font-weight:bold; margin:2px 0; }
 .funnel-stage .stage-extra { font-size:11px; color:var(--th-muted,#94a3b8); }
-.funnel-stage.green { border-color:#10b981; }
+.funnel-stage.green { border-color:var(--th-green); }
 .funnel-stage.green .stage-num { color:var(--th-green,#10b981); }
-.funnel-stage.blue { border-color:#60a5fa; }
+.funnel-stage.blue { border-color:var(--th-blue); }
 .funnel-stage.blue .stage-num { color:var(--th-blue,#60a5fa); }
-.funnel-stage.amber { border-color:#fcd34d; }
+.funnel-stage.amber { border-color:var(--th-amber); }
 .funnel-stage.amber .stage-num { color:var(--th-amber,#fcd34d); }
-.funnel-stage.orange { border-color:#fb923c; }
+.funnel-stage.orange { border-color:var(--th-orange); }
 .funnel-stage.orange .stage-num { color:var(--th-orange,#fb923c); }
 .funnel-arrow { display:flex; align-items:center; justify-content:center;
                 color:var(--th-blue,#3b82f6); font-size:18px; font-weight:bold; }
@@ -115,7 +115,7 @@ h2 { font-size:17px; color:var(--th-blue,#93c5fd); border-bottom:1px solid var(-
                 gap:14px; }
 .summary-card { background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:8px;
                 padding:14px 16px; transition:border-color 0.15s; }
-.summary-card:hover { border-color:#3b82f6; }
+.summary-card:hover { border-color:var(--th-blue); }
 .summary-card .head { display:flex; justify-content:space-between; align-items:baseline; }
 .summary-card .title { font-size:16px; font-weight:bold; color:var(--th-text,#e2e8f0); }
 .summary-card .icon { font-size:22px; }
@@ -132,7 +132,7 @@ h2 { font-size:17px; color:var(--th-blue,#93c5fd); border-bottom:1px solid var(-
 .summary-card .detail-link:hover { text-decoration:underline; }
 
 /* 最終行動建議 */
-.action-card { background:var(--th-blue-bg,#0f2040); border:1px solid rgba(59,130,246,0.4); border-radius:6px;
+.action-card { background:var(--th-blue-bg,#0f2040); border:1px solid var(--th-blue); border-radius:6px;
                padding:10px 14px; margin-bottom:6px;
                display:flex; justify-content:space-between; align-items:center; gap:14px; }
 .action-card .main { font-size:14px; }
@@ -146,7 +146,7 @@ h2 { font-size:17px; color:var(--th-blue,#93c5fd); border-bottom:1px solid var(-
 .detail-link { display:block; text-decoration:none; color:inherit;
                background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:8px;
                padding:18px 20px; transition:transform 0.15s, border-color 0.15s; }
-.detail-link:hover { border-color:#3b82f6; transform:translateY(-2px); }
+.detail-link:hover { border-color:var(--th-blue); transform:translateY(-2px); }
 .detail-link .icon { font-size:28px; }
 .detail-link .title { font-size:17px; font-weight:bold; margin-top:6px; }
 .detail-link .desc { color:var(--th-muted,#94a3b8); font-size:12px; margin-top:6px; }
@@ -157,7 +157,7 @@ h2 { font-size:17px; color:var(--th-blue,#93c5fd); border-bottom:1px solid var(-
 .backup-link { display:block; background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55);
                border-radius:6px; padding:6px 12px; color:var(--th-text2,#cbd5e1);
                text-decoration:none; font-size:13px; text-align:center; }
-.backup-link:hover { border-color:#3b82f6; color:var(--th-blue,#60a5fa); }
+.backup-link:hover { border-color:var(--th-blue); color:var(--th-blue,#60a5fa); }
 
 /* 系統文件 */
 .docs-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
@@ -165,7 +165,7 @@ h2 { font-size:17px; color:var(--th-blue,#93c5fd); border-bottom:1px solid var(-
 .doc-link { display:block; background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55);
             border-radius:6px; padding:6px 14px; color:var(--th-text2,#cbd5e1);
             text-decoration:none; font-size:13px; }
-.doc-link:hover { border-color:#3b82f6; color:var(--th-blue,#60a5fa); }
+.doc-link:hover { border-color:var(--th-blue); color:var(--th-blue,#60a5fa); }
 .doc-link .doc-type { color:var(--th-faint,#64748b); font-size:11px; }
 
 footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:40px;
@@ -216,14 +216,12 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
 </script>
 <!-- GLOBAL_NAV_END -->
 
-
-
 <h1>Huang's AI Investment Company (HAIIC)</h1>
-<div class="sub">資料日：2026-06-12 ｜ 產生時間：2026-06-12 21:34</div>
+<div class="sub">資料日：2026-06-12 ｜ 產生時間：2026-06-13 01:06</div>
 
 
 <!-- V.1 投資長主控台 (CIO Dashboard) -->
-<div class="cio-dash" style="background:linear-gradient(135deg,#dbeafe,#e8f4fd);padding:18px;
+<div class="cio-dash" style="background:linear-gradient(135deg,var(--th-dk-bg),var(--th-dk-panel));padding:18px;
             border-radius:12px;margin:14px 0 18px;border:2px solid var(--th-cyan,#0ea5e9);
             box-shadow:0 4px 20px rgba(14,165,233,0.2)">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
@@ -241,7 +239,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
       <div style="color:var(--th-amber,#fbbf24);font-size:11px;font-weight:bold;margin-bottom:6px">
         ⑥ 今日 Top 3 重點 (Today's Top 3) — 一句話晨報 (One-line Brief)
       </div>
-      <div style="display:flex;align-items:center;gap:8px;padding:5px 0"><span style="font-size:18px;width:24px;text-align:center">🚨</span><span style="color:var(--th-red,#ef4444);font-size:13px;flex:1">TWII Z250=+2.21σ 過熱警戒 (&gt;+2σ, 機率&lt;1%) — TWII 已嚴重偏離常態 (Z&gt;+2σ), 暫停新加倉, 提高現金部位</span></div><div style="display:flex;align-items:center;gap:8px;padding:5px 0"><span style="font-size:18px;width:24px;text-align:center">🚨</span><span style="color:var(--th-red,#ef4444);font-size:13px;flex:1">風控長否決 (CRO VETO) — 暫停所有換股, 等待風險解除</span></div><div style="display:flex;align-items:center;gap:8px;padding:5px 0"><span style="font-size:18px;width:24px;text-align:center">💰</span><span style="color:var(--th-green,#22c55e);font-size:13px;flex:1">資金流入 (Inflow): 運動休閒↑+7.1 / 居家生活↑+6.4</span></div>
+      <div style="display:flex;align-items:center;gap:8px;padding:5px 0"><span style="font-size:18px;width:24px;text-align:center">🚨</span><span style="color:var(--th-red);font-size:13px;flex:1">TWII Z250=+2.21σ 過熱警戒 (&gt;+2σ, 機率&lt;1%) — TWII 已嚴重偏離常態 (Z&gt;+2σ), 暫停新加倉, 提高現金部位</span></div><div style="display:flex;align-items:center;gap:8px;padding:5px 0"><span style="font-size:18px;width:24px;text-align:center">🚨</span><span style="color:var(--th-red);font-size:13px;flex:1">風控長否決 (CRO VETO) — 暫停所有換股, 等待風險解除</span></div><div style="display:flex;align-items:center;gap:8px;padding:5px 0"><span style="font-size:18px;width:24px;text-align:center">💰</span><span style="color:var(--th-green);font-size:13px;flex:1">資金流入 (Inflow): 運動休閒↑+7.1 / 居家生活↑+6.4</span></div>
     </div>
     
 
@@ -268,17 +266,17 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
 
     <!-- 1. Market Regime -->
     <div style="background:rgba(58,52,40,0.07);padding:11px;border-radius:7px;
-                border-left:4px solid var(--th-red,#ef4444)">
+                border-left:4px solid var(--th-red)">
       <div style="color:var(--th-cyan,#7dd3fc);font-size:11px;font-weight:bold;margin-bottom:4px">
         ① 市場狀態 (Market Regime)
       </div>
-      <div style="color:var(--th-red,#ef4444);font-size:20px;font-weight:bold">Cash</div>
+      <div style="color:var(--th-red);font-size:20px;font-weight:bold">Cash</div>
       <div style="color:var(--th-muted,#94a3b8);font-size:10px;margin-top:2px">
         市場階段 (Phase): <a href="ms_agent.json" style="color:var(--th-amber,#fbbf24);text-decoration:none">UNCLEAR</a>
       </div>
-      <div title="TWII Z-score: 大盤偏離常態多少 σ&#10;Z250 = (今日TWII − 250日均) ÷ 250日 SD&#10;>+2.0 過熱警戒 / >+1.5 偏熱 / ±1.5 常態 / <-1.5 偏冷 / <-2.0 過冷" style="background:rgba(58,52,40,0.08);padding:5px 7px;border-radius:4px;margin-top:5px;font-size:10px;border-left:2px solid var(--th-red,#ef4444);cursor:help">
+      <div title="TWII Z-score: 大盤偏離常態多少 σ&#10;Z250 = (今日TWII − 250日均) ÷ 250日 SD&#10;>+2.0 過熱警戒 / >+1.5 偏熱 / ±1.5 常態 / <-1.5 偏冷 / <-2.0 過冷" style="background:rgba(58,52,40,0.08);padding:5px 7px;border-radius:4px;margin-top:5px;font-size:10px;border-left:2px solid var(--th-red);cursor:help">
         <div style="color:var(--th-muted,#94a3b8)">TWII Z-score (大盤過熱/過冷)</div>
-        <div style="color:var(--th-red,#ef4444);font-weight:bold">
+        <div style="color:var(--th-red);font-weight:bold">
           🚨 Z250=+2.21 σ ·
           <span style="font-size:9px">過熱警戒</span>
         </div>
@@ -371,11 +369,11 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
 
     <!-- 5. Risk -->
     <div style="background:rgba(58,52,40,0.07);padding:11px;border-radius:7px;
-                border-left:4px solid var(--th-red,#ef4444)">
+                border-left:4px solid var(--th-red)">
       <div style="color:var(--th-cyan,#7dd3fc);font-size:11px;font-weight:bold;margin-bottom:4px">
         ⑤ 風險 (Risk)
       </div>
-      <div style="color:var(--th-red,#ef4444);font-size:20px;font-weight:bold">
+      <div style="color:var(--th-red);font-size:20px;font-weight:bold">
         Veto
       </div>
       <div style="color:var(--th-muted,#94a3b8);font-size:10px;margin-top:2px">
@@ -421,8 +419,8 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
         <div style="color:var(--th-text2,#cbd5e1);font-size:11px">總資產 (NAV):
           <b style="color:var(--th-text,#fff)">NT$1,007,119</b></div>
         <div style="color:var(--th-text2,#cbd5e1);font-size:11px;margin-top:3px">
-          昨日 (Daily): <b style="color:var(--th-red,#ef4444)">-0.05%</b> ·
-          累積 (Total): <b style="color:var(--th-green,#22c55e)">+0.71%</b>
+          昨日 (Daily): <b style="color:var(--th-red)">-0.05%</b> ·
+          累積 (Total): <b style="color:var(--th-green)">+0.71%</b>
         </div>
         <div style="color:var(--th-muted,#94a3b8);font-size:10px;margin-top:3px">
           回撤 (DD): -0.86% · 最大回撤 (Max DD): -0.86% ·
@@ -454,7 +452,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
 .ptabbar button{background:none;border:none;color:var(--th-muted,#94a3b8);font-size:14px;cursor:pointer;
   padding:8px 16px;border-bottom:3px solid transparent;font-family:inherit;font-weight:bold}
 .ptabbar button:hover{color:var(--th-text,#e2e8f0)}
-.ptabbar button.on{color:var(--th-amber,#fbbf24);border-bottom-color:#fbbf24}
+.ptabbar button.on{color:var(--th-amber,#fbbf24);border-bottom-color:var(--th-amber)}
 .ptab{display:none}
 .ptab.on{display:block}
 </style>
@@ -487,14 +485,14 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
       <div class="score-row">
         <div class="score-cell" title="-0.30×Z(外資現貨) -0.30×Z(外資台指期OI) +0.20×Z(USDTWD報酬) -0.20×Z(SOX報酬)；↑=外資壓力大（負面）"><div class='lbl'>外資壓力分數</div><span class='val yellow'>+0.22</span></div>
         <div class="score-cell" title="+0.35×Z(投信買賣超) +0.25×Z(ETF受益人月增) +0.20×Z(高股息ETF成交占比) +0.20×Z(大盤跌幅收斂)；↑=內資承接強（正面）"><div class='lbl'>ETF 承接分數</div><span class='val yellow'>-0.20</span></div>
-        <div class="score-cell headline" style="border-color:#fb923c" title="綜合 = ETF 承接 − 外資壓力；&gt;+1=強多、+0.3~+1=中多、±0.3=中性、-1~-0.3=中空、&lt;-1=強空">
+        <div class="score-cell headline" style="border-color:var(--th-orange)" title="綜合 = ETF 承接 − 外資壓力；&gt;+1=強多、+0.3~+1=中多、±0.3=中性、-1~-0.3=中空、&lt;-1=強空">
           <div class='lbl'>綜合結構分</div><span class='val red'>-0.42</span>
         </div>
       </div>
       <div class="regime-banner">
         <div title="市場狀態（regime）：依綜合結構分 5 級分類。strong_bull/mild_bull/neutral/mild_bear/strong_bear">
-          <span class="regime-light" style="background:var(--th-orange,#fb923c);color:var(--th-orange,#fb923c)"></span>
-          <span class="regime-label" style="color:var(--th-orange,#fb923c)">外資壓力偏空</span>
+          <span class="regime-light" style="background:var(--th-orange);color:var(--th-orange)"></span>
+          <span class="regime-label" style="color:var(--th-orange)">外資壓力偏空</span>
           <span class="regime-comment">市場狀態 中空</span>
         </div>
         <div class="right">
@@ -540,7 +538,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
 </h3>
 <div class="summary-grid">
   
-    <div class="summary-card" style="border:2px solid var(--th-border2,#94a3b8)">
+    <div class="summary-card" style="border:2px solid var(--th-muted)">
       <div class="head">
         <div class="title" title="MS Agent V.2 升格 — CIO 投資長,提供下游指令 (selection/master_weight/discipline)">
           🎯 投資長指示 <span style="font-size:11px;color:var(--th-muted,#94a3b8);font-weight:normal">(MS Agent V.2)</span>
@@ -550,17 +548,17 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px">
         <div title="市場階段判定" style="text-align:center;padding:8px;background:var(--th-card,#0f1a2c);border-radius:4px">
           <div style="font-size:10px;color:var(--th-muted,#94a3b8);text-transform:uppercase">階段</div>
-          <div style="color:var(--th-muted,#94a3b8);font-size:16px;font-weight:bold">UNCLEAR</div>
-          <div style="color:var(--th-muted,#94a3b8);font-size:11px">LOW (35)</div>
+          <div style="color:var(--th-muted);font-size:16px;font-weight:bold">UNCLEAR</div>
+          <div style="color:var(--th-muted);font-size:11px">LOW (35)</div>
         </div>
         <div title="風險模式" style="text-align:center;padding:8px;background:var(--th-card,#0f1a2c);border-radius:4px">
           <div style="font-size:10px;color:var(--th-muted,#94a3b8);text-transform:uppercase">風控</div>
-          <div style="color:var(--th-red,#ef4444);font-size:16px;font-weight:bold">CASH</div>
-          <div style="color:var(--th-red,#ef4444);font-size:11px">90/100</div>
+          <div style="color:var(--th-red);font-size:16px;font-weight:bold">CASH</div>
+          <div style="color:var(--th-red);font-size:11px">90/100</div>
         </div>
         <div title="Orchestrator 行動指令" style="text-align:center;padding:8px;background:var(--th-card,#0f1a2c);border-radius:4px">
           <div style="font-size:10px;color:var(--th-muted,#94a3b8);text-transform:uppercase">行動</div>
-          <div style="color:var(--th-red,#ef4444);font-size:16px;font-weight:bold">WAIT</div>
+          <div style="color:var(--th-red);font-size:16px;font-weight:bold">WAIT</div>
         </div>
       </div>
       <div style="margin-top:8px;font-size:11px;color:var(--th-muted,#94a3b8)">選股池偏好</div>
@@ -608,7 +606,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
       <div class="dist" style="font-size:11px;color:var(--th-faint,#64748b)">
         301 檔性格分類 (4 派 12 席) ｜ 分歧度 ≠ 平均 ｜ 🛡 風控降級 19 檔
       </div>
-      <div style="display:flex;gap:4px;margin-top:6px;flex-wrap:wrap"><span style="background:var(--th-red,#ef4444);color:var(--th-text,#0f172a);padding:2px 7px;border-radius:8px;font-size:10px;font-weight:bold">🚀 169</span><span style="background:var(--th-blue,#3b82f6);color:var(--th-text,#0f172a);padding:2px 7px;border-radius:8px;font-size:10px;font-weight:bold">📈 117</span><span style="background:var(--th-amber,#fbbf24);color:var(--th-text,#0f172a);padding:2px 7px;border-radius:8px;font-size:10px;font-weight:bold">🏆 2</span><span style="background:var(--th-hover,#64748b);color:var(--th-text,#0f172a);padding:2px 7px;border-radius:8px;font-size:10px;font-weight:bold">⚪ 13</span></div>
+      <div style="display:flex;gap:4px;margin-top:6px;flex-wrap:wrap"><span style="background:var(--th-red);color:var(--th-ink,#0f172a);padding:2px 7px;border-radius:8px;font-size:10px;font-weight:bold">🚀 169</span><span style="background:var(--th-blue);color:var(--th-ink,#0f172a);padding:2px 7px;border-radius:8px;font-size:10px;font-weight:bold">📈 117</span><span style="background:var(--th-amber);color:var(--th-ink,#0f172a);padding:2px 7px;border-radius:8px;font-size:10px;font-weight:bold">🏆 2</span><span style="background:var(--th-faint);color:var(--th-ink,#0f172a);padding:2px 7px;border-radius:8px;font-size:10px;font-weight:bold">⚪ 13</span></div>
       <div style="margin-top:8px"><div style='padding:5px 8px;background:var(--th-card,#0f1a2c);border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-amber,#fbbf24)'>2801</b> 彰銀 <span style='color:var(--th-muted,#94a3b8)'>📈結構趨勢股</span></span><span style='color:var(--th-purple,#a855f7)'>→ 趨勢波段型經理</span></div><div style='padding:5px 8px;background:var(--th-card,#0f1a2c);border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-amber,#fbbf24)'>5536</b> 聖暉* <span style='color:var(--th-muted,#94a3b8)'>📈結構趨勢股</span></span><span style='color:var(--th-purple,#a855f7)'>→ 趨勢波段型經理</span></div><div style='padding:5px 8px;background:var(--th-card,#0f1a2c);border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-amber,#fbbf24)'>1904</b> 正隆 <span style='color:var(--th-muted,#94a3b8)'>📈結構趨勢股</span></span><span style='color:var(--th-purple,#a855f7)'>→ 趨勢波段型經理</span></div><div style='padding:5px 8px;background:var(--th-card,#0f1a2c);border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-amber,#fbbf24)'>3045</b> 台灣大 <span style='color:var(--th-muted,#94a3b8)'>📈結構趨勢股</span></span><span style='color:var(--th-purple,#a855f7)'>→ 趨勢波段型經理</span></div><div style='padding:5px 8px;background:var(--th-card,#0f1a2c);border-radius:4px;margin-top:3px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-amber,#fbbf24)'>2344</b> 華邦電 <span style='color:var(--th-muted,#94a3b8)'>🚀成長動能股</span></span><span style='color:var(--th-purple,#a855f7)'>→ 積極成長型經理</span></div></div>
       <a class="detail-link" href="org/iab.html" style="color:var(--th-purple,#a855f7);font-weight:bold">看股票性格 + 最適經理分類 →</a>
     </div>
@@ -635,14 +633,14 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
     </div>
     
   
-    <div class="summary-card" style="border-left:5px solid var(--th-green,#22c55e)">
+    <div class="summary-card" style="border-left:5px solid var(--th-green)">
       <div class="head">
         <div class="title" title="V.2 E.2 — Paper Portfolio 持續累積 + 真實 pnl, 從 NT$ 1,000,000 起始">
           📈 模擬績效 <span style="font-size:10px;color:var(--th-muted,#94a3b8);font-weight:normal">(L4 paper)</span>
         </div>
         <div class="icon">💰</div>
       </div>
-      <div style="font-size:18px;font-weight:bold;color:var(--th-green,#22c55e);margin-top:6px">
+      <div style="font-size:18px;font-weight:bold;color:var(--th-green);margin-top:6px">
         NT$ 1,007,119 <span style="font-size:13px">(+0.71%)</span>
       </div>
       <div style="font-size:11px;color:var(--th-muted,#94a3b8);margin-top:2px">
@@ -651,7 +649,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:8px">
         <div title="當日報酬" style="text-align:center;padding:4px;background:var(--th-card,#0f1a2c);border-radius:4px">
           <div style="color:var(--th-muted,#94a3b8);font-size:9px">當日</div>
-          <div style="color:var(--th-red,#ef4444);font-size:13px;font-weight:bold">-0.05%</div>
+          <div style="color:var(--th-red);font-size:13px;font-weight:bold">-0.05%</div>
         </div>
         <div title="當前 drawdown" style="text-align:center;padding:4px;background:var(--th-card,#0f1a2c);border-radius:4px">
           <div style="color:var(--th-muted,#94a3b8);font-size:9px">DD</div>
@@ -670,12 +668,12 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
           Cash NT$877,316
         </span>
       </div>
-      <div style="margin-top:8px"><div style='padding:3px 8px;background:var(--th-card,#0f1a2c);border-radius:3px;margin-top:2px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-green,#22c55e)'>1301</b> 台塑 (398股)</span><span style='color:var(--th-red,#ef4444)'>-0.24%</span></div><div style='padding:3px 8px;background:var(--th-card,#0f1a2c);border-radius:3px;margin-top:2px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-green,#22c55e)'>2609</b> 陽明 (309股)</span><span style='color:var(--th-red,#ef4444)'>-0.25%</span></div><div style='padding:3px 8px;background:var(--th-card,#0f1a2c);border-radius:3px;margin-top:2px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-green,#22c55e)'>1904</b> 正隆 (519股)</span><span style='color:var(--th-red,#ef4444)'>-0.26%</span></div><div style='padding:3px 8px;background:var(--th-card,#0f1a2c);border-radius:3px;margin-top:2px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-green,#22c55e)'>5871</b> 中租-KY (89股)</span><span style='color:var(--th-red,#ef4444)'>-0.24%</span></div><div style='padding:3px 8px;background:var(--th-card,#0f1a2c);border-radius:3px;margin-top:2px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-green,#22c55e)'>2031</b> 新光鋼 (255股)</span><span style='color:var(--th-red,#ef4444)'>-0.24%</span></div></div>
+      <div style="margin-top:8px"><div style='padding:3px 8px;background:var(--th-card,#0f1a2c);border-radius:3px;margin-top:2px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-green,#22c55e)'>1301</b> 台塑 (398股)</span><span style='color:var(--th-red)'>-0.24%</span></div><div style='padding:3px 8px;background:var(--th-card,#0f1a2c);border-radius:3px;margin-top:2px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-green,#22c55e)'>2609</b> 陽明 (309股)</span><span style='color:var(--th-red)'>-0.25%</span></div><div style='padding:3px 8px;background:var(--th-card,#0f1a2c);border-radius:3px;margin-top:2px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-green,#22c55e)'>1904</b> 正隆 (519股)</span><span style='color:var(--th-red)'>-0.26%</span></div><div style='padding:3px 8px;background:var(--th-card,#0f1a2c);border-radius:3px;margin-top:2px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-green,#22c55e)'>5871</b> 中租-KY (89股)</span><span style='color:var(--th-red)'>-0.24%</span></div><div style='padding:3px 8px;background:var(--th-card,#0f1a2c);border-radius:3px;margin-top:2px;font-size:11px;display:flex;justify-content:space-between'><span><b style='color:var(--th-green,#22c55e)'>2031</b> 新光鋼 (255股)</span><span style='color:var(--th-red)'>-0.24%</span></div></div>
       <a class="detail-link" href="org/paper_portfolio.html" style="color:var(--th-green,#22c55e);font-weight:bold">看完整持倉 + 績效歷史 →</a>
     </div>
     
   
-    <div class="summary-card" style="border-left:5px solid var(--th-red,#ef4444)">
+    <div class="summary-card" style="border-left:5px solid var(--th-red)">
       <div class="head">
         <div class="title" title="V.2 L5 風控長 (PASS/WARN/VETO) + L6 績效追蹤 (9 名人貢獻佔比)">
           🛡 風控 + 績效 <span style="font-size:10px;color:var(--th-muted,#94a3b8);font-weight:normal">(L5+L6)</span>
@@ -683,7 +681,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
         <div class="icon">🛡</div>
       </div>
       <div class="dist" style="font-size:11px;color:var(--th-faint,#64748b)">
-        Verdict: <span style="color:var(--th-red,#ef4444);font-weight:bold">VETO</span>
+        Verdict: <span style="color:var(--th-red);font-weight:bold">VETO</span>
         ｜ 歷史 5 日
       </div>
       <div style="display:flex;gap:4px;margin-top:6px">
@@ -707,16 +705,16 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
       <div class="dist" style="font-size:11px;color:var(--th-faint,#64748b)">市場結構監控中心 ｜ M1-M6 整合</div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px">
         <div title="市場溫度 0-100：8 因子加權合成" style="text-align:center;padding:6px;background:var(--th-card,#0f1a2c);border-radius:4px">
-          <div style="color:var(--th-amber,#fcd34d);font-size:22px;font-weight:bold">🌡 49.7</div>
-          <div style="color:var(--th-amber,#fcd34d);font-size:11px">♨ 溫熱</div>
+          <div style="color:var(--th-amber);font-size:22px;font-weight:bold">🌡 49.7</div>
+          <div style="color:var(--th-amber);font-size:11px">♨ 溫熱</div>
         </div>
         <div title="RR 環境分 0-100：6 條件加總，決定是否適合 RR 操作" style="text-align:center;padding:6px;background:var(--th-card,#0f1a2c);border-radius:4px">
-          <div style="color:var(--th-green,#10b981);font-size:22px;font-weight:bold">🎯 70</div>
-          <div style="color:var(--th-green,#10b981);font-size:11px">✅ RR 黃金期</div>
+          <div style="color:var(--th-green);font-size:22px;font-weight:bold">🎯 70</div>
+          <div style="color:var(--th-green);font-size:11px">✅ RR 黃金期</div>
         </div>
         <div title="大盤層級風險：7 訊號觸發數，自動調整部位上限" style="text-align:center;padding:6px;background:var(--th-card,#0f1a2c);border-radius:4px">
-          <div style="color:var(--th-amber,#fcd34d);font-size:22px;font-weight:bold">🚨 2/7</div>
-          <div style="color:var(--th-amber,#fcd34d);font-size:11px">部位 75%</div>
+          <div style="color:var(--th-amber);font-size:22px;font-weight:bold">🚨 2/7</div>
+          <div style="color:var(--th-amber);font-size:11px">部位 75%</div>
         </div>
       </div>
       <a class="detail-link" href="market/ms_dashboard.html">看完整監控中心 →</a>
@@ -730,7 +728,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
         <span class="yellow">B 168</span> ／
         <span class="red">C 483</span>
       </div>
-      <div class="top3"><div class='item'><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6239" target="_blank" rel="noopener" title="TradingView 圖表 — 6239" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6239</a>)</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6239" target="_blank" rel="noopener" title="TradingView 圖表 — 6239" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">力成</a><span class='score'>97</span></div><div class='item'><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3090" target="_blank" rel="noopener" title="TradingView 圖表 — 3090" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3090</a>)</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3090" target="_blank" rel="noopener" title="TradingView 圖表 — 3090" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">日電貿</a><span class='score'>96</span></div><div class='item'><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2327" target="_blank" rel="noopener" title="TradingView 圖表 — 2327" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2327</a>)</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2327" target="_blank" rel="noopener" title="TradingView 圖表 — 2327" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">國巨*</a><span class='score'>95</span></div></div>
+      <div class="top3"><div class='item'><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6239" target="_blank" rel="noopener" title="TradingView 圖表 — 6239" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6239</a>)</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6239" target="_blank" rel="noopener" title="TradingView 圖表 — 6239" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">力成</a><span class='score'>97</span></div><div class='item'><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3090" target="_blank" rel="noopener" title="TradingView 圖表 — 3090" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3090</a>)</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3090" target="_blank" rel="noopener" title="TradingView 圖表 — 3090" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">日電貿</a><span class='score'>96</span></div><div class='item'><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2327" target="_blank" rel="noopener" title="TradingView 圖表 — 2327" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2327</a>)</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2327" target="_blank" rel="noopener" title="TradingView 圖表 — 2327" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">國巨*</a><span class='score'>95</span></div></div>
       <a class="detail-link" href="market/hotflow.html">看完整 HotFlow →</a>
     </div>
     
@@ -788,9 +786,9 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
         </div>
       </div>
       <div style="font-size:11px;color:var(--th-text2,#cbd5e1);margin-top:10px;border-top:1px dashed var(--th-border,#2d3f55);padding-top:6px">
-        <span style="color:var(--th-green,#10b981);font-weight:bold">🏆 雙料 Top 5：</span><br><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2059" target="_blank" rel="noopener" title="TradingView 圖表 — 2059" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">川湖</a><span style='color:var(--th-muted,#94a3b8);font-size:10px'> (93)</span> ／ <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6173" target="_blank" rel="noopener" title="TradingView 圖表 — 6173" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">信昌電</a><span style='color:var(--th-muted,#94a3b8);font-size:10px'> (70)</span> ／ <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3090" target="_blank" rel="noopener" title="TradingView 圖表 — 3090" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">日電貿</a><span style='color:var(--th-muted,#94a3b8);font-size:10px'> (96)</span> ／ <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2327" target="_blank" rel="noopener" title="TradingView 圖表 — 2327" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">國巨*</a><span style='color:var(--th-muted,#94a3b8);font-size:10px'> (95)</span> ／ <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3550" target="_blank" rel="noopener" title="TradingView 圖表 — 3550" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">聯穎</a><span style='color:var(--th-muted,#94a3b8);font-size:10px'> (61)</span>
+        <span style="color:var(--th-green,#10b981);font-weight:bold">🏆 雙料 Top 5：</span><br><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2059" target="_blank" rel="noopener" title="TradingView 圖表 — 2059" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">川湖</a><span style='color:var(--th-muted,#94a3b8);font-size:10px'> (93)</span> ／ <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6173" target="_blank" rel="noopener" title="TradingView 圖表 — 6173" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">信昌電</a><span style='color:var(--th-muted,#94a3b8);font-size:10px'> (70)</span> ／ <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3090" target="_blank" rel="noopener" title="TradingView 圖表 — 3090" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">日電貿</a><span style='color:var(--th-muted,#94a3b8);font-size:10px'> (96)</span> ／ <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2327" target="_blank" rel="noopener" title="TradingView 圖表 — 2327" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">國巨*</a><span style='color:var(--th-muted,#94a3b8);font-size:10px'> (95)</span> ／ <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3550" target="_blank" rel="noopener" title="TradingView 圖表 — 3550" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">聯穎</a><span style='color:var(--th-muted,#94a3b8);font-size:10px'> (61)</span>
       </div>
-      <div style='font-size:11px;color:var(--th-text2,#cbd5e1);margin-top:8px;border-top:1px dashed var(--th-border,#2d3f55);padding-top:6px' title='近 7 日累積主流股池 + Candidate→Core 預測準確率 + 監控/校正狀態'><span style='color:var(--th-blue,#93c5fd);font-weight:bold'>📅 近 7 日累積：</span>Union <b>130</b> ／ <span style='color:var(--th-green,#10b981)'>穩定 <b>5</b></span> ／ <span style='color:var(--th-blue,#60a5fa)'>新進 <b>26</b></span> ／ <span style='color:var(--th-red,#fda4af)'>掉出 <b>16</b></span><br><span style='color:var(--th-orange,#fb923c);font-weight:bold'>🎯 命中率：</span><span style='color:var(--th-muted,#94a3b8);font-weight:bold'>10%</span> ／ <span title='skill_index = 命中率/baseline'>🏆 技能 <span style='color:var(--th-red,#fda4af);font-weight:bold'>0.53×</span></span> ／ <span title='動態校正引擎狀態'>🔬 <span style='color:var(--th-green,#10b981)'>校正啟用</span></span></div>
+      <div style='font-size:11px;color:var(--th-text2,#cbd5e1);margin-top:8px;border-top:1px dashed var(--th-border,#2d3f55);padding-top:6px' title='近 7 日累積主流股池 + Candidate→Core 預測準確率 + 監控/校正狀態'><span style='color:var(--th-blue,#93c5fd);font-weight:bold'>📅 近 7 日累積：</span>Union <b>130</b> ／ <span style='color:var(--th-green,#10b981)'>穩定 <b>5</b></span> ／ <span style='color:var(--th-blue,#60a5fa)'>新進 <b>26</b></span> ／ <span style='color:var(--th-red,#fda4af)'>掉出 <b>16</b></span><br><span style='color:var(--th-orange,#fb923c);font-weight:bold'>🎯 命中率：</span><span style='color:var(--th-muted);font-weight:bold'>10%</span> ／ <span title='skill_index = 命中率/baseline'>🏆 技能 <span style='color:var(--th-red);font-weight:bold'>0.53×</span></span> ／ <span title='動態校正引擎狀態'>🔬 <span style='color:var(--th-green)'>校正啟用</span></span></div>
       <a class="detail-link" href="market/mainstream_pool.html" style="color:var(--th-green,#10b981);font-weight:bold">看完整主流股池 + 7 日歷史 →</a>
     </div>
     
@@ -824,11 +822,11 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
       <div class="head"><div class="title" title="相對強度輪動 (RSR)：Relative Strength Rotation 簡版。RS=ln(A/B)，靠 RS 的 20 日均穿越觸發換股，訊號多但雜訊較大">相對強度輪動</div><div class="icon">🔁</div></div>
       <div class="dist" style="font-size:11px;color:var(--th-faint,#64748b)" title="RS = ln(A 收盤 / B 收盤)；MA20 = RS 的 20 日均；穿越=由下往上(switch_to_A) 或由上往下(switch_to_B)">簡版：RS_MA20 穿越觸發</div>
       <div class="dist" title="配對=評估的配對數；換股=今日 switch 訊號；續抱=維持原持倉的訊號">
-        <span class="green">配對 496</span> ／
-        <span class="blue">換股 219</span> ／
-        <span class="muted">續抱 277</span>
+        <span class="green">配對 190</span> ／
+        <span class="blue">換股 93</span> ／
+        <span class="muted">續抱 97</span>
       </div>
-      <div class="top3"><div class='item'><span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3090" target="_blank" rel="noopener" title="TradingView 圖表 — 3090" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">日電貿</a>→</span><strong style='color:var(--th-text,#e2e8f0)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A7788" target="_blank" rel="noopener" title="TradingView 圖表 — 7788" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">松川精密</a></strong><span class='score'>conf 65</span></div><div class='item'><span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3090" target="_blank" rel="noopener" title="TradingView 圖表 — 3090" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">日電貿</a>→</span><strong style='color:var(--th-text,#e2e8f0)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6173" target="_blank" rel="noopener" title="TradingView 圖表 — 6173" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">信昌電</a></strong><span class='score'>conf 63</span></div><div class='item'><span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8150" target="_blank" rel="noopener" title="TradingView 圖表 — 8150" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">南茂</a>→</span><strong style='color:var(--th-text,#e2e8f0)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8112" target="_blank" rel="noopener" title="TradingView 圖表 — 8112" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">至上</a></strong><span class='score'>conf 36</span></div></div>
+      <div class="top3"><div class='item'><span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">英業達</a>→</span><strong style='color:var(--th-text,#e2e8f0)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">中信金</a></strong><span class='score'>conf 29</span></div><div class='item'><span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2308" target="_blank" rel="noopener" title="TradingView 圖表 — 2308" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">台達電</a>→</span><strong style='color:var(--th-text,#e2e8f0)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2330" target="_blank" rel="noopener" title="TradingView 圖表 — 2330" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">台積電</a></strong><span class='score'>conf 22</span></div><div class='item'><span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6213" target="_blank" rel="noopener" title="TradingView 圖表 — 6213" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">聯茂</a>→</span><strong style='color:var(--th-text,#e2e8f0)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2303" target="_blank" rel="noopener" title="TradingView 圖表 — 2303" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">聯電</a></strong><span class='score'>conf 8</span></div></div>
       <a class="detail-link" href="pairs/rr.html">看完整 RR →</a>
     </div>
     
@@ -841,8 +839,8 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
         <span class="green">⭐ 穩 25</span> ／
         <span class="blue">健康 34</span>
       </div>
-      <div class='dist' style='font-size:11px;color:var(--th-muted,#94a3b8);margin-top:4px' title='穩定對 1 年回測 vs 50/50 等權買持的平均超額'>📊 穩定對回測超額 <strong style='color:var(--th-red,#ef4444)'>-41.3%</strong></div>
-      <div class="top3"><div class='item'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2368" target="_blank" rel="noopener" title="TradingView 圖表 — 2368" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">金像電</a><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2368" target="_blank" rel="noopener" title="TradingView 圖表 — 2368" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2368</a>)</span> ⇄ <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3711" target="_blank" rel="noopener" title="TradingView 圖表 — 3711" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">日月光投控</a><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3711" target="_blank" rel="noopener" title="TradingView 圖表 — 3711" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3711</a>)</span><span class='score'>74</span></div><div class='item'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2059" target="_blank" rel="noopener" title="TradingView 圖表 — 2059" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">川湖</a><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2059" target="_blank" rel="noopener" title="TradingView 圖表 — 2059" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2059</a>)</span> ⇄ <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2207" target="_blank" rel="noopener" title="TradingView 圖表 — 2207" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">和泰車</a><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2207" target="_blank" rel="noopener" title="TradingView 圖表 — 2207" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2207</a>)</span><span class='score'>72</span></div><div class='item'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2207" target="_blank" rel="noopener" title="TradingView 圖表 — 2207" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">和泰車</a><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2207" target="_blank" rel="noopener" title="TradingView 圖表 — 2207" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2207</a>)</span> ⇄ <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">飛捷</a><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6206</a>)</span><span class='score'>72</span></div></div>
+      <div class='dist' style='font-size:11px;color:var(--th-muted,#94a3b8);margin-top:4px' title='穩定對 1 年回測 vs 50/50 等權買持的平均超額'>📊 穩定對回測超額 <strong style='color:var(--th-red)'>-41.3%</strong></div>
+      <div class="top3"><div class='item'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2368" target="_blank" rel="noopener" title="TradingView 圖表 — 2368" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">金像電</a><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2368" target="_blank" rel="noopener" title="TradingView 圖表 — 2368" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2368</a>)</span> ⇄ <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3711" target="_blank" rel="noopener" title="TradingView 圖表 — 3711" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">日月光投控</a><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3711" target="_blank" rel="noopener" title="TradingView 圖表 — 3711" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3711</a>)</span><span class='score'>74</span></div><div class='item'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2059" target="_blank" rel="noopener" title="TradingView 圖表 — 2059" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">川湖</a><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2059" target="_blank" rel="noopener" title="TradingView 圖表 — 2059" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2059</a>)</span> ⇄ <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2207" target="_blank" rel="noopener" title="TradingView 圖表 — 2207" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">和泰車</a><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2207" target="_blank" rel="noopener" title="TradingView 圖表 — 2207" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2207</a>)</span><span class='score'>72</span></div><div class='item'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2207" target="_blank" rel="noopener" title="TradingView 圖表 — 2207" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">和泰車</a><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2207" target="_blank" rel="noopener" title="TradingView 圖表 — 2207" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2207</a>)</span> ⇄ <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">飛捷</a><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6206" target="_blank" rel="noopener" title="TradingView 圖表 — 6206" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6206</a>)</span><span class='score'>72</span></div></div>
       <a class="detail-link" href="pairs/rrr_resonance.html">看 RRR Resonance + 回測 →</a>
     </div>
     
@@ -897,7 +895,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
       <div class="dist" style="font-size:11px;margin-top:4px">
         🅰 5 ｜ 🅱 152 ｜ 🅲 82 ｜ N 形 healthy 209
       </div>
-      <div class="top3" style="margin-top:8px"><div class='item'><span class='codenum'>📊 持有</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2344" target="_blank" rel="noopener" title="TradingView 圖表 — 2344" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">華邦電</a><span class='score'>B</span></div><div class='item'><span class='codenum'>📊 持有</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2887" target="_blank" rel="noopener" title="TradingView 圖表 — 2887" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">台新新光金</a><span class='score'>B</span></div><div class='item'><span class='codenum'>🔥 加碼</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2408" target="_blank" rel="noopener" title="TradingView 圖表 — 2408" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">南亞科</a><span class='score'>A</span></div></div>
+      <div class="top3" style="margin-top:8px"><div class='item'><span class='codenum'>📊 持有</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2344" target="_blank" rel="noopener" title="TradingView 圖表 — 2344" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">華邦電</a><span class='score'>B</span></div><div class='item'><span class='codenum'>📊 持有</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2887" target="_blank" rel="noopener" title="TradingView 圖表 — 2887" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">台新新光金</a><span class='score'>B</span></div><div class='item'><span class='codenum'>🔥 加碼</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2408" target="_blank" rel="noopener" title="TradingView 圖表 — 2408" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">南亞科</a><span class='score'>A</span></div></div>
       <a class="detail-link" href="org/stock_ops.html" style="color:var(--th-orange,#fb923c);font-weight:bold">看完整操作建議 →</a>
     </div>
     
@@ -964,18 +962,18 @@ C 級會被排除不進入下游池（過熱或結構轉空）
     </div>
     <div class="funnel-arrow">→</div>
     <div class="funnel-stage orange" title="④ 健康配對 (Healthy Pair) 訊號 — 配對中兩股皆為健康的訊號數。
-數字 599/632 = 兩股皆健康 (Healthy) 的配對 / 總配對數
+數字 239/326 = 兩股皆健康 (Healthy) 的配對 / 總配對數
 
 明細：
-  相對強度輪動 (RSR)：496/496
+  相對強度輪動 (RSR)：136/190
   共振輪動 (RRR)：97/126
   自選配對 (Custom Pairs)：3/5
   動態相對強度輪動 (Dynamic RSR)：3/5
 
 『健康配對 (healthy_pair=True)』表示配對中 A 股 + B 股都屬於箱型健康家族，可優先採信換股訊號">
       <div class="stage-name">④ 健康配對訊號</div>
-      <div class="stage-num">599/632</div>
-      <div class="stage-extra">RSR 496 / RRR 97 / 自選 3 / 動態 3</div>
+      <div class="stage-num">239/326</div>
+      <div class="stage-extra">RSR 136 / RRR 97 / 自選 3 / 動態 3</div>
     </div>
   </div>
 </div>
@@ -990,7 +988,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
         <span class="yellow">觀察 4</span> ／
         <span class="red">否決 22</span>
       </div>
-      <div class="top3"><div class='item'><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3231" target="_blank" rel="noopener" title="TradingView 圖表 — 3231" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3231</a>)</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3231" target="_blank" rel="noopener" title="TradingView 圖表 — 3231" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">緯創</a><span class='score'>92</span></div><div class='item'><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3260" target="_blank" rel="noopener" title="TradingView 圖表 — 3260" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3260</a>)</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3260" target="_blank" rel="noopener" title="TradingView 圖表 — 3260" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">威剛</a><span class='score'>92</span></div><div class='item'><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2382" target="_blank" rel="noopener" title="TradingView 圖表 — 2382" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2382</a>)</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2382" target="_blank" rel="noopener" title="TradingView 圖表 — 2382" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">廣達</a><span class='score'>90</span></div></div>
+      <div class="top3"><div class='item'><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3231" target="_blank" rel="noopener" title="TradingView 圖表 — 3231" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3231</a>)</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3231" target="_blank" rel="noopener" title="TradingView 圖表 — 3231" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">緯創</a><span class='score'>92</span></div><div class='item'><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3260" target="_blank" rel="noopener" title="TradingView 圖表 — 3260" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3260</a>)</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3260" target="_blank" rel="noopener" title="TradingView 圖表 — 3260" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">威剛</a><span class='score'>92</span></div><div class='item'><span class='codenum'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2382" target="_blank" rel="noopener" title="TradingView 圖表 — 2382" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2382</a>)</span> <a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2382" target="_blank" rel="noopener" title="TradingView 圖表 — 2382" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">廣達</a><span class='score'>90</span></div></div>
       <a class="detail-link" href="tech/n_pattern.html">看完整 N-Pattern →</a>
     </div>
     
@@ -1003,7 +1001,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
         <span class="blue">換股 71</span> ／
         <span class="green">放行 50</span>
       </div>
-      <div class="top3"><div class='item'><span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3231" target="_blank" rel="noopener" title="TradingView 圖表 — 3231" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">緯創</a>→</span><strong style='color:var(--th-text,#e2e8f0)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">萬海</a></strong><span class='score'>75%</span></div><div class='item'><span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">英業達</a>→</span><strong style='color:var(--th-text,#e2e8f0)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">萬海</a></strong><span class='score'>75%</span></div><div class='item'><span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">英業達</a>→</span><strong style='color:var(--th-text,#e2e8f0)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">中信金</a></strong><span class='score'>75%</span></div></div>
+      <div class="top3"><div class='item'><span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3231" target="_blank" rel="noopener" title="TradingView 圖表 — 3231" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">緯創</a>→</span><strong style='color:var(--th-text,#e2e8f0)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">萬海</a></strong><span class='score'>75%</span></div><div class='item'><span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">英業達</a>→</span><strong style='color:var(--th-text,#e2e8f0)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">萬海</a></strong><span class='score'>75%</span></div><div class='item'><span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">英業達</a>→</span><strong style='color:var(--th-text,#e2e8f0)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">中信金</a></strong><span class='score'>75%</span></div></div>
       <a class="detail-link" href="pairs/rrr.html">看完整 RRR →</a>
     </div>
     
@@ -1021,7 +1019,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 
 <div class="ptab on" data-tab="ops">
 <h2>最終行動建議 (Final Actions)</h2>
-<div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3231" target="_blank" rel="noopener" title="TradingView 圖表 — 3231" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">緯創</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3231" target="_blank" rel="noopener" title="TradingView 圖表 — 3231" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3231</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">萬海</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2615</a>) <span class='meta'>Z60=0.21 ｜ conf=90</span></div><div class='pos'>75%</div></div><div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">英業達</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2356</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">萬海</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2615</a>) <span class='meta'>Z60=1.04 ｜ conf=90</span></div><div class='pos'>75%</div></div><div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">英業達</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2356</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">中信金</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2891</a>) <span class='meta'>Z60=0.54 ｜ conf=90</span></div><div class='pos'>75%</div></div><div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2303" target="_blank" rel="noopener" title="TradingView 圖表 — 2303" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">聯電</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2303" target="_blank" rel="noopener" title="TradingView 圖表 — 2303" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2303</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">中信金</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2891</a>) <span class='meta'>Z60=-0.95 ｜ conf=80</span></div><div class='pos'>75%</div></div><div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">英業達</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2356</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2376" target="_blank" rel="noopener" title="TradingView 圖表 — 2376" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">技嘉</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2376" target="_blank" rel="noopener" title="TradingView 圖表 — 2376" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2376</a>) <span class='meta'>Z60=1.2 ｜ conf=80</span></div><div class='pos'>75%</div></div><div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2454" target="_blank" rel="noopener" title="TradingView 圖表 — 2454" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">聯發科</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2454" target="_blank" rel="noopener" title="TradingView 圖表 — 2454" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2454</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">中信金</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2891</a>) <span class='meta'>Z60=-0.77 ｜ conf=70</span></div><div class='pos'>75%</div></div><div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">英業達</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2356</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2308" target="_blank" rel="noopener" title="TradingView 圖表 — 2308" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">台達電</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2308" target="_blank" rel="noopener" title="TradingView 圖表 — 2308" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2308</a>) <span class='meta'>Z60=1.0 ｜ conf=70</span></div><div class='pos'>75%</div></div><div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A8299" target="_blank" rel="noopener" title="TradingView 圖表 — 8299" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">群聯</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A8299" target="_blank" rel="noopener" title="TradingView 圖表 — 8299" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">8299</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">中信金</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2891</a>) <span class='meta'>Z60=-0.41 ｜ conf=70</span></div><div class='pos'>75%</div></div><div class='muted' style='font-size:12px;margin-top:6px'>… 另有 42 筆放行，見 <a href='pairs/rrr.html' style='color:var(--th-blue,#60a5fa)'>RRR 詳細頁</a></div>
+<div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3231" target="_blank" rel="noopener" title="TradingView 圖表 — 3231" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">緯創</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3231" target="_blank" rel="noopener" title="TradingView 圖表 — 3231" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3231</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">萬海</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2615</a>) <span class='meta'>Z60=0.21 ｜ conf=90</span></div><div class='pos'>75%</div></div><div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">英業達</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2356</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">萬海</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2615" target="_blank" rel="noopener" title="TradingView 圖表 — 2615" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2615</a>) <span class='meta'>Z60=1.04 ｜ conf=90</span></div><div class='pos'>75%</div></div><div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">英業達</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2356</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">中信金</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2891</a>) <span class='meta'>Z60=0.54 ｜ conf=90</span></div><div class='pos'>75%</div></div><div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2303" target="_blank" rel="noopener" title="TradingView 圖表 — 2303" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">聯電</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2303" target="_blank" rel="noopener" title="TradingView 圖表 — 2303" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2303</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">中信金</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2891</a>) <span class='meta'>Z60=-0.95 ｜ conf=80</span></div><div class='pos'>75%</div></div><div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">英業達</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2356</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2376" target="_blank" rel="noopener" title="TradingView 圖表 — 2376" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">技嘉</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2376" target="_blank" rel="noopener" title="TradingView 圖表 — 2376" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2376</a>) <span class='meta'>Z60=1.2 ｜ conf=80</span></div><div class='pos'>75%</div></div><div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2454" target="_blank" rel="noopener" title="TradingView 圖表 — 2454" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">聯發科</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2454" target="_blank" rel="noopener" title="TradingView 圖表 — 2454" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2454</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">中信金</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2891</a>) <span class='meta'>Z60=-0.77 ｜ conf=70</span></div><div class='pos'>75%</div></div><div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">英業達</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2356" target="_blank" rel="noopener" title="TradingView 圖表 — 2356" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2356</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2308" target="_blank" rel="noopener" title="TradingView 圖表 — 2308" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">台達電</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2308" target="_blank" rel="noopener" title="TradingView 圖表 — 2308" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2308</a>) <span class='meta'>Z60=1.0 ｜ conf=70</span></div><div class='pos'>75%</div></div><div class='action-card'><div class='main'>賣 <span style='color:var(--th-muted,#94a3b8)'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A8299" target="_blank" rel="noopener" title="TradingView 圖表 — 8299" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">群聯</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A8299" target="_blank" rel="noopener" title="TradingView 圖表 — 8299" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">8299</a>) → 買 <span class='name-strong'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">中信金</a></span> (<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2891</a>) <span class='meta'>Z60=-0.41 ｜ conf=70</span></div><div class='pos'>75%</div></div><div class='muted' style='font-size:12px;margin-top:6px'>… 另有 42 筆放行，見 <a href='pairs/rrr.html' style='color:var(--th-blue,#60a5fa)'>RRR 詳細頁</a></div>
 </div>
 
 <div class="ptab" data-tab="rep">
@@ -1031,7 +1029,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 
 <div class="ptab" data-tab="sys">
 
-<div style="background:linear-gradient(135deg,#eceafc,#f4f7fb);padding:18px;
+<div style="background:linear-gradient(135deg,var(--th-dk-panel2),var(--th-dk-bg));padding:18px;
             border-radius:12px;margin-bottom:24px;border:2px solid var(--th-purple,#a855f7)">
   <div style="color:var(--th-amber,#fbbf24);font-weight:bold;font-size:16px;margin-bottom:14px;text-align:center">
     🏢 業務流程 (Business Pipeline) — 候選股池 (Universe) → 3 維分析 (Analytics) → 外聘評審委員會 (IAB · 性格分類) → 基金經理 (PM) → 風控 (CRO) → 績效 (Performance)
@@ -1113,7 +1111,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 
   <!-- 外聘評審委員會 IAB 評分 (送 FS) -->
   <div style="text-align:center;color:var(--th-muted,#94a3b8);font-size:12px;margin:6px 0">↓ 送 FS</div>
-  <div style="background:linear-gradient(90deg,#581c87,#9333ea);padding:10px;border-radius:8px;
+  <div style="background:linear-gradient(90deg,var(--th-purple-bg),var(--th-purple));padding:10px;border-radius:8px;
               text-align:center;margin-bottom:10px">
     <div style="color:var(--th-text,#fff);font-weight:bold;font-size:13px">🎖 外聘評審委員會 IAB (4 派 12 席)</div>
     <div style="color:var(--th-purple,#e9d5ff);font-size:10px;margin-top:3px">
@@ -1125,7 +1123,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 
   <!-- MS Agent (CIO) → PM 投資指引 (Advisory) -->
   <div style="text-align:center;color:var(--th-muted,#94a3b8);font-size:12px;margin:6px 0">↓ MS 投資長 提供 3 大建議給 基金經理人 參考</div>
-  <div style="background:linear-gradient(90deg,#1e3a8a,#312e81);padding:10px 14px;
+  <div style="background:linear-gradient(90deg,var(--th-blue-bg),var(--th-purple-bg));padding:10px 14px;
               border-radius:8px;margin-bottom:10px;border:1px solid var(--th-indigo,#6366f1)">
     <div style="color:var(--th-indigo,#a5b4fc);font-weight:bold;font-size:12px;margin-bottom:6px;text-align:center">
       🎩 MS 投資長 (CIO) · 投資指引 — 提供 PM 參考 (非強制)
@@ -1161,7 +1159,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
   <!-- IUE — Investment Universe Engine (Research Operations) -->
   <div style="text-align:center;color:var(--th-muted,#94a3b8);font-size:12px;margin:6px 0">↓ Research Operations · IUE 將噪音 scanner 轉成乾淨 universe</div>
   
-  <div style="background:linear-gradient(135deg,#e2defa,#eceafc);padding:12px 14px;
+  <div style="background:linear-gradient(135deg,var(--th-purple-bg),var(--th-dk-panel2));padding:12px 14px;
               border-radius:8px;margin-bottom:10px;border:1px solid var(--th-purple,#a78bfa)">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
       <a href="org/iue.html" style="text-decoration:none">
@@ -1212,27 +1210,27 @@ C 級會被排除不進入下游池（過熱或結構轉空）
       
         <div style="background:var(--th-purple-bg,#1e1b4b);padding:5px 8px;border-radius:4px;text-align:center">
           <div style="color:var(--th-indigo,#a5b4fc);font-size:9px">趨勢成長</div>
-          <div style="color:var(--th-green,#22c55e);font-weight:bold;font-size:13px">37</div>
+          <div style="color:var(--th-green);font-weight:bold;font-size:13px">37</div>
         </div>
         <div style="background:var(--th-purple-bg,#1e1b4b);padding:5px 8px;border-radius:4px;text-align:center">
           <div style="color:var(--th-indigo,#a5b4fc);font-size:9px">品質價值</div>
-          <div style="color:var(--th-green,#22c55e);font-weight:bold;font-size:13px">14</div>
+          <div style="color:var(--th-green);font-weight:bold;font-size:13px">14</div>
         </div>
         <div style="background:var(--th-purple-bg,#1e1b4b);padding:5px 8px;border-radius:4px;text-align:center">
           <div style="color:var(--th-indigo,#a5b4fc);font-size:9px">相對輪動</div>
-          <div style="color:var(--th-green,#22c55e);font-weight:bold;font-size:13px">37</div>
+          <div style="color:var(--th-green);font-weight:bold;font-size:13px">37</div>
         </div>
         <div style="background:var(--th-purple-bg,#1e1b4b);padding:5px 8px;border-radius:4px;text-align:center">
           <div style="color:var(--th-indigo,#a5b4fc);font-size:9px">資金流</div>
-          <div style="color:var(--th-green,#22c55e);font-weight:bold;font-size:13px">37</div>
+          <div style="color:var(--th-green);font-weight:bold;font-size:13px">37</div>
         </div>
         <div style="background:var(--th-purple-bg,#1e1b4b);padding:5px 8px;border-radius:4px;text-align:center">
           <div style="color:var(--th-indigo,#a5b4fc);font-size:9px">轉機</div>
-          <div style="color:var(--th-green,#22c55e);font-weight:bold;font-size:13px">14</div>
+          <div style="color:var(--th-green);font-weight:bold;font-size:13px">14</div>
         </div>
         <div style="background:var(--th-purple-bg,#1e1b4b);padding:5px 8px;border-radius:4px;text-align:center">
           <div style="color:var(--th-indigo,#a5b4fc);font-size:9px">防禦型</div>
-          <div style="color:var(--th-faint,#64748b);font-weight:bold;font-size:13px">2</div>
+          <div style="color:var(--th-faint);font-weight:bold;font-size:13px">2</div>
         </div>
     </div>
   </div>
@@ -1241,7 +1239,7 @@ C 級會被排除不進入下游池（過熱或結構轉空）
   <!-- Portfolio Management Dept — V.2 Phase K 多 PM 拆分 -->
   <div style="text-align:center;color:var(--th-muted,#94a3b8);font-size:12px;margin:6px 0">↓ Portfolio Management Dept · 各 PM 從 IUE Investment Pool 取股</div>
   
-  <div style="background:linear-gradient(90deg,#d6f3e7,#c8eedd);padding:10px 14px;
+  <div style="background:linear-gradient(90deg,var(--th-green-bg),var(--th-dk-panel));padding:10px 14px;
               border-radius:8px;margin-bottom:10px;border:1px solid var(--th-green,#10b981)">
     <div style="color:var(--th-green,#6ee7b7);font-weight:bold;font-size:12px;margin-bottom:8px;text-align:center">
       🏛 Portfolio Management Dept · 多策略 PM (Phase K 進行中)
@@ -1308,9 +1306,9 @@ C 級會被排除不進入下游池（過熱或結構轉空）
       <div style="color:var(--th-amber,#fde68a);font-size:11px;font-weight:bold">🛡 風控長 (Discipline)</div>
       <div style="color:var(--th-text,#fff);font-size:11px">PASS / WARN / VETO</div>
     </div>
-    <div style="background:var(--th-green-bg,#0f4944);padding:8px;border-radius:6px;text-align:center;border-top:3px solid var(--th-green,#22c55e)">
+    <div style="background:var(--th-green-bg,#0f4944);padding:8px;border-radius:6px;text-align:center;border-top:3px solid var(--th-green)">
       <div style="color:var(--th-green,#a7f3d0);font-size:11px;font-weight:bold">📈 績效追蹤 (Paper)</div>
-      <div style="color:var(--th-green,#22c55e);font-size:11px;font-weight:bold">
+      <div style="color:var(--th-green);font-size:11px;font-weight:bold">
         NT$1,007,119 (+0.71%)
       </div>
     </div>
@@ -1351,122 +1349,6 @@ C 級會被排除不進入下游池（過熱或結構轉空）
 HAIIC 主控台 (Master Console) ｜ 由 (Generated by) <code>src/agents/index_builder.py</code><br>
 主頁與子頁採固定檔名方便書籤，每日跑完 orchestrator 自動 snapshot 至 <code>backup/2026-06-12/</code>，保留 7 日。
 </footer>
-
-<style id='MS_N_RRR_tooltip_inject_v2'>
-.tip { position: relative; cursor: help; }
-/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
-#tip-floater {
-  position: fixed;
-  background: var(--th-bg,#0f172a);
-  color: var(--th-text,#e2e8f0);
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: normal;
-  white-space: pre-line;
-  max-width: 320px;
-  width: max-content;
-  text-align: left;
-  border: 1px solid var(--th-border2,#475569);
-  z-index: 999999;
-  pointer-events: none;
-  line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
-  display: none;
-}
-.tip:focus { outline: none; }
-@media (max-width: 600px) {
-  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
-}
-</style>
-<script>
-(function(){
-  var floater = null;
-  function ensureFloater(){
-    if (floater) return floater;
-    floater = document.createElement('div');
-    floater.id = 'tip-floater';
-    document.body.appendChild(floater);
-    return floater;
-  }
-  function showTip(el){
-    var text = el.getAttribute('data-tip');
-    if (!text) return;
-    var f = ensureFloater();
-    f.textContent = text;
-    f.style.display = 'block';
-    // 量元素位置
-    var rect = el.getBoundingClientRect();
-    var vw = window.innerWidth, vh = window.innerHeight;
-    var pad = 8;
-    // 預設放上方居中
-    var tw = f.offsetWidth, th = f.offsetHeight;
-    var left = rect.left + rect.width / 2 - tw / 2;
-    var top = rect.top - th - 10;
-    // 邊界修正
-    if (left < pad) left = pad;
-    if (left + tw > vw - pad) left = vw - tw - pad;
-    // 若上方空間不夠，改放下方
-    if (top < pad) top = rect.bottom + 10;
-    // 若下方也不夠（窄屏），就靠近底部
-    if (top + th > vh - pad) top = vh - th - pad;
-    f.style.left = left + 'px';
-    f.style.top  = top + 'px';
-  }
-  function hideTip(){
-    if (floater) floater.style.display = 'none';
-  }
-  function init(){
-    // 把所有 title 屬性轉成 data-tip
-    document.querySelectorAll('[title]').forEach(function(el){
-      var t = el.getAttribute('title');
-      if (!t) return;
-      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
-      el.setAttribute('data-tip', t);
-      el.removeAttribute('title');
-      if (!el.classList.contains('tip')) el.classList.add('tip');
-      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
-    });
-    // hover / focus 顯示
-    document.addEventListener('mouseover', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) showTip(tip);
-    });
-    document.addEventListener('mouseout', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) hideTip();
-    });
-    document.addEventListener('focusin', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) showTip(tip);
-    });
-    document.addEventListener('focusout', hideTip);
-    // 手機 tap 切換顯示
-    document.addEventListener('click', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) {
-        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
-          hideTip();
-        } else {
-          showTip(tip);
-          ensureFloater().dataset.tipFor = tip.dataset.tip;
-        }
-        e.stopPropagation();
-      } else {
-        hideTip();
-      }
-    });
-    // 滾動 / resize 隱藏（避免位置漂移）
-    window.addEventListener('scroll', hideTip, true);
-    window.addEventListener('resize', hideTip);
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
 
 <style>
 .tip { position: relative; cursor: help; }
