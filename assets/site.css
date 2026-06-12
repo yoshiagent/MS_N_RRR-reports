@@ -1,63 +1,77 @@
 /* ====================================================================
-   site.css — 全站唯一樣式總開關 (design tokens)
+   site.css — 全站唯一配色總開關 (design tokens)
    --------------------------------------------------------------------
-   改這個檔案 → 跑 python scripts/deploy_reports.py (或等每日管線)
-   → 全站 89+ 頁的配色 / 字體 / 邊框一起變。
+   改這個檔案 → 跑  python scripts/deploy_reports.py  → 全站一起變。
 
-   原理: 每頁內嵌樣式經 theme_light 權杖化後全部寫成
-         var(--th-xxx, 後備色)，真正的值由本檔 :root 決定。
-   注意: plotly 圖表內部色 (--th-chart-*) 是建頁時烘焙進 JSON，
-         改了之後要等下一次每日重建 (或手動跑 orchestrator) 才生效。
+   ▌想換配色, 改下面【主色盤】那十幾個值就好。
+   ▌圖表 (plotly) 內部維持原黑底色系, 不受這裡控制 (刻意設計)。
+   ▌每頁的顏色都寫成 var(--th-xxx), 真值由這裡決定; 改一處 = 改全站。
    ==================================================================== */
 
 :root{
-  /* ── 表面 (背景) ── 暖米色系 (2026-06-12 由柔米白換裝) */
+  /* ═══════════ 主色盤 (想換風格主要改這裡) ═══════════ */
+  /* — 表面/底色 (由淺到深) — */
   --th-bg:#faf5ec;        /* 頁面底色 (暖米色) */
-  --th-bg2:#f3ecdf;       /* 次級底 / 面板 */
+  --th-bg2:#f3ecdf;       /* 次級底 / 區塊 */
   --th-card:#fffdf8;      /* 卡片 (暖白) */
-  --th-hover:#f0e8d9;     /* hover / 淺米塊 */
-  --th-line:#e8dfcd;      /* 分隔塊 / 深一階面板 */
-  --th-line2:#dcd1bb;     /* 更深一階 (按鈕底等) */
-
-  /* ── 文字 ── */
+  --th-card2:#f6efe3;     /* 卡片內的內層 */
+  --th-hover:#f0e8d9;     /* 滑過 / 凸起塊 */
+  /* — 文字 (由深到淺) — */
   --th-text:#3a3428;      /* 主文字 (暖墨) */
   --th-text2:#564f3e;     /* 次文字 */
   --th-muted:#6e6655;     /* 弱化文字 */
-
-  /* ── 邊框 ── */
+  --th-faint:#8a8270;     /* 最淡文字 / 註解 */
+  /* — 邊框 — */
   --th-border:#e6dcc8;
   --th-border2:#d6c9af;
-
-  /* ── 強調色 ── */
-  --th-accent:#2563eb;    /* 藍 (連結/重點) */
-  --th-ok:#15803d;        /* 綠 (多/通過) */
-  --th-warn:#b45309;      /* 琥珀 (警示/金) */
-  --th-bad:#dc2626;       /* 紅 (空/危險) */
+  /* — 品牌 / 語意色 (紅綠是看盤紅綠, 改前請三思) — */
+  --th-blue:#2563eb;      /* 藍 (連結/重點) */
+  --th-green:#15803d;     /* 綠 (上漲/正向/通過) */
+  --th-red:#dc2626;       /* 紅 (下跌/警示) */
+  --th-amber:#b45309;     /* 琥珀 (注意/金牌) */
+  --th-orange:#c2410c;    /* 橙 */
   --th-purple:#7c3aed;    /* 紫 */
-  --th-info:#0c7bb3;      /* 青藍 */
+  --th-cyan:#0c7bb3;      /* 青藍 */
+  /* ═══════════════════════════════════════════════════ */
 
-  /* ── plotly 圖表 (烘焙值, 改後需重建頁面) ── */
-  --th-chart-bg:#fbf7ee;
-  --th-chart-grid:#ede5d4;
-  --th-chart-zero:#d6c9af;
+  /* ── 衍生 (一般不用改) ── */
+  --th-line:#e8dfcd;      /* 分隔塊 */
+  --th-line2:#dcd1bb;
+  --th-text-inv:#fffdf8;  /* 深底上的反白字 */
+  --th-gold:#a16207;      /* 金 (細分) */
+  --th-indigo:#4f46e5;    /* 靛 */
+  --th-pink:#db2777;      /* 粉 */
+  /* — 色相化淺底 (徽章/區塊的淡色背景) — */
+  --th-blue-bg:#dbeafe;
+  --th-green-bg:#d6f3e7;
+  --th-red-bg:#fde0e0;
+  --th-amber-bg:#fdeec9;
+  --th-purple-bg:#ead5fb;
+
+  /* ── 舊別名 (導航列等沿用, 指向上面主色) ── */
+  --th-accent:var(--th-blue);
+  --th-ok:var(--th-green);
+  --th-warn:var(--th-amber);
+  --th-bad:var(--th-red);
+  --th-info:var(--th-cyan);
 
   /* ── 字體 ── */
   --th-font:'Segoe UI','Microsoft JhengHei','Noto Sans TC',system-ui,sans-serif;
 }
 
-/* ── 全站基底 (頁內樣式可覆蓋, 但值都引用上面權杖) ── */
+/* ── 全站基底 ── */
 html{background:var(--th-bg)}
 body{background:var(--th-bg);color:var(--th-text);font-family:var(--th-font)}
 a{color:var(--th-accent)}
 
 /* ====================================================================
-   全站導航列 (nav_inject 注入 HTML, 樣式集中在這裡)
+   全站導航列 (nav_inject 注入 HTML, 樣式集中於此)
    ==================================================================== */
 .gnav{position:sticky;top:0;z-index:99990;background:var(--th-card);
   border-bottom:1px solid var(--th-border);font-family:var(--th-font);
   display:flex;align-items:center;flex-wrap:wrap;gap:2px;padding:6px 14px;
-  box-shadow:0 1px 6px rgba(15,23,42,0.06)}
-.gnav a.gnav-home{color:var(--th-warn);text-decoration:none;font-weight:bold;
+  box-shadow:0 1px 6px rgba(58,52,40,0.08)}
+.gnav a.gnav-home{color:var(--th-amber);text-decoration:none;font-weight:bold;
   font-size:13px;padding:6px 10px;border-radius:6px}
 .gnav a.gnav-home:hover{background:var(--th-hover)}
 .gnav-dd{position:relative}
@@ -67,7 +81,7 @@ a{color:var(--th-accent)}
 .gnav-panel{display:none;position:absolute;left:0;top:100%;min-width:230px;
   max-height:70vh;overflow-y:auto;background:var(--th-card);
   border:1px solid var(--th-border2);border-radius:8px;padding:6px;
-  box-shadow:0 8px 24px rgba(15,23,42,0.15)}
+  box-shadow:0 8px 24px rgba(58,52,40,0.18)}
 .gnav-panel.open{display:block}
 .gnav-hd{color:var(--th-muted);font-size:11px;padding:6px 10px 3px;
   border-top:1px dashed var(--th-border);margin-top:3px}

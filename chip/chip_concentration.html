@@ -6,20 +6,20 @@
   body { background:var(--th-bg,#f4f7fb); color:var(--th-text,#243244);
          font-family:var(--th-font,Segoe UI,system-ui,sans-serif);
          padding:20px; max-width:1200px; margin:0 auto }
-  h1 { color:#10b981; border-bottom:2px solid #10b981; padding-bottom:8px }
+  h1 { color:var(--th-green,#10b981); border-bottom:2px solid var(--th-green,#10b981); padding-bottom:8px }
   h2 { margin-top:30px; padding-bottom:6px;
        border-bottom:1px dashed var(--th-border2,#c9d4e3); font-size:18px }
   table { width:100%; border-collapse:collapse;
          background:var(--th-card,#ffffff); margin-top:10px }
   th, td { padding:6px 10px; border-bottom:1px solid var(--th-border2,#c9d4e3);
           font-size:12px; text-align:left }
-  th { background:#ded9f9; color:var(--th-warn,#b45309) }
+  th { background:var(--th-hover,#ded9f9); color:var(--th-warn,#b45309) }
   tr:hover { background:var(--th-hover,#e7edf5) }
   .summary { display:grid; grid-template-columns:repeat(4,1fr);
             gap:10px; margin:20px 0 }
   .stat { background:var(--th-hover,#e7edf5); padding:14px; border-radius:6px;
-         border-left:4px solid #10b981 }
-  .stat-val { color:#10b981; font-size:24px; font-weight:bold }
+         border-left:4px solid var(--th-green,#10b981) }
+  .stat-val { color:var(--th-green,#10b981); font-size:24px; font-weight:bold }
   .stat-label { color:var(--th-muted,#61708a); font-size:12px }
   a { color:var(--th-info,#0c7bb3) }
 </style></head><body>
@@ -81,6 +81,8 @@
 
 
 
+
+
 <h1>📊 籌碼集中度排行 (Chip Concentration)
     <span style="font-size:14px;color:var(--th-muted,#61708a);font-weight:normal">資料: 2026-06-11</span>
 </h1>
@@ -91,11 +93,11 @@
 </p>
 
 <p style="background:rgba(16,185,129,0.15);padding:10px 14px;border-radius:6px;
-          font-size:12px;color:var(--th-text2,#3f4f63);border-left:3px solid #10b981">
+          font-size:12px;color:var(--th-text2,#3f4f63);border-left:3px solid var(--th-green,#10b981)">
   📋 <b>籌碼集中度 (Chip Concentration)</b> —
   基於 FinMind 股權分散表 (週更), 追蹤大戶 (≥400 張) / 中戶 (1-400 張) / 散戶 (<1 張) 比例變化.
-  <b style="color:#22c55e">主力吸籌</b> (大戶加碼 + 散戶減碼) = 經典籌碼鎖定多頭訊號;
-  <b style="color:#ef4444">主力出貨</b> (反之) = 警示.
+  <b style="color:var(--th-green,#22c55e)">主力吸籌</b> (大戶加碼 + 散戶減碼) = 經典籌碼鎖定多頭訊號;
+  <b style="color:var(--th-red,#ef4444)">主力出貨</b> (反之) = 警示.
   Z-score ≥ +2σ = 8 週內異常吸籌, 主力動向強烈.
 </p>
 
@@ -105,11 +107,11 @@
     <div class="stat-label">已評估個股數</div>
   </div>
   <div class="stat" style="border-left-color:#22c55e">
-    <div class="stat-val" style="color:#22c55e">3</div>
+    <div class="stat-val" style="color:var(--th-green,#22c55e)">3</div>
     <div class="stat-label">📥 主力吸籌中</div>
   </div>
   <div class="stat" style="border-left-color:#ef4444">
-    <div class="stat-val" style="color:#ef4444">7</div>
+    <div class="stat-val" style="color:var(--th-red,#ef4444)">7</div>
     <div class="stat-label">📤 主力出貨中</div>
   </div>
   <div class="stat" style="border-left-color:#fbbf24">
@@ -119,7 +121,7 @@
 </div>
 
 
-    <h2 style="color:#22c55e">📥 主力吸籌 (本週) — 進場觀察 <span style="color:var(--th-muted,#61708a);font-size:14px">(3 檔)</span></h2>
+    <h2 style="color:var(--th-green,#22c55e)">📥 主力吸籌 (本週) — 進場觀察 <span style="color:var(--th-muted,#61708a);font-size:14px">(3 檔)</span></h2>
     <table style="width:100%;border-collapse:collapse;background:var(--th-card,#ffffff);border-radius:6px;overflow:hidden">
       
         <tr>
@@ -142,8 +144,8 @@
     </svg> <span style="font-size:11px;color:var(--th-text2,#3f4f63)">82.8%</span></td>
       <td style="text-align:right">78.6</td>
       <td style="text-align:right">6243</td>
-      <td style="color:#22c55e;text-align:right">+0.660%</td><td style="color:#22c55e;text-align:right">-0.010%</td><td style="color:var(--th-muted,#61708a);text-align:right">-0.96σ</td>
-      <td style="color:#84cc16">↑ 大戶加碼</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+0.660%</td><td style="color:var(--th-green,#22c55e);text-align:right">-0.010%</td><td style="color:var(--th-muted,#61708a);text-align:right">-0.96σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
     </tr>
     <tr>
       <td><a href="../dossier/2408.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">2408</a></td>
@@ -154,8 +156,8 @@
     </svg> <span style="font-size:11px;color:var(--th-text2,#3f4f63)">82.9%</span></td>
       <td style="text-align:right">80.8</td>
       <td style="text-align:right">6588</td>
-      <td style="color:#22c55e;text-align:right">+0.510%</td><td style="color:#ef4444;text-align:right">+0.010%</td><td style="color:var(--th-muted,#61708a);text-align:right">+0.93σ</td>
-      <td style="color:#84cc16">↑ 大戶加碼</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+0.510%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.010%</td><td style="color:var(--th-muted,#61708a);text-align:right">+0.93σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
     </tr>
     <tr>
       <td><a href="../dossier/9921.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">9921</a></td>
@@ -166,14 +168,14 @@
     </svg> <span style="font-size:11px;color:var(--th-text2,#3f4f63)">64.9%</span></td>
       <td style="text-align:right">54.7</td>
       <td style="text-align:right">3183</td>
-      <td style="color:#22c55e;text-align:right">+0.400%</td><td style="color:#22c55e;text-align:right">-0.010%</td><td style="color:var(--th-muted,#61708a);text-align:right">-0.75σ</td>
-      <td style="color:#84cc16">↑ 大戶加碼</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+0.400%</td><td style="color:var(--th-green,#22c55e);text-align:right">-0.010%</td><td style="color:var(--th-muted,#61708a);text-align:right">-0.75σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
     </tr>
     </table>
     
 
 
-    <h2 style="color:#ef4444">📤 主力出貨 (本週) — 持股警示 <span style="color:var(--th-muted,#61708a);font-size:14px">(7 檔)</span></h2>
+    <h2 style="color:var(--th-red,#ef4444)">📤 主力出貨 (本週) — 持股警示 <span style="color:var(--th-muted,#61708a);font-size:14px">(7 檔)</span></h2>
     <table style="width:100%;border-collapse:collapse;background:var(--th-card,#ffffff);border-radius:6px;overflow:hidden">
       
         <tr>
@@ -196,8 +198,8 @@
     </svg> <span style="font-size:11px;color:var(--th-text2,#3f4f63)">54.1%</span></td>
       <td style="text-align:right">44.4</td>
       <td style="text-align:right">2403</td>
-      <td style="color:#ef4444;text-align:right">-3.340%</td><td style="color:#ef4444;text-align:right">+0.120%</td><td style="color:var(--th-muted,#61708a);text-align:right">-0.06σ</td>
-      <td style="color:#ef4444">📤 主力出貨</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-3.340%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.120%</td><td style="color:var(--th-muted,#61708a);text-align:right">-0.06σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
     </tr>
     <tr>
       <td><a href="../dossier/3035.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">3035</a></td>
@@ -208,8 +210,8 @@
     </svg> <span style="font-size:11px;color:var(--th-text2,#3f4f63)">26.9%</span></td>
       <td style="text-align:right">32.2</td>
       <td style="text-align:right">1760</td>
-      <td style="color:#ef4444;text-align:right">-2.040%</td><td style="color:#ef4444;text-align:right">+0.100%</td><td style="color:var(--th-muted,#61708a);text-align:right">-1.52σ</td>
-      <td style="color:#ef4444">📤 主力出貨</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-2.040%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.100%</td><td style="color:var(--th-muted,#61708a);text-align:right">-1.52σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
     </tr>
     <tr>
       <td><a href="../dossier/4576.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">4576</a></td>
@@ -220,8 +222,8 @@
     </svg> <span style="font-size:11px;color:var(--th-text2,#3f4f63)">66.2%</span></td>
       <td style="text-align:right">60.5</td>
       <td style="text-align:right">3902</td>
-      <td style="color:#ef4444;text-align:right">-1.260%</td><td style="color:#ef4444;text-align:right">+0.130%</td><td style="color:var(--th-muted,#61708a);text-align:right">-1.29σ</td>
-      <td style="color:#ef4444">📤 主力出貨</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-1.260%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.130%</td><td style="color:var(--th-muted,#61708a);text-align:right">-1.29σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
     </tr>
     <tr>
       <td><a href="../dossier/3037.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">3037</a></td>
@@ -232,8 +234,8 @@
     </svg> <span style="font-size:11px;color:var(--th-text2,#3f4f63)">75.7%</span></td>
       <td style="text-align:right">68.4</td>
       <td style="text-align:right">4795</td>
-      <td style="color:#ef4444;text-align:right">-1.110%</td><td style="color:#ef4444;text-align:right">+0.180%</td><td style="color:var(--th-muted,#61708a);text-align:right">-1.19σ</td>
-      <td style="color:#ef4444">📤 主力出貨</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-1.110%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.180%</td><td style="color:var(--th-muted,#61708a);text-align:right">-1.19σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
     </tr>
     <tr>
       <td><a href="../dossier/2049.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">2049</a></td>
@@ -244,8 +246,8 @@
     </svg> <span style="font-size:11px;color:var(--th-text2,#3f4f63)">69.6%</span></td>
       <td style="text-align:right">60.2</td>
       <td style="text-align:right">3820</td>
-      <td style="color:#ef4444;text-align:right">-0.770%</td><td style="color:#ef4444;text-align:right">+0.110%</td><td style="color:var(--th-muted,#61708a);text-align:right">+0.21σ</td>
-      <td style="color:#ef4444">📤 主力出貨</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.770%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.110%</td><td style="color:var(--th-muted,#61708a);text-align:right">+0.21σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
     </tr>
     <tr>
       <td><a href="../dossier/9914.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">9914</a></td>
@@ -256,8 +258,8 @@
     </svg> <span style="font-size:11px;color:var(--th-text2,#3f4f63)">65.4%</span></td>
       <td style="text-align:right">56.3</td>
       <td style="text-align:right">3353</td>
-      <td style="color:#ef4444;text-align:right">-0.170%</td><td style="color:#22c55e;text-align:right">-0.010%</td><td style="color:var(--th-muted,#61708a);text-align:right">+0.70σ</td>
-      <td style="color:#c2410c">↓ 大戶減碼</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.170%</td><td style="color:var(--th-green,#22c55e);text-align:right">-0.010%</td><td style="color:var(--th-muted,#61708a);text-align:right">+0.70σ</td>
+      <td style="color:var(--th-red,#c2410c)">↓ 大戶減碼</td>
     </tr>
     <tr>
       <td><a href="../dossier/2344.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">2344</a></td>
@@ -268,8 +270,8 @@
     </svg> <span style="font-size:11px;color:var(--th-text2,#3f4f63)">74.0%</span></td>
       <td style="text-align:right">71.0</td>
       <td style="text-align:right">5169</td>
-      <td style="color:#ef4444;text-align:right">-0.050%</td><td style="color:#ef4444;text-align:right">+0.070%</td><td style="color:#84cc16;text-align:right">+1.29σ</td>
-      <td style="color:#c2410c">↓ 大戶減碼</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.050%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.070%</td><td style="color:var(--th-green,#84cc16);text-align:right">+1.29σ</td>
+      <td style="color:var(--th-red,#c2410c)">↓ 大戶減碼</td>
     </tr>
     </table>
     
@@ -280,7 +282,7 @@
         
 
 
-    <h2 style="color:#10b981">🏆 集中度 TOP 20 (大戶比例) <span style="color:var(--th-muted,#61708a);font-size:14px">(10 檔)</span></h2>
+    <h2 style="color:var(--th-green,#10b981)">🏆 集中度 TOP 20 (大戶比例) <span style="color:var(--th-muted,#61708a);font-size:14px">(10 檔)</span></h2>
     <table style="width:100%;border-collapse:collapse;background:var(--th-card,#ffffff);border-radius:6px;overflow:hidden">
       
         <tr>
@@ -301,7 +303,7 @@
       <td style="text-align:right">80.8</td>
       <td style="text-align:right">6588</td>
       
-      <td style="color:#84cc16">↑ 大戶加碼</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
     </tr>
     <tr>
       <td><a href="../dossier/8046.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">8046</a></td>
@@ -313,7 +315,7 @@
       <td style="text-align:right">78.6</td>
       <td style="text-align:right">6243</td>
       
-      <td style="color:#84cc16">↑ 大戶加碼</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
     </tr>
     <tr>
       <td><a href="../dossier/3037.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">3037</a></td>
@@ -325,7 +327,7 @@
       <td style="text-align:right">68.4</td>
       <td style="text-align:right">4795</td>
       
-      <td style="color:#ef4444">📤 主力出貨</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
     </tr>
     <tr>
       <td><a href="../dossier/2344.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">2344</a></td>
@@ -337,7 +339,7 @@
       <td style="text-align:right">71.0</td>
       <td style="text-align:right">5169</td>
       
-      <td style="color:#c2410c">↓ 大戶減碼</td>
+      <td style="color:var(--th-red,#c2410c)">↓ 大戶減碼</td>
     </tr>
     <tr>
       <td><a href="../dossier/2049.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">2049</a></td>
@@ -349,7 +351,7 @@
       <td style="text-align:right">60.2</td>
       <td style="text-align:right">3820</td>
       
-      <td style="color:#ef4444">📤 主力出貨</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
     </tr>
     <tr>
       <td><a href="../dossier/4576.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">4576</a></td>
@@ -361,7 +363,7 @@
       <td style="text-align:right">60.5</td>
       <td style="text-align:right">3902</td>
       
-      <td style="color:#ef4444">📤 主力出貨</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
     </tr>
     <tr>
       <td><a href="../dossier/9914.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">9914</a></td>
@@ -373,7 +375,7 @@
       <td style="text-align:right">56.3</td>
       <td style="text-align:right">3353</td>
       
-      <td style="color:#c2410c">↓ 大戶減碼</td>
+      <td style="color:var(--th-red,#c2410c)">↓ 大戶減碼</td>
     </tr>
     <tr>
       <td><a href="../dossier/9921.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">9921</a></td>
@@ -385,7 +387,7 @@
       <td style="text-align:right">54.7</td>
       <td style="text-align:right">3183</td>
       
-      <td style="color:#84cc16">↑ 大戶加碼</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
     </tr>
     <tr>
       <td><a href="../dossier/3006.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">3006</a></td>
@@ -397,7 +399,7 @@
       <td style="text-align:right">44.4</td>
       <td style="text-align:right">2403</td>
       
-      <td style="color:#ef4444">📤 主力出貨</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
     </tr>
     <tr>
       <td><a href="../dossier/3035.html" style="color:var(--th-info,#0c7bb3);font-weight:bold">3035</a></td>
@@ -409,7 +411,7 @@
       <td style="text-align:right">32.2</td>
       <td style="text-align:right">1760</td>
       
-      <td style="color:#ef4444">📤 主力出貨</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
     </tr>
     </table>
     
