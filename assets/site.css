@@ -70,6 +70,22 @@
   --th-dk-muted:#a7b7d0;
   --th-dk-border:#2c3f63;
 
+  /* ════ 卡片表面層 (B層 — THEME 可覆蓋; 預設值=深島 → classic 零回歸) ════
+     .card 規則把作用域整組翻成這些值。light/dark 主題只覆蓋 :root 這幾個,
+     即可把卡片從「深底亮字」改成「白底深字」等, .card 規則本身不用動。
+     見 docs/THEME_ENGINE.md §2。 */
+  --th-card-surface:#172339;   /* .card 卡底 */
+  --th-card-fx:#2c3f63;        /* .card 外框/描邊 */
+  --th-on-text:#eef3fb; --th-on-text2:#d6e1f0; --th-on-muted:#a7b7d0; --th-on-faint:#8094b0;
+  --th-on-card:#172339; --th-on-card2:#1f2f4d; --th-on-bg2:#172339; --th-on-hover:#21314f;
+  --th-on-border:#2c3f63; --th-on-border2:#3a4d72;
+  --th-on-cyan:#7dd3fc; --th-on-amber:#fcd34d; --th-on-green:#86efac; --th-on-red:#fca5a5;
+  --th-on-blue:#93c5fd; --th-on-purple:#c4b5fd; --th-on-orange:#fdba74;
+  --th-on-indigo:#c7d2fe; --th-on-pink:#f9a8d4; --th-on-gold:#fcd34d;
+  --th-on-accent:#93c5fd; --th-on-info:#7dd3fc; --th-on-warn:#fcd34d; --th-on-ok:#86efac; --th-on-bad:#fca5a5;
+  --th-on-green-bg:#14361f; --th-on-red-bg:#3a1718; --th-on-amber-bg:#3a2c12;
+  --th-on-blue-bg:#102843; --th-on-purple-bg:#241c40;
+
   /* ── 字體 ── */
   --th-font:'Segoe UI','Microsoft JhengHei','Noto Sans TC',system-ui,sans-serif;
 }
@@ -126,26 +142,27 @@
 [style*="background:var(--th-bg2"],
 [style*="background:rgba(58,52,40"],
 [style*="background: rgba(58,52,40"]{
-  background:var(--th-dk-panel,#172339) !important;
-  box-shadow:0 0 0 1px var(--th-dk-border,#2c3f63), 0 2px 10px rgba(15,23,42,0.18);
-  color:var(--th-dk-text,#eef3fb);
-  /* — 作用域翻色: 卡內 token → 深底亮版 — */
-  --th-text:#eef3fb; --th-text2:#d6e1f0; --th-muted:#a7b7d0; --th-faint:#8094b0;
-  --th-card:#172339; --th-card2:#1f2f4d; --th-bg2:#172339; --th-hover:#21314f;
-  --th-border:#2c3f63; --th-border2:#3a4d72;
-  --th-cyan:#7dd3fc; --th-amber:#fcd34d; --th-green:#86efac; --th-red:#fca5a5;
-  --th-blue:#93c5fd; --th-purple:#c4b5fd; --th-orange:#fdba74;
-  --th-indigo:#c7d2fe; --th-pink:#f9a8d4; --th-gold:#fcd34d;
-  --th-accent:#93c5fd; --th-info:#7dd3fc; --th-warn:#fcd34d;
-  --th-ok:#86efac; --th-bad:#fca5a5;
-  /* 色相化淺底 → 深底亮版 (否則 .pill--bull 等淡底徽章在深卡內仍是淺底洗白字) */
-  --th-green-bg:#14361f; --th-red-bg:#3a1718; --th-amber-bg:#3a2c12;
-  --th-blue-bg:#102843; --th-purple-bg:#241c40;
-  /* 部分頁自定區域變數(不帶 th- 前綴, :root 算成深色才繼承)→ 同步翻亮 */
-  --text:#eef3fb; --text2:#d6e1f0; --muted:#a7b7d0; --fg:#eef3fb;
-  --card:#172339; --card2:#1f2f4d; --bg:#172339; --bg2:#172339;
-  --border:#2c3f63; --line:#2c3f63;
-  --accent:#93c5fd; --warn:#fcd34d; --gold:#fcd34d; --ok:#86efac; --bad:#fca5a5;
+  /* 卡底/外框/字 → 讀卡面 token (B層); classic 預設值=深島, 主題覆蓋即變色 */
+  background:var(--th-card-surface,#172339) !important;
+  box-shadow:0 0 0 1px var(--th-card-fx,#2c3f63), 0 2px 10px rgba(15,23,42,0.18);
+  color:var(--th-on-text,#eef3fb);
+  /* — 作用域翻色: 卡內 --th-* → 對應 --th-on-* — */
+  --th-text:var(--th-on-text); --th-text2:var(--th-on-text2); --th-muted:var(--th-on-muted); --th-faint:var(--th-on-faint);
+  --th-card:var(--th-on-card); --th-card2:var(--th-on-card2); --th-bg2:var(--th-on-bg2); --th-hover:var(--th-on-hover);
+  --th-border:var(--th-on-border); --th-border2:var(--th-on-border2);
+  --th-cyan:var(--th-on-cyan); --th-amber:var(--th-on-amber); --th-green:var(--th-on-green); --th-red:var(--th-on-red);
+  --th-blue:var(--th-on-blue); --th-purple:var(--th-on-purple); --th-orange:var(--th-on-orange);
+  --th-indigo:var(--th-on-indigo); --th-pink:var(--th-on-pink); --th-gold:var(--th-on-gold);
+  --th-accent:var(--th-on-accent); --th-info:var(--th-on-info); --th-warn:var(--th-on-warn);
+  --th-ok:var(--th-on-ok); --th-bad:var(--th-on-bad);
+  /* 色相化淺底 → 卡面版 (否則 .pill--bull 等淡底徽章在卡內配色不符) */
+  --th-green-bg:var(--th-on-green-bg); --th-red-bg:var(--th-on-red-bg); --th-amber-bg:var(--th-on-amber-bg);
+  --th-blue-bg:var(--th-on-blue-bg); --th-purple-bg:var(--th-on-purple-bg);
+  /* 部分頁自定區域變數(不帶 th- 前綴)→ 同步翻 */
+  --text:var(--th-on-text); --text2:var(--th-on-text2); --muted:var(--th-on-muted); --fg:var(--th-on-text);
+  --card:var(--th-on-card); --card2:var(--th-on-card2); --bg:var(--th-on-card); --bg2:var(--th-on-bg2);
+  --border:var(--th-on-border); --line:var(--th-on-border);
+  --accent:var(--th-on-accent); --warn:var(--th-on-warn); --gold:var(--th-on-gold); --ok:var(--th-on-ok); --bad:var(--th-on-bad);
 }
 
 /* 內層 panel 的 rgba 罩 / 漸層 → 深底面板 */
@@ -164,6 +181,40 @@
 .cio-dash [style*="font-size:12px"]{ font-size:13.5px !important; }
 .cio-dash [style*="font-size:13px"]{ font-size:15px !important; }
 .cio-dash [style*="font-size:15px"]{ font-size:17px !important; }
+
+/* ====================================================================
+   Information Layer — 資訊卡 (固定深底亮字, 任何主題下恆高對比)
+   放 Agent 結論 / 評分 / 買賣訊號 / 風控警示等高密度資訊。
+   用字面深色值 (非 --th-on-* / 非 --th-dk-*) → THEME 永不覆蓋。
+   見 docs/THEME_ENGINE.md §1 §3。
+   ==================================================================== */
+.info-card{
+  background:#172339 !important;
+  box-shadow:0 0 0 1px #2c3f63, 0 2px 10px rgba(15,23,42,0.18);
+  color:#eef3fb; border-radius:12px; padding:14px 16px;
+  --th-text:#eef3fb; --th-text2:#d6e1f0; --th-muted:#a7b7d0; --th-faint:#8094b0;
+  --th-card:#172339; --th-card2:#1f2f4d; --th-bg2:#172339; --th-hover:#21314f;
+  --th-border:#2c3f63; --th-border2:#3a4d72;
+  --th-cyan:#7dd3fc; --th-amber:#fcd34d; --th-green:#86efac; --th-red:#fca5a5;
+  --th-blue:#93c5fd; --th-purple:#c4b5fd; --th-orange:#fdba74;
+  --th-indigo:#c7d2fe; --th-pink:#f9a8d4; --th-gold:#fcd34d;
+  --th-accent:#93c5fd; --th-info:#7dd3fc; --th-warn:#fcd34d; --th-ok:#86efac; --th-bad:#fca5a5;
+  --th-green-bg:#14361f; --th-red-bg:#3a1718; --th-amber-bg:#3a2c12;
+  --th-blue-bg:#102843; --th-purple-bg:#241c40;
+  --text:#eef3fb; --muted:#a7b7d0; --card:#172339; --bg2:#172339; --border:#2c3f63;
+}
+.info-card .info-title{font-size:14px;font-weight:700;margin-bottom:10px}
+.info-card .info-value{font-size:28px;font-weight:800;color:var(--th-text)}
+.info-card .info-label{font-size:13px;color:var(--th-muted)}
+
+/* ====================================================================
+   圖表外框 (Theme Layer) — 框隨主題; 內部 plotly 維持 §3 自有深色。
+   ==================================================================== */
+.chart-card{background:var(--th-card);border:1px solid var(--th-border);border-radius:16px;
+  box-shadow:0 1px 6px rgba(58,52,40,0.08);padding:12px 14px;margin-bottom:18px}
+.chart-card .chart-title{font-size:16px;font-weight:700;color:var(--th-text);margin:0 0 2px}
+.chart-card .chart-sub{font-size:13px;color:var(--th-muted);margin-bottom:8px}
+.chart-card .chart-note{margin-top:8px;font-size:13px;color:var(--th-muted)}
 
 /* ── 全站基底 ── */
 *{box-sizing:border-box}
@@ -342,6 +393,13 @@ a{color:var(--th-accent)}
 .text-center{text-align:center}
 .flex-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .divider{border:none;border-top:1px dashed var(--th-border2);margin:14px 0}
+
+/* — 主題切換器 (css_unify 注入 HTML; 固定右下角; 自身也走 chrome token 隨主題變) — */
+.theme-switch{position:fixed;right:14px;bottom:14px;z-index:99995}
+.theme-switch select{font-family:var(--th-font);font-size:12px;padding:5px 10px;
+  border-radius:8px;border:1px solid var(--th-border2);background:var(--th-card);
+  color:var(--th-text);box-shadow:0 2px 8px rgba(58,52,40,0.14);cursor:pointer}
+.theme-switch select:focus{outline:none;border-color:var(--th-accent)}
 
 /* ====================================================================
    全站導航列 (nav_inject 注入 HTML, 樣式集中於此)
