@@ -68,12 +68,12 @@ table{ width:100%; border-collapse: collapse; font-size: 13px; }
 table th{ background: var(--card2); color: var(--muted); text-align: left;
           padding: 6px 8px; border-bottom: 1px solid var(--border);
           position: sticky; top: 0; }
-table td{ padding: 5px 8px; border-bottom: 1px solid #233048; }
-table tr:hover td{ background: #edf0f7; }
+table td{ padding: 5px 8px; border-bottom: 1px solid var(--th-border,#233048); }
+table tr:hover td{ background: var(--th-hover,#edf0f7); }
 .rank-pill{ padding: 2px 6px; border-radius: 4px; font-size: 11px;
             font-weight: 600; display: inline-block; }
 .rank-top50{ background:#10b98133; color:var(--good); }
-.rank-mid{ background:#3b82f633; color:#3b82f6; }
+.rank-mid{ background:#3b82f633; color:var(--th-blue,#3b82f6); }
 .theme-pill{ background:var(--th-line,#dbe4ef); color:var(--th-text2,#3f4f63); padding: 1px 6px;
              border-radius:3px; font-size:10px; margin-right: 3px;
              display: inline-block; }
@@ -134,6 +134,8 @@ a{ color:var(--accent); }
 })();
 </script>
 <!-- GLOBAL_NAV_END -->
+
+
 
 
 

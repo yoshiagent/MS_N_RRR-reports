@@ -7,65 +7,65 @@
 <style>
 * { box-sizing: border-box; }
 body { margin:0; padding:20px 16px 80px; max-width:1200px; margin:auto;
-       background:var(--th-bg,#f4f7fb); color:var(--th-text,#243244);
-       font-family:var(--th-font,-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif);
+       background:var(--th-bg,#080e18); color:var(--th-text,#e2e8f0);
+       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
        line-height:1.65; }
 h1 { font-size:24px; margin:0 0 4px; }
-.sub { color:var(--th-muted,#61708a); font-size:13px; margin-bottom:18px; }
-.back-link { display:inline-block; color:var(--th-accent,#2563eb); text-decoration:none; font-size:13px;
-             padding:4px 10px; border:1px solid #cdd9e7; border-radius:6px; margin-bottom:14px; }
+.sub { color:var(--th-muted,#94a3b8); font-size:13px; margin-bottom:18px; }
+.back-link { display:inline-block; color:var(--th-blue,#60a5fa); text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid var(--th-border,#2d3f55); border-radius:6px; margin-bottom:14px; }
 .back-link:hover { border-color:#3b82f6; }
-code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg2,#f1f5f9); color:var(--th-info,#0c7bb3);
+code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#07111e); color:var(--th-cyan,#7dd3fc);
        padding:1px 6px; border-radius:3px; font-size:12px; }
 
 /* TOC */
-.toc { background:var(--th-card,#ffffff); border:1px solid #cdd9e7; border-radius:8px;
+.toc { background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:8px;
        padding:12px 14px; margin-bottom:24px; }
-.toc-title { color:var(--th-accent,#2563eb); font-size:13px; font-weight:bold; margin-bottom:8px; }
+.toc-title { color:var(--th-blue,#93c5fd); font-size:13px; font-weight:bold; margin-bottom:8px; }
 .toc-items { display:flex; flex-wrap:wrap; gap:6px; }
-.toc-link { background:var(--th-card,#ffffff); padding:4px 10px; border-radius:14px;
-            color:var(--th-text2,#3f4f63); text-decoration:none; font-size:12px;
+.toc-link { background:var(--th-card,#0f1a2c); padding:4px 10px; border-radius:14px;
+            color:var(--th-text2,#cbd5e1); text-decoration:none; font-size:12px;
             border:1px solid transparent; }
-.toc-link:hover { border-color:#3b82f6; color:var(--th-accent,#2563eb); }
-.toc-link .cnt { color:var(--th-muted,#64748b); margin-left:4px; font-size:11px; }
+.toc-link:hover { border-color:#3b82f6; color:var(--th-blue,#93c5fd); }
+.toc-link .cnt { color:var(--th-faint,#64748b); margin-left:4px; font-size:11px; }
 
 /* category */
 .cat-section { margin-bottom:30px; }
 .cat-head { display:flex; align-items:baseline; gap:10px;
-            border-bottom:1px solid #cdd9e7; padding-bottom:6px; margin:24px 0 12px; }
-.cat-name { font-size:18px; color:var(--th-accent,#2563eb); font-weight:bold; }
-.cat-desc { color:var(--th-muted,#61708a); font-size:12px; }
+            border-bottom:1px solid var(--th-border,#2d3f55); padding-bottom:6px; margin:24px 0 12px; }
+.cat-name { font-size:18px; color:var(--th-blue,#93c5fd); font-weight:bold; }
+.cat-desc { color:var(--th-muted,#94a3b8); font-size:12px; }
 
 /* term card */
 .term-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(360px,1fr));
              gap:10px; }
-.term-card { background:var(--th-card,#ffffff); border:1px solid #cdd9e7; border-radius:8px;
+.term-card { background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:8px;
              padding:12px 14px; transition:border-color 0.15s; }
 .term-card:hover { border-color:#3b82f6; }
 
 .term-head { margin-bottom:6px; }
-.term-name { font-size:15px; font-weight:bold; color:var(--th-text,#243244); }
-.term-var { color:var(--th-info,#0c7bb3); font-family:ui-monospace,Consolas,monospace;
-            font-size:11px; margin-left:6px; background:var(--th-bg2,#f1f5f9);
+.term-name { font-size:15px; font-weight:bold; color:var(--th-text,#e2e8f0); }
+.term-var { color:var(--th-cyan,#7dd3fc); font-family:ui-monospace,Consolas,monospace;
+            font-size:11px; margin-left:6px; background:var(--th-bg,#07111e);
             padding:1px 5px; border-radius:3px; }
-.term-used { color:var(--th-muted,#64748b); font-size:11px; float:right; }
+.term-used { color:var(--th-faint,#64748b); font-size:11px; float:right; }
 
 .term-row { display:flex; gap:6px; margin-top:5px; font-size:12px; line-height:1.5; }
-.term-row .lbl { color:var(--th-muted,#64748b); min-width:38px; flex-shrink:0; }
-.term-row .val { color:var(--th-text2,#3f4f63); flex:1; word-break:break-word; }
+.term-row .lbl { color:var(--th-faint,#64748b); min-width:38px; flex-shrink:0; }
+.term-row .val { color:var(--th-text2,#cbd5e1); flex:1; word-break:break-word; }
 .term-row .val.formula { font-family:ui-monospace,Consolas,monospace;
-                         font-size:11px; color:var(--th-info,#0c7bb3);
-                         background:var(--th-bg2,#f1f5f9); padding:3px 6px; border-radius:3px; }
-.term-row .val.dir-good { color:#059669; }
-.term-row .val.dir-warn { color:var(--th-warn,#a16207); }
-.term-row .val.example { color:var(--th-muted,#61708a); font-style:italic; }
+                         font-size:11px; color:var(--th-cyan,#7dd3fc);
+                         background:var(--th-bg,#07111e); padding:3px 6px; border-radius:3px; }
+.term-row .val.dir-good { color:var(--th-green,#6ee7b7); }
+.term-row .val.dir-warn { color:var(--th-amber,#fcd34d); }
+.term-row .val.example { color:var(--th-muted,#94a3b8); font-style:italic; }
 
 /* highlight 跨頁參照 */
-.cross-ref { background:var(--th-hover,#e7edf5); padding:1px 4px; border-radius:3px;
-             color:var(--th-accent,#2563eb); font-size:11px; }
+.cross-ref { background:var(--th-card,#1e293b); padding:1px 4px; border-radius:3px;
+             color:var(--th-blue,#60a5fa); font-size:11px; }
 
-footer { color:var(--th-muted,#64748b); font-size:12px; margin-top:30px;
-         border-top:1px solid #cdd9e7; padding-top:12px; }
+footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
+         border-top:1px solid var(--th-border,#2d3f55); padding-top:12px; }
 </style>
 </head><body>
 <!-- GLOBAL_NAV_START -->
@@ -110,28 +110,12 @@ footer { color:var(--th-muted,#64748b); font-size:12px; margin-top:30px;
 </script>
 <!-- GLOBAL_NAV_END -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <a class='back-link' href='../index.html'>← 返回主頁</a>
 
 <h1>📖 名詞對照表 — MS_N_RR/RRR Ver.A</h1>
 <div class='sub'>
   整個系統使用的所有專有名詞、變數名、公式統一說明。共 50 個名詞，11 大類。
-  ｜ 產生時間：2026-06-11 18:31
+  ｜ 產生時間：2026-06-12 15:29
 </div>
 
 <div class='toc'><div class='toc-title'>📚 快速跳轉（共 50 個名詞 / 11 分類）</div><div class='toc-items'><a class='toc-link' href='#cat-ranking'>🥇 名次與分數<span class='cnt'>(7)</span></a><a class='toc-link' href='#cat-amount'>💰 量能<span class='cnt'>(3)</span></a><a class='toc-link' href='#cat-strength'>📊 相對強弱<span class='cnt'>(5)</span></a><a class='toc-link' href='#cat-trend'>📈 趨勢結構<span class='cnt'>(2)</span></a><a class='toc-link' href='#cat-n_shape'>🔁 多時段箱型狀態<span class='cnt'>(4)</span></a><a class='toc-link' href='#cat-rr_pair'>🔄 RSR 配對輪動<span class='cnt'>(5)</span></a><a class='toc-link' href='#cat-market'>🌍 市場結構<span class='cnt'>(9)</span></a><a class='toc-link' href='#cat-composite'>🎯 合成評分<span class='cnt'>(4)</span></a><a class='toc-link' href='#cat-lifecycle'>🌱 主流生命週期<span class='cnt'>(6)</span></a><a class='toc-link' href='#cat-statistical'>📐 統計工具<span class='cnt'>(3)</span></a><a class='toc-link' href='#cat-risk'>🚨 風險<span class='cnt'>(2)</span></a></div></div>
@@ -143,122 +127,4 @@ footer { color:var(--th-muted,#64748b); font-size:12px; margin-top:30px;
 資料源：<code>src/shared/nomenclature.py</code> （單一資料源，所有 agent 共用）<br>
 要更新或新增名詞請編輯 <code>nomenclature.py</code> 的 TERMS 字典。
 </footer>
-
-
-
-<style id='MS_N_RRR_tooltip_inject_v2'>
-.tip { position: relative; cursor: help; }
-/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
-#tip-floater {
-  position: fixed;
-  background: var(--th-bg,#f4f7fb);
-  color: var(--th-text,#243244);
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: normal;
-  white-space: pre-line;
-  max-width: 320px;
-  width: max-content;
-  text-align: left;
-  border: 1px solid var(--th-border2,#bccadb);
-  z-index: 999999;
-  pointer-events: none;
-  line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(15,23,42,0.15);
-  display: none;
-}
-.tip:focus { outline: none; }
-@media (max-width: 600px) {
-  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
-}
-</style>
-<script>
-(function(){
-  var floater = null;
-  function ensureFloater(){
-    if (floater) return floater;
-    floater = document.createElement('div');
-    floater.id = 'tip-floater';
-    document.body.appendChild(floater);
-    return floater;
-  }
-  function showTip(el){
-    var text = el.getAttribute('data-tip');
-    if (!text) return;
-    var f = ensureFloater();
-    f.textContent = text;
-    f.style.display = 'block';
-    // 量元素位置
-    var rect = el.getBoundingClientRect();
-    var vw = window.innerWidth, vh = window.innerHeight;
-    var pad = 8;
-    // 預設放上方居中
-    var tw = f.offsetWidth, th = f.offsetHeight;
-    var left = rect.left + rect.width / 2 - tw / 2;
-    var top = rect.top - th - 10;
-    // 邊界修正
-    if (left < pad) left = pad;
-    if (left + tw > vw - pad) left = vw - tw - pad;
-    // 若上方空間不夠，改放下方
-    if (top < pad) top = rect.bottom + 10;
-    // 若下方也不夠（窄屏），就靠近底部
-    if (top + th > vh - pad) top = vh - th - pad;
-    f.style.left = left + 'px';
-    f.style.top  = top + 'px';
-  }
-  function hideTip(){
-    if (floater) floater.style.display = 'none';
-  }
-  function init(){
-    // 把所有 title 屬性轉成 data-tip
-    document.querySelectorAll('[title]').forEach(function(el){
-      var t = el.getAttribute('title');
-      if (!t) return;
-      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
-      el.setAttribute('data-tip', t);
-      el.removeAttribute('title');
-      if (!el.classList.contains('tip')) el.classList.add('tip');
-      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
-    });
-    // hover / focus 顯示
-    document.addEventListener('mouseover', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) showTip(tip);
-    });
-    document.addEventListener('mouseout', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) hideTip();
-    });
-    document.addEventListener('focusin', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) showTip(tip);
-    });
-    document.addEventListener('focusout', hideTip);
-    // 手機 tap 切換顯示
-    document.addEventListener('click', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) {
-        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
-          hideTip();
-        } else {
-          showTip(tip);
-          ensureFloater().dataset.tipFor = tip.dataset.tip;
-        }
-        e.stopPropagation();
-      } else {
-        hideTip();
-      }
-    });
-    // 滾動 / resize 隱藏（避免位置漂移）
-    window.addEventListener('scroll', hideTip, true);
-    window.addEventListener('resize', hideTip);
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
 </body></html>

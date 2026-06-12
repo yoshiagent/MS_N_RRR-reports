@@ -31,7 +31,7 @@ a{ color:var(--accent); }
 .urg-stat .num{ font-size:24px; font-weight:700; }
 .urg-stat .lbl{ font-size:12px; color:var(--muted); margin-top:2px; }
 
-.intro{ background:#e8ebee; border-left:3px solid var(--accent);
+.intro{ background:var(--th-hover,#e8ebee); border-left:3px solid var(--accent);
         padding:10px 14px; margin: 10px 0; border-radius:4px;
         font-size: 13px; color: var(--muted); }
 .intro b{ color: var(--text); }
@@ -40,9 +40,9 @@ a{ color:var(--accent); }
             gap: 14px; align-items: center;
             background:var(--card); border:1px solid var(--border);
             border-radius:8px; padding:12px 14px; margin-bottom: 10px; }
-.pair-card.urg-S{ border-left: 4px solid #ef4444; }
-.pair-card.urg-A{ border-left: 4px solid #f97316; }
-.pair-card.urg-B{ border-left: 4px solid #fbbf24; }
+.pair-card.urg-S{ border-left: 4px solid var(--th-red,#ef4444); }
+.pair-card.urg-A{ border-left: 4px solid var(--th-orange,#f97316); }
+.pair-card.urg-B{ border-left: 4px solid var(--th-amber,#fbbf24); }
 .pair-side{ display:flex; flex-direction:column; gap: 4px; }
 .pair-side .sym-line{ font-size:15px; }
 .pair-side .sym{ font-weight:700; }
@@ -55,11 +55,11 @@ a{ color:var(--accent); }
 
 .pill{ padding:1px 6px; border-radius:8px; font-size:10px;
        font-weight:600; display:inline-block; }
-.pill.utad{ background:#ef444433; color:#ef4444; }
-.pill.spring{ background:#10b98133; color:#10b981; }
+.pill.utad{ background:#ef444433; color:var(--th-red,#ef4444); }
+.pill.spring{ background:#10b98133; color:var(--th-green,#10b981); }
 .pill.same-sector{ background:#60a5fa33; color:var(--th-accent,#2563eb); }
-.pill.ds{ background:#ef444422; color:#ef4444; }
-.pill.as{ background:#10b98122; color:#10b981; }
+.pill.ds{ background:#ef444422; color:var(--th-red,#ef4444); }
+.pill.as{ background:#10b98122; color:var(--th-green,#10b981); }
 .pill.phase{ background:#33415544; color:var(--muted); }
 
 .alternates{ background:var(--th-bg2,#eef3fa); padding:8px 12px; margin-top: 4px;
@@ -73,7 +73,7 @@ a{ color:var(--accent); }
 .btn{ background:var(--card2); border:1px solid var(--border);
       color:var(--text); padding:6px 14px; border-radius:6px;
       font-size:12px; cursor:pointer; }
-.btn.active{ background:var(--accent); color:#0f172a; border-color:var(--accent); }
+.btn.active{ background:var(--accent); color:var(--th-text,#0f172a); border-color:var(--accent); }
 .btn:hover:not(.active){ border-color:var(--accent); }
 
 .hidden{ display: none; }
@@ -140,6 +140,8 @@ footer{ margin-top:30px; color:var(--muted); font-size:12px; text-align:center;
 
 
 
+
+
 <h1>🔄 換股建議 (Rotation Signals)</h1>
 <div class='meta'>
   資料日 <strong>2026-06-11</strong> ｜ 產生時間 2026-06-11 18:35:01.869564 ｜
@@ -157,11 +159,11 @@ footer{ margin-top:30px; color:var(--muted); font-size:12px; text-align:center;
   </div>
   <div class='urg-grid'>
     <div class='urg-stat'>
-      <div class='num' style='color:#ef4444'>🔴 0</div>
+      <div class='num' style='color:var(--th-red,#ef4444)'>🔴 0</div>
       <div class='lbl'>S 強烈換股 (urgency≥60)</div>
     </div>
     <div class='urg-stat'>
-      <div class='num' style='color:#f97316'>🟠 0</div>
+      <div class='num' style='color:var(--th-orange,#f97316)'>🟠 0</div>
       <div class='lbl'>A 建議換股 (40-60)</div>
     </div>
     <div class='urg-stat'>

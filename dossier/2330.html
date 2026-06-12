@@ -5,17 +5,17 @@
 <style>
   body { background:var(--th-bg,#f4f7fb); color:var(--th-text,#243244); font-family:var(--th-font,Segoe UI,system-ui,sans-serif);
          padding:20px; max-width:1100px; margin:0 auto }
-  h1 { color:var(--th-warn,#b45309); border-bottom:2px solid #fbbf24; padding-bottom:8px }
+  h1 { color:var(--th-warn,#b45309); border-bottom:2px solid var(--th-amber,#fbbf24); padding-bottom:8px }
   .section { background:var(--th-hover,#e7edf5); padding:14px 16px; border-radius:8px;
-            margin-bottom:14px; border-left:4px solid #6366f1 }
-  .section-title { color:#4f46e5; font-weight:bold; font-size:14px;
+            margin-bottom:14px; border-left:4px solid var(--th-indigo,#6366f1) }
+  .section-title { color:var(--th-indigo,#4f46e5); font-weight:bold; font-size:14px;
                    margin-bottom:10px; padding-bottom:6px;
                    border-bottom:1px dashed var(--th-border2,#c9d4e3) }
   .section-body { color:var(--th-text,#243244); font-size:13px }
   table { width:100%; border-collapse:collapse; background:var(--th-card,#ffffff);
          border-radius:6px; overflow:hidden; margin-top:8px }
   th, td { padding:5px 8px; border-bottom:1px solid var(--th-border2,#c9d4e3); font-size:12px }
-  th { background:#ded9f9; color:var(--th-warn,#b45309); text-align:left }
+  th { background:var(--th-hover,#ded9f9); color:var(--th-warn,#b45309); text-align:left }
   a { color:var(--th-info,#0c7bb3) }
   .quick-nav a { margin-right:14px }
 </style></head><body>
@@ -77,6 +77,8 @@
 
 
 
+
+
 <h1>2330 <span style="color:var(--th-text2,#3f4f63)">台積電</span>
     <span style="font-size:14px;color:var(--th-muted,#61708a);font-weight:normal">
       · 收盤 2305.0
@@ -92,30 +94,30 @@
 </p>
 
 <p style="background:rgba(99,102,241,0.15);padding:10px 14px;border-radius:6px;
-          font-size:12px;color:var(--th-text2,#3f4f63);border-left:3px solid #6366f1">
+          font-size:12px;color:var(--th-text2,#3f4f63);border-left:3px solid var(--th-indigo,#6366f1)">
   📋 <b>Stock Dossier</b> — 整合該股在所有 Agent 與 FS (Feature Store) 內的判斷,
   CIO / PM / 風控長共用基礎。
 </p>
 
 
-    <div class="section" style="border-left:4px solid #a855f7">
-      <div class="section-title" style="color:#a855f7">🏛 IUE 狀態 (Investment Universe Engine)<span style='background:var(--th-line2,#cdd9e7);color:var(--th-text2,#3f4f63);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>無資料</span></div>
+    <div class="section" style="border-left:4px solid var(--th-purple,#a855f7)">
+      <div class="section-title" style="color:var(--th-purple,#a855f7)">🏛 IUE 狀態 (Investment Universe Engine)<span style='background:var(--th-line2,#cdd9e7);color:var(--th-text2,#3f4f63);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>無資料</span></div>
       <div class="section-body"><i>該股不在 IUE universe</i></div>
     </div>
     
 
-    <div class="section" style="border-left:4px solid #fbbf24">
-      <div class="section-title" style="color:var(--th-warn,#b45309)">⚖ 投資委員會 (9 名人合議)<span style='background:#22c55e;color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
+    <div class="section" style="border-left:4px solid var(--th-amber,#fbbf24)">
+      <div class="section-title" style="color:var(--th-warn,#b45309)">⚖ 投資委員會 (9 名人合議)<span style='background:var(--th-green,#22c55e);color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
       <div class="section-body">
     <div><b>Composite Score:</b>
       <span style="color:var(--th-warn,#b45309);font-size:22px;font-weight:bold">
         42.1</span>
-      <span style="background:#e3ccf8;color:#e9d5ff;padding:2px 8px;border-radius:4px;
+      <span style="background:var(--th-hover,#e3ccf8);color:var(--th-purple,#e9d5ff);padding:2px 8px;border-radius:4px;
                    margin-left:8px;font-weight:bold">C</span>
       &nbsp;&nbsp; Top master: <b style="color:var(--th-warn,#b45309)">ONeil</b>
     </div>
     <table style="width:100%;margin-top:10px;background:var(--th-card,#ffffff);border-radius:6px">
-      <thead><tr style="background:#ded9f9">
+      <thead><tr style="background:var(--th-hover,#ded9f9)">
         <th>名人</th><th>Score</th><th>Weight</th><th>Contribution</th><th>Tier</th><th></th>
       </tr></thead>
       <tbody>
@@ -125,7 +127,7 @@
           <td style='text-align:right'>30</td>
           <td style='text-align:right;color:var(--th-warn,#b45309)'>12.3</td>
           <td>C</td>
-          <td><div style='background:#ded9f9;height:8px;width:61px;border-radius:2px'></div></td>
+          <td><div style='background:var(--th-hover,#ded9f9);height:8px;width:61px;border-radius:2px'></div></td>
         </tr>
         <tr>
           <td><b>Minervini</b></td>
@@ -133,7 +135,7 @@
           <td style='text-align:right'>25</td>
           <td style='text-align:right;color:var(--th-warn,#b45309)'>11.2</td>
           <td>C</td>
-          <td><div style='background:#ded9f9;height:8px;width:56px;border-radius:2px'></div></td>
+          <td><div style='background:var(--th-hover,#ded9f9);height:8px;width:56px;border-radius:2px'></div></td>
         </tr>
         <tr>
           <td><b>Weinstein</b></td>
@@ -141,7 +143,7 @@
           <td style='text-align:right'>20</td>
           <td style='text-align:right;color:var(--th-muted,#61708a)'>7.6</td>
           <td>C</td>
-          <td><div style='background:#ded9f9;height:8px;width:38px;border-radius:2px'></div></td>
+          <td><div style='background:var(--th-hover,#ded9f9);height:8px;width:38px;border-radius:2px'></div></td>
         </tr>
         <tr>
           <td><b>Livermore</b></td>
@@ -149,7 +151,7 @@
           <td style='text-align:right'>15</td>
           <td style='text-align:right;color:var(--th-muted,#61708a)'>7.2</td>
           <td>C</td>
-          <td><div style='background:#ded9f9;height:8px;width:36px;border-radius:2px'></div></td>
+          <td><div style='background:var(--th-hover,#ded9f9);height:8px;width:36px;border-radius:2px'></div></td>
         </tr>
         <tr>
           <td><b>Darvas</b></td>
@@ -157,43 +159,43 @@
           <td style='text-align:right'>10</td>
           <td style='text-align:right;color:var(--th-muted,#61708a)'>3.8</td>
           <td>C</td>
-          <td><div style='background:#ded9f9;height:8px;width:19px;border-radius:2px'></div></td>
+          <td><div style='background:var(--th-hover,#ded9f9);height:8px;width:19px;border-radius:2px'></div></td>
         </tr></tbody>
     </table>
     </div>
     </div>
     
 
-    <div class="section" style="border-left:4px solid #22c55e">
-      <div class="section-title" style="color:#22c55e">🎯 股池來源 (4 池)<span style='background:#22c55e;color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
+    <div class="section" style="border-left:4px solid var(--th-green,#22c55e)">
+      <div class="section-title" style="color:var(--th-green,#22c55e)">🎯 股池來源 (4 池)<span style='background:var(--th-green,#22c55e);color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
       <div class="section-body"><div style='display:grid;gap:6px'><div>🔥 <b>熱門股</b>: status=<b>C 過熱或排除</b> · score=63.4</div><div style='color:var(--th-muted,#64748b)'>📈 強勢股: 不在</div><div style='color:var(--th-muted,#64748b)'>🏗 打底股: 不在</div><div style='color:var(--th-muted,#64748b)'>⭐ 自選股: 不在</div></div></div>
     </div>
     
 
-    <div class="section" style="border-left:4px solid #06b6d4">
-      <div class="section-title" style="color:#06b6d4">🌊 SHSL Swing 結構 (波段高低點 · 三時段對齊)<span style='background:#22c55e;color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
+    <div class="section" style="border-left:4px solid var(--th-cyan,#06b6d4)">
+      <div class="section-title" style="color:var(--th-cyan,#06b6d4)">🌊 SHSL Swing 結構 (波段高低點 · 三時段對齊)<span style='background:var(--th-green,#22c55e);color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
       <div class="section-body">
     <div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px'>
       
         <div style='background:rgba(15,23,42,0.05);padding:10px;border-radius:6px;
-                    border-top:3px solid #fb923c'>
+                    border-top:3px solid var(--th-orange,#fb923c)'>
           <div style='color:var(--th-info,#0c7bb3);font-size:11px;font-weight:bold'>📅 日線</div>
-          <div style='color:#c2410c;font-weight:bold;font-size:15px;margin:4px 0'>
+          <div style='color:var(--th-red,#c2410c);font-weight:bold;font-size:15px;margin:4px 0'>
             PULLBACK
           </div>
           <div style='font-size:11px;color:var(--th-text2,#3f4f63)'>🟢 <b>HH+HL</b></div>
-          <div style='margin-top:6px'><span style='background:#22c55e;color:var(--th-text,#1e2a3a);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:1;font-weight:bold'>HH</span><span style='background:#22c55e;color:var(--th-text,#1e2a3a);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:1;font-weight:bold'>HL</span><span style='background:var(--th-hover,#e7edf5);color:#475569;padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>LH</span><span style='background:var(--th-hover,#e7edf5);color:#475569;padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>LL</span></div>
+          <div style='margin-top:6px'><span style='background:var(--th-green,#22c55e);color:var(--th-text,#1e2a3a);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:1;font-weight:bold'>HH</span><span style='background:var(--th-green,#22c55e);color:var(--th-text,#1e2a3a);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:1;font-weight:bold'>HL</span><span style='background:var(--th-hover,#e7edf5);color:var(--th-faint,#475569);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>LH</span><span style='background:var(--th-hover,#e7edf5);color:var(--th-faint,#475569);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>LL</span></div>
           
             <div style='background:var(--th-card,#ffffff);border-radius:4px;padding:7px 9px;margin-top:6px'>
               <div style='display:flex;justify-content:space-between;font-size:10px;color:var(--th-muted,#61708a)'>
                 <span>SL <b style='color:var(--th-ok,#15803d)'>2270.00</b></span>
                 <span style='color:var(--th-warn,#b45309)'>當前 <b>2305.00</b></span>
-                <span>SH <b style='color:#fca5a5'>2440.00</b></span>
+                <span>SH <b style='color:var(--th-red,#fca5a5)'>2440.00</b></span>
               </div>
               <div style='background:linear-gradient(90deg,#c7f0d2 0%,#dbe5fb 50%,#fbd5d5 100%);
                           height:10px;border-radius:5px;position:relative;margin-top:6px'>
                 <div style='position:absolute;left:20.588235294117645%;top:-3px;
-                            width:3px;height:16px;background:#fbbf24;
+                            width:3px;height:16px;background:var(--th-amber,#fbbf24);
                             box-shadow:0 0 4px #fbbf24'></div>
               </div>
               <div style='color:var(--th-warn,#b45309);font-size:10px;text-align:center;margin-top:3px'>
@@ -219,7 +221,7 @@
       <text x="14.0" y="106.0" fill="#cbd5e1" font-size="8" text-anchor="middle">2025.0</text><text x="47.1" y="30.2" fill="#cbd5e1" font-size="8" text-anchor="middle">2330.0</text><text x="80.3" y="84.8" fill="#cbd5e1" font-size="8" text-anchor="middle">2135.0</text><text x="113.4" y="27.3" fill="#cbd5e1" font-size="8" text-anchor="middle">2345.0</text><text x="146.6" y="75.2" fill="#cbd5e1" font-size="8" text-anchor="middle">2185.0</text><text x="179.7" y="9.0" fill="#cbd5e1" font-size="8" text-anchor="middle">2440.0</text><text x="212.9" y="66.5" fill="#fcd34d" font-size="8" text-anchor="middle">2230.0</text><text x="246.0" y="52.0" fill="#22d3ee" font-size="8" text-anchor="end">現價 2305</text>
     </svg>
     
-              <div>🟢 <b>SL</b> <span style='color:var(--th-text2,#3f4f63)'>2025.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(04-20)</span></div><div>🔴 <b>SH</b> <span style='color:var(--th-text2,#3f4f63)'>2330.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(04-27)</span> <span style='color:var(--th-warn,#b45309)'>⤴ 反彈</span></div><div>🟢 <b>SL</b> <span style='color:var(--th-text2,#3f4f63)'>2135.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(04-30)</span> <span style='color:#22c55e'>↗ HL</span></div><div>🔴 <b>SH</b> <span style='color:var(--th-text2,#3f4f63)'>2345.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(05-07)</span> <span style='color:#22c55e'>↗ HH</span></div><div>🟢 <b>SL</b> <span style='color:var(--th-text2,#3f4f63)'>2185.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(05-20)</span> <span style='color:#22c55e'>↗ HL</span></div><div>🔴 <b>SH</b> <span style='color:var(--th-text2,#3f4f63)'>2440.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(06-03)</span> <span style='color:#22c55e'>↗ HH</span></div><div style='display:flex;align-items:center;flex-wrap:wrap;gap:3px'>📌 <b style='color:var(--th-warn,#a16207)'>SL</b> <span style='color:var(--th-warn,#a16207)'>2230.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(06-08 · 還差 2 根, 預計 06-11 (若不破 2230))</span><span class='cand-diag-wrap' style='position:relative;display:inline-block;margin-left:4px'><span class='cand-diag-trigger' style='cursor:help;color:var(--th-warn,#a16207);border:1px solid #854d0e;border-radius:8px;padding:0 5px;font-size:9px'>📊 1/3</span><span class='cand-diag-pop' style='visibility:hidden;opacity:0;transition:opacity 0.15s;position:absolute;bottom:130%;left:0;background:var(--th-card,#ffffff);border:1px solid var(--th-border2,#bccadb);border-radius:6px;padding:8px 10px;z-index:100;min-width:280px;box-shadow:0 8px 24px rgba(0,0,0,0.6);text-align:left'><div style='color:var(--th-info,#0c7bb3);font-weight:bold;font-size:10px;margin-bottom:4px;border-bottom:1px solid var(--th-border,#dbe3ee);padding-bottom:3px'>SL candidate 3 條件確認進度</div><table style='border-collapse:collapse;font-size:10px'><tr><td style='padding:2px 6px;color:#ef4444;font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SL-01 突破確認</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>收盤 2305.0 &gt; candidate K高 2320.0</td></tr><tr><td style='padding:2px 6px;color:#22c55e;font-weight:bold;text-align:center'>✓</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SL-02 反彈幅度</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>反彈 90.0 ≥ ATR 60.0</td></tr><tr><td style='padding:2px 6px;color:#ef4444;font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SL-03 時間過濾</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>距今 1 根 ≥ 3 根</td></tr></table><div style='color:var(--th-muted,#64748b);font-size:9px;margin-top:4px;border-top:1px solid var(--th-border,#dbe3ee);padding-top:3px'>3 條件全 ✓ → 確認 SHSL 轉折</div></span></span><style>.cand-diag-wrap:hover .cand-diag-pop{visibility:visible !important;opacity:1 !important}</style></div>
+              <div>🟢 <b>SL</b> <span style='color:var(--th-text2,#3f4f63)'>2025.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(04-20)</span></div><div>🔴 <b>SH</b> <span style='color:var(--th-text2,#3f4f63)'>2330.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(04-27)</span> <span style='color:var(--th-warn,#b45309)'>⤴ 反彈</span></div><div>🟢 <b>SL</b> <span style='color:var(--th-text2,#3f4f63)'>2135.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(04-30)</span> <span style='color:var(--th-green,#22c55e)'>↗ HL</span></div><div>🔴 <b>SH</b> <span style='color:var(--th-text2,#3f4f63)'>2345.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(05-07)</span> <span style='color:var(--th-green,#22c55e)'>↗ HH</span></div><div>🟢 <b>SL</b> <span style='color:var(--th-text2,#3f4f63)'>2185.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(05-20)</span> <span style='color:var(--th-green,#22c55e)'>↗ HL</span></div><div>🔴 <b>SH</b> <span style='color:var(--th-text2,#3f4f63)'>2440.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(06-03)</span> <span style='color:var(--th-green,#22c55e)'>↗ HH</span></div><div style='display:flex;align-items:center;flex-wrap:wrap;gap:3px'>📌 <b style='color:var(--th-warn,#a16207)'>SL</b> <span style='color:var(--th-warn,#a16207)'>2230.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(06-08 · 還差 2 根, 預計 06-11 (若不破 2230))</span><span class='cand-diag-wrap' style='position:relative;display:inline-block;margin-left:4px'><span class='cand-diag-trigger' style='cursor:help;color:var(--th-warn,#a16207);border:1px solid var(--th-orange,#854d0e);border-radius:8px;padding:0 5px;font-size:9px'>📊 1/3</span><span class='cand-diag-pop' style='visibility:hidden;opacity:0;transition:opacity 0.15s;position:absolute;bottom:130%;left:0;background:var(--th-card,#ffffff);border:1px solid var(--th-border2,#bccadb);border-radius:6px;padding:8px 10px;z-index:100;min-width:280px;box-shadow:0 8px 24px rgba(0,0,0,0.6);text-align:left'><div style='color:var(--th-info,#0c7bb3);font-weight:bold;font-size:10px;margin-bottom:4px;border-bottom:1px solid var(--th-border,#dbe3ee);padding-bottom:3px'>SL candidate 3 條件確認進度</div><table style='border-collapse:collapse;font-size:10px'><tr><td style='padding:2px 6px;color:var(--th-red,#ef4444);font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SL-01 突破確認</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>收盤 2305.0 &gt; candidate K高 2320.0</td></tr><tr><td style='padding:2px 6px;color:var(--th-green,#22c55e);font-weight:bold;text-align:center'>✓</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SL-02 反彈幅度</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>反彈 90.0 ≥ ATR 60.0</td></tr><tr><td style='padding:2px 6px;color:var(--th-red,#ef4444);font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SL-03 時間過濾</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>距今 1 根 ≥ 3 根</td></tr></table><div style='color:var(--th-muted,#64748b);font-size:9px;margin-top:4px;border-top:1px solid var(--th-border,#dbe3ee);padding-top:3px'>3 條件全 ✓ → 確認 SHSL 轉折</div></span></span><style>.cand-diag-wrap:hover .cand-diag-pop{visibility:visible !important;opacity:1 !important}</style></div>
             </div>
             
           <div style='color:var(--th-muted,#61708a);font-size:10px;margin-top:5px;
@@ -229,13 +231,13 @@
         </div>
         
         <div style='background:rgba(15,23,42,0.05);padding:10px;border-radius:6px;
-                    border-top:3px solid #a855f7'>
+                    border-top:3px solid var(--th-purple,#a855f7)'>
           <div style='color:var(--th-info,#0c7bb3);font-size:11px;font-weight:bold'>📆 週線</div>
-          <div style='color:#a855f7;font-weight:bold;font-size:15px;margin:4px 0'>
+          <div style='color:var(--th-purple,#a855f7);font-weight:bold;font-size:15px;margin:4px 0'>
             REBOUND
           </div>
           <div style='font-size:11px;color:var(--th-text2,#3f4f63)'>🟢 <b>HH+HL</b></div>
-          <div style='margin-top:6px'><span style='background:#22c55e;color:var(--th-text,#1e2a3a);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:1;font-weight:bold'>HH</span><span style='background:#22c55e;color:var(--th-text,#1e2a3a);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:1;font-weight:bold'>HL</span><span style='background:var(--th-hover,#e7edf5);color:#475569;padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>LH</span><span style='background:var(--th-hover,#e7edf5);color:#475569;padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>LL</span></div>
+          <div style='margin-top:6px'><span style='background:var(--th-green,#22c55e);color:var(--th-text,#1e2a3a);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:1;font-weight:bold'>HH</span><span style='background:var(--th-green,#22c55e);color:var(--th-text,#1e2a3a);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:1;font-weight:bold'>HL</span><span style='background:var(--th-hover,#e7edf5);color:var(--th-faint,#475569);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>LH</span><span style='background:var(--th-hover,#e7edf5);color:var(--th-faint,#475569);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>LL</span></div>
           <div style='color:var(--th-muted,#61708a);font-size:11px;margin-top:6px'>SH=2018.41 SL=2185.00</div>
           
           
@@ -255,7 +257,7 @@
       <text x="14.0" y="77.9" fill="#cbd5e1" font-size="8" text-anchor="middle">1515.0</text><text x="60.4" y="106.0" fill="#cbd5e1" font-size="8" text-anchor="middle">1375.9</text><text x="106.8" y="37.6" fill="#cbd5e1" font-size="8" text-anchor="middle">2018.4</text><text x="153.2" y="74.9" fill="#cbd5e1" font-size="8" text-anchor="middle">1764.2</text><text x="199.6" y="9.0" fill="#fcd34d" font-size="8" text-anchor="middle">2375.0</text><text x="246.0" y="31.6" fill="#22d3ee" font-size="8" text-anchor="end">現價 2305</text>
     </svg>
     
-              <div>🔴 <b>SH</b> <span style='color:var(--th-text2,#3f4f63)'>1514.99</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(10-31)</span></div><div>🟢 <b>SL</b> <span style='color:var(--th-text2,#3f4f63)'>1375.91</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(11-21)</span> <span style='color:#c2410c'>⤵ 拉回</span></div><div>🔴 <b>SH</b> <span style='color:var(--th-text2,#3f4f63)'>2018.41</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(02-27)</span> <span style='color:#22c55e'>↗ HH</span></div><div>🟢 <b>SL</b> <span style='color:var(--th-text2,#3f4f63)'>1764.24</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(03-13)</span> <span style='color:#22c55e'>↗ HL</span></div><div style='display:flex;align-items:center;flex-wrap:wrap;gap:3px'>📌 <b style='color:var(--th-warn,#a16207)'>SH</b> <span style='color:var(--th-warn,#a16207)'>2375.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(05-29 · 還差 1 根, 預計 06-19 (約) (若不破 2375))</span><span class='cand-diag-wrap' style='position:relative;display:inline-block;margin-left:4px'><span class='cand-diag-trigger' style='cursor:help;color:var(--th-warn,#a16207);border:1px solid #854d0e;border-radius:8px;padding:0 5px;font-size:9px'>📊 1/3</span><span class='cand-diag-pop' style='visibility:hidden;opacity:0;transition:opacity 0.15s;position:absolute;bottom:130%;left:0;background:var(--th-card,#ffffff);border:1px solid var(--th-border2,#bccadb);border-radius:6px;padding:8px 10px;z-index:100;min-width:280px;box-shadow:0 8px 24px rgba(0,0,0,0.6);text-align:left'><div style='color:var(--th-info,#0c7bb3);font-weight:bold;font-size:10px;margin-bottom:4px;border-bottom:1px solid var(--th-border,#dbe3ee);padding-bottom:3px'>SH candidate 3 條件確認進度</div><table style='border-collapse:collapse;font-size:10px'><tr><td style='padding:2px 6px;color:#ef4444;font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SH-01 跌破確認</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>收盤 2305.0 &lt; candidate K低 2270.0</td></tr><tr><td style='padding:2px 6px;color:#22c55e;font-weight:bold;text-align:center'>✓</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SH-02 回檔幅度</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>回檔 145.0 ≥ ATR 122.1</td></tr><tr><td style='padding:2px 6px;color:#ef4444;font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SH-03 時間過濾</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>距今 2 根 ≥ 3 根</td></tr></table><div style='color:var(--th-muted,#64748b);font-size:9px;margin-top:4px;border-top:1px solid var(--th-border,#dbe3ee);padding-top:3px'>3 條件全 ✓ → 確認 SHSL 轉折</div></span></span><style>.cand-diag-wrap:hover .cand-diag-pop{visibility:visible !important;opacity:1 !important}</style></div>
+              <div>🔴 <b>SH</b> <span style='color:var(--th-text2,#3f4f63)'>1514.99</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(10-31)</span></div><div>🟢 <b>SL</b> <span style='color:var(--th-text2,#3f4f63)'>1375.91</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(11-21)</span> <span style='color:var(--th-red,#c2410c)'>⤵ 拉回</span></div><div>🔴 <b>SH</b> <span style='color:var(--th-text2,#3f4f63)'>2018.41</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(02-27)</span> <span style='color:var(--th-green,#22c55e)'>↗ HH</span></div><div>🟢 <b>SL</b> <span style='color:var(--th-text2,#3f4f63)'>1764.24</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(03-13)</span> <span style='color:var(--th-green,#22c55e)'>↗ HL</span></div><div style='display:flex;align-items:center;flex-wrap:wrap;gap:3px'>📌 <b style='color:var(--th-warn,#a16207)'>SH</b> <span style='color:var(--th-warn,#a16207)'>2375.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(05-29 · 還差 1 根, 預計 06-19 (約) (若不破 2375))</span><span class='cand-diag-wrap' style='position:relative;display:inline-block;margin-left:4px'><span class='cand-diag-trigger' style='cursor:help;color:var(--th-warn,#a16207);border:1px solid var(--th-orange,#854d0e);border-radius:8px;padding:0 5px;font-size:9px'>📊 1/3</span><span class='cand-diag-pop' style='visibility:hidden;opacity:0;transition:opacity 0.15s;position:absolute;bottom:130%;left:0;background:var(--th-card,#ffffff);border:1px solid var(--th-border2,#bccadb);border-radius:6px;padding:8px 10px;z-index:100;min-width:280px;box-shadow:0 8px 24px rgba(0,0,0,0.6);text-align:left'><div style='color:var(--th-info,#0c7bb3);font-weight:bold;font-size:10px;margin-bottom:4px;border-bottom:1px solid var(--th-border,#dbe3ee);padding-bottom:3px'>SH candidate 3 條件確認進度</div><table style='border-collapse:collapse;font-size:10px'><tr><td style='padding:2px 6px;color:var(--th-red,#ef4444);font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SH-01 跌破確認</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>收盤 2305.0 &lt; candidate K低 2270.0</td></tr><tr><td style='padding:2px 6px;color:var(--th-green,#22c55e);font-weight:bold;text-align:center'>✓</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SH-02 回檔幅度</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>回檔 145.0 ≥ ATR 122.1</td></tr><tr><td style='padding:2px 6px;color:var(--th-red,#ef4444);font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SH-03 時間過濾</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>距今 2 根 ≥ 3 根</td></tr></table><div style='color:var(--th-muted,#64748b);font-size:9px;margin-top:4px;border-top:1px solid var(--th-border,#dbe3ee);padding-top:3px'>3 條件全 ✓ → 確認 SHSL 轉折</div></span></span><style>.cand-diag-wrap:hover .cand-diag-pop{visibility:visible !important;opacity:1 !important}</style></div>
             </div>
             
           <div style='color:var(--th-muted,#61708a);font-size:10px;margin-top:5px;
@@ -265,13 +267,13 @@
         </div>
         
         <div style='background:rgba(15,23,42,0.05);padding:10px;border-radius:6px;
-                    border-top:3px solid #fb923c'>
+                    border-top:3px solid var(--th-orange,#fb923c)'>
           <div style='color:var(--th-info,#0c7bb3);font-size:11px;font-weight:bold'>🗓 月線</div>
-          <div style='color:#c2410c;font-weight:bold;font-size:15px;margin:4px 0'>
+          <div style='color:var(--th-red,#c2410c);font-weight:bold;font-size:15px;margin:4px 0'>
             PULLBACK
           </div>
           <div style='font-size:11px;color:var(--th-text2,#3f4f63)'>⚪ <b>未明</b></div>
-          <div style='margin-top:6px'><span style='background:var(--th-hover,#e7edf5);color:#475569;padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>HH</span><span style='background:var(--th-hover,#e7edf5);color:#475569;padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>HL</span><span style='background:var(--th-hover,#e7edf5);color:#475569;padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>LH</span><span style='background:var(--th-hover,#e7edf5);color:#475569;padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>LL</span></div>
+          <div style='margin-top:6px'><span style='background:var(--th-hover,#e7edf5);color:var(--th-faint,#475569);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>HH</span><span style='background:var(--th-hover,#e7edf5);color:var(--th-faint,#475569);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>HL</span><span style='background:var(--th-hover,#e7edf5);color:var(--th-faint,#475569);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>LH</span><span style='background:var(--th-hover,#e7edf5);color:var(--th-faint,#475569);padding:2px 5px;border-radius:3px;font-size:10px;margin-right:2px;opacity:0.4;font-weight:bold'>LL</span></div>
           <div style='color:var(--th-muted,#64748b);font-size:11px;margin-top:6px'>SH/SL 尚未確認</div>
           
           
@@ -291,7 +293,7 @@
       <text x="14.0" y="106.0" fill="#fcd34d" font-size="8" text-anchor="middle">790.8</text><text x="130.0" y="9.0" fill="#fcd34d" font-size="8" text-anchor="middle">2375.0</text><text x="246.0" y="29.5" fill="#22d3ee" font-size="8" text-anchor="end">現價 2305</text>
     </svg>
     
-              <div style='display:flex;align-items:center;flex-wrap:wrap;gap:3px'>📌 <b style='color:var(--th-warn,#a16207)'>SL</b> <span style='color:var(--th-warn,#a16207)'>790.75</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(08-31 · 3 條件已滿足, 下一根確認)</span><span class='cand-diag-wrap' style='position:relative;display:inline-block;margin-left:4px'><span class='cand-diag-trigger' style='cursor:help;color:var(--th-warn,#a16207);border:1px solid #854d0e;border-radius:8px;padding:0 5px;font-size:9px'>📊 2/3</span><span class='cand-diag-pop' style='visibility:hidden;opacity:0;transition:opacity 0.15s;position:absolute;bottom:130%;left:0;background:var(--th-card,#ffffff);border:1px solid var(--th-border2,#bccadb);border-radius:6px;padding:8px 10px;z-index:100;min-width:280px;box-shadow:0 8px 24px rgba(0,0,0,0.6);text-align:left'><div style='color:var(--th-info,#0c7bb3);font-weight:bold;font-size:10px;margin-bottom:4px;border-bottom:1px solid var(--th-border,#dbe3ee);padding-bottom:3px'>SL candidate 3 條件確認進度</div><table style='border-collapse:collapse;font-size:10px'><tr><td style='padding:2px 6px;color:#22c55e;font-weight:bold;text-align:center'>✓</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SL-01 突破確認</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>收盤 2305.0 &gt; candidate K高 950.3</td></tr><tr><td style='padding:2px 6px;color:#ef4444;font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SL-02 反彈幅度</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>反彈 1649.2 ≥ ATR nan</td></tr><tr><td style='padding:2px 6px;color:#22c55e;font-weight:bold;text-align:center'>✓</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SL-03 時間過濾</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>距今 22 根 ≥ 3 根</td></tr></table><div style='color:var(--th-muted,#64748b);font-size:9px;margin-top:4px;border-top:1px solid var(--th-border,#dbe3ee);padding-top:3px'>3 條件全 ✓ → 確認 SHSL 轉折</div></span></span><style>.cand-diag-wrap:hover .cand-diag-pop{visibility:visible !important;opacity:1 !important}</style></div><div style='display:flex;align-items:center;flex-wrap:wrap;gap:3px'>📌 <b style='color:var(--th-warn,#a16207)'>SH</b> <span style='color:var(--th-warn,#a16207)'>2375.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(05-31 · 還差 2 根, 預計 (約) (若不破 2375))</span><span class='cand-diag-wrap' style='position:relative;display:inline-block;margin-left:4px'><span class='cand-diag-trigger' style='cursor:help;color:var(--th-warn,#a16207);border:1px solid #854d0e;border-radius:8px;padding:0 5px;font-size:9px'>📊 0/3</span><span class='cand-diag-pop' style='visibility:hidden;opacity:0;transition:opacity 0.15s;position:absolute;bottom:130%;left:0;background:var(--th-card,#ffffff);border:1px solid var(--th-border2,#bccadb);border-radius:6px;padding:8px 10px;z-index:100;min-width:280px;box-shadow:0 8px 24px rgba(0,0,0,0.6);text-align:left'><div style='color:var(--th-info,#0c7bb3);font-weight:bold;font-size:10px;margin-bottom:4px;border-bottom:1px solid var(--th-border,#dbe3ee);padding-bottom:3px'>SH candidate 3 條件確認進度</div><table style='border-collapse:collapse;font-size:10px'><tr><td style='padding:2px 6px;color:#ef4444;font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SH-01 跌破確認</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>收盤 2305.0 &lt; candidate K低 2185.0</td></tr><tr><td style='padding:2px 6px;color:#ef4444;font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SH-02 回檔幅度</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>回檔 145.0 ≥ ATR 178.4</td></tr><tr><td style='padding:2px 6px;color:#ef4444;font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SH-03 時間過濾</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>距今 1 根 ≥ 3 根</td></tr></table><div style='color:var(--th-muted,#64748b);font-size:9px;margin-top:4px;border-top:1px solid var(--th-border,#dbe3ee);padding-top:3px'>3 條件全 ✓ → 確認 SHSL 轉折</div></span></span><style>.cand-diag-wrap:hover .cand-diag-pop{visibility:visible !important;opacity:1 !important}</style></div>
+              <div style='display:flex;align-items:center;flex-wrap:wrap;gap:3px'>📌 <b style='color:var(--th-warn,#a16207)'>SL</b> <span style='color:var(--th-warn,#a16207)'>790.75</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(08-31 · 3 條件已滿足, 下一根確認)</span><span class='cand-diag-wrap' style='position:relative;display:inline-block;margin-left:4px'><span class='cand-diag-trigger' style='cursor:help;color:var(--th-warn,#a16207);border:1px solid var(--th-orange,#854d0e);border-radius:8px;padding:0 5px;font-size:9px'>📊 2/3</span><span class='cand-diag-pop' style='visibility:hidden;opacity:0;transition:opacity 0.15s;position:absolute;bottom:130%;left:0;background:var(--th-card,#ffffff);border:1px solid var(--th-border2,#bccadb);border-radius:6px;padding:8px 10px;z-index:100;min-width:280px;box-shadow:0 8px 24px rgba(0,0,0,0.6);text-align:left'><div style='color:var(--th-info,#0c7bb3);font-weight:bold;font-size:10px;margin-bottom:4px;border-bottom:1px solid var(--th-border,#dbe3ee);padding-bottom:3px'>SL candidate 3 條件確認進度</div><table style='border-collapse:collapse;font-size:10px'><tr><td style='padding:2px 6px;color:var(--th-green,#22c55e);font-weight:bold;text-align:center'>✓</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SL-01 突破確認</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>收盤 2305.0 &gt; candidate K高 950.3</td></tr><tr><td style='padding:2px 6px;color:var(--th-red,#ef4444);font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SL-02 反彈幅度</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>反彈 1649.2 ≥ ATR nan</td></tr><tr><td style='padding:2px 6px;color:var(--th-green,#22c55e);font-weight:bold;text-align:center'>✓</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SL-03 時間過濾</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>距今 22 根 ≥ 3 根</td></tr></table><div style='color:var(--th-muted,#64748b);font-size:9px;margin-top:4px;border-top:1px solid var(--th-border,#dbe3ee);padding-top:3px'>3 條件全 ✓ → 確認 SHSL 轉折</div></span></span><style>.cand-diag-wrap:hover .cand-diag-pop{visibility:visible !important;opacity:1 !important}</style></div><div style='display:flex;align-items:center;flex-wrap:wrap;gap:3px'>📌 <b style='color:var(--th-warn,#a16207)'>SH</b> <span style='color:var(--th-warn,#a16207)'>2375.00</span> <span style='color:var(--th-muted,#64748b);font-size:9px'>(05-31 · 還差 2 根, 預計 (約) (若不破 2375))</span><span class='cand-diag-wrap' style='position:relative;display:inline-block;margin-left:4px'><span class='cand-diag-trigger' style='cursor:help;color:var(--th-warn,#a16207);border:1px solid var(--th-orange,#854d0e);border-radius:8px;padding:0 5px;font-size:9px'>📊 0/3</span><span class='cand-diag-pop' style='visibility:hidden;opacity:0;transition:opacity 0.15s;position:absolute;bottom:130%;left:0;background:var(--th-card,#ffffff);border:1px solid var(--th-border2,#bccadb);border-radius:6px;padding:8px 10px;z-index:100;min-width:280px;box-shadow:0 8px 24px rgba(0,0,0,0.6);text-align:left'><div style='color:var(--th-info,#0c7bb3);font-weight:bold;font-size:10px;margin-bottom:4px;border-bottom:1px solid var(--th-border,#dbe3ee);padding-bottom:3px'>SH candidate 3 條件確認進度</div><table style='border-collapse:collapse;font-size:10px'><tr><td style='padding:2px 6px;color:var(--th-red,#ef4444);font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SH-01 跌破確認</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>收盤 2305.0 &lt; candidate K低 2185.0</td></tr><tr><td style='padding:2px 6px;color:var(--th-red,#ef4444);font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SH-02 回檔幅度</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>回檔 145.0 ≥ ATR 178.4</td></tr><tr><td style='padding:2px 6px;color:var(--th-red,#ef4444);font-weight:bold;text-align:center'>✗</td><td style='padding:2px 6px;color:var(--th-text2,#3f4f63);white-space:nowrap'>SH-03 時間過濾</td><td style='padding:2px 6px;color:var(--th-muted,#61708a);font-size:9px'>距今 1 根 ≥ 3 根</td></tr></table><div style='color:var(--th-muted,#64748b);font-size:9px;margin-top:4px;border-top:1px solid var(--th-border,#dbe3ee);padding-top:3px'>3 條件全 ✓ → 確認 SHSL 轉折</div></span></span><style>.cand-diag-wrap:hover .cand-diag-pop{visibility:visible !important;opacity:1 !important}</style></div>
             </div>
             
           <div style='color:var(--th-muted,#61708a);font-size:10px;margin-top:5px;
@@ -301,7 +303,7 @@
         </div>
         
     </div>
-    <div style="margin-top:10px;padding:8px 12px;background:rgba(168,85,247,0.1);border-left:3px solid #a855f7;border-radius:4px;font-size:12px"><div style='color:var(--th-warn,#b45309)'>週反彈中 / 日線拉回 — 可能買點機會</div></div>
+    <div style="margin-top:10px;padding:8px 12px;background:rgba(168,85,247,0.1);border-left:3px solid var(--th-purple,#a855f7);border-radius:4px;font-size:12px"><div style='color:var(--th-warn,#b45309)'>週反彈中 / 日線拉回 — 可能買點機會</div></div>
     <div style='margin-top:8px;font-size:10px;color:var(--th-muted,#64748b)'>
       ⓘ HH/HL 綠色 = 多頭結構 · LH/LL 紅色 = 空頭結構 · 灰色 = 未觸發 ·
       價位帶: SL (綠) → 當前 (黃) → SH (紅), 位置百分比 = 在區間內位置
@@ -310,24 +312,24 @@
     </div>
     
 
-    <div class="section" style="border-left:4px solid #0ea5e9">
-      <div class="section-title" style="color:#0ea5e9">📊 技術面 (Box / Wyckoff / N-Shape / CGA)<span style='background:#22c55e;color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
+    <div class="section" style="border-left:4px solid var(--th-cyan,#0ea5e9)">
+      <div class="section-title" style="color:var(--th-cyan,#0ea5e9)">📊 技術面 (Box / Wyckoff / N-Shape / CGA)<span style='background:var(--th-green,#22c55e);color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
       <div class="section-body"><div style='display:grid;gap:6px'><div>📦 <b>Box</b>: stage=<b>資料不足</b>, degradation=0(healthy)</div><div>🧬 <b>Wyckoff Phase</b>: alignment=<b>mixed</b></div><div>📊 <b>N-Shape (多時段箱型)</b>: <i>📈 多時段箱上（偏多）</i><br><span style='margin-left:18px;font-size:12px;color:var(--th-text2,#3f4f63)'>日: 🟠 箱內向下 · 週: 🟡 箱上回測 · 月: 🟢 箱上推進</span></div><div style='margin-left:18px;font-size:11px;color:var(--th-muted,#61708a)'>週線方向: 方向不明 (UP 2 / DOWN 0) · 盤整型態: ❓ 未分類</div><div>📐 <b>CGA (K 線幾何)</b>: 重心位置=<b>NEUTRAL</b> · 重心方向=<b>FLAT</b> · 資金成本趨勢=<b>UP</b></div><div style='margin-left:18px;font-size:11px;color:var(--th-muted,#61708a)'>close=2305.00 / MA20=2295.50 · VGO%=+0.01% · 加速度=-0.3103 · MA20斜率=+0.3766</div></div></div>
     </div>
     
 
-    <div class="section" style="border-left:4px solid #ec4899">
-      <div class="section-title" style="color:#ec4899">💰 籌碼面 + 基本面<span style='background:#22c55e;color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
+    <div class="section" style="border-left:4px solid var(--th-pink,#ec4899)">
+      <div class="section-title" style="color:var(--th-pink,#ec4899)">💰 籌碼面 + 基本面<span style='background:var(--th-green,#22c55e);color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
       <div class="section-body"><div style='display:grid;gap:6px'><div>💰 <b>Chip Score</b>: <span style='color:var(--th-warn,#b45309)'>40</span> · tier=C · healthy=False</div></div></div>
     </div>
     
 
-    <div class="section" style="border-left:4px solid #fbbf24">
-      <div class="section-title" style="color:var(--th-warn,#b45309)">🌊 PE 河流圖 (估值分位 · FinMind 5 年)<span style='background:#22c55e;color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
+    <div class="section" style="border-left:4px solid var(--th-amber,#fbbf24)">
+      <div class="section-title" style="color:var(--th-warn,#b45309)">🌊 PE 河流圖 (估值分位 · FinMind 5 年)<span style='background:var(--th-green,#22c55e);color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
       <div class="section-body">
     <div>
       <div style="margin-bottom:6px">
-        💵 <b>當前股價</b>: <span style="color:#ef4444;font-weight:bold;font-size:17px">2295.0</span> ·
+        💵 <b>當前股價</b>: <span style="color:var(--th-red,#ef4444);font-weight:bold;font-size:17px">2295.0</span> ·
         TTM EPS: 74.37 · PER: 30.86 ·
         PBR: 10.10 · 股利率: 0.96%
       </div>
@@ -335,7 +337,7 @@
         資料: FinMind TaiwanStockPER × fs_ohlcv close · 過去 5 年 (N=1070) ·
         最新 2026-06-08
       </div>
-      <div style="margin-bottom:8px">當前股價 <b>2295.0</b> vs 公允價 (P50) <b>1611.9</b> → <b style='color:#ef4444'>+42.4%</b> (🔴 極端偏貴, PE 處於歷史 96 分位) — 估值偏高, 進場需要更明確催化</div>
+      <div style="margin-bottom:8px">當前股價 <b>2295.0</b> vs 公允價 (P50) <b>1611.9</b> → <b style='color:var(--th-red,#ef4444)'>+42.4%</b> (🔴 極端偏貴, PE 處於歷史 96 分位) — 估值偏高, 進場需要更明確催化</div>
       
     <svg viewBox="0 0 520 240" width="100%"
          style="background:var(--th-bg2,#eef3fa);border-radius:6px;border:1px solid var(--th-border,#dbe3ee);
@@ -357,14 +359,14 @@
       <tr><th>分位</th><th>PER</th><th>今日對應股價</th><th>意義</th></tr>
       <tr style="color:var(--th-purple,#7c3aed)"><td>10%</td><td>14.0</td><td>1042.6</td><td>深度便宜</td></tr>
       <tr style="color:var(--th-accent,#2563eb)"><td>30%</td><td>16.9</td><td>1255.3</td><td>偏便宜</td></tr>
-      <tr style="color:#22c55e"><td>50%</td><td>21.7</td><td>1611.9</td><td>合理中軸</td></tr>
-      <tr style="color:#c2410c"><td>70%</td><td>25.9</td><td>1925.1</td><td>偏貴</td></tr>
-      <tr style="color:#ef4444"><td>90%</td><td>29.2</td><td>2172.3</td><td>極端偏貴</td></tr>
+      <tr style="color:var(--th-green,#22c55e)"><td>50%</td><td>21.7</td><td>1611.9</td><td>合理中軸</td></tr>
+      <tr style="color:var(--th-red,#c2410c)"><td>70%</td><td>25.9</td><td>1925.1</td><td>偏貴</td></tr>
+      <tr style="color:var(--th-red,#ef4444)"><td>90%</td><td>29.2</td><td>2172.3</td><td>極端偏貴</td></tr>
     </table>
     
       <div style="font-size:10px;color:var(--th-muted,#64748b);margin-top:6px">
-        💡 河流圖讀法: <b style="color:#fafafa">白粗線</b> = 實際股價, 5 層著色帶 = PE 分位對應的「該值多少」河道.
-        股價穿入 <span style="color:#ef4444">紅帶</span> = 統計上極端偏貴 ·
+        💡 河流圖讀法: <b style="color:var(--th-text,#fafafa)">白粗線</b> = 實際股價, 5 層著色帶 = PE 分位對應的「該值多少」河道.
+        股價穿入 <span style="color:var(--th-red,#ef4444)">紅帶</span> = 統計上極端偏貴 ·
         穿入 <span style="color:var(--th-purple,#7c3aed)">深紫帶</span> = 深度便宜 ·
         <span style="color:var(--th-ok,#16a34a)">綠虛線</span> = 50% 公允中軸.
         TTM EPS 反推自 close / PER, 不需額外 FinancialStatements.
@@ -374,8 +376,8 @@
     </div>
     
 
-    <div class="section" style="border-left:4px solid #10b981">
-      <div class="section-title" style="color:#10b981">📊 籌碼集中度 (大戶/散戶 · FinMind 股權分散 8 週)<span style='background:#22c55e;color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
+    <div class="section" style="border-left:4px solid var(--th-green,#10b981)">
+      <div class="section-title" style="color:var(--th-green,#10b981)">📊 籌碼集中度 (大戶/散戶 · FinMind 股權分散 8 週)<span style='background:var(--th-green,#22c55e);color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
       <div class="section-body">
     <div>
       <div style="margin-bottom:6px;font-size:13px">
@@ -383,7 +385,7 @@
         
       </div>
       <div style="font-size:12px;color:var(--th-text2,#3f4f63);margin-bottom:4px">
-        📊 大戶 (≥400 張): <b style="color:#22c55e">88.12%</b>
+        📊 大戶 (≥400 張): <b style="color:var(--th-green,#22c55e)">88.12%</b>
         · 千張: 85.42%
         · 中戶: 10.90%
         · 散戶: 0.98%
@@ -420,8 +422,8 @@
       
       <div style="font-size:10px;color:var(--th-muted,#64748b);margin-top:6px">
         💡 讀法: 大戶 ≥80% = 籌碼極度集中 (典型龍頭).
-        <b style="color:#22c55e">主力吸籌</b> (大戶加碼 + 散戶減碼) = 經典多頭訊號.
-        <b style="color:#ef4444">主力出貨</b> (反之) = 警示.
+        <b style="color:var(--th-green,#22c55e)">主力吸籌</b> (大戶加碼 + 散戶減碼) = 經典多頭訊號.
+        <b style="color:var(--th-red,#ef4444)">主力出貨</b> (反之) = 警示.
         資料: FinMind TaiwanStockHoldingSharesPer 週更 · 最新 2026-06-05 ·
         PM 加分 +12
       </div>
@@ -430,38 +432,38 @@
     </div>
     
 
-    <div class="section" style="border-left:4px solid #8b5cf6">
-      <div class="section-title" style="color:#8b5cf6">🏦 券商分點 (真分點 · 主力辨識 · FinMind Sponsor)<span style='background:#22c55e;color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
+    <div class="section" style="border-left:4px solid var(--th-purple,#8b5cf6)">
+      <div class="section-title" style="color:var(--th-purple,#8b5cf6)">🏦 券商分點 (真分點 · 主力辨識 · FinMind Sponsor)<span style='background:var(--th-green,#22c55e);color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
       <div class="section-body">
     <div>
       <div style='margin-bottom:6px;font-size:13px'>
-        📤 <b style='color:#ef4444'>主力出貨</b>
+        📤 <b style='color:var(--th-red,#ef4444)'>主力出貨</b>
         <span style='color:var(--th-muted,#61708a);font-size:11px'> · 5 日 ·
         815 家分行 · 最新 2026-06-09</span>
       </div>
       <div style='font-size:11px;color:var(--th-muted,#61708a);margin-bottom:6px'>
-        CR5 買超 <b style='color:#22c55e'>3,481,552</b> ·
-        CR15 買超 <b style='color:#22c55e'>5,819,682</b> ·
-        CR5 賣超 <b style='color:#ef4444'>12,651,902</b> 股
+        CR5 買超 <b style='color:var(--th-green,#22c55e)'>3,481,552</b> ·
+        CR15 買超 <b style='color:var(--th-green,#22c55e)'>5,819,682</b> ·
+        CR5 賣超 <b style='color:var(--th-red,#ef4444)'>12,651,902</b> 股
       </div>
       <div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px'>
         <div>
           <div style='font-size:10px;color:var(--th-ok,#15803d);font-weight:bold;margin-bottom:3px'>買超 TOP</div>
           <table style='width:100%;border-collapse:collapse;font-size:11px;
                         background:rgba(15,23,42,0.4);border-radius:4px'>
-            <tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>富邦</td><td style='padding:2px 8px;text-align:right;color:#22c55e'>+1,308,840</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>群益</td><td style='padding:2px 8px;text-align:right;color:#22c55e'>+710,571</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>統一</td><td style='padding:2px 8px;text-align:right;color:#22c55e'>+509,564</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>國泰綜合</td><td style='padding:2px 8px;text-align:right;color:#22c55e'>+499,367</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>🌐大和國泰</td><td style='padding:2px 8px;text-align:right;color:#22c55e'>+453,210</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>凱基</td><td style='padding:2px 8px;text-align:right;color:#22c55e'>+419,017</td></tr>
+            <tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>富邦</td><td style='padding:2px 8px;text-align:right;color:var(--th-green,#22c55e)'>+1,308,840</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>群益</td><td style='padding:2px 8px;text-align:right;color:var(--th-green,#22c55e)'>+710,571</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>統一</td><td style='padding:2px 8px;text-align:right;color:var(--th-green,#22c55e)'>+509,564</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>國泰綜合</td><td style='padding:2px 8px;text-align:right;color:var(--th-green,#22c55e)'>+499,367</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>🌐大和國泰</td><td style='padding:2px 8px;text-align:right;color:var(--th-green,#22c55e)'>+453,210</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>凱基</td><td style='padding:2px 8px;text-align:right;color:var(--th-green,#22c55e)'>+419,017</td></tr>
           </table>
         </div>
         <div>
-          <div style='font-size:10px;color:#fca5a5;font-weight:bold;margin-bottom:3px'>賣超 TOP</div>
+          <div style='font-size:10px;color:var(--th-red,#fca5a5);font-weight:bold;margin-bottom:3px'>賣超 TOP</div>
           <table style='width:100%;border-collapse:collapse;font-size:11px;
                         background:rgba(15,23,42,0.4);border-radius:4px'>
-            <tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>🌐港麥格理</td><td style='padding:2px 8px;text-align:right;color:#ef4444'>-4,961,810</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>凱基台北</td><td style='padding:2px 8px;text-align:right;color:#ef4444'>-3,655,779</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>🌐摩根大通</td><td style='padding:2px 8px;text-align:right;color:#ef4444'>-1,642,549</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>🌐瑞銀</td><td style='padding:2px 8px;text-align:right;color:#ef4444'>-1,310,764</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>🌐法銀巴黎</td><td style='padding:2px 8px;text-align:right;color:#ef4444'>-1,081,000</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>🌐台灣摩根</td><td style='padding:2px 8px;text-align:right;color:#ef4444'>-1,016,928</td></tr>
+            <tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>🌐港麥格理</td><td style='padding:2px 8px;text-align:right;color:var(--th-red,#ef4444)'>-4,961,810</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>凱基台北</td><td style='padding:2px 8px;text-align:right;color:var(--th-red,#ef4444)'>-3,655,779</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>🌐摩根大通</td><td style='padding:2px 8px;text-align:right;color:var(--th-red,#ef4444)'>-1,642,549</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>🌐瑞銀</td><td style='padding:2px 8px;text-align:right;color:var(--th-red,#ef4444)'>-1,310,764</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>🌐法銀巴黎</td><td style='padding:2px 8px;text-align:right;color:var(--th-red,#ef4444)'>-1,081,000</td></tr><tr><td style='padding:2px 8px;color:var(--th-text2,#3f4f63)'>🌐台灣摩根</td><td style='padding:2px 8px;text-align:right;color:var(--th-red,#ef4444)'>-1,016,928</td></tr>
           </table>
         </div>
       </div>
-      <div style='margin-top:8px;font-size:12px'>🌐↓ <b style='color:#c2410c'>外資賣 × 本土買</b> · 外資 net <b style='color:#ef4444'>-9,583,097</b> · 本土 net <b style='color:#22c55e'>+9,583,097</b></div>
-      <div style='margin-top:6px;font-size:11px;color:#22c55e'>🔒 點石神券商 (連續 top 買超): 富邦(4日) · 群益(3日)</div><div style='margin-top:6px;font-size:11px;color:#c2410c'>⚡ 台灣摩根: 06-03 買 +2,453,406 → 06-04 賣 -1,801,330</div>
+      <div style='margin-top:8px;font-size:12px'>🌐↓ <b style='color:var(--th-red,#c2410c)'>外資賣 × 本土買</b> · 外資 net <b style='color:var(--th-red,#ef4444)'>-9,583,097</b> · 本土 net <b style='color:var(--th-green,#22c55e)'>+9,583,097</b></div>
+      <div style='margin-top:6px;font-size:11px;color:var(--th-green,#22c55e)'>🔒 點石神券商 (連續 top 買超): 富邦(4日) · 群益(3日)</div><div style='margin-top:6px;font-size:11px;color:var(--th-red,#c2410c)'>⚡ 台灣摩根: 06-03 買 +2,453,406 → 06-04 賣 -1,801,330</div>
       <div style='font-size:10px;color:var(--th-muted,#64748b);margin-top:6px'>
         💡 🌐=外資券商 · CR5/CR15=前 5/15 大買超集中度 ·
         點石神=連續 top 買超 (鎖籌主力) · ⚡=隔日沖 (買後隔日倒貨) ·
@@ -472,15 +474,15 @@
     </div>
     
 
-    <div class="section" style="border-left:4px solid #f97316">
-      <div class="section-title" style="color:#f97316">⚡ 個股雙 Z-score (Price Z250 + Volume Z60 過熱偵測)<span style='background:#22c55e;color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
+    <div class="section" style="border-left:4px solid var(--th-orange,#f97316)">
+      <div class="section-title" style="color:var(--th-orange,#f97316)">⚡ 個股雙 Z-score (Price Z250 + Volume Z60 過熱偵測)<span style='background:var(--th-green,#22c55e);color:var(--th-text,#1e2a3a);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>有資料</span></div>
       <div class="section-body">
     <div>
       <div style="margin-bottom:4px">
         💵 close <b>2305.0</b> · 距 60d 高 -5.0%
       </div>
       <div style="margin-top:8px;font-size:12px;color:var(--th-text2,#3f4f63)">
-        <b>Price Z250</b> (長線位階): <span style="color:#c2410c;font-weight:bold">+1.86σ</span>
+        <b>Price Z250</b> (長線位階): <span style="color:var(--th-red,#c2410c);font-weight:bold">+1.86σ</span>
         · 🟠 偏熱 · Z60=+1.00σ
       </div>
       
@@ -500,7 +502,7 @@
         </svg>
         
       <div style="margin-top:10px;font-size:12px;color:var(--th-text2,#3f4f63)">
-        <b>Volume Z60</b> (量能異動): <span style="color:#22c55e;font-weight:bold">+0.30σ</span>
+        <b>Volume Z60</b> (量能異動): <span style="color:var(--th-green,#22c55e);font-weight:bold">+0.30σ</span>
         · — 量平 ·
         5d 均量 39,256,229 vs 60d 均量 35,719,929
       </div>
@@ -531,8 +533,8 @@
     </div>
     
 
-    <div class="section" style="border-left:4px solid #06b6d4">
-      <div class="section-title" style="color:#06b6d4">💼 PM 持倉狀態<span style='background:var(--th-line2,#cdd9e7);color:var(--th-text2,#3f4f63);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>無資料</span></div>
+    <div class="section" style="border-left:4px solid var(--th-cyan,#06b6d4)">
+      <div class="section-title" style="color:var(--th-cyan,#06b6d4)">💼 PM 持倉狀態<span style='background:var(--th-line2,#cdd9e7);color:var(--th-text2,#3f4f63);padding:2px 6px;border-radius:3px;font-size:10px;margin-left:8px'>無資料</span></div>
       <div class="section-body"><i>各 PM 與 Paper Portfolio 均未持有</i></div>
     </div>
     

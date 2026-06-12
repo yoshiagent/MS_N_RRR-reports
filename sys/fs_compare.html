@@ -23,10 +23,10 @@ h2{ font-size:18px; margin:24px 0 10px 0;
 .kpi b{ color: var(--accent); font-size:15px; }
 .variant-tag{ display:inline-block; padding:2px 8px; border-radius:4px;
               font-weight:600; font-size:12px; margin-right:6px; }
-.v-baseline{ background:#3b82f6; color:var(--th-text,#1e2a3a); }
-.v-uaa{ background:#fbbf24; color:#0f172a; }
-.v-shadow{ background:#a78bfa; color:var(--th-text,#1e2a3a); }
-.v-other{ background:#64748b; color:var(--th-text,#1e2a3a); }
+.v-baseline{ background:var(--th-blue,#3b82f6); color:var(--th-text,#1e2a3a); }
+.v-uaa{ background:var(--th-amber,#fbbf24); color:var(--th-text,#0f172a); }
+.v-shadow{ background:var(--th-purple,#a78bfa); color:var(--th-text,#1e2a3a); }
+.v-other{ background:var(--th-hover,#64748b); color:var(--th-text,#1e2a3a); }
 
 .grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:14px; }
 .card{ background:var(--card); border:1px solid var(--border);
@@ -36,7 +36,7 @@ h2{ font-size:18px; margin:24px 0 10px 0;
 .tier-bar{ display:flex; height:28px; border-radius:6px; overflow:hidden;
            margin:6px 0; border:1px solid var(--border); }
 .tier-seg{ display:flex; align-items:center; justify-content:center;
-           font-size:11px; color:#0f172a; font-weight:700;
+           font-size:11px; color:var(--th-text,#0f172a); font-weight:700;
            transition: flex 0.3s; }
 .tier-row{ display:grid; grid-template-columns: 90px 1fr; gap:8px;
            align-items:center; margin-bottom:4px; }
@@ -52,10 +52,10 @@ th{ background:var(--card2); color:var(--muted); font-weight:600;
 tr:last-child td{ border-bottom:none; }
 .tier-pill{ display:inline-block; padding:1px 8px; border-radius:4px;
             font-weight:700; font-size:11px; }
-.tier-S{ background:#fbbf24; color:#0f172a; }
-.tier-A{ background:#10b981; color:var(--th-text,#1e2a3a); }
-.tier-B{ background:#3b82f6; color:var(--th-text,#1e2a3a); }
-.tier-C{ background:#94a3b8; color:var(--th-text,#1e2a3a); }
+.tier-S{ background:var(--th-amber,#fbbf24); color:var(--th-text,#0f172a); }
+.tier-A{ background:var(--th-green,#10b981); color:var(--th-text,#1e2a3a); }
+.tier-B{ background:var(--th-blue,#3b82f6); color:var(--th-text,#1e2a3a); }
+.tier-C{ background:var(--th-hover,#94a3b8); color:var(--th-text,#1e2a3a); }
 .arrow-up{ color:var(--up); }
 .arrow-down{ color:var(--down); }
 .muted{ color:var(--muted); font-size:11px; }
@@ -120,6 +120,8 @@ tr:last-child td{ border-bottom:none; }
 
 
 
+
+
 <h1>📊 Feature Store 對照 — baseline vs UAA 調整</h1>
 <div class="meta">as_of: <b>2026-06-04</b> ｜
    variants: 2 ｜
@@ -131,7 +133,7 @@ tr:last-child td{ border-bottom:none; }
 
 <h2>tier 分布並排</h2>
 <div class="grid">
-  <div class="card"><h3>🪙 籌碼 (Chip) <span class="muted">— chip_score</span></h3><div class="tier-row"><span><span class="variant-tag v-baseline">baseline</span></span><div class="tier-bar"><div class="tier-seg" style="flex:6; background:#fbbf24" title="S=6 (3.0%)">S6</div><div class="tier-seg" style="flex:13; background:#10b981" title="A=13 (6.4%)">A13</div><div class="tier-seg" style="flex:50; background:#3b82f6" title="B=50 (24.6%)">B50</div><div class="tier-seg" style="flex:134; background:#94a3b8" title="C=134 (66.0%)">C134</div></div></div><div class="tier-row"><span><span class="variant-tag v-uaa">uaa_round_1</span></span><div class="tier-bar"><div class="tier-seg" style="flex:6; background:#fbbf24" title="S=6 (3.0%)">S6</div><div class="tier-seg" style="flex:25; background:#10b981" title="A=25 (12.3%)">A25</div><div class="tier-seg" style="flex:38; background:#3b82f6" title="B=38 (18.7%)">B38</div><div class="tier-seg" style="flex:134; background:#94a3b8" title="C=134 (66.0%)">C134</div></div></div></div><div class="card"><h3>📊 基本面 (Fundamental) <span class="muted">— fund_score</span></h3><div class="tier-row"><span><span class="variant-tag v-baseline">baseline</span></span><div class="tier-bar"><div class="tier-seg" style="flex:3; background:#fbbf24" title="S=3 (4.1%)">S3</div><div class="tier-seg" style="flex:29; background:#10b981" title="A=29 (39.2%)">A29</div><div class="tier-seg" style="flex:28; background:#3b82f6" title="B=28 (37.8%)">B28</div><div class="tier-seg" style="flex:14; background:#94a3b8" title="C=14 (18.9%)">C14</div></div></div><div class="tier-row"><span><span class="variant-tag v-uaa">uaa_round_1</span></span><div class="tier-bar"></div></div></div><div class="card"><h3>⛰️ 底部轉強 (Accumulation) <span class="muted">— acc_score</span></h3><div class="tier-row"><span><span class="variant-tag v-baseline">baseline</span></span><div class="tier-bar"><div class="tier-seg" style="flex:3; background:#10b981" title="A=3 (3.2%)">A3</div><div class="tier-seg" style="flex:90; background:#3b82f6" title="B=90 (96.8%)">B90</div></div></div><div class="tier-row"><span><span class="variant-tag v-uaa">uaa_round_1</span></span><div class="tier-bar"></div></div></div><div class="card"><h3>🌋 派發 (Distribution) <span class="muted">— dist_score</span></h3><div class="tier-row"><span><span class="variant-tag v-baseline">baseline</span></span><div class="tier-bar"><div class="tier-seg" style="flex:2; background:#10b981" title="A=2 (1.7%)">A2</div><div class="tier-seg" style="flex:16; background:#3b82f6" title="B=16 (13.2%)">B16</div><div class="tier-seg" style="flex:103; background:#94a3b8" title="C=103 (85.1%)">C103</div></div></div><div class="tier-row"><span><span class="variant-tag v-uaa">uaa_round_1</span></span><div class="tier-bar"></div></div></div>
+  <div class="card"><h3>🪙 籌碼 (Chip) <span class="muted">— chip_score</span></h3><div class="tier-row"><span><span class="variant-tag v-baseline">baseline</span></span><div class="tier-bar"><div class="tier-seg" style="flex:6; background:var(--th-amber,#fbbf24)" title="S=6 (3.0%)">S6</div><div class="tier-seg" style="flex:13; background:var(--th-green,#10b981)" title="A=13 (6.4%)">A13</div><div class="tier-seg" style="flex:50; background:var(--th-blue,#3b82f6)" title="B=50 (24.6%)">B50</div><div class="tier-seg" style="flex:134; background:var(--th-hover,#94a3b8)" title="C=134 (66.0%)">C134</div></div></div><div class="tier-row"><span><span class="variant-tag v-uaa">uaa_round_1</span></span><div class="tier-bar"><div class="tier-seg" style="flex:6; background:var(--th-amber,#fbbf24)" title="S=6 (3.0%)">S6</div><div class="tier-seg" style="flex:25; background:var(--th-green,#10b981)" title="A=25 (12.3%)">A25</div><div class="tier-seg" style="flex:38; background:var(--th-blue,#3b82f6)" title="B=38 (18.7%)">B38</div><div class="tier-seg" style="flex:134; background:var(--th-hover,#94a3b8)" title="C=134 (66.0%)">C134</div></div></div></div><div class="card"><h3>📊 基本面 (Fundamental) <span class="muted">— fund_score</span></h3><div class="tier-row"><span><span class="variant-tag v-baseline">baseline</span></span><div class="tier-bar"><div class="tier-seg" style="flex:3; background:var(--th-amber,#fbbf24)" title="S=3 (4.1%)">S3</div><div class="tier-seg" style="flex:29; background:var(--th-green,#10b981)" title="A=29 (39.2%)">A29</div><div class="tier-seg" style="flex:28; background:var(--th-blue,#3b82f6)" title="B=28 (37.8%)">B28</div><div class="tier-seg" style="flex:14; background:var(--th-hover,#94a3b8)" title="C=14 (18.9%)">C14</div></div></div><div class="tier-row"><span><span class="variant-tag v-uaa">uaa_round_1</span></span><div class="tier-bar"></div></div></div><div class="card"><h3>⛰️ 底部轉強 (Accumulation) <span class="muted">— acc_score</span></h3><div class="tier-row"><span><span class="variant-tag v-baseline">baseline</span></span><div class="tier-bar"><div class="tier-seg" style="flex:3; background:var(--th-green,#10b981)" title="A=3 (3.2%)">A3</div><div class="tier-seg" style="flex:90; background:var(--th-blue,#3b82f6)" title="B=90 (96.8%)">B90</div></div></div><div class="tier-row"><span><span class="variant-tag v-uaa">uaa_round_1</span></span><div class="tier-bar"></div></div></div><div class="card"><h3>🌋 派發 (Distribution) <span class="muted">— dist_score</span></h3><div class="tier-row"><span><span class="variant-tag v-baseline">baseline</span></span><div class="tier-bar"><div class="tier-seg" style="flex:2; background:var(--th-green,#10b981)" title="A=2 (1.7%)">A2</div><div class="tier-seg" style="flex:16; background:var(--th-blue,#3b82f6)" title="B=16 (13.2%)">B16</div><div class="tier-seg" style="flex:103; background:var(--th-hover,#94a3b8)" title="C=103 (85.1%)">C103</div></div></div><div class="tier-row"><span><span class="variant-tag v-uaa">uaa_round_1</span></span><div class="tier-bar"></div></div></div>
 </div>
 
 <h2>tier 升降明細</h2>
