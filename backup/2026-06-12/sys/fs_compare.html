@@ -1,65 +1,5 @@
-<!DOCTYPE html>
-<html lang="zh-TW"><head>
-<link rel="stylesheet" href="../assets/site.css?v=733b1f50">
-<meta charset="UTF-8">
-<title>FS 對照 — baseline vs UAA</title>
-<style>
-:root{ --bg:var(--th-bg,#f4f7fb); --card:var(--th-card,#ffffff); --card2:var(--th-bg2,#eef3f9); --border:var(--th-border,#d5dfeb);
-       --text:var(--th-text,#243244); --muted:var(--th-muted,#61708a); --accent:var(--th-accent,#2563eb);
-       --good:#10b981; --warn:var(--th-warn,#b45309); --bad:#ef4444; --up:#22c55e; --down:#ef4444; }
-body{ margin:0; background:var(--bg); color:var(--text);
-      font-family:var(--th-font,"Segoe UI",-apple-system,sans-serif); padding:20px;
-      max-width: 1400px; margin: 0 auto; }
-h1{ font-size:26px; margin:0 0 6px 0; }
-h2{ font-size:18px; margin:24px 0 10px 0;
-    border-bottom:2px solid var(--border); padding-bottom:6px; }
-.meta{ color:var(--muted); font-size:13px; margin-bottom:18px; }
-.banner{ background:var(--card); border:1px solid var(--border);
-         border-radius:10px; padding:14px 18px; margin-bottom:18px; }
-.banner .row{ display:flex; gap:24px; flex-wrap:wrap; align-items:baseline; }
-.kpi{ display:inline-block; padding:4px 12px; border-radius:6px;
-      background:var(--card2); font-size:13px; margin-right:8px; }
-.kpi b{ color: var(--accent); font-size:15px; }
-.variant-tag{ display:inline-block; padding:2px 8px; border-radius:4px;
-              font-weight:600; font-size:12px; margin-right:6px; }
-.v-baseline{ background:var(--th-blue,#3b82f6); color:var(--th-text,#1e2a3a); }
-.v-uaa{ background:var(--th-amber,#fbbf24); color:var(--th-text,#0f172a); }
-.v-shadow{ background:var(--th-purple,#a78bfa); color:var(--th-text,#1e2a3a); }
-.v-other{ background:var(--th-hover,#64748b); color:var(--th-text,#1e2a3a); }
-
-.grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:14px; }
-.card{ background:var(--card); border:1px solid var(--border);
-       border-radius:10px; padding:14px 16px; }
-.card h3{ margin:0 0 8px 0; font-size:15px; color:var(--accent); }
-
-.tier-bar{ display:flex; height:28px; border-radius:6px; overflow:hidden;
-           margin:6px 0; border:1px solid var(--border); }
-.tier-seg{ display:flex; align-items:center; justify-content:center;
-           font-size:11px; color:var(--th-text,#0f172a); font-weight:700;
-           transition: flex 0.3s; }
-.tier-row{ display:grid; grid-template-columns: 90px 1fr; gap:8px;
-           align-items:center; margin-bottom:4px; }
-.tier-row span:first-child{ color:var(--muted); font-size:12px; }
-
-table{ width:100%; border-collapse:collapse; font-size:13px;
-       background:var(--card); border:1px solid var(--border);
-       border-radius:8px; overflow:hidden; }
-th, td{ padding:8px 10px; text-align:left;
-        border-bottom:1px solid var(--border); }
-th{ background:var(--card2); color:var(--muted); font-weight:600;
-    font-size:12px; }
-tr:last-child td{ border-bottom:none; }
-.tier-pill{ display:inline-block; padding:1px 8px; border-radius:4px;
-            font-weight:700; font-size:11px; }
-.tier-S{ background:var(--th-amber,#fbbf24); color:var(--th-text,#0f172a); }
-.tier-A{ background:var(--th-green,#10b981); color:var(--th-text,#1e2a3a); }
-.tier-B{ background:var(--th-blue,#3b82f6); color:var(--th-text,#1e2a3a); }
-.tier-C{ background:var(--th-hover,#94a3b8); color:var(--th-text,#1e2a3a); }
-.arrow-up{ color:var(--up); }
-.arrow-down{ color:var(--down); }
-.muted{ color:var(--muted); font-size:11px; }
-</style>
-</head><body>
+<!DOCTYPE html><html lang='zh-Hant'><head>
+<link rel="stylesheet" href="../assets/site.css?v=2dca59e1"><meta charset='utf-8'><title>FS 對照 — baseline vs UAA ｜ MS_N_RR/RRR Ver.A</title><meta name='viewport' content='width=device-width,initial-scale=1'></head><body>
 <!-- GLOBAL_NAV_START -->
 <nav class="gnav" id="gnav">
   <a class="gnav-home" href="../index.html">🏠 主控台</a>
@@ -101,96 +41,14 @@ tr:last-child td{ border-bottom:none; }
 })();
 </script>
 <!-- GLOBAL_NAV_END -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h1>📊 Feature Store 對照 — baseline vs UAA 調整</h1>
-<div class="meta">as_of: <b>2026-06-04</b> ｜
-   variants: 2 ｜
-   <a href="../index.html">← 主頁</a></div>
-
-<div class="banner">
-  <div class="row"><span class="kpi"><span class="variant-tag v-baseline">baseline</span><b>5,670</b> rows</span><span class="kpi"><span class="variant-tag v-uaa">uaa_round_1</span><b>1,421</b> rows</span></div>
-</div>
-
-<h2>tier 分布並排</h2>
-<div class="grid">
-  <div class="card"><h3>🪙 籌碼 (Chip) <span class="muted">— chip_score</span></h3><div class="tier-row"><span><span class="variant-tag v-baseline">baseline</span></span><div class="tier-bar"><div class="tier-seg" style="flex:6; background:var(--th-amber,#fbbf24)" title="S=6 (3.0%)">S6</div><div class="tier-seg" style="flex:13; background:var(--th-green,#10b981)" title="A=13 (6.4%)">A13</div><div class="tier-seg" style="flex:50; background:var(--th-blue,#3b82f6)" title="B=50 (24.6%)">B50</div><div class="tier-seg" style="flex:134; background:var(--th-hover,#94a3b8)" title="C=134 (66.0%)">C134</div></div></div><div class="tier-row"><span><span class="variant-tag v-uaa">uaa_round_1</span></span><div class="tier-bar"><div class="tier-seg" style="flex:6; background:var(--th-amber,#fbbf24)" title="S=6 (3.0%)">S6</div><div class="tier-seg" style="flex:25; background:var(--th-green,#10b981)" title="A=25 (12.3%)">A25</div><div class="tier-seg" style="flex:38; background:var(--th-blue,#3b82f6)" title="B=38 (18.7%)">B38</div><div class="tier-seg" style="flex:134; background:var(--th-hover,#94a3b8)" title="C=134 (66.0%)">C134</div></div></div></div><div class="card"><h3>📊 基本面 (Fundamental) <span class="muted">— fund_score</span></h3><div class="tier-row"><span><span class="variant-tag v-baseline">baseline</span></span><div class="tier-bar"><div class="tier-seg" style="flex:3; background:var(--th-amber,#fbbf24)" title="S=3 (4.1%)">S3</div><div class="tier-seg" style="flex:29; background:var(--th-green,#10b981)" title="A=29 (39.2%)">A29</div><div class="tier-seg" style="flex:28; background:var(--th-blue,#3b82f6)" title="B=28 (37.8%)">B28</div><div class="tier-seg" style="flex:14; background:var(--th-hover,#94a3b8)" title="C=14 (18.9%)">C14</div></div></div><div class="tier-row"><span><span class="variant-tag v-uaa">uaa_round_1</span></span><div class="tier-bar"></div></div></div><div class="card"><h3>⛰️ 底部轉強 (Accumulation) <span class="muted">— acc_score</span></h3><div class="tier-row"><span><span class="variant-tag v-baseline">baseline</span></span><div class="tier-bar"><div class="tier-seg" style="flex:3; background:var(--th-green,#10b981)" title="A=3 (3.2%)">A3</div><div class="tier-seg" style="flex:90; background:var(--th-blue,#3b82f6)" title="B=90 (96.8%)">B90</div></div></div><div class="tier-row"><span><span class="variant-tag v-uaa">uaa_round_1</span></span><div class="tier-bar"></div></div></div><div class="card"><h3>🌋 派發 (Distribution) <span class="muted">— dist_score</span></h3><div class="tier-row"><span><span class="variant-tag v-baseline">baseline</span></span><div class="tier-bar"><div class="tier-seg" style="flex:2; background:var(--th-green,#10b981)" title="A=2 (1.7%)">A2</div><div class="tier-seg" style="flex:16; background:var(--th-blue,#3b82f6)" title="B=16 (13.2%)">B16</div><div class="tier-seg" style="flex:103; background:var(--th-hover,#94a3b8)" title="C=103 (85.1%)">C103</div></div></div><div class="tier-row"><span><span class="variant-tag v-uaa">uaa_round_1</span></span><div class="tier-bar"></div></div></div>
-</div>
-
-<h2>tier 升降明細</h2>
-<div class="grid">
-  <div class="card" style="grid-column: span 2"><h3>🪙 籌碼 (Chip) — tier 升降明細 <span class="muted">(↑ 12 檔 / ↓ 0 檔)</span></h3><table><thead><tr><th>symbol</th><th>baseline</th><th></th><th>uaa_round_1</th><th>score</th></tr></thead><tbody><tr><td><b>2327</b></td><td><span class="tier-pill tier-B">B</span></td><td class="arrow-up">↑</td><td><span class="tier-pill tier-A">A</span></td><td>58.0</td></tr><tr><td><b>2376</b></td><td><span class="tier-pill tier-B">B</span></td><td class="arrow-up">↑</td><td><span class="tier-pill tier-A">A</span></td><td>57.0</td></tr><tr><td><b>2420</b></td><td><span class="tier-pill tier-B">B</span></td><td class="arrow-up">↑</td><td><span class="tier-pill tier-A">A</span></td><td>58.0</td></tr><tr><td><b>2610</b></td><td><span class="tier-pill tier-B">B</span></td><td class="arrow-up">↑</td><td><span class="tier-pill tier-A">A</span></td><td>57.0</td></tr><tr><td><b>2891</b></td><td><span class="tier-pill tier-B">B</span></td><td class="arrow-up">↑</td><td><span class="tier-pill tier-A">A</span></td><td>56.0</td></tr><tr><td><b>3017</b></td><td><span class="tier-pill tier-B">B</span></td><td class="arrow-up">↑</td><td><span class="tier-pill tier-A">A</span></td><td>58.0</td></tr><tr><td><b>3324</b></td><td><span class="tier-pill tier-B">B</span></td><td class="arrow-up">↑</td><td><span class="tier-pill tier-A">A</span></td><td>58.0</td></tr><tr><td><b>5269</b></td><td><span class="tier-pill tier-B">B</span></td><td class="arrow-up">↑</td><td><span class="tier-pill tier-A">A</span></td><td>57.0</td></tr><tr><td><b>6412</b></td><td><span class="tier-pill tier-B">B</span></td><td class="arrow-up">↑</td><td><span class="tier-pill tier-A">A</span></td><td>58.0</td></tr><tr><td><b>6414</b></td><td><span class="tier-pill tier-B">B</span></td><td class="arrow-up">↑</td><td><span class="tier-pill tier-A">A</span></td><td>59.0</td></tr><tr><td><b>6669</b></td><td><span class="tier-pill tier-B">B</span></td><td class="arrow-up">↑</td><td><span class="tier-pill tier-A">A</span></td><td>58.0</td></tr><tr><td><b>8926</b></td><td><span class="tier-pill tier-B">B</span></td><td class="arrow-up">↑</td><td><span class="tier-pill tier-A">A</span></td><td>57.0</td></tr></tbody></table></div><div class="card"><h3>📊 基本面 (Fundamental) — tier 升降明細</h3><p class="muted">無 tier 變動 (baseline 與 uaa_round_1 完全一致)</p></div><div class="card"><h3>⛰️ 底部轉強 (Accumulation) — tier 升降明細</h3><p class="muted">無 tier 變動 (baseline 與 uaa_round_1 完全一致)</p></div><div class="card"><h3>🌋 派發 (Distribution) — tier 升降明細</h3><p class="muted">無 tier 變動 (baseline 與 uaa_round_1 完全一致)</p></div>
-</div>
-
-<h2>Wyckoff Phase alignment</h2>
-<div class="grid">
-  
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h1 class="page-title">📊 Feature Store 對照 — baseline vs UAA 調整</h1><div class="page-meta">as_of <strong>2026-06-12</strong> ｜ variants 2 ｜ <a href='../index.html'>← 回主頁</a></div><div class="banner"><div class="banner__row"><div><span class="badge badge--blue">baseline</span> <span class="metric__value">135,006</span> <span class="label">rows</span></div><div><span class="badge badge--amber">uaa_round_1</span> <span class="metric__value">1,421</span> <span class="label">rows</span></div></div></div><div class="section-head">tier 分布並排</div><div class="grid-2"><div class="card"><div class="card-head">🪙 籌碼 (Chip) <span class="text-muted">— chip_score</span></div><div class="kv-row"><span class="kv-row__k"><span class="badge badge--blue">baseline</span></span><span class="kv-row__v"><div class="flex-row"><span class="pill" title="S=6 (2.0%)"><span class="tier tier--s">S</span> 6</span><span class="pill" title="A=41 (13.7%)"><span class="tier tier--a">A</span> 41</span><span class="pill" title="B=44 (14.7%)"><span class="tier tier--b">B</span> 44</span><span class="pill" title="C=209 (69.7%)"><span class="tier tier--c">C</span> 209</span></div></span></div><div class="kv-row"><span class="kv-row__k"><span class="badge badge--amber">uaa_round_1</span></span><span class="kv-row__v"><span class="text-muted">（無資料）</span></span></div></div><div class="card"><div class="card-head">📊 基本面 (Fundamental) <span class="text-muted">— fund_score</span></div><div class="kv-row"><span class="kv-row__k"><span class="badge badge--blue">baseline</span></span><span class="kv-row__v"><div class="flex-row"><span class="pill" title="S=3 (5.1%)"><span class="tier tier--s">S</span> 3</span><span class="pill" title="A=15 (25.4%)"><span class="tier tier--a">A</span> 15</span><span class="pill" title="B=29 (49.2%)"><span class="tier tier--b">B</span> 29</span><span class="pill" title="C=12 (20.3%)"><span class="tier tier--c">C</span> 12</span></div></span></div><div class="kv-row"><span class="kv-row__k"><span class="badge badge--amber">uaa_round_1</span></span><span class="kv-row__v"><span class="text-muted">（無資料）</span></span></div></div><div class="card"><div class="card-head">⛰️ 底部轉強 (Accumulation) <span class="text-muted">— acc_score</span></div><div class="kv-row"><span class="kv-row__k"><span class="badge badge--blue">baseline</span></span><span class="kv-row__v"><div class="flex-row"><span class="pill" title="A=3 (2.7%)"><span class="tier tier--a">A</span> 3</span><span class="pill" title="B=110 (97.3%)"><span class="tier tier--b">B</span> 110</span></div></span></div><div class="kv-row"><span class="kv-row__k"><span class="badge badge--amber">uaa_round_1</span></span><span class="kv-row__v"><span class="text-muted">（無資料）</span></span></div></div><div class="card"><div class="card-head">🌋 派發 (Distribution) <span class="text-muted">— dist_score</span></div><div class="kv-row"><span class="kv-row__k"><span class="badge badge--blue">baseline</span></span><span class="kv-row__v"><div class="flex-row"><span class="pill" title="B=8 (7.0%)"><span class="tier tier--b">B</span> 8</span><span class="pill" title="C=106 (93.0%)"><span class="tier tier--c">C</span> 106</span></div></span></div><div class="kv-row"><span class="kv-row__k"><span class="badge badge--amber">uaa_round_1</span></span><span class="kv-row__v"><span class="text-muted">（無資料）</span></span></div></div></div><div class="section-head">tier 升降明細</div><div class="grid-2"><div class="card"><div class="card-head">🪙 籌碼 (Chip) — tier 升降明細</div><div class="note">無 tier 變動 (baseline 與 uaa_round_1 完全一致)</div></div><div class="card"><div class="card-head">📊 基本面 (Fundamental) — tier 升降明細</div><div class="note">無 tier 變動 (baseline 與 uaa_round_1 完全一致)</div></div><div class="card"><div class="card-head">⛰️ 底部轉強 (Accumulation) — tier 升降明細</div><div class="note">無 tier 變動 (baseline 與 uaa_round_1 完全一致)</div></div><div class="card"><div class="card-head">🌋 派發 (Distribution) — tier 升降明細</div><div class="note">無 tier 變動 (baseline 與 uaa_round_1 完全一致)</div></div></div><div class="section-head">Wyckoff Phase alignment</div><div class="grid-2"></div>
 <style id='MS_N_RRR_tooltip_inject_v2'>
 .tip { position: relative; cursor: help; }
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
   position: fixed;
-  background: var(--th-bg,#f4f7fb);
-  color: var(--th-text,#243244);
+  background: var(--th-bg,#0f172a);
+  color: var(--th-text,#e2e8f0);
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 12px;
@@ -199,11 +57,11 @@ tr:last-child td{ border-bottom:none; }
   max-width: 320px;
   width: max-content;
   text-align: left;
-  border: 1px solid var(--th-border2,#bccadb);
+  border: 1px solid var(--th-border2,#475569);
   z-index: 999999;
   pointer-events: none;
   line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(15,23,42,0.15);
+  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
   display: none;
 }
 .tip:focus { outline: none; }

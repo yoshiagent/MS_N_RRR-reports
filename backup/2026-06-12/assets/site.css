@@ -213,6 +213,9 @@ a{color:var(--th-accent)}
 .data-table td{padding:6px 8px;border-bottom:1px solid var(--th-border);
   color:var(--th-text)}
 .data-table--zebra tbody tr:nth-child(even){background:var(--th-bg2)}
+.data-table--sticky th{position:sticky;top:0;z-index:1}
+.data-table tr.is-clickable{cursor:pointer}
+.data-table tr.is-clickable:hover td{background:var(--th-hover)}
 
 /* — 版面網格 — */
 .grid-2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
@@ -240,6 +243,7 @@ a{color:var(--th-accent)}
 /* 摘要橫幅 (banner: 深底, 翻色見上方圖卡規則) */
 .banner{border-radius:10px;padding:14px 18px;margin-bottom:18px}
 .banner__row{display:flex;gap:24px;flex-wrap:wrap;align-items:baseline}
+.banner__title{font-size:22px;font-weight:700;color:var(--th-text);margin:0 0 4px}
 
 /* — 圖卡內文 (card content text) — */
 .card-title{font-weight:700;font-size:14px;color:var(--th-text);margin:0 0 6px}
@@ -251,6 +255,9 @@ a{color:var(--th-accent)}
 .text-faint{color:var(--th-faint)}
 .text-warn{color:var(--th-amber)}
 .text-info{color:var(--th-cyan)}
+.text-blue{color:var(--th-blue)}
+.text-orange{color:var(--th-orange)}
+.text-purple{color:var(--th-purple)}
 
 /* — 按鈕 / 切換 (buttons & toggles) — */
 .btn{display:inline-block;padding:6px 14px;border-radius:6px;font-size:13px;
@@ -297,6 +304,8 @@ a{color:var(--th-accent)}
 .dot--amber{background:var(--th-tier-s)}
 .dot--red{background:#ef4444}
 .dot--grey{background:var(--th-tier-c)}
+.dot--blue{background:var(--th-tier-b)}
+.dot--orange{background:var(--th-orange)}
 
 /* — 迷你量化條 (sparkline; 寬度資料驅動 R-CSS4) — */
 .spark{display:inline-block;vertical-align:middle;width:36px;height:10px;
@@ -306,6 +315,7 @@ a{color:var(--th-accent)}
 .spark__fill--bull{background:var(--th-green)}
 .spark__fill--bear{background:var(--th-red)}
 .spark__fill--info{background:var(--th-blue)}
+.spark__fill--warn{background:var(--th-amber)}
 
 /* — 說明 / 註解 (explainer & notes; explainer 深底見上方圖卡規則) — */
 .explainer{border-left:4px solid var(--th-amber);border-radius:10px;padding:12px 16px;margin:14px 0}
@@ -320,6 +330,7 @@ a{color:var(--th-accent)}
 .text-right{text-align:right}
 .text-center{text-align:center}
 .flex-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.divider{border:none;border-top:1px dashed var(--th-border2);margin:14px 0}
 
 /* ====================================================================
    全站導航列 (nav_inject 注入 HTML, 樣式集中於此)

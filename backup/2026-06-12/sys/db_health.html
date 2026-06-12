@@ -1,69 +1,10 @@
-<!doctype html>
-<html lang='zh-Hant'><head>
-<link rel="stylesheet" href="../assets/site.css?v=733b1f50">
-<meta charset='UTF-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-<title>🗄 資料庫健康檢查 — MS_N_RR/RRR Ver.A</title>
-<style>
-body { margin:0; padding:24px 20px 80px; max-width:1080px; margin:auto;
-       background:var(--th-bg,#080e18); color:var(--th-text,#e2e8f0);
-       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
-       line-height:1.65; }
-h1 { font-size:22px; margin:0 0 4px; }
-h2 { font-size:17px; color:var(--th-blue,#93c5fd); border-bottom:1px solid var(--th-border,#2d3f55);
-     padding-bottom:6px; margin:24px 0 12px; }
-.sub { color:var(--th-muted,#94a3b8); font-size:13px; margin-bottom:18px; }
-code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#07111e); color:var(--th-cyan,#7dd3fc);
-       padding:1px 6px; border-radius:3px; font-size:12px; }
-
-/* overall banner */
-.overall-banner { background:linear-gradient(135deg,#131f2e,#0f1a2c);
-                  border:1px solid var(--th-border,#2d3f55); border-radius:10px;
-                  padding:16px 20px; margin-bottom:16px;
-                  display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
-.overall-icon { font-size:48px; }
-.overall-text { flex:1; min-width:240px; }
-.overall-label { font-size:22px; font-weight:bold; margin-bottom:4px; }
-.overall-stats { color:var(--th-text2,#cbd5e1); font-size:13px; }
-
-/* stats grid */
-.stats { display:grid; grid-template-columns:repeat(auto-fit, minmax(110px,1fr));
-         gap:8px; margin-bottom:16px; }
-.stat-cell { background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:8px;
-             padding:10px; text-align:center; }
-.stat-cell .num { font-size:24px; font-weight:bold; }
-.stat-cell .lbl { font-size:11px; color:var(--th-muted,#94a3b8); margin-top:3px; }
-
-/* check card */
-.check-card { background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:8px;
-              padding:12px 14px; margin-bottom:8px; }
-.check-card.critical { border-color:#ef4444; box-shadow:inset 3px 0 0 #ef4444; }
-.check-card.warning  { border-color:#fcd34d; box-shadow:inset 3px 0 0 #fcd34d; }
-.check-card.info     { border-color:#60a5fa; box-shadow:inset 3px 0 0 #60a5fa; }
-.check-head { display:flex; gap:10px; align-items:baseline; flex-wrap:wrap;
-              margin-bottom:6px; }
-.check-icon { font-size:18px; }
-.check-name { font-size:14px; font-weight:bold; }
-.check-cat { color:var(--th-muted,#94a3b8); font-size:11px; }
-.check-pill { display:inline-block; padding:2px 8px; border-radius:10px;
-              font-size:10px; font-weight:bold; }
-.check-msg { color:var(--th-text2,#cbd5e1); font-size:13px; margin-top:4px; line-height:1.7; }
-.check-fix { background:rgba(252,211,77,0.08); border-left:2px solid var(--th-amber,#fcd34d);
-             padding:4px 8px; margin-top:5px; font-size:11px; color:var(--th-amber,#fcd34d);
-             border-radius:0 4px 4px 0; }
-.check-fix.applied { background:rgba(16,185,129,0.08); border-color:#10b981; color:var(--th-green,#10b981); }
-details.detail { margin-top:5px; }
-details.detail summary { cursor:pointer; font-size:11px; color:var(--th-faint,#64748b);
-                         padding:2px 0; user-select:none; }
-details.detail pre { background:var(--th-bg,#07111e); border:1px solid var(--th-border,#1e293b);
-                     padding:8px 10px; border-radius:4px; font-size:11px;
-                     color:var(--th-text2,#cbd5e1); overflow-x:auto; line-height:1.5;
-                     margin-top:4px; }
-
-footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
-         border-top:1px solid var(--th-border,#2d3f55); padding-top:12px; }
-</style>
-</head><body>
+<!DOCTYPE html><html lang='zh-Hant'><head>
+<link rel="stylesheet" href="../assets/site.css?v=2dca59e1"><meta charset='UTF-8'><title>🗄 資料庫健康檢查 ｜ MS_N_RR/RRR Ver.A</title><meta name='viewport' content='width=device-width,initial-scale=1'><style>
+.check-msg{font-size:13px;margin-top:6px;line-height:1.7}
+details.detail{margin-top:6px}
+details.detail summary{cursor:pointer;user-select:none}
+.detail__json{overflow-x:auto;white-space:pre;line-height:1.5;margin-top:6px}
+</style></head><body>
 <!-- GLOBAL_NAV_START -->
 <nav class="gnav" id="gnav">
   <a class="gnav-home" href="../index.html">🏠 主控台</a>
@@ -105,22 +46,7 @@ footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
 })();
 </script>
 <!-- GLOBAL_NAV_END -->
-
-<a class='back-link' href='../index.html'>← 返回主頁</a>
-
-<h1>🗄 DuckDB 資料庫健康檢查</h1>
-<div class='sub'>
-  資料日：2026-06-12 ｜ 產生時間：2026-06-12 18:30:37
-  ｜ 來源：<code>stockHisData/stock_data/db_health.py</code>
-  ｜ 每日 orchestrator step 0 自動執行
-</div>
-
-<div class='overall-banner'><div class='overall-icon' style='color:var(--th-amber,#fcd34d)'>⚠</div><div class='overall-text'><div class='overall-label' style='color:var(--th-amber,#fcd34d)'>整體狀態：警告</div><div class='overall-stats'>共 9 項檢查 ｜ <span style='color:var(--th-green,#10b981)'>✅ 7</span> ｜ <span style='color:var(--th-blue,#60a5fa)'>ℹ 1</span> ｜ <span style='color:var(--th-amber,#fcd34d)'>⚠ 1</span> ｜ <span style='color:var(--th-red,#ef4444)'>🔴 0</span> ｜ 已執行自動修復</div></div></div>
-
-<div class='stats'><div class='stat-cell'><div class='num' style='color:var(--th-green,#10b981)'>7</div><div class='lbl'>✅ 正常</div></div><div class='stat-cell'><div class='num' style='color:var(--th-blue,#60a5fa)'>1</div><div class='lbl'>ℹ 資訊</div></div><div class='stat-cell'><div class='num' style='color:var(--th-amber,#fcd34d)'>1</div><div class='lbl'>⚠ 警告</div></div><div class='stat-cell'><div class='num' style='color:var(--th-red,#ef4444)'>0</div><div class='lbl'>🔴 嚴重</div></div></div>
-
-<h2>📋 詳細檢查項目（依嚴重性排序）</h2>
-<div class='check-card warning'><div class='check-head'><span class='check-icon'>⚠</span><span class='check-name'>輔助資料時效</span><span class='check-cat'>📅 資料時效</span><span class='check-pill' style='background:#fcd34d33;color:var(--th-amber,#fcd34d)'>warning</span></div><div class='check-msg'>macro/SOX 落後 21 天</div><details class='detail'><summary>查看細節</summary><pre>{
+<h1 class="page-title">🗄 DuckDB 資料庫健康檢查</h1><div class="page-meta">資料日 <strong>2026-06-12</strong> ｜ 產生時間 2026-06-12 21:30:03 ｜ 來源：<code>stockHisData/stock_data/db_health.py</code> ｜ 每日 orchestrator step 0 自動執行 ｜ <a href='../index.html'>← 返回主頁</a></div><div class="banner"><div class="banner__row"><div class="metric metric--lg"><span class="metric__value"><span class="text-warn">⚠</span></span></div><div><div class="metric__value"><span class="text-warn">整體狀態：警告</span></div><div class="text-muted">共 9 項檢查 ｜ <span class="text-bull">✅ 7</span> ｜ <span class="text-info">ℹ 1</span> ｜ <span class="text-warn">⚠ 1</span> ｜ <span class="text-bear">🔴 0</span> ｜ 已執行自動修復</div></div></div></div><div class="grid-4"><div class="card card--compact text-center"><div class="metric__value"><span class="text-bull">7</span></div><div class="label">✅ 正常</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-info">1</span></div><div class="label">ℹ 資訊</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-warn">1</span></div><div class="label">⚠ 警告</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-bear">0</span></div><div class="label">🔴 嚴重</div></div></div><div class="section-head">📋 詳細檢查項目（依嚴重性排序）</div><div class="card"><div class="card-head"><span class="dot dot--amber"></span> <span class="value">⚠ 輔助資料時效</span> <span class="label">📅 資料時效</span> <span class="badge badge--amber">warning</span></div><div class="check-msg">macro/SOX 落後 21 天</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;futures&quot;: {
     &quot;last_date&quot;: &quot;2026-06-12&quot;,
     &quot;days_lag&quot;: 0
@@ -134,9 +60,9 @@ footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
     &quot;last_date&quot;: &quot;2026-06-12&quot;,
     &quot;days_lag&quot;: 0
   }
-}</pre></details></div><div class='check-card info'><div class='check-head'><span class='check-icon'>ℹ</span><span class='check-name'>Update log 時效</span><span class='check-cat'>📋 Update log</span><span class='check-pill' style='background:#60a5fa33;color:var(--th-blue,#60a5fa)'>info</span></div><div class='check-msg'>共 1 個資料源；最新紀錄 2026-05-24 10:19:45.706960</div><details class='detail'><summary>查看細節</summary><pre>{
+}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--grey"></span> <span class="value">ℹ Update log 時效</span> <span class="label">📋 Update log</span> <span class="badge badge--blue">info</span></div><div class="check-msg">共 1 個資料源；最新紀錄 2026-05-24 10:19:45.706960</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;db_migrate_from_csv&quot;: &quot;2026-05-24 10:19:45.706960&quot;
-}</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>DuckDB 表結構</span><span class='check-cat'>🗂 表結構</span><span class='check-pill' style='background:#10b98133;color:var(--th-green,#10b981)'>healthy</span></div><div class='check-msg'>全部 8 個必要表存在</div><details class='detail'><summary>查看細節</summary><pre>{
+}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ DuckDB 表結構</span> <span class="label">🗂 表結構</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">全部 8 個必要表存在</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;counts&quot;: {
     &quot;price&quot;: 2100005,
     &quot;indices&quot;: 2148,
@@ -144,10 +70,10 @@ footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
     &quot;futures&quot;: 248,
     &quot;macro&quot;: 3371,
     &quot;symbols&quot;: 1935,
-    &quot;signal_history&quot;: 70824,
+    &quot;signal_history&quot;: 71794,
     &quot;update_log&quot;: 1
   }
-}</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>最新日資料齊全度</span><span class='check-cat'>📅 資料時效</span><span class='check-pill' style='background:#10b98133;color:var(--th-green,#10b981)'>healthy</span></div><div class='check-msg'>最新日 2026-06-12 全市場 1923 檔齊全（≥ 1000）</div><details class='detail'><summary>查看細節</summary><pre>{
+}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 最新日資料齊全度</span> <span class="label">📅 資料時效</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">最新日 2026-06-12 全市場 1923 檔齊全（≥ 1000）</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;latest_date&quot;: &quot;2026-06-12&quot;,
   &quot;latest_count&quot;: 1923,
   &quot;second_date&quot;: &quot;2026-06-11&quot;,
@@ -175,15 +101,15 @@ footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
       &quot;n&quot;: 1935
     }
   ]
-}</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>重複資料</span><span class='check-cat'>🛡 資料完整性</span><span class='check-pill' style='background:#10b98133;color:var(--th-green,#10b981)'>healthy</span></div><div class='check-msg'>price 表無重複 (symbol, date) 配對</div><details class='detail'><summary>查看細節</summary><pre>{
+}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 重複資料</span> <span class="label">🛡 資料完整性</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">price 表無重複 (symbol, date) 配對</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;duplicate_pairs&quot;: 0
-}</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>無效值檢查</span><span class='check-cat'>🛡 資料完整性</span><span class='check-pill' style='background:#10b98133;color:var(--th-green,#10b981)'>healthy</span></div><div class='check-msg'>無未來日期、無非正價、零量比例 &lt;5%</div><details class='detail'><summary>查看細節</summary><pre>{
+}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 無效值檢查</span> <span class="label">🛡 資料完整性</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">無未來日期、無非正價、零量比例 &lt;5%</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;future_dates&quot;: 0,
   &quot;non_positive_close&quot;: 0,
   &quot;zero_volume&quot;: 28305,
   &quot;total_rows&quot;: 2100005,
   &quot;zero_vol_pct&quot;: 1.35
-}</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>關鍵指數完整性</span><span class='check-cat'>📊 資料覆蓋</span><span class='check-pill' style='background:#10b98133;color:var(--th-green,#10b981)'>healthy</span></div><div class='check-msg'>全部 2 個關鍵指數齊全</div><details class='detail'><summary>查看細節</summary><pre>{
+}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 關鍵指數完整性</span> <span class="label">📊 資料覆蓋</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">全部 2 個關鍵指數齊全</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;latest_per_index&quot;: {
     &quot;TWII&quot;: {
       &quot;last_date&quot;: &quot;2026-06-12&quot;,
@@ -194,7 +120,7 @@ footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
       &quot;rows&quot;: 1073
     }
   }
-}</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>Sector map 對照表</span><span class='check-cat'>📊 資料覆蓋</span><span class='check-pill' style='background:#10b98133;color:var(--th-green,#10b981)'>healthy</span></div><div class='check-msg'>1977 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1847 ｜ 市值 1935 ｜ 17 天前更新</div><details class='detail'><summary>查看細節</summary><pre>{
+}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ Sector map 對照表</span> <span class="label">📊 資料覆蓋</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">1977 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1847 ｜ 市值 1935 ｜ 17 天前更新</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;total&quot;: 1977,
   &quot;with_xq&quot;: 1935,
   &quot;with_theme&quot;: 1847,
@@ -202,34 +128,11 @@ footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
   &quot;xq_coverage_pct&quot;: 97.9,
   &quot;file_age_days&quot;: 17,
   &quot;last_modified&quot;: &quot;2026-05-26 08:17&quot;
-}</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>Market map (TWSE/TPEX)</span><span class='check-cat'>📊 資料覆蓋</span><span class='check-pill' style='background:#10b98133;color:var(--th-green,#10b981)'>healthy</span></div><div class='check-msg'>2095 檔 ｜ TWSE 1088 ｜ TPEX 1007</div><details class='detail'><summary>查看細節</summary><pre>{
+}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ Market map (TWSE/TPEX)</span> <span class="label">📊 資料覆蓋</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">2095 檔 ｜ TWSE 1088 ｜ TPEX 1007</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;total&quot;: 2095,
   &quot;twse&quot;: 1088,
   &quot;tpex&quot;: 1007
-}</pre></details></div>
-
-<div style="background:var(--th-card,#131f2e);border:1px solid var(--th-border,#2d3f55);border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:var(--th-text2,#cbd5e1);line-height:1.7">
-<strong style="color:var(--th-blue,#93c5fd)">🔧 自動修復</strong><br>
-若整體狀態為「警告」或「嚴重」，可手動執行：<br>
-<code>cd C:\CludeHome\stockHisData && python -m stock_data.db_health --fix</code><br>
-<br>
-<strong>可修復項：</strong><br>
-✓ 重複資料（保留每組 symbol+date 首筆）<br>
-✓ 未來日期（直接移除）<br>
-✓ 非正收盤價（直接移除）<br>
-<br>
-<strong>無法自動修復項：</strong><br>
-✗ 資料不齊全 → 跑 orchestrator 重新 fetch<br>
-✗ Sector map 過舊 → 手動更新 XQ industry_sub.csv<br>
-✗ 指數缺失 → 檢查 fetcher 設定
-</div>
-
-<footer>
-🗄 DuckDB 資料庫健康檢查 ｜ 由 <code>stock_data.db_health</code> 評估、<code>db_health_report.py</code> 渲染<br>
-每日 orchestrator 跑前自動執行（step 0），確保下游所有 agent 拿到的資料品質可靠<br>
-JSON 輸出：<code>data/output/db_health.json</code>
-</footer>
-
+}</div></details></div><div class="card card--padded"><div class="section-head">🔧 自動修復</div><div class="check-msg">若整體狀態為「警告」或「嚴重」，可手動執行：<br><code>cd C:\CludeHome\stockHisData &amp;&amp; python -m stock_data.db_health --fix</code><br><br><strong>可修復項：</strong><br>✓ 重複資料（保留每組 symbol+date 首筆）<br>✓ 未來日期（直接移除）<br>✓ 非正收盤價（直接移除）<br><br><strong>無法自動修復項：</strong><br>✗ 資料不齊全 → 跑 orchestrator 重新 fetch<br>✗ Sector map 過舊 → 手動更新 XQ industry_sub.csv<br>✗ 指數缺失 → 檢查 fetcher 設定</div></div><footer class="page-footer">🗄 DuckDB 資料庫健康檢查 ｜ 由 <code>stock_data.db_health</code> 評估、<code>db_health_report.py</code> 渲染<br>每日 orchestrator 跑前自動執行（step 0），確保下游所有 agent 拿到的資料品質可靠<br>JSON 輸出：<code>data/output/db_health.json</code></footer>
 <style id='MS_N_RRR_tooltip_inject_v2'>
 .tip { position: relative; cursor: help; }
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
