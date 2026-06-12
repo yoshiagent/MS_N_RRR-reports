@@ -1,22 +1,23 @@
 <!doctype html>
 <html lang='zh-Hant'><head>
+<link rel="stylesheet" href="../assets/site.css">
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <title>🗄 資料庫健康檢查 — MS_N_RR/RRR Ver.A</title>
 <style>
 * { box-sizing: border-box; }
 body { margin:0; padding:24px 20px 80px; max-width:1080px; margin:auto;
-       background:#f4f7fb; color:#243244;
-       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       background:var(--th-bg,#f4f7fb); color:var(--th-text,#243244);
+       font-family:var(--th-font,-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif);
        line-height:1.65; }
 h1 { font-size:22px; margin:0 0 4px; }
-h2 { font-size:17px; color:#2563eb; border-bottom:1px solid #cdd9e7;
+h2 { font-size:17px; color:var(--th-accent,#2563eb); border-bottom:1px solid #cdd9e7;
      padding-bottom:6px; margin:24px 0 12px; }
-.sub { color:#61708a; font-size:13px; margin-bottom:18px; }
-.back-link { display:inline-block; color:#2563eb; text-decoration:none; font-size:13px;
+.sub { color:var(--th-muted,#61708a); font-size:13px; margin-bottom:18px; }
+.back-link { display:inline-block; color:var(--th-accent,#2563eb); text-decoration:none; font-size:13px;
              padding:4px 10px; border:1px solid #cdd9e7; border-radius:6px; margin-bottom:14px; }
 .back-link:hover { border-color:#3b82f6; }
-code { font-family: ui-monospace, Consolas, monospace; background:#f1f5f9; color:#0c7bb3;
+code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg2,#f1f5f9); color:var(--th-info,#0c7bb3);
        padding:1px 6px; border-radius:3px; font-size:12px; }
 
 /* overall banner */
@@ -27,18 +28,18 @@ code { font-family: ui-monospace, Consolas, monospace; background:#f1f5f9; color
 .overall-icon { font-size:48px; }
 .overall-text { flex:1; min-width:240px; }
 .overall-label { font-size:22px; font-weight:bold; margin-bottom:4px; }
-.overall-stats { color:#3f4f63; font-size:13px; }
+.overall-stats { color:var(--th-text2,#3f4f63); font-size:13px; }
 
 /* stats grid */
 .stats { display:grid; grid-template-columns:repeat(auto-fit, minmax(110px,1fr));
          gap:8px; margin-bottom:16px; }
-.stat-cell { background:#ffffff; border:1px solid #cdd9e7; border-radius:8px;
+.stat-cell { background:var(--th-card,#ffffff); border:1px solid #cdd9e7; border-radius:8px;
              padding:10px; text-align:center; }
 .stat-cell .num { font-size:24px; font-weight:bold; }
-.stat-cell .lbl { font-size:11px; color:#61708a; margin-top:3px; }
+.stat-cell .lbl { font-size:11px; color:var(--th-muted,#61708a); margin-top:3px; }
 
 /* check card */
-.check-card { background:#ffffff; border:1px solid #cdd9e7; border-radius:8px;
+.check-card { background:var(--th-card,#ffffff); border:1px solid #cdd9e7; border-radius:8px;
               padding:12px 14px; margin-bottom:8px; }
 .check-card.critical { border-color:#ef4444; box-shadow:inset 3px 0 0 #ef4444; }
 .check-card.warning  { border-color:#fcd34d; box-shadow:inset 3px 0 0 #fcd34d; }
@@ -47,55 +48,27 @@ code { font-family: ui-monospace, Consolas, monospace; background:#f1f5f9; color
               margin-bottom:6px; }
 .check-icon { font-size:18px; }
 .check-name { font-size:14px; font-weight:bold; }
-.check-cat { color:#61708a; font-size:11px; }
+.check-cat { color:var(--th-muted,#61708a); font-size:11px; }
 .check-pill { display:inline-block; padding:2px 8px; border-radius:10px;
               font-size:10px; font-weight:bold; }
-.check-msg { color:#3f4f63; font-size:13px; margin-top:4px; line-height:1.7; }
+.check-msg { color:var(--th-text2,#3f4f63); font-size:13px; margin-top:4px; line-height:1.7; }
 .check-fix { background:rgba(252,211,77,0.08); border-left:2px solid #fcd34d;
-             padding:4px 8px; margin-top:5px; font-size:11px; color:#a16207;
+             padding:4px 8px; margin-top:5px; font-size:11px; color:var(--th-warn,#a16207);
              border-radius:0 4px 4px 0; }
 .check-fix.applied { background:rgba(16,185,129,0.08); border-color:#10b981; color:#10b981; }
 details.detail { margin-top:5px; }
-details.detail summary { cursor:pointer; font-size:11px; color:#64748b;
+details.detail summary { cursor:pointer; font-size:11px; color:var(--th-muted,#64748b);
                          padding:2px 0; user-select:none; }
-details.detail pre { background:#f1f5f9; border:1px solid #dbe3ee;
+details.detail pre { background:var(--th-bg2,#f1f5f9); border:1px solid var(--th-border,#dbe3ee);
                      padding:8px 10px; border-radius:4px; font-size:11px;
-                     color:#3f4f63; overflow-x:auto; line-height:1.5;
+                     color:var(--th-text2,#3f4f63); overflow-x:auto; line-height:1.5;
                      margin-top:4px; }
 
-footer { color:#64748b; font-size:12px; margin-top:30px;
+footer { color:var(--th-muted,#64748b); font-size:12px; margin-top:30px;
          border-top:1px solid #cdd9e7; padding-top:12px; }
 </style>
 </head><body>
 <!-- GLOBAL_NAV_START -->
-<style>
-.gnav{position:sticky;top:0;z-index:99990;background:#eef2f9;border-bottom:1px solid #dbe3ee;
-  font-family:'Segoe UI','Microsoft JhengHei',sans-serif;display:flex;align-items:center;
-  flex-wrap:wrap;gap:2px;padding:6px 14px}
-.gnav a.gnav-home{color:#b45309;text-decoration:none;font-weight:bold;font-size:13px;
-  padding:6px 10px;border-radius:6px}
-.gnav a.gnav-home:hover{background:#e7edf5}
-.gnav-dd{position:relative}
-.gnav-btn{background:none;border:none;color:#3f4f63;font-size:13px;padding:6px 10px;
-  cursor:pointer;border-radius:6px;font-family:inherit}
-.gnav-btn:hover,.gnav-btn.on{background:#e7edf5;color:#1e2a3a}
-.gnav-panel{display:none;position:absolute;left:0;top:100%;min-width:230px;max-height:70vh;
-  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;
-  padding:6px;box-shadow:0 8px 24px rgba(15,23,42,0.15)}
-.gnav-panel.open{display:block}
-.gnav-hd{color:#64748b;font-size:11px;padding:6px 10px 3px;border-top:1px dashed #dbe3ee;margin-top:3px}
-.gnav-hd:first-child{border-top:none;margin-top:0}
-.gnav-it{display:block;color:#243244;text-decoration:none;font-size:13px;
-  padding:6px 10px;border-radius:5px;white-space:nowrap}
-.gnav-it:hover{background:#e7edf5;color:#0c7bb3}
-.gnav-search{margin-left:auto;position:relative}
-.gnav-search input{background:#e7edf5;border:1px solid #c9d4e3;color:#243244;
-  font-size:12px;padding:5px 10px;border-radius:6px;width:150px;font-family:inherit}
-.gnav-search input:focus{outline:none;border-color:#7c3aed;width:200px}
-#gnav-sr{display:none;position:absolute;right:0;top:100%;min-width:240px;max-height:60vh;
-  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;padding:6px;z-index:99991}
-@media (max-width:760px){.gnav{padding:4px 8px}.gnav-search input{width:100px}}
-</style>
 <nav class="gnav" id="gnav">
   <a class="gnav-home" href="../index.html">🏠 主控台</a>
   <div class='gnav-dd'><button class='gnav-btn' data-dd='0'>🏢 組織架構 ▾</button><div class='gnav-panel' id='gnav-p0'><a class='gnav-it' href='../org/organization.html'>🏢 組織架構圖</a><a class='gnav-it' href='../org/system_flow.html'>🔄 系統流程圖</a><div class='gnav-hd'>─ 投資長 CIO ─</div><a class='gnav-it' href='../market/ms_dashboard.html'>🎩 MS 投資長儀表板</a><div class='gnav-hd'>─ 研究部 ─</div><a class='gnav-it' href='../org/iue.html'>🏛 投資宇宙引擎 IUE</a><a class='gnav-it' href='../org/iue_journey.html'>📜 IUE 股票履歷</a><div class='gnav-hd'>─ 評審 / 決策 ─</div><a class='gnav-it' href='../org/iab.html'>🎖 外聘評審委員會 IAB</a><a class='gnav-it' href='../org/master_score.html'>👥 9 名人評分</a><a class='gnav-it' href='../org/capital_committee.html'>🗳 資金持有委員會</a><div class='gnav-hd'>─ 基金管理部 ─</div><a class='gnav-it' href='../org/fund_managers.html'>💼 CIO × 經理競標</a><a class='gnav-it' href='../org/stock_ops.html'>🎯 操作 Agent (5 階段)</a><a class='gnav-it' href='../org/pm_custom.html'>⭐ 自選股 PM</a><a class='gnav-it' href='../org/pm_trend_growth.html'>💹 趨勢成長 PM</a><a class='gnav-it' href='../org/paper_portfolio.html'>📈 模擬投資組合</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='1'>🔬 分析面向 ▾</button><div class='gnav-panel' id='gnav-p1'><div class='gnav-hd'>─ 技術面 ─</div><a class='gnav-it' href='../tech/n_shape.html'>📦 多時段箱型</a><a class='gnav-it' href='../tech/box_structure.html'>🧱 股票箱結構</a><a class='gnav-it' href='../tech/shsl.html'>⛰ SH/SL 擺動</a><a class='gnav-it' href='../tech/wyckoff_phase.html'>🌀 Wyckoff 階段</a><a class='gnav-it' href='../tech/n_pattern.html'>📐 N 形態</a><a class='gnav-it' href='../tech/structure_chart.html'>🗺 結構圖</a><a class='gnav-it' href='../tech/state_grid_preview.html'>🔳 狀態網格</a><div class='gnav-hd'>─ 籌碼面 ─</div><a class='gnav-it' href='../chip/chip_concentration.html'>🎯 籌碼集中度</a><a class='gnav-it' href='../chip/broker_branch.html'>🏦 券商分點</a><a class='gnav-it' href='../chip/capital_structure.html'>🧬 資金結構體檢</a><a class='gnav-it' href='../chip/chr.html'>🔄 CHR 持有者輪動</a><a class='gnav-it' href='../chip/cmg.html'>💰 CMG 資金流向</a><a class='gnav-it' href='../chip/cga.html'>📊 CGA 籌碼集中</a><div class='gnav-hd'>─ 基本面 ─</div><a class='gnav-it' href='../fund/fundamental_score.html'>🧪 基本面 5 維 (PEG/FCF/ROE)</a><div class='gnav-hd'>─ 市場結構 ─</div><a class='gnav-it' href='../market/ms_dashboard.html'>🎩 MS 儀表板</a><a class='gnav-it' href='../market/hotflow.html'>🔥 熱門流向 HotFlow</a><a class='gnav-it' href='../market/sector_rotation.html'>🌐 族群輪動 RRG</a><a class='gnav-it' href='../market/sector_constituents.html'>🗂 族群成分股</a><a class='gnav-it' href='../market/mainstream_pool.html'>🏊 主流股池</a><a class='gnav-it' href='../market/strong_stocks.html'>💪 強勢股</a><div class='gnav-hd'>─ 股池 ─</div><a class='gnav-it' href='../pool/custom_pool.html'>⭐ 自選股池</a><a class='gnav-it' href='../pool/accumulation_pool.html'>🧲 吸籌池</a><a class='gnav-it' href='../pool/distribution_score.html'>🌋 派發評分</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='2'>🔁 配對交易 ▾</button><div class='gnav-panel' id='gnav-p2'><a class='gnav-it' href='../pairs/rr.html'>🔁 RSR 配對</a><a class='gnav-it' href='../pairs/rrr.html'>📐 RRR 配對</a><a class='gnav-it' href='../pairs/rrr_resonance.html'>🌀 RRR Resonance</a><a class='gnav-it' href='../pairs/dynamic_rr.html'>⚡ 動態 RSR</a><a class='gnav-it' href='../pairs/custom_pairs.html'>⭐ 自選配對</a><a class='gnav-it' href='../pairs/rcga_overview.html'>🚦 RCGA 總覽</a><a class='gnav-it' href='../pairs/rotation_signals.html'>🔄 換股訊號</a><a class='gnav-it' href='../pairs/rotation_confirm_log.html'>📋 換股確認紀錄</a><a class='gnav-it' href='../pairs/rotation_case_study.html'>📚 換股案例</a><a class='gnav-it' href='../pairs/backtest.html'>📊 回測</a><div class='gnav-hd'>─ 配對圖 ─</div><a class='gnav-it' href='../pairs/nan_xin_chart.html'>南電 / 欣興</a><a class='gnav-it' href='../pairs/jh_zy_chart.html'>晶豪科 / 智原</a><a class='gnav-it' href='../pairs/pair_2049_4576.html'>上銀 / 大銀微</a><a class='gnav-it' href='../pairs/pair_2344_2408.html'>華邦電 / 南亞科</a><a class='gnav-it' href='../pairs/pair_9921_9914.html'>巨大 / 美利達</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='3'>⚙ 系統 ▾</button><div class='gnav-panel' id='gnav-p3'><a class='gnav-it' href='../sys/todo.html'>📝 待辦事項</a><a class='gnav-it' href='../sys/db_health.html'>🩺 資料庫健康</a><a class='gnav-it' href='../sys/fs_compare.html'>🆚 FS 對照</a><a class='gnav-it' href='../sys/nomenclature.html'>📖 名詞對照表</a><a class='gnav-it' href='../docs/V2_ARCHITECTURE.html'>📋 V.2 架構文件</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='4'>📂 個股卷宗 ▾</button><div class='gnav-panel' id='gnav-p4'><a class='gnav-it' href='../dossier/1503.html'>1503 士電</a><a class='gnav-it' href='../dossier/2049.html'>2049 上銀</a><a class='gnav-it' href='../dossier/2330.html'>2330 台積電</a><a class='gnav-it' href='../dossier/2344.html'>2344 華邦電</a><a class='gnav-it' href='../dossier/2359.html'>2359 所羅門</a><a class='gnav-it' href='../dossier/2408.html'>2408 南亞科</a><a class='gnav-it' href='../dossier/3006.html'>3006 晶豪科</a><a class='gnav-it' href='../dossier/3035.html'>3035 智原</a><a class='gnav-it' href='../dossier/3037.html'>3037 欣興</a><a class='gnav-it' href='../dossier/4576.html'>4576 大銀微系統</a><a class='gnav-it' href='../dossier/8046.html'>8046 南電</a><a class='gnav-it' href='../dossier/9914.html'>9914 美利達</a><a class='gnav-it' href='../dossier/9921.html'>9921 巨大</a></div></div>
@@ -147,6 +120,10 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 
 
 
+
+
+
+
 <a class='back-link' href='../index.html'>← 返回主頁</a>
 
 <h1>🗄 DuckDB 資料庫健康檢查</h1>
@@ -156,12 +133,12 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
   ｜ 每日 orchestrator step 0 自動執行
 </div>
 
-<div class='overall-banner'><div class='overall-icon' style='color:#a16207'>⚠</div><div class='overall-text'><div class='overall-label' style='color:#a16207'>整體狀態：警告</div><div class='overall-stats'>共 9 項檢查 ｜ <span style='color:#10b981'>✅ 7</span> ｜ <span style='color:#2563eb'>ℹ 1</span> ｜ <span style='color:#a16207'>⚠ 1</span> ｜ <span style='color:#ef4444'>🔴 0</span> ｜ 已執行自動修復</div></div></div>
+<div class='overall-banner'><div class='overall-icon' style='color:var(--th-warn,#a16207)'>⚠</div><div class='overall-text'><div class='overall-label' style='color:var(--th-warn,#a16207)'>整體狀態：警告</div><div class='overall-stats'>共 9 項檢查 ｜ <span style='color:#10b981'>✅ 7</span> ｜ <span style='color:var(--th-accent,#2563eb)'>ℹ 1</span> ｜ <span style='color:var(--th-warn,#a16207)'>⚠ 1</span> ｜ <span style='color:#ef4444'>🔴 0</span> ｜ 已執行自動修復</div></div></div>
 
-<div class='stats'><div class='stat-cell'><div class='num' style='color:#10b981'>7</div><div class='lbl'>✅ 正常</div></div><div class='stat-cell'><div class='num' style='color:#2563eb'>1</div><div class='lbl'>ℹ 資訊</div></div><div class='stat-cell'><div class='num' style='color:#a16207'>1</div><div class='lbl'>⚠ 警告</div></div><div class='stat-cell'><div class='num' style='color:#ef4444'>0</div><div class='lbl'>🔴 嚴重</div></div></div>
+<div class='stats'><div class='stat-cell'><div class='num' style='color:#10b981'>7</div><div class='lbl'>✅ 正常</div></div><div class='stat-cell'><div class='num' style='color:var(--th-accent,#2563eb)'>1</div><div class='lbl'>ℹ 資訊</div></div><div class='stat-cell'><div class='num' style='color:var(--th-warn,#a16207)'>1</div><div class='lbl'>⚠ 警告</div></div><div class='stat-cell'><div class='num' style='color:#ef4444'>0</div><div class='lbl'>🔴 嚴重</div></div></div>
 
 <h2>📋 詳細檢查項目（依嚴重性排序）</h2>
-<div class='check-card warning'><div class='check-head'><span class='check-icon'>⚠</span><span class='check-name'>輔助資料時效</span><span class='check-cat'>📅 資料時效</span><span class='check-pill' style='background:#fcd34d33;color:#a16207'>warning</span></div><div class='check-msg'>macro/SOX 落後 20 天</div><details class='detail'><summary>查看細節</summary><pre>{
+<div class='check-card warning'><div class='check-head'><span class='check-icon'>⚠</span><span class='check-name'>輔助資料時效</span><span class='check-cat'>📅 資料時效</span><span class='check-pill' style='background:#fcd34d33;color:var(--th-warn,#a16207)'>warning</span></div><div class='check-msg'>macro/SOX 落後 20 天</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;futures&quot;: {
     &quot;last_date&quot;: &quot;2026-06-11&quot;,
     &quot;days_lag&quot;: 0
@@ -175,7 +152,7 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
     &quot;last_date&quot;: &quot;2026-06-11&quot;,
     &quot;days_lag&quot;: 0
   }
-}</pre></details></div><div class='check-card info'><div class='check-head'><span class='check-icon'>ℹ</span><span class='check-name'>Update log 時效</span><span class='check-cat'>📋 Update log</span><span class='check-pill' style='background:#60a5fa33;color:#2563eb'>info</span></div><div class='check-msg'>共 1 個資料源；最新紀錄 2026-05-24 10:19:45.706960</div><details class='detail'><summary>查看細節</summary><pre>{
+}</pre></details></div><div class='check-card info'><div class='check-head'><span class='check-icon'>ℹ</span><span class='check-name'>Update log 時效</span><span class='check-cat'>📋 Update log</span><span class='check-pill' style='background:#60a5fa33;color:var(--th-accent,#2563eb)'>info</span></div><div class='check-msg'>共 1 個資料源；最新紀錄 2026-05-24 10:19:45.706960</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;db_migrate_from_csv&quot;: &quot;2026-05-24 10:19:45.706960&quot;
 }</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>DuckDB 表結構</span><span class='check-cat'>🗂 表結構</span><span class='check-pill' style='background:#10b98133;color:#10b981'>healthy</span></div><div class='check-msg'>全部 8 個必要表存在</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;counts&quot;: {
@@ -249,8 +226,8 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
   &quot;tpex&quot;: 1007
 }</pre></details></div>
 
-<div style="background:#ffffff;border:1px solid #cdd9e7;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#3f4f63;line-height:1.7">
-<strong style="color:#2563eb">🔧 自動修復</strong><br>
+<div style="background:var(--th-card,#ffffff);border:1px solid #cdd9e7;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:var(--th-text2,#3f4f63);line-height:1.7">
+<strong style="color:var(--th-accent,#2563eb)">🔧 自動修復</strong><br>
 若整體狀態為「警告」或「嚴重」，可手動執行：<br>
 <code>cd C:\CludeHome\stockHisData && python -m stock_data.db_health --fix</code><br>
 <br>
@@ -278,8 +255,8 @@ JSON 輸出：<code>data/output/db_health.json</code>
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
   position: fixed;
-  background: #f4f7fb;
-  color: #243244;
+  background: var(--th-bg,#f4f7fb);
+  color: var(--th-text,#243244);
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 12px;
@@ -288,7 +265,7 @@ JSON 輸出：<code>data/output/db_health.json</code>
   max-width: 320px;
   width: max-content;
   text-align: left;
-  border: 1px solid #bccadb;
+  border: 1px solid var(--th-border2,#bccadb);
   z-index: 999999;
   pointer-events: none;
   line-height: 1.6;

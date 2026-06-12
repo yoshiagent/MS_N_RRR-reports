@@ -1,0 +1,86 @@
+/* ====================================================================
+   site.css — 全站唯一樣式總開關 (design tokens)
+   --------------------------------------------------------------------
+   改這個檔案 → 跑 python scripts/deploy_reports.py (或等每日管線)
+   → 全站 89+ 頁的配色 / 字體 / 邊框一起變。
+
+   原理: 每頁內嵌樣式經 theme_light 權杖化後全部寫成
+         var(--th-xxx, 後備色)，真正的值由本檔 :root 決定。
+   注意: plotly 圖表內部色 (--th-chart-*) 是建頁時烘焙進 JSON，
+         改了之後要等下一次每日重建 (或手動跑 orchestrator) 才生效。
+   ==================================================================== */
+
+:root{
+  /* ── 表面 (背景) ── */
+  --th-bg:#f4f7fb;        /* 頁面底色 (柔米白) */
+  --th-bg2:#eef3f9;       /* 次級底 / 面板 */
+  --th-card:#ffffff;      /* 卡片 */
+  --th-hover:#e7edf5;     /* hover / 淺灰藍塊 */
+  --th-line:#dbe4ef;      /* 分隔塊 / 深一階面板 */
+  --th-line2:#cdd9e7;     /* 更深一階 (按鈕底等) */
+
+  /* ── 文字 ── */
+  --th-text:#243244;      /* 主文字 (深墨) */
+  --th-text2:#3f4f63;     /* 次文字 */
+  --th-muted:#61708a;     /* 弱化文字 */
+
+  /* ── 邊框 ── */
+  --th-border:#dbe3ee;
+  --th-border2:#c9d4e3;
+
+  /* ── 強調色 ── */
+  --th-accent:#2563eb;    /* 藍 (連結/重點) */
+  --th-ok:#15803d;        /* 綠 (多/通過) */
+  --th-warn:#b45309;      /* 琥珀 (警示/金) */
+  --th-bad:#dc2626;       /* 紅 (空/危險) */
+  --th-purple:#7c3aed;    /* 紫 */
+  --th-info:#0c7bb3;      /* 青藍 */
+
+  /* ── plotly 圖表 (烘焙值, 改後需重建頁面) ── */
+  --th-chart-bg:#f8fafc;
+  --th-chart-grid:#e6ecf4;
+  --th-chart-zero:#c9d4e3;
+
+  /* ── 字體 ── */
+  --th-font:'Segoe UI','Microsoft JhengHei','Noto Sans TC',system-ui,sans-serif;
+}
+
+/* ── 全站基底 (頁內樣式可覆蓋, 但值都引用上面權杖) ── */
+html{background:var(--th-bg)}
+body{background:var(--th-bg);color:var(--th-text);font-family:var(--th-font)}
+a{color:var(--th-accent)}
+
+/* ====================================================================
+   全站導航列 (nav_inject 注入 HTML, 樣式集中在這裡)
+   ==================================================================== */
+.gnav{position:sticky;top:0;z-index:99990;background:var(--th-card);
+  border-bottom:1px solid var(--th-border);font-family:var(--th-font);
+  display:flex;align-items:center;flex-wrap:wrap;gap:2px;padding:6px 14px;
+  box-shadow:0 1px 6px rgba(15,23,42,0.06)}
+.gnav a.gnav-home{color:var(--th-warn);text-decoration:none;font-weight:bold;
+  font-size:13px;padding:6px 10px;border-radius:6px}
+.gnav a.gnav-home:hover{background:var(--th-hover)}
+.gnav-dd{position:relative}
+.gnav-btn{background:none;border:none;color:var(--th-text2);font-size:13px;
+  padding:6px 10px;cursor:pointer;border-radius:6px;font-family:inherit}
+.gnav-btn:hover,.gnav-btn.on{background:var(--th-hover);color:var(--th-text)}
+.gnav-panel{display:none;position:absolute;left:0;top:100%;min-width:230px;
+  max-height:70vh;overflow-y:auto;background:var(--th-card);
+  border:1px solid var(--th-border2);border-radius:8px;padding:6px;
+  box-shadow:0 8px 24px rgba(15,23,42,0.15)}
+.gnav-panel.open{display:block}
+.gnav-hd{color:var(--th-muted);font-size:11px;padding:6px 10px 3px;
+  border-top:1px dashed var(--th-border);margin-top:3px}
+.gnav-hd:first-child{border-top:none;margin-top:0}
+.gnav-it{display:block;color:var(--th-text);text-decoration:none;font-size:13px;
+  padding:6px 10px;border-radius:5px;white-space:nowrap}
+.gnav-it:hover{background:var(--th-hover);color:var(--th-info)}
+.gnav-search{margin-left:auto;position:relative}
+.gnav-search input{background:var(--th-bg2);border:1px solid var(--th-border2);
+  color:var(--th-text);font-size:12px;padding:5px 10px;border-radius:6px;
+  width:150px;font-family:inherit}
+.gnav-search input:focus{outline:none;border-color:var(--th-purple);width:200px}
+#gnav-sr{display:none;position:absolute;right:0;top:100%;min-width:240px;
+  max-height:60vh;overflow-y:auto;background:var(--th-card);
+  border:1px solid var(--th-border2);border-radius:8px;padding:6px;z-index:99991}
+@media (max-width:760px){.gnav{padding:4px 8px}.gnav-search input{width:100px}}
