@@ -1,0 +1,70 @@
+{
+  "as_of": "2026-06-11",
+  "generated_at": "2026-06-12 18:31:11",
+  "market_temperature": {
+    "score": 47.2,
+    "level_key": "warm",
+    "level_label": "♨ 溫熱",
+    "color": "#fcd34d",
+    "advice": "健康多頭（標準部位）",
+    "subscores": {
+      "breadth": 65.7,
+      "diffusion": 85.2,
+      "hotflow_strength": 19.3,
+      "institutional_flow": 12.2,
+      "amount_expansion": 50.0,
+      "otc_strength": 0.0,
+      "volatility": 60.0
+    },
+    "weights": {
+      "breadth": 0.2,
+      "diffusion": 0.25,
+      "hotflow_strength": 0.15,
+      "institutional_flow": 0.15,
+      "amount_expansion": 0.1,
+      "otc_strength": 0.1,
+      "volatility": 0.05
+    }
+  },
+  "rr_environment": {
+    "score": 70,
+    "level_key": "golden",
+    "level_label": "✅ RR 黃金期",
+    "color": "#10b981",
+    "advice": "建議積極 RR 操作",
+    "components": [
+      {
+        "name": "OTC 強於 TWSE",
+        "weight": 20,
+        "passed": false
+      },
+      {
+        "name": "資金擴散 expanding",
+        "weight": 25,
+        "passed": true
+      },
+      {
+        "name": "Top100 換手 > 15%",
+        "weight": 15,
+        "passed": true
+      },
+      {
+        "name": "資金輪動 > 20%",
+        "weight": 15,
+        "passed": true
+      },
+      {
+        "name": "權值穩定（40-80% 站MA20）",
+        "weight": 15,
+        "passed": true
+      },
+      {
+        "name": "Top100 中型以下 > 30%",
+        "weight": 10,
+        "passed": false
+      }
+    ]
+  },
+  "schema_version": "v1",
+  "available": true
+}

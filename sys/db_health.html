@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang='zh-Hant'><head>
-<link rel="stylesheet" href="../assets/site.css?v=542b0641">
+<link rel="stylesheet" href="../assets/site.css?v=733b1f50">
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <title>🗄 資料庫健康檢查 — MS_N_RR/RRR Ver.A</title>
@@ -112,7 +112,7 @@ footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
 
 <h1>🗄 DuckDB 資料庫健康檢查</h1>
 <div class='sub'>
-  資料日：2026-06-12 ｜ 產生時間：2026-06-12 18:00:04
+  資料日：2026-06-12 ｜ 產生時間：2026-06-12 18:30:37
   ｜ 來源：<code>stockHisData/stock_data/db_health.py</code>
   ｜ 每日 orchestrator step 0 自動執行
 </div>
@@ -124,41 +124,41 @@ footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
 <h2>📋 詳細檢查項目（依嚴重性排序）</h2>
 <div class='check-card warning'><div class='check-head'><span class='check-icon'>⚠</span><span class='check-name'>輔助資料時效</span><span class='check-cat'>📅 資料時效</span><span class='check-pill' style='background:#fcd34d33;color:var(--th-amber,#fcd34d)'>warning</span></div><div class='check-msg'>macro/SOX 落後 21 天</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;futures&quot;: {
-    &quot;last_date&quot;: &quot;2026-06-11&quot;,
-    &quot;days_lag&quot;: 1
+    &quot;last_date&quot;: &quot;2026-06-12&quot;,
+    &quot;days_lag&quot;: 0
   },
   &quot;macro&quot;: {
-    &quot;USDTWD&quot;: &quot;2026-06-12&quot;,
+    &quot;SOX&quot;: &quot;2026-05-22&quot;,
     &quot;VIX&quot;: &quot;2026-06-11&quot;,
-    &quot;SOX&quot;: &quot;2026-05-22&quot;
+    &quot;USDTWD&quot;: &quot;2026-06-12&quot;
   },
   &quot;institutional&quot;: {
-    &quot;last_date&quot;: &quot;2026-06-11&quot;,
-    &quot;days_lag&quot;: 1
+    &quot;last_date&quot;: &quot;2026-06-12&quot;,
+    &quot;days_lag&quot;: 0
   }
 }</pre></details></div><div class='check-card info'><div class='check-head'><span class='check-icon'>ℹ</span><span class='check-name'>Update log 時效</span><span class='check-cat'>📋 Update log</span><span class='check-pill' style='background:#60a5fa33;color:var(--th-blue,#60a5fa)'>info</span></div><div class='check-msg'>共 1 個資料源；最新紀錄 2026-05-24 10:19:45.706960</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;db_migrate_from_csv&quot;: &quot;2026-05-24 10:19:45.706960&quot;
 }</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>DuckDB 表結構</span><span class='check-cat'>🗂 表結構</span><span class='check-pill' style='background:#10b98133;color:var(--th-green,#10b981)'>healthy</span></div><div class='check-msg'>全部 8 個必要表存在</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;counts&quot;: {
-    &quot;price&quot;: 2099137,
+    &quot;price&quot;: 2100005,
     &quot;indices&quot;: 2148,
-    &quot;institutional&quot;: 603171,
-    &quot;futures&quot;: 247,
+    &quot;institutional&quot;: 622292,
+    &quot;futures&quot;: 248,
     &quot;macro&quot;: 3371,
     &quot;symbols&quot;: 1935,
     &quot;signal_history&quot;: 70824,
     &quot;update_log&quot;: 1
   }
-}</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>最新日資料齊全度</span><span class='check-cat'>📅 資料時效</span><span class='check-pill' style='background:#10b98133;color:var(--th-green,#10b981)'>healthy</span></div><div class='check-msg'>最新日 2026-06-12 全市場 1055 檔齊全（≥ 1000）</div><details class='detail'><summary>查看細節</summary><pre>{
+}</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>最新日資料齊全度</span><span class='check-cat'>📅 資料時效</span><span class='check-pill' style='background:#10b98133;color:var(--th-green,#10b981)'>healthy</span></div><div class='check-msg'>最新日 2026-06-12 全市場 1923 檔齊全（≥ 1000）</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;latest_date&quot;: &quot;2026-06-12&quot;,
-  &quot;latest_count&quot;: 1055,
+  &quot;latest_count&quot;: 1923,
   &quot;second_date&quot;: &quot;2026-06-11&quot;,
   &quot;second_count&quot;: 1935,
   &quot;days_lag&quot;: 0,
   &quot;recent_5&quot;: [
     {
       &quot;date&quot;: &quot;2026-06-12&quot;,
-      &quot;n&quot;: 1055
+      &quot;n&quot;: 1923
     },
     {
       &quot;date&quot;: &quot;2026-06-11&quot;,
@@ -183,7 +183,7 @@ footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
   &quot;future_dates&quot;: 0,
   &quot;non_positive_close&quot;: 0,
   &quot;zero_volume&quot;: 28305,
-  &quot;total_rows&quot;: 2099137,
+  &quot;total_rows&quot;: 2100005,
   &quot;zero_vol_pct&quot;: 1.35
 }</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>關鍵指數完整性</span><span class='check-cat'>📊 資料覆蓋</span><span class='check-pill' style='background:#10b98133;color:var(--th-green,#10b981)'>healthy</span></div><div class='check-msg'>全部 2 個關鍵指數齊全</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;latest_per_index&quot;: {
@@ -231,4 +231,120 @@ footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
 每日 orchestrator 跑前自動執行（step 0），確保下游所有 agent 拿到的資料品質可靠<br>
 JSON 輸出：<code>data/output/db_health.json</code>
 </footer>
+
+<style id='MS_N_RRR_tooltip_inject_v2'>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: var(--th-bg,#0f172a);
+  color: var(--th-text,#e2e8f0);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid var(--th-border2,#475569);
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 </body></html>

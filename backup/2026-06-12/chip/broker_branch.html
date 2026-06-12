@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<link rel="stylesheet" href="../assets/site.css?v=733b1f50"><meta charset="utf-8">
+<title>券商分點排行 (Broker Branch)</title>
+<style>
+  body { background:var(--th-bg,#0f172a); color:var(--th-text,#e2e8f0); font-family:Segoe UI,system-ui,sans-serif;
+         padding:20px; max-width:1200px; margin:0 auto }
+  h1 { color:var(--th-purple,#8b5cf6); border-bottom:2px solid var(--th-purple,#8b5cf6); padding-bottom:8px }
+  h2 { margin-top:30px; padding-bottom:6px; border-bottom:1px dashed var(--th-border2,#334155); font-size:18px }
+  table { width:100%; border-collapse:collapse; background:var(--th-card,#0f1a2c); margin-top:10px }
+  th, td { padding:6px 10px; border-bottom:1px solid var(--th-border2,#334155); font-size:12px; text-align:left }
+  th { background:var(--th-purple-bg,#312e81); color:var(--th-amber,#fbbf24) }
+  tr:hover { background:var(--th-card,#1e293b) }
+  .summary { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:20px 0 }
+  .stat { background:var(--th-card,#1e293b); padding:14px; border-radius:6px; border-left:4px solid var(--th-purple,#8b5cf6) }
+  .stat-val { color:var(--th-purple,#8b5cf6); font-size:24px; font-weight:bold }
+  .stat-label { color:var(--th-muted,#94a3b8); font-size:12px }
+  a { color:var(--th-cyan,#7dd3fc) }
+</style></head><body>
+<!-- GLOBAL_NAV_START -->
+<nav class="gnav" id="gnav">
+  <a class="gnav-home" href="../index.html">🏠 主控台</a>
+  <div class='gnav-dd'><button class='gnav-btn' data-dd='0'>🏢 組織架構 ▾</button><div class='gnav-panel' id='gnav-p0'><a class='gnav-it' href='../org/organization.html'>🏢 組織架構圖</a><a class='gnav-it' href='../org/system_flow.html'>🔄 系統流程圖</a><div class='gnav-hd'>─ 投資長 CIO ─</div><a class='gnav-it' href='../market/ms_dashboard.html'>🎩 MS 投資長儀表板</a><div class='gnav-hd'>─ 研究部 ─</div><a class='gnav-it' href='../org/iue.html'>🏛 投資宇宙引擎 IUE</a><a class='gnav-it' href='../org/iue_journey.html'>📜 IUE 股票履歷</a><div class='gnav-hd'>─ 評審 / 決策 ─</div><a class='gnav-it' href='../org/iab.html'>🎖 外聘評審委員會 IAB</a><a class='gnav-it' href='../org/master_score.html'>👥 9 名人評分</a><a class='gnav-it' href='../org/capital_committee.html'>🗳 資金持有委員會</a><div class='gnav-hd'>─ 基金管理部 ─</div><a class='gnav-it' href='../org/fund_managers.html'>💼 CIO × 經理競標</a><a class='gnav-it' href='../org/stock_ops.html'>🎯 操作 Agent (5 階段)</a><a class='gnav-it' href='../org/pm_custom.html'>⭐ 自選股 PM</a><a class='gnav-it' href='../org/pm_trend_growth.html'>💹 趨勢成長 PM</a><a class='gnav-it' href='../org/paper_portfolio.html'>📈 模擬投資組合</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='1'>🔬 分析面向 ▾</button><div class='gnav-panel' id='gnav-p1'><div class='gnav-hd'>─ 技術面 ─</div><a class='gnav-it' href='../tech/n_shape.html'>📦 多時段箱型</a><a class='gnav-it' href='../tech/box_structure.html'>🧱 股票箱結構</a><a class='gnav-it' href='../tech/shsl.html'>⛰ SH/SL 擺動</a><a class='gnav-it' href='../tech/wyckoff_phase.html'>🌀 Wyckoff 階段</a><a class='gnav-it' href='../tech/n_pattern.html'>📐 N 形態</a><a class='gnav-it' href='../tech/structure_chart.html'>🗺 結構圖</a><a class='gnav-it' href='../tech/state_grid_preview.html'>🔳 狀態網格</a><div class='gnav-hd'>─ 籌碼面 ─</div><a class='gnav-it' href='../chip/chip_concentration.html'>🎯 籌碼集中度</a><a class='gnav-it' href='../chip/broker_branch.html'>🏦 券商分點</a><a class='gnav-it' href='../chip/capital_structure.html'>🧬 資金結構體檢</a><a class='gnav-it' href='../chip/chr.html'>🔄 CHR 持有者輪動</a><a class='gnav-it' href='../chip/cmg.html'>💰 CMG 資金流向</a><a class='gnav-it' href='../chip/cga.html'>📊 CGA 籌碼集中</a><div class='gnav-hd'>─ 基本面 ─</div><a class='gnav-it' href='../fund/fundamental_score.html'>🧪 基本面 5 維 (PEG/FCF/ROE)</a><div class='gnav-hd'>─ 市場結構 ─</div><a class='gnav-it' href='../market/ms_dashboard.html'>🎩 MS 儀表板</a><a class='gnav-it' href='../market/hotflow.html'>🔥 熱門流向 HotFlow</a><a class='gnav-it' href='../market/sector_rotation.html'>🌐 族群輪動 RRG</a><a class='gnav-it' href='../market/sector_constituents.html'>🗂 族群成分股</a><a class='gnav-it' href='../market/mainstream_pool.html'>🏊 主流股池</a><a class='gnav-it' href='../market/strong_stocks.html'>💪 強勢股</a><div class='gnav-hd'>─ 股池 ─</div><a class='gnav-it' href='../pool/custom_pool.html'>⭐ 自選股池</a><a class='gnav-it' href='../pool/accumulation_pool.html'>🧲 吸籌池</a><a class='gnav-it' href='../pool/distribution_score.html'>🌋 派發評分</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='2'>🔁 配對交易 ▾</button><div class='gnav-panel' id='gnav-p2'><a class='gnav-it' href='../pairs/rr.html'>🔁 RSR 配對</a><a class='gnav-it' href='../pairs/rrr.html'>📐 RRR 配對</a><a class='gnav-it' href='../pairs/rrr_resonance.html'>🌀 RRR Resonance</a><a class='gnav-it' href='../pairs/dynamic_rr.html'>⚡ 動態 RSR</a><a class='gnav-it' href='../pairs/custom_pairs.html'>⭐ 自選配對</a><a class='gnav-it' href='../pairs/rcga_overview.html'>🚦 RCGA 總覽</a><a class='gnav-it' href='../pairs/rotation_signals.html'>🔄 換股訊號</a><a class='gnav-it' href='../pairs/rotation_confirm_log.html'>📋 換股確認紀錄</a><a class='gnav-it' href='../pairs/rotation_case_study.html'>📚 換股案例</a><a class='gnav-it' href='../pairs/backtest.html'>📊 回測</a><div class='gnav-hd'>─ 配對圖 ─</div><a class='gnav-it' href='../pairs/nan_xin_chart.html'>南電 / 欣興</a><a class='gnav-it' href='../pairs/jh_zy_chart.html'>晶豪科 / 智原</a><a class='gnav-it' href='../pairs/pair_2049_4576.html'>上銀 / 大銀微</a><a class='gnav-it' href='../pairs/pair_2344_2408.html'>華邦電 / 南亞科</a><a class='gnav-it' href='../pairs/pair_9921_9914.html'>巨大 / 美利達</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='3'>⚙ 系統 ▾</button><div class='gnav-panel' id='gnav-p3'><a class='gnav-it' href='../sys/todo.html'>📝 待辦事項</a><a class='gnav-it' href='../sys/db_health.html'>🩺 資料庫健康</a><a class='gnav-it' href='../sys/fs_compare.html'>🆚 FS 對照</a><a class='gnav-it' href='../sys/nomenclature.html'>📖 名詞對照表</a><a class='gnav-it' href='../docs/V2_ARCHITECTURE.html'>📋 V.2 架構文件</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='4'>📂 個股卷宗 ▾</button><div class='gnav-panel' id='gnav-p4'><a class='gnav-it' href='../dossier/1503.html'>1503 士電</a><a class='gnav-it' href='../dossier/2049.html'>2049 上銀</a><a class='gnav-it' href='../dossier/2330.html'>2330 台積電</a><a class='gnav-it' href='../dossier/2344.html'>2344 華邦電</a><a class='gnav-it' href='../dossier/2359.html'>2359 所羅門</a><a class='gnav-it' href='../dossier/2408.html'>2408 南亞科</a><a class='gnav-it' href='../dossier/3006.html'>3006 晶豪科</a><a class='gnav-it' href='../dossier/3035.html'>3035 智原</a><a class='gnav-it' href='../dossier/3037.html'>3037 欣興</a><a class='gnav-it' href='../dossier/4576.html'>4576 大銀微系統</a><a class='gnav-it' href='../dossier/8046.html'>8046 南電</a><a class='gnav-it' href='../dossier/9914.html'>9914 美利達</a><a class='gnav-it' href='../dossier/9921.html'>9921 巨大</a></div></div>
+  <div class="gnav-search">
+    <input id="gnav-q" type="text" placeholder="🔍 找報告…" autocomplete="off">
+    <div id="gnav-sr"></div>
+  </div>
+</nav>
+<script>
+(function(){
+  var DATA="🏢 組織架構圖||../org/organization.html;;🔄 系統流程圖||../org/system_flow.html;;🎩 MS 投資長儀表板||../market/ms_dashboard.html;;🏛 投資宇宙引擎 IUE||../org/iue.html;;📜 IUE 股票履歷||../org/iue_journey.html;;🎖 外聘評審委員會 IAB||../org/iab.html;;👥 9 名人評分||../org/master_score.html;;🗳 資金持有委員會||../org/capital_committee.html;;💼 CIO × 經理競標||../org/fund_managers.html;;🎯 操作 Agent (5 階段)||../org/stock_ops.html;;⭐ 自選股 PM||../org/pm_custom.html;;💹 趨勢成長 PM||../org/pm_trend_growth.html;;📈 模擬投資組合||../org/paper_portfolio.html;;📦 多時段箱型||../tech/n_shape.html;;🧱 股票箱結構||../tech/box_structure.html;;⛰ SH/SL 擺動||../tech/shsl.html;;🌀 Wyckoff 階段||../tech/wyckoff_phase.html;;📐 N 形態||../tech/n_pattern.html;;🗺 結構圖||../tech/structure_chart.html;;🔳 狀態網格||../tech/state_grid_preview.html;;🎯 籌碼集中度||../chip/chip_concentration.html;;🏦 券商分點||../chip/broker_branch.html;;🧬 資金結構體檢||../chip/capital_structure.html;;🔄 CHR 持有者輪動||../chip/chr.html;;💰 CMG 資金流向||../chip/cmg.html;;📊 CGA 籌碼集中||../chip/cga.html;;🧪 基本面 5 維 (PEG/FCF/ROE)||../fund/fundamental_score.html;;🎩 MS 儀表板||../market/ms_dashboard.html;;🔥 熱門流向 HotFlow||../market/hotflow.html;;🌐 族群輪動 RRG||../market/sector_rotation.html;;🗂 族群成分股||../market/sector_constituents.html;;🏊 主流股池||../market/mainstream_pool.html;;💪 強勢股||../market/strong_stocks.html;;⭐ 自選股池||../pool/custom_pool.html;;🧲 吸籌池||../pool/accumulation_pool.html;;🌋 派發評分||../pool/distribution_score.html;;🔁 RSR 配對||../pairs/rr.html;;📐 RRR 配對||../pairs/rrr.html;;🌀 RRR Resonance||../pairs/rrr_resonance.html;;⚡ 動態 RSR||../pairs/dynamic_rr.html;;⭐ 自選配對||../pairs/custom_pairs.html;;🚦 RCGA 總覽||../pairs/rcga_overview.html;;🔄 換股訊號||../pairs/rotation_signals.html;;📋 換股確認紀錄||../pairs/rotation_confirm_log.html;;📚 換股案例||../pairs/rotation_case_study.html;;📊 回測||../pairs/backtest.html;;南電 / 欣興||../pairs/nan_xin_chart.html;;晶豪科 / 智原||../pairs/jh_zy_chart.html;;上銀 / 大銀微||../pairs/pair_2049_4576.html;;華邦電 / 南亞科||../pairs/pair_2344_2408.html;;巨大 / 美利達||../pairs/pair_9921_9914.html;;📝 待辦事項||../sys/todo.html;;🩺 資料庫健康||../sys/db_health.html;;🆚 FS 對照||../sys/fs_compare.html;;📖 名詞對照表||../sys/nomenclature.html;;📋 V.2 架構文件||../docs/V2_ARCHITECTURE.html;;1503 士電||../dossier/1503.html;;2049 上銀||../dossier/2049.html;;2330 台積電||../dossier/2330.html;;2344 華邦電||../dossier/2344.html;;2359 所羅門||../dossier/2359.html;;2408 南亞科||../dossier/2408.html;;3006 晶豪科||../dossier/3006.html;;3035 智原||../dossier/3035.html;;3037 欣興||../dossier/3037.html;;4576 大銀微系統||../dossier/4576.html;;8046 南電||../dossier/8046.html;;9914 美利達||../dossier/9914.html;;9921 巨大||../dossier/9921.html".split(";;").map(function(s){var p=s.split("||");return {l:p[0],h:p[1]};});
+  var nav=document.getElementById('gnav');
+  nav.querySelectorAll('.gnav-btn').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.stopPropagation();
+      var p=document.getElementById('gnav-p'+b.dataset.dd), was=p.classList.contains('open');
+      nav.querySelectorAll('.gnav-panel').forEach(function(x){x.classList.remove('open');});
+      nav.querySelectorAll('.gnav-btn').forEach(function(x){x.classList.remove('on');});
+      if(!was){p.classList.add('open');b.classList.add('on');}
+    });
+  });
+  document.addEventListener('click',function(){
+    nav.querySelectorAll('.gnav-panel').forEach(function(x){x.classList.remove('open');});
+    nav.querySelectorAll('.gnav-btn').forEach(function(x){x.classList.remove('on');});
+    var sr=document.getElementById('gnav-sr'); if(sr) sr.style.display='none';
+  });
+  var q=document.getElementById('gnav-q'), sr=document.getElementById('gnav-sr');
+  q.addEventListener('click',function(e){e.stopPropagation();});
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase();
+    if(!v){sr.style.display='none';return;}
+    var hits=DATA.filter(function(d){return d.l.toLowerCase().indexOf(v)>=0;}).slice(0,15);
+    sr.innerHTML=hits.length?hits.map(function(d){
+      return "<a class='gnav-it' href='"+d.h+"'>"+d.l+"</a>";}).join("")
+      :"<div class='gnav-hd'>無符合</div>";
+    sr.style.display='block';
+  });
+})();
+</script>
+<!-- GLOBAL_NAV_END -->
+
+<h1>🏦 券商分點排行 (Broker Branch)
+    <span style="font-size:14px;color:var(--th-muted,#94a3b8);font-weight:normal">資料: 2026-06-12</span></h1>
+<p><a href="../index.html">← 回主頁</a> · <a href="chip_concentration.html">📊 籌碼集中度</a></p>
+
+<p style="background:rgba(139,92,246,0.15);padding:10px 14px;border-radius:6px;
+          font-size:12px;color:var(--th-text2,#cbd5e1);border-left:3px solid var(--th-purple,#8b5cf6)">
+  📋 <b>券商分點 (Broker Branch)</b> — FinMind Sponsor 真分點資料.
+  追蹤 815+ 家券商分行每日買賣超, 辨識真主力 (含外資真實券商如摩根/瑞銀/麥格理).
+  <b style="color:var(--th-green,#22c55e)">點石神券商</b> = 連續 top 買超的鎖籌主力 ·
+  <b style="color:var(--th-orange,#fb923c)">隔日沖</b> = 買進後隔日倒貨 (散戶警示) ·
+  CR5/CR15 = 前 5/15 大買超集中度.
+</p>
+
+<div class="summary">
+  <div class="stat"><div class="stat-val">49</div>
+    <div class="stat-label">已評估</div></div>
+  <div class="stat" style="border-left-color:#22c55e">
+    <div class="stat-val" style="color:var(--th-green,#22c55e)">25</div>
+    <div class="stat-label">🔒 主力鎖籌</div></div>
+  <div class="stat" style="border-left-color:#ef4444">
+    <div class="stat-val" style="color:var(--th-red,#ef4444)">10</div>
+    <div class="stat-label">📤 主力出貨</div></div>
+  <div class="stat" style="border-left-color:#fb923c">
+    <div class="stat-val" style="color:var(--th-orange,#fb923c)">11</div>
+    <div class="stat-label">⚡ 隔日沖盛行</div></div>
+</div>
+
+
+        <h2 style="color:var(--th-green,#22c55e)">🔒 主力鎖籌 (CR15 買超 + 點石神) <span style="color:var(--th-muted,#94a3b8);font-size:14px">(25)</span></h2>
+        <table style="width:100%;border-collapse:collapse;background:var(--th-card,#0f1a2c);border-radius:6px">
+          <tr><th>Symbol</th><th>綜合</th><th style="text-align:right">CR15 買超</th>
+              <th style="text-align:right">CR5 賣超</th><th style="text-align:right">外資 net</th>
+              <th>點石神券商</th></tr>
+          
+    <tr>
+      <td><a href="../dossier/2303.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2303</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">80,750,775</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">19,784,295</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+10,728,124</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">摩根大通(5d) · 港商野村(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2344.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2344</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">71,976,381</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">8,223,265</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+29,375,072</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(3d) · 台灣摩根(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2408.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2408</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">34,919,102</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">3,745,745</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+21,001,492</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(4d) · 瑞銀(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2327.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2327</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">17,006,936</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">11,983,620</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-172,612</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">凱基(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/4958.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">4958</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">10,792,380</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">3,591,933</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-2,045,015</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(4d) · 瑞銀(4d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2382.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2382</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">9,105,655</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">5,391,108</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-3,226,962</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">群益(3d) · 康和(3d) · 富邦(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2330.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2330</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">8,876,343</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">4,272,209</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+1,688,864</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">群益(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2449.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2449</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">6,495,123</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">3,093,531</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+3,046,982</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美林(3d) · 國泰敦南(3d) · 港麥格理(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3105.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3105</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">5,303,265</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">625,703</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+2,632,543</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">摩根士丹利(4d) · 摩根大通(3d) · 凱基台北(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2308.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2308</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">2,236,423</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">1,954,915</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+443,583</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">花旗環球(4d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8046.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8046</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,924,047</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">1,703,181</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+456,262</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">瑞銀(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3006.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3006</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,736,887</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">902,738</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+954,985</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(4d) · 富邦建國(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3035.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3035</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,647,142</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">539,358</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+1,013,831</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">凱基台北(3d) · 美商高盛(3d) · 元大(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2454.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2454</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,374,186</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">930,494</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-261,147</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(3d) · 元大(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/9921.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">9921</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,076,845</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">826,407</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+27,293</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">瑞銀(5d) · 群益大甲(4d) · 美林(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/9914.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">9914</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">891,187</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">548,462</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+266,062</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美林(3d) · 凱基台北(3d) · 摩根大通(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3443.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3443</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">843,549</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">650,891</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-457,697</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">瑞銀(3d) · 永豐金(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3017.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3017</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">790,656</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">553,292</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-58,437</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">摩根大通(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8299.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8299</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">676,811</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">595,391</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-466,521</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">摩根士丹利(3d) · 星洲瑞銀(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2360.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2360</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">631,097</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">567,238</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+269,543</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(5d) · 美商高盛(5d) · 瑞銀(5d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2059.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2059</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">530,948</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">361,722</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+150,047</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">元大(3d) · 凱基台北(3d) · 國泰綜合(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6223.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6223</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">526,393</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">346,387</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-251,487</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">元大(5d) · 美商高盛亞(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/5289.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">5289</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">448,066</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">351,928</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-91,938</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛亞(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3661.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3661</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">324,067</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">229,938</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+55,892</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(4d) · 港麥格理(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/4576.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">4576</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">321,998</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">254,725</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-52,791</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(4d) · 凱基台北(3d) · 摩根大通(3d)</td>
+    </tr>
+        </table>
+
+        <h2 style="color:var(--th-red,#ef4444)">📤 主力出貨 (CR5 賣超) <span style="color:var(--th-muted,#94a3b8);font-size:14px">(10)</span></h2>
+        <table style="width:100%;border-collapse:collapse;background:var(--th-card,#0f1a2c);border-radius:6px">
+          <tr><th>Symbol</th><th>綜合</th><th style="text-align:right">CR15 買超</th>
+              <th style="text-align:right">CR5 賣超</th><th style="text-align:right">外資 net</th>
+              <th>點石神券商</th></tr>
+          
+    <tr>
+      <td><a href="../dossier/2409.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2409</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">15,195,904</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">24,639,941</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-16,192,937</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2313.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2313</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">3,880,130</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">15,090,708</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-13,725,891</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(3d) · 瑞銀(3d) · 美林(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2881.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2881</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">9,116,933</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">14,365,627</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-11,374,691</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">元大(4d) · 群益(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3042.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3042</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">4,657,538</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">13,355,202</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-10,479,005</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">華南永昌(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3231.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3231</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">5,825,856</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">8,822,520</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-3,726,411</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">花旗環球(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8021.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8021</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">2,870,062</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">5,298,794</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-6,116,978</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">—</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6274.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6274</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,065,719</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">1,648,376</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-1,258,873</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">摩根大通(3d) · 國泰綜合(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2368.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2368</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">789,844</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">1,471,212</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-874,965</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(4d) · 富邦(3d) · 元大(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2383.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2383</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">497,281</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">966,430</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-591,858</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美林(3d) · 國票敦北(3d) · 港麥格理(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6669.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6669</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">337,986</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">537,686</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-322,508</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(3d)</td>
+    </tr>
+        </table>
+
+        <h2 style="color:var(--th-blue,#60a5fa)">🌐 外資買超 (外資真券商淨買) <span style="color:var(--th-muted,#94a3b8);font-size:14px">(17)</span></h2>
+        <table style="width:100%;border-collapse:collapse;background:var(--th-card,#0f1a2c);border-radius:6px">
+          <tr><th>Symbol</th><th>綜合</th><th style="text-align:right">CR15 買超</th>
+              <th style="text-align:right">CR5 賣超</th><th style="text-align:right">外資 net</th>
+              <th>點石神券商</th></tr>
+          
+    <tr>
+      <td><a href="../dossier/2344.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2344</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">71,976,381</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">8,223,265</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+29,375,072</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(3d) · 台灣摩根(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2408.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2408</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">34,919,102</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">3,745,745</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+21,001,492</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(4d) · 瑞銀(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2303.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2303</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">80,750,775</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">19,784,295</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+10,728,124</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">摩根大通(5d) · 港商野村(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2449.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2449</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">6,495,123</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">3,093,531</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+3,046,982</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美林(3d) · 國泰敦南(3d) · 港麥格理(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3037.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3037</a></td>
+      <td style="color:var(--th-orange,#fb923c)">⚡ 隔日沖盛行</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">3,569,079</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">638,532</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+2,959,684</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">—</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3105.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3105</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">5,303,265</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">625,703</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+2,632,543</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">摩根士丹利(4d) · 摩根大通(3d) · 凱基台北(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3711.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3711</a></td>
+      <td style="color:var(--th-orange,#fb923c)">⚡ 隔日沖盛行</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">9,740,706</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">5,819,569</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+1,955,405</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">—</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2330.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2330</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">8,876,343</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">4,272,209</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+1,688,864</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">群益(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3035.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3035</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,647,142</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">539,358</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+1,013,831</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">凱基台北(3d) · 美商高盛(3d) · 元大(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3006.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3006</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,736,887</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">902,738</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+954,985</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(4d) · 富邦建國(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8046.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8046</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,924,047</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">1,703,181</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+456,262</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">瑞銀(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2308.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2308</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">2,236,423</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">1,954,915</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+443,583</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">花旗環球(4d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2360.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2360</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">631,097</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">567,238</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+269,543</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(5d) · 美商高盛(5d) · 瑞銀(5d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/9914.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">9914</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">891,187</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">548,462</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+266,062</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美林(3d) · 凱基台北(3d) · 摩根大通(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2059.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2059</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">530,948</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">361,722</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+150,047</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">元大(3d) · 凱基台北(3d) · 國泰綜合(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3661.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3661</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">324,067</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">229,938</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+55,892</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(4d) · 港麥格理(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/9921.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">9921</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,076,845</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">826,407</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+27,293</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">瑞銀(5d) · 群益大甲(4d) · 美林(3d)</td>
+    </tr>
+        </table>
+
+        <h2 style="color:var(--th-orange,#fb923c)">⚡ 隔日沖警示 (44)</h2>
+        <table style="width:100%;border-collapse:collapse;background:var(--th-card,#0f1a2c);border-radius:6px">
+          <tr><th>Symbol</th><th>券商</th><th>買進日</th><th>倒貨日</th></tr>
+          <tr><td><a href='../dossier/2049.html' style='color:var(--th-cyan,#7dd3fc)'>2049</a></td><td>瑞銀</td><td>06-10 買 +65,700</td><td>06-11 賣 -84,000</td></tr><tr><td><a href='../dossier/2049.html' style='color:var(--th-cyan,#7dd3fc)'>2049</a></td><td>富邦</td><td>06-09 買 +229,683</td><td>06-10 賣 -152,519</td></tr><tr><td><a href='../dossier/2059.html' style='color:var(--th-cyan,#7dd3fc)'>2059</a></td><td>台灣摩根</td><td>06-11 買 +26,438</td><td>06-12 賣 -100,998</td></tr><tr><td><a href='../dossier/2059.html' style='color:var(--th-cyan,#7dd3fc)'>2059</a></td><td>凱基台北</td><td>06-11 買 +32,068</td><td>06-12 賣 -99,176</td></tr><tr><td><a href='../dossier/2303.html' style='color:var(--th-cyan,#7dd3fc)'>2303</a></td><td>元大</td><td>06-09 買 +12,422,528</td><td>06-10 賣 -21,238,669</td></tr><tr><td><a href='../dossier/2308.html' style='color:var(--th-cyan,#7dd3fc)'>2308</a></td><td>瑞銀</td><td>06-11 買 +501,723</td><td>06-12 賣 -1,038,817</td></tr><tr><td><a href='../dossier/2308.html' style='color:var(--th-cyan,#7dd3fc)'>2308</a></td><td>元大</td><td>06-09 買 +1,394,260</td><td>06-10 賣 -1,475,768</td></tr><tr><td><a href='../dossier/2313.html' style='color:var(--th-cyan,#7dd3fc)'>2313</a></td><td>美商高盛</td><td>06-11 買 +4,401,780</td><td>06-12 賣 -5,951,776</td></tr><tr><td><a href='../dossier/2317.html' style='color:var(--th-cyan,#7dd3fc)'>2317</a></td><td>元大</td><td>06-11 買 +1,306,907</td><td>06-12 賣 -1,854,247</td></tr><tr><td><a href='../dossier/2317.html' style='color:var(--th-cyan,#7dd3fc)'>2317</a></td><td>花旗環球</td><td>06-10 買 +1,765,000</td><td>06-11 賣 -1,394,934</td></tr><tr><td><a href='../dossier/2330.html' style='color:var(--th-cyan,#7dd3fc)'>2330</a></td><td>永豐匯立</td><td>06-10 買 +786,959</td><td>06-11 賣 -454,445</td></tr><tr><td><a href='../dossier/2330.html' style='color:var(--th-cyan,#7dd3fc)'>2330</a></td><td>富邦</td><td>06-09 買 +1,308,840</td><td>06-10 賣 -687,411</td></tr><tr><td><a href='../dossier/2344.html' style='color:var(--th-cyan,#7dd3fc)'>2344</a></td><td>台灣摩根</td><td>06-10 買 +7,768,234</td><td>06-11 賣 -5,673,765</td></tr><tr><td><a href='../dossier/2344.html' style='color:var(--th-cyan,#7dd3fc)'>2344</a></td><td>元大館前</td><td>06-09 買 +4,800,233</td><td>06-10 賣 -4,491,970</td></tr><tr><td><a href='../dossier/2345.html' style='color:var(--th-cyan,#7dd3fc)'>2345</a></td><td>台新證券</td><td>06-10 買 +83,024</td><td>06-11 賣 -82,282</td></tr><tr><td><a href='../dossier/2345.html' style='color:var(--th-cyan,#7dd3fc)'>2345</a></td><td>港麥格理</td><td>06-10 買 +82,457</td><td>06-11 賣 -56,700</td></tr><tr><td><a href='../dossier/2360.html' style='color:var(--th-cyan,#7dd3fc)'>2360</a></td><td>美林</td><td>06-11 買 +47,000</td><td>06-12 賣 -127,000</td></tr><tr><td><a href='../dossier/2360.html' style='color:var(--th-cyan,#7dd3fc)'>2360</a></td><td>大和國泰</td><td>06-10 買 +37,000</td><td>06-11 賣 -103,000</td></tr><tr><td><a href='../dossier/2368.html' style='color:var(--th-cyan,#7dd3fc)'>2368</a></td><td>美商高盛</td><td>06-11 買 +609,517</td><td>06-12 賣 -427,949</td></tr><tr><td><a href='../dossier/2368.html' style='color:var(--th-cyan,#7dd3fc)'>2368</a></td><td>統一中壢</td><td>06-10 買 +248,987</td><td>06-11 賣 -247,924</td></tr><tr><td><a href='../dossier/2382.html' style='color:var(--th-cyan,#7dd3fc)'>2382</a></td><td>港商野村</td><td>06-11 買 +623,571</td><td>06-12 賣 -1,193,009</td></tr><tr><td><a href='../dossier/2382.html' style='color:var(--th-cyan,#7dd3fc)'>2382</a></td><td>國票敦北</td><td>06-10 買 +2,506,291</td><td>06-11 賣 -1,494,982</td></tr><tr><td><a href='../dossier/2383.html' style='color:var(--th-cyan,#7dd3fc)'>2383</a></td><td>元大</td><td>06-11 買 +109,833</td><td>06-12 賣 -59,727</td></tr><tr><td><a href='../dossier/2409.html' style='color:var(--th-cyan,#7dd3fc)'>2409</a></td><td>摩根大通</td><td>06-10 買 +7,152,000</td><td>06-11 賣 -7,002,300</td></tr><tr><td><a href='../dossier/2449.html' style='color:var(--th-cyan,#7dd3fc)'>2449</a></td><td>元大和平</td><td>06-10 買 +594,208</td><td>06-11 賣 -1,249,720</td></tr><tr><td><a href='../dossier/2449.html' style='color:var(--th-cyan,#7dd3fc)'>2449</a></td><td>美林</td><td>06-08 買 +973,000</td><td>06-09 賣 -487,000</td></tr><tr><td><a href='../dossier/2454.html' style='color:var(--th-cyan,#7dd3fc)'>2454</a></td><td>摩根大通</td><td>06-10 買 +421,509</td><td>06-11 賣 -1,648,917</td></tr><tr><td><a href='../dossier/2454.html' style='color:var(--th-cyan,#7dd3fc)'>2454</a></td><td>富邦仁愛</td><td>06-09 買 +188,045</td><td>06-10 賣 -169,003</td></tr><tr><td><a href='../dossier/2881.html' style='color:var(--th-cyan,#7dd3fc)'>2881</a></td><td>統一</td><td>06-11 買 +1,787,538</td><td>06-12 賣 -1,281,521</td></tr><tr><td><a href='../dossier/2881.html' style='color:var(--th-cyan,#7dd3fc)'>2881</a></td><td>摩根大通</td><td>06-09 買 +2,099,000</td><td>06-10 賣 -1,701,000</td></tr><tr><td><a href='../dossier/3006.html' style='color:var(--th-cyan,#7dd3fc)'>3006</a></td><td>凱基台北</td><td>06-08 買 +451,061</td><td>06-09 賣 -385,140</td></tr><tr><td><a href='../dossier/3006.html' style='color:var(--th-cyan,#7dd3fc)'>3006</a></td><td>摩根大通</td><td>06-08 買 +401,000</td><td>06-09 賣 -404,000</td></tr><tr><td><a href='../dossier/3008.html' style='color:var(--th-cyan,#7dd3fc)'>3008</a></td><td>統一城中</td><td>06-10 買 +106,326</td><td>06-11 賣 -160,136</td></tr><tr><td><a href='../dossier/3008.html' style='color:var(--th-cyan,#7dd3fc)'>3008</a></td><td>美林</td><td>06-10 買 +143,000</td><td>06-11 賣 -99,000</td></tr><tr><td><a href='../dossier/3017.html' style='color:var(--th-cyan,#7dd3fc)'>3017</a></td><td>台灣摩根</td><td>06-11 買 +185,310</td><td>06-12 賣 -225,593</td></tr><tr><td><a href='../dossier/3017.html' style='color:var(--th-cyan,#7dd3fc)'>3017</a></td><td>美商高盛</td><td>06-11 買 +186,317</td><td>06-12 賣 -108,171</td></tr><tr><td><a href='../dossier/3035.html' style='color:var(--th-cyan,#7dd3fc)'>3035</a></td><td>富邦台北</td><td>06-09 買 +381,508</td><td>06-10 賣 -399,340</td></tr><tr><td><a href='../dossier/3035.html' style='color:var(--th-cyan,#7dd3fc)'>3035</a></td><td>統一</td><td>06-09 買 +96,728</td><td>06-10 賣 -51,808</td></tr><tr><td><a href='../dossier/3037.html' style='color:var(--th-cyan,#7dd3fc)'>3037</a></td><td>凱基台北</td><td>06-11 買 +493,930</td><td>06-12 賣 -318,330</td></tr><tr><td><a href='../dossier/3037.html' style='color:var(--th-cyan,#7dd3fc)'>3037</a></td><td>凱基站前</td><td>06-10 買 +705,391</td><td>06-11 賣 -389,649</td></tr><tr><td><a href='../dossier/3042.html' style='color:var(--th-cyan,#7dd3fc)'>3042</a></td><td>台灣摩根</td><td>06-11 買 +1,907,000</td><td>06-12 賣 -3,112,000</td></tr><tr><td><a href='../dossier/3042.html' style='color:var(--th-cyan,#7dd3fc)'>3042</a></td><td>凱基信義</td><td>06-11 買 +3,883,960</td><td>06-12 賣 -3,928,960</td></tr><tr><td><a href='../dossier/3105.html' style='color:var(--th-cyan,#7dd3fc)'>3105</a></td><td>星洲瑞銀</td><td>06-10 買 +372,590</td><td>06-11 賣 -1,071,000</td></tr><tr><td><a href='../dossier/3105.html' style='color:var(--th-cyan,#7dd3fc)'>3105</a></td><td>台新台北</td><td>06-09 買 +375,800</td><td>06-10 賣 -627,223</td></tr><tr><td><a href='../dossier/3189.html' style='color:var(--th-cyan,#7dd3fc)'>3189</a></td><td>摩根大通</td><td>06-11 買 +576,090</td><td>06-12 賣 -1,457,345</td></tr><tr><td><a href='../dossier/3231.html' style='color:var(--th-cyan,#7dd3fc)'>3231</a></td><td>凱基台北</td><td>06-11 買 +1,031,360</td><td>06-12 賣 -1,240,957</td></tr><tr><td><a href='../dossier/3443.html' style='color:var(--th-cyan,#7dd3fc)'>3443</a></td><td>凱基台北</td><td>06-11 買 +56,887</td><td>06-12 賣 -63,162</td></tr><tr><td><a href='../dossier/3443.html' style='color:var(--th-cyan,#7dd3fc)'>3443</a></td><td>港麥格理</td><td>06-09 買 +54,000</td><td>06-10 賣 -476,000</td></tr><tr><td><a href='../dossier/3653.html' style='color:var(--th-cyan,#7dd3fc)'>3653</a></td><td>美商高盛</td><td>06-08 買 +46,229</td><td>06-09 賣 -146,598</td></tr><tr><td><a href='../dossier/3653.html' style='color:var(--th-cyan,#7dd3fc)'>3653</a></td><td>瑞銀</td><td>06-08 買 +86,188</td><td>06-09 賣 -81,629</td></tr><tr><td><a href='../dossier/3661.html' style='color:var(--th-cyan,#7dd3fc)'>3661</a></td><td>凱基台北</td><td>06-08 買 +44,910</td><td>06-09 賣 -67,939</td></tr><tr><td><a href='../dossier/3665.html' style='color:var(--th-cyan,#7dd3fc)'>3665</a></td><td>美商高盛</td><td>06-09 買 +113,554</td><td>06-11 賣 -166,496</td></tr><tr><td><a href='../dossier/3665.html' style='color:var(--th-cyan,#7dd3fc)'>3665</a></td><td>瑞銀</td><td>06-09 買 +126,357</td><td>06-11 賣 -130,585</td></tr><tr><td><a href='../dossier/3711.html' style='color:var(--th-cyan,#7dd3fc)'>3711</a></td><td>上海匯豐</td><td>06-11 買 +479,000</td><td>06-12 賣 -282,000</td></tr><tr><td><a href='../dossier/3711.html' style='color:var(--th-cyan,#7dd3fc)'>3711</a></td><td>瑞銀</td><td>06-08 買 +1,248,391</td><td>06-09 賣 -970,481</td></tr><tr><td><a href='../dossier/4576.html' style='color:var(--th-cyan,#7dd3fc)'>4576</a></td><td>摩根大通</td><td>06-11 買 +135,000</td><td>06-12 賣 -83,000</td></tr><tr><td><a href='../dossier/4576.html' style='color:var(--th-cyan,#7dd3fc)'>4576</a></td><td>富邦敦南</td><td>06-11 買 +36,750</td><td>06-12 賣 -36,750</td></tr><tr><td><a href='../dossier/5289.html' style='color:var(--th-cyan,#7dd3fc)'>5289</a></td><td>凱基</td><td>06-10 買 +106,977</td><td>06-11 賣 -255,240</td></tr><tr><td><a href='../dossier/5289.html' style='color:var(--th-cyan,#7dd3fc)'>5289</a></td><td>凱基信義</td><td>06-09 買 +101,725</td><td>06-10 賣 -106,515</td></tr><tr><td><a href='../dossier/6147.html' style='color:var(--th-cyan,#7dd3fc)'>6147</a></td><td>美林證券</td><td>06-11 買 +1,537,000</td><td>06-12 賣 -856,000</td></tr><tr><td><a href='../dossier/6147.html' style='color:var(--th-cyan,#7dd3fc)'>6147</a></td><td>國泰敦南</td><td>06-10 買 +801,859</td><td>06-11 賣 -524,585</td></tr><tr><td><a href='../dossier/6223.html' style='color:var(--th-cyan,#7dd3fc)'>6223</a></td><td>摩根士丹利</td><td>06-11 買 +60,350</td><td>06-12 賣 -136,000</td></tr><tr><td><a href='../dossier/6223.html' style='color:var(--th-cyan,#7dd3fc)'>6223</a></td><td>凱基台北</td><td>06-08 買 +35,039</td><td>06-09 賣 -22,029</td></tr><tr><td><a href='../dossier/6239.html' style='color:var(--th-cyan,#7dd3fc)'>6239</a></td><td>台灣摩根</td><td>06-11 買 +1,871,000</td><td>06-12 賣 -3,709,000</td></tr><tr><td><a href='../dossier/6274.html' style='color:var(--th-cyan,#7dd3fc)'>6274</a></td><td>美林證券</td><td>06-11 買 +230,000</td><td>06-12 賣 -346,000</td></tr><tr><td><a href='../dossier/6274.html' style='color:var(--th-cyan,#7dd3fc)'>6274</a></td><td>星洲瑞銀</td><td>06-11 買 +294,000</td><td>06-12 賣 -225,000</td></tr><tr><td><a href='../dossier/8021.html' style='color:var(--th-cyan,#7dd3fc)'>8021</a></td><td>元大</td><td>06-10 買 +1,903,473</td><td>06-11 賣 -1,290,756</td></tr><tr><td><a href='../dossier/8021.html' style='color:var(--th-cyan,#7dd3fc)'>8021</a></td><td>台新台北</td><td>06-09 買 +1,837,900</td><td>06-10 賣 -1,827,084</td></tr><tr><td><a href='../dossier/8043.html' style='color:var(--th-cyan,#7dd3fc)'>8043</a></td><td>美商高盛亞</td><td>06-10 買 +845,080</td><td>06-11 賣 -570,195</td></tr><tr><td><a href='../dossier/8043.html' style='color:var(--th-cyan,#7dd3fc)'>8043</a></td><td>星洲瑞銀</td><td>06-10 買 +1,762,000</td><td>06-11 賣 -1,435,000</td></tr><tr><td><a href='../dossier/8046.html' style='color:var(--th-cyan,#7dd3fc)'>8046</a></td><td>凱基台北</td><td>06-09 買 +391,502</td><td>06-10 賣 -486,817</td></tr><tr><td><a href='../dossier/8299.html' style='color:var(--th-cyan,#7dd3fc)'>8299</a></td><td>摩根士丹利</td><td>06-11 買 +140,840</td><td>06-12 賣 -91,000</td></tr><tr><td><a href='../dossier/8299.html' style='color:var(--th-cyan,#7dd3fc)'>8299</a></td><td>凱基台北</td><td>06-08 買 +243,341</td><td>06-09 賣 -306,069</td></tr><tr><td><a href='../dossier/8996.html' style='color:var(--th-cyan,#7dd3fc)'>8996</a></td><td>美林</td><td>06-11 買 +205,000</td><td>06-12 賣 -208,000</td></tr><tr><td><a href='../dossier/8996.html' style='color:var(--th-cyan,#7dd3fc)'>8996</a></td><td>國泰綜合</td><td>06-10 買 +363,992</td><td>06-11 賣 -189,996</td></tr><tr><td><a href='../dossier/9914.html' style='color:var(--th-cyan,#7dd3fc)'>9914</a></td><td>富邦</td><td>06-11 買 +294,990</td><td>06-12 賣 -287,162</td></tr><tr><td><a href='../dossier/9914.html' style='color:var(--th-cyan,#7dd3fc)'>9914</a></td><td>美商高盛</td><td>06-10 買 +136,348</td><td>06-11 賣 -161,930</td></tr><tr><td><a href='../dossier/9921.html' style='color:var(--th-cyan,#7dd3fc)'>9921</a></td><td>港商野村</td><td>06-11 買 +385,000</td><td>06-12 賣 -400,000</td></tr><tr><td><a href='../dossier/9921.html' style='color:var(--th-cyan,#7dd3fc)'>9921</a></td><td>摩根大通</td><td>06-11 買 +131,499</td><td>06-12 賣 -106,707</td></tr>
+        </table>
+
+        <h2 style="color:var(--th-purple,#8b5cf6)">🏆 全部 (依 CR15 買超) <span style="color:var(--th-muted,#94a3b8);font-size:14px">(49)</span></h2>
+        <table style="width:100%;border-collapse:collapse;background:var(--th-card,#0f1a2c);border-radius:6px">
+          <tr><th>Symbol</th><th>綜合</th><th style="text-align:right">CR15 買超</th>
+              <th style="text-align:right">CR5 賣超</th><th style="text-align:right">外資 net</th>
+              <th>點石神券商</th></tr>
+          
+    <tr>
+      <td><a href="../dossier/2303.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2303</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">80,750,775</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">19,784,295</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+10,728,124</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">摩根大通(5d) · 港商野村(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2344.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2344</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">71,976,381</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">8,223,265</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+29,375,072</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(3d) · 台灣摩根(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2408.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2408</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">34,919,102</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">3,745,745</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+21,001,492</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(4d) · 瑞銀(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2327.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2327</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">17,006,936</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">11,983,620</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-172,612</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">凱基(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2409.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2409</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">15,195,904</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">24,639,941</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-16,192,937</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/4958.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">4958</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">10,792,380</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">3,591,933</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-2,045,015</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(4d) · 瑞銀(4d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6239.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6239</a></td>
+      <td style="color:var(--th-muted,#94a3b8)">• 籌碼中性</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">10,565,777</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">14,770,045</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-8,787,459</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(4d) · 美商高盛(4d) · 美林(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2317.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2317</a></td>
+      <td style="color:var(--th-orange,#fb923c)">⚡ 隔日沖盛行</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">10,159,898</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">13,870,093</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-1,863,630</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(4d) · 花旗環球(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3711.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3711</a></td>
+      <td style="color:var(--th-orange,#fb923c)">⚡ 隔日沖盛行</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">9,740,706</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">5,819,569</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+1,955,405</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">—</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2881.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2881</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">9,116,933</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">14,365,627</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-11,374,691</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">元大(4d) · 群益(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2382.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2382</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">9,105,655</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">5,391,108</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-3,226,962</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">群益(3d) · 康和(3d) · 富邦(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2330.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2330</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">8,876,343</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">4,272,209</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+1,688,864</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">群益(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2449.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2449</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">6,495,123</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">3,093,531</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+3,046,982</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美林(3d) · 國泰敦南(3d) · 港麥格理(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6147.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6147</a></td>
+      <td style="color:var(--th-orange,#fb923c)">⚡ 隔日沖盛行</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">5,954,138</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">6,090,683</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-3,255,854</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">摩根大通(3d) · 摩根士丹利(3d) · 凱基台北(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3231.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3231</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">5,825,856</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">8,822,520</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-3,726,411</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">花旗環球(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3105.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3105</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">5,303,265</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">625,703</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+2,632,543</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">摩根士丹利(4d) · 摩根大通(3d) · 凱基台北(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3189.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3189</a></td>
+      <td style="color:var(--th-muted,#94a3b8)">• 籌碼中性</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">4,706,826</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">4,981,625</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-2,741,744</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美林(5d) · 摩根大通(4d) · 美商高盛(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3042.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3042</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">4,657,538</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">13,355,202</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-10,479,005</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">華南永昌(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2313.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2313</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">3,880,130</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">15,090,708</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-13,725,891</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(3d) · 瑞銀(3d) · 美林(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3037.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3037</a></td>
+      <td style="color:var(--th-orange,#fb923c)">⚡ 隔日沖盛行</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">3,569,079</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">638,532</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+2,959,684</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">—</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8021.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8021</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">2,870,062</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">5,298,794</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-6,116,978</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">—</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2308.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2308</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">2,236,423</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">1,954,915</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+443,583</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">花旗環球(4d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8046.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8046</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,924,047</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">1,703,181</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+456,262</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">瑞銀(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3006.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3006</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,736,887</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">902,738</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+954,985</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(4d) · 富邦建國(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3035.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3035</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,647,142</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">539,358</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+1,013,831</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">凱基台北(3d) · 美商高盛(3d) · 元大(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2454.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2454</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,374,186</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">930,494</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-261,147</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(3d) · 元大(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8043.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8043</a></td>
+      <td style="color:var(--th-orange,#fb923c)">⚡ 隔日沖盛行</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,309,181</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">1,381,052</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-699,482</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">—</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3665.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3665</a></td>
+      <td style="color:var(--th-orange,#fb923c)">⚡ 隔日沖盛行</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,300,831</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">618,320</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-108,156</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">—</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/9921.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">9921</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,076,845</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">826,407</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+27,293</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">瑞銀(5d) · 群益大甲(4d) · 美林(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6274.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6274</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">1,065,719</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">1,648,376</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-1,258,873</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">摩根大通(3d) · 國泰綜合(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/9914.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">9914</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">891,187</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">548,462</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+266,062</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美林(3d) · 凱基台北(3d) · 摩根大通(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3443.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3443</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">843,549</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">650,891</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-457,697</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">瑞銀(3d) · 永豐金(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3017.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3017</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">790,656</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">553,292</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-58,437</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">摩根大通(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2368.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2368</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">789,844</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">1,471,212</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-874,965</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(4d) · 富邦(3d) · 元大(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8299.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8299</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">676,811</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">595,391</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-466,521</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">摩根士丹利(3d) · 星洲瑞銀(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2360.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2360</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">631,097</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">567,238</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+269,543</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(5d) · 美商高盛(5d) · 瑞銀(5d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8996.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8996</a></td>
+      <td style="color:var(--th-orange,#fb923c)">⚡ 隔日沖盛行</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">612,750</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">698,331</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-709,872</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">—</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2049.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2049</a></td>
+      <td style="color:var(--th-orange,#fb923c)">⚡ 隔日沖盛行</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">562,675</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">596,408</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-80,394</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2345.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2345</a></td>
+      <td style="color:var(--th-orange,#fb923c)">⚡ 隔日沖盛行</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">554,535</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">617,241</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-140,332</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(3d) · 凱基台北(3d) · 摩根大通(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3008.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3008</a></td>
+      <td style="color:var(--th-orange,#fb923c)">⚡ 隔日沖盛行</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">534,935</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">591,315</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-536,971</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">元大(3d) · 凱基三多(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3653.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3653</a></td>
+      <td style="color:var(--th-orange,#fb923c)">⚡ 隔日沖盛行</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">532,537</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">432,495</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-24,470</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">—</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2059.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2059</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">530,948</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">361,722</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+150,047</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">元大(3d) · 凱基台北(3d) · 國泰綜合(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6223.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6223</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">526,393</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">346,387</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-251,487</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">元大(5d) · 美商高盛亞(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2383.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2383</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">497,281</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">966,430</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-591,858</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美林(3d) · 國票敦北(3d) · 港麥格理(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/5289.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">5289</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">448,066</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">351,928</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-91,938</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛亞(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3081.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3081</a></td>
+      <td style="color:var(--th-muted,#94a3b8)">• 籌碼中性</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">394,729</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">456,650</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-93,193</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">—</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6669.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6669</a></td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">337,986</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">537,686</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-322,508</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3661.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3661</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">324,067</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">229,938</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">+55,892</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">台灣摩根(4d) · 港麥格理(3d)</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/4576.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">4576</a></td>
+      <td style="color:var(--th-green,#22c55e)">🔒 主力鎖籌</td>
+      <td style="text-align:right;color:var(--th-green,#22c55e)">321,998</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">254,725</td>
+      <td style="text-align:right;color:var(--th-red,#ef4444)">-52,791</td>
+      <td style="font-size:11px;color:var(--th-green,#86efac)">美商高盛(4d) · 凱基台北(3d) · 摩根大通(3d)</td>
+    </tr>
+        </table>
+
+<p style="color:var(--th-faint,#64748b);font-size:11px;margin-top:40px">
+  資料: FinMind TaiwanStockTradingDailyReport (Sponsor) · 單日查詢 · 5 日回看 ·
+  涵蓋 custom_pool · 外資券商以名稱關鍵字判定 (摩根/瑞銀/美林/野村/麥格理 等)
+</p>
+
+<style id='MS_N_RRR_tooltip_inject_v2'>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: var(--th-bg,#0f172a);
+  color: var(--th-text,#e2e8f0);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid var(--th-border2,#475569);
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>

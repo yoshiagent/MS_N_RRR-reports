@@ -1,0 +1,1112 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<link rel="stylesheet" href="../assets/site.css?v=733b1f50"><meta charset="utf-8">
+<title>籌碼集中度排行 (Chip Concentration)</title>
+<style>
+  body { background:var(--th-bg,#0f172a); color:var(--th-text,#e2e8f0);
+         font-family:Segoe UI,system-ui,sans-serif;
+         padding:20px; max-width:1200px; margin:0 auto }
+  h1 { color:var(--th-green,#10b981); border-bottom:2px solid var(--th-green,#10b981); padding-bottom:8px }
+  h2 { margin-top:30px; padding-bottom:6px;
+       border-bottom:1px dashed var(--th-border2,#334155); font-size:18px }
+  table { width:100%; border-collapse:collapse;
+         background:var(--th-card,#0f1a2c); margin-top:10px }
+  th, td { padding:6px 10px; border-bottom:1px solid var(--th-border2,#334155);
+          font-size:12px; text-align:left }
+  th { background:var(--th-purple-bg,#312e81); color:var(--th-amber,#fbbf24) }
+  tr:hover { background:var(--th-card,#1e293b) }
+  .summary { display:grid; grid-template-columns:repeat(4,1fr);
+            gap:10px; margin:20px 0 }
+  .stat { background:var(--th-card,#1e293b); padding:14px; border-radius:6px;
+         border-left:4px solid var(--th-green,#10b981) }
+  .stat-val { color:var(--th-green,#10b981); font-size:24px; font-weight:bold }
+  .stat-label { color:var(--th-muted,#94a3b8); font-size:12px }
+  a { color:var(--th-cyan,#7dd3fc) }
+</style></head><body>
+<!-- GLOBAL_NAV_START -->
+<nav class="gnav" id="gnav">
+  <a class="gnav-home" href="../index.html">🏠 主控台</a>
+  <div class='gnav-dd'><button class='gnav-btn' data-dd='0'>🏢 組織架構 ▾</button><div class='gnav-panel' id='gnav-p0'><a class='gnav-it' href='../org/organization.html'>🏢 組織架構圖</a><a class='gnav-it' href='../org/system_flow.html'>🔄 系統流程圖</a><div class='gnav-hd'>─ 投資長 CIO ─</div><a class='gnav-it' href='../market/ms_dashboard.html'>🎩 MS 投資長儀表板</a><div class='gnav-hd'>─ 研究部 ─</div><a class='gnav-it' href='../org/iue.html'>🏛 投資宇宙引擎 IUE</a><a class='gnav-it' href='../org/iue_journey.html'>📜 IUE 股票履歷</a><div class='gnav-hd'>─ 評審 / 決策 ─</div><a class='gnav-it' href='../org/iab.html'>🎖 外聘評審委員會 IAB</a><a class='gnav-it' href='../org/master_score.html'>👥 9 名人評分</a><a class='gnav-it' href='../org/capital_committee.html'>🗳 資金持有委員會</a><div class='gnav-hd'>─ 基金管理部 ─</div><a class='gnav-it' href='../org/fund_managers.html'>💼 CIO × 經理競標</a><a class='gnav-it' href='../org/stock_ops.html'>🎯 操作 Agent (5 階段)</a><a class='gnav-it' href='../org/pm_custom.html'>⭐ 自選股 PM</a><a class='gnav-it' href='../org/pm_trend_growth.html'>💹 趨勢成長 PM</a><a class='gnav-it' href='../org/paper_portfolio.html'>📈 模擬投資組合</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='1'>🔬 分析面向 ▾</button><div class='gnav-panel' id='gnav-p1'><div class='gnav-hd'>─ 技術面 ─</div><a class='gnav-it' href='../tech/n_shape.html'>📦 多時段箱型</a><a class='gnav-it' href='../tech/box_structure.html'>🧱 股票箱結構</a><a class='gnav-it' href='../tech/shsl.html'>⛰ SH/SL 擺動</a><a class='gnav-it' href='../tech/wyckoff_phase.html'>🌀 Wyckoff 階段</a><a class='gnav-it' href='../tech/n_pattern.html'>📐 N 形態</a><a class='gnav-it' href='../tech/structure_chart.html'>🗺 結構圖</a><a class='gnav-it' href='../tech/state_grid_preview.html'>🔳 狀態網格</a><div class='gnav-hd'>─ 籌碼面 ─</div><a class='gnav-it' href='../chip/chip_concentration.html'>🎯 籌碼集中度</a><a class='gnav-it' href='../chip/broker_branch.html'>🏦 券商分點</a><a class='gnav-it' href='../chip/capital_structure.html'>🧬 資金結構體檢</a><a class='gnav-it' href='../chip/chr.html'>🔄 CHR 持有者輪動</a><a class='gnav-it' href='../chip/cmg.html'>💰 CMG 資金流向</a><a class='gnav-it' href='../chip/cga.html'>📊 CGA 籌碼集中</a><div class='gnav-hd'>─ 基本面 ─</div><a class='gnav-it' href='../fund/fundamental_score.html'>🧪 基本面 5 維 (PEG/FCF/ROE)</a><div class='gnav-hd'>─ 市場結構 ─</div><a class='gnav-it' href='../market/ms_dashboard.html'>🎩 MS 儀表板</a><a class='gnav-it' href='../market/hotflow.html'>🔥 熱門流向 HotFlow</a><a class='gnav-it' href='../market/sector_rotation.html'>🌐 族群輪動 RRG</a><a class='gnav-it' href='../market/sector_constituents.html'>🗂 族群成分股</a><a class='gnav-it' href='../market/mainstream_pool.html'>🏊 主流股池</a><a class='gnav-it' href='../market/strong_stocks.html'>💪 強勢股</a><div class='gnav-hd'>─ 股池 ─</div><a class='gnav-it' href='../pool/custom_pool.html'>⭐ 自選股池</a><a class='gnav-it' href='../pool/accumulation_pool.html'>🧲 吸籌池</a><a class='gnav-it' href='../pool/distribution_score.html'>🌋 派發評分</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='2'>🔁 配對交易 ▾</button><div class='gnav-panel' id='gnav-p2'><a class='gnav-it' href='../pairs/rr.html'>🔁 RSR 配對</a><a class='gnav-it' href='../pairs/rrr.html'>📐 RRR 配對</a><a class='gnav-it' href='../pairs/rrr_resonance.html'>🌀 RRR Resonance</a><a class='gnav-it' href='../pairs/dynamic_rr.html'>⚡ 動態 RSR</a><a class='gnav-it' href='../pairs/custom_pairs.html'>⭐ 自選配對</a><a class='gnav-it' href='../pairs/rcga_overview.html'>🚦 RCGA 總覽</a><a class='gnav-it' href='../pairs/rotation_signals.html'>🔄 換股訊號</a><a class='gnav-it' href='../pairs/rotation_confirm_log.html'>📋 換股確認紀錄</a><a class='gnav-it' href='../pairs/rotation_case_study.html'>📚 換股案例</a><a class='gnav-it' href='../pairs/backtest.html'>📊 回測</a><div class='gnav-hd'>─ 配對圖 ─</div><a class='gnav-it' href='../pairs/nan_xin_chart.html'>南電 / 欣興</a><a class='gnav-it' href='../pairs/jh_zy_chart.html'>晶豪科 / 智原</a><a class='gnav-it' href='../pairs/pair_2049_4576.html'>上銀 / 大銀微</a><a class='gnav-it' href='../pairs/pair_2344_2408.html'>華邦電 / 南亞科</a><a class='gnav-it' href='../pairs/pair_9921_9914.html'>巨大 / 美利達</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='3'>⚙ 系統 ▾</button><div class='gnav-panel' id='gnav-p3'><a class='gnav-it' href='../sys/todo.html'>📝 待辦事項</a><a class='gnav-it' href='../sys/db_health.html'>🩺 資料庫健康</a><a class='gnav-it' href='../sys/fs_compare.html'>🆚 FS 對照</a><a class='gnav-it' href='../sys/nomenclature.html'>📖 名詞對照表</a><a class='gnav-it' href='../docs/V2_ARCHITECTURE.html'>📋 V.2 架構文件</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='4'>📂 個股卷宗 ▾</button><div class='gnav-panel' id='gnav-p4'><a class='gnav-it' href='../dossier/1503.html'>1503 士電</a><a class='gnav-it' href='../dossier/2049.html'>2049 上銀</a><a class='gnav-it' href='../dossier/2330.html'>2330 台積電</a><a class='gnav-it' href='../dossier/2344.html'>2344 華邦電</a><a class='gnav-it' href='../dossier/2359.html'>2359 所羅門</a><a class='gnav-it' href='../dossier/2408.html'>2408 南亞科</a><a class='gnav-it' href='../dossier/3006.html'>3006 晶豪科</a><a class='gnav-it' href='../dossier/3035.html'>3035 智原</a><a class='gnav-it' href='../dossier/3037.html'>3037 欣興</a><a class='gnav-it' href='../dossier/4576.html'>4576 大銀微系統</a><a class='gnav-it' href='../dossier/8046.html'>8046 南電</a><a class='gnav-it' href='../dossier/9914.html'>9914 美利達</a><a class='gnav-it' href='../dossier/9921.html'>9921 巨大</a></div></div>
+  <div class="gnav-search">
+    <input id="gnav-q" type="text" placeholder="🔍 找報告…" autocomplete="off">
+    <div id="gnav-sr"></div>
+  </div>
+</nav>
+<script>
+(function(){
+  var DATA="🏢 組織架構圖||../org/organization.html;;🔄 系統流程圖||../org/system_flow.html;;🎩 MS 投資長儀表板||../market/ms_dashboard.html;;🏛 投資宇宙引擎 IUE||../org/iue.html;;📜 IUE 股票履歷||../org/iue_journey.html;;🎖 外聘評審委員會 IAB||../org/iab.html;;👥 9 名人評分||../org/master_score.html;;🗳 資金持有委員會||../org/capital_committee.html;;💼 CIO × 經理競標||../org/fund_managers.html;;🎯 操作 Agent (5 階段)||../org/stock_ops.html;;⭐ 自選股 PM||../org/pm_custom.html;;💹 趨勢成長 PM||../org/pm_trend_growth.html;;📈 模擬投資組合||../org/paper_portfolio.html;;📦 多時段箱型||../tech/n_shape.html;;🧱 股票箱結構||../tech/box_structure.html;;⛰ SH/SL 擺動||../tech/shsl.html;;🌀 Wyckoff 階段||../tech/wyckoff_phase.html;;📐 N 形態||../tech/n_pattern.html;;🗺 結構圖||../tech/structure_chart.html;;🔳 狀態網格||../tech/state_grid_preview.html;;🎯 籌碼集中度||../chip/chip_concentration.html;;🏦 券商分點||../chip/broker_branch.html;;🧬 資金結構體檢||../chip/capital_structure.html;;🔄 CHR 持有者輪動||../chip/chr.html;;💰 CMG 資金流向||../chip/cmg.html;;📊 CGA 籌碼集中||../chip/cga.html;;🧪 基本面 5 維 (PEG/FCF/ROE)||../fund/fundamental_score.html;;🎩 MS 儀表板||../market/ms_dashboard.html;;🔥 熱門流向 HotFlow||../market/hotflow.html;;🌐 族群輪動 RRG||../market/sector_rotation.html;;🗂 族群成分股||../market/sector_constituents.html;;🏊 主流股池||../market/mainstream_pool.html;;💪 強勢股||../market/strong_stocks.html;;⭐ 自選股池||../pool/custom_pool.html;;🧲 吸籌池||../pool/accumulation_pool.html;;🌋 派發評分||../pool/distribution_score.html;;🔁 RSR 配對||../pairs/rr.html;;📐 RRR 配對||../pairs/rrr.html;;🌀 RRR Resonance||../pairs/rrr_resonance.html;;⚡ 動態 RSR||../pairs/dynamic_rr.html;;⭐ 自選配對||../pairs/custom_pairs.html;;🚦 RCGA 總覽||../pairs/rcga_overview.html;;🔄 換股訊號||../pairs/rotation_signals.html;;📋 換股確認紀錄||../pairs/rotation_confirm_log.html;;📚 換股案例||../pairs/rotation_case_study.html;;📊 回測||../pairs/backtest.html;;南電 / 欣興||../pairs/nan_xin_chart.html;;晶豪科 / 智原||../pairs/jh_zy_chart.html;;上銀 / 大銀微||../pairs/pair_2049_4576.html;;華邦電 / 南亞科||../pairs/pair_2344_2408.html;;巨大 / 美利達||../pairs/pair_9921_9914.html;;📝 待辦事項||../sys/todo.html;;🩺 資料庫健康||../sys/db_health.html;;🆚 FS 對照||../sys/fs_compare.html;;📖 名詞對照表||../sys/nomenclature.html;;📋 V.2 架構文件||../docs/V2_ARCHITECTURE.html;;1503 士電||../dossier/1503.html;;2049 上銀||../dossier/2049.html;;2330 台積電||../dossier/2330.html;;2344 華邦電||../dossier/2344.html;;2359 所羅門||../dossier/2359.html;;2408 南亞科||../dossier/2408.html;;3006 晶豪科||../dossier/3006.html;;3035 智原||../dossier/3035.html;;3037 欣興||../dossier/3037.html;;4576 大銀微系統||../dossier/4576.html;;8046 南電||../dossier/8046.html;;9914 美利達||../dossier/9914.html;;9921 巨大||../dossier/9921.html".split(";;").map(function(s){var p=s.split("||");return {l:p[0],h:p[1]};});
+  var nav=document.getElementById('gnav');
+  nav.querySelectorAll('.gnav-btn').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.stopPropagation();
+      var p=document.getElementById('gnav-p'+b.dataset.dd), was=p.classList.contains('open');
+      nav.querySelectorAll('.gnav-panel').forEach(function(x){x.classList.remove('open');});
+      nav.querySelectorAll('.gnav-btn').forEach(function(x){x.classList.remove('on');});
+      if(!was){p.classList.add('open');b.classList.add('on');}
+    });
+  });
+  document.addEventListener('click',function(){
+    nav.querySelectorAll('.gnav-panel').forEach(function(x){x.classList.remove('open');});
+    nav.querySelectorAll('.gnav-btn').forEach(function(x){x.classList.remove('on');});
+    var sr=document.getElementById('gnav-sr'); if(sr) sr.style.display='none';
+  });
+  var q=document.getElementById('gnav-q'), sr=document.getElementById('gnav-sr');
+  q.addEventListener('click',function(e){e.stopPropagation();});
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase();
+    if(!v){sr.style.display='none';return;}
+    var hits=DATA.filter(function(d){return d.l.toLowerCase().indexOf(v)>=0;}).slice(0,15);
+    sr.innerHTML=hits.length?hits.map(function(d){
+      return "<a class='gnav-it' href='"+d.h+"'>"+d.l+"</a>";}).join("")
+      :"<div class='gnav-hd'>無符合</div>";
+    sr.style.display='block';
+  });
+})();
+</script>
+<!-- GLOBAL_NAV_END -->
+
+<h1>📊 籌碼集中度排行 (Chip Concentration)
+    <span style="font-size:14px;color:var(--th-muted,#94a3b8);font-weight:normal">資料: 2026-06-12</span>
+</h1>
+
+<p>
+  <a href="../index.html">← 回主頁</a> ·
+  <a href="../org/pm_custom.html">⭐ Custom PM</a>
+</p>
+
+<p style="background:rgba(16,185,129,0.15);padding:10px 14px;border-radius:6px;
+          font-size:12px;color:var(--th-text2,#cbd5e1);border-left:3px solid var(--th-green,#10b981)">
+  📋 <b>籌碼集中度 (Chip Concentration)</b> —
+  基於 FinMind 股權分散表 (週更), 追蹤大戶 (≥400 張) / 中戶 (1-400 張) / 散戶 (<1 張) 比例變化.
+  <b style="color:var(--th-green,#22c55e)">主力吸籌</b> (大戶加碼 + 散戶減碼) = 經典籌碼鎖定多頭訊號;
+  <b style="color:var(--th-red,#ef4444)">主力出貨</b> (反之) = 警示.
+  Z-score ≥ +2σ = 8 週內異常吸籌, 主力動向強烈.
+</p>
+
+<div class="summary">
+  <div class="stat">
+    <div class="stat-val">49</div>
+    <div class="stat-label">已評估個股數</div>
+  </div>
+  <div class="stat" style="border-left-color:#22c55e">
+    <div class="stat-val" style="color:var(--th-green,#22c55e)">15</div>
+    <div class="stat-label">📥 主力吸籌中</div>
+  </div>
+  <div class="stat" style="border-left-color:#ef4444">
+    <div class="stat-val" style="color:var(--th-red,#ef4444)">30</div>
+    <div class="stat-label">📤 主力出貨中</div>
+  </div>
+  <div class="stat" style="border-left-color:#fbbf24">
+    <div class="stat-val" style="color:var(--th-amber,#fbbf24)">3</div>
+    <div class="stat-label">🚨 Z 警示</div>
+  </div>
+</div>
+
+
+    <h2 style="color:var(--th-green,#22c55e)">📥 主力吸籌 (本週) — 進場觀察 <span style="color:var(--th-muted,#94a3b8);font-size:14px">(15 檔)</span></h2>
+    <table style="width:100%;border-collapse:collapse;background:var(--th-card,#0f1a2c);border-radius:6px;overflow:hidden">
+      
+        <tr>
+          <th>Symbol</th>
+          <th>大戶/中戶/散戶 (堆疊) · 大戶 %</th>
+          <th style="text-align:right">CR1</th>
+          <th style="text-align:right">HHI</th>
+          <th style="text-align:right">大戶 1w</th>
+          <th style="text-align:right">散戶 1w</th>
+          <th style="text-align:right">Z (8w)</th>
+          <th>訊號</th>
+        </tr>
+      
+    <tr>
+      <td><a href="../dossier/3231.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3231</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="66.0" height="10" fill="#eab308"/>
+      <rect x="66.0" y="0" width="33.2" height="10" fill="#60a5fa"/>
+      <rect x="99.2" y="0" width="0.8" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">66.0%</span></td>
+      <td style="text-align:right">61.7</td>
+      <td style="text-align:right">4016</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+3.450%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.060%</td><td style="color:var(--th-green,#22c55e);text-align:right">+2.15σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/5289.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">5289</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="41.3" height="10" fill="#fb923c"/>
+      <rect x="41.3" y="0" width="55.3" height="10" fill="#60a5fa"/>
+      <rect x="96.6" y="0" width="3.4" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">41.3%</span></td>
+      <td style="text-align:right">28.0</td>
+      <td style="text-align:right">1298</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+2.190%</td><td style="color:var(--th-green,#22c55e);text-align:right">-0.220%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">+0.84σ</td>
+      <td style="color:var(--th-green,#22c55e)">📥 主力吸籌</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8043.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8043</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="59.0" height="10" fill="#fb923c"/>
+      <rect x="59.0" y="0" width="39.5" height="10" fill="#60a5fa"/>
+      <rect x="98.6" y="0" width="1.4" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">59.0%</span></td>
+      <td style="text-align:right">55.3</td>
+      <td style="text-align:right">3572</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+1.630%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.070%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-0.72σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3661.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3661</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="38.5" height="10" fill="#fb923c"/>
+      <rect x="38.5" y="0" width="56.4" height="10" fill="#60a5fa"/>
+      <rect x="94.9" y="0" width="5.1" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">38.5%</span></td>
+      <td style="text-align:right">15.3</td>
+      <td style="text-align:right">918</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+1.230%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.080%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">+0.53σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2409.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2409</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="51.6" height="10" fill="#fb923c"/>
+      <rect x="51.6" y="0" width="47.8" height="10" fill="#60a5fa"/>
+      <rect x="99.4" y="0" width="0.6" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">51.6%</span></td>
+      <td style="text-align:right">46.6</td>
+      <td style="text-align:right">2446</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+1.190%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">+0.000%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">+0.22σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2382.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2382</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="85.8" height="10" fill="#22c55e"/>
+      <rect x="85.8" y="0" width="13.6" height="10" fill="#60a5fa"/>
+      <rect x="99.4" y="0" width="0.6" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">85.8%</span></td>
+      <td style="text-align:right">81.8</td>
+      <td style="text-align:right">6728</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+0.950%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.040%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">+0.18σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8046.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8046</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="82.8" height="10" fill="#22c55e"/>
+      <rect x="82.8" y="0" width="15.8" height="10" fill="#60a5fa"/>
+      <rect x="98.5" y="0" width="1.5" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">82.8%</span></td>
+      <td style="text-align:right">78.6</td>
+      <td style="text-align:right">6243</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+0.660%</td><td style="color:var(--th-green,#22c55e);text-align:right">-0.010%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-0.96σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3189.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3189</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="73.4" height="10" fill="#84cc16"/>
+      <rect x="73.4" y="0" width="24.6" height="10" fill="#60a5fa"/>
+      <rect x="98.1" y="0" width="1.9" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">73.4%</span></td>
+      <td style="text-align:right">67.7</td>
+      <td style="text-align:right">4735</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+0.650%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.080%</td><td style="color:var(--th-green,#84cc16);text-align:right">+1.54σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2317.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2317</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="71.0" height="10" fill="#84cc16"/>
+      <rect x="71.0" y="0" width="28.4" height="10" fill="#60a5fa"/>
+      <rect x="99.3" y="0" width="0.7" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">71.0%</span></td>
+      <td style="text-align:right">68.3</td>
+      <td style="text-align:right">4781</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+0.530%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.020%</td><td style="color:var(--th-green,#84cc16);text-align:right">+1.40σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2408.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2408</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="82.9" height="10" fill="#22c55e"/>
+      <rect x="82.9" y="0" width="16.4" height="10" fill="#60a5fa"/>
+      <rect x="99.2" y="0" width="0.8" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">82.9%</span></td>
+      <td style="text-align:right">80.8</td>
+      <td style="text-align:right">6588</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+0.510%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.010%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">+0.93σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2345.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2345</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="71.0" height="10" fill="#84cc16"/>
+      <rect x="71.0" y="0" width="28.2" height="10" fill="#60a5fa"/>
+      <rect x="99.2" y="0" width="0.8" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">71.0%</span></td>
+      <td style="text-align:right">57.0</td>
+      <td style="text-align:right">3473</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+0.430%</td><td style="color:var(--th-green,#22c55e);text-align:right">-0.010%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">+0.69σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/9921.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">9921</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="64.9" height="10" fill="#eab308"/>
+      <rect x="64.9" y="0" width="34.4" height="10" fill="#60a5fa"/>
+      <rect x="99.3" y="0" width="0.7" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">64.9%</span></td>
+      <td style="text-align:right">54.7</td>
+      <td style="text-align:right">3183</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+0.400%</td><td style="color:var(--th-green,#22c55e);text-align:right">-0.010%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-0.75σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8021.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8021</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="48.3" height="10" fill="#fb923c"/>
+      <rect x="48.3" y="0" width="48.7" height="10" fill="#60a5fa"/>
+      <rect x="97.0" y="0" width="3.0" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">48.3%</span></td>
+      <td style="text-align:right">38.4</td>
+      <td style="text-align:right">2056</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+0.320%</td><td style="color:var(--th-green,#22c55e);text-align:right">-0.030%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-0.69σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8996.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8996</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="52.1" height="10" fill="#fb923c"/>
+      <rect x="52.1" y="0" width="46.0" height="10" fill="#60a5fa"/>
+      <rect x="98.1" y="0" width="1.9" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">52.1%</span></td>
+      <td style="text-align:right">30.8</td>
+      <td style="text-align:right">1475</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+0.100%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.080%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.32σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2449.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2449</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="64.8" height="10" fill="#eab308"/>
+      <rect x="64.8" y="0" width="33.6" height="10" fill="#60a5fa"/>
+      <rect x="98.4" y="0" width="1.6" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">64.8%</span></td>
+      <td style="text-align:right">58.1</td>
+      <td style="text-align:right">3632</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+0.090%</td><td style="color:var(--th-green,#22c55e);text-align:right">-0.010%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-0.66σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    </table>
+    
+
+
+    <h2 style="color:var(--th-red,#ef4444)">📤 主力出貨 (本週) — 持股警示 <span style="color:var(--th-muted,#94a3b8);font-size:14px">(30 檔)</span></h2>
+    <table style="width:100%;border-collapse:collapse;background:var(--th-card,#0f1a2c);border-radius:6px;overflow:hidden">
+      
+        <tr>
+          <th>Symbol</th>
+          <th>大戶/中戶/散戶 (堆疊) · 大戶 %</th>
+          <th style="text-align:right">CR1</th>
+          <th style="text-align:right">HHI</th>
+          <th style="text-align:right">大戶 1w</th>
+          <th style="text-align:right">散戶 1w</th>
+          <th style="text-align:right">Z (8w)</th>
+          <th>訊號</th>
+        </tr>
+      
+    <tr>
+      <td><a href="../dossier/6223.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6223</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="48.5" height="10" fill="#fb923c"/>
+      <rect x="48.5" y="0" width="49.8" height="10" fill="#60a5fa"/>
+      <rect x="98.3" y="0" width="1.7" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">48.5%</span></td>
+      <td style="text-align:right">33.9</td>
+      <td style="text-align:right">1632</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-6.030%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.080%</td><td style="color:var(--th-red,#ef4444);text-align:right">-2.27σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3042.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3042</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="64.5" height="10" fill="#eab308"/>
+      <rect x="64.5" y="0" width="34.6" height="10" fill="#60a5fa"/>
+      <rect x="99.1" y="0" width="0.9" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">64.5%</span></td>
+      <td style="text-align:right">56.7</td>
+      <td style="text-align:right">3467</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-3.850%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.200%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.86σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6147.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6147</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="72.2" height="10" fill="#84cc16"/>
+      <rect x="72.2" y="0" width="26.9" height="10" fill="#60a5fa"/>
+      <rect x="99.0" y="0" width="1.0" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">72.2%</span></td>
+      <td style="text-align:right">66.1</td>
+      <td style="text-align:right">4552</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-3.560%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.300%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.74σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3006.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3006</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="54.1" height="10" fill="#fb923c"/>
+      <rect x="54.1" y="0" width="44.8" height="10" fill="#60a5fa"/>
+      <rect x="98.9" y="0" width="1.1" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">54.1%</span></td>
+      <td style="text-align:right">44.4</td>
+      <td style="text-align:right">2403</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-3.340%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.120%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-0.06σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3105.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3105</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="54.2" height="10" fill="#fb923c"/>
+      <rect x="54.2" y="0" width="43.0" height="10" fill="#60a5fa"/>
+      <rect x="97.2" y="0" width="2.8" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">54.2%</span></td>
+      <td style="text-align:right">46.2</td>
+      <td style="text-align:right">2611</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-2.640%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.170%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-0.96σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3035.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3035</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="26.9" height="10" fill="#fb923c"/>
+      <rect x="26.9" y="0" width="70.1" height="10" fill="#60a5fa"/>
+      <rect x="97.0" y="0" width="3.0" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">26.9%</span></td>
+      <td style="text-align:right">32.2</td>
+      <td style="text-align:right">1760</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-2.040%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.100%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.52σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2313.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2313</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="61.9" height="10" fill="#eab308"/>
+      <rect x="61.9" y="0" width="36.3" height="10" fill="#60a5fa"/>
+      <rect x="98.2" y="0" width="1.8" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">61.9%</span></td>
+      <td style="text-align:right">56.3</td>
+      <td style="text-align:right">3545</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-1.950%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.220%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.86σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3665.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3665</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="60.1" height="10" fill="#eab308"/>
+      <rect x="60.1" y="0" width="38.1" height="10" fill="#60a5fa"/>
+      <rect x="98.2" y="0" width="1.8" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">60.1%</span></td>
+      <td style="text-align:right">43.6</td>
+      <td style="text-align:right">2248</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-1.910%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.140%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.64σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6239.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6239</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="72.6" height="10" fill="#84cc16"/>
+      <rect x="72.6" y="0" width="26.2" height="10" fill="#60a5fa"/>
+      <rect x="98.8" y="0" width="1.2" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">72.6%</span></td>
+      <td style="text-align:right">66.4</td>
+      <td style="text-align:right">4560</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-1.750%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.210%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.15σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2303.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2303</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="77.2" height="10" fill="#84cc16"/>
+      <rect x="77.2" y="0" width="22.4" height="10" fill="#60a5fa"/>
+      <rect x="99.5" y="0" width="0.5" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">77.2%</span></td>
+      <td style="text-align:right">74.6</td>
+      <td style="text-align:right">5646</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-1.550%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.050%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-0.58σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/4576.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">4576</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="66.2" height="10" fill="#eab308"/>
+      <rect x="66.2" y="0" width="32.5" height="10" fill="#60a5fa"/>
+      <rect x="98.8" y="0" width="1.2" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">66.2%</span></td>
+      <td style="text-align:right">60.5</td>
+      <td style="text-align:right">3902</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-1.260%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.130%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.29σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8299.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8299</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="48.3" height="10" fill="#fb923c"/>
+      <rect x="48.3" y="0" width="46.4" height="10" fill="#60a5fa"/>
+      <rect x="94.7" y="0" width="5.3" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">48.3%</span></td>
+      <td style="text-align:right">37.9</td>
+      <td style="text-align:right">1881</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-1.130%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.140%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.56σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3037.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3037</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="75.7" height="10" fill="#84cc16"/>
+      <rect x="75.7" y="0" width="22.8" height="10" fill="#60a5fa"/>
+      <rect x="98.4" y="0" width="1.6" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">75.7%</span></td>
+      <td style="text-align:right">68.4</td>
+      <td style="text-align:right">4795</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-1.110%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.180%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.19σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2059.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2059</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="67.4" height="10" fill="#eab308"/>
+      <rect x="67.4" y="0" width="31.7" height="10" fill="#60a5fa"/>
+      <rect x="99.2" y="0" width="0.8" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">67.4%</span></td>
+      <td style="text-align:right">57.8</td>
+      <td style="text-align:right">3534</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.860%</td><td style="color:var(--th-green,#22c55e);text-align:right">-0.070%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-0.62σ</td>
+      <td style="color:var(--th-orange,#fb923c)">↓ 大戶減碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/4958.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">4958</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="74.2" height="10" fill="#84cc16"/>
+      <rect x="74.2" y="0" width="24.4" height="10" fill="#60a5fa"/>
+      <rect x="98.6" y="0" width="1.4" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">74.2%</span></td>
+      <td style="text-align:right">67.3</td>
+      <td style="text-align:right">4669</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.860%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.150%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.55σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3081.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3081</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="43.6" height="10" fill="#fb923c"/>
+      <rect x="43.6" y="0" width="52.8" height="10" fill="#60a5fa"/>
+      <rect x="96.4" y="0" width="3.6" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">43.6%</span></td>
+      <td style="text-align:right">31.4</td>
+      <td style="text-align:right">1502</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.800%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.350%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.38σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2383.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2383</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="68.8" height="10" fill="#eab308"/>
+      <rect x="68.8" y="0" width="29.9" height="10" fill="#60a5fa"/>
+      <rect x="98.7" y="0" width="1.3" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">68.8%</span></td>
+      <td style="text-align:right">56.2</td>
+      <td style="text-align:right">3364</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.780%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.140%</td><td style="color:var(--th-red,#ef4444);text-align:right">-2.21σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2049.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2049</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="69.6" height="10" fill="#eab308"/>
+      <rect x="69.6" y="0" width="29.0" height="10" fill="#60a5fa"/>
+      <rect x="98.6" y="0" width="1.4" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">69.6%</span></td>
+      <td style="text-align:right">60.2</td>
+      <td style="text-align:right">3820</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.770%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.110%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">+0.21σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3443.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3443</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="66.2" height="10" fill="#eab308"/>
+      <rect x="66.2" y="0" width="31.3" height="10" fill="#60a5fa"/>
+      <rect x="97.5" y="0" width="2.5" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">66.2%</span></td>
+      <td style="text-align:right">52.9</td>
+      <td style="text-align:right">3015</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.770%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.390%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.57σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2327.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2327</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="74.0" height="10" fill="#84cc16"/>
+      <rect x="74.0" y="0" width="24.5" height="10" fill="#60a5fa"/>
+      <rect x="98.5" y="0" width="1.5" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">74.0%</span></td>
+      <td style="text-align:right">69.1</td>
+      <td style="text-align:right">4881</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.730%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.220%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">+0.53σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3711.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3711</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="87.2" height="10" fill="#22c55e"/>
+      <rect x="87.2" y="0" width="12.1" height="10" fill="#60a5fa"/>
+      <rect x="99.3" y="0" width="0.7" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">87.2%</span></td>
+      <td style="text-align:right">82.1</td>
+      <td style="text-align:right">6778</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.500%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.080%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.92σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6274.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6274</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="67.4" height="10" fill="#eab308"/>
+      <rect x="67.4" y="0" width="30.9" height="10" fill="#60a5fa"/>
+      <rect x="98.3" y="0" width="1.7" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">67.4%</span></td>
+      <td style="text-align:right">56.9</td>
+      <td style="text-align:right">3462</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.490%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.080%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-0.94σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2454.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2454</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="76.0" height="10" fill="#84cc16"/>
+      <rect x="76.0" y="0" width="22.3" height="10" fill="#60a5fa"/>
+      <rect x="98.3" y="0" width="1.7" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">76.0%</span></td>
+      <td style="text-align:right">66.3</td>
+      <td style="text-align:right">4514</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.470%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.090%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.72σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2368.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2368</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="78.5" height="10" fill="#84cc16"/>
+      <rect x="78.5" y="0" width="20.3" height="10" fill="#60a5fa"/>
+      <rect x="98.8" y="0" width="1.2" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">78.5%</span></td>
+      <td style="text-align:right">70.3</td>
+      <td style="text-align:right">5037</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.460%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.020%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.04σ</td>
+      <td style="color:var(--th-orange,#fb923c)">↓ 大戶減碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3017.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3017</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="65.5" height="10" fill="#eab308"/>
+      <rect x="65.5" y="0" width="32.4" height="10" fill="#60a5fa"/>
+      <rect x="97.8" y="0" width="2.2" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">65.5%</span></td>
+      <td style="text-align:right">52.1</td>
+      <td style="text-align:right">2943</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.250%</td><td style="color:var(--th-green,#22c55e);text-align:right">-0.080%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.06σ</td>
+      <td style="color:var(--th-orange,#fb923c)">↓ 大戶減碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3008.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3008</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="56.5" height="10" fill="#fb923c"/>
+      <rect x="56.5" y="0" width="39.9" height="10" fill="#60a5fa"/>
+      <rect x="96.4" y="0" width="3.6" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">56.5%</span></td>
+      <td style="text-align:right">41.7</td>
+      <td style="text-align:right">2079</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.170%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.020%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.21σ</td>
+      <td style="color:var(--th-orange,#fb923c)">↓ 大戶減碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/9914.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">9914</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="65.4" height="10" fill="#eab308"/>
+      <rect x="65.4" y="0" width="33.9" height="10" fill="#60a5fa"/>
+      <rect x="99.3" y="0" width="0.7" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">65.4%</span></td>
+      <td style="text-align:right">56.3</td>
+      <td style="text-align:right">3353</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.170%</td><td style="color:var(--th-green,#22c55e);text-align:right">-0.010%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">+0.70σ</td>
+      <td style="color:var(--th-orange,#fb923c)">↓ 大戶減碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6669.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6669</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="63.9" height="10" fill="#eab308"/>
+      <rect x="63.9" y="0" width="33.7" height="10" fill="#60a5fa"/>
+      <rect x="97.6" y="0" width="2.4" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">63.9%</span></td>
+      <td style="text-align:right">53.9</td>
+      <td style="text-align:right">3131</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.120%</td><td style="color:var(--th-green,#22c55e);text-align:right">-0.150%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.45σ</td>
+      <td style="color:var(--th-orange,#fb923c)">↓ 大戶減碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2308.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2308</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="83.4" height="10" fill="#22c55e"/>
+      <rect x="83.4" y="0" width="15.4" height="10" fill="#60a5fa"/>
+      <rect x="98.8" y="0" width="1.2" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">83.4%</span></td>
+      <td style="text-align:right">76.2</td>
+      <td style="text-align:right">5867</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.110%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.030%</td><td style="color:var(--th-muted,#94a3b8);text-align:right">-1.10σ</td>
+      <td style="color:var(--th-orange,#fb923c)">↓ 大戶減碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2344.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2344</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="74.0" height="10" fill="#84cc16"/>
+      <rect x="74.0" y="0" width="25.4" height="10" fill="#60a5fa"/>
+      <rect x="99.3" y="0" width="0.7" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">74.0%</span></td>
+      <td style="text-align:right">71.0</td>
+      <td style="text-align:right">5169</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.050%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.070%</td><td style="color:var(--th-green,#84cc16);text-align:right">+1.29σ</td>
+      <td style="color:var(--th-orange,#fb923c)">↓ 大戶減碼</td>
+    </tr>
+    </table>
+    
+
+
+    <h2 style="color:var(--th-amber,#fbbf24)">🚨 Z-score 異常吸籌/出貨警示 <span style="color:var(--th-muted,#94a3b8);font-size:14px">(3 檔)</span></h2>
+    <table style="width:100%;border-collapse:collapse;background:var(--th-card,#0f1a2c);border-radius:6px;overflow:hidden">
+      
+        <tr>
+          <th>Symbol</th>
+          <th>大戶/中戶/散戶 (堆疊) · 大戶 %</th>
+          <th style="text-align:right">CR1</th>
+          <th style="text-align:right">HHI</th>
+          <th style="text-align:right">大戶 1w</th>
+          <th style="text-align:right">散戶 1w</th>
+          <th style="text-align:right">Z (8w)</th>
+          <th>訊號</th>
+        </tr>
+      
+    <tr>
+      <td><a href="../dossier/2383.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2383</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="68.8" height="10" fill="#eab308"/>
+      <rect x="68.8" y="0" width="29.9" height="10" fill="#60a5fa"/>
+      <rect x="98.7" y="0" width="1.3" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">68.8%</span></td>
+      <td style="text-align:right">56.2</td>
+      <td style="text-align:right">3364</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-0.780%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.140%</td><td style="color:var(--th-red,#ef4444);text-align:right">-2.21σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3231.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3231</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="66.0" height="10" fill="#eab308"/>
+      <rect x="66.0" y="0" width="33.2" height="10" fill="#60a5fa"/>
+      <rect x="99.2" y="0" width="0.8" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">66.0%</span></td>
+      <td style="text-align:right">61.7</td>
+      <td style="text-align:right">4016</td>
+      <td style="color:var(--th-green,#22c55e);text-align:right">+3.450%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.060%</td><td style="color:var(--th-green,#22c55e);text-align:right">+2.15σ</td>
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6223.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6223</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="48.5" height="10" fill="#fb923c"/>
+      <rect x="48.5" y="0" width="49.8" height="10" fill="#60a5fa"/>
+      <rect x="98.3" y="0" width="1.7" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">48.5%</span></td>
+      <td style="text-align:right">33.9</td>
+      <td style="text-align:right">1632</td>
+      <td style="color:var(--th-red,#ef4444);text-align:right">-6.030%</td><td style="color:var(--th-red,#ef4444);text-align:right">+0.080%</td><td style="color:var(--th-red,#ef4444);text-align:right">-2.27σ</td>
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    </table>
+    
+
+
+    <h2 style="color:var(--th-green,#10b981)">🏆 集中度 TOP 20 (大戶比例) <span style="color:var(--th-muted,#94a3b8);font-size:14px">(20 檔)</span></h2>
+    <table style="width:100%;border-collapse:collapse;background:var(--th-card,#0f1a2c);border-radius:6px;overflow:hidden">
+      
+        <tr>
+          <th>Symbol</th>
+          <th>大戶/中戶/散戶 (堆疊) · 大戶 %</th>
+          <th style="text-align:right">CR1</th>
+          <th style="text-align:right">HHI</th>
+          <th>訊號</th>
+        </tr>
+      
+    <tr>
+      <td><a href="../dossier/2330.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2330</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="88.1" height="10" fill="#22c55e"/>
+      <rect x="88.1" y="0" width="10.9" height="10" fill="#60a5fa"/>
+      <rect x="99.0" y="0" width="1.0" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">88.1%</span></td>
+      <td style="text-align:right">85.4</td>
+      <td style="text-align:right">7317</td>
+      
+      <td style="color:var(--th-muted,#94a3b8)">• 中性</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3711.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3711</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="87.2" height="10" fill="#22c55e"/>
+      <rect x="87.2" y="0" width="12.1" height="10" fill="#60a5fa"/>
+      <rect x="99.3" y="0" width="0.7" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">87.2%</span></td>
+      <td style="text-align:right">82.1</td>
+      <td style="text-align:right">6778</td>
+      
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2881.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2881</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="86.1" height="10" fill="#22c55e"/>
+      <rect x="86.1" y="0" width="13.7" height="10" fill="#60a5fa"/>
+      <rect x="99.8" y="0" width="0.2" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">86.1%</span></td>
+      <td style="text-align:right">84.0</td>
+      <td style="text-align:right">7071</td>
+      
+      <td style="color:var(--th-muted,#94a3b8)">• 中性</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2382.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2382</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="85.8" height="10" fill="#22c55e"/>
+      <rect x="85.8" y="0" width="13.6" height="10" fill="#60a5fa"/>
+      <rect x="99.4" y="0" width="0.6" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">85.8%</span></td>
+      <td style="text-align:right">81.8</td>
+      <td style="text-align:right">6728</td>
+      
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2308.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2308</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="83.4" height="10" fill="#22c55e"/>
+      <rect x="83.4" y="0" width="15.4" height="10" fill="#60a5fa"/>
+      <rect x="98.8" y="0" width="1.2" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">83.4%</span></td>
+      <td style="text-align:right">76.2</td>
+      <td style="text-align:right">5867</td>
+      
+      <td style="color:var(--th-orange,#fb923c)">↓ 大戶減碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2408.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2408</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="82.9" height="10" fill="#22c55e"/>
+      <rect x="82.9" y="0" width="16.4" height="10" fill="#60a5fa"/>
+      <rect x="99.2" y="0" width="0.8" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">82.9%</span></td>
+      <td style="text-align:right">80.8</td>
+      <td style="text-align:right">6588</td>
+      
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/8046.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">8046</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="82.8" height="10" fill="#22c55e"/>
+      <rect x="82.8" y="0" width="15.8" height="10" fill="#60a5fa"/>
+      <rect x="98.5" y="0" width="1.5" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">82.8%</span></td>
+      <td style="text-align:right">78.6</td>
+      <td style="text-align:right">6243</td>
+      
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2368.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2368</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="78.5" height="10" fill="#84cc16"/>
+      <rect x="78.5" y="0" width="20.3" height="10" fill="#60a5fa"/>
+      <rect x="98.8" y="0" width="1.2" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">78.5%</span></td>
+      <td style="text-align:right">70.3</td>
+      <td style="text-align:right">5037</td>
+      
+      <td style="color:var(--th-orange,#fb923c)">↓ 大戶減碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2303.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2303</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="77.2" height="10" fill="#84cc16"/>
+      <rect x="77.2" y="0" width="22.4" height="10" fill="#60a5fa"/>
+      <rect x="99.5" y="0" width="0.5" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">77.2%</span></td>
+      <td style="text-align:right">74.6</td>
+      <td style="text-align:right">5646</td>
+      
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2454.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2454</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="76.0" height="10" fill="#84cc16"/>
+      <rect x="76.0" y="0" width="22.3" height="10" fill="#60a5fa"/>
+      <rect x="98.3" y="0" width="1.7" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">76.0%</span></td>
+      <td style="text-align:right">66.3</td>
+      <td style="text-align:right">4514</td>
+      
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3037.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3037</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="75.7" height="10" fill="#84cc16"/>
+      <rect x="75.7" y="0" width="22.8" height="10" fill="#60a5fa"/>
+      <rect x="98.4" y="0" width="1.6" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">75.7%</span></td>
+      <td style="text-align:right">68.4</td>
+      <td style="text-align:right">4795</td>
+      
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/4958.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">4958</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="74.2" height="10" fill="#84cc16"/>
+      <rect x="74.2" y="0" width="24.4" height="10" fill="#60a5fa"/>
+      <rect x="98.6" y="0" width="1.4" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">74.2%</span></td>
+      <td style="text-align:right">67.3</td>
+      <td style="text-align:right">4669</td>
+      
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2327.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2327</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="74.0" height="10" fill="#84cc16"/>
+      <rect x="74.0" y="0" width="24.5" height="10" fill="#60a5fa"/>
+      <rect x="98.5" y="0" width="1.5" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">74.0%</span></td>
+      <td style="text-align:right">69.1</td>
+      <td style="text-align:right">4881</td>
+      
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2344.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2344</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="74.0" height="10" fill="#84cc16"/>
+      <rect x="74.0" y="0" width="25.4" height="10" fill="#60a5fa"/>
+      <rect x="99.3" y="0" width="0.7" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">74.0%</span></td>
+      <td style="text-align:right">71.0</td>
+      <td style="text-align:right">5169</td>
+      
+      <td style="color:var(--th-orange,#fb923c)">↓ 大戶減碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/3189.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">3189</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="73.4" height="10" fill="#84cc16"/>
+      <rect x="73.4" y="0" width="24.6" height="10" fill="#60a5fa"/>
+      <rect x="98.1" y="0" width="1.9" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">73.4%</span></td>
+      <td style="text-align:right">67.7</td>
+      <td style="text-align:right">4735</td>
+      
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6239.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6239</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="72.6" height="10" fill="#84cc16"/>
+      <rect x="72.6" y="0" width="26.2" height="10" fill="#60a5fa"/>
+      <rect x="98.8" y="0" width="1.2" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">72.6%</span></td>
+      <td style="text-align:right">66.4</td>
+      <td style="text-align:right">4560</td>
+      
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/6147.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">6147</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="72.2" height="10" fill="#84cc16"/>
+      <rect x="72.2" y="0" width="26.9" height="10" fill="#60a5fa"/>
+      <rect x="99.0" y="0" width="1.0" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">72.2%</span></td>
+      <td style="text-align:right">66.1</td>
+      <td style="text-align:right">4552</td>
+      
+      <td style="color:var(--th-red,#ef4444)">📤 主力出貨</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2360.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2360</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="71.2" height="10" fill="#84cc16"/>
+      <rect x="71.2" y="0" width="28.4" height="10" fill="#60a5fa"/>
+      <rect x="99.6" y="0" width="0.4" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">71.2%</span></td>
+      <td style="text-align:right">55.1</td>
+      <td style="text-align:right">3293</td>
+      
+      <td style="color:var(--th-muted,#94a3b8)">• 中性</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2345.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2345</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="71.0" height="10" fill="#84cc16"/>
+      <rect x="71.0" y="0" width="28.2" height="10" fill="#60a5fa"/>
+      <rect x="99.2" y="0" width="0.8" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">71.0%</span></td>
+      <td style="text-align:right">57.0</td>
+      <td style="text-align:right">3473</td>
+      
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    <tr>
+      <td><a href="../dossier/2317.html" style="color:var(--th-cyan,#7dd3fc);font-weight:bold">2317</a></td>
+      <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
+      <rect x="0" y="0" width="71.0" height="10" fill="#84cc16"/>
+      <rect x="71.0" y="0" width="28.4" height="10" fill="#60a5fa"/>
+      <rect x="99.3" y="0" width="0.7" height="10" fill="#94a3b8"/>
+    </svg> <span style="font-size:11px;color:var(--th-text2,#cbd5e1)">71.0%</span></td>
+      <td style="text-align:right">68.3</td>
+      <td style="text-align:right">4781</td>
+      
+      <td style="color:var(--th-green,#84cc16)">↑ 大戶加碼</td>
+    </tr>
+    </table>
+    
+
+<p style="color:var(--th-faint,#64748b);font-size:11px;margin-top:40px">
+  資料: FinMind TaiwanStockHoldingSharesPer 週更 ·
+  涵蓋 custom_pool + mainstream_pool (前 50 檔) ·
+  指標: 大戶 (≥400 張) / 中戶 (1-400 張) / 散戶 (<1 張) / 千張 (>1,000 張) ·
+  CR1 = 最高級距占比 / CR5 = 前 5 級距 / HHI = Herfindahl 指數.
+</p>
+
+<style id='MS_N_RRR_tooltip_inject_v2'>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: var(--th-bg,#0f172a);
+  color: var(--th-text,#e2e8f0);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid var(--th-border2,#475569);
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>
