@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang='zh-Hant'>
 <head>
-<link rel="stylesheet" href="../assets/site.css?v=542b0641">
+<link rel="stylesheet" href="../assets/site.css?v=733b1f50">
 <meta charset='utf-8'>
 <title>系統流程圖 ｜ MS_N_RR/RRR Ver.A</title>
 <meta name='viewport' content='width=device-width,initial-scale=1'>
 <style>
 :root{
-  --bg:var(--th-bg,#f4f7fb); --card:var(--th-card,#ffffff); --border:var(--th-border,#d5dfeb);
-  --text:var(--th-text,#243244); --muted:var(--th-muted,#61708a); --accent:var(--th-accent,#2563eb);
-  --good:#10b981; --warn:var(--th-warn,#b45309); --bad:#ef4444;
-  --gold:#b45309; --silver:#475569; --bronze:#c2410c;
+  --bg:var(--th-bg,#0f172a); --card:var(--th-card,#1e293b); --border:var(--th-border2,#334155);
+  --text:var(--th-text,#e2e8f0); --muted:var(--th-muted,#94a3b8); --accent:#60a5fa;
+  --good:#10b981; --warn:#fbbf24; --bad:#ef4444;
+  --gold:#fbbf24; --silver:#cbd5e1; --bronze:#fb923c;
 }
 body{
   margin:0; background:var(--bg); color:var(--text);
-  font-family:var(--th-font,"Segoe UI",-apple-system,sans-serif); line-height:1.55;
+  font-family:"Segoe UI",-apple-system,sans-serif; line-height:1.55;
   padding:20px;
 }
 h1{ font-size:28px; margin:0 0 6px 0; }
@@ -30,7 +30,7 @@ h3{ font-size:16px; margin:14px 0 6px 0; color:var(--accent); }
 .grid-3{ grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
 .grid-4{ grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); }
 
-.card{ background:var(--th-bg2,#eef3fa); border:1px solid var(--border);
+.card{ background:var(--th-bg,#0f1729); border:1px solid var(--border);
        border-radius:8px; padding:12px; }
 .card .title{ font-weight:600; color:var(--accent); margin-bottom:4px; }
 .card .sub{ color:var(--muted); font-size:12px; }
@@ -42,7 +42,7 @@ h3{ font-size:16px; margin:14px 0 6px 0; color:var(--accent); }
 .p-full{ background:#ef444433; color:var(--bad); }
 .p-safety{ background:#94a3b833; color:var(--muted); }
 
-.step{ padding:8px 10px; margin:4px 0; background:var(--th-bg2,#eef3fa);
+.step{ padding:8px 10px; margin:4px 0; background:var(--th-bg,#0f1729);
        border-left:3px solid var(--accent); border-radius:4px;
        font-size:14px; }
 .step .id{ display:inline-block; min-width:48px; color:var(--muted);
@@ -52,7 +52,7 @@ h3{ font-size:16px; margin:14px 0 6px 0; color:var(--accent); }
 table{ width:100%; border-collapse:collapse; margin-top:8px; }
 th,td{ padding:8px; border:1px solid var(--border); text-align:left;
        font-size:13px; }
-th{ background:var(--th-bg2,#eef3fa); color:var(--accent); }
+th{ background:var(--th-bg,#0f1729); color:var(--accent); }
 
 .arrow{ text-align:center; color:var(--muted); font-size:18px;
         margin:6px 0; }
@@ -113,37 +113,9 @@ a{ color:var(--accent); }
 <!-- GLOBAL_NAV_END -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <h1>🏗️ 系統流程圖</h1>
 <div class='meta'>
-  MS_N_RR/RRR Ver.A ｜ 最後更新：<strong>2026-06-11 19:35:42</strong>
+  MS_N_RR/RRR Ver.A ｜ 最後更新：<strong>2026-06-12 19:46:47</strong>
   ｜ <a href='../index.html'>← 回主頁</a>
 </div>
 
@@ -155,7 +127,7 @@ a{ color:var(--accent); }
   </p>
 </div>
 
-<div class='section'><h2>📡 1. 自動觸發層</h2><div class='sub' style='color:var(--muted);margin-bottom:10px'>Windows Task Scheduler: <code>MSNRRR_AutoRefresh</code> (Mon-Fri)</div><div class='grid grid-4'><div class='card'><div class='title'>14:45</div><div><span class='pill p-tech'>🟢 Pass 1 Tech</span></div><div class='sub' style='margin-top:6px'>TWSE 14:30 個股 + TWII</div></div><div class='card'><div class='title'>18:30</div><div><span class='pill p-chip'>🟡 Pass 2 Chip-Partial</span></div><div class='sub' style='margin-top:6px'>+ 三大法人 17:30 公布</div></div><div class='card'><div class='title'>21:30</div><div><span class='pill p-full'>🔴 Pass 3 Full</span></div><div class='sub' style='margin-top:6px'>+ 融資融券 21:00 公布</div></div><div class='card'><div class='title'>22:45</div><div><span class='pill p-safety'>⚙️ Safety Net</span></div><div class='sub' style='margin-top:6px'>兜底重試</div></div></div></div><div class='section'><h2>🤖 2. auto_data_refresh 主流程</h2><code style='color:var(--muted)'>scripts/run_auto_refresh.py → src/agents/auto_data_refresh.py</code><div style='margin-top:12px'><div class='step'><span class='id'>Step 1</span> <strong>is_trading_day(today)?</strong> <span class='sub'>— 若否 → 立即 exit</span></div><div class='step'><span class='id'>Step 2</span> <strong>state lock 已 done(stage)?</strong> <span class='sub'>— 若已升級 → skip</span></div><div class='step'><span class='id'>Step 3</span> <strong>check_freshness() 細分</strong> <span class='sub'>— has_price / has_insti / has_margin → 決定 stage</span></div><div class='step'><span class='id'>Step 4</span> <strong>3 道 fallback fetcher</strong> <span class='sub'>— FinMind → TWSE → yfinance</span></div><div class='step'><span class='id'>Step 4d</span> <strong>data_validator</strong> <span class='sub'>— 寫 data_quality.log (OK/WARN/FAIL)</span></div><div class='step'><span class='id'>Step 5</span> <strong>trigger orchestrator(--stage XXX)</strong> <span class='sub'>— 升級 state lock</span></div></div></div><div class='section'><h2>📥 3. 三道 fallback 資料源</h2><div class='grid grid-3'><div class='card'><div class='title'>🥇 FinMind Backer batch</div><div class='sub'>主路徑 (54 秒全市場)</div><div style='margin-top:6px;font-size:13px'>TaiwanStockPrice + Institutional + Margin + TAIEX/TPEx</div></div><div class='card'><div class='title'>🥈 TWSE / TPEX 官方 API</div><div class='sub'>FinMind 失敗時補 critical</div><div style='margin-top:6px;font-size:13px'>FMTQIK + STOCK_DAY (per-stock 補救)</div></div><div class='card'><div class='title'>🥉 yfinance bulk</div><div class='sub'>最後一道兜底</div><div style='margin-top:6px;font-size:13px'>fetch_universe_prices() 全市場 bulk</div></div></div></div><div class='section'><h2>💾 4. Medallion 三層儲存</h2><div class='grid'><div class='card medallion-bronze'><div class='title'>🥉 Bronze (Raw)</div><div class='sub' style='font-family:monospace;margin-top:4px'>stockHisData/raw/{finmind,twse_official,tpex,taifex}/{date}.json</div><div style='margin-top:6px;font-size:13px'>原始 API response 留痕</div></div><div class='card medallion-silver'><div class='title'>🥈 Silver (Clean)</div><div class='sub' style='font-family:monospace;margin-top:4px'>stockHisData/database/stocks.duckdb (181 MB) + processed/*.csv (196 MB)</div><div style='margin-top:6px;font-size:13px'>DuckDB 主用查詢 + CSV 鏡像備援；表: price, indices, institutional, margin, futures...</div></div><div class='card medallion-gold'><div class='title'>🥇 Gold (Feature)</div><div class='sub' style='font-family:monospace;margin-top:4px'>MS_N_RRR/data/output/ (HTML + JSON 報告)</div><div style='margin-top:6px;font-size:13px'>26 個 HTML 頁 + signal_history (DuckDB)</div></div></div></div><div class='section'><h2>🎯 5. Orchestrator 流程</h2><code style='color:var(--muted)'>src/orchestrator.py run(stage=...)</code><div class='sub' style='margin-top:6px'>stage flag 控制：<span class='pill p-tech'>tech</span> <span class='pill p-chip'>chip-partial</span> <span class='pill p-full'>full</span> → 自動跳過對應 step</div><div style='margin-top:14px'><h3>流程 0 — DB 健康檢查</h3><div class='step'><span class='id'>[0]</span> <span>DuckDB 健康檢查 + 自動修復</span></div></div><div style='margin-top:14px'><h3>流程 1 — 主流偵測</h3><div class='step'><span class='id'>[1]</span> <span>market_structure (市場結構評分)</span></div><div class='step'><span class='id'>[2]</span> <span>ms_breadth / ms_diffusion / ms_temperature / ms_risk</span></div><div class='step'><span class='id'>[3a]</span> <span>hotflow (A 主流 / B 加速 / C 拒絕) → A+B = 123</span></div><div class='step'><span class='id'>[3b]</span> <span>hotflow_lifecycle (4 階段狀態機)</span></div></div><div style='margin-top:14px'><h3>流程 2 — 產業輪動 + 主流股池</h3><div class='step'><span class='id'>[3c]</span> <span>sector_rotation (RRG + Lead-Lag + Markov)</span></div><div class='step'><span class='id'>[3c2]</span> <span>sector_lead_lag (領先落後矩陣)</span></div><div class='step'><span class='id'>[3c3]</span> <span>rrg_kinematics (R(t)/Ṙ/R̈/ω + 9 phase states)</span></div><div class='step'><span class='id'>[3d-1]</span> <span>n_shape (多時段箱型 9 狀態, universe ~185)</span></div><div class='step'><span class='id'>[3d-2]</span> <span>future_leader / mainstream_pool / emerging_leader → 50 股</span></div></div><div style='margin-top:14px'><h3>流程 3 — 技術 + 籌碼 + 配對 → S/A/B 分級</h3><div class='step skip'><span class='id'>[3d-3]</span> <span>🆕 chip_agent_v2 (籌碼評分 0-100)</span><span class='pill p-safety' style='margin-left:6px'>skip on tech</span></div><div class='step skip'><span class='id'>[3e]</span> <span>stock_ops (S/A/B 分級: S=技籌+配對 / A=技籌 / B=配對 / 觀察)</span><span class='pill p-safety' style='margin-left:6px'>skip on tech (grade)</span></div><div class='step'><span class='id'>[3f]</span> <span>box_structure (Box001 / 趨勢出生箱)</span></div><div class='step'><span class='id'>[3g]</span> <span>todo_page</span></div></div><div style='margin-top:14px'><h3>流程 3.5 — 資金籌碼鏈 (錢流→持有者→品質→價格→委員會)</h3><div class='step'><span class='id'>[3d-2.11]</span> <span>broker_branch (分點六特徵 + CSA 四票 + CMG 象限)</span></div><div class='step'><span class='id'>[3e-chip]</span> <span>chip_concentration (集保大戶 / 外資持股, Top 50)</span></div><div class='step'><span class='id'>[3e-chr]</span> <span>🆕 CHR Agent (資金持有者輪動 類RRG CS×CM 四象限)</span></div><div class='step'><span class='id'>[3e-cs]</span> <span>🆕 capital_structure (四維等權四票體檢 + 背離)</span></div><div class='step'><span class='id'>[3f-cc]</span> <span>🏛 🆕 Capital Committee (彙整 CMG/CHR/CSA/Box, 零耦合)</span></div></div><div style='margin-top:14px'><h3>流程 4 — 配對訊號</h3><div class='step'><span class='id'>[4]</span> <span>rrr_resonance + backtest + signals</span></div><div class='step'><span class='id'>[10b]</span> <span>RSR (rr_pair, 對 mainstream_pool 50 算)</span></div><div class='step'><span class='id'>[10d]</span> <span>RRR (rrr_pair)</span></div><div class='step'><span class='id'>[10e]</span> <span>custom_pairs (自選配對)</span></div><div class='step'><span class='id'>[10g]</span> <span>dynamic_rr</span></div></div><div style='margin-top:14px'><h3>流程 5 — 報告 + 訊號歷史</h3><div class='step'><span class='id'>[11]</span> <span>render 26 個 HTML 報告</span></div><div class='step'><span class='id'>[12]</span> <span>tooltip_inject</span></div><div class='step skip'><span class='id'>[13]</span> <span>signal_history → DuckDB</span><span class='pill p-safety' style='margin-left:6px'>skip on tech/chip-partial</span></div><div class='step'><span class='id'>[14]</span> <span>backup_snapshot + cleanup</span></div></div><div style='margin-top:14px'><h3>流程 6 — 部署 + 通知</h3><div class='step'><span class='id'>[15]</span> <span>deploy → MS_N_RRR-reports/main → gh-pages</span></div><div class='step skip'><span class='id'>[16]</span> <span>notify (Email + Telegram)</span><span class='pill p-safety' style='margin-left:6px'>skip on tech/chip-partial</span></div></div></div><div class='section'><h2>🌐 6. 輸出端</h2><div class='sub' style='margin-bottom:8px'>GitHub Pages: <a href='https://yoshiagent.github.io/MS_N_RRR-reports/'>yoshiagent.github.io/MS_N_RRR-reports/</a></div><div class='grid grid-3'><div class='card'><div class='title'><a href='../index.html'>index.html</a></div><div class='sub' style='margin-top:4px'>主頁（流程順序卡片）</div></div><div class='card'><div class='title'><a href='stock_ops.html'>stock_ops.html</a></div><div class='sub' style='margin-top:4px'>🥇 S/A/B 操作分級</div></div><div class='card'><div class='title'><a href='../market/mainstream_pool.html'>mainstream_pool.html</a></div><div class='sub' style='margin-top:4px'>主流股池 + 7 日歷史</div></div><div class='card'><div class='title'><a href='../market/sector_rotation.html'>sector_rotation.html</a></div><div class='sub' style='margin-top:4px'>產業輪動 RRG + kinematics</div></div><div class='card'><div class='title'><a href='../market/hotflow.html'>hotflow.html</a></div><div class='sub' style='margin-top:4px'>HotFlow A/B/C</div></div><div class='card'><div class='title'><a href='../tech/n_shape.html'>n_shape.html</a></div><div class='sub' style='margin-top:4px'>多時段箱型 9 狀態</div></div><div class='card'><div class='title'><a href='../tech/box_structure.html'>box_structure.html</a></div><div class='sub' style='margin-top:4px'>Box001 + 9 階段</div></div><div class='card'><div class='title'><a href='../pairs/rrr_resonance.html'>rrr_resonance.html</a></div><div class='sub' style='margin-top:4px'>RRR 共振配對</div></div><div class='card'><div class='title'><a href='rsr_pair.html'>rsr_pair.html</a></div><div class='sub' style='margin-top:4px'>RSR 配對</div></div><div class='card'><div class='title'><a href='../pairs/custom_pairs.html'>custom_pairs.html</a></div><div class='sub' style='margin-top:4px'>自選配對</div></div><div class='card'><div class='title'><a href='../pairs/dynamic_rr.html'>dynamic_rr.html</a></div><div class='sub' style='margin-top:4px'>動態 RR</div></div><div class='card'><div class='title'><a href='../market/ms_dashboard.html'>ms_dashboard.html</a></div><div class='sub' style='margin-top:4px'>MS-Agent v2 儀表板</div></div></div><div style='margin-top:14px;padding:10px;background:var(--th-bg2,#eef3fa);border-radius:6px'>📧 <strong>Email</strong>: hwangprobot@gmail.com (Pass 3 21:30 後)<br>📱 <strong>Telegram</strong>: @hwangprobot bot (同上)</div></div><div class='section'><h2>📋 7. 對照表</h2><h3>三道 fallback 資料源</h3>
+<div class='section'><h2>📡 1. 自動觸發層</h2><div class='sub' style='color:var(--muted);margin-bottom:10px'>Windows Task Scheduler: <code>MSNRRR_AutoRefresh</code> (Mon-Fri)</div><div class='grid grid-4'><div class='card'><div class='title'>14:45</div><div><span class='pill p-tech'>🟢 Pass 1 Tech</span></div><div class='sub' style='margin-top:6px'>TWSE 14:30 個股 + TWII</div></div><div class='card'><div class='title'>18:30</div><div><span class='pill p-chip'>🟡 Pass 2 Chip-Partial</span></div><div class='sub' style='margin-top:6px'>+ 三大法人 17:30 公布</div></div><div class='card'><div class='title'>21:30</div><div><span class='pill p-full'>🔴 Pass 3 Full</span></div><div class='sub' style='margin-top:6px'>+ 融資融券 21:00 公布</div></div><div class='card'><div class='title'>22:45</div><div><span class='pill p-safety'>⚙️ Safety Net</span></div><div class='sub' style='margin-top:6px'>兜底重試</div></div></div></div><div class='section'><h2>🤖 2. auto_data_refresh 主流程</h2><code style='color:var(--muted)'>scripts/run_auto_refresh.py → src/agents/auto_data_refresh.py</code><div style='margin-top:12px'><div class='step'><span class='id'>Step 1</span> <strong>is_trading_day(today)?</strong> <span class='sub'>— 若否 → 立即 exit</span></div><div class='step'><span class='id'>Step 2</span> <strong>state lock 已 done(stage)?</strong> <span class='sub'>— 若已升級 → skip</span></div><div class='step'><span class='id'>Step 3</span> <strong>check_freshness() 細分</strong> <span class='sub'>— has_price / has_insti / has_margin → 決定 stage</span></div><div class='step'><span class='id'>Step 4</span> <strong>3 道 fallback fetcher</strong> <span class='sub'>— FinMind → TWSE → yfinance</span></div><div class='step'><span class='id'>Step 4d</span> <strong>data_validator</strong> <span class='sub'>— 寫 data_quality.log (OK/WARN/FAIL)</span></div><div class='step'><span class='id'>Step 5</span> <strong>trigger orchestrator(--stage XXX)</strong> <span class='sub'>— 升級 state lock</span></div></div></div><div class='section'><h2>📥 3. 三道 fallback 資料源</h2><div class='grid grid-3'><div class='card'><div class='title'>🥇 FinMind Backer batch</div><div class='sub'>主路徑 (54 秒全市場)</div><div style='margin-top:6px;font-size:13px'>TaiwanStockPrice + Institutional + Margin + TAIEX/TPEx</div></div><div class='card'><div class='title'>🥈 TWSE / TPEX 官方 API</div><div class='sub'>FinMind 失敗時補 critical</div><div style='margin-top:6px;font-size:13px'>FMTQIK + STOCK_DAY (per-stock 補救)</div></div><div class='card'><div class='title'>🥉 yfinance bulk</div><div class='sub'>最後一道兜底</div><div style='margin-top:6px;font-size:13px'>fetch_universe_prices() 全市場 bulk</div></div></div></div><div class='section'><h2>💾 4. Medallion 三層儲存</h2><div class='grid'><div class='card medallion-bronze'><div class='title'>🥉 Bronze (Raw)</div><div class='sub' style='font-family:monospace;margin-top:4px'>stockHisData/raw/{finmind,twse_official,tpex,taifex}/{date}.json</div><div style='margin-top:6px;font-size:13px'>原始 API response 留痕</div></div><div class='card medallion-silver'><div class='title'>🥈 Silver (Clean)</div><div class='sub' style='font-family:monospace;margin-top:4px'>stockHisData/database/stocks.duckdb (181 MB) + processed/*.csv (196 MB)</div><div style='margin-top:6px;font-size:13px'>DuckDB 主用查詢 + CSV 鏡像備援；表: price, indices, institutional, margin, futures...</div></div><div class='card medallion-gold'><div class='title'>🥇 Gold (Feature)</div><div class='sub' style='font-family:monospace;margin-top:4px'>MS_N_RRR/data/output/ (HTML + JSON 報告)</div><div style='margin-top:6px;font-size:13px'>26 個 HTML 頁 + signal_history (DuckDB)</div></div></div></div><div class='section'><h2>🎯 5. Orchestrator 流程</h2><code style='color:var(--muted)'>src/orchestrator.py run(stage=...)</code><div class='sub' style='margin-top:6px'>stage flag 控制：<span class='pill p-tech'>tech</span> <span class='pill p-chip'>chip-partial</span> <span class='pill p-full'>full</span> → 自動跳過對應 step</div><div style='margin-top:14px'><h3>流程 0 — DB 健康檢查</h3><div class='step'><span class='id'>[0]</span> <span>DuckDB 健康檢查 + 自動修復</span></div></div><div style='margin-top:14px'><h3>流程 1 — 主流偵測</h3><div class='step'><span class='id'>[1]</span> <span>market_structure (市場結構評分)</span></div><div class='step'><span class='id'>[2]</span> <span>ms_breadth / ms_diffusion / ms_temperature / ms_risk</span></div><div class='step'><span class='id'>[3a]</span> <span>hotflow (A 主流 / B 加速 / C 拒絕) → A+B = 123</span></div><div class='step'><span class='id'>[3b]</span> <span>hotflow_lifecycle (4 階段狀態機)</span></div></div><div style='margin-top:14px'><h3>流程 2 — 產業輪動 + 主流股池</h3><div class='step'><span class='id'>[3c]</span> <span>sector_rotation (RRG + Lead-Lag + Markov)</span></div><div class='step'><span class='id'>[3c2]</span> <span>sector_lead_lag (領先落後矩陣)</span></div><div class='step'><span class='id'>[3c3]</span> <span>rrg_kinematics (R(t)/Ṙ/R̈/ω + 9 phase states)</span></div><div class='step'><span class='id'>[3d-1]</span> <span>n_shape (多時段箱型 9 狀態, universe ~185)</span></div><div class='step'><span class='id'>[3d-2]</span> <span>future_leader / mainstream_pool / emerging_leader → 50 股</span></div></div><div style='margin-top:14px'><h3>流程 3 — 技術 + 籌碼 + 配對 → S/A/B 分級</h3><div class='step skip'><span class='id'>[3d-3]</span> <span>🆕 chip_agent_v2 (籌碼評分 0-100)</span><span class='pill p-safety' style='margin-left:6px'>skip on tech</span></div><div class='step skip'><span class='id'>[3e]</span> <span>stock_ops (S/A/B 分級: S=技籌+配對 / A=技籌 / B=配對 / 觀察)</span><span class='pill p-safety' style='margin-left:6px'>skip on tech (grade)</span></div><div class='step'><span class='id'>[3f]</span> <span>box_structure (Box001 / 趨勢出生箱)</span></div><div class='step'><span class='id'>[3g]</span> <span>todo_page</span></div></div><div style='margin-top:14px'><h3>流程 3.5 — 資金籌碼鏈 (錢流→持有者→品質→價格→委員會)</h3><div class='step'><span class='id'>[3d-2.11]</span> <span>broker_branch (分點六特徵 + CSA 四票 + CMG 象限)</span></div><div class='step'><span class='id'>[3e-chip]</span> <span>chip_concentration (集保大戶 / 外資持股, Top 50)</span></div><div class='step'><span class='id'>[3e-chr]</span> <span>🆕 CHR Agent (資金持有者輪動 類RRG CS×CM 四象限)</span></div><div class='step'><span class='id'>[3e-cs]</span> <span>🆕 capital_structure (四維等權四票體檢 + 背離)</span></div><div class='step'><span class='id'>[3f-cc]</span> <span>🏛 🆕 Capital Committee (彙整 CMG/CHR/CSA/Box, 零耦合)</span></div></div><div style='margin-top:14px'><h3>流程 4 — 配對訊號</h3><div class='step'><span class='id'>[4]</span> <span>rrr_resonance + backtest + signals</span></div><div class='step'><span class='id'>[10b]</span> <span>RSR (rr_pair, 對 mainstream_pool 50 算)</span></div><div class='step'><span class='id'>[10d]</span> <span>RRR (rrr_pair)</span></div><div class='step'><span class='id'>[10e]</span> <span>custom_pairs (自選配對)</span></div><div class='step'><span class='id'>[10g]</span> <span>dynamic_rr</span></div></div><div style='margin-top:14px'><h3>流程 5 — 報告 + 訊號歷史</h3><div class='step'><span class='id'>[11]</span> <span>render 26 個 HTML 報告</span></div><div class='step'><span class='id'>[12]</span> <span>tooltip_inject</span></div><div class='step skip'><span class='id'>[13]</span> <span>signal_history → DuckDB</span><span class='pill p-safety' style='margin-left:6px'>skip on tech/chip-partial</span></div><div class='step'><span class='id'>[14]</span> <span>backup_snapshot + cleanup</span></div></div><div style='margin-top:14px'><h3>流程 6 — 部署 + 通知</h3><div class='step'><span class='id'>[15]</span> <span>deploy → MS_N_RRR-reports/main → gh-pages</span></div><div class='step skip'><span class='id'>[16]</span> <span>notify (Email + Telegram)</span><span class='pill p-safety' style='margin-left:6px'>skip on tech/chip-partial</span></div></div></div><div class='section'><h2>🌐 6. 輸出端</h2><div class='sub' style='margin-bottom:8px'>GitHub Pages: <a href='https://yoshiagent.github.io/MS_N_RRR-reports/'>yoshiagent.github.io/MS_N_RRR-reports/</a></div><div class='grid grid-3'><div class='card'><div class='title'><a href='../index.html'>index.html</a></div><div class='sub' style='margin-top:4px'>主頁（流程順序卡片）</div></div><div class='card'><div class='title'><a href='stock_ops.html'>stock_ops.html</a></div><div class='sub' style='margin-top:4px'>🥇 S/A/B 操作分級</div></div><div class='card'><div class='title'><a href='../market/mainstream_pool.html'>mainstream_pool.html</a></div><div class='sub' style='margin-top:4px'>主流股池 + 7 日歷史</div></div><div class='card'><div class='title'><a href='../market/sector_rotation.html'>sector_rotation.html</a></div><div class='sub' style='margin-top:4px'>產業輪動 RRG + kinematics</div></div><div class='card'><div class='title'><a href='../market/hotflow.html'>hotflow.html</a></div><div class='sub' style='margin-top:4px'>HotFlow A/B/C</div></div><div class='card'><div class='title'><a href='../tech/n_shape.html'>n_shape.html</a></div><div class='sub' style='margin-top:4px'>多時段箱型 9 狀態</div></div><div class='card'><div class='title'><a href='../tech/box_structure.html'>box_structure.html</a></div><div class='sub' style='margin-top:4px'>Box001 + 9 階段</div></div><div class='card'><div class='title'><a href='../pairs/rrr_resonance.html'>rrr_resonance.html</a></div><div class='sub' style='margin-top:4px'>RRR 共振配對</div></div><div class='card'><div class='title'><a href='rsr_pair.html'>rsr_pair.html</a></div><div class='sub' style='margin-top:4px'>RSR 配對</div></div><div class='card'><div class='title'><a href='../pairs/custom_pairs.html'>custom_pairs.html</a></div><div class='sub' style='margin-top:4px'>自選配對</div></div><div class='card'><div class='title'><a href='../pairs/dynamic_rr.html'>dynamic_rr.html</a></div><div class='sub' style='margin-top:4px'>動態 RR</div></div><div class='card'><div class='title'><a href='../market/ms_dashboard.html'>ms_dashboard.html</a></div><div class='sub' style='margin-top:4px'>MS-Agent v2 儀表板</div></div></div><div style='margin-top:14px;padding:10px;background:var(--th-bg,#0f1729);border-radius:6px'>📧 <strong>Email</strong>: hwangprobot@gmail.com (Pass 3 21:30 後)<br>📱 <strong>Telegram</strong>: @hwangprobot bot (同上)</div></div><div class='section'><h2>📋 7. 對照表</h2><h3>三道 fallback 資料源</h3>
     <table>
       <tr><th>順序</th><th>來源</th><th>何時用</th></tr>
       <tr><td>🥇 主路徑</td><td>FinMind Backer</td>
@@ -194,5 +166,121 @@ a{ color:var(--accent); }
   資料層 stockHisData · 分析層 MS_N_RRR · 展示層 MS_N_RRR-reports
 </footer>
 
+
+<style id='MS_N_RRR_tooltip_inject_v2'>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: var(--th-bg,#0f172a);
+  color: var(--th-text,#e2e8f0);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid var(--th-border2,#475569);
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 </body>
 </html>
