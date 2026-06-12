@@ -6,94 +6,94 @@
 <style>
 * { box-sizing: border-box; }
 body { margin:0; padding:20px 16px 80px; max-width:1200px; margin:auto;
-       background:#080e18; color:#e2e8f0;
+       background:#f4f7fb; color:#243244;
        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
        line-height:1.65; }
 h1 { font-size:24px; margin:0 0 4px; }
-.sub { color:#94a3b8; font-size:13px; margin-bottom:18px; }
-.back-link { display:inline-block; color:#60a5fa; text-decoration:none; font-size:13px;
-             padding:4px 10px; border:1px solid #2d3f55; border-radius:6px; margin-bottom:14px; }
+.sub { color:#61708a; font-size:13px; margin-bottom:18px; }
+.back-link { display:inline-block; color:#2563eb; text-decoration:none; font-size:13px;
+             padding:4px 10px; border:1px solid #cdd9e7; border-radius:6px; margin-bottom:14px; }
 .back-link:hover { border-color:#3b82f6; }
-code { font-family: ui-monospace, Consolas, monospace; background:#07111e; color:#7dd3fc;
+code { font-family: ui-monospace, Consolas, monospace; background:#f1f5f9; color:#0c7bb3;
        padding:1px 6px; border-radius:3px; font-size:12px; }
 
 /* TOC */
-.toc { background:#131f2e; border:1px solid #2d3f55; border-radius:8px;
+.toc { background:#ffffff; border:1px solid #cdd9e7; border-radius:8px;
        padding:12px 14px; margin-bottom:24px; }
-.toc-title { color:#93c5fd; font-size:13px; font-weight:bold; margin-bottom:8px; }
+.toc-title { color:#2563eb; font-size:13px; font-weight:bold; margin-bottom:8px; }
 .toc-items { display:flex; flex-wrap:wrap; gap:6px; }
-.toc-link { background:#0f1a2c; padding:4px 10px; border-radius:14px;
-            color:#cbd5e1; text-decoration:none; font-size:12px;
+.toc-link { background:#ffffff; padding:4px 10px; border-radius:14px;
+            color:#3f4f63; text-decoration:none; font-size:12px;
             border:1px solid transparent; }
-.toc-link:hover { border-color:#3b82f6; color:#93c5fd; }
+.toc-link:hover { border-color:#3b82f6; color:#2563eb; }
 .toc-link .cnt { color:#64748b; margin-left:4px; font-size:11px; }
 
 /* category */
 .cat-section { margin-bottom:30px; }
 .cat-head { display:flex; align-items:baseline; gap:10px;
-            border-bottom:1px solid #2d3f55; padding-bottom:6px; margin:24px 0 12px; }
-.cat-name { font-size:18px; color:#93c5fd; font-weight:bold; }
-.cat-desc { color:#94a3b8; font-size:12px; }
+            border-bottom:1px solid #cdd9e7; padding-bottom:6px; margin:24px 0 12px; }
+.cat-name { font-size:18px; color:#2563eb; font-weight:bold; }
+.cat-desc { color:#61708a; font-size:12px; }
 
 /* term card */
 .term-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(360px,1fr));
              gap:10px; }
-.term-card { background:#131f2e; border:1px solid #2d3f55; border-radius:8px;
+.term-card { background:#ffffff; border:1px solid #cdd9e7; border-radius:8px;
              padding:12px 14px; transition:border-color 0.15s; }
 .term-card:hover { border-color:#3b82f6; }
 
 .term-head { margin-bottom:6px; }
-.term-name { font-size:15px; font-weight:bold; color:#e2e8f0; }
-.term-var { color:#7dd3fc; font-family:ui-monospace,Consolas,monospace;
-            font-size:11px; margin-left:6px; background:#07111e;
+.term-name { font-size:15px; font-weight:bold; color:#243244; }
+.term-var { color:#0c7bb3; font-family:ui-monospace,Consolas,monospace;
+            font-size:11px; margin-left:6px; background:#f1f5f9;
             padding:1px 5px; border-radius:3px; }
 .term-used { color:#64748b; font-size:11px; float:right; }
 
 .term-row { display:flex; gap:6px; margin-top:5px; font-size:12px; line-height:1.5; }
 .term-row .lbl { color:#64748b; min-width:38px; flex-shrink:0; }
-.term-row .val { color:#cbd5e1; flex:1; word-break:break-word; }
+.term-row .val { color:#3f4f63; flex:1; word-break:break-word; }
 .term-row .val.formula { font-family:ui-monospace,Consolas,monospace;
-                         font-size:11px; color:#7dd3fc;
-                         background:#07111e; padding:3px 6px; border-radius:3px; }
-.term-row .val.dir-good { color:#6ee7b7; }
-.term-row .val.dir-warn { color:#fcd34d; }
-.term-row .val.example { color:#94a3b8; font-style:italic; }
+                         font-size:11px; color:#0c7bb3;
+                         background:#f1f5f9; padding:3px 6px; border-radius:3px; }
+.term-row .val.dir-good { color:#059669; }
+.term-row .val.dir-warn { color:#a16207; }
+.term-row .val.example { color:#61708a; font-style:italic; }
 
 /* highlight 跨頁參照 */
-.cross-ref { background:#1e293b; padding:1px 4px; border-radius:3px;
-             color:#60a5fa; font-size:11px; }
+.cross-ref { background:#e7edf5; padding:1px 4px; border-radius:3px;
+             color:#2563eb; font-size:11px; }
 
 footer { color:#64748b; font-size:12px; margin-top:30px;
-         border-top:1px solid #2d3f55; padding-top:12px; }
+         border-top:1px solid #cdd9e7; padding-top:12px; }
 </style>
 </head><body>
 <!-- GLOBAL_NAV_START -->
 <style>
-.gnav{position:sticky;top:0;z-index:99990;background:#0d1526;border-bottom:1px solid #1e293b;
+.gnav{position:sticky;top:0;z-index:99990;background:#eef2f9;border-bottom:1px solid #dbe3ee;
   font-family:'Segoe UI','Microsoft JhengHei',sans-serif;display:flex;align-items:center;
   flex-wrap:wrap;gap:2px;padding:6px 14px}
-.gnav a.gnav-home{color:#fbbf24;text-decoration:none;font-weight:bold;font-size:13px;
+.gnav a.gnav-home{color:#b45309;text-decoration:none;font-weight:bold;font-size:13px;
   padding:6px 10px;border-radius:6px}
-.gnav a.gnav-home:hover{background:#1e293b}
+.gnav a.gnav-home:hover{background:#e7edf5}
 .gnav-dd{position:relative}
-.gnav-btn{background:none;border:none;color:#cbd5e1;font-size:13px;padding:6px 10px;
+.gnav-btn{background:none;border:none;color:#3f4f63;font-size:13px;padding:6px 10px;
   cursor:pointer;border-radius:6px;font-family:inherit}
-.gnav-btn:hover,.gnav-btn.on{background:#1e293b;color:#fff}
+.gnav-btn:hover,.gnav-btn.on{background:#e7edf5;color:#1e2a3a}
 .gnav-panel{display:none;position:absolute;left:0;top:100%;min-width:230px;max-height:70vh;
-  overflow-y:auto;background:#0f1a2c;border:1px solid #334155;border-radius:8px;
-  padding:6px;box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;
+  padding:6px;box-shadow:0 8px 24px rgba(15,23,42,0.15)}
 .gnav-panel.open{display:block}
-.gnav-hd{color:#64748b;font-size:11px;padding:6px 10px 3px;border-top:1px dashed #1e293b;margin-top:3px}
+.gnav-hd{color:#64748b;font-size:11px;padding:6px 10px 3px;border-top:1px dashed #dbe3ee;margin-top:3px}
 .gnav-hd:first-child{border-top:none;margin-top:0}
-.gnav-it{display:block;color:#e2e8f0;text-decoration:none;font-size:13px;
+.gnav-it{display:block;color:#243244;text-decoration:none;font-size:13px;
   padding:6px 10px;border-radius:5px;white-space:nowrap}
-.gnav-it:hover{background:#1e293b;color:#7dd3fc}
+.gnav-it:hover{background:#e7edf5;color:#0c7bb3}
 .gnav-search{margin-left:auto;position:relative}
-.gnav-search input{background:#1e293b;border:1px solid #334155;color:#e2e8f0;
+.gnav-search input{background:#e7edf5;border:1px solid #c9d4e3;color:#243244;
   font-size:12px;padding:5px 10px;border-radius:6px;width:150px;font-family:inherit}
 .gnav-search input:focus{outline:none;border-color:#7c3aed;width:200px}
 #gnav-sr{display:none;position:absolute;right:0;top:100%;min-width:240px;max-height:60vh;
-  overflow-y:auto;background:#0f1a2c;border:1px solid #334155;border-radius:8px;padding:6px;z-index:99991}
+  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;padding:6px;z-index:99991}
 @media (max-width:760px){.gnav{padding:4px 8px}.gnav-search input{width:100px}}
 </style>
 <nav class="gnav" id="gnav">
@@ -145,6 +145,8 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 
 
 
+
+
 <a class='back-link' href='../index.html'>← 返回主頁</a>
 
 <h1>📖 名詞對照表 — MS_N_RR/RRR Ver.A</h1>
@@ -170,8 +172,8 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
   position: fixed;
-  background: #0f172a;
-  color: #e2e8f0;
+  background: #f4f7fb;
+  color: #243244;
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 12px;
@@ -180,11 +182,11 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
   max-width: 320px;
   width: max-content;
   text-align: left;
-  border: 1px solid #475569;
+  border: 1px solid #bccadb;
   z-index: 999999;
   pointer-events: none;
   line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 12px rgba(15,23,42,0.15);
   display: none;
 }
 .tip:focus { outline: none; }

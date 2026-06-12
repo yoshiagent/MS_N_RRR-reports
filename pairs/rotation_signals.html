@@ -5,9 +5,9 @@
 <title>🔄 換股建議 ｜ MS_N_RR/RRR Ver.A</title>
 <meta name='viewport' content='width=device-width,initial-scale=1'>
 <style>
-:root{ --bg:#0f172a; --card:#1e293b; --card2:#162033; --border:#334155;
-       --text:#e2e8f0; --muted:#94a3b8; --accent:#60a5fa;
-       --good:#10b981; --warn:#fbbf24; --bad:#ef4444; }
+:root{ --bg:#f4f7fb; --card:#ffffff; --card2:#eef3f9; --border:#d5dfeb;
+       --text:#243244; --muted:#61708a; --accent:#2563eb;
+       --good:#10b981; --warn:#b45309; --bad:#ef4444; }
 *{ box-sizing: border-box; }
 body{ margin:0; background:var(--bg); color:var(--text);
       font-family:"Segoe UI",-apple-system,sans-serif; padding:20px;
@@ -25,12 +25,12 @@ a{ color:var(--accent); }
 .urg-grid{ display:grid; gap:10px;
            grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
            margin: 10px 0; }
-.urg-stat{ background:#0f1729; border-radius:6px; padding:10px 12px;
+.urg-stat{ background:#eef3fa; border-radius:6px; padding:10px 12px;
            text-align:center; }
 .urg-stat .num{ font-size:24px; font-weight:700; }
 .urg-stat .lbl{ font-size:12px; color:var(--muted); margin-top:2px; }
 
-.intro{ background:#0a141f; border-left:3px solid var(--accent);
+.intro{ background:#e8ebee; border-left:3px solid var(--accent);
         padding:10px 14px; margin: 10px 0; border-radius:4px;
         font-size: 13px; color: var(--muted); }
 .intro b{ color: var(--text); }
@@ -56,17 +56,17 @@ a{ color:var(--accent); }
        font-weight:600; display:inline-block; }
 .pill.utad{ background:#ef444433; color:#ef4444; }
 .pill.spring{ background:#10b98133; color:#10b981; }
-.pill.same-sector{ background:#60a5fa33; color:#60a5fa; }
+.pill.same-sector{ background:#60a5fa33; color:#2563eb; }
 .pill.ds{ background:#ef444422; color:#ef4444; }
 .pill.as{ background:#10b98122; color:#10b981; }
 .pill.phase{ background:#33415544; color:var(--muted); }
 
-.alternates{ background:#0f1729; padding:8px 12px; margin-top: 4px;
+.alternates{ background:#eef3fa; padding:8px 12px; margin-top: 4px;
              border-radius:4px; font-size: 11px; }
 .alternates .title{ color:var(--muted); margin-bottom: 3px; }
 
 .filter-bar{ display:flex; gap:8px; margin: 10px 0; flex-wrap: wrap; align-items:center; }
-.filter-bar input{ background:#0f1729; border:1px solid var(--border);
+.filter-bar input{ background:#eef3fa; border:1px solid var(--border);
                    color:var(--text); padding:6px 10px; border-radius:6px;
                    font-size:13px; min-width: 220px; }
 .btn{ background:var(--card2); border:1px solid var(--border);
@@ -83,31 +83,31 @@ footer{ margin-top:30px; color:var(--muted); font-size:12px; text-align:center;
 <body>
 <!-- GLOBAL_NAV_START -->
 <style>
-.gnav{position:sticky;top:0;z-index:99990;background:#0d1526;border-bottom:1px solid #1e293b;
+.gnav{position:sticky;top:0;z-index:99990;background:#eef2f9;border-bottom:1px solid #dbe3ee;
   font-family:'Segoe UI','Microsoft JhengHei',sans-serif;display:flex;align-items:center;
   flex-wrap:wrap;gap:2px;padding:6px 14px}
-.gnav a.gnav-home{color:#fbbf24;text-decoration:none;font-weight:bold;font-size:13px;
+.gnav a.gnav-home{color:#b45309;text-decoration:none;font-weight:bold;font-size:13px;
   padding:6px 10px;border-radius:6px}
-.gnav a.gnav-home:hover{background:#1e293b}
+.gnav a.gnav-home:hover{background:#e7edf5}
 .gnav-dd{position:relative}
-.gnav-btn{background:none;border:none;color:#cbd5e1;font-size:13px;padding:6px 10px;
+.gnav-btn{background:none;border:none;color:#3f4f63;font-size:13px;padding:6px 10px;
   cursor:pointer;border-radius:6px;font-family:inherit}
-.gnav-btn:hover,.gnav-btn.on{background:#1e293b;color:#fff}
+.gnav-btn:hover,.gnav-btn.on{background:#e7edf5;color:#1e2a3a}
 .gnav-panel{display:none;position:absolute;left:0;top:100%;min-width:230px;max-height:70vh;
-  overflow-y:auto;background:#0f1a2c;border:1px solid #334155;border-radius:8px;
-  padding:6px;box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;
+  padding:6px;box-shadow:0 8px 24px rgba(15,23,42,0.15)}
 .gnav-panel.open{display:block}
-.gnav-hd{color:#64748b;font-size:11px;padding:6px 10px 3px;border-top:1px dashed #1e293b;margin-top:3px}
+.gnav-hd{color:#64748b;font-size:11px;padding:6px 10px 3px;border-top:1px dashed #dbe3ee;margin-top:3px}
 .gnav-hd:first-child{border-top:none;margin-top:0}
-.gnav-it{display:block;color:#e2e8f0;text-decoration:none;font-size:13px;
+.gnav-it{display:block;color:#243244;text-decoration:none;font-size:13px;
   padding:6px 10px;border-radius:5px;white-space:nowrap}
-.gnav-it:hover{background:#1e293b;color:#7dd3fc}
+.gnav-it:hover{background:#e7edf5;color:#0c7bb3}
 .gnav-search{margin-left:auto;position:relative}
-.gnav-search input{background:#1e293b;border:1px solid #334155;color:#e2e8f0;
+.gnav-search input{background:#e7edf5;border:1px solid #c9d4e3;color:#243244;
   font-size:12px;padding:5px 10px;border-radius:6px;width:150px;font-family:inherit}
 .gnav-search input:focus{outline:none;border-color:#7c3aed;width:200px}
 #gnav-sr{display:none;position:absolute;right:0;top:100%;min-width:240px;max-height:60vh;
-  overflow-y:auto;background:#0f1a2c;border:1px solid #334155;border-radius:8px;padding:6px;z-index:99991}
+  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;padding:6px;z-index:99991}
 @media (max-width:760px){.gnav{padding:4px 8px}.gnav-search input{width:100px}}
 </style>
 <nav class="gnav" id="gnav">
@@ -159,6 +159,8 @@ footer{ margin-top:30px; color:var(--muted); font-size:12px; text-align:center;
 
 
 
+
+
 <h1>🔄 換股建議 (Rotation Signals)</h1>
 <div class='meta'>
   資料日 <strong>2026-06-11</strong> ｜ 產生時間 2026-06-11 18:35:01.869564 ｜
@@ -184,7 +186,7 @@ footer{ margin-top:30px; color:var(--muted); font-size:12px; text-align:center;
       <div class='lbl'>A 建議換股 (40-60)</div>
     </div>
     <div class='urg-stat'>
-      <div class='num' style='color:#fbbf24'>🟡 7</div>
+      <div class='num' style='color:#b45309'>🟡 7</div>
       <div class='lbl'>B 觀察換股 (20-40)</div>
     </div>
     <div class='urg-stat'>
@@ -210,7 +212,7 @@ footer{ margin-top:30px; color:var(--muted); font-size:12px; text-align:center;
   <button class='btn' data-filter='sameSect'>🎯 同族群 (1)</button>
 </div>
 
-<div style='margin-top: 14px'><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='2409 友達 2890 永豐金 26_光電業 17_金融保險'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>2409</span> <span class='name'>友達</span></div><div class='meta-line'>族群: 26_光電業 ｜ 來源: strong_safe</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 53 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 36</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2890</span> <span class='name'>永豐金</span></div><div class='meta-line' style='text-align: right'>族群: 17_金融保險</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 63 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 63, urg 36) ｜ 5484 慧友 (AS 52, urg 36)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='3035 智原 2890 永豐金 24_半導體業 17_金融保險'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>3035</span> <span class='name'>智原</span></div><div class='meta-line'>族群: 24_半導體業 ｜ 來源: custom</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 49 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 32</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2890</span> <span class='name'>永豐金</span></div><div class='meta-line' style='text-align: right'>族群: 17_金融保險</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 63 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 63, urg 32) ｜ 2637 慧洋-KY (AS 59, urg 28)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='1503 士電 2890 永豐金 05_電機機械 17_金融保險'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>1503</span> <span class='name'>士電</span></div><div class='meta-line'>族群: 05_電機機械 ｜ 來源: strong_safe</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 45 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 28</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2890</span> <span class='name'>永豐金</span></div><div class='meta-line' style='text-align: right'>族群: 17_金融保險</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 63 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 63, urg 27) ｜ 2637 慧洋-KY (AS 59, urg 24)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='1' data-search='2327 國巨* 6126 信音 28_電子零組件 28_電子零組件'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>2327</span> <span class='name'>國巨*</span></div><div class='meta-line'>族群: 28_電子零組件 ｜ 來源: mainstream_core</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 42 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 26</span><div style='font-size:10px;margin-top:3px'><span style='color:#60a5fa'>🎯 同族群</span></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>6126</span> <span class='name'>信音</span></div><div class='meta-line' style='text-align: right'>族群: 28_電子零組件</div><div class='badges' style='justify-content: flex-end'><span class='pill as'>AS 54 (B)</span><span class='pill phase'>Phase B（建倉中）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2890 永豐金 (AS 63, urg 25) ｜ 2884 玉山金 (AS 63, urg 25)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='2379 瑞昱 2890 永豐金 24_半導體業 17_金融保險'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>2379</span> <span class='name'>瑞昱</span></div><div class='meta-line'>族群: 24_半導體業 ｜ 來源: strong_safe</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 41 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 24</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2890</span> <span class='name'>永豐金</span></div><div class='meta-line' style='text-align: right'>族群: 17_金融保險</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 63 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 63, urg 24) ｜ 2637 慧洋-KY (AS 59, urg 20)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='8454 富邦媒 2890 永豐金 36_數位雲端 17_金融保險'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>8454</span> <span class='name'>富邦媒</span></div><div class='meta-line'>族群: 36_數位雲端 ｜ 來源: mainstream_candidate,strong_of</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 40 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 24</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2890</span> <span class='name'>永豐金</span></div><div class='meta-line' style='text-align: right'>族群: 17_金融保險</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 63 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 63, urg 23) ｜ 2637 慧洋-KY (AS 59, urg 20)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='2474 可成 2890 永豐金 31_其他電子 17_金融保險'><div class='pair-side'><div class='sym-line'><span style='color:#94a3b8;font-size:10px;'>賣出</span> <span class='sym'>2474</span> <span class='name'>可成</span></div><div class='meta-line'>族群: 31_其他電子 ｜ 來源: strong_safe</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 40 (B)</span><span class='pill phase'>Phase B（派發建倉）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#fbbf24'>🟡 觀察換股</span><span class='urg-sub'>urgency 23</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#94a3b8;font-size:10px;'>買入</span> <span class='sym'>2890</span> <span class='name'>永豐金</span></div><div class='meta-line' style='text-align: right'>族群: 17_金融保險</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 63 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 63, urg 23) ｜ 2461 光群雷 (AS 52, urg 22)</div></div></div>
+<div style='margin-top: 14px'><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='2409 友達 2890 永豐金 26_光電業 17_金融保險'><div class='pair-side'><div class='sym-line'><span style='color:#61708a;font-size:10px;'>賣出</span> <span class='sym'>2409</span> <span class='name'>友達</span></div><div class='meta-line'>族群: 26_光電業 ｜ 來源: strong_safe</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 53 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#b45309'>🟡 觀察換股</span><span class='urg-sub'>urgency 36</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#61708a;font-size:10px;'>買入</span> <span class='sym'>2890</span> <span class='name'>永豐金</span></div><div class='meta-line' style='text-align: right'>族群: 17_金融保險</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 63 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 63, urg 36) ｜ 5484 慧友 (AS 52, urg 36)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='3035 智原 2890 永豐金 24_半導體業 17_金融保險'><div class='pair-side'><div class='sym-line'><span style='color:#61708a;font-size:10px;'>賣出</span> <span class='sym'>3035</span> <span class='name'>智原</span></div><div class='meta-line'>族群: 24_半導體業 ｜ 來源: custom</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 49 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#b45309'>🟡 觀察換股</span><span class='urg-sub'>urgency 32</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#61708a;font-size:10px;'>買入</span> <span class='sym'>2890</span> <span class='name'>永豐金</span></div><div class='meta-line' style='text-align: right'>族群: 17_金融保險</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 63 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 63, urg 32) ｜ 2637 慧洋-KY (AS 59, urg 28)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='1503 士電 2890 永豐金 05_電機機械 17_金融保險'><div class='pair-side'><div class='sym-line'><span style='color:#61708a;font-size:10px;'>賣出</span> <span class='sym'>1503</span> <span class='name'>士電</span></div><div class='meta-line'>族群: 05_電機機械 ｜ 來源: strong_safe</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 45 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#b45309'>🟡 觀察換股</span><span class='urg-sub'>urgency 28</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#61708a;font-size:10px;'>買入</span> <span class='sym'>2890</span> <span class='name'>永豐金</span></div><div class='meta-line' style='text-align: right'>族群: 17_金融保險</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 63 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 63, urg 27) ｜ 2637 慧洋-KY (AS 59, urg 24)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='1' data-search='2327 國巨* 6126 信音 28_電子零組件 28_電子零組件'><div class='pair-side'><div class='sym-line'><span style='color:#61708a;font-size:10px;'>賣出</span> <span class='sym'>2327</span> <span class='name'>國巨*</span></div><div class='meta-line'>族群: 28_電子零組件 ｜ 來源: mainstream_core</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 42 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#b45309'>🟡 觀察換股</span><span class='urg-sub'>urgency 26</span><div style='font-size:10px;margin-top:3px'><span style='color:#2563eb'>🎯 同族群</span></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#61708a;font-size:10px;'>買入</span> <span class='sym'>6126</span> <span class='name'>信音</span></div><div class='meta-line' style='text-align: right'>族群: 28_電子零組件</div><div class='badges' style='justify-content: flex-end'><span class='pill as'>AS 54 (B)</span><span class='pill phase'>Phase B（建倉中）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2890 永豐金 (AS 63, urg 25) ｜ 2884 玉山金 (AS 63, urg 25)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='2379 瑞昱 2890 永豐金 24_半導體業 17_金融保險'><div class='pair-side'><div class='sym-line'><span style='color:#61708a;font-size:10px;'>賣出</span> <span class='sym'>2379</span> <span class='name'>瑞昱</span></div><div class='meta-line'>族群: 24_半導體業 ｜ 來源: strong_safe</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 41 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#b45309'>🟡 觀察換股</span><span class='urg-sub'>urgency 24</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#61708a;font-size:10px;'>買入</span> <span class='sym'>2890</span> <span class='name'>永豐金</span></div><div class='meta-line' style='text-align: right'>族群: 17_金融保險</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 63 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 63, urg 24) ｜ 2637 慧洋-KY (AS 59, urg 20)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='8454 富邦媒 2890 永豐金 36_數位雲端 17_金融保險'><div class='pair-side'><div class='sym-line'><span style='color:#61708a;font-size:10px;'>賣出</span> <span class='sym'>8454</span> <span class='name'>富邦媒</span></div><div class='meta-line'>族群: 36_數位雲端 ｜ 來源: mainstream_candidate,strong_of</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 40 (B)</span><span class='pill phase'>Phase C（UTAD / 假突破）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#b45309'>🟡 觀察換股</span><span class='urg-sub'>urgency 24</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#61708a;font-size:10px;'>買入</span> <span class='sym'>2890</span> <span class='name'>永豐金</span></div><div class='meta-line' style='text-align: right'>族群: 17_金融保險</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 63 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 63, urg 23) ｜ 2637 慧洋-KY (AS 59, urg 20)</div></div><div class='pair-card urg-B' data-urg='B_watch' data-same-sect='0' data-search='2474 可成 2890 永豐金 31_其他電子 17_金融保險'><div class='pair-side'><div class='sym-line'><span style='color:#61708a;font-size:10px;'>賣出</span> <span class='sym'>2474</span> <span class='name'>可成</span></div><div class='meta-line'>族群: 31_其他電子 ｜ 來源: strong_safe</div><div class='badges'><span class='pill utad' title='UTAD 假突破偵測'>🌋 UTAD</span><span class='pill ds'>DS 40 (B)</span><span class='pill phase'>Phase B（派發建倉）</span></div></div><div class='pair-arrow'>→<br><span class='urg' style='color:#b45309'>🟡 觀察換股</span><span class='urg-sub'>urgency 23</span><div style='font-size:10px;margin-top:3px'></div></div><div class='pair-side'><div class='sym-line' style='text-align: right'><span style='color:#61708a;font-size:10px;'>買入</span> <span class='sym'>2890</span> <span class='name'>永豐金</span></div><div class='meta-line' style='text-align: right'>族群: 17_金融保險</div><div class='badges' style='justify-content: flex-end'><span class='pill spring' title='Spring 假跌破偵測'>🌱 Spring</span><span class='pill as'>AS 63 (A)</span><span class='pill phase'>Phase D（LPS / SOS 浮現）</span></div></div></div><div style='margin-bottom:6px'><div class='alternates'><div class='title'>其他候選：</div>2884 玉山金 (AS 63, urg 23) ｜ 2461 光群雷 (AS 52, urg 22)</div></div></div>
 
 <footer>
   Rotation Signals ｜ <code>src/agents/rotation_signals.py</code> ｜
@@ -256,8 +258,8 @@ if (sb) {
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
   position: fixed;
-  background: #0f172a;
-  color: #e2e8f0;
+  background: #f4f7fb;
+  color: #243244;
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 12px;
@@ -266,11 +268,11 @@ if (sb) {
   max-width: 320px;
   width: max-content;
   text-align: left;
-  border: 1px solid #475569;
+  border: 1px solid #bccadb;
   z-index: 999999;
   pointer-events: none;
   line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 12px rgba(15,23,42,0.15);
   display: none;
 }
 .tip:focus { outline: none; }
