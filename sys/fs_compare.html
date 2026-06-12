@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-TW"><head>
+<link rel="stylesheet" href="../assets/site.css">
 <meta charset="UTF-8">
 <title>FS 對照 — baseline vs UAA</title>
 <style>
-:root{ --bg:#f4f7fb; --card:#ffffff; --card2:#eef3f9; --border:#d5dfeb;
-       --text:#243244; --muted:#61708a; --accent:#2563eb;
-       --good:#10b981; --warn:#b45309; --bad:#ef4444; --up:#22c55e; --down:#ef4444; }
+:root{ --bg:var(--th-bg,#f4f7fb); --card:var(--th-card,#ffffff); --card2:var(--th-bg2,#eef3f9); --border:var(--th-border,#d5dfeb);
+       --text:var(--th-text,#243244); --muted:var(--th-muted,#61708a); --accent:var(--th-accent,#2563eb);
+       --good:#10b981; --warn:var(--th-warn,#b45309); --bad:#ef4444; --up:#22c55e; --down:#ef4444; }
 *{ box-sizing: border-box; }
 body{ margin:0; background:var(--bg); color:var(--text);
-      font-family:"Segoe UI",-apple-system,sans-serif; padding:20px;
+      font-family:var(--th-font,"Segoe UI",-apple-system,sans-serif); padding:20px;
       max-width: 1400px; margin: 0 auto; }
 h1{ font-size:26px; margin:0 0 6px 0; }
 h2{ font-size:18px; margin:24px 0 10px 0;
@@ -22,10 +23,10 @@ h2{ font-size:18px; margin:24px 0 10px 0;
 .kpi b{ color: var(--accent); font-size:15px; }
 .variant-tag{ display:inline-block; padding:2px 8px; border-radius:4px;
               font-weight:600; font-size:12px; margin-right:6px; }
-.v-baseline{ background:#3b82f6; color:#1e2a3a; }
+.v-baseline{ background:#3b82f6; color:var(--th-text,#1e2a3a); }
 .v-uaa{ background:#fbbf24; color:#0f172a; }
-.v-shadow{ background:#a78bfa; color:#1e2a3a; }
-.v-other{ background:#64748b; color:#1e2a3a; }
+.v-shadow{ background:#a78bfa; color:var(--th-text,#1e2a3a); }
+.v-other{ background:#64748b; color:var(--th-text,#1e2a3a); }
 
 .grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:14px; }
 .card{ background:var(--card); border:1px solid var(--border);
@@ -52,43 +53,15 @@ tr:last-child td{ border-bottom:none; }
 .tier-pill{ display:inline-block; padding:1px 8px; border-radius:4px;
             font-weight:700; font-size:11px; }
 .tier-S{ background:#fbbf24; color:#0f172a; }
-.tier-A{ background:#10b981; color:#1e2a3a; }
-.tier-B{ background:#3b82f6; color:#1e2a3a; }
-.tier-C{ background:#94a3b8; color:#1e2a3a; }
+.tier-A{ background:#10b981; color:var(--th-text,#1e2a3a); }
+.tier-B{ background:#3b82f6; color:var(--th-text,#1e2a3a); }
+.tier-C{ background:#94a3b8; color:var(--th-text,#1e2a3a); }
 .arrow-up{ color:var(--up); }
 .arrow-down{ color:var(--down); }
 .muted{ color:var(--muted); font-size:11px; }
 </style>
 </head><body>
 <!-- GLOBAL_NAV_START -->
-<style>
-.gnav{position:sticky;top:0;z-index:99990;background:#eef2f9;border-bottom:1px solid #dbe3ee;
-  font-family:'Segoe UI','Microsoft JhengHei',sans-serif;display:flex;align-items:center;
-  flex-wrap:wrap;gap:2px;padding:6px 14px}
-.gnav a.gnav-home{color:#b45309;text-decoration:none;font-weight:bold;font-size:13px;
-  padding:6px 10px;border-radius:6px}
-.gnav a.gnav-home:hover{background:#e7edf5}
-.gnav-dd{position:relative}
-.gnav-btn{background:none;border:none;color:#3f4f63;font-size:13px;padding:6px 10px;
-  cursor:pointer;border-radius:6px;font-family:inherit}
-.gnav-btn:hover,.gnav-btn.on{background:#e7edf5;color:#1e2a3a}
-.gnav-panel{display:none;position:absolute;left:0;top:100%;min-width:230px;max-height:70vh;
-  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;
-  padding:6px;box-shadow:0 8px 24px rgba(15,23,42,0.15)}
-.gnav-panel.open{display:block}
-.gnav-hd{color:#64748b;font-size:11px;padding:6px 10px 3px;border-top:1px dashed #dbe3ee;margin-top:3px}
-.gnav-hd:first-child{border-top:none;margin-top:0}
-.gnav-it{display:block;color:#243244;text-decoration:none;font-size:13px;
-  padding:6px 10px;border-radius:5px;white-space:nowrap}
-.gnav-it:hover{background:#e7edf5;color:#0c7bb3}
-.gnav-search{margin-left:auto;position:relative}
-.gnav-search input{background:#e7edf5;border:1px solid #c9d4e3;color:#243244;
-  font-size:12px;padding:5px 10px;border-radius:6px;width:150px;font-family:inherit}
-.gnav-search input:focus{outline:none;border-color:#7c3aed;width:200px}
-#gnav-sr{display:none;position:absolute;right:0;top:100%;min-width:240px;max-height:60vh;
-  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;padding:6px;z-index:99991}
-@media (max-width:760px){.gnav{padding:4px 8px}.gnav-search input{width:100px}}
-</style>
 <nav class="gnav" id="gnav">
   <a class="gnav-home" href="../index.html">🏠 主控台</a>
   <div class='gnav-dd'><button class='gnav-btn' data-dd='0'>🏢 組織架構 ▾</button><div class='gnav-panel' id='gnav-p0'><a class='gnav-it' href='../org/organization.html'>🏢 組織架構圖</a><a class='gnav-it' href='../org/system_flow.html'>🔄 系統流程圖</a><div class='gnav-hd'>─ 投資長 CIO ─</div><a class='gnav-it' href='../market/ms_dashboard.html'>🎩 MS 投資長儀表板</a><div class='gnav-hd'>─ 研究部 ─</div><a class='gnav-it' href='../org/iue.html'>🏛 投資宇宙引擎 IUE</a><a class='gnav-it' href='../org/iue_journey.html'>📜 IUE 股票履歷</a><div class='gnav-hd'>─ 評審 / 決策 ─</div><a class='gnav-it' href='../org/iab.html'>🎖 外聘評審委員會 IAB</a><a class='gnav-it' href='../org/master_score.html'>👥 9 名人評分</a><a class='gnav-it' href='../org/capital_committee.html'>🗳 資金持有委員會</a><div class='gnav-hd'>─ 基金管理部 ─</div><a class='gnav-it' href='../org/fund_managers.html'>💼 CIO × 經理競標</a><a class='gnav-it' href='../org/stock_ops.html'>🎯 操作 Agent (5 階段)</a><a class='gnav-it' href='../org/pm_custom.html'>⭐ 自選股 PM</a><a class='gnav-it' href='../org/pm_trend_growth.html'>💹 趨勢成長 PM</a><a class='gnav-it' href='../org/paper_portfolio.html'>📈 模擬投資組合</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='1'>🔬 分析面向 ▾</button><div class='gnav-panel' id='gnav-p1'><div class='gnav-hd'>─ 技術面 ─</div><a class='gnav-it' href='../tech/n_shape.html'>📦 多時段箱型</a><a class='gnav-it' href='../tech/box_structure.html'>🧱 股票箱結構</a><a class='gnav-it' href='../tech/shsl.html'>⛰ SH/SL 擺動</a><a class='gnav-it' href='../tech/wyckoff_phase.html'>🌀 Wyckoff 階段</a><a class='gnav-it' href='../tech/n_pattern.html'>📐 N 形態</a><a class='gnav-it' href='../tech/structure_chart.html'>🗺 結構圖</a><a class='gnav-it' href='../tech/state_grid_preview.html'>🔳 狀態網格</a><div class='gnav-hd'>─ 籌碼面 ─</div><a class='gnav-it' href='../chip/chip_concentration.html'>🎯 籌碼集中度</a><a class='gnav-it' href='../chip/broker_branch.html'>🏦 券商分點</a><a class='gnav-it' href='../chip/capital_structure.html'>🧬 資金結構體檢</a><a class='gnav-it' href='../chip/chr.html'>🔄 CHR 持有者輪動</a><a class='gnav-it' href='../chip/cmg.html'>💰 CMG 資金流向</a><a class='gnav-it' href='../chip/cga.html'>📊 CGA 籌碼集中</a><div class='gnav-hd'>─ 基本面 ─</div><a class='gnav-it' href='../fund/fundamental_score.html'>🧪 基本面 5 維 (PEG/FCF/ROE)</a><div class='gnav-hd'>─ 市場結構 ─</div><a class='gnav-it' href='../market/ms_dashboard.html'>🎩 MS 儀表板</a><a class='gnav-it' href='../market/hotflow.html'>🔥 熱門流向 HotFlow</a><a class='gnav-it' href='../market/sector_rotation.html'>🌐 族群輪動 RRG</a><a class='gnav-it' href='../market/sector_constituents.html'>🗂 族群成分股</a><a class='gnav-it' href='../market/mainstream_pool.html'>🏊 主流股池</a><a class='gnav-it' href='../market/strong_stocks.html'>💪 強勢股</a><div class='gnav-hd'>─ 股池 ─</div><a class='gnav-it' href='../pool/custom_pool.html'>⭐ 自選股池</a><a class='gnav-it' href='../pool/accumulation_pool.html'>🧲 吸籌池</a><a class='gnav-it' href='../pool/distribution_score.html'>🌋 派發評分</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='2'>🔁 配對交易 ▾</button><div class='gnav-panel' id='gnav-p2'><a class='gnav-it' href='../pairs/rr.html'>🔁 RSR 配對</a><a class='gnav-it' href='../pairs/rrr.html'>📐 RRR 配對</a><a class='gnav-it' href='../pairs/rrr_resonance.html'>🌀 RRR Resonance</a><a class='gnav-it' href='../pairs/dynamic_rr.html'>⚡ 動態 RSR</a><a class='gnav-it' href='../pairs/custom_pairs.html'>⭐ 自選配對</a><a class='gnav-it' href='../pairs/rcga_overview.html'>🚦 RCGA 總覽</a><a class='gnav-it' href='../pairs/rotation_signals.html'>🔄 換股訊號</a><a class='gnav-it' href='../pairs/rotation_confirm_log.html'>📋 換股確認紀錄</a><a class='gnav-it' href='../pairs/rotation_case_study.html'>📚 換股案例</a><a class='gnav-it' href='../pairs/backtest.html'>📊 回測</a><div class='gnav-hd'>─ 配對圖 ─</div><a class='gnav-it' href='../pairs/nan_xin_chart.html'>南電 / 欣興</a><a class='gnav-it' href='../pairs/jh_zy_chart.html'>晶豪科 / 智原</a><a class='gnav-it' href='../pairs/pair_2049_4576.html'>上銀 / 大銀微</a><a class='gnav-it' href='../pairs/pair_2344_2408.html'>華邦電 / 南亞科</a><a class='gnav-it' href='../pairs/pair_9921_9914.html'>巨大 / 美利達</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='3'>⚙ 系統 ▾</button><div class='gnav-panel' id='gnav-p3'><a class='gnav-it' href='../sys/todo.html'>📝 待辦事項</a><a class='gnav-it' href='../sys/db_health.html'>🩺 資料庫健康</a><a class='gnav-it' href='../sys/fs_compare.html'>🆚 FS 對照</a><a class='gnav-it' href='../sys/nomenclature.html'>📖 名詞對照表</a><a class='gnav-it' href='../docs/V2_ARCHITECTURE.html'>📋 V.2 架構文件</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='4'>📂 個股卷宗 ▾</button><div class='gnav-panel' id='gnav-p4'><a class='gnav-it' href='../dossier/1503.html'>1503 士電</a><a class='gnav-it' href='../dossier/2049.html'>2049 上銀</a><a class='gnav-it' href='../dossier/2330.html'>2330 台積電</a><a class='gnav-it' href='../dossier/2344.html'>2344 華邦電</a><a class='gnav-it' href='../dossier/2359.html'>2359 所羅門</a><a class='gnav-it' href='../dossier/2408.html'>2408 南亞科</a><a class='gnav-it' href='../dossier/3006.html'>3006 晶豪科</a><a class='gnav-it' href='../dossier/3035.html'>3035 智原</a><a class='gnav-it' href='../dossier/3037.html'>3037 欣興</a><a class='gnav-it' href='../dossier/4576.html'>4576 大銀微系統</a><a class='gnav-it' href='../dossier/8046.html'>8046 南電</a><a class='gnav-it' href='../dossier/9914.html'>9914 美利達</a><a class='gnav-it' href='../dossier/9921.html'>9921 巨大</a></div></div>
@@ -129,6 +102,10 @@ tr:last-child td{ border-bottom:none; }
 })();
 </script>
 <!-- GLOBAL_NAV_END -->
+
+
+
+
 
 
 
@@ -197,8 +174,8 @@ tr:last-child td{ border-bottom:none; }
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
   position: fixed;
-  background: #f4f7fb;
-  color: #243244;
+  background: var(--th-bg,#f4f7fb);
+  color: var(--th-text,#243244);
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 12px;
@@ -207,7 +184,7 @@ tr:last-child td{ border-bottom:none; }
   max-width: 320px;
   width: max-content;
   text-align: left;
-  border: 1px solid #bccadb;
+  border: 1px solid var(--th-border2,#bccadb);
   z-index: 999999;
   pointer-events: none;
   line-height: 1.6;

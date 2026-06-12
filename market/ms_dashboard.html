@@ -1,32 +1,33 @@
 <!doctype html>
 <html lang='zh-Hant'><head>
+<link rel="stylesheet" href="../assets/site.css">
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <title>MS-Agent v2 — 市場結構監控</title>
 <style>
 * { box-sizing: border-box; }
 body { margin:0; padding:24px 20px 80px; max-width:1180px; margin:auto;
-       background:#f4f7fb; color:#243244;
-       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       background:var(--th-bg,#f4f7fb); color:var(--th-text,#243244);
+       font-family:var(--th-font,-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif);
        line-height:1.7; }
 h1 { font-size:22px; margin:0 0 4px; }
-h2 { font-size:17px; color:#2563eb; border-bottom:1px solid #cdd9e7;
+h2 { font-size:17px; color:var(--th-accent,#2563eb); border-bottom:1px solid #cdd9e7;
      padding-bottom:6px; margin:28px 0 12px; }
-.sub { color:#61708a; font-size:13px; margin-bottom:18px; }
-.back-link { display:inline-block; color:#2563eb; text-decoration:none; font-size:13px;
+.sub { color:var(--th-muted,#61708a); font-size:13px; margin-bottom:18px; }
+.back-link { display:inline-block; color:var(--th-accent,#2563eb); text-decoration:none; font-size:13px;
              padding:4px 10px; border:1px solid #cdd9e7; border-radius:6px; margin-bottom:14px; }
 .back-link:hover { border-color:#3b82f6; }
-code { font-family: ui-monospace, Consolas, monospace; background:#f1f5f9; color:#0c7bb3;
+code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg2,#f1f5f9); color:var(--th-info,#0c7bb3);
        padding:1px 6px; border-radius:3px; font-size:12px; }
 
 /* 8 欄總覽 */
 .overview { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
             gap:10px; margin-bottom:16px; }
-.ov-cell { background:#ffffff; border:1px solid #cdd9e7; border-radius:8px;
+.ov-cell { background:var(--th-card,#ffffff); border:1px solid #cdd9e7; border-radius:8px;
            padding:12px 14px; }
-.ov-cell .lbl { color:#61708a; font-size:12px; }
+.ov-cell .lbl { color:var(--th-muted,#61708a); font-size:12px; }
 .ov-cell .val { font-size:18px; font-weight:bold; margin-top:4px; line-height:1.3; }
-.ov-cell .extra { color:#3f4f63; font-size:12px; margin-top:4px; }
+.ov-cell .extra { color:var(--th-text2,#3f4f63); font-size:12px; margin-top:4px; }
 
 /* 溫度大字 */
 .temp-banner { background:linear-gradient(135deg,#ffffff,#ffffff);
@@ -37,80 +38,52 @@ code { font-family: ui-monospace, Consolas, monospace; background:#f1f5f9; color
               line-height:1; }
 .temp-info { flex:1; min-width:240px; }
 .temp-label { font-size:24px; font-weight:bold; margin-bottom:4px; }
-.temp-advice { color:#3f4f63; font-size:14px; margin-bottom:8px; }
-.temp-bar { background:#ffffff; border-radius:3px; height:10px; overflow:hidden;
+.temp-advice { color:var(--th-text2,#3f4f63); font-size:14px; margin-bottom:8px; }
+.temp-bar { background:var(--th-card,#ffffff); border-radius:3px; height:10px; overflow:hidden;
             position:relative; }
 .temp-fill { height:100%; transition:width 0.6s; }
 .temp-scale { display:flex; justify-content:space-between; font-size:10px;
-              color:#64748b; margin-top:3px; }
+              color:var(--th-muted,#64748b); margin-top:3px; }
 
 /* sub-score 行 */
 .sub-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(170px,1fr));
             gap:6px; margin-top:10px; }
-.sub-cell { background:#ffffff; padding:8px 10px; border-radius:6px;
+.sub-cell { background:var(--th-card,#ffffff); padding:8px 10px; border-radius:6px;
             display:flex; justify-content:space-between; align-items:baseline;
             font-size:12px; }
-.sub-cell .lbl { color:#61708a; }
+.sub-cell .lbl { color:var(--th-muted,#61708a); }
 .sub-cell .val { font-weight:bold; }
-.sub-cell .w { color:#64748b; font-size:10px; margin-left:4px; }
+.sub-cell .w { color:var(--th-muted,#64748b); font-size:10px; margin-left:4px; }
 
 /* RR 環境條件 */
 .rr-checklist { display:flex; flex-direction:column; gap:4px; margin-top:8px; }
-.rr-item { background:#ffffff; padding:6px 12px; border-radius:4px;
+.rr-item { background:var(--th-card,#ffffff); padding:6px 12px; border-radius:4px;
            display:flex; align-items:center; gap:8px; font-size:13px; }
 .rr-item .mark { font-size:14px; }
 .rr-item.passed { border-left:3px solid #10b981; }
 .rr-item.failed { border-left:3px solid #64748b; opacity:0.6; }
-.rr-item .w { color:#61708a; font-size:11px; margin-left:auto; }
+.rr-item .w { color:var(--th-muted,#61708a); font-size:11px; margin-left:auto; }
 
 /* 風險訊號 */
 .risk-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
              gap:6px; margin-top:8px; }
-.risk-cell { background:#ffffff; border:1px solid #cdd9e7; border-radius:6px;
+.risk-cell { background:var(--th-card,#ffffff); border:1px solid #cdd9e7; border-radius:6px;
              padding:8px 12px; font-size:12px; }
 .risk-cell.triggered { border-color:#ef4444; background:rgba(239,68,68,0.08); }
 .risk-cell .name { font-weight:bold; }
-.risk-cell .desc { color:#61708a; margin-top:3px; font-size:11px; }
+.risk-cell .desc { color:var(--th-muted,#61708a); margin-top:3px; font-size:11px; }
 
 /* lifecycle 統計 */
 .lc-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; }
-.lc-cell { background:#ffffff; padding:8px; border-radius:6px;
+.lc-cell { background:var(--th-card,#ffffff); padding:8px; border-radius:6px;
            text-align:center; font-size:12px; }
 .lc-cell .num { font-size:22px; font-weight:bold; margin-top:4px; }
 
-footer { color:#64748b; font-size:12px; margin-top:30px;
+footer { color:var(--th-muted,#64748b); font-size:12px; margin-top:30px;
          border-top:1px solid #cdd9e7; padding-top:12px; }
 </style>
 </head><body>
 <!-- GLOBAL_NAV_START -->
-<style>
-.gnav{position:sticky;top:0;z-index:99990;background:#eef2f9;border-bottom:1px solid #dbe3ee;
-  font-family:'Segoe UI','Microsoft JhengHei',sans-serif;display:flex;align-items:center;
-  flex-wrap:wrap;gap:2px;padding:6px 14px}
-.gnav a.gnav-home{color:#b45309;text-decoration:none;font-weight:bold;font-size:13px;
-  padding:6px 10px;border-radius:6px}
-.gnav a.gnav-home:hover{background:#e7edf5}
-.gnav-dd{position:relative}
-.gnav-btn{background:none;border:none;color:#3f4f63;font-size:13px;padding:6px 10px;
-  cursor:pointer;border-radius:6px;font-family:inherit}
-.gnav-btn:hover,.gnav-btn.on{background:#e7edf5;color:#1e2a3a}
-.gnav-panel{display:none;position:absolute;left:0;top:100%;min-width:230px;max-height:70vh;
-  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;
-  padding:6px;box-shadow:0 8px 24px rgba(15,23,42,0.15)}
-.gnav-panel.open{display:block}
-.gnav-hd{color:#64748b;font-size:11px;padding:6px 10px 3px;border-top:1px dashed #dbe3ee;margin-top:3px}
-.gnav-hd:first-child{border-top:none;margin-top:0}
-.gnav-it{display:block;color:#243244;text-decoration:none;font-size:13px;
-  padding:6px 10px;border-radius:5px;white-space:nowrap}
-.gnav-it:hover{background:#e7edf5;color:#0c7bb3}
-.gnav-search{margin-left:auto;position:relative}
-.gnav-search input{background:#e7edf5;border:1px solid #c9d4e3;color:#243244;
-  font-size:12px;padding:5px 10px;border-radius:6px;width:150px;font-family:inherit}
-.gnav-search input:focus{outline:none;border-color:#7c3aed;width:200px}
-#gnav-sr{display:none;position:absolute;right:0;top:100%;min-width:240px;max-height:60vh;
-  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;padding:6px;z-index:99991}
-@media (max-width:760px){.gnav{padding:4px 8px}.gnav-search input{width:100px}}
-</style>
 <nav class="gnav" id="gnav">
   <a class="gnav-home" href="../index.html">🏠 主控台</a>
   <div class='gnav-dd'><button class='gnav-btn' data-dd='0'>🏢 組織架構 ▾</button><div class='gnav-panel' id='gnav-p0'><a class='gnav-it' href='../org/organization.html'>🏢 組織架構圖</a><a class='gnav-it' href='../org/system_flow.html'>🔄 系統流程圖</a><div class='gnav-hd'>─ 投資長 CIO ─</div><a class='gnav-it' href='../market/ms_dashboard.html'>🎩 MS 投資長儀表板</a><div class='gnav-hd'>─ 研究部 ─</div><a class='gnav-it' href='../org/iue.html'>🏛 投資宇宙引擎 IUE</a><a class='gnav-it' href='../org/iue_journey.html'>📜 IUE 股票履歷</a><div class='gnav-hd'>─ 評審 / 決策 ─</div><a class='gnav-it' href='../org/iab.html'>🎖 外聘評審委員會 IAB</a><a class='gnav-it' href='../org/master_score.html'>👥 9 名人評分</a><a class='gnav-it' href='../org/capital_committee.html'>🗳 資金持有委員會</a><div class='gnav-hd'>─ 基金管理部 ─</div><a class='gnav-it' href='../org/fund_managers.html'>💼 CIO × 經理競標</a><a class='gnav-it' href='../org/stock_ops.html'>🎯 操作 Agent (5 階段)</a><a class='gnav-it' href='../org/pm_custom.html'>⭐ 自選股 PM</a><a class='gnav-it' href='../org/pm_trend_growth.html'>💹 趨勢成長 PM</a><a class='gnav-it' href='../org/paper_portfolio.html'>📈 模擬投資組合</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='1'>🔬 分析面向 ▾</button><div class='gnav-panel' id='gnav-p1'><div class='gnav-hd'>─ 技術面 ─</div><a class='gnav-it' href='../tech/n_shape.html'>📦 多時段箱型</a><a class='gnav-it' href='../tech/box_structure.html'>🧱 股票箱結構</a><a class='gnav-it' href='../tech/shsl.html'>⛰ SH/SL 擺動</a><a class='gnav-it' href='../tech/wyckoff_phase.html'>🌀 Wyckoff 階段</a><a class='gnav-it' href='../tech/n_pattern.html'>📐 N 形態</a><a class='gnav-it' href='../tech/structure_chart.html'>🗺 結構圖</a><a class='gnav-it' href='../tech/state_grid_preview.html'>🔳 狀態網格</a><div class='gnav-hd'>─ 籌碼面 ─</div><a class='gnav-it' href='../chip/chip_concentration.html'>🎯 籌碼集中度</a><a class='gnav-it' href='../chip/broker_branch.html'>🏦 券商分點</a><a class='gnav-it' href='../chip/capital_structure.html'>🧬 資金結構體檢</a><a class='gnav-it' href='../chip/chr.html'>🔄 CHR 持有者輪動</a><a class='gnav-it' href='../chip/cmg.html'>💰 CMG 資金流向</a><a class='gnav-it' href='../chip/cga.html'>📊 CGA 籌碼集中</a><div class='gnav-hd'>─ 基本面 ─</div><a class='gnav-it' href='../fund/fundamental_score.html'>🧪 基本面 5 維 (PEG/FCF/ROE)</a><div class='gnav-hd'>─ 市場結構 ─</div><a class='gnav-it' href='../market/ms_dashboard.html'>🎩 MS 儀表板</a><a class='gnav-it' href='../market/hotflow.html'>🔥 熱門流向 HotFlow</a><a class='gnav-it' href='../market/sector_rotation.html'>🌐 族群輪動 RRG</a><a class='gnav-it' href='../market/sector_constituents.html'>🗂 族群成分股</a><a class='gnav-it' href='../market/mainstream_pool.html'>🏊 主流股池</a><a class='gnav-it' href='../market/strong_stocks.html'>💪 強勢股</a><div class='gnav-hd'>─ 股池 ─</div><a class='gnav-it' href='../pool/custom_pool.html'>⭐ 自選股池</a><a class='gnav-it' href='../pool/accumulation_pool.html'>🧲 吸籌池</a><a class='gnav-it' href='../pool/distribution_score.html'>🌋 派發評分</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='2'>🔁 配對交易 ▾</button><div class='gnav-panel' id='gnav-p2'><a class='gnav-it' href='../pairs/rr.html'>🔁 RSR 配對</a><a class='gnav-it' href='../pairs/rrr.html'>📐 RRR 配對</a><a class='gnav-it' href='../pairs/rrr_resonance.html'>🌀 RRR Resonance</a><a class='gnav-it' href='../pairs/dynamic_rr.html'>⚡ 動態 RSR</a><a class='gnav-it' href='../pairs/custom_pairs.html'>⭐ 自選配對</a><a class='gnav-it' href='../pairs/rcga_overview.html'>🚦 RCGA 總覽</a><a class='gnav-it' href='../pairs/rotation_signals.html'>🔄 換股訊號</a><a class='gnav-it' href='../pairs/rotation_confirm_log.html'>📋 換股確認紀錄</a><a class='gnav-it' href='../pairs/rotation_case_study.html'>📚 換股案例</a><a class='gnav-it' href='../pairs/backtest.html'>📊 回測</a><div class='gnav-hd'>─ 配對圖 ─</div><a class='gnav-it' href='../pairs/nan_xin_chart.html'>南電 / 欣興</a><a class='gnav-it' href='../pairs/jh_zy_chart.html'>晶豪科 / 智原</a><a class='gnav-it' href='../pairs/pair_2049_4576.html'>上銀 / 大銀微</a><a class='gnav-it' href='../pairs/pair_2344_2408.html'>華邦電 / 南亞科</a><a class='gnav-it' href='../pairs/pair_9921_9914.html'>巨大 / 美利達</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='3'>⚙ 系統 ▾</button><div class='gnav-panel' id='gnav-p3'><a class='gnav-it' href='../sys/todo.html'>📝 待辦事項</a><a class='gnav-it' href='../sys/db_health.html'>🩺 資料庫健康</a><a class='gnav-it' href='../sys/fs_compare.html'>🆚 FS 對照</a><a class='gnav-it' href='../sys/nomenclature.html'>📖 名詞對照表</a><a class='gnav-it' href='../docs/V2_ARCHITECTURE.html'>📋 V.2 架構文件</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='4'>📂 個股卷宗 ▾</button><div class='gnav-panel' id='gnav-p4'><a class='gnav-it' href='../dossier/1503.html'>1503 士電</a><a class='gnav-it' href='../dossier/2049.html'>2049 上銀</a><a class='gnav-it' href='../dossier/2330.html'>2330 台積電</a><a class='gnav-it' href='../dossier/2344.html'>2344 華邦電</a><a class='gnav-it' href='../dossier/2359.html'>2359 所羅門</a><a class='gnav-it' href='../dossier/2408.html'>2408 南亞科</a><a class='gnav-it' href='../dossier/3006.html'>3006 晶豪科</a><a class='gnav-it' href='../dossier/3035.html'>3035 智原</a><a class='gnav-it' href='../dossier/3037.html'>3037 欣興</a><a class='gnav-it' href='../dossier/4576.html'>4576 大銀微系統</a><a class='gnav-it' href='../dossier/8046.html'>8046 南電</a><a class='gnav-it' href='../dossier/9914.html'>9914 美利達</a><a class='gnav-it' href='../dossier/9921.html'>9921 巨大</a></div></div>
@@ -162,6 +135,10 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 
 
 
+
+
+
+
 <a class='back-link' href='../index.html'>← 返回主頁</a>
 <a class='back-link' href='../sys/nomenclature.html' style='margin-left:6px' title='所有指標的中英文對照、公式、方向、範例'>📖 名詞對照表</a>
 
@@ -177,9 +154,9 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 <h2>2. 🌡 市場溫度（8 因子加權）</h2>
 
 <div class='temp-banner'>
-  <div class='temp-gauge' style='color:#a16207' title='市場溫度 = 8 因子加權合成（0-100）'>44.7</div>
+  <div class='temp-gauge' style='color:var(--th-warn,#a16207)' title='市場溫度 = 8 因子加權合成（0-100）'>44.7</div>
   <div class='temp-info'>
-    <div class='temp-label' style='color:#a16207' title='健康多頭（標準部位）'>♨ 溫熱</div>
+    <div class='temp-label' style='color:var(--th-warn,#a16207)' title='健康多頭（標準部位）'>♨ 溫熱</div>
     <div class='temp-advice'>健康多頭（標準部位）</div>
     <div class='temp-bar' title='範圍 0-100，當前值越右越熱'>
       <div class='temp-fill' style='width:44.7%;background:#fcd34d'></div>
@@ -208,9 +185,9 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 <h2>4. 🚨 大盤風險（7 訊號）</h2>
 
 <div class='temp-banner'>
-  <div class='temp-gauge' style='color:#a16207;font-size:42px' title='大盤層級風險：7 訊號中觸發數'>3<span style='font-size:24px;color:#64748b'>/7</span></div>
+  <div class='temp-gauge' style='color:var(--th-warn,#a16207);font-size:42px' title='大盤層級風險：7 訊號中觸發數'>3<span style='font-size:24px;color:var(--th-muted,#64748b)'>/7</span></div>
   <div class='temp-info'>
-    <div class='temp-label' style='color:#a16207'>🟡 警告區</div>
+    <div class='temp-label' style='color:var(--th-warn,#a16207)'>🟡 警告區</div>
     <div class='temp-advice'>部位減至 75%，提高換股頻率 ｜ 部位上限 <strong>75%</strong></div>
   </div>
 </div>
@@ -218,23 +195,23 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 
 
 <h2>5. 📊 HotFlow Lifecycle 分佈</h2>
-<div class='lc-grid'><div class='lc-cell' title='5 日 score 斜率 ≥ +5 且未連續上榜'><div style='color:#059669'>🌱 形成中</div><div class='num' style='color:#059669'>13</div></div><div class='lc-cell' title='20 日上榜 ≥ 7 且同產業 ≥ 3 檔同步'><div style='color:#10b981'>📈 擴散中</div><div class='num' style='color:#10b981'>79</div></div><div class='lc-cell' title='PR ≥ 95 且 5 日漲幅 ≥ 20%'><div style='color:#c2410c'>🔥 過熱</div><div class='num' style='color:#c2410c'>3</div></div><div class='lc-cell' title='5 日 score 斜率 ≤ -5 且 20日上榜下降'><div style='color:#e11d48'>📉 退潮</div><div class='num' style='color:#e11d48'>3</div></div><div class='lc-cell' title='無顯著資金動向'><div style='color:#61708a'>💤 靜止</div><div class='num' style='color:#61708a'>587</div></div></div>
+<div class='lc-grid'><div class='lc-cell' title='5 日 score 斜率 ≥ +5 且未連續上榜'><div style='color:#059669'>🌱 形成中</div><div class='num' style='color:#059669'>13</div></div><div class='lc-cell' title='20 日上榜 ≥ 7 且同產業 ≥ 3 檔同步'><div style='color:#10b981'>📈 擴散中</div><div class='num' style='color:#10b981'>79</div></div><div class='lc-cell' title='PR ≥ 95 且 5 日漲幅 ≥ 20%'><div style='color:#c2410c'>🔥 過熱</div><div class='num' style='color:#c2410c'>3</div></div><div class='lc-cell' title='5 日 score 斜率 ≤ -5 且 20日上榜下降'><div style='color:#e11d48'>📉 退潮</div><div class='num' style='color:#e11d48'>3</div></div><div class='lc-cell' title='無顯著資金動向'><div style='color:var(--th-muted,#61708a)'>💤 靜止</div><div class='num' style='color:var(--th-muted,#61708a)'>587</div></div></div>
 
 <h2>6. 💡 資金集中度 — Top 5 細產業 / 主題</h2>
 
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:14px;'>
   <div>
-    <h3 style='color:#3f4f63;font-size:14px;margin:0 0 8px;'>XQ 細產業 Top 5（資金集中度核心）</h3>
+    <h3 style='color:var(--th-text2,#3f4f63);font-size:14px;margin:0 0 8px;'>XQ 細產業 Top 5（資金集中度核心）</h3>
     <div class='sub-grid' style='grid-template-columns:1fr;'><div class='sub-cell' title='XQ 細產業（545 種粒度）'><span class='lbl'>晶圓代工</span><span class='val'>14.1%</span></div><div class='sub-cell' title='XQ 細產業（545 種粒度）'><span class='lbl'>晶片電阻</span><span class='val'>9.8%</span></div><div class='sub-cell' title='XQ 細產業（545 種粒度）'><span class='lbl'>印刷電路板</span><span class='val'>7.6%</span></div><div class='sub-cell' title='XQ 細產業（545 種粒度）'><span class='lbl'>手機晶片相關</span><span class='val'>6.3%</span></div><div class='sub-cell' title='XQ 細產業（545 種粒度）'><span class='lbl'>電源供應器</span><span class='val'>3.6%</span></div></div>
   </div>
   <div>
-    <h3 style='color:#3f4f63;font-size:14px;margin:0 0 8px;'>自建主題 Top 5</h3>
+    <h3 style='color:var(--th-text2,#3f4f63);font-size:14px;margin:0 0 8px;'>自建主題 Top 5</h3>
     <div class='sub-grid' style='grid-template-columns:1fr;'><div class='sub-cell' title='自建主題（手刻 + 規則）'><span class='lbl'>電子零組件</span><span class='val'>27.4%</span></div><div class='sub-cell' title='自建主題（手刻 + 規則）'><span class='lbl'>半導體</span><span class='val'>17.7%</span></div><div class='sub-cell' title='自建主題（手刻 + 規則）'><span class='lbl'>AI</span><span class='val'>10.2%</span></div><div class='sub-cell' title='自建主題（手刻 + 規則）'><span class='lbl'>權值股</span><span class='val'>10.0%</span></div><div class='sub-cell' title='自建主題（手刻 + 規則）'><span class='lbl'>晶圓代工</span><span class='val'>4.9%</span></div></div>
   </div>
 </div>
 
 
-<div style="box-sizing:border-box;width:100%;padding:24px 20px 24px;background:#ffffff;color:#61708a;font-size:13px;line-height:2;border-top:1px solid #dbe3ee;margin-top:24px;"><div style="max-width:1180px;margin:0 auto;"><div style="color:#2563eb;font-size:14px;font-weight:bold;border-left:3px solid #3b82f6;padding-left:10px;margin-bottom:16px;">MS-Agent v2 — 策略與用法</div><div style="display:flex;flex-wrap:wrap;gap:16px;"><div style="flex:1;min-width:240px;background:#f0f4f9;border-radius:8px;padding:14px 16px;"><div style="color:#243244;font-weight:bold;margin-bottom:8px;">🎛 什麼是 MS-Agent v2</div><b style="color:#243244">市場結構監控中心</b>。<br>不預測明天漲跌，而是持續監控資金如何流動：<br>提前發現主流、提前發現主流退潮、找出 RR 最佳環境、找出末升段風險。<br><br><span style="color:#64748b">設計理念：偏向資金流分析，不依賴 KD/MACD 等單一技術指標。</span></div><div style="flex:1;min-width:240px;background:#f0f4f9;border-radius:8px;padding:14px 16px;"><div style="color:#243244;font-weight:bold;margin-bottom:8px;">🧱 6 個模組架構</div><b style="color:#0c7bb3">M1</b> 指數結構（既有 market_structure）<br><b style="color:#0c7bb3">M2</b> 市場 Breadth（4 廣度指標）<br><b style="color:#0c7bb3">M3</b> 資金擴散（HHI / 新進榜 / 中型佔比，<b>核心權重最高</b>）<br><b style="color:#0c7bb3">M4</b> HotFlow lifecycle（4 階段狀態機 + 歷史回放）<br><b style="color:#0c7bb3">M5</b> 法人結構（已合入 M1 的 structure_zscore）<br><b style="color:#0c7bb3">M6</b> 大盤層級風險（7 訊號偵測）</div><div style="flex:1;min-width:240px;background:#f0f4f9;border-radius:8px;padding:14px 16px;"><div style="color:#243244;font-weight:bold;margin-bottom:8px;">🌡 市場溫度 0-100</div>8 因子加權合成：<br><code style="color:#0c7bb3;font-size:11px;line-height:1.7">M2 廣度 × 0.20<br>M3 擴散 × 0.25<br>M4 HotFlow 強度 × 0.15<br>M5 法人流向 × 0.15<br>量能擴張 × 0.10<br>OTC 強度 × 0.10<br>VIX 反向 × 0.05<br></code><br><b>5 級分類</b>：<br><span style="color:#ef4444">0-20 冰冷</span> ｜ <span style="color:#c2410c">20-40 回暖</span> ｜ <span style="color:#a16207">40-60 溫熱</span> ｜ <span style="color:#059669">60-80 過熱</span> ｜ <span style="color:#2563eb">80-100 沸騰</span></div><div style="flex:1;min-width:240px;background:#f0f4f9;border-radius:8px;padding:14px 16px;"><div style="color:#243244;font-weight:bold;margin-bottom:8px;">🎯 RR 環境分 0-100</div><b>6 條件加總</b>（達標即加分）：<br><code style="color:#0c7bb3;font-size:11px">+20 OTC 強於 TWSE<br>+25 M3 擴散 expanding<br>+15 Top100 換手 > 15%<br>+15 資金輪動 > 20%<br>+15 權值穩定（40-80% 站MA20）<br>+10 Top100 中型以下 > 30%<br></code><br><b>3 級分類</b>：<br><span style="color:#10b981">≥ 70 黃金期</span>（積極 RR）<br><span style="color:#a16207">40-70 中性</span>（標準部位）<br><span style="color:#ef4444">&lt; 40 不利</span>（暫停 dynamic_rr）</div><div style="flex:1;min-width:240px;background:#f0f4f9;border-radius:8px;padding:14px 16px;"><div style="color:#243244;font-weight:bold;margin-bottom:8px;">🌱 HotFlow 4 階段 lifecycle</div>取代舊版 A/B/C 靜態分類，每檔候選股有明確「生命位置」：<br><span style="color:#059669">🌱 forming</span> — 5d 斜率 ≥ +5、未連續上榜 → 新銳<br><span style="color:#10b981">📈 expanding</span> — 20日上榜 ≥ 7 且同族 ≥ 3 → 主流穩定<br><span style="color:#c2410c">🔥 overheating</span> — PR ≥ 95 且 5日漲 ≥ 20% → 準備獲利<br><span style="color:#e11d48">📉 fading</span> — 5d 斜率 ≤ -5、上榜下降 → 資金離場<br><span style="color:#61708a">💤 dormant</span> — 無顯著動向<br><br><span style="color:#64748b">狀態持久化於 hotflow_lifecycle_state.json；每日寫一筆到 lifecycle_history.csv（給未來主流回測）。</span></div><div style="flex:1;min-width:240px;background:#f0f4f9;border-radius:8px;padding:14px 16px;"><div style="color:#243244;font-weight:bold;margin-bottom:8px;">🚨 7 訊號大盤風險</div><code style="color:#0c7bb3;font-size:11px">1. 高檔爆量（TAIEX 創 60d 高 + 量 > 60d×1.5）<br>2. 權值股獨強（Top100 ≥3000億佔比 ≥ 50%）<br>3. OTC 轉弱（站MA20 差 &lt; -5%）<br>4. 主流退潮（fading 檔數 ≥ 30%）<br>5. Breadth &lt; 50<br>6. 法人轉保守（結構分 &lt; -0.30）<br>7. XQ 細產業 HHI ≥ 2500<br></code><br>觸發數 → 部位上限：<br>🟢 0-1 → 100%　🟡 2-3 → 75%　🟠 4-5 → 50%　🔴 ≥6 → 25%</div></div></div></div>
+<div style="box-sizing:border-box;width:100%;padding:24px 20px 24px;background:var(--th-card,#ffffff);color:var(--th-muted,#61708a);font-size:13px;line-height:2;border-top:1px solid var(--th-border,#dbe3ee);margin-top:24px;"><div style="max-width:1180px;margin:0 auto;"><div style="color:var(--th-accent,#2563eb);font-size:14px;font-weight:bold;border-left:3px solid #3b82f6;padding-left:10px;margin-bottom:16px;">MS-Agent v2 — 策略與用法</div><div style="display:flex;flex-wrap:wrap;gap:16px;"><div style="flex:1;min-width:240px;background:var(--th-bg2,#f0f4f9);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#243244);font-weight:bold;margin-bottom:8px;">🎛 什麼是 MS-Agent v2</div><b style="color:var(--th-text,#243244)">市場結構監控中心</b>。<br>不預測明天漲跌，而是持續監控資金如何流動：<br>提前發現主流、提前發現主流退潮、找出 RR 最佳環境、找出末升段風險。<br><br><span style="color:var(--th-muted,#64748b)">設計理念：偏向資金流分析，不依賴 KD/MACD 等單一技術指標。</span></div><div style="flex:1;min-width:240px;background:var(--th-bg2,#f0f4f9);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#243244);font-weight:bold;margin-bottom:8px;">🧱 6 個模組架構</div><b style="color:var(--th-info,#0c7bb3)">M1</b> 指數結構（既有 market_structure）<br><b style="color:var(--th-info,#0c7bb3)">M2</b> 市場 Breadth（4 廣度指標）<br><b style="color:var(--th-info,#0c7bb3)">M3</b> 資金擴散（HHI / 新進榜 / 中型佔比，<b>核心權重最高</b>）<br><b style="color:var(--th-info,#0c7bb3)">M4</b> HotFlow lifecycle（4 階段狀態機 + 歷史回放）<br><b style="color:var(--th-info,#0c7bb3)">M5</b> 法人結構（已合入 M1 的 structure_zscore）<br><b style="color:var(--th-info,#0c7bb3)">M6</b> 大盤層級風險（7 訊號偵測）</div><div style="flex:1;min-width:240px;background:var(--th-bg2,#f0f4f9);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#243244);font-weight:bold;margin-bottom:8px;">🌡 市場溫度 0-100</div>8 因子加權合成：<br><code style="color:var(--th-info,#0c7bb3);font-size:11px;line-height:1.7">M2 廣度 × 0.20<br>M3 擴散 × 0.25<br>M4 HotFlow 強度 × 0.15<br>M5 法人流向 × 0.15<br>量能擴張 × 0.10<br>OTC 強度 × 0.10<br>VIX 反向 × 0.05<br></code><br><b>5 級分類</b>：<br><span style="color:#ef4444">0-20 冰冷</span> ｜ <span style="color:#c2410c">20-40 回暖</span> ｜ <span style="color:var(--th-warn,#a16207)">40-60 溫熱</span> ｜ <span style="color:#059669">60-80 過熱</span> ｜ <span style="color:var(--th-accent,#2563eb)">80-100 沸騰</span></div><div style="flex:1;min-width:240px;background:var(--th-bg2,#f0f4f9);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#243244);font-weight:bold;margin-bottom:8px;">🎯 RR 環境分 0-100</div><b>6 條件加總</b>（達標即加分）：<br><code style="color:var(--th-info,#0c7bb3);font-size:11px">+20 OTC 強於 TWSE<br>+25 M3 擴散 expanding<br>+15 Top100 換手 > 15%<br>+15 資金輪動 > 20%<br>+15 權值穩定（40-80% 站MA20）<br>+10 Top100 中型以下 > 30%<br></code><br><b>3 級分類</b>：<br><span style="color:#10b981">≥ 70 黃金期</span>（積極 RR）<br><span style="color:var(--th-warn,#a16207)">40-70 中性</span>（標準部位）<br><span style="color:#ef4444">&lt; 40 不利</span>（暫停 dynamic_rr）</div><div style="flex:1;min-width:240px;background:var(--th-bg2,#f0f4f9);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#243244);font-weight:bold;margin-bottom:8px;">🌱 HotFlow 4 階段 lifecycle</div>取代舊版 A/B/C 靜態分類，每檔候選股有明確「生命位置」：<br><span style="color:#059669">🌱 forming</span> — 5d 斜率 ≥ +5、未連續上榜 → 新銳<br><span style="color:#10b981">📈 expanding</span> — 20日上榜 ≥ 7 且同族 ≥ 3 → 主流穩定<br><span style="color:#c2410c">🔥 overheating</span> — PR ≥ 95 且 5日漲 ≥ 20% → 準備獲利<br><span style="color:#e11d48">📉 fading</span> — 5d 斜率 ≤ -5、上榜下降 → 資金離場<br><span style="color:var(--th-muted,#61708a)">💤 dormant</span> — 無顯著動向<br><br><span style="color:var(--th-muted,#64748b)">狀態持久化於 hotflow_lifecycle_state.json；每日寫一筆到 lifecycle_history.csv（給未來主流回測）。</span></div><div style="flex:1;min-width:240px;background:var(--th-bg2,#f0f4f9);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#243244);font-weight:bold;margin-bottom:8px;">🚨 7 訊號大盤風險</div><code style="color:var(--th-info,#0c7bb3);font-size:11px">1. 高檔爆量（TAIEX 創 60d 高 + 量 > 60d×1.5）<br>2. 權值股獨強（Top100 ≥3000億佔比 ≥ 50%）<br>3. OTC 轉弱（站MA20 差 &lt; -5%）<br>4. 主流退潮（fading 檔數 ≥ 30%）<br>5. Breadth &lt; 50<br>6. 法人轉保守（結構分 &lt; -0.30）<br>7. XQ 細產業 HHI ≥ 2500<br></code><br>觸發數 → 部位上限：<br>🟢 0-1 → 100%　🟡 2-3 → 75%　🟠 4-5 → 50%　🔴 ≥6 → 25%</div></div></div></div>
 
 <footer>
 MS-Agent v2 Dashboard ｜ 由 <code>src/agents/ms_dashboard.py</code> 產生<br>
@@ -249,8 +226,8 @@ MS-Agent v2 Dashboard ｜ 由 <code>src/agents/ms_dashboard.py</code> 產生<br>
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
   position: fixed;
-  background: #f4f7fb;
-  color: #243244;
+  background: var(--th-bg,#f4f7fb);
+  color: var(--th-text,#243244);
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 12px;
@@ -259,7 +236,7 @@ MS-Agent v2 Dashboard ｜ 由 <code>src/agents/ms_dashboard.py</code> 產生<br>
   max-width: 320px;
   width: max-content;
   text-align: left;
-  border: 1px solid #bccadb;
+  border: 1px solid var(--th-border2,#bccadb);
   z-index: 999999;
   pointer-events: none;
   line-height: 1.6;

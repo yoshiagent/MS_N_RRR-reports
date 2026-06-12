@@ -1,38 +1,39 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
+<link rel="stylesheet" href="../assets/site.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>N-Pattern 候選 — MS_N_RR/RRR Ver.A</title>
 <style>
 * { box-sizing: border-box; }
 body { margin:0; padding:24px 20px 80px; max-width:1180px; margin:auto;
-       background:#f4f7fb; color:#243244;
-       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+       background:var(--th-bg,#f4f7fb); color:var(--th-text,#243244);
+       font-family:var(--th-font,-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif);
        line-height:1.7; }
 h1 { font-size:22px; margin:0 0 4px; }
-.sub { color:#61708a; font-size:13px; margin-bottom:18px; }
-.back-link { display:inline-block; color:#2563eb; text-decoration:none; font-size:13px;
+.sub { color:var(--th-muted,#61708a); font-size:13px; margin-bottom:18px; }
+.back-link { display:inline-block; color:var(--th-accent,#2563eb); text-decoration:none; font-size:13px;
              padding:4px 10px; border:1px solid #cdd9e7; border-radius:6px; margin-bottom:14px; }
 .back-link:hover { border-color:#3b82f6; }
 .stats { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
          gap:10px; margin-bottom:18px; }
-.stat-cell { background:#ffffff; border:1px solid #cdd9e7; border-radius:8px; padding:10px 14px; }
-.stat-cell .label { color:#61708a; font-size:12px; }
+.stat-cell { background:var(--th-card,#ffffff); border:1px solid #cdd9e7; border-radius:8px; padding:10px 14px; }
+.stat-cell .label { color:var(--th-muted,#61708a); font-size:12px; }
 .stat-cell .value { font-size:18px; font-weight:bold; }
 .green { color:#059669; }
-.yellow { color:#a16207; }
+.yellow { color:var(--th-warn,#a16207); }
 .red { color:#e11d48; }
 
-details.section { margin: 16px 0 0; background:#ffffff; border:1px solid #cdd9e7;
+details.section { margin: 16px 0 0; background:var(--th-card,#ffffff); border:1px solid #cdd9e7;
                   border-radius:8px; overflow:hidden; }
 details.section > summary { list-style:none; cursor:pointer; user-select:none;
                             padding:12px 18px; display:flex; justify-content:space-between;
-                            align-items:center; font-size:16px; font-weight:bold; color:#2563eb; }
+                            align-items:center; font-size:16px; font-weight:bold; color:var(--th-accent,#2563eb); }
 details.section > summary::-webkit-details-marker { display:none; }
 details.section > summary > .label::before {
     content:'▶'; display:inline-block; margin-right:10px; font-size:11px;
-    color:#64748b; transition:transform 0.2s;
+    color:var(--th-muted,#64748b); transition:transform 0.2s;
 }
 details.section[open] > summary > .label::before { transform:rotate(90deg); }
 details.section > summary:hover { background:#edf1f7; }
@@ -40,64 +41,36 @@ details.section > .body { padding:12px 18px 18px; border-top:1px solid #cdd9e7; 
 .count-badge { display:inline-block; padding:2px 12px; border-radius:12px;
                font-size:13px; font-weight:bold; }
 .count-badge.cand { background:#d6f3e7; color:#059669; }
-.count-badge.watch { background:#fdeec9; color:#a16207; }
+.count-badge.watch { background:#fdeec9; color:var(--th-warn,#a16207); }
 .count-badge.reject { background:#fbe7ed; color:#e11d48; }
 
-.card { background:#ffffff; border:1px solid #cdd9e7; border-radius:8px;
+.card { background:var(--th-card,#ffffff); border:1px solid #cdd9e7; border-radius:8px;
         padding:12px 14px; margin-bottom:10px; }
 .card-head { display:flex; justify-content:space-between; align-items:baseline; }
 .name { font-weight:bold; font-size:16px; }
-.code { color:#61708a; font-size:13px; margin-left:6px; }
+.code { color:var(--th-muted,#61708a); font-size:13px; margin-left:6px; }
 .group { color:#c2410c; font-size:12px; margin-left:8px; }
 .score { font-size:18px; font-weight:bold; color:#c2410c; }
 .sub-bar { display:grid; grid-template-columns: repeat(5,1fr); gap:6px;
            margin-top:8px; font-size:11px; }
-.sub-cell { background:#f1f5f9; padding:4px 6px; border-radius:4px; text-align:center; }
-.sub-cell strong { color:#2563eb; display:block; font-size:10px; }
-.reason { color:#61708a; font-size:12px; margin-top:6px; }
+.sub-cell { background:var(--th-bg2,#f1f5f9); padding:4px 6px; border-radius:4px; text-align:center; }
+.sub-cell strong { color:var(--th-accent,#2563eb); display:block; font-size:10px; }
+.reason { color:var(--th-muted,#61708a); font-size:12px; margin-top:6px; }
 .reason li { margin-left:18px; }
 
 table { width:100%; border-collapse:collapse; font-size:13px; }
 th { text-align:left; padding:6px 10px; border-bottom:1px solid #cdd9e7;
-     color:#61708a; font-weight:600; }
-td { padding:6px 10px; border-bottom:1px solid #dbe3ee; }
+     color:var(--th-muted,#61708a); font-weight:600; }
+td { padding:6px 10px; border-bottom:1px solid var(--th-border,#dbe3ee); }
 tr:last-child td { border-bottom:none; }
 .num { font-variant-numeric:tabular-nums; text-align:right; }
-.muted { color:#61708a; }
-footer { color:#64748b; font-size:12px; margin-top:30px;
+.muted { color:var(--th-muted,#61708a); }
+footer { color:var(--th-muted,#64748b); font-size:12px; margin-top:30px;
          border-top:1px solid #cdd9e7; padding-top:12px; }
 </style>
 </head>
 <body>
 <!-- GLOBAL_NAV_START -->
-<style>
-.gnav{position:sticky;top:0;z-index:99990;background:#eef2f9;border-bottom:1px solid #dbe3ee;
-  font-family:'Segoe UI','Microsoft JhengHei',sans-serif;display:flex;align-items:center;
-  flex-wrap:wrap;gap:2px;padding:6px 14px}
-.gnav a.gnav-home{color:#b45309;text-decoration:none;font-weight:bold;font-size:13px;
-  padding:6px 10px;border-radius:6px}
-.gnav a.gnav-home:hover{background:#e7edf5}
-.gnav-dd{position:relative}
-.gnav-btn{background:none;border:none;color:#3f4f63;font-size:13px;padding:6px 10px;
-  cursor:pointer;border-radius:6px;font-family:inherit}
-.gnav-btn:hover,.gnav-btn.on{background:#e7edf5;color:#1e2a3a}
-.gnav-panel{display:none;position:absolute;left:0;top:100%;min-width:230px;max-height:70vh;
-  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;
-  padding:6px;box-shadow:0 8px 24px rgba(15,23,42,0.15)}
-.gnav-panel.open{display:block}
-.gnav-hd{color:#64748b;font-size:11px;padding:6px 10px 3px;border-top:1px dashed #dbe3ee;margin-top:3px}
-.gnav-hd:first-child{border-top:none;margin-top:0}
-.gnav-it{display:block;color:#243244;text-decoration:none;font-size:13px;
-  padding:6px 10px;border-radius:5px;white-space:nowrap}
-.gnav-it:hover{background:#e7edf5;color:#0c7bb3}
-.gnav-search{margin-left:auto;position:relative}
-.gnav-search input{background:#e7edf5;border:1px solid #c9d4e3;color:#243244;
-  font-size:12px;padding:5px 10px;border-radius:6px;width:150px;font-family:inherit}
-.gnav-search input:focus{outline:none;border-color:#7c3aed;width:200px}
-#gnav-sr{display:none;position:absolute;right:0;top:100%;min-width:240px;max-height:60vh;
-  overflow-y:auto;background:#ffffff;border:1px solid #c9d4e3;border-radius:8px;padding:6px;z-index:99991}
-@media (max-width:760px){.gnav{padding:4px 8px}.gnav-search input{width:100px}}
-</style>
 <nav class="gnav" id="gnav">
   <a class="gnav-home" href="../index.html">🏠 主控台</a>
   <div class='gnav-dd'><button class='gnav-btn' data-dd='0'>🏢 組織架構 ▾</button><div class='gnav-panel' id='gnav-p0'><a class='gnav-it' href='../org/organization.html'>🏢 組織架構圖</a><a class='gnav-it' href='../org/system_flow.html'>🔄 系統流程圖</a><div class='gnav-hd'>─ 投資長 CIO ─</div><a class='gnav-it' href='../market/ms_dashboard.html'>🎩 MS 投資長儀表板</a><div class='gnav-hd'>─ 研究部 ─</div><a class='gnav-it' href='../org/iue.html'>🏛 投資宇宙引擎 IUE</a><a class='gnav-it' href='../org/iue_journey.html'>📜 IUE 股票履歷</a><div class='gnav-hd'>─ 評審 / 決策 ─</div><a class='gnav-it' href='../org/iab.html'>🎖 外聘評審委員會 IAB</a><a class='gnav-it' href='../org/master_score.html'>👥 9 名人評分</a><a class='gnav-it' href='../org/capital_committee.html'>🗳 資金持有委員會</a><div class='gnav-hd'>─ 基金管理部 ─</div><a class='gnav-it' href='../org/fund_managers.html'>💼 CIO × 經理競標</a><a class='gnav-it' href='../org/stock_ops.html'>🎯 操作 Agent (5 階段)</a><a class='gnav-it' href='../org/pm_custom.html'>⭐ 自選股 PM</a><a class='gnav-it' href='../org/pm_trend_growth.html'>💹 趨勢成長 PM</a><a class='gnav-it' href='../org/paper_portfolio.html'>📈 模擬投資組合</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='1'>🔬 分析面向 ▾</button><div class='gnav-panel' id='gnav-p1'><div class='gnav-hd'>─ 技術面 ─</div><a class='gnav-it' href='../tech/n_shape.html'>📦 多時段箱型</a><a class='gnav-it' href='../tech/box_structure.html'>🧱 股票箱結構</a><a class='gnav-it' href='../tech/shsl.html'>⛰ SH/SL 擺動</a><a class='gnav-it' href='../tech/wyckoff_phase.html'>🌀 Wyckoff 階段</a><a class='gnav-it' href='../tech/n_pattern.html'>📐 N 形態</a><a class='gnav-it' href='../tech/structure_chart.html'>🗺 結構圖</a><a class='gnav-it' href='../tech/state_grid_preview.html'>🔳 狀態網格</a><div class='gnav-hd'>─ 籌碼面 ─</div><a class='gnav-it' href='../chip/chip_concentration.html'>🎯 籌碼集中度</a><a class='gnav-it' href='../chip/broker_branch.html'>🏦 券商分點</a><a class='gnav-it' href='../chip/capital_structure.html'>🧬 資金結構體檢</a><a class='gnav-it' href='../chip/chr.html'>🔄 CHR 持有者輪動</a><a class='gnav-it' href='../chip/cmg.html'>💰 CMG 資金流向</a><a class='gnav-it' href='../chip/cga.html'>📊 CGA 籌碼集中</a><div class='gnav-hd'>─ 基本面 ─</div><a class='gnav-it' href='../fund/fundamental_score.html'>🧪 基本面 5 維 (PEG/FCF/ROE)</a><div class='gnav-hd'>─ 市場結構 ─</div><a class='gnav-it' href='../market/ms_dashboard.html'>🎩 MS 儀表板</a><a class='gnav-it' href='../market/hotflow.html'>🔥 熱門流向 HotFlow</a><a class='gnav-it' href='../market/sector_rotation.html'>🌐 族群輪動 RRG</a><a class='gnav-it' href='../market/sector_constituents.html'>🗂 族群成分股</a><a class='gnav-it' href='../market/mainstream_pool.html'>🏊 主流股池</a><a class='gnav-it' href='../market/strong_stocks.html'>💪 強勢股</a><div class='gnav-hd'>─ 股池 ─</div><a class='gnav-it' href='../pool/custom_pool.html'>⭐ 自選股池</a><a class='gnav-it' href='../pool/accumulation_pool.html'>🧲 吸籌池</a><a class='gnav-it' href='../pool/distribution_score.html'>🌋 派發評分</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='2'>🔁 配對交易 ▾</button><div class='gnav-panel' id='gnav-p2'><a class='gnav-it' href='../pairs/rr.html'>🔁 RSR 配對</a><a class='gnav-it' href='../pairs/rrr.html'>📐 RRR 配對</a><a class='gnav-it' href='../pairs/rrr_resonance.html'>🌀 RRR Resonance</a><a class='gnav-it' href='../pairs/dynamic_rr.html'>⚡ 動態 RSR</a><a class='gnav-it' href='../pairs/custom_pairs.html'>⭐ 自選配對</a><a class='gnav-it' href='../pairs/rcga_overview.html'>🚦 RCGA 總覽</a><a class='gnav-it' href='../pairs/rotation_signals.html'>🔄 換股訊號</a><a class='gnav-it' href='../pairs/rotation_confirm_log.html'>📋 換股確認紀錄</a><a class='gnav-it' href='../pairs/rotation_case_study.html'>📚 換股案例</a><a class='gnav-it' href='../pairs/backtest.html'>📊 回測</a><div class='gnav-hd'>─ 配對圖 ─</div><a class='gnav-it' href='../pairs/nan_xin_chart.html'>南電 / 欣興</a><a class='gnav-it' href='../pairs/jh_zy_chart.html'>晶豪科 / 智原</a><a class='gnav-it' href='../pairs/pair_2049_4576.html'>上銀 / 大銀微</a><a class='gnav-it' href='../pairs/pair_2344_2408.html'>華邦電 / 南亞科</a><a class='gnav-it' href='../pairs/pair_9921_9914.html'>巨大 / 美利達</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='3'>⚙ 系統 ▾</button><div class='gnav-panel' id='gnav-p3'><a class='gnav-it' href='../sys/todo.html'>📝 待辦事項</a><a class='gnav-it' href='../sys/db_health.html'>🩺 資料庫健康</a><a class='gnav-it' href='../sys/fs_compare.html'>🆚 FS 對照</a><a class='gnav-it' href='../sys/nomenclature.html'>📖 名詞對照表</a><a class='gnav-it' href='../docs/V2_ARCHITECTURE.html'>📋 V.2 架構文件</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='4'>📂 個股卷宗 ▾</button><div class='gnav-panel' id='gnav-p4'><a class='gnav-it' href='../dossier/1503.html'>1503 士電</a><a class='gnav-it' href='../dossier/2049.html'>2049 上銀</a><a class='gnav-it' href='../dossier/2330.html'>2330 台積電</a><a class='gnav-it' href='../dossier/2344.html'>2344 華邦電</a><a class='gnav-it' href='../dossier/2359.html'>2359 所羅門</a><a class='gnav-it' href='../dossier/2408.html'>2408 南亞科</a><a class='gnav-it' href='../dossier/3006.html'>3006 晶豪科</a><a class='gnav-it' href='../dossier/3035.html'>3035 智原</a><a class='gnav-it' href='../dossier/3037.html'>3037 欣興</a><a class='gnav-it' href='../dossier/4576.html'>4576 大銀微系統</a><a class='gnav-it' href='../dossier/8046.html'>8046 南電</a><a class='gnav-it' href='../dossier/9914.html'>9914 美利達</a><a class='gnav-it' href='../dossier/9921.html'>9921 巨大</a></div></div>
@@ -150,6 +123,10 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 
 
 
+
+
+
+
 <a class="back-link" href="../index.html">← 返回主頁</a>
 <a class="back-link" href="../sys/nomenclature.html" style="margin-left:6px" title="所有指標的中英文對照、公式、方向、範例">📖 名詞對照表</a>
 
@@ -168,7 +145,7 @@ footer { color:#64748b; font-size:12px; margin-top:30px;
 <details class='section'><summary><span class='label'>觀察股</span><span class='count-badge watch'>4 檔</span></summary><div class='body'><div class='card'><div class='card-head'><div><span class='name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2449" target="_blank" rel="noopener" title="TradingView 圖表 — 2449" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">京元電子</a></span><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2449" target="_blank" rel="noopener" title="TradingView 圖表 — 2449" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2449</a>)</span><span class='group'>semiconductor</span></div><div class='score'>67</div></div><div class='sub-bar'><div class='sub-cell' title='monthly breakout'><strong>monthl</strong>85</div><div class='sub-cell' title='weekly higher low'><strong>weekly</strong>90</div><div class='sub-cell' title='weekly ma20'><strong>weekly</strong>60</div><div class='sub-cell' title='pullback test'><strong>pullba</strong>30</div><div class='sub-cell' title='daily pullback quality'><strong>daily </strong>70</div></div><ul class='reason'><li>[monthly_breakout] 月收 &gt; 月MA10（272.0 &gt; 264.4）</li><li>[monthly_breakout] 月MA10 斜率向上</li><li>[weekly_higher_low] 週 swing low 明顯上移 +8.22%（255.5 → 276.5）</li><li>[weekly_ma20] 週收 &lt; 週MA20</li></ul></div><div class='card'><div class='card-head'><div><span class='name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3324" target="_blank" rel="noopener" title="TradingView 圖表 — 3324" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">雙鴻</a></span><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3324" target="_blank" rel="noopener" title="TradingView 圖表 — 3324" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3324</a>)</span><span class='group'>ai_server</span></div><div class='score'>63</div></div><div class='sub-bar'><div class='sub-cell' title='monthly breakout'><strong>monthl</strong>85</div><div class='sub-cell' title='weekly higher low'><strong>weekly</strong>90</div><div class='sub-cell' title='weekly ma20'><strong>weekly</strong>60</div><div class='sub-cell' title='pullback test'><strong>pullba</strong>30</div><div class='sub-cell' title='daily pullback quality'><strong>daily </strong>45</div></div><ul class='reason'><li>[monthly_breakout] 月收 &gt; 月MA10（998.0 &gt; 994.6）</li><li>[monthly_breakout] 月MA10 斜率向上</li><li>[weekly_higher_low] 週 swing low 明顯上移 +6.97%（875.0 → 936.0）</li><li>[weekly_ma20] 週收 &lt; 週MA20</li></ul></div><div class='card'><div class='card-head'><div><span class='name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3380" target="_blank" rel="noopener" title="TradingView 圖表 — 3380" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">明泰</a></span><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3380" target="_blank" rel="noopener" title="TradingView 圖表 — 3380" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3380</a>)</span><span class='group'>network_communication</span></div><div class='score'>61</div></div><div class='sub-bar'><div class='sub-cell' title='monthly breakout'><strong>monthl</strong>85</div><div class='sub-cell' title='weekly higher low'><strong>weekly</strong>55</div><div class='sub-cell' title='weekly ma20'><strong>weekly</strong>60</div><div class='sub-cell' title='pullback test'><strong>pullba</strong>30</div><div class='sub-cell' title='daily pullback quality'><strong>daily </strong>70</div></div><ul class='reason'><li>[monthly_breakout] 月收 &gt; 月MA10（34.1 &gt; 32.8）</li><li>[monthly_breakout] 月MA10 斜率向上</li><li>[weekly_higher_low] 週 swing low 近似持平 -1.13%（雜訊範圍，給中性 55）</li><li>[weekly_ma20] 週收 &lt; 週MA20</li></ul></div><div class='card'><div class='card-head'><div><span class='name'><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1301" target="_blank" rel="noopener" title="TradingView 圖表 — 1301" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">台塑</a></span><span class='code'>(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1301" target="_blank" rel="noopener" title="TradingView 圖表 — 1301" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">1301</a>)</span><span class='group'>traditional_others</span></div><div class='score'>55</div></div><div class='sub-bar'><div class='sub-cell' title='monthly breakout'><strong>monthl</strong>45</div><div class='sub-cell' title='weekly higher low'><strong>weekly</strong>90</div><div class='sub-cell' title='weekly ma20'><strong>weekly</strong>60</div><div class='sub-cell' title='pullback test'><strong>pullba</strong>30</div><div class='sub-cell' title='daily pullback quality'><strong>daily </strong>45</div></div><ul class='reason'><li>[monthly_breakout] 月收 &lt; 月MA10</li><li>[monthly_breakout] 月MA10 斜率向上</li><li>[weekly_higher_low] 週 swing low 明顯上移 +17.81%（37.9 → 44.7）</li><li>[weekly_ma20] 週收 &lt; 週MA20</li></ul></div></div></details>
 <details class='section'><summary><span class='label'>否決股</span><span class='count-badge reject'>20 檔</span></summary><div class='body'><p class='muted'>被否決個股的 n_shape_score 為 0，數量大未逐檔列出。完整否決名單與原因見 JSON 檔。</p></div></details>
 
-<div style="box-sizing:border-box;width:100%;padding:24px 20px 24px;background:#ffffff;color:#61708a;font-size:13px;line-height:2;border-top:1px solid #dbe3ee;margin-top:24px;"><div style="max-width:1180px;margin:0 auto;"><div style="color:#2563eb;font-size:14px;font-weight:bold;border-left:3px solid #3b82f6;padding-left:10px;margin-bottom:16px;">N-Pattern — 策略與用法</div><div style="display:flex;flex-wrap:wrap;gap:16px;"><div style="flex:1;min-width:240px;background:#f0f4f9;border-radius:8px;padding:14px 16px;"><div style="color:#243244;font-weight:bold;margin-bottom:8px;">📌 什麼是 N 型結構</div>「N」型走勢：底底高 → 突破 → 回測不破 → 再上攻。<br>代表股票<b style="color:#243244">剛脫離盤整、開始走多</b>，具有「有底有頂」特性，<br>讓後續 RSR/RRR 配對的相對振盪更明顯、更可預測。</div><div style="flex:1;min-width:240px;background:#f0f4f9;border-radius:8px;padding:14px 16px;"><div style="color:#243244;font-weight:bold;margin-bottom:8px;">📊 5 維評分</div><code style="color:#0c7bb3">總分 = 月線突破×25 + 週MA20×25 + 週底底高×20 + 回測MA20不破×15 + 日線量縮修正×15</code><br>滿分 100。</div><div style="flex:1;min-width:240px;background:#f0f4f9;border-radius:8px;padding:14px 16px;"><div style="color:#243244;font-weight:bold;margin-bottom:8px;">🟢 candidate / watch / reject</div><span style="color:#059669">candidate</span>：≥ 70 分（完整 N 型成立）<br><span style="color:#a16207">watch</span>：50-69 分（部分維度未到位）<br><span style="color:#e11d48">reject</span>：< 50 分（不符合 N 型）</div><div style="flex:1;min-width:240px;background:#f0f4f9;border-radius:8px;padding:14px 16px;"><div style="color:#243244;font-weight:bold;margin-bottom:8px;">🎯 用法建議</div>candidate 的股票，下一步進 RR/RRR 找配對。<br><b style="color:#243244">單一 N 型成立不是買進訊號</b>——要等到能配上同產業另一檔（RR/RRR）才有資金輪動效益。</div><div style="flex:1;min-width:240px;background:#f0f4f9;border-radius:8px;padding:14px 16px;"><div style="color:#243244;font-weight:bold;margin-bottom:8px;">🔄 回測 MA20 不破</div>突破後回測 MA20，若 MA20 不破、且量縮修正，代表多頭結構未被破壞，是 N 型的關鍵確認點。<br>若回測破 MA20，N 型失敗，會降級為 watch 或 reject。</div><div style="flex:1;min-width:240px;background:#f0f4f9;border-radius:8px;padding:14px 16px;"><div style="color:#243244;font-weight:bold;margin-bottom:8px;">🔗 與其他 Agent 關係</div>上游：HotFlow A 級候選 → 進 N-Pattern 偵測<br>下游：N-Pattern candidate → RSR/RRR 配對<br><br><span style="color:#64748b">族群通過率（上方表格）可看出哪類股最易成立 N 型。</span></div></div></div></div>
+<div style="box-sizing:border-box;width:100%;padding:24px 20px 24px;background:var(--th-card,#ffffff);color:var(--th-muted,#61708a);font-size:13px;line-height:2;border-top:1px solid var(--th-border,#dbe3ee);margin-top:24px;"><div style="max-width:1180px;margin:0 auto;"><div style="color:var(--th-accent,#2563eb);font-size:14px;font-weight:bold;border-left:3px solid #3b82f6;padding-left:10px;margin-bottom:16px;">N-Pattern — 策略與用法</div><div style="display:flex;flex-wrap:wrap;gap:16px;"><div style="flex:1;min-width:240px;background:var(--th-bg2,#f0f4f9);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#243244);font-weight:bold;margin-bottom:8px;">📌 什麼是 N 型結構</div>「N」型走勢：底底高 → 突破 → 回測不破 → 再上攻。<br>代表股票<b style="color:var(--th-text,#243244)">剛脫離盤整、開始走多</b>，具有「有底有頂」特性，<br>讓後續 RSR/RRR 配對的相對振盪更明顯、更可預測。</div><div style="flex:1;min-width:240px;background:var(--th-bg2,#f0f4f9);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#243244);font-weight:bold;margin-bottom:8px;">📊 5 維評分</div><code style="color:var(--th-info,#0c7bb3)">總分 = 月線突破×25 + 週MA20×25 + 週底底高×20 + 回測MA20不破×15 + 日線量縮修正×15</code><br>滿分 100。</div><div style="flex:1;min-width:240px;background:var(--th-bg2,#f0f4f9);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#243244);font-weight:bold;margin-bottom:8px;">🟢 candidate / watch / reject</div><span style="color:#059669">candidate</span>：≥ 70 分（完整 N 型成立）<br><span style="color:var(--th-warn,#a16207)">watch</span>：50-69 分（部分維度未到位）<br><span style="color:#e11d48">reject</span>：< 50 分（不符合 N 型）</div><div style="flex:1;min-width:240px;background:var(--th-bg2,#f0f4f9);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#243244);font-weight:bold;margin-bottom:8px;">🎯 用法建議</div>candidate 的股票，下一步進 RR/RRR 找配對。<br><b style="color:var(--th-text,#243244)">單一 N 型成立不是買進訊號</b>——要等到能配上同產業另一檔（RR/RRR）才有資金輪動效益。</div><div style="flex:1;min-width:240px;background:var(--th-bg2,#f0f4f9);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#243244);font-weight:bold;margin-bottom:8px;">🔄 回測 MA20 不破</div>突破後回測 MA20，若 MA20 不破、且量縮修正，代表多頭結構未被破壞，是 N 型的關鍵確認點。<br>若回測破 MA20，N 型失敗，會降級為 watch 或 reject。</div><div style="flex:1;min-width:240px;background:var(--th-bg2,#f0f4f9);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#243244);font-weight:bold;margin-bottom:8px;">🔗 與其他 Agent 關係</div>上游：HotFlow A 級候選 → 進 N-Pattern 偵測<br>下游：N-Pattern candidate → RSR/RRR 配對<br><br><span style="color:var(--th-muted,#64748b)">族群通過率（上方表格）可看出哪類股最易成立 N 型。</span></div></div></div></div>
 
 <footer>
 N-Pattern Agent（原 n_shape）｜ 評分維度：月線突破 / 週線底底高 / 週MA20 / 回測 / 日線量縮<br>
@@ -181,8 +158,8 @@ N-Pattern Agent（原 n_shape）｜ 評分維度：月線突破 / 週線底底�
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
   position: fixed;
-  background: #f4f7fb;
-  color: #243244;
+  background: var(--th-bg,#f4f7fb);
+  color: var(--th-text,#243244);
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 12px;
@@ -191,7 +168,7 @@ N-Pattern Agent（原 n_shape）｜ 評分維度：月線突破 / 週線底底�
   max-width: 320px;
   width: max-content;
   text-align: left;
-  border: 1px solid #bccadb;
+  border: 1px solid var(--th-border2,#bccadb);
   z-index: 999999;
   pointer-events: none;
   line-height: 1.6;
