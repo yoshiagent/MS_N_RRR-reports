@@ -130,7 +130,7 @@ footer{ margin-top:30px; color:var(--muted); font-size:12px; text-align:center;
 <details open style="background:#0f1a2c;border:1px solid #1e293b;border-left:4px solid #fbbf24;
          border-radius:10px;padding:12px 16px;margin:14px 0">
   <summary style="color:#fbbf24;font-weight:bold;font-size:15px;cursor:pointer">
-    💡 估值核心邏輯 — 自建「預估本益比 / PEG」（貴但會成長 ≠ 過熱）
+    💡 估值與品質核心邏輯 — 預估本益比 / PEG（貴但成長≠過熱）＋ FCF 自由現金流（真金白銀）
   </summary>
   <div style="color:#cbd5e1;font-size:13px;line-height:1.7;margin-top:10px">
     <p style="margin:4px 0">
@@ -163,6 +163,36 @@ footer{ margin-top:30px; color:var(--muted); font-size:12px; text-align:center;
     <p style="margin:6px 0;color:#64748b;font-size:11.5px">
       ⚠ 注意：此為「月營收+EPS 趨勢」<b>模型外推</b>，非分析師共識，準度不如付費源（TEJ/CMoney）；
       成長率上限 clamp 60% 為保守設定。市場層級「過熱」另由 TWII 價格 Z-score 判斷（非本益比）。
+    </p>
+
+    <hr style="border:none;border-top:1px dashed #334155;margin:14px 0">
+    <p style="margin:4px 0">
+      <b style="color:#34d399;font-size:14px">💵 FCF 自由現金流（接進 D3 獲利品質）</b> —
+      EPS 是帳面數字、可被應收帳款/存貨美化；<b style="color:#fff">FCF 是真金白銀</b>：公司賺的錢真的收回成現金，
+      扣掉維持營運的資本支出後，口袋還剩多少。
+    </p>
+    <div style="background:rgba(0,0,0,0.3);border-radius:6px;padding:10px 14px;margin:8px 0;
+                font-family:Consolas,monospace;font-size:12.5px;color:#e2e8f0">
+      <b style="color:#34d399">FCF（自由現金流）　＝ 營業現金流(OCF) − 資本支出(CapEx)</b>　[以 TTM 計]<br>
+      FCF margin　＝ FCF ÷ 營收　（越高 = 賺得越紮實）
+    </div>
+    <p style="margin:6px 0;color:#94a3b8;font-size:11.5px">
+      ⚙ 資料校正：FinMind 現金流量表是 <b style="color:#cbd5e1">YTD 累計</b>（Q1=Q1、Q2=半年、Q3=前三季、Q4=全年，每年 Q1 歸零），
+      不像損益表是單季。本頁用 TTM 還原（最新 YTD ＋ 去年全年 − 去年同期）才不會算錯。
+    </p>
+    <p style="margin:6px 0"><b style="color:#fff">FCF margin 判定（名稱旁 💵 徽章）：</b></p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:4px 0">
+      <span style="border:1px solid #22c55e;color:#22c55e;border-radius:4px;padding:2px 8px;font-size:12px">🟢 ≥ 15%　現金牛</span>
+      <span style="border:1px solid #fbbf24;color:#fbbf24;border-radius:4px;padding:2px 8px;font-size:12px">🟡 5 ~ 15%　正向</span>
+      <span style="border:1px solid #f97316;color:#f97316;border-radius:4px;padding:2px 8px;font-size:12px">🟠 0 ~ 5%　微薄</span>
+      <span style="border:1px solid #ef4444;color:#ef4444;border-radius:4px;padding:2px 8px;font-size:12px">🔴 FCF &lt; 0　燒錢</span>
+    </div>
+    <p style="margin:8px 0 4px">
+      <b style="color:#fff">D3 獲利品質納入 FCF</b>：毛利(6)＋營益(5)＋淨利(4)＋<b>FCF(5)</b>＝20，
+      把「帳面賺錢但現金流不出來」的公司扣分（缺現金流資料則退回 7/7/6）。
+    </p>
+    <p style="margin:6px 0;color:#86efac">
+      <b>實例</b>：台積電 OCF 2.35兆 − CapEx 1.29兆 ＝ <b>FCF 1.06兆、margin 25.7% → 🟢現金牛</b>；川湖 57%、南亞科 39%。
     </p>
   </div>
 </details>
