@@ -55,9 +55,60 @@
   --th-bad:var(--th-red);
   --th-info:var(--th-cyan);
 
+  /* ── 深底內容卡 (護眼閱讀模式;主控台等資訊卡用;想調深淺改這幾個) ── */
+  --th-dk-bg:#0f1a30;       /* 卡片深底 */
+  --th-dk-panel:#172339;    /* 內層面板 */
+  --th-dk-panel2:#1f2f4d;   /* 更內層 */
+  --th-dk-text:#eef3fb;     /* 主亮字 (高對比) */
+  --th-dk-text2:#d6e1f0;
+  --th-dk-muted:#a7b7d0;
+  --th-dk-border:#2c3f63;
+
   /* ── 字體 ── */
   --th-font:'Segoe UI','Microsoft JhengHei','Noto Sans TC',system-ui,sans-serif;
 }
+
+/* ====================================================================
+   深底內容卡 (.cio-dash 等) — 深底 + 略放大字 + 高對比亮字
+   原理: 在卡片作用域內把框架色票整組「翻成深底模式」, 卡內所有
+         var(--th-*) 自動變亮字深面板; 圖表(plotly)不受影響。
+   ==================================================================== */
+.cio-dash{
+  background:var(--th-dk-bg,#0f1a30) !important;
+  border-color:var(--th-dk-border,#2c3f63) !important;
+  color:var(--th-dk-text,#eef3fb);   /* 重設 color → 卡內繼承文字翻亮 */
+  font-size:13px;            /* 略放大基準 (原本多為 11~12px) */
+  /* — 作用域翻色: 卡內 token → 深底模式 — */
+  --th-text:var(--th-dk-text,#eef3fb);
+  --th-text2:var(--th-dk-text2,#d6e1f0);
+  --th-muted:var(--th-dk-muted,#a7b7d0);
+  --th-faint:#8094b0;
+  --th-card:var(--th-dk-panel,#172339);
+  --th-card2:var(--th-dk-panel2,#1f2f4d);
+  --th-bg2:var(--th-dk-panel,#172339);
+  --th-hover:#22324f;
+  --th-border:var(--th-dk-border,#2c3f63);
+  --th-border2:#3a4d72;
+  /* 品牌/語意色 → 深底上的亮版 (高對比, 紅綠維持語意) */
+  --th-cyan:#7dd3fc; --th-amber:#fcd34d; --th-green:#86efac; --th-red:#fca5a5;
+  --th-blue:#93c5fd; --th-purple:#c4b5fd; --th-orange:#fdba74;
+  /* 別名 (--th-info/warn/ok/bad/accent) 須同步明設亮值, 否則沿用 root 深色 */
+  --th-accent:#93c5fd; --th-info:#7dd3fc; --th-warn:#fcd34d;
+  --th-ok:#86efac; --th-bad:#fca5a5;
+  --th-green-bg:#14361f; --th-red-bg:#3a1718; --th-amber-bg:#3a2c12;
+  --th-blue-bg:#102843; --th-purple-bg:#241c40;
+}
+/* 內層 panel 的 rgba 罩 / 漸層 → 深底面板 */
+.cio-dash [style*="rgba(58,52,40"]{ background:rgba(255,255,255,0.05) !important; }
+.cio-dash [style*="linear-gradient"]{
+  background:var(--th-dk-panel,#172339) !important; }
+/* 略放大字 (對應常見內嵌字級, 各 +1.5~2px) */
+.cio-dash [style*="font-size:9px"]{ font-size:11px !important; }
+.cio-dash [style*="font-size:10px"]{ font-size:12px !important; }
+.cio-dash [style*="font-size:11px"]{ font-size:13px !important; }
+.cio-dash [style*="font-size:12px"]{ font-size:13.5px !important; }
+.cio-dash [style*="font-size:13px"]{ font-size:15px !important; }
+.cio-dash [style*="font-size:15px"]{ font-size:17px !important; }
 
 /* ── 全站基底 ── */
 html{background:var(--th-bg)}
