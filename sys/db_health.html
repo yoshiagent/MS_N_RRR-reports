@@ -1,11 +1,10 @@
 <!doctype html>
 <html lang='zh-Hant'><head>
-<link rel="stylesheet" href="../assets/site.css?v=b82e7ae9">
+<link rel="stylesheet" href="../assets/site.css?v=92f65c68">
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <title>🗄 資料庫健康檢查 — MS_N_RR/RRR Ver.A</title>
 <style>
-* { box-sizing: border-box; }
 body { margin:0; padding:24px 20px 80px; max-width:1080px; margin:auto;
        background:var(--th-bg,#080e18); color:var(--th-text,#e2e8f0);
        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
@@ -14,9 +13,6 @@ h1 { font-size:22px; margin:0 0 4px; }
 h2 { font-size:17px; color:var(--th-blue,#93c5fd); border-bottom:1px solid var(--th-border,#2d3f55);
      padding-bottom:6px; margin:24px 0 12px; }
 .sub { color:var(--th-muted,#94a3b8); font-size:13px; margin-bottom:18px; }
-.back-link { display:inline-block; color:var(--th-blue,#60a5fa); text-decoration:none; font-size:13px;
-             padding:4px 10px; border:1px solid var(--th-border,#2d3f55); border-radius:6px; margin-bottom:14px; }
-.back-link:hover { border-color:#3b82f6; }
 code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#07111e); color:var(--th-cyan,#7dd3fc);
        padding:1px 6px; border-radius:3px; font-size:12px; }
 
@@ -110,17 +106,11 @@ footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
 </script>
 <!-- GLOBAL_NAV_END -->
 
-
-
-
-
-
-
 <a class='back-link' href='../index.html'>← 返回主頁</a>
 
 <h1>🗄 DuckDB 資料庫健康檢查</h1>
 <div class='sub'>
-  資料日：2026-06-12 ｜ 產生時間：2026-06-12 15:28:49
+  資料日：2026-06-12 ｜ 產生時間：2026-06-12 18:00:04
   ｜ 來源：<code>stockHisData/stock_data/db_health.py</code>
   ｜ 每日 orchestrator step 0 自動執行
 </div>
@@ -136,9 +126,9 @@ footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
     &quot;days_lag&quot;: 1
   },
   &quot;macro&quot;: {
-    &quot;SOX&quot;: &quot;2026-05-22&quot;,
-    &quot;USDTWD&quot;: &quot;2026-06-10&quot;,
-    &quot;VIX&quot;: &quot;2026-06-10&quot;
+    &quot;USDTWD&quot;: &quot;2026-06-12&quot;,
+    &quot;VIX&quot;: &quot;2026-06-11&quot;,
+    &quot;SOX&quot;: &quot;2026-05-22&quot;
   },
   &quot;institutional&quot;: {
     &quot;last_date&quot;: &quot;2026-06-11&quot;,
@@ -152,7 +142,7 @@ footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
     &quot;indices&quot;: 2148,
     &quot;institutional&quot;: 603171,
     &quot;futures&quot;: 247,
-    &quot;macro&quot;: 3367,
+    &quot;macro&quot;: 3371,
     &quot;symbols&quot;: 1935,
     &quot;signal_history&quot;: 70824,
     &quot;update_log&quot;: 1
@@ -195,13 +185,13 @@ footer { color:var(--th-faint,#64748b); font-size:12px; margin-top:30px;
   &quot;zero_vol_pct&quot;: 1.35
 }</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>關鍵指數完整性</span><span class='check-cat'>📊 資料覆蓋</span><span class='check-pill' style='background:#10b98133;color:var(--th-green,#10b981)'>healthy</span></div><div class='check-msg'>全部 2 個關鍵指數齊全</div><details class='detail'><summary>查看細節</summary><pre>{
   &quot;latest_per_index&quot;: {
-    &quot;OTCI&quot;: {
-      &quot;last_date&quot;: &quot;2026-06-12&quot;,
-      &quot;rows&quot;: 1073
-    },
     &quot;TWII&quot;: {
       &quot;last_date&quot;: &quot;2026-06-12&quot;,
       &quot;rows&quot;: 1075
+    },
+    &quot;OTCI&quot;: {
+      &quot;last_date&quot;: &quot;2026-06-12&quot;,
+      &quot;rows&quot;: 1073
     }
   }
 }</pre></details></div><div class='check-card healthy'><div class='check-head'><span class='check-icon'>✅</span><span class='check-name'>Sector map 對照表</span><span class='check-cat'>📊 資料覆蓋</span><span class='check-pill' style='background:#10b98133;color:var(--th-green,#10b981)'>healthy</span></div><div class='check-msg'>1977 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1847 ｜ 市值 1935 ｜ 17 天前更新</div><details class='detail'><summary>查看細節</summary><pre>{

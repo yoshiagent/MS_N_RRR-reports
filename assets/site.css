@@ -100,6 +100,11 @@
 }
 /* 內層 panel 的 rgba 罩 / 漸層 → 深底面板 */
 .cio-dash [style*="rgba(58,52,40"]{ background:rgba(255,255,255,0.05) !important; }
+/* 主控台兩大主題用不同色調深底做視覺分隔 (重點偏藍 / 操作偏綠) */
+.cio-dash .cio-blk-brief{ background:#13233f !important;
+  border-left-color:var(--th-cyan,#7dd3fc) !important; }
+.cio-dash .cio-blk-ops{ background:#17291d !important;
+  border-left-color:var(--th-green,#86efac) !important; }
 .cio-dash [style*="linear-gradient"]{
   background:var(--th-dk-panel,#172339) !important; }
 /* 略放大字 (對應常見內嵌字級, 各 +1.5~2px) */
@@ -111,9 +116,16 @@
 .cio-dash [style*="font-size:15px"]{ font-size:17px !important; }
 
 /* ── 全站基底 ── */
+*{box-sizing:border-box}
 html{background:var(--th-bg)}
 body{background:var(--th-bg);color:var(--th-text);font-family:var(--th-font)}
 a{color:var(--th-accent)}
+
+/* ── 全站共用元件 (各頁不再自帶, 改這裡即全站變) ── */
+.back-link{display:inline-block;margin-bottom:16px;padding:6px 14px;
+  background:var(--th-card,#fffdf8);border:1px solid var(--th-border,#e6dcc8);
+  border-radius:6px;color:var(--th-accent,#2563eb);text-decoration:none;font-size:13px}
+.back-link:hover{border-color:var(--th-accent,#2563eb)}
 
 /* ====================================================================
    全站導航列 (nav_inject 注入 HTML, 樣式集中於此)
