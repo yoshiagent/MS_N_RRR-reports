@@ -2,13 +2,12 @@
   "as_of": "2026-06-12",
   "schema_version": "v2",
   "market_phase": {
-    "value": "EARLY_BULL",
-    "confidence": 73,
-    "confidence_band": "HIGH",
+    "value": "UNCLEAR",
+    "confidence": 35,
+    "confidence_band": "LOW",
     "reason": [
-      "站上 MA20 比例 60.0%, 過半轉強",
-      "新高股比例 12.4%, 主流浮現",
-      "溫度 50 處於健康偏熱區"
+      "無 phase 規則滿足 ≥3 條 (BEAR 需 ≥4)",
+      "breadth_regime=mixed, above_ma20=54.0%, adv_dec=0.77"
     ]
   },
   "risk_mode": {
@@ -34,47 +33,46 @@
   },
   "candidate_bias": {
     "hot_stock_weight": 20,
-    "strong_stock_weight": 50,
-    "base_stock_weight": 30,
+    "strong_stock_weight": 30,
+    "base_stock_weight": 50,
     "preferred_pool": [
-      "STRONG",
       "BASE",
+      "STRONG",
       "HOT"
     ],
     "reason": [
-      "多頭初升段主流成形, 強勢股優先",
-      "打底股仍有貢獻, 接近突破者可挑"
+      "市場訊號未明朗, 三池均衡偏防禦",
+      "建議等待 phase 明朗再加碼"
     ]
   },
   "master_weight_policy": {
-    "Wyckoff": 0,
-    "Minervini": 25,
-    "ONeil": 30,
-    "Weinstein": 19,
-    "Darvas": 10,
-    "Livermore": 16,
-    "Lynch": 0,
-    "Fisher": 0,
-    "Buffett": 0
+    "Wyckoff": 18,
+    "Minervini": 13,
+    "ONeil": 12,
+    "Weinstein": 12,
+    "Darvas": 11,
+    "Livermore": 13,
+    "Lynch": 7,
+    "Fisher": 7,
+    "Buffett": 7
   },
   "discipline_policy": {
-    "max_position_ratio_per_stock": 20,
-    "max_total_exposure": 21,
+    "max_position_ratio_per_stock": 15,
+    "max_total_exposure": 16,
     "allow_new_position": false,
     "allow_add_position": false,
     "stop_loss_strictness": "HIGH",
-    "cash_minimum_ratio": 79
+    "cash_minimum_ratio": 84
   },
   "orchestrator_instruction": {
     "action_bias": "WAIT",
     "priority": [
-      "優先評估強勢股池 (主流成形)",
-      "打底股接近突破者可挑"
+      "保持觀察, 不主動加倉"
     ],
     "warning": []
   },
   "transition_signals": {
-    "next_likely_phase": "EARLY_BULL",
+    "next_likely_phase": "UNCLEAR",
     "confidence": 0,
     "early_warning_days": 0,
     "triggers": [],
@@ -83,29 +81,29 @@
   "skill_feedback": {
     "active": true,
     "skill_index": {
-      "Wyckoff": 1.25,
-      "Minervini": 25.2,
-      "ONeil": 30.4,
-      "Weinstein": 17.25,
-      "Darvas": 9.3,
-      "Livermore": 16.6,
+      "Wyckoff": 21.65,
+      "Minervini": 18.3,
+      "ONeil": 15.5,
+      "Weinstein": 14.95,
+      "Darvas": 10.95,
+      "Livermore": 18.75,
       "Lynch": 0.0,
       "Fisher": 0.0,
       "Buffett": 0.0
     },
     "n_days_with_data": 5,
-    "alpha": 0.324,
+    "alpha": 0.323,
     "alpha_mode": "dynamic",
-    "avg_skill_std": 7.62,
-    "skill_source": "phase_specific:EARLY_BULL",
+    "avg_skill_std": 7.75,
+    "skill_source": "phase_specific:UNCLEAR",
     "phase_days_current": 2
   },
   "summary": {
-    "phase": "EARLY_BULL",
+    "phase": "UNCLEAR",
     "risk_mode": "CASH",
     "action_bias": "WAIT",
     "skill_feedback_active": true
   },
-  "generated_at": "2026-06-12T18:00:48",
+  "generated_at": "2026-06-12T18:31:11",
   "available": true
 }
