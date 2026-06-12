@@ -1,5 +1,5 @@
 <!doctype html><html lang="zh-Hant"><head>
-<link rel="stylesheet" href="../assets/site.css?v=2dca59e1">
+<link rel="stylesheet" href="../assets/site.css?v=cde4b74b">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HotFlow 2026-06-12 主流偵測</title>
@@ -12,8 +12,9 @@
     h2 { font-size:16px; color:var(--th-blue,#93c5fd); border-bottom:1px solid var(--th-border,#2d3f55); padding-bottom:6px; margin:22px 0 12px; }
     .sub { color:var(--th-muted,#94a3b8); font-size:13px; margin-bottom:18px; }
     .stat { display:inline-block; padding:4px 12px; margin-right:8px; border-radius:6px; font-size:13px; background:var(--th-card,#131f2e); }
-    .card { background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:8px;
-            padding:12px 14px; margin-bottom:10px; }
+    /* 卡片底/框/圓角/padding 一律引用 site.css 正典 .card（深底卡島 + token scope-flip），
+       不再本地重定義 (R-CSS2)。本地只補卡片間距，掛在非正典名 .hf-card 上。 */
+    .hf-card { margin-bottom:10px; }
     .card-head { display:flex; justify-content:space-between; align-items:baseline; }
     .name { font-weight:bold; font-size:16px; }
     .code { color:var(--th-muted,#94a3b8); font-size:13px; margin-left:6px; }
@@ -170,12 +171,10 @@
 </script>
 <!-- GLOBAL_NAV_END -->
 
-
-
 <a class="back-link" href="../index.html">← 返回主頁</a>
 <a class="back-link" href="../sys/nomenclature.html" style="margin-left:6px" title="所有指標的中英文對照、公式、方向、範例">📖 名詞對照表</a>
 <h1>HotFlow Agent — 主流形成偵測</h1>
-<div class="sub">資料日：2026-06-12 ｜ 產生時間：2026-06-12 21:30</div>
+<div class="sub">資料日：2026-06-12 ｜ 產生時間：2026-06-13 01:09</div>
 <div>
     <span class="stat">掃描 22347 檔</span>
     <span class="stat">過前置 683</span>
@@ -197,11 +196,11 @@
 <tr><td>名次推進動能（1日）（rank_momentum）</td><td>25%</td></tr><tr><td>名次推進速度（近5日）（rank_slope_5d）</td><td>20%</td></tr><tr><td>近20日上榜天數（hot_persistence_20d）</td><td>15%</td></tr><tr><td>量能爆發程度（60日Z）（amount_z_60d）</td><td>15%</td></tr><tr><td>量能擴張倍數（vs 60日均）（amount_expansion）</td><td>10%</td></tr><tr><td>相對大盤綜合分（rs_combined）</td><td>10%</td></tr><tr><td>週線20均斜率（weekly_ma20_slope）</td><td>5%</td></tr></table></details><details class='section' open><summary title='A 級主流形成中：主流評分百分位 ≥ 80（PR 前 20%）
 條件：名次推進速度為正 + 近20日上榜 ≥ 3 日 + 相對強弱趨勢向上 + 週線20均向上
 用途：下游 RSR/RRR 配對的優先候選'><span class='label'>A 主流形成中</span><span class='count-badge a'>32 檔</span></summary><div class='body'>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">力成</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6239" target="_blank" rel="noopener" title="TradingView 圖表 — 6239" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6239</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6239" target="_blank" rel="noopener" title="TradingView 圖表 — 6239" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6239</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 100</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第11日</span></span>
     </div>
@@ -245,14 +244,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+6.93</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 0%（全市場 PR）</li><li>近 5 日名次推進速度 +14.1 &gt; 0（資金推升中）</li><li>近 20 日上榜 18 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟡 箱上回測（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 32 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：3532 (換 A)｜RR：3088 (換 B)｜RR：5434 (換 A)（另 29 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 2 項警示、2 項通過'>綜合判斷：<span class='ed-caution'>⚠ 多項警示，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟡 箱上回測（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">日電貿</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3090" target="_blank" rel="noopener" title="TradingView 圖表 — 3090" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3090</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3090" target="_blank" rel="noopener" title="TradingView 圖表 — 3090" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3090</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 100</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第1日</span></span>
     </div>
@@ -296,14 +295,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+6.38</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 0%（全市場 PR）</li><li>近 5 日名次推進速度 +21.2 &gt; 0（資金推升中）</li><li>近 20 日上榜 7 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 32 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：6173 (換 A)｜RR：3213 (換 A)｜RR：8112 (換 A)（另 29 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 2 項警示、2 項通過'>綜合判斷：<span class='ed-caution'>⚠ 多項警示，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">國巨*</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2327" target="_blank" rel="noopener" title="TradingView 圖表 — 2327" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2327</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2327" target="_blank" rel="noopener" title="TradingView 圖表 — 2327" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2327</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 100</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第10日</span></span>
     </div>
@@ -347,14 +346,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+25.14</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 0%（全市場 PR）</li><li>近 5 日名次推進速度 +2.0 &gt; 0（資金推升中）</li><li>近 20 日上榜 20 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 32 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：7828 (換 B)｜RR：2059 (換 A)｜RR：3550 (換 B)（另 29 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 2 項警示、2 項通過'>綜合判斷：<span class='ed-caution'>⚠ 多項警示，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">晶技</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3042" target="_blank" rel="noopener" title="TradingView 圖表 — 3042" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3042</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3042" target="_blank" rel="noopener" title="TradingView 圖表 — 3042" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3042</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 100</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第1日</span></span>
     </div>
@@ -398,14 +397,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+6.34</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 0%（全市場 PR）</li><li>近 5 日名次推進速度 +8.5 &gt; 0（資金推升中）</li><li>近 20 日上榜 16 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">川湖</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2059" target="_blank" rel="noopener" title="TradingView 圖表 — 2059" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2059</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2059" target="_blank" rel="noopener" title="TradingView 圖表 — 2059" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2059</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 99</span><span class='lc-pill' style='background:var(--th-amber-bg,#422006);color:var(--th-orange,#fb923c)' title='過熱：score_pr ≥ 95 且 5 日漲幅 ≥ 20%（資金過度推升，準備獲利出場）'>🔥 過熱<span class='lc-days'>第1日</span></span>
     </div>
@@ -449,14 +448,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+107.65</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 1%（全市場 PR）</li><li>近 5 日名次推進速度 +1.3 &gt; 0（資金推升中）</li><li>近 20 日上榜 7 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 32 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：2327 (換 A)｜RR：3090 (換 A)｜RR：2484 (換 A)（另 29 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 2 項警示、2 項通過'>綜合判斷：<span class='ed-caution'>⚠ 多項警示，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">臻鼎-KY</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4958" target="_blank" rel="noopener" title="TradingView 圖表 — 4958" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">4958</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4958" target="_blank" rel="noopener" title="TradingView 圖表 — 4958" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">4958</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 99</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第11日</span></span>
     </div>
@@ -500,14 +499,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+18.50</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 1%（全市場 PR）</li><li>近 5 日名次推進速度 +11.5 &gt; 0（資金推升中）</li><li>近 20 日上榜 20 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">漢唐</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2404" target="_blank" rel="noopener" title="TradingView 圖表 — 2404" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2404</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2404" target="_blank" rel="noopener" title="TradingView 圖表 — 2404" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2404</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 99</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第11日</span></span>
     </div>
@@ -551,14 +550,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+10.33</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 1%（全市場 PR）</li><li>近 5 日名次推進速度 +5.1 &gt; 0（資金推升中）</li><li>近 20 日上榜 18 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">南茂</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8150" target="_blank" rel="noopener" title="TradingView 圖表 — 8150" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">8150</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8150" target="_blank" rel="noopener" title="TradingView 圖表 — 8150" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">8150</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 99</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第5日</span></span>
     </div>
@@ -602,14 +601,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+2.15</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 1%（全市場 PR）</li><li>近 5 日名次推進速度 +14.9 &gt; 0（資金推升中）</li><li>近 20 日上榜 13 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟡 箱上回測（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 32 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：8112 (換 A)｜RR：3022 (換 A)｜RR：2413 (換 A)（另 29 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 2 項警示、2 項通過'>綜合判斷：<span class='ed-caution'>⚠ 多項警示，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟡 箱上回測（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">至上</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8112" target="_blank" rel="noopener" title="TradingView 圖表 — 8112" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">8112</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8112" target="_blank" rel="noopener" title="TradingView 圖表 — 8112" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">8112</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 99</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第9日</span></span>
     </div>
@@ -653,14 +652,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+0.70</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 1%（全市場 PR）</li><li>近 5 日名次推進速度 +17.5 &gt; 0（資金推升中）</li><li>近 20 日上榜 10 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 32 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：8150 (換 A)｜RR：3090 (換 A)｜RR：3048 (換 B)（另 29 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 2 項警示、2 項通過'>綜合判斷：<span class='ed-caution'>⚠ 多項警示，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">大量</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3167" target="_blank" rel="noopener" title="TradingView 圖表 — 3167" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3167</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3167" target="_blank" rel="noopener" title="TradingView 圖表 — 3167" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3167</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 98</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第1日</span></span>
     </div>
@@ -704,14 +703,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+31.11</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 2%（全市場 PR）</li><li>近 5 日名次推進速度 +8.9 &gt; 0（資金推升中）</li><li>近 20 日上榜 9 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟡 箱上回測（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟡 箱上回測（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">中信金</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2891</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2891" target="_blank" rel="noopener" title="TradingView 圖表 — 2891" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2891</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 98</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第19日</span></span>
     </div>
@@ -755,14 +754,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+0.65</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 2%（全市場 PR）</li><li>近 5 日名次推進速度 +7.5 &gt; 0（資金推升中）</li><li>近 20 日上榜 14 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row pass' title='波段進場結構齊備：月線突破 + 週MA20 + 回測不破 + 量縮 + 週線底底高 5 維皆達標（≥ 70 分）'><span class='ed-num'>①</span><span class='ed-mark'>✓</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>結構齊備（88 分）｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 50 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：2484 (換 A)｜RR：3090 (換 A)｜RR：2413 (換 A)（另 47 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 3 項通過、1 項警示'>綜合判斷：<span class='ed-go'>✅ 主要條件齊備（1 項待留意）</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row pass' title='波段進場結構齊備：月線突破 + 週MA20 + 回測不破 + 量縮 + 週線底底高 5 維皆達標（≥ 70 分）'><span class='ed-num'>①</span><span class='ed-mark'>✓</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>結構齊備（88 分）｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 37 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：2356 (換 B)｜RR：3231 (換 B)｜RR：2382 (換 B)（另 34 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 3 項通過、1 項警示'>綜合判斷：<span class='ed-go'>✅ 主要條件齊備（1 項待留意）</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">華通</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2313" target="_blank" rel="noopener" title="TradingView 圖表 — 2313" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2313</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2313" target="_blank" rel="noopener" title="TradingView 圖表 — 2313" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2313</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 98</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第11日</span></span>
     </div>
@@ -806,14 +805,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+7.99</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 2%（全市場 PR）</li><li>近 5 日名次推進速度 +1.8 &gt; 0（資金推升中）</li><li>近 20 日上榜 20 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：⚪ 箱內盤整（觀望）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：⚪ 箱內盤整（觀望）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">旺矽</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6223" target="_blank" rel="noopener" title="TradingView 圖表 — 6223" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6223</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6223" target="_blank" rel="noopener" title="TradingView 圖表 — 6223" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6223</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 98</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第11日</span></span>
     </div>
@@ -857,14 +856,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+187.12</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 2%（全市場 PR）</li><li>近 5 日名次推進速度 +5.2 &gt; 0（資金推升中）</li><li>近 20 日上榜 20 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 32 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：3048 (換 A)｜RR：3406 (換 B)｜RR：8096 (換 A)（另 29 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 2 項警示、2 項通過'>綜合判斷：<span class='ed-caution'>⚠ 多項警示，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">華邦電</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2344" target="_blank" rel="noopener" title="TradingView 圖表 — 2344" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2344</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2344" target="_blank" rel="noopener" title="TradingView 圖表 — 2344" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2344</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 98</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第19日</span></span>
     </div>
@@ -908,14 +907,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+3.14</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 2%（全市場 PR）</li><li>近 5 日名次推進速度 +0.8 &gt; 0（資金推升中）</li><li>近 20 日上榜 20 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row fail' title='波段進場結構不符 — [weekly_higher_low] 否決：週線最近 swing low 83.8 &lt; 前一個 85.2（破壞底底高，-1.64%）'><span class='ed-num'>①</span><span class='ed-mark'>✗</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>結構不符（底底高破壞）｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 34 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：6173 (換 A)｜RR：8150 (換 A)｜RR：2484 (換 A)（另 31 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、1 項警示、2 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row fail' title='波段進場結構不符 — [weekly_higher_low] 否決：週線最近 swing low 83.8 &lt; 前一個 85.2（破壞底底高，-1.64%）'><span class='ed-num'>①</span><span class='ed-mark'>✗</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>結構不符（底底高破壞）｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 2 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>自選：南亞科 (換 B)｜動態 RSR：南亞科 (持倉 南亞科（100% 已到位）)</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、1 項警示、2 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">亞翔</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6139" target="_blank" rel="noopener" title="TradingView 圖表 — 6139" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6139</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6139" target="_blank" rel="noopener" title="TradingView 圖表 — 6139" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6139</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 98</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第11日</span></span>
     </div>
@@ -959,14 +958,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+10.40</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 2%（全市場 PR）</li><li>近 5 日名次推進速度 +2.9 &gt; 0（資金推升中）</li><li>近 20 日上榜 16 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">台新新光金</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2887" target="_blank" rel="noopener" title="TradingView 圖表 — 2887" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2887</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2887" target="_blank" rel="noopener" title="TradingView 圖表 — 2887" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2887</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 97</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第9日</span></span>
     </div>
@@ -1010,14 +1009,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+0.28</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 3%（全市場 PR）</li><li>近 5 日名次推進速度 +2.0 &gt; 0（資金推升中）</li><li>近 20 日上榜 13 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row fail' title='波段進場結構不符 — [daily_pullback_quality] 否決：日收高出日MA20 +17.2%（追高風險）'><span class='ed-num'>①</span><span class='ed-mark'>✗</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>結構不符（乖離過大）｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 32 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：3550 (換 A)｜RR：3090 (換 A)｜RR：2484 (換 A)（另 29 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、1 項警示、2 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row fail' title='波段進場結構不符 — [daily_pullback_quality] 否決：日收高出日MA20 +17.2%（追高風險）'><span class='ed-num'>①</span><span class='ed-mark'>✗</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>結構不符（乖離過大）｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 2 項阻擋、1 項警示、1 項通過'>綜合判斷：<span class='ed-stop'>⛔ 不建議進場</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">益登</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3048" target="_blank" rel="noopener" title="TradingView 圖表 — 3048" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3048</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3048" target="_blank" rel="noopener" title="TradingView 圖表 — 3048" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3048</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 97</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
@@ -1061,14 +1060,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+1.41</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 3%（全市場 PR）</li><li>近 5 日名次推進速度 +0.6 &gt; 0（資金推升中）</li><li>近 20 日上榜 3 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 32 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：2413 (換 A)｜RR：2891 (換 A)｜RR：8112 (換 B)（另 29 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 2 項警示、2 項通過'>綜合判斷：<span class='ed-caution'>⚠ 多項警示，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">台燿</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6274" target="_blank" rel="noopener" title="TradingView 圖表 — 6274" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6274</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6274" target="_blank" rel="noopener" title="TradingView 圖表 — 6274" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6274</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 97</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第10日</span></span>
     </div>
@@ -1112,14 +1111,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+54.43</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 3%（全市場 PR）</li><li>近 5 日名次推進速度 +0.4 &gt; 0（資金推升中）</li><li>近 20 日上榜 15 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟡 箱上回測（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟡 箱上回測（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">敬鵬</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2355" target="_blank" rel="noopener" title="TradingView 圖表 — 2355" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2355</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2355" target="_blank" rel="noopener" title="TradingView 圖表 — 2355" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2355</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 97</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
@@ -1163,14 +1162,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+1.46</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 3%（全市場 PR）</li><li>近 5 日名次推進速度 +1.2 &gt; 0（資金推升中）</li><li>近 20 日上榜 6 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟡 箱上回測（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟡 箱上回測（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">中美晶</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A5483" target="_blank" rel="noopener" title="TradingView 圖表 — 5483" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">5483</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A5483" target="_blank" rel="noopener" title="TradingView 圖表 — 5483" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">5483</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 97</span><span class='lc-pill' style='background:var(--th-green-bg,#064e3b);color:var(--th-green,#6ee7b7)' title='形成中：5 日 hotflow_score 斜率 ≥ +5，且 20 日上榜 ≤ 9 日（新銳，剛開始爆量）'>🌱 形成中<span class='lc-days'>第1日</span></span>
     </div>
@@ -1214,14 +1213,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+2.41</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 3%（全市場 PR）</li><li>近 5 日名次推進速度 +4.0 &gt; 0（資金推升中）</li><li>近 20 日上榜 7 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟡 箱上回測（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 32 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：3088 (換 B)｜RR：6223 (換 A)｜RR：3711 (換 B)（另 29 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 2 項警示、2 項通過'>綜合判斷：<span class='ed-caution'>⚠ 多項警示，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟡 箱上回測（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">友達</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2409" target="_blank" rel="noopener" title="TradingView 圖表 — 2409" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2409</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2409" target="_blank" rel="noopener" title="TradingView 圖表 — 2409" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2409</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 96</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第8日</span></span>
     </div>
@@ -1265,14 +1264,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+0.53</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 4%（全市場 PR）</li><li>近 5 日名次推進速度 +11.5 &gt; 0（資金推升中）</li><li>近 20 日上榜 17 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">景碩</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3189" target="_blank" rel="noopener" title="TradingView 圖表 — 3189" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3189</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3189" target="_blank" rel="noopener" title="TradingView 圖表 — 3189" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3189</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 95</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第10日</span></span>
     </div>
@@ -1316,14 +1315,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+25.48</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 5%（全市場 PR）</li><li>近 5 日名次推進速度 +13.1 &gt; 0（資金推升中）</li><li>近 20 日上榜 19 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟡 箱上回測（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟡 箱上回測（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">尖點</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8021" target="_blank" rel="noopener" title="TradingView 圖表 — 8021" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">8021</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8021" target="_blank" rel="noopener" title="TradingView 圖表 — 8021" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">8021</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 94</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第1日</span></span>
     </div>
@@ -1367,14 +1366,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+13.11</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 6%（全市場 PR）</li><li>近 5 日名次推進速度 +21.1 &gt; 0（資金推升中）</li><li>近 20 日上榜 9 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">大毅</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2478" target="_blank" rel="noopener" title="TradingView 圖表 — 2478" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2478</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2478" target="_blank" rel="noopener" title="TradingView 圖表 — 2478" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2478</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 94</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
@@ -1418,14 +1417,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+4.20</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 6%（全市場 PR）</li><li>近 5 日名次推進速度 +11.1 &gt; 0（資金推升中）</li><li>近 20 日上榜 5 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">大立光</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3008" target="_blank" rel="noopener" title="TradingView 圖表 — 3008" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3008</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3008" target="_blank" rel="noopener" title="TradingView 圖表 — 3008" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3008</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 94</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第10日</span></span>
     </div>
@@ -1469,14 +1468,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+61.31</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 6%（全市場 PR）</li><li>近 5 日名次推進速度 +2.6 &gt; 0（資金推升中）</li><li>近 20 日上榜 19 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row fail' title='波段進場結構不符 — [weekly_higher_low] 否決：週線最近 swing low 2135.0 &lt; 前一個 2206.9（破壞底底高，-3.26%）'><span class='ed-num'>①</span><span class='ed-mark'>✗</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>結構不符（底底高破壞）｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 32 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：3090 (換 A)｜RR：2618 (換 A)｜RR：6173 (換 A)（另 29 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、1 項警示、2 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row fail' title='波段進場結構不符 — [weekly_higher_low] 否決：週線最近 swing low 2135.0 &lt; 前一個 2206.9（破壞底底高，-3.26%）'><span class='ed-num'>①</span><span class='ed-mark'>✗</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>結構不符（底底高破壞）｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 2 項阻擋、1 項警示、1 項通過'>綜合判斷：<span class='ed-stop'>⛔ 不建議進場</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">蜜望實</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A8043" target="_blank" rel="noopener" title="TradingView 圖表 — 8043" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">8043</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A8043" target="_blank" rel="noopener" title="TradingView 圖表 — 8043" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">8043</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 93</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第1日</span></span>
     </div>
@@ -1520,14 +1519,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+3.15</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 7%（全市場 PR）</li><li>近 5 日名次推進速度 +0.7 &gt; 0（資金推升中）</li><li>近 20 日上榜 10 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">光頡</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3624" target="_blank" rel="noopener" title="TradingView 圖表 — 3624" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3624</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3624" target="_blank" rel="noopener" title="TradingView 圖表 — 3624" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3624</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 93</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
@@ -1571,14 +1570,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+2.31</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 7%（全市場 PR）</li><li>近 5 日名次推進速度 +0.5 &gt; 0（資金推升中）</li><li>近 20 日上榜 4 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">雷科</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6207" target="_blank" rel="noopener" title="TradingView 圖表 — 6207" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6207</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6207" target="_blank" rel="noopener" title="TradingView 圖表 — 6207" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6207</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 92</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
@@ -1622,14 +1621,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+3.47</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 8%（全市場 PR）</li><li>近 5 日名次推進速度 +0.8 &gt; 0（資金推升中）</li><li>近 20 日上榜 5 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">臺慶科</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3357" target="_blank" rel="noopener" title="TradingView 圖表 — 3357" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3357</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3357" target="_blank" rel="noopener" title="TradingView 圖表 — 3357" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3357</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 92</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第3日</span></span>
     </div>
@@ -1673,14 +1672,14 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+6.54</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 8%（全市場 PR）</li><li>近 5 日名次推進速度 +1.2 &gt; 0（資金推升中）</li><li>近 20 日上榜 9 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">玉晶光</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3406" target="_blank" rel="noopener" title="TradingView 圖表 — 3406" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3406</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3406" target="_blank" rel="noopener" title="TradingView 圖表 — 3406" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3406</a>)</span>
       <span class="tag tag-a">A 主流形成中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 91</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第2日</span></span>
     </div>
@@ -1724,15 +1723,15 @@
     <span title="週線 20 均斜率(weekly_ma20_slope)：對近 5 週的『週線 MA20』做 OLS 回歸斜率｜單位 = 元/週｜正值 = 中長期上升">週線20均斜率 <b>+9.44</b></span>
   </div>
   <ul class="sigs"><li>主流評分排前 9%（全市場 PR）</li><li>近 5 日名次推進速度 +6.3 &gt; 0（資金推升中）</li><li>近 20 日上榜 7 天（持續被關注）</li><li>相對強弱轉強 + 週線 20 均向上（中長期多頭）</li></ul>
-  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row pass' title='在 RSR/RRR/動態 RSR/自選配對中共找到 32 組與本檔相關的配對訊號'><span class='ed-num'>②</span><span class='ed-mark'>✓</span><span class='ed-label'>配對對手</span><span class='ed-detail'>RR：3090 (換 A)｜RR：6173 (換 A)｜RR：7828 (換 B)（另 29 組）</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 47.2 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
-規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡47.2 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 2 項警示、2 項通過'>綜合判斷：<span class='ed-caution'>⚠ 多項警示，謹慎評估</span></div></div>
+  <div class='entry-decision'><div class='ed-title'>📋 進場決策四維檢查（整合各 Agent 成果）</div><div class='ed-row warn' title='個股未在 n_pattern Agent 的篩選範圍內。本項評估的是『波段進場結構』5 維綜合分（月線突破+週MA20+回測+量縮+底底高），非純 K 線結構；附帶多時段箱型狀態（週線視角）作為輔助參考。'><span class='ed-num'>①</span><span class='ed-mark'>⚠</span><span class='ed-label'>波段進場結構</span><span class='ed-detail'>未進入評估池｜箱型：🟢 箱上推進（健康）</span></div><div class='ed-row fail' title='本檔未出現在任何 RSR/RRR/動態 RSR/自選配對的訊號中。可考慮加入『配對表.xlsx』手動配對'><span class='ed-num'>②</span><span class='ed-mark'>✗</span><span class='ed-label'>配對對手</span><span class='ed-detail'>目前無配對對手</span></div><div class='ed-row pass' title='市場結構為警戒（55-75 分），仍可進場但需提高戒心'><span class='ed-num'>③</span><span class='ed-mark'>✓</span><span class='ed-label'>市場結構</span><span class='ed-detail'>警戒 71/100（仍允許）</span></div><div class='ed-row warn' title='市場溫度 49.7 ♨ 溫熱｜RR 環境 70 ✅ RR 黃金期｜大盤風險 2/7 🟡 警告區
+規則：溫度 ≥80 警示；RR &lt;40 阻擋；風險 ≥4 阻擋'><span class='ed-num'>④</span><span class='ed-mark'>⚠</span><span class='ed-label'>MS-Agent 監控</span><span class='ed-detail'>🌡49.7 🎯70 🚨2/7 （大盤風險警告）</span></div><div class='ed-summary' title='四維中 1 項阻擋、2 項警示、1 項通過'>綜合判斷：<span class='ed-caution'>⚠ 條件不齊全，謹慎評估</span></div></div>
 </div><div class='sub'>… 另有 2 檔，見 CSV / JSON</div></div></details><details class='section'><summary title='B 級觀察中：主流評分百分位 60-80（PR 前 40% 但未達 A 級條件）
 部分條件未齊全；持續追蹤但不直接進場'><span class='label'>B 觀察中</span><span class='count-badge b'>168 檔</span></summary><div class='body'>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">台勝科</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3532" target="_blank" rel="noopener" title="TradingView 圖表 — 3532" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3532</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3532" target="_blank" rel="noopener" title="TradingView 圖表 — 3532" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3532</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 99</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
@@ -1778,11 +1777,11 @@
   <ul class="sigs"><li>主流評分排前 1%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">國碩</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2406" target="_blank" rel="noopener" title="TradingView 圖表 — 2406" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2406</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2406" target="_blank" rel="noopener" title="TradingView 圖表 — 2406" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2406</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 98</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
@@ -1828,11 +1827,11 @@
   <ul class="sigs"><li>主流評分排前 2%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">長榮航</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2618" target="_blank" rel="noopener" title="TradingView 圖表 — 2618" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2618</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2618" target="_blank" rel="noopener" title="TradingView 圖表 — 2618" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2618</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 96</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
@@ -1878,11 +1877,11 @@
   <ul class="sigs"><li>主流評分排前 4%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">聯電</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2303" target="_blank" rel="noopener" title="TradingView 圖表 — 2303" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2303</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2303" target="_blank" rel="noopener" title="TradingView 圖表 — 2303" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2303</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 95</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第10日</span></span>
     </div>
@@ -1928,11 +1927,11 @@
   <ul class="sigs"><li>主流評分排前 5%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">鈞寶</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6155" target="_blank" rel="noopener" title="TradingView 圖表 — 6155" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6155</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6155" target="_blank" rel="noopener" title="TradingView 圖表 — 6155" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6155</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 94</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第5日</span></span>
     </div>
@@ -1978,11 +1977,11 @@
   <ul class="sigs"><li>主流評分排前 6%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">信昌電</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6173" target="_blank" rel="noopener" title="TradingView 圖表 — 6173" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6173</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6173" target="_blank" rel="noopener" title="TradingView 圖表 — 6173" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6173</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 94</span><span class='lc-pill' style='background:var(--th-amber-bg,#422006);color:var(--th-orange,#fb923c)' title='過熱：score_pr ≥ 95 且 5 日漲幅 ≥ 20%（資金過度推升，準備獲利出場）'>🔥 過熱<span class='lc-days'>第1日</span></span>
     </div>
@@ -2028,11 +2027,11 @@
   <ul class="sigs"><li>主流評分排前 6%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">日月光投控</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3711" target="_blank" rel="noopener" title="TradingView 圖表 — 3711" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3711</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3711" target="_blank" rel="noopener" title="TradingView 圖表 — 3711" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3711</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 93</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第3日</span></span>
     </div>
@@ -2078,11 +2077,11 @@
   <ul class="sigs"><li>主流評分排前 7%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">富鼎</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8261" target="_blank" rel="noopener" title="TradingView 圖表 — 8261" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">8261</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8261" target="_blank" rel="noopener" title="TradingView 圖表 — 8261" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">8261</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 93</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
@@ -2128,11 +2127,11 @@
   <ul class="sigs"><li>主流評分排前 7%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">事欣科</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4916" target="_blank" rel="noopener" title="TradingView 圖表 — 4916" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">4916</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4916" target="_blank" rel="noopener" title="TradingView 圖表 — 4916" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">4916</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 93</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第11日</span></span>
     </div>
@@ -2178,11 +2177,11 @@
   <ul class="sigs"><li>主流評分排前 7%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">凱美</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2375" target="_blank" rel="noopener" title="TradingView 圖表 — 2375" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2375</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2375" target="_blank" rel="noopener" title="TradingView 圖表 — 2375" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2375</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 92</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第11日</span></span>
     </div>
@@ -2228,11 +2227,11 @@
   <ul class="sigs"><li>主流評分排前 8%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">強茂</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2481" target="_blank" rel="noopener" title="TradingView 圖表 — 2481" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2481</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2481" target="_blank" rel="noopener" title="TradingView 圖表 — 2481" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2481</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 92</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第1日</span></span>
     </div>
@@ -2278,11 +2277,11 @@
   <ul class="sigs"><li>主流評分排前 8%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">台半</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A5425" target="_blank" rel="noopener" title="TradingView 圖表 — 5425" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">5425</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A5425" target="_blank" rel="noopener" title="TradingView 圖表 — 5425" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">5425</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 92</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第11日</span></span>
     </div>
@@ -2328,11 +2327,11 @@
   <ul class="sigs"><li>主流評分排前 8%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">微星</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2377" target="_blank" rel="noopener" title="TradingView 圖表 — 2377" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2377</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2377" target="_blank" rel="noopener" title="TradingView 圖表 — 2377" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2377</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 92</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第10日</span></span>
     </div>
@@ -2378,11 +2377,11 @@
   <ul class="sigs"><li>主流評分排前 8%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">鈺邦</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6449" target="_blank" rel="noopener" title="TradingView 圖表 — 6449" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6449</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6449" target="_blank" rel="noopener" title="TradingView 圖表 — 6449" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6449</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 92</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第11日</span></span>
     </div>
@@ -2428,11 +2427,11 @@
   <ul class="sigs"><li>主流評分排前 8%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">華碩</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2357" target="_blank" rel="noopener" title="TradingView 圖表 — 2357" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2357</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2357" target="_blank" rel="noopener" title="TradingView 圖表 — 2357" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2357</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 91</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第9日</span></span>
     </div>
@@ -2478,11 +2477,11 @@
   <ul class="sigs"><li>主流評分排前 9%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">國泰金</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2882" target="_blank" rel="noopener" title="TradingView 圖表 — 2882" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2882</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2882" target="_blank" rel="noopener" title="TradingView 圖表 — 2882" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2882</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 91</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第3日</span></span>
     </div>
@@ -2528,11 +2527,11 @@
   <ul class="sigs"><li>主流評分排前 9%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">先進光</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3362" target="_blank" rel="noopener" title="TradingView 圖表 — 3362" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3362</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3362" target="_blank" rel="noopener" title="TradingView 圖表 — 3362" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3362</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 90</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第11日</span></span>
     </div>
@@ -2578,11 +2577,11 @@
   <ul class="sigs"><li>主流評分排前 10%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">華容</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A5328" target="_blank" rel="noopener" title="TradingView 圖表 — 5328" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">5328</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A5328" target="_blank" rel="noopener" title="TradingView 圖表 — 5328" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">5328</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 90</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
@@ -2628,11 +2627,11 @@
   <ul class="sigs"><li>主流評分排前 10%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">松川精密</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A7788" target="_blank" rel="noopener" title="TradingView 圖表 — 7788" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">7788</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A7788" target="_blank" rel="noopener" title="TradingView 圖表 — 7788" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">7788</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 90</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第2日</span></span>
     </div>
@@ -2678,11 +2677,11 @@
   <ul class="sigs"><li>主流評分排前 10%（未完全達 A 級條件）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">帆宣</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6196" target="_blank" rel="noopener" title="TradingView 圖表 — 6196" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6196</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6196" target="_blank" rel="noopener" title="TradingView 圖表 — 6196" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6196</a>)</span>
       <span class="tag tag-b">B 觀察中</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 89</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
@@ -2733,11 +2732,11 @@
   ・相對強弱未轉強 — 弱於大盤
   ・週線20均向下 — 中長期空頭
 → 不建議追入'><span class='label'>C 過熱或排除</span><span class='count-badge c'>483 檔</span></summary><div class='body'>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">台光電</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2383" target="_blank" rel="noopener" title="TradingView 圖表 — 2383" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2383</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2383" target="_blank" rel="noopener" title="TradingView 圖表 — 2383" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2383</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 98</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第10日</span></span>
     </div>
@@ -2783,11 +2782,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">穎崴</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6515" target="_blank" rel="noopener" title="TradingView 圖表 — 6515" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6515</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6515" target="_blank" rel="noopener" title="TradingView 圖表 — 6515" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6515</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 97</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第11日</span></span>
     </div>
@@ -2833,11 +2832,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">光洋科</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A1785" target="_blank" rel="noopener" title="TradingView 圖表 — 1785" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">1785</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A1785" target="_blank" rel="noopener" title="TradingView 圖表 — 1785" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">1785</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 96</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第11日</span></span>
     </div>
@@ -2883,11 +2882,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">啟碁</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6285" target="_blank" rel="noopener" title="TradingView 圖表 — 6285" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6285</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6285" target="_blank" rel="noopener" title="TradingView 圖表 — 6285" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6285</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 96</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第11日</span></span>
     </div>
@@ -2933,11 +2932,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">昇達科</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3491" target="_blank" rel="noopener" title="TradingView 圖表 — 3491" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3491</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3491" target="_blank" rel="noopener" title="TradingView 圖表 — 3491" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3491</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 96</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第10日</span></span>
     </div>
@@ -2983,11 +2982,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">世界</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A5347" target="_blank" rel="noopener" title="TradingView 圖表 — 5347" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">5347</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A5347" target="_blank" rel="noopener" title="TradingView 圖表 — 5347" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">5347</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 96</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第11日</span></span>
     </div>
@@ -3033,11 +3032,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">全新</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2455" target="_blank" rel="noopener" title="TradingView 圖表 — 2455" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2455</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2455" target="_blank" rel="noopener" title="TradingView 圖表 — 2455" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2455</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 96</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第1日</span></span>
     </div>
@@ -3083,11 +3082,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">創意</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3443" target="_blank" rel="noopener" title="TradingView 圖表 — 3443" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3443</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3443" target="_blank" rel="noopener" title="TradingView 圖表 — 3443" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3443</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 96</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第11日</span></span>
     </div>
@@ -3133,11 +3132,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">台虹</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8039" target="_blank" rel="noopener" title="TradingView 圖表 — 8039" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">8039</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8039" target="_blank" rel="noopener" title="TradingView 圖表 — 8039" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">8039</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 95</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
@@ -3183,11 +3182,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">台表科</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6278" target="_blank" rel="noopener" title="TradingView 圖表 — 6278" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6278</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6278" target="_blank" rel="noopener" title="TradingView 圖表 — 6278" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6278</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 95</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第8日</span></span>
     </div>
@@ -3233,11 +3232,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">富世達</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6805" target="_blank" rel="noopener" title="TradingView 圖表 — 6805" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6805</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6805" target="_blank" rel="noopener" title="TradingView 圖表 — 6805" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6805</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 95</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第8日</span></span>
     </div>
@@ -3283,11 +3282,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">燿華</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2367" target="_blank" rel="noopener" title="TradingView 圖表 — 2367" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2367</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2367" target="_blank" rel="noopener" title="TradingView 圖表 — 2367" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2367</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 95</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第8日</span></span>
     </div>
@@ -3333,11 +3332,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">十銓</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4967" target="_blank" rel="noopener" title="TradingView 圖表 — 4967" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">4967</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4967" target="_blank" rel="noopener" title="TradingView 圖表 — 4967" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">4967</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 94</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
@@ -3383,11 +3382,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">環宇-KY</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A4991" target="_blank" rel="noopener" title="TradingView 圖表 — 4991" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">4991</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A4991" target="_blank" rel="noopener" title="TradingView 圖表 — 4991" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">4991</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 94</span><span class='lc-pill' style='background:var(--th-green-bg,#065f46);color:var(--th-green,#10b981)' title='擴散中：20 日上榜 ≥ 7 日 且 同產業 ≥ 3 檔同步入榜（主流穩定且族群跟漲）'>📈 擴散中<span class='lc-days'>第5日</span></span>
     </div>
@@ -3433,11 +3432,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">希華</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2484" target="_blank" rel="noopener" title="TradingView 圖表 — 2484" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">2484</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2484" target="_blank" rel="noopener" title="TradingView 圖表 — 2484" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">2484</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 93</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第1日</span></span>
     </div>
@@ -3483,11 +3482,11 @@
   <ul class="sigs"><li>近 5 日漲幅 26.3% &gt; 25% — 漲過頭</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">信驊</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A5274" target="_blank" rel="noopener" title="TradingView 圖表 — 5274" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">5274</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A5274" target="_blank" rel="noopener" title="TradingView 圖表 — 5274" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">5274</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 92</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第11日</span></span>
     </div>
@@ -3533,11 +3532,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">天二科技</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6834" target="_blank" rel="noopener" title="TradingView 圖表 — 6834" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6834</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6834" target="_blank" rel="noopener" title="TradingView 圖表 — 6834" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6834</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 91</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第11日</span></span>
     </div>
@@ -3583,11 +3582,11 @@
   <ul class="sigs"><li>量能爆衝（Z=4.5）但近 20 日僅上榜 0 天 — 缺乏持續性</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">精測</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6510" target="_blank" rel="noopener" title="TradingView 圖表 — 6510" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">6510</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6510" target="_blank" rel="noopener" title="TradingView 圖表 — 6510" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">6510</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 91</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第5日</span></span>
     </div>
@@ -3633,11 +3632,11 @@
   <ul class="sigs"><li>相對強弱未轉強（弱於大盤）</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">聯一光</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3441" target="_blank" rel="noopener" title="TradingView 圖表 — 3441" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">3441</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3441" target="_blank" rel="noopener" title="TradingView 圖表 — 3441" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">3441</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 91</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第11日</span></span>
     </div>
@@ -3683,11 +3682,11 @@
   <ul class="sigs"><li>量能爆衝（Z=4.2）但近 20 日僅上榜 0 天 — 缺乏持續性</li></ul>
   
 </div>
-<div class="card">
+<div class="card hf-card">
   <div class="card-head">
     <div>
       <span class="name">加高</span>
-      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A8182" target="_blank" rel="noopener" title="TradingView 圖表 — 8182" style="color:inherit;text-decoration:none;border-bottom:1px dotted #475569;cursor:pointer">8182</a>)</span>
+      <span class="code">(<a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A8182" target="_blank" rel="noopener" title="TradingView 圖表 — 8182" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">8182</a>)</span>
       <span class="tag tag-c">C 過熱或排除</span>
       <span style="color:var(--th-muted,#94a3b8); font-size:12px; margin-left:6px;" title="百分位排名(PR, percentile rank)：本檔主流評分在當日所有通過前置條件股票中的相對排名（100 = 第 1 名／0 = 末名）">PR 90</span><span class='lc-pill' style='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8)' title='靜止：無顯著資金流向（首日跑或沒有突出動向）'>💤 靜止<span class='lc-days'>第11日</span></span>
     </div>
@@ -3735,120 +3734,4 @@
 </div><div class='sub'>… 另有 463 檔，見 CSV / JSON</div></div></details>
 <div style="box-sizing:border-box;width:100%;padding:24px 20px 24px;background:var(--th-bg,#0d1117);color:var(--th-muted,#94a3b8);font-size:13px;line-height:2;border-top:1px solid var(--th-border,#1e293b);margin-top:24px;"><div style="max-width:1180px;margin:0 auto;"><div style="color:var(--th-blue,#93c5fd);font-size:14px;font-weight:bold;border-left:3px solid var(--th-blue,#3b82f6);padding-left:10px;margin-bottom:16px;">HotFlow — 策略與用法</div><div style="display:flex;flex-wrap:wrap;gap:16px;"><div style="flex:1;min-width:240px;background:var(--th-card,#111827);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#e2e8f0);font-weight:bold;margin-bottom:8px;">🔥 什麼是 HotFlow（主流偵測）</div>偵測「全市場資金流向哪裡」的 Agent。<br>每日對全市場約 1,935 檔股票打分，把資金流入最強的個股篩出來。<br><b style="color:var(--th-text,#e2e8f0)">不做買賣決策</b>，僅作為下游 N-Pattern / RR / RRR 的候選池。</div><div style="flex:1;min-width:240px;background:var(--th-card,#111827);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#e2e8f0);font-weight:bold;margin-bottom:8px;">📊 主流評分算法</div><b>7 個維度</b> → 各自做極端值修剪(winsorize) → 換算成『百分位排名』(PR, 0-100) → 加權加總：<br><code style="color:var(--th-cyan,#7dd3fc);font-size:11px;line-height:1.8;display:block;margin:8px 0">名次推進動能（1日） × 0.25<br>名次推進速度（近5日） × 0.20<br>近20日上榜天數 × 0.15<br>量能爆發程度（60日Z） × 0.15<br>量能擴張倍數（vs 60日均） × 0.10<br>相對大盤綜合分 × 0.10<br>週線20均斜率 × 0.05<br><span style="color:var(--th-muted,#94a3b8)">────────────────</span><br><span style="color:var(--th-muted,#94a3b8)">合計權重 = 1.00</span></code>最終為 0-100 分。<br><span style="color:var(--th-faint,#64748b);font-size:11px">※ 每個維度的『百分位排名』顯示在個股卡中段；滑鼠移上去（手機則點擊）看 tooltip 對照本檔原始值<br>※ ★ 關鍵：「名次」和「名次分數」方向相反 — 名次數字越小越好（#1 = 最佳）；名次分數越大越好（100 = 第 1 名翻轉而來）。所有「斜率/動能」指標都是用『名次分數』算的，斜率正 = 表現變好。<br>※ 權重表從 <code>hotflow.WEIGHTS</code> 即時讀取，改程式碼後此頁自動同步</span></div><div style="flex:1;min-width:240px;background:var(--th-card,#111827);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#e2e8f0);font-weight:bold;margin-bottom:8px;">🟢 A 級條件（主流形成中）</div><span style="color:var(--th-green,#6ee7b7)">A 主流形成中</span>：主流評分百分位 ≥ 80（PR 前 20%）<br><b>且</b>同時符合以下 5 條件：<br>① 名次推進速度 > 0（5 日內名次正在前進）<br>② 近 20 日上榜 ≥ 3 日（持續被資金關注）<br>③ 相對強弱趨勢向上（相對強弱 20 均向上）<br>④ 週線 20 均向上（中長期多頭）<br>⑤ 近 5 日漲幅 ≤ 25%（未過熱）<br>→ 下游 RSR/RRR 配對的優先候選。</div><div style="flex:1;min-width:240px;background:var(--th-card,#111827);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#e2e8f0);font-weight:bold;margin-bottom:8px;">🟡 B 觀察 / 🔴 C 排除</div><span style="color:var(--th-amber,#fcd34d)">B 觀察中</span>：主流評分百分位 60-80，但 A 級 5 條件未全部達標<br><span style="color:var(--th-red,#fda4af)">C 過熱或排除</span>：以下任一：<br>・主流評分百分位 &lt; 60<br>・近 5 日漲幅 &gt; 25%（漲過頭）<br>・量能 Z 分數 &gt; 3 但近 20 日上榜 &lt; 2（單日爆量無持續性）<br>・相對強弱未轉強（弱於大盤）<br>・週線 20 均下彎（中長期空頭）<br><br><span style="color:var(--th-faint,#64748b)">三個區塊預設僅 A 級展開，B/C 點擊展開檢視。</span></div><div style="flex:1;min-width:240px;background:var(--th-card,#111827);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#e2e8f0);font-weight:bold;margin-bottom:8px;">🎯 用法建議</div><b style="color:var(--th-text,#e2e8f0)">不要直接買 A 級</b>。HotFlow 只告訴你「主流在哪」，具體進場時機要看：<br>① N-Pattern 是否成立（波段結構）<br>② RR / RRR 是否有可配對輪動的對手<br>③ 市場結構是否允許（市場狀態 ≥ 中性）<br>④ MS-Agent v2 監控（市場溫度、RR 環境、風險訊號）</div><div style="flex:1;min-width:240px;background:var(--th-card,#111827);border-radius:8px;padding:14px 16px;"><div style="color:var(--th-text,#e2e8f0);font-weight:bold;margin-bottom:8px;">🔄 資料新鮮度</div>每日 18:00 排程器自動更新（TWSE/TPEX 17:30 公布後）。<br>若主頁顯示資料日(as_of)與今天不一致，代表 fetch 階段網路逾時，可手動跑 <code>python -m src.agents.hotflow</code>。</div></div></div></div>
 <footer>HotFlow Agent v0.2 ｜ 不做買賣決策，僅供下游 N-shape / RRR Agent 使用</footer>
-
-<style id='MS_N_RRR_tooltip_inject_v2'>
-.tip { position: relative; cursor: help; }
-/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
-#tip-floater {
-  position: fixed;
-  background: var(--th-bg,#0f172a);
-  color: var(--th-text,#e2e8f0);
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: normal;
-  white-space: pre-line;
-  max-width: 320px;
-  width: max-content;
-  text-align: left;
-  border: 1px solid var(--th-border2,#475569);
-  z-index: 999999;
-  pointer-events: none;
-  line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
-  display: none;
-}
-.tip:focus { outline: none; }
-@media (max-width: 600px) {
-  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
-}
-</style>
-<script>
-(function(){
-  var floater = null;
-  function ensureFloater(){
-    if (floater) return floater;
-    floater = document.createElement('div');
-    floater.id = 'tip-floater';
-    document.body.appendChild(floater);
-    return floater;
-  }
-  function showTip(el){
-    var text = el.getAttribute('data-tip');
-    if (!text) return;
-    var f = ensureFloater();
-    f.textContent = text;
-    f.style.display = 'block';
-    // 量元素位置
-    var rect = el.getBoundingClientRect();
-    var vw = window.innerWidth, vh = window.innerHeight;
-    var pad = 8;
-    // 預設放上方居中
-    var tw = f.offsetWidth, th = f.offsetHeight;
-    var left = rect.left + rect.width / 2 - tw / 2;
-    var top = rect.top - th - 10;
-    // 邊界修正
-    if (left < pad) left = pad;
-    if (left + tw > vw - pad) left = vw - tw - pad;
-    // 若上方空間不夠，改放下方
-    if (top < pad) top = rect.bottom + 10;
-    // 若下方也不夠（窄屏），就靠近底部
-    if (top + th > vh - pad) top = vh - th - pad;
-    f.style.left = left + 'px';
-    f.style.top  = top + 'px';
-  }
-  function hideTip(){
-    if (floater) floater.style.display = 'none';
-  }
-  function init(){
-    // 把所有 title 屬性轉成 data-tip
-    document.querySelectorAll('[title]').forEach(function(el){
-      var t = el.getAttribute('title');
-      if (!t) return;
-      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
-      el.setAttribute('data-tip', t);
-      el.removeAttribute('title');
-      if (!el.classList.contains('tip')) el.classList.add('tip');
-      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
-    });
-    // hover / focus 顯示
-    document.addEventListener('mouseover', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) showTip(tip);
-    });
-    document.addEventListener('mouseout', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) hideTip();
-    });
-    document.addEventListener('focusin', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) showTip(tip);
-    });
-    document.addEventListener('focusout', hideTip);
-    // 手機 tap 切換顯示
-    document.addEventListener('click', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) {
-        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
-          hideTip();
-        } else {
-          showTip(tip);
-          ensureFloater().dataset.tipFor = tip.dataset.tip;
-        }
-        e.stopPropagation();
-      } else {
-        hideTip();
-      }
-    });
-    // 滾動 / resize 隱藏（避免位置漂移）
-    window.addEventListener('scroll', hideTip, true);
-    window.addEventListener('resize', hideTip);
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
 </body></html>

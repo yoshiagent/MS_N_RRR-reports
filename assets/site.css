@@ -111,6 +111,14 @@
    原理同主控台: 卡片作用域內把色票整組翻成深底亮版, 卡內所有 var(--th-*)
    自動變亮字深面板; 頁面直接文字(標題/副標)不在卡內 → 維持深字淺底。
    圖表(plotly)用自己的色, 不受影響。
+
+   ⚠ 下方 [style*=...] 屬性選擇器是「live 相容橋接」, 非可刪殘留:
+     · background:var(--th-card / --th-bg2  — index 主頁(~40)/pair_chart(~24)
+       等仍用內嵌 style 的面板, 靠它在亮底頁翻成深卡島 (尚未改用 .panel class)
+     · rgba(58,52,40 …                       — theme_light.py 在 build 時把
+       rgba(0,0,0,*)/rgba(255,255,255,*) 映射成米色, 再由此翻深底
+   要拆除須先把這些內嵌面板改成 .panel/.card class + 退役 theme_light 米色映射,
+   否則主頁與圖表頁面板會退回亮底 (回歸)。屬後續獨立遷移工作, 勿輕拆。
    ==================================================================== */
 .card, .banner, .explainer, .dim-card, .breakdown, .stat-card, .panel,
 [style*="background:var(--th-card"],
@@ -291,6 +299,8 @@ a{color:var(--th-accent)}
 .badge--orange{border-color:var(--th-orange);color:var(--th-orange);background:var(--th-amber-bg)}
 .badge--red{border-color:var(--th-red);color:var(--th-red);background:var(--th-red-bg)}
 .badge--blue{border-color:var(--th-blue);color:var(--th-blue);background:var(--th-blue-bg)}
+.badge--purple{border-color:var(--th-purple);color:var(--th-purple);background:var(--th-purple-bg)}
+.badge--grey{border-color:var(--th-border2);color:var(--th-muted);background:var(--th-bg2)}
 
 /* — 狀態色 (tier 實心徽章 + 燈號點; 用恆定 token, 不隨深色卡翻色) — */
 .tier{display:inline-block;min-width:22px;padding:2px 8px;border-radius:10px;
@@ -306,6 +316,7 @@ a{color:var(--th-accent)}
 .dot--grey{background:var(--th-tier-c)}
 .dot--blue{background:var(--th-tier-b)}
 .dot--orange{background:var(--th-orange)}
+.dot--purple{background:var(--th-purple)}
 
 /* — 迷你量化條 (sparkline; 寬度資料驅動 R-CSS4) — */
 .spark{display:inline-block;vertical-align:middle;width:36px;height:10px;
