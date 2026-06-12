@@ -1,10 +1,12 @@
 <!DOCTYPE html><html lang='zh-Hant'><head>
-<link rel="stylesheet" href="../assets/site.css?v=cde4b74b"><meta charset='UTF-8'><title>🗄 資料庫健康檢查 ｜ MS_N_RR/RRR Ver.A</title><meta name='viewport' content='width=device-width,initial-scale=1'><style>
+<link rel="stylesheet" href="../assets/site.css?v=490c14d0">
+<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=490c14d0"><meta charset='UTF-8'><title>🗄 資料庫健康檢查 ｜ MS_N_RR/RRR Ver.A</title><meta name='viewport' content='width=device-width,initial-scale=1'><style>
 .check-msg{font-size:13px;margin-top:6px;line-height:1.7}
 details.detail{margin-top:6px}
 details.detail summary{cursor:pointer;user-select:none}
 .detail__json{overflow-x:auto;white-space:pre;line-height:1.5;margin-top:6px}
 </style></head><body>
+<div class="theme-switch" title="切換視覺風格"><select id="ms-theme-sel" aria-label="主題"><option value="theme-classic.css">經典</option><option value="theme-light.css">研究報告 ☀</option><option value="theme-dark.css">終端 ☾</option></select></div><script>(function(){var L=document.getElementById("ms-theme-css"),S=document.getElementById("ms-theme-sel");if(!L||!S)return;var q="?v=490c14d0",b="../assets/";function ap(v){L.setAttribute("href",b+v+q);}try{var t=localStorage.getItem("ms_theme");if(t){ap(t);S.value=t;}}catch(e){}S.addEventListener("change",function(){ap(S.value);try{localStorage.setItem("ms_theme",S.value);}catch(e){}});})();</script>
 <!-- GLOBAL_NAV_START -->
 <nav class="gnav" id="gnav">
   <a class="gnav-home" href="../index.html">🏠 主控台</a>
@@ -46,6 +48,7 @@ details.detail summary{cursor:pointer;user-select:none}
 })();
 </script>
 <!-- GLOBAL_NAV_END -->
+
 <h1 class="page-title">🗄 DuckDB 資料庫健康檢查</h1><div class="page-meta">資料日 <strong>2026-06-12</strong> ｜ 產生時間 2026-06-12 21:30:03 ｜ 來源：<code>stockHisData/stock_data/db_health.py</code> ｜ 每日 orchestrator step 0 自動執行 ｜ <a href='../index.html'>← 返回主頁</a></div><div class="banner"><div class="banner__row"><div class="metric metric--lg"><span class="metric__value"><span class="text-warn">⚠</span></span></div><div><div class="metric__value"><span class="text-warn">整體狀態：警告</span></div><div class="text-muted">共 9 項檢查 ｜ <span class="text-bull">✅ 7</span> ｜ <span class="text-info">ℹ 1</span> ｜ <span class="text-warn">⚠ 1</span> ｜ <span class="text-bear">🔴 0</span> ｜ 已執行自動修復</div></div></div></div><div class="grid-4"><div class="card card--compact text-center"><div class="metric__value"><span class="text-bull">7</span></div><div class="label">✅ 正常</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-info">1</span></div><div class="label">ℹ 資訊</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-warn">1</span></div><div class="label">⚠ 警告</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-bear">0</span></div><div class="label">🔴 嚴重</div></div></div><div class="section-head">📋 詳細檢查項目（依嚴重性排序）</div><div class="card"><div class="card-head"><span class="dot dot--amber"></span> <span class="value">⚠ 輔助資料時效</span> <span class="label">📅 資料時效</span> <span class="badge badge--amber">warning</span></div><div class="check-msg">macro/SOX 落後 21 天</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;futures&quot;: {
     &quot;last_date&quot;: &quot;2026-06-12&quot;,
