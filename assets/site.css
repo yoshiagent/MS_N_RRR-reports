@@ -99,6 +99,38 @@
   --th-green-bg:#14361f; --th-red-bg:#3a1718; --th-amber-bg:#3a2c12;
   --th-blue-bg:#102843; --th-purple-bg:#241c40;
 }
+/* ====================================================================
+   全站圖卡 — 深底亮字 + 外框 (內容護眼; 頁面底/導航列維持淺色當外觀)
+   自動抓: .card 類 + 內嵌 background:var(--th-card..) 的卡片元素。
+   原理同主控台: 卡片作用域內把色票整組翻成深底亮版, 卡內所有 var(--th-*)
+   自動變亮字深面板; 頁面直接文字(標題/副標)不在卡內 → 維持深字淺底。
+   圖表(plotly)用自己的色, 不受影響。
+   ==================================================================== */
+.card, .dim-card, .breakdown, .stat-card, .panel,
+[style*="background:var(--th-card"],
+[style*="background-color:var(--th-card"],
+[style*="background:var(--th-bg2"],
+[style*="background:rgba(58,52,40"],
+[style*="background: rgba(58,52,40"]{
+  background:var(--th-dk-panel,#172339) !important;
+  box-shadow:0 0 0 1px var(--th-dk-border,#2c3f63), 0 2px 10px rgba(15,23,42,0.18);
+  color:var(--th-dk-text,#eef3fb);
+  /* — 作用域翻色: 卡內 token → 深底亮版 — */
+  --th-text:#eef3fb; --th-text2:#d6e1f0; --th-muted:#a7b7d0; --th-faint:#8094b0;
+  --th-card:#172339; --th-card2:#1f2f4d; --th-bg2:#172339; --th-hover:#21314f;
+  --th-border:#2c3f63; --th-border2:#3a4d72;
+  --th-cyan:#7dd3fc; --th-amber:#fcd34d; --th-green:#86efac; --th-red:#fca5a5;
+  --th-blue:#93c5fd; --th-purple:#c4b5fd; --th-orange:#fdba74;
+  --th-indigo:#c7d2fe; --th-pink:#f9a8d4; --th-gold:#fcd34d;
+  --th-accent:#93c5fd; --th-info:#7dd3fc; --th-warn:#fcd34d;
+  --th-ok:#86efac; --th-bad:#fca5a5;
+  /* 部分頁自定區域變數(不帶 th- 前綴, :root 算成深色才繼承)→ 同步翻亮 */
+  --text:#eef3fb; --text2:#d6e1f0; --muted:#a7b7d0; --fg:#eef3fb;
+  --card:#172339; --card2:#1f2f4d; --bg:#172339; --bg2:#172339;
+  --border:#2c3f63; --line:#2c3f63;
+  --accent:#93c5fd; --warn:#fcd34d; --gold:#fcd34d; --ok:#86efac; --bad:#fca5a5;
+}
+
 /* 內層 panel 的 rgba 罩 / 漸層 → 深底面板 */
 .cio-dash [style*="rgba(58,52,40"]{ background:rgba(255,255,255,0.05) !important; }
 /* 主控台兩大主題用不同色調深底做視覺分隔 (重點偏藍 / 操作偏綠) */
