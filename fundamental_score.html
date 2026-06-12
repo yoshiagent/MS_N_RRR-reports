@@ -127,6 +127,46 @@ footer{ margin-top:30px; color:var(--muted); font-size:12px; text-align:center;
   </div>
 </div>
 
+<details open style="background:#0f1a2c;border:1px solid #1e293b;border-left:4px solid #fbbf24;
+         border-radius:10px;padding:12px 16px;margin:14px 0">
+  <summary style="color:#fbbf24;font-weight:bold;font-size:15px;cursor:pointer">
+    💡 估值核心邏輯 — 自建「預估本益比 / PEG」（貴但會成長 ≠ 過熱）
+  </summary>
+  <div style="color:#cbd5e1;font-size:13px;line-height:1.7;margin-top:10px">
+    <p style="margin:4px 0">
+      傳統「本益比高 = 過熱」忽略了<b style="color:#fff">未來獲利成長</b>。台股拿不到券商共識預估本益比
+      （FinMind、XQ DDE 都沒有），本頁改用<b style="color:#fff">已有的月營收 + EPS 趨勢自行外推</b>
+      （模型估計，非券商共識）：
+    </p>
+    <div style="background:rgba(0,0,0,0.3);border-radius:6px;padding:10px 14px;margin:8px 0;
+                font-family:Consolas,monospace;font-size:12.5px;color:#e2e8f0">
+      成長率　＝ EPS 趨勢(60%, 季 EPS 累計 YoY 為主) ＋ 月營收 YoY(40%, 領先指標)　[clamp ±40~60%]<br>
+      預估 EPS　＝ TTM EPS × (1 ＋ 成長率)<br>
+      <b style="color:#fbbf24">預估本益比 (forward PE)　＝ 目前本益比 ÷ (1 ＋ 成長率)</b><br>
+      <b style="color:#fbbf24">PEG (本益成長比)　＝ 目前本益比 ÷ 成長率(%)</b>
+    </div>
+    <p style="margin:6px 0"><b style="color:#fff">估值判定（看 PEG，不只看本益比）：</b></p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:4px 0">
+      <span style="border:1px solid #22c55e;color:#22c55e;border-radius:4px;padding:2px 8px;font-size:12px">🟢 PEG &lt; 1　便宜(成長支撐)</span>
+      <span style="border:1px solid #fbbf24;color:#fbbf24;border-radius:4px;padding:2px 8px;font-size:12px">🟡 1 ~ 1.5　合理</span>
+      <span style="border:1px solid #f97316;color:#f97316;border-radius:4px;padding:2px 8px;font-size:12px">🟠 1.5 ~ 2　偏貴</span>
+      <span style="border:1px solid #ef4444;color:#ef4444;border-radius:4px;padding:2px 8px;font-size:12px">🔴 PEG &gt; 2 或 無成長且貴　過熱</span>
+    </div>
+    <p style="margin:8px 0 4px">
+      <b style="color:#fff">D5 估值維改為 PEG-aware</b>：本益比高但<b>有成長支撐（PEG 低）就不扣分</b>；
+      無成長資料才退回純本益比門檻評分。每檔名稱旁的 🟢/🟠 徽章即此判定（hover 看明細）。
+    </p>
+    <p style="margin:6px 0;color:#86efac">
+      <b>實例</b>：川湖目前本益比 56（傳統估值＝嚴重過熱）→ 成長外推 60% → 預估本益比 35、PEG 0.94
+      → <b>🟢 便宜(成長支撐)，不算過熱</b>。
+    </p>
+    <p style="margin:6px 0;color:#64748b;font-size:11.5px">
+      ⚠ 注意：此為「月營收+EPS 趨勢」<b>模型外推</b>，非分析師共識，準度不如付費源（TEJ/CMoney）；
+      成長率上限 clamp 60% 為保守設定。市場層級「過熱」另由 TWII 價格 Z-score 判斷（非本益比）。
+    </p>
+  </div>
+</details>
+
 <h2>📊 排行（點 row 展開 5 維拆解）</h2>
 <div class='view-toggle'>
   <button class='view-btn active' data-view='with-val'>含估值 (5 維 / 100 分)</button>
