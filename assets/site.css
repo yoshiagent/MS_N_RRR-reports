@@ -280,6 +280,8 @@ a{color:var(--th-accent)}
 .grid-2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
 .grid-3{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 .grid-4{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+/* grid 子項 min-width:0 — 否則 Plotly/SVG 內在寬度撐爆 1fr 欄位導致兩圖互疊 */
+.grid-2>*,.grid-3>*,.grid-4>*{min-width:0}
 
 /* — 標題 / 文字 — */
 .section-head{font-size:18px;font-weight:700;color:var(--th-text);
