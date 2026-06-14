@@ -154,7 +154,8 @@
     var r=defRange(); apply(g, r[0], r[1]);            // 還原近3月(右留2根)
     g._locked=false; if(g._kCross) g._kCross(N-1);};   // 解鎖游標 + 回最新日
   window.kZoom=function(id,f){var g=gd(id); if(!g||!g._fullLayout)return;
-    var r=curX(g), c=(r[0]+r[1])/2, w=(r[1]-r[0])*f/2; apply(g,c-w,c+w);};
+    var r=curX(g), a=N-1;                            // 以最後1天為錨點縮放(該根位置不動)
+    apply(g, a-(a-r[0])*f, a+(r[1]-a)*f);};
   /** 箭頭/鍵盤=移動十字游標(圖不動); step=±1/±5 交易日; 移動即鎖定 */
   window.kCursor=function(id,step){var g=gd(id); if(!g||!g._kCross)return;
     g._locked=true; var i=(g._kCur==null?N-1:g._kCur)+step;
