@@ -53,14 +53,14 @@
   if(!N) return;
   var DATES_MS=DATES.map(function(s){return new Date(s).getTime();});
   var gd=document.getElementById(DIV);
-  var cur=N-1, BASE=null, over=false, tipMoved=false;
+  var cur=N-1, BASE=null, over=false;
 
   var tip=document.createElement('div');
-  tip.style.cssText='display:none;position:absolute;z-index:20;cursor:grab;user-select:none;'
-    +'background:rgba(15,23,42,0.94);border:1px solid var(--th-border2,#334155);border-radius:6px;'
-    +'padding:7px 11px;font-size:13px;color:var(--th-text,#e2e8f0);line-height:1.75;white-space:nowrap;'
-    +'font-family:"Microsoft JhengHei",sans-serif;box-shadow:0 4px 14px rgba(58,52,40,0.08)';
-  // tip 掛進「該圖自己的 chart-card」(position:absolute), 隨圖捲動、與其他圖互不干擾(init 掛載)
+  tip.style.cssText='display:none;gap:3px 12px;align-items:baseline;flex-wrap:wrap;'
+    +'padding:4px 10px;margin:2px 0 6px;font-size:13px;line-height:1.5;'
+    +'background:rgba(15,23,42,0.6);border:1px solid var(--th-border2,#334155);border-radius:6px;'
+    +'color:var(--th-text,#e2e8f0);font-family:"Microsoft JhengHei",sans-serif';
+  // tip 以 flow 顯示在「圖的上方」(各圖卡內, 按鈕列與圖之間), 不蓋住 K 棒(init 插入)
 
   function f(v,d){return (v==null||isNaN(v))?'—':Number(v).toFixed(d);}
 
@@ -70,24 +70,16 @@
     var col=up==null?'#cbd5e1':(up>0?'#ef4444':(up<0?'#22c55e':'#cbd5e1'));
     var arrow=up==null?'':(up>0?'▲':(up<0?'▼':''));
     var sw=SW[DATES[i]];
+    function kv(k,v,c){return '<span><span style="color:var(--th-muted,#94a3b8)">'+k+'</span> '
+      +(c?('<b style="color:'+c+'">'+v+'</b>'):v)+'</span>';}
+    // 單行水平排版(顯示在圖上方, 不蓋 K 棒)
     tip.innerHTML=
       '<b style="color:var(--th-blue,#93c5fd)">'+DATES[i]+'</b>'
-      +(sw?(' <span style="color:var(--th-amber,#fbbf24);font-size:12px">'+sw+'</span>'):'')
-      +'<br><span style="color:var(--th-muted,#94a3b8)">開 </span>'+f(O[i],2)
-      +'　<span style="color:var(--th-muted,#94a3b8)">高 </span>'+f(H[i],2)
-      +'<br><span style="color:var(--th-muted,#94a3b8)">低 </span>'+f(L[i],2)
-      +'　<span style="color:var(--th-muted,#94a3b8)">收 </span><b style="color:'+col+'">'+f(C[i],2)+'</b>'
-      +(pct!=null?(' <span style="color:'+col+';font-size:12px">'+arrow+f(Math.abs(up),2)+' ('+(pct>=0?'+':'')+pct.toFixed(2)+'%)</span>'):'')
-      +'<br><span style="color:var(--th-muted,#94a3b8)">量 </span>'+Number(VOL[i]).toLocaleString()+' 張';
-    if(!tipMoved){
-      try{
-        var fl=gd._fullLayout;  // 位置相對自己的 chart-card(offsetParent), 不用 viewport 座標
-        tip.style.left=(gd.offsetLeft+fl.xaxis._offset+8)+'px';
-        tip.style.top=(gd.offsetTop+fl.yaxis._offset+6)+'px';
-        tip.style.bottom='auto';
-      }catch(e){tip.style.left='8px';tip.style.top='40px';}
-    }
-    tip.style.display='block';
+      +(sw?'<span style="color:var(--th-amber,#fbbf24);font-size:12px">'+sw+'</span>':'')
+      +kv('開',f(O[i],2))+kv('高',f(H[i],2))+kv('低',f(L[i],2))+kv('收',f(C[i],2),col)
+      +(pct!=null?'<span style="color:'+col+';font-size:12px">'+arrow+f(Math.abs(up),2)+'('+(pct>=0?'+':'')+pct.toFixed(2)+'%)</span>':'')
+      +kv('量',Number(VOL[i]).toLocaleString()+' 張');
+    tip.style.display='flex';
   }
 
   function crosshair(i){
@@ -149,23 +141,6 @@
       if(e.key==='ArrowLeft'){e.preventDefault();showAt(cur-1);}
       if(e.key==='ArrowRight'){e.preventDefault();showAt(cur+1);}
     });
-    var td={on:false,sx:0,sy:0,ox:0,oy:0};
-    tip.addEventListener('mousedown',function(e){
-      td.on=true;tipMoved=true;tip.style.cursor='grabbing';
-      td.sx=e.clientX;td.sy=e.clientY;
-      td.ox=parseInt(tip.style.left)||12;td.oy=parseInt(tip.style.top)||120;
-      e.preventDefault();
-    });
-    document.addEventListener('mousemove',function(e){
-      if(!td.on)return;
-      var c=gd.parentElement, nl=td.ox+e.clientX-td.sx, nt=td.oy+e.clientY-td.sy;
-      if(c){  // 夾在卡片內, 不外溢到別張圖
-        nl=Math.max(0,Math.min(nl,c.clientWidth-tip.offsetWidth));
-        nt=Math.max(0,Math.min(nt,c.clientHeight-tip.offsetHeight));
-      }
-      tip.style.left=nl+'px'; tip.style.top=nt+'px';
-    });
-    document.addEventListener('mouseup',function(){td.on=false;tip.style.cursor='grab';});
   }
 
   function init(){
@@ -173,8 +148,8 @@
     if(!gd||!gd._fullLayout){return setTimeout(init,80);}
     // 手機:只留 tap/long-press(取消滑動拖曳/雙指縮放), 與 chart_buttons 規範一致
     try{gd.style.touchAction='manipulation';}catch(e){}
-    var card=gd.parentElement;  // tip 掛進該圖卡片, absolute 定位、隨圖捲動
-    if(card){card.style.position='relative'; card.appendChild(tip);}
+    var card=gd.parentElement;  // tip 以 flow 插在「圖的上方」(按鈕列與圖之間), 不蓋住圖
+    if(card){card.insertBefore(tip, gd);}
     BASE=(gd.layout&&gd.layout.shapes)?gd.layout.shapes.slice():[];
     wire(); showAt(N-1);
   }
@@ -189,14 +164,14 @@
   if(!N) return;
   var DATES_MS=DATES.map(function(s){return new Date(s).getTime();});
   var gd=document.getElementById(DIV);
-  var cur=N-1, BASE=null, over=false, tipMoved=false;
+  var cur=N-1, BASE=null, over=false;
 
   var tip=document.createElement('div');
-  tip.style.cssText='display:none;position:absolute;z-index:20;cursor:grab;user-select:none;'
-    +'background:rgba(15,23,42,0.94);border:1px solid var(--th-border2,#334155);border-radius:6px;'
-    +'padding:7px 11px;font-size:13px;color:var(--th-text,#e2e8f0);line-height:1.75;white-space:nowrap;'
-    +'font-family:"Microsoft JhengHei",sans-serif;box-shadow:0 4px 14px rgba(58,52,40,0.08)';
-  // tip 掛進「該圖自己的 chart-card」(position:absolute), 隨圖捲動、與其他圖互不干擾(init 掛載)
+  tip.style.cssText='display:none;gap:3px 12px;align-items:baseline;flex-wrap:wrap;'
+    +'padding:4px 10px;margin:2px 0 6px;font-size:13px;line-height:1.5;'
+    +'background:rgba(15,23,42,0.6);border:1px solid var(--th-border2,#334155);border-radius:6px;'
+    +'color:var(--th-text,#e2e8f0);font-family:"Microsoft JhengHei",sans-serif';
+  // tip 以 flow 顯示在「圖的上方」(各圖卡內, 按鈕列與圖之間), 不蓋住 K 棒(init 插入)
 
   function f(v,d){return (v==null||isNaN(v))?'—':Number(v).toFixed(d);}
 
@@ -206,24 +181,16 @@
     var col=up==null?'#cbd5e1':(up>0?'#ef4444':(up<0?'#22c55e':'#cbd5e1'));
     var arrow=up==null?'':(up>0?'▲':(up<0?'▼':''));
     var sw=SW[DATES[i]];
+    function kv(k,v,c){return '<span><span style="color:var(--th-muted,#94a3b8)">'+k+'</span> '
+      +(c?('<b style="color:'+c+'">'+v+'</b>'):v)+'</span>';}
+    // 單行水平排版(顯示在圖上方, 不蓋 K 棒)
     tip.innerHTML=
       '<b style="color:var(--th-blue,#93c5fd)">'+DATES[i]+'</b>'
-      +(sw?(' <span style="color:var(--th-amber,#fbbf24);font-size:12px">'+sw+'</span>'):'')
-      +'<br><span style="color:var(--th-muted,#94a3b8)">開 </span>'+f(O[i],2)
-      +'　<span style="color:var(--th-muted,#94a3b8)">高 </span>'+f(H[i],2)
-      +'<br><span style="color:var(--th-muted,#94a3b8)">低 </span>'+f(L[i],2)
-      +'　<span style="color:var(--th-muted,#94a3b8)">收 </span><b style="color:'+col+'">'+f(C[i],2)+'</b>'
-      +(pct!=null?(' <span style="color:'+col+';font-size:12px">'+arrow+f(Math.abs(up),2)+' ('+(pct>=0?'+':'')+pct.toFixed(2)+'%)</span>'):'')
-      +'<br><span style="color:var(--th-muted,#94a3b8)">量 </span>'+Number(VOL[i]).toLocaleString()+' 張';
-    if(!tipMoved){
-      try{
-        var fl=gd._fullLayout;  // 位置相對自己的 chart-card(offsetParent), 不用 viewport 座標
-        tip.style.left=(gd.offsetLeft+fl.xaxis._offset+8)+'px';
-        tip.style.top=(gd.offsetTop+fl.yaxis._offset+6)+'px';
-        tip.style.bottom='auto';
-      }catch(e){tip.style.left='8px';tip.style.top='40px';}
-    }
-    tip.style.display='block';
+      +(sw?'<span style="color:var(--th-amber,#fbbf24);font-size:12px">'+sw+'</span>':'')
+      +kv('開',f(O[i],2))+kv('高',f(H[i],2))+kv('低',f(L[i],2))+kv('收',f(C[i],2),col)
+      +(pct!=null?'<span style="color:'+col+';font-size:12px">'+arrow+f(Math.abs(up),2)+'('+(pct>=0?'+':'')+pct.toFixed(2)+'%)</span>':'')
+      +kv('量',Number(VOL[i]).toLocaleString()+' 張');
+    tip.style.display='flex';
   }
 
   function crosshair(i){
@@ -285,23 +252,6 @@
       if(e.key==='ArrowLeft'){e.preventDefault();showAt(cur-1);}
       if(e.key==='ArrowRight'){e.preventDefault();showAt(cur+1);}
     });
-    var td={on:false,sx:0,sy:0,ox:0,oy:0};
-    tip.addEventListener('mousedown',function(e){
-      td.on=true;tipMoved=true;tip.style.cursor='grabbing';
-      td.sx=e.clientX;td.sy=e.clientY;
-      td.ox=parseInt(tip.style.left)||12;td.oy=parseInt(tip.style.top)||120;
-      e.preventDefault();
-    });
-    document.addEventListener('mousemove',function(e){
-      if(!td.on)return;
-      var c=gd.parentElement, nl=td.ox+e.clientX-td.sx, nt=td.oy+e.clientY-td.sy;
-      if(c){  // 夾在卡片內, 不外溢到別張圖
-        nl=Math.max(0,Math.min(nl,c.clientWidth-tip.offsetWidth));
-        nt=Math.max(0,Math.min(nt,c.clientHeight-tip.offsetHeight));
-      }
-      tip.style.left=nl+'px'; tip.style.top=nt+'px';
-    });
-    document.addEventListener('mouseup',function(){td.on=false;tip.style.cursor='grab';});
   }
 
   function init(){
@@ -309,8 +259,8 @@
     if(!gd||!gd._fullLayout){return setTimeout(init,80);}
     // 手機:只留 tap/long-press(取消滑動拖曳/雙指縮放), 與 chart_buttons 規範一致
     try{gd.style.touchAction='manipulation';}catch(e){}
-    var card=gd.parentElement;  // tip 掛進該圖卡片, absolute 定位、隨圖捲動
-    if(card){card.style.position='relative'; card.appendChild(tip);}
+    var card=gd.parentElement;  // tip 以 flow 插在「圖的上方」(按鈕列與圖之間), 不蓋住圖
+    if(card){card.insertBefore(tip, gd);}
     BASE=(gd.layout&&gd.layout.shapes)?gd.layout.shapes.slice():[];
     wire(); showAt(N-1);
   }
@@ -325,14 +275,14 @@
   if(!N) return;
   var DATES_MS=DATES.map(function(s){return new Date(s).getTime();});
   var gd=document.getElementById(DIV);
-  var cur=N-1, BASE=null, over=false, tipMoved=false;
+  var cur=N-1, BASE=null, over=false;
 
   var tip=document.createElement('div');
-  tip.style.cssText='display:none;position:absolute;z-index:20;cursor:grab;user-select:none;'
-    +'background:rgba(15,23,42,0.94);border:1px solid var(--th-border2,#334155);border-radius:6px;'
-    +'padding:7px 11px;font-size:13px;color:var(--th-text,#e2e8f0);line-height:1.75;white-space:nowrap;'
-    +'font-family:"Microsoft JhengHei",sans-serif;box-shadow:0 4px 14px rgba(58,52,40,0.08)';
-  // tip 掛進「該圖自己的 chart-card」(position:absolute), 隨圖捲動、與其他圖互不干擾(init 掛載)
+  tip.style.cssText='display:none;gap:3px 12px;align-items:baseline;flex-wrap:wrap;'
+    +'padding:4px 10px;margin:2px 0 6px;font-size:13px;line-height:1.5;'
+    +'background:rgba(15,23,42,0.6);border:1px solid var(--th-border2,#334155);border-radius:6px;'
+    +'color:var(--th-text,#e2e8f0);font-family:"Microsoft JhengHei",sans-serif';
+  // tip 以 flow 顯示在「圖的上方」(各圖卡內, 按鈕列與圖之間), 不蓋住 K 棒(init 插入)
 
   function f(v,d){return (v==null||isNaN(v))?'—':Number(v).toFixed(d);}
 
@@ -342,24 +292,16 @@
     var col=up==null?'#cbd5e1':(up>0?'#ef4444':(up<0?'#22c55e':'#cbd5e1'));
     var arrow=up==null?'':(up>0?'▲':(up<0?'▼':''));
     var sw=SW[DATES[i]];
+    function kv(k,v,c){return '<span><span style="color:var(--th-muted,#94a3b8)">'+k+'</span> '
+      +(c?('<b style="color:'+c+'">'+v+'</b>'):v)+'</span>';}
+    // 單行水平排版(顯示在圖上方, 不蓋 K 棒)
     tip.innerHTML=
       '<b style="color:var(--th-blue,#93c5fd)">'+DATES[i]+'</b>'
-      +(sw?(' <span style="color:var(--th-amber,#fbbf24);font-size:12px">'+sw+'</span>'):'')
-      +'<br><span style="color:var(--th-muted,#94a3b8)">開 </span>'+f(O[i],2)
-      +'　<span style="color:var(--th-muted,#94a3b8)">高 </span>'+f(H[i],2)
-      +'<br><span style="color:var(--th-muted,#94a3b8)">低 </span>'+f(L[i],2)
-      +'　<span style="color:var(--th-muted,#94a3b8)">收 </span><b style="color:'+col+'">'+f(C[i],2)+'</b>'
-      +(pct!=null?(' <span style="color:'+col+';font-size:12px">'+arrow+f(Math.abs(up),2)+' ('+(pct>=0?'+':'')+pct.toFixed(2)+'%)</span>'):'')
-      +'<br><span style="color:var(--th-muted,#94a3b8)">量 </span>'+Number(VOL[i]).toLocaleString()+' 張';
-    if(!tipMoved){
-      try{
-        var fl=gd._fullLayout;  // 位置相對自己的 chart-card(offsetParent), 不用 viewport 座標
-        tip.style.left=(gd.offsetLeft+fl.xaxis._offset+8)+'px';
-        tip.style.top=(gd.offsetTop+fl.yaxis._offset+6)+'px';
-        tip.style.bottom='auto';
-      }catch(e){tip.style.left='8px';tip.style.top='40px';}
-    }
-    tip.style.display='block';
+      +(sw?'<span style="color:var(--th-amber,#fbbf24);font-size:12px">'+sw+'</span>':'')
+      +kv('開',f(O[i],2))+kv('高',f(H[i],2))+kv('低',f(L[i],2))+kv('收',f(C[i],2),col)
+      +(pct!=null?'<span style="color:'+col+';font-size:12px">'+arrow+f(Math.abs(up),2)+'('+(pct>=0?'+':'')+pct.toFixed(2)+'%)</span>':'')
+      +kv('量',Number(VOL[i]).toLocaleString()+' 張');
+    tip.style.display='flex';
   }
 
   function crosshair(i){
@@ -421,23 +363,6 @@
       if(e.key==='ArrowLeft'){e.preventDefault();showAt(cur-1);}
       if(e.key==='ArrowRight'){e.preventDefault();showAt(cur+1);}
     });
-    var td={on:false,sx:0,sy:0,ox:0,oy:0};
-    tip.addEventListener('mousedown',function(e){
-      td.on=true;tipMoved=true;tip.style.cursor='grabbing';
-      td.sx=e.clientX;td.sy=e.clientY;
-      td.ox=parseInt(tip.style.left)||12;td.oy=parseInt(tip.style.top)||120;
-      e.preventDefault();
-    });
-    document.addEventListener('mousemove',function(e){
-      if(!td.on)return;
-      var c=gd.parentElement, nl=td.ox+e.clientX-td.sx, nt=td.oy+e.clientY-td.sy;
-      if(c){  // 夾在卡片內, 不外溢到別張圖
-        nl=Math.max(0,Math.min(nl,c.clientWidth-tip.offsetWidth));
-        nt=Math.max(0,Math.min(nt,c.clientHeight-tip.offsetHeight));
-      }
-      tip.style.left=nl+'px'; tip.style.top=nt+'px';
-    });
-    document.addEventListener('mouseup',function(){td.on=false;tip.style.cursor='grab';});
   }
 
   function init(){
@@ -445,8 +370,8 @@
     if(!gd||!gd._fullLayout){return setTimeout(init,80);}
     // 手機:只留 tap/long-press(取消滑動拖曳/雙指縮放), 與 chart_buttons 規範一致
     try{gd.style.touchAction='manipulation';}catch(e){}
-    var card=gd.parentElement;  // tip 掛進該圖卡片, absolute 定位、隨圖捲動
-    if(card){card.style.position='relative'; card.appendChild(tip);}
+    var card=gd.parentElement;  // tip 以 flow 插在「圖的上方」(按鈕列與圖之間), 不蓋住圖
+    if(card){card.insertBefore(tip, gd);}
     BASE=(gd.layout&&gd.layout.shapes)?gd.layout.shapes.slice():[];
     wire(); showAt(N-1);
   }
@@ -461,14 +386,14 @@
   if(!N) return;
   var DATES_MS=DATES.map(function(s){return new Date(s).getTime();});
   var gd=document.getElementById(DIV);
-  var cur=N-1, BASE=null, over=false, tipMoved=false;
+  var cur=N-1, BASE=null, over=false;
 
   var tip=document.createElement('div');
-  tip.style.cssText='display:none;position:absolute;z-index:20;cursor:grab;user-select:none;'
-    +'background:rgba(15,23,42,0.94);border:1px solid var(--th-border2,#334155);border-radius:6px;'
-    +'padding:7px 11px;font-size:13px;color:var(--th-text,#e2e8f0);line-height:1.75;white-space:nowrap;'
-    +'font-family:"Microsoft JhengHei",sans-serif;box-shadow:0 4px 14px rgba(58,52,40,0.08)';
-  // tip 掛進「該圖自己的 chart-card」(position:absolute), 隨圖捲動、與其他圖互不干擾(init 掛載)
+  tip.style.cssText='display:none;gap:3px 12px;align-items:baseline;flex-wrap:wrap;'
+    +'padding:4px 10px;margin:2px 0 6px;font-size:13px;line-height:1.5;'
+    +'background:rgba(15,23,42,0.6);border:1px solid var(--th-border2,#334155);border-radius:6px;'
+    +'color:var(--th-text,#e2e8f0);font-family:"Microsoft JhengHei",sans-serif';
+  // tip 以 flow 顯示在「圖的上方」(各圖卡內, 按鈕列與圖之間), 不蓋住 K 棒(init 插入)
 
   function f(v,d){return (v==null||isNaN(v))?'—':Number(v).toFixed(d);}
 
@@ -478,24 +403,16 @@
     var col=up==null?'#cbd5e1':(up>0?'#ef4444':(up<0?'#22c55e':'#cbd5e1'));
     var arrow=up==null?'':(up>0?'▲':(up<0?'▼':''));
     var sw=SW[DATES[i]];
+    function kv(k,v,c){return '<span><span style="color:var(--th-muted,#94a3b8)">'+k+'</span> '
+      +(c?('<b style="color:'+c+'">'+v+'</b>'):v)+'</span>';}
+    // 單行水平排版(顯示在圖上方, 不蓋 K 棒)
     tip.innerHTML=
       '<b style="color:var(--th-blue,#93c5fd)">'+DATES[i]+'</b>'
-      +(sw?(' <span style="color:var(--th-amber,#fbbf24);font-size:12px">'+sw+'</span>'):'')
-      +'<br><span style="color:var(--th-muted,#94a3b8)">開 </span>'+f(O[i],2)
-      +'　<span style="color:var(--th-muted,#94a3b8)">高 </span>'+f(H[i],2)
-      +'<br><span style="color:var(--th-muted,#94a3b8)">低 </span>'+f(L[i],2)
-      +'　<span style="color:var(--th-muted,#94a3b8)">收 </span><b style="color:'+col+'">'+f(C[i],2)+'</b>'
-      +(pct!=null?(' <span style="color:'+col+';font-size:12px">'+arrow+f(Math.abs(up),2)+' ('+(pct>=0?'+':'')+pct.toFixed(2)+'%)</span>'):'')
-      +'<br><span style="color:var(--th-muted,#94a3b8)">量 </span>'+Number(VOL[i]).toLocaleString()+' 張';
-    if(!tipMoved){
-      try{
-        var fl=gd._fullLayout;  // 位置相對自己的 chart-card(offsetParent), 不用 viewport 座標
-        tip.style.left=(gd.offsetLeft+fl.xaxis._offset+8)+'px';
-        tip.style.top=(gd.offsetTop+fl.yaxis._offset+6)+'px';
-        tip.style.bottom='auto';
-      }catch(e){tip.style.left='8px';tip.style.top='40px';}
-    }
-    tip.style.display='block';
+      +(sw?'<span style="color:var(--th-amber,#fbbf24);font-size:12px">'+sw+'</span>':'')
+      +kv('開',f(O[i],2))+kv('高',f(H[i],2))+kv('低',f(L[i],2))+kv('收',f(C[i],2),col)
+      +(pct!=null?'<span style="color:'+col+';font-size:12px">'+arrow+f(Math.abs(up),2)+'('+(pct>=0?'+':'')+pct.toFixed(2)+'%)</span>':'')
+      +kv('量',Number(VOL[i]).toLocaleString()+' 張');
+    tip.style.display='flex';
   }
 
   function crosshair(i){
@@ -557,23 +474,6 @@
       if(e.key==='ArrowLeft'){e.preventDefault();showAt(cur-1);}
       if(e.key==='ArrowRight'){e.preventDefault();showAt(cur+1);}
     });
-    var td={on:false,sx:0,sy:0,ox:0,oy:0};
-    tip.addEventListener('mousedown',function(e){
-      td.on=true;tipMoved=true;tip.style.cursor='grabbing';
-      td.sx=e.clientX;td.sy=e.clientY;
-      td.ox=parseInt(tip.style.left)||12;td.oy=parseInt(tip.style.top)||120;
-      e.preventDefault();
-    });
-    document.addEventListener('mousemove',function(e){
-      if(!td.on)return;
-      var c=gd.parentElement, nl=td.ox+e.clientX-td.sx, nt=td.oy+e.clientY-td.sy;
-      if(c){  // 夾在卡片內, 不外溢到別張圖
-        nl=Math.max(0,Math.min(nl,c.clientWidth-tip.offsetWidth));
-        nt=Math.max(0,Math.min(nt,c.clientHeight-tip.offsetHeight));
-      }
-      tip.style.left=nl+'px'; tip.style.top=nt+'px';
-    });
-    document.addEventListener('mouseup',function(){td.on=false;tip.style.cursor='grab';});
   }
 
   function init(){
@@ -581,8 +481,8 @@
     if(!gd||!gd._fullLayout){return setTimeout(init,80);}
     // 手機:只留 tap/long-press(取消滑動拖曳/雙指縮放), 與 chart_buttons 規範一致
     try{gd.style.touchAction='manipulation';}catch(e){}
-    var card=gd.parentElement;  // tip 掛進該圖卡片, absolute 定位、隨圖捲動
-    if(card){card.style.position='relative'; card.appendChild(tip);}
+    var card=gd.parentElement;  // tip 以 flow 插在「圖的上方」(按鈕列與圖之間), 不蓋住圖
+    if(card){card.insertBefore(tip, gd);}
     BASE=(gd.layout&&gd.layout.shapes)?gd.layout.shapes.slice():[];
     wire(); showAt(N-1);
   }
@@ -597,14 +497,14 @@
   if(!N) return;
   var DATES_MS=DATES.map(function(s){return new Date(s).getTime();});
   var gd=document.getElementById(DIV);
-  var cur=N-1, BASE=null, over=false, tipMoved=false;
+  var cur=N-1, BASE=null, over=false;
 
   var tip=document.createElement('div');
-  tip.style.cssText='display:none;position:absolute;z-index:20;cursor:grab;user-select:none;'
-    +'background:rgba(15,23,42,0.94);border:1px solid var(--th-border2,#334155);border-radius:6px;'
-    +'padding:7px 11px;font-size:13px;color:var(--th-text,#e2e8f0);line-height:1.75;white-space:nowrap;'
-    +'font-family:"Microsoft JhengHei",sans-serif;box-shadow:0 4px 14px rgba(58,52,40,0.08)';
-  // tip 掛進「該圖自己的 chart-card」(position:absolute), 隨圖捲動、與其他圖互不干擾(init 掛載)
+  tip.style.cssText='display:none;gap:3px 12px;align-items:baseline;flex-wrap:wrap;'
+    +'padding:4px 10px;margin:2px 0 6px;font-size:13px;line-height:1.5;'
+    +'background:rgba(15,23,42,0.6);border:1px solid var(--th-border2,#334155);border-radius:6px;'
+    +'color:var(--th-text,#e2e8f0);font-family:"Microsoft JhengHei",sans-serif';
+  // tip 以 flow 顯示在「圖的上方」(各圖卡內, 按鈕列與圖之間), 不蓋住 K 棒(init 插入)
 
   function f(v,d){return (v==null||isNaN(v))?'—':Number(v).toFixed(d);}
 
@@ -614,24 +514,16 @@
     var col=up==null?'#cbd5e1':(up>0?'#ef4444':(up<0?'#22c55e':'#cbd5e1'));
     var arrow=up==null?'':(up>0?'▲':(up<0?'▼':''));
     var sw=SW[DATES[i]];
+    function kv(k,v,c){return '<span><span style="color:var(--th-muted,#94a3b8)">'+k+'</span> '
+      +(c?('<b style="color:'+c+'">'+v+'</b>'):v)+'</span>';}
+    // 單行水平排版(顯示在圖上方, 不蓋 K 棒)
     tip.innerHTML=
       '<b style="color:var(--th-blue,#93c5fd)">'+DATES[i]+'</b>'
-      +(sw?(' <span style="color:var(--th-amber,#fbbf24);font-size:12px">'+sw+'</span>'):'')
-      +'<br><span style="color:var(--th-muted,#94a3b8)">開 </span>'+f(O[i],2)
-      +'　<span style="color:var(--th-muted,#94a3b8)">高 </span>'+f(H[i],2)
-      +'<br><span style="color:var(--th-muted,#94a3b8)">低 </span>'+f(L[i],2)
-      +'　<span style="color:var(--th-muted,#94a3b8)">收 </span><b style="color:'+col+'">'+f(C[i],2)+'</b>'
-      +(pct!=null?(' <span style="color:'+col+';font-size:12px">'+arrow+f(Math.abs(up),2)+' ('+(pct>=0?'+':'')+pct.toFixed(2)+'%)</span>'):'')
-      +'<br><span style="color:var(--th-muted,#94a3b8)">量 </span>'+Number(VOL[i]).toLocaleString()+' 張';
-    if(!tipMoved){
-      try{
-        var fl=gd._fullLayout;  // 位置相對自己的 chart-card(offsetParent), 不用 viewport 座標
-        tip.style.left=(gd.offsetLeft+fl.xaxis._offset+8)+'px';
-        tip.style.top=(gd.offsetTop+fl.yaxis._offset+6)+'px';
-        tip.style.bottom='auto';
-      }catch(e){tip.style.left='8px';tip.style.top='40px';}
-    }
-    tip.style.display='block';
+      +(sw?'<span style="color:var(--th-amber,#fbbf24);font-size:12px">'+sw+'</span>':'')
+      +kv('開',f(O[i],2))+kv('高',f(H[i],2))+kv('低',f(L[i],2))+kv('收',f(C[i],2),col)
+      +(pct!=null?'<span style="color:'+col+';font-size:12px">'+arrow+f(Math.abs(up),2)+'('+(pct>=0?'+':'')+pct.toFixed(2)+'%)</span>':'')
+      +kv('量',Number(VOL[i]).toLocaleString()+' 張');
+    tip.style.display='flex';
   }
 
   function crosshair(i){
@@ -693,23 +585,6 @@
       if(e.key==='ArrowLeft'){e.preventDefault();showAt(cur-1);}
       if(e.key==='ArrowRight'){e.preventDefault();showAt(cur+1);}
     });
-    var td={on:false,sx:0,sy:0,ox:0,oy:0};
-    tip.addEventListener('mousedown',function(e){
-      td.on=true;tipMoved=true;tip.style.cursor='grabbing';
-      td.sx=e.clientX;td.sy=e.clientY;
-      td.ox=parseInt(tip.style.left)||12;td.oy=parseInt(tip.style.top)||120;
-      e.preventDefault();
-    });
-    document.addEventListener('mousemove',function(e){
-      if(!td.on)return;
-      var c=gd.parentElement, nl=td.ox+e.clientX-td.sx, nt=td.oy+e.clientY-td.sy;
-      if(c){  // 夾在卡片內, 不外溢到別張圖
-        nl=Math.max(0,Math.min(nl,c.clientWidth-tip.offsetWidth));
-        nt=Math.max(0,Math.min(nt,c.clientHeight-tip.offsetHeight));
-      }
-      tip.style.left=nl+'px'; tip.style.top=nt+'px';
-    });
-    document.addEventListener('mouseup',function(){td.on=false;tip.style.cursor='grab';});
   }
 
   function init(){
@@ -717,8 +592,8 @@
     if(!gd||!gd._fullLayout){return setTimeout(init,80);}
     // 手機:只留 tap/long-press(取消滑動拖曳/雙指縮放), 與 chart_buttons 規範一致
     try{gd.style.touchAction='manipulation';}catch(e){}
-    var card=gd.parentElement;  // tip 掛進該圖卡片, absolute 定位、隨圖捲動
-    if(card){card.style.position='relative'; card.appendChild(tip);}
+    var card=gd.parentElement;  // tip 以 flow 插在「圖的上方」(按鈕列與圖之間), 不蓋住圖
+    if(card){card.insertBefore(tip, gd);}
     BASE=(gd.layout&&gd.layout.shapes)?gd.layout.shapes.slice():[];
     wire(); showAt(N-1);
   }
@@ -733,14 +608,14 @@
   if(!N) return;
   var DATES_MS=DATES.map(function(s){return new Date(s).getTime();});
   var gd=document.getElementById(DIV);
-  var cur=N-1, BASE=null, over=false, tipMoved=false;
+  var cur=N-1, BASE=null, over=false;
 
   var tip=document.createElement('div');
-  tip.style.cssText='display:none;position:absolute;z-index:20;cursor:grab;user-select:none;'
-    +'background:rgba(15,23,42,0.94);border:1px solid var(--th-border2,#334155);border-radius:6px;'
-    +'padding:7px 11px;font-size:13px;color:var(--th-text,#e2e8f0);line-height:1.75;white-space:nowrap;'
-    +'font-family:"Microsoft JhengHei",sans-serif;box-shadow:0 4px 14px rgba(58,52,40,0.08)';
-  // tip 掛進「該圖自己的 chart-card」(position:absolute), 隨圖捲動、與其他圖互不干擾(init 掛載)
+  tip.style.cssText='display:none;gap:3px 12px;align-items:baseline;flex-wrap:wrap;'
+    +'padding:4px 10px;margin:2px 0 6px;font-size:13px;line-height:1.5;'
+    +'background:rgba(15,23,42,0.6);border:1px solid var(--th-border2,#334155);border-radius:6px;'
+    +'color:var(--th-text,#e2e8f0);font-family:"Microsoft JhengHei",sans-serif';
+  // tip 以 flow 顯示在「圖的上方」(各圖卡內, 按鈕列與圖之間), 不蓋住 K 棒(init 插入)
 
   function f(v,d){return (v==null||isNaN(v))?'—':Number(v).toFixed(d);}
 
@@ -750,24 +625,16 @@
     var col=up==null?'#cbd5e1':(up>0?'#ef4444':(up<0?'#22c55e':'#cbd5e1'));
     var arrow=up==null?'':(up>0?'▲':(up<0?'▼':''));
     var sw=SW[DATES[i]];
+    function kv(k,v,c){return '<span><span style="color:var(--th-muted,#94a3b8)">'+k+'</span> '
+      +(c?('<b style="color:'+c+'">'+v+'</b>'):v)+'</span>';}
+    // 單行水平排版(顯示在圖上方, 不蓋 K 棒)
     tip.innerHTML=
       '<b style="color:var(--th-blue,#93c5fd)">'+DATES[i]+'</b>'
-      +(sw?(' <span style="color:var(--th-amber,#fbbf24);font-size:12px">'+sw+'</span>'):'')
-      +'<br><span style="color:var(--th-muted,#94a3b8)">開 </span>'+f(O[i],2)
-      +'　<span style="color:var(--th-muted,#94a3b8)">高 </span>'+f(H[i],2)
-      +'<br><span style="color:var(--th-muted,#94a3b8)">低 </span>'+f(L[i],2)
-      +'　<span style="color:var(--th-muted,#94a3b8)">收 </span><b style="color:'+col+'">'+f(C[i],2)+'</b>'
-      +(pct!=null?(' <span style="color:'+col+';font-size:12px">'+arrow+f(Math.abs(up),2)+' ('+(pct>=0?'+':'')+pct.toFixed(2)+'%)</span>'):'')
-      +'<br><span style="color:var(--th-muted,#94a3b8)">量 </span>'+Number(VOL[i]).toLocaleString()+' 張';
-    if(!tipMoved){
-      try{
-        var fl=gd._fullLayout;  // 位置相對自己的 chart-card(offsetParent), 不用 viewport 座標
-        tip.style.left=(gd.offsetLeft+fl.xaxis._offset+8)+'px';
-        tip.style.top=(gd.offsetTop+fl.yaxis._offset+6)+'px';
-        tip.style.bottom='auto';
-      }catch(e){tip.style.left='8px';tip.style.top='40px';}
-    }
-    tip.style.display='block';
+      +(sw?'<span style="color:var(--th-amber,#fbbf24);font-size:12px">'+sw+'</span>':'')
+      +kv('開',f(O[i],2))+kv('高',f(H[i],2))+kv('低',f(L[i],2))+kv('收',f(C[i],2),col)
+      +(pct!=null?'<span style="color:'+col+';font-size:12px">'+arrow+f(Math.abs(up),2)+'('+(pct>=0?'+':'')+pct.toFixed(2)+'%)</span>':'')
+      +kv('量',Number(VOL[i]).toLocaleString()+' 張');
+    tip.style.display='flex';
   }
 
   function crosshair(i){
@@ -829,23 +696,6 @@
       if(e.key==='ArrowLeft'){e.preventDefault();showAt(cur-1);}
       if(e.key==='ArrowRight'){e.preventDefault();showAt(cur+1);}
     });
-    var td={on:false,sx:0,sy:0,ox:0,oy:0};
-    tip.addEventListener('mousedown',function(e){
-      td.on=true;tipMoved=true;tip.style.cursor='grabbing';
-      td.sx=e.clientX;td.sy=e.clientY;
-      td.ox=parseInt(tip.style.left)||12;td.oy=parseInt(tip.style.top)||120;
-      e.preventDefault();
-    });
-    document.addEventListener('mousemove',function(e){
-      if(!td.on)return;
-      var c=gd.parentElement, nl=td.ox+e.clientX-td.sx, nt=td.oy+e.clientY-td.sy;
-      if(c){  // 夾在卡片內, 不外溢到別張圖
-        nl=Math.max(0,Math.min(nl,c.clientWidth-tip.offsetWidth));
-        nt=Math.max(0,Math.min(nt,c.clientHeight-tip.offsetHeight));
-      }
-      tip.style.left=nl+'px'; tip.style.top=nt+'px';
-    });
-    document.addEventListener('mouseup',function(){td.on=false;tip.style.cursor='grab';});
   }
 
   function init(){
@@ -853,8 +703,8 @@
     if(!gd||!gd._fullLayout){return setTimeout(init,80);}
     // 手機:只留 tap/long-press(取消滑動拖曳/雙指縮放), 與 chart_buttons 規範一致
     try{gd.style.touchAction='manipulation';}catch(e){}
-    var card=gd.parentElement;  // tip 掛進該圖卡片, absolute 定位、隨圖捲動
-    if(card){card.style.position='relative'; card.appendChild(tip);}
+    var card=gd.parentElement;  // tip 以 flow 插在「圖的上方」(按鈕列與圖之間), 不蓋住圖
+    if(card){card.insertBefore(tip, gd);}
     BASE=(gd.layout&&gd.layout.shapes)?gd.layout.shapes.slice():[];
     wire(); showAt(N-1);
   }
