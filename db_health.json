@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-06-12 21:30:03",
-  "as_of": "2026-06-12",
-  "fix_applied": true,
+  "generated_at": "2026-06-14 22:09:02",
+  "as_of": "2026-06-14",
+  "fix_applied": false,
   "overall_status": "warning",
   "summary": {
-    "total": 9,
-    "healthy": 7,
+    "total": 10,
+    "healthy": 8,
     "info": 1,
     "warning": 1,
     "critical": 0
@@ -18,13 +18,13 @@
       "message": "全部 8 個必要表存在",
       "detail": {
         "counts": {
-          "price": 2100005,
+          "price": 2100511,
           "indices": 2148,
           "institutional": 622292,
           "futures": 248,
           "macro": 3371,
           "symbols": 1935,
-          "signal_history": 71794,
+          "signal_history": 72764,
           "update_log": 1
         }
       },
@@ -42,7 +42,7 @@
         "latest_count": 1923,
         "second_date": "2026-06-11",
         "second_count": 1935,
-        "days_lag": 0,
+        "days_lag": 2,
         "recent_5": [
           {
             "date": "2026-06-12",
@@ -91,12 +91,22 @@
         "future_dates": 0,
         "non_positive_close": 0,
         "zero_volume": 28305,
-        "total_rows": 2100005,
+        "total_rows": 2100511,
         "zero_vol_pct": 1.35
       },
       "fixable": true,
       "fix_applied": false,
       "fix_note": "移除未來日期 + 非正價列"
+    },
+    {
+      "name": "價量完整度",
+      "category": "integrity",
+      "status": "healthy",
+      "message": "近 132 交易日 price 檔數皆齊全（無部分缺料日）",
+      "detail": {},
+      "fixable": false,
+      "fix_applied": false,
+      "fix_note": ""
     },
     {
       "name": "關鍵指數完整性",
@@ -105,13 +115,13 @@
       "message": "全部 2 個關鍵指數齊全",
       "detail": {
         "latest_per_index": {
-          "TWII": {
-            "last_date": "2026-06-12",
-            "rows": 1075
-          },
           "OTCI": {
             "last_date": "2026-06-12",
             "rows": 1073
+          },
+          "TWII": {
+            "last_date": "2026-06-12",
+            "rows": 1075
           }
         }
       },
@@ -123,11 +133,11 @@
       "name": "輔助資料時效",
       "category": "freshness",
       "status": "warning",
-      "message": "macro/SOX 落後 21 天",
+      "message": "macro/SOX 落後 23 天",
       "detail": {
         "futures": {
           "last_date": "2026-06-12",
-          "days_lag": 0
+          "days_lag": 2
         },
         "macro": {
           "SOX": "2026-05-22",
@@ -136,7 +146,7 @@
         },
         "institutional": {
           "last_date": "2026-06-12",
-          "days_lag": 0
+          "days_lag": 2
         }
       },
       "fixable": false,
@@ -147,14 +157,14 @@
       "name": "Sector map 對照表",
       "category": "coverage",
       "status": "healthy",
-      "message": "1977 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1847 ｜ 市值 1935 ｜ 17 天前更新",
+      "message": "1977 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1847 ｜ 市值 1935 ｜ 19 天前更新",
       "detail": {
         "total": 1977,
         "with_xq": 1935,
         "with_theme": 1847,
         "with_mcap": 1935,
         "xq_coverage_pct": 97.9,
-        "file_age_days": 17,
+        "file_age_days": 19,
         "last_modified": "2026-05-26 08:17"
       },
       "fixable": false,
@@ -187,7 +197,5 @@
       "fix_applied": false,
       "fix_note": ""
     }
-  ],
-  "schema_version": "v1",
-  "available": true
+  ]
 }
