@@ -48,65 +48,10 @@ details.detail summary{cursor:pointer;user-select:none}
 })();
 </script>
 <!-- GLOBAL_NAV_END -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h1 class="page-title">🗄 DuckDB 資料庫健康檢查</h1><div class="page-meta">資料日 <strong>2026-06-12</strong> ｜ 產生時間 2026-06-12 21:30:03 ｜ 來源：<code>stockHisData/stock_data/db_health.py</code> ｜ 每日 orchestrator step 0 自動執行 ｜ <a href='../index.html'>← 返回主頁</a></div><div class="banner"><div class="banner__row"><div class="metric metric--lg"><span class="metric__value"><span class="text-warn">⚠</span></span></div><div><div class="metric__value"><span class="text-warn">整體狀態：警告</span></div><div class="text-muted">共 9 項檢查 ｜ <span class="text-bull">✅ 7</span> ｜ <span class="text-info">ℹ 1</span> ｜ <span class="text-warn">⚠ 1</span> ｜ <span class="text-bear">🔴 0</span> ｜ 已執行自動修復</div></div></div></div><div class="grid-4"><div class="card card--compact text-center"><div class="metric__value"><span class="text-bull">7</span></div><div class="label">✅ 正常</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-info">1</span></div><div class="label">ℹ 資訊</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-warn">1</span></div><div class="label">⚠ 警告</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-bear">0</span></div><div class="label">🔴 嚴重</div></div></div><div class="section-head">📋 詳細檢查項目（依嚴重性排序）</div><div class="card"><div class="card-head"><span class="dot dot--amber"></span> <span class="value">⚠ 輔助資料時效</span> <span class="label">📅 資料時效</span> <span class="badge badge--amber">warning</span></div><div class="check-msg">macro/SOX 落後 21 天</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
+<h1 class="page-title">🗄 DuckDB 資料庫健康檢查</h1><div class="page-meta">資料日 <strong>2026-06-14</strong> ｜ 產生時間 2026-06-14 22:09:02 ｜ 來源：<code>stockHisData/stock_data/db_health.py</code> ｜ 每日 orchestrator step 0 自動執行 ｜ <a href='../index.html'>← 返回主頁</a></div><div class="banner"><div class="banner__row"><div class="metric metric--lg"><span class="metric__value"><span class="text-warn">⚠</span></span></div><div><div class="metric__value"><span class="text-warn">整體狀態：警告</span></div><div class="text-muted">共 10 項檢查 ｜ <span class="text-bull">✅ 8</span> ｜ <span class="text-info">ℹ 1</span> ｜ <span class="text-warn">⚠ 1</span> ｜ <span class="text-bear">🔴 0</span></div></div></div></div><div class="grid-4"><div class="card card--compact text-center"><div class="metric__value"><span class="text-bull">8</span></div><div class="label">✅ 正常</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-info">1</span></div><div class="label">ℹ 資訊</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-warn">1</span></div><div class="label">⚠ 警告</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-bear">0</span></div><div class="label">🔴 嚴重</div></div></div><div class="section-head">📋 詳細檢查項目（依嚴重性排序）</div><div class="card"><div class="card-head"><span class="dot dot--amber"></span> <span class="value">⚠ 輔助資料時效</span> <span class="label">📅 資料時效</span> <span class="badge badge--amber">warning</span></div><div class="check-msg">macro/SOX 落後 23 天</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;futures&quot;: {
     &quot;last_date&quot;: &quot;2026-06-12&quot;,
-    &quot;days_lag&quot;: 0
+    &quot;days_lag&quot;: 2
   },
   &quot;macro&quot;: {
     &quot;SOX&quot;: &quot;2026-05-22&quot;,
@@ -115,19 +60,19 @@ details.detail summary{cursor:pointer;user-select:none}
   },
   &quot;institutional&quot;: {
     &quot;last_date&quot;: &quot;2026-06-12&quot;,
-    &quot;days_lag&quot;: 0
+    &quot;days_lag&quot;: 2
   }
 }</div></details></div><div class="card"><div class="card-head"><span class="dot dot--grey"></span> <span class="value">ℹ Update log 時效</span> <span class="label">📋 Update log</span> <span class="badge badge--blue">info</span></div><div class="check-msg">共 1 個資料源；最新紀錄 2026-05-24 10:19:45.706960</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;db_migrate_from_csv&quot;: &quot;2026-05-24 10:19:45.706960&quot;
 }</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ DuckDB 表結構</span> <span class="label">🗂 表結構</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">全部 8 個必要表存在</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;counts&quot;: {
-    &quot;price&quot;: 2100005,
+    &quot;price&quot;: 2100511,
     &quot;indices&quot;: 2148,
     &quot;institutional&quot;: 622292,
     &quot;futures&quot;: 248,
     &quot;macro&quot;: 3371,
     &quot;symbols&quot;: 1935,
-    &quot;signal_history&quot;: 71794,
+    &quot;signal_history&quot;: 72764,
     &quot;update_log&quot;: 1
   }
 }</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 最新日資料齊全度</span> <span class="label">📅 資料時效</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">最新日 2026-06-12 全市場 1923 檔齊全（≥ 1000）</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
@@ -135,7 +80,7 @@ details.detail summary{cursor:pointer;user-select:none}
   &quot;latest_count&quot;: 1923,
   &quot;second_date&quot;: &quot;2026-06-11&quot;,
   &quot;second_count&quot;: 1935,
-  &quot;days_lag&quot;: 0,
+  &quot;days_lag&quot;: 2,
   &quot;recent_5&quot;: [
     {
       &quot;date&quot;: &quot;2026-06-12&quot;,
@@ -164,26 +109,26 @@ details.detail summary{cursor:pointer;user-select:none}
   &quot;future_dates&quot;: 0,
   &quot;non_positive_close&quot;: 0,
   &quot;zero_volume&quot;: 28305,
-  &quot;total_rows&quot;: 2100005,
+  &quot;total_rows&quot;: 2100511,
   &quot;zero_vol_pct&quot;: 1.35
-}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 關鍵指數完整性</span> <span class="label">📊 資料覆蓋</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">全部 2 個關鍵指數齊全</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
+}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 價量完整度</span> <span class="label">🛡 資料完整性</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">近 132 交易日 price 檔數皆齊全（無部分缺料日）</div></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 關鍵指數完整性</span> <span class="label">📊 資料覆蓋</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">全部 2 個關鍵指數齊全</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;latest_per_index&quot;: {
-    &quot;TWII&quot;: {
-      &quot;last_date&quot;: &quot;2026-06-12&quot;,
-      &quot;rows&quot;: 1075
-    },
     &quot;OTCI&quot;: {
       &quot;last_date&quot;: &quot;2026-06-12&quot;,
       &quot;rows&quot;: 1073
+    },
+    &quot;TWII&quot;: {
+      &quot;last_date&quot;: &quot;2026-06-12&quot;,
+      &quot;rows&quot;: 1075
     }
   }
-}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ Sector map 對照表</span> <span class="label">📊 資料覆蓋</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">1977 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1847 ｜ 市值 1935 ｜ 17 天前更新</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
+}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ Sector map 對照表</span> <span class="label">📊 資料覆蓋</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">1977 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1847 ｜ 市值 1935 ｜ 19 天前更新</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;total&quot;: 1977,
   &quot;with_xq&quot;: 1935,
   &quot;with_theme&quot;: 1847,
   &quot;with_mcap&quot;: 1935,
   &quot;xq_coverage_pct&quot;: 97.9,
-  &quot;file_age_days&quot;: 17,
+  &quot;file_age_days&quot;: 19,
   &quot;last_modified&quot;: &quot;2026-05-26 08:17&quot;
 }</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ Market map (TWSE/TPEX)</span> <span class="label">📊 資料覆蓋</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">2095 檔 ｜ TWSE 1088 ｜ TPEX 1007</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;total&quot;: 2095,
