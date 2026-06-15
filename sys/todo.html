@@ -44,109 +44,7 @@
 </script>
 <!-- GLOBAL_NAV_END -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h1 class="page-title">📋 待辦事項 — MS_N_RR/RRR Ver.A</h1><div class="page-meta"><a href='../index.html'>← 返回主頁</a> ｜ <a href='nomenclature.html'>📖 名詞對照表</a> ｜ 各 Agent 的已知限制與未來擴充清單 ｜ 共 50 項 / 11 分類 ｜ 產生時間：2026-06-13 01:06</div><details class="explainer" open><summary class="explainer__title">💡 優先級與工時說明</summary><p><span class="value">📐 優先級：</span></p><div class="flex-row"><span class="badge badge--red" title="影響系統正常運作或重要結果，優先處理">🔴 P0 緊急</span><span class="badge badge--orange" title="可顯著提升準確度或使用體驗">🟠 P1 重要</span><span class="badge badge--amber" title="錦上添花，視時間進度安排">🟡 P2 一般</span><span class="badge badge--blue" title="想做但不急">🔵 P3 nice-to-have</span></div><p><span class="value">⏱ 工時估算：</span> <span class="text-muted">XS (≤ 0.5h) ｜ S (1-2h) ｜ M (半天) ｜ L (1 天) ｜ XL (2-3 天)</span></p></details><div class="section-head">📊 統計</div><div class="grid-4"><div class="card card--compact text-center"><div class="metric__value">50</div><div class="label">項目總數</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-bear">5</span></div><div class="label">🔴 P0 緊急</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-orange">18</span></div><div class="label">🟠 P1 重要</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-warn">21</span></div><div class="label">🟡 P2 一般</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-blue">6</span></div><div class="label">🔵 P3 nice-to-have</div></div></div><div class="card card--compact"><div class="section-head">📚 快速跳轉</div><div class="flex-row"><a class="btn btn--sm" href="#cat-immediate">🎯 立即可做（快速優化） <span class="text-faint">(3)</span></a><a class="btn btn--sm" href="#cat-algorithm">📊 評分演算法優化 <span class="text-faint">(6)</span></a><a class="btn btn--sm" href="#cat-n_shape">🔁 多時段箱型狀態（n_shape） <span class="text-faint">(10)</span></a><a class="btn btn--sm" href="#cat-box">📦 股票箱結構（box_structure） <span class="text-faint">(3)</span></a><a class="btn btn--sm" href="#cat-stock_ops">📈 股票操作 Agent <span class="text-faint">(4)</span></a><a class="btn btn--sm" href="#cat-ms_agent">🎛 MS-Agent v2 <span class="text-faint">(3)</span></a><a class="btn btn--sm" href="#cat-mainstream_pool">🏆 主流股池 + 預測監控 <span class="text-faint">(4)</span></a><a class="btn btn--sm" href="#cat-integration">🔄 跨 Agent 整合 <span class="text-faint">(6)</span></a><a class="btn btn--sm" href="#cat-backtest">📉 回測與驗證 <span class="text-faint">(4)</span></a><a class="btn btn--sm" href="#cat-data">🔍 資料層擴充 <span class="text-faint">(3)</span></a><a class="btn btn--sm" href="#cat-ops">🛡 部署與運維 <span class="text-faint">(4)</span></a></div></div><div id="cat-immediate"><div class="section-head">🎯 立即可做（快速優化）（3 項）</div><div class="card"><div class="flex-row"><span class="pill pill--info pill--sm">T-001</span><span class="value">深度回檔（&gt;50%）自動降至 Stage 3</span><span class="badge badge--orange" title="可顯著提升準確度或使用體驗">🟠 P1 重要</span><span class="badge badge--grey">📋 待辦</span><span class="badge badge--grey" title="≤ 0.5h">⏱ XS</span></div><div class="card-sub">目前若週線箱高 &gt; 50%（例 5269 祥碩、3037 某段），仍可能被歸為 Stage 2 主升段。實際上這種「腰斬式回檔」更像熊市反彈，應該自動降級到 Stage 3 高位震盪。</div><div class="kv-row"><span class="kv-row__k">來源</span><span class="kv-row__v">box_structure</span></div><div class="kv-row"><span class="kv-row__k">效益</span><span class="kv-row__v">避免誤判巨幅震盪股票為健康主升段</span></div><div class="note">📁 src/agents/box_structure.py 的 _classify_stage()</div></div><div class="card"><div class="flex-row"><span class="pill pill--info pill--sm">T-002</span><span class="value">Stage 4 判斷加入「reset」機制</span><span class="badge badge--orange" title="可顯著提升準確度或使用體驗">🟠 P1 重要</span><span class="badge badge--grey">📋 待辦</span><span class="badge badge--grey" title="1-2h">⏱ S</span></div><div class="card-sub">目前 28 檔被歸 Stage 4（佔 67 檔中 42%），偏多。若股票後續反彈站回箱內並形成新有效 SH，應該重置 Stage（從 Stage 1 開始算）。</div><div class="kv-row"><span class="kv-row__k">來源</span><span class="kv-row__v">box_structure</span></div><div class="kv-row"><span class="kv-row__k">效益</span><span class="kv-row__v">避免過去某次跌破 SL 永久標記，反映現況</span></div><div class="note">📁 src/agents/box_structure.py 的 _classify_stage()</div></div><div class="card"><div class="flex-row"><span class="pill pill--info pill--sm">T-003</span><span class="value">週線略破底（&lt; 3%）的容忍機制</span><span class="badge badge--orange" title="可顯著提升準確度或使用體驗">🟠 P1 重要</span><span class="badge badge--grey">📋 待辦</span><span class="badge badge--grey" title="≤ 0.5h">⏱ XS</span></div><div class="card-sub">如 6488 環球晶週線前低 417 → 新低 407（破底 -2.4%）被判已破壞，但實務上 &lt; 3% 應視為雜訊。可調整 NOISE_TOL_LOW（n_shape）或加 SL 破底容忍（box_structure）。</div><div class="kv-row"><span class="kv-row__k">來源</span><span class="kv-row__v">n_shape / box_structure</span></div><div class="kv-row"><span class="kv-row__k">效益</span><span class="kv-row__v">減少雜訊誤判，貼近實務操作</span></div><div class="note">📁 src/agents/n_shape.py、src/agents/box_structure.py</div></div></div><div id="cat-algorithm"><div class="section-head">📊 評分演算法優化（6 項）</div><div class="card"><div class="flex-row"><span class="pill pill--info pill--sm">T-101</span><span class="value">swing window 動態調整 ✅ 已由三階段偵測取代</span><span class="badge badge--amber" title="錦上添花，視時間進度安排">🟡 P2 一般</span><span class="badge badge--green">✅ 完成</span><span class="badge badge--grey" title="半天">⏱ M</span></div><div class="card-sub">✅ 已實作：改用 find_swings_3stage（事件驅動 + ATR 自適應），不再使用固定 swing window。ATR 倍數自動調整為各股波動率。</div><div class="kv-row"><span class="kv-row__k">來源</span><span class="kv-row__v">n_shape / box_structure</span></div><div class="kv-row"><span class="kv-row__k">效益</span><span class="kv-row__v">降低高波動股的假 swing、提高低波動股的敏感度</span></div><div class="note">📁 src/shared/swing_core.py find_swings_3stage</div></div><div class="card"><div class="flex-row"><span class="pill pill--info pill--sm">T-102</span><span class="value">回檔幅度進階定義（Fibonacci）</span><span class="badge badge--amber" title="錦上添花，視時間進度安排">🟡 P2 一般</span><span class="badge badge--grey">📋 待辦</span><span class="badge badge--grey" title="半天">⏱ M</span></div><div class="card-sub">目前回檔幅度單純用 %。可加入 Fibonacci 0.382 / 0.618 / 0.786 區分回檔健康度：0.382 = 強勢、0.618 = 中性、&gt; 0.786 = 弱勢。</div><div class="kv-row"><span class="kv-row__k">來源</span><span class="kv-row__v">n_shape / box_structure</span></div><div class="kv-row"><span class="kv-row__k">效益</span><span class="kv-row__v">更精細的回檔品質判斷</span></div></div><div class="card"><div class="flex-row"><span class="pill pill--info pill--sm">T-103</span><span class="value">成交量整合進 swing 判斷</span><span class="badge badge--amber" title="錦上添花，視時間進度安排">🟡 P2 一般</span><span class="badge badge--grey">📋 待辦</span><span class="badge badge--grey" title="半天">⏱ M</span></div><div class="card-sub">目前 n_shape 純看價格 swing，未考慮量。可加入：「回檔量縮」加分、「破底放量」減分。</div><div class="kv-row"><span class="kv-row__k">來源</span><span class="kv-row__v">n_shape</span></div><div class="kv-row"><span class="kv-row__k">效益</span><span class="kv-row__v">量價結合提升結構辨識準確度</span></div></div><div class="card"><div class="flex-row"><span class="pill pill--info pill--sm">T-1302</span><span class="value">預估本益比 (Forward PE) — 月營收外推法 + PEG (待觀察期後評估)</span><span class="badge badge--amber" title="錦上添花，視時間進度安排">🟡 P2 一般</span><span class="badge badge--grey">📋 待辦</span><span class="badge badge--grey" title="半天">⏱ M</span></div><div class="card-sub">FinMind 沒有分析師預估 (IBES/FactSet) 資料，但可自算 Forward PE：
+<h1 class="page-title">📋 待辦事項 — MS_N_RR/RRR Ver.A</h1><div class="page-meta"><a href='../index.html'>← 返回主頁</a> ｜ <a href='nomenclature.html'>📖 名詞對照表</a> ｜ 各 Agent 的已知限制與未來擴充清單 ｜ 共 50 項 / 11 分類 ｜ 產生時間：2026-06-15 15:25</div><details class="explainer" open><summary class="explainer__title">💡 優先級與工時說明</summary><p><span class="value">📐 優先級：</span></p><div class="flex-row"><span class="badge badge--red" title="影響系統正常運作或重要結果，優先處理">🔴 P0 緊急</span><span class="badge badge--orange" title="可顯著提升準確度或使用體驗">🟠 P1 重要</span><span class="badge badge--amber" title="錦上添花，視時間進度安排">🟡 P2 一般</span><span class="badge badge--blue" title="想做但不急">🔵 P3 nice-to-have</span></div><p><span class="value">⏱ 工時估算：</span> <span class="text-muted">XS (≤ 0.5h) ｜ S (1-2h) ｜ M (半天) ｜ L (1 天) ｜ XL (2-3 天)</span></p></details><div class="section-head">📊 統計</div><div class="grid-4"><div class="card card--compact text-center"><div class="metric__value">50</div><div class="label">項目總數</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-bear">5</span></div><div class="label">🔴 P0 緊急</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-orange">18</span></div><div class="label">🟠 P1 重要</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-warn">21</span></div><div class="label">🟡 P2 一般</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-blue">6</span></div><div class="label">🔵 P3 nice-to-have</div></div></div><div class="card card--compact"><div class="section-head">📚 快速跳轉</div><div class="flex-row"><a class="btn btn--sm" href="#cat-immediate">🎯 立即可做（快速優化） <span class="text-faint">(3)</span></a><a class="btn btn--sm" href="#cat-algorithm">📊 評分演算法優化 <span class="text-faint">(6)</span></a><a class="btn btn--sm" href="#cat-n_shape">🔁 多時段箱型狀態（n_shape） <span class="text-faint">(10)</span></a><a class="btn btn--sm" href="#cat-box">📦 股票箱結構（box_structure） <span class="text-faint">(3)</span></a><a class="btn btn--sm" href="#cat-stock_ops">📈 股票操作 Agent <span class="text-faint">(4)</span></a><a class="btn btn--sm" href="#cat-ms_agent">🎛 MS-Agent v2 <span class="text-faint">(3)</span></a><a class="btn btn--sm" href="#cat-mainstream_pool">🏆 主流股池 + 預測監控 <span class="text-faint">(4)</span></a><a class="btn btn--sm" href="#cat-integration">🔄 跨 Agent 整合 <span class="text-faint">(6)</span></a><a class="btn btn--sm" href="#cat-backtest">📉 回測與驗證 <span class="text-faint">(4)</span></a><a class="btn btn--sm" href="#cat-data">🔍 資料層擴充 <span class="text-faint">(3)</span></a><a class="btn btn--sm" href="#cat-ops">🛡 部署與運維 <span class="text-faint">(4)</span></a></div></div><div id="cat-immediate"><div class="section-head">🎯 立即可做（快速優化）（3 項）</div><div class="card"><div class="flex-row"><span class="pill pill--info pill--sm">T-001</span><span class="value">深度回檔（&gt;50%）自動降至 Stage 3</span><span class="badge badge--orange" title="可顯著提升準確度或使用體驗">🟠 P1 重要</span><span class="badge badge--grey">📋 待辦</span><span class="badge badge--grey" title="≤ 0.5h">⏱ XS</span></div><div class="card-sub">目前若週線箱高 &gt; 50%（例 5269 祥碩、3037 某段），仍可能被歸為 Stage 2 主升段。實際上這種「腰斬式回檔」更像熊市反彈，應該自動降級到 Stage 3 高位震盪。</div><div class="kv-row"><span class="kv-row__k">來源</span><span class="kv-row__v">box_structure</span></div><div class="kv-row"><span class="kv-row__k">效益</span><span class="kv-row__v">避免誤判巨幅震盪股票為健康主升段</span></div><div class="note">📁 src/agents/box_structure.py 的 _classify_stage()</div></div><div class="card"><div class="flex-row"><span class="pill pill--info pill--sm">T-002</span><span class="value">Stage 4 判斷加入「reset」機制</span><span class="badge badge--orange" title="可顯著提升準確度或使用體驗">🟠 P1 重要</span><span class="badge badge--grey">📋 待辦</span><span class="badge badge--grey" title="1-2h">⏱ S</span></div><div class="card-sub">目前 28 檔被歸 Stage 4（佔 67 檔中 42%），偏多。若股票後續反彈站回箱內並形成新有效 SH，應該重置 Stage（從 Stage 1 開始算）。</div><div class="kv-row"><span class="kv-row__k">來源</span><span class="kv-row__v">box_structure</span></div><div class="kv-row"><span class="kv-row__k">效益</span><span class="kv-row__v">避免過去某次跌破 SL 永久標記，反映現況</span></div><div class="note">📁 src/agents/box_structure.py 的 _classify_stage()</div></div><div class="card"><div class="flex-row"><span class="pill pill--info pill--sm">T-003</span><span class="value">週線略破底（&lt; 3%）的容忍機制</span><span class="badge badge--orange" title="可顯著提升準確度或使用體驗">🟠 P1 重要</span><span class="badge badge--grey">📋 待辦</span><span class="badge badge--grey" title="≤ 0.5h">⏱ XS</span></div><div class="card-sub">如 6488 環球晶週線前低 417 → 新低 407（破底 -2.4%）被判已破壞，但實務上 &lt; 3% 應視為雜訊。可調整 NOISE_TOL_LOW（n_shape）或加 SL 破底容忍（box_structure）。</div><div class="kv-row"><span class="kv-row__k">來源</span><span class="kv-row__v">n_shape / box_structure</span></div><div class="kv-row"><span class="kv-row__k">效益</span><span class="kv-row__v">減少雜訊誤判，貼近實務操作</span></div><div class="note">📁 src/agents/n_shape.py、src/agents/box_structure.py</div></div></div><div id="cat-algorithm"><div class="section-head">📊 評分演算法優化（6 項）</div><div class="card"><div class="flex-row"><span class="pill pill--info pill--sm">T-101</span><span class="value">swing window 動態調整 ✅ 已由三階段偵測取代</span><span class="badge badge--amber" title="錦上添花，視時間進度安排">🟡 P2 一般</span><span class="badge badge--green">✅ 完成</span><span class="badge badge--grey" title="半天">⏱ M</span></div><div class="card-sub">✅ 已實作：改用 find_swings_3stage（事件驅動 + ATR 自適應），不再使用固定 swing window。ATR 倍數自動調整為各股波動率。</div><div class="kv-row"><span class="kv-row__k">來源</span><span class="kv-row__v">n_shape / box_structure</span></div><div class="kv-row"><span class="kv-row__k">效益</span><span class="kv-row__v">降低高波動股的假 swing、提高低波動股的敏感度</span></div><div class="note">📁 src/shared/swing_core.py find_swings_3stage</div></div><div class="card"><div class="flex-row"><span class="pill pill--info pill--sm">T-102</span><span class="value">回檔幅度進階定義（Fibonacci）</span><span class="badge badge--amber" title="錦上添花，視時間進度安排">🟡 P2 一般</span><span class="badge badge--grey">📋 待辦</span><span class="badge badge--grey" title="半天">⏱ M</span></div><div class="card-sub">目前回檔幅度單純用 %。可加入 Fibonacci 0.382 / 0.618 / 0.786 區分回檔健康度：0.382 = 強勢、0.618 = 中性、&gt; 0.786 = 弱勢。</div><div class="kv-row"><span class="kv-row__k">來源</span><span class="kv-row__v">n_shape / box_structure</span></div><div class="kv-row"><span class="kv-row__k">效益</span><span class="kv-row__v">更精細的回檔品質判斷</span></div></div><div class="card"><div class="flex-row"><span class="pill pill--info pill--sm">T-103</span><span class="value">成交量整合進 swing 判斷</span><span class="badge badge--amber" title="錦上添花，視時間進度安排">🟡 P2 一般</span><span class="badge badge--grey">📋 待辦</span><span class="badge badge--grey" title="半天">⏱ M</span></div><div class="card-sub">目前 n_shape 純看價格 swing，未考慮量。可加入：「回檔量縮」加分、「破底放量」減分。</div><div class="kv-row"><span class="kv-row__k">來源</span><span class="kv-row__v">n_shape</span></div><div class="kv-row"><span class="kv-row__k">效益</span><span class="kv-row__v">量價結合提升結構辨識準確度</span></div></div><div class="card"><div class="flex-row"><span class="pill pill--info pill--sm">T-1302</span><span class="value">預估本益比 (Forward PE) — 月營收外推法 + PEG (待觀察期後評估)</span><span class="badge badge--amber" title="錦上添花，視時間進度安排">🟡 P2 一般</span><span class="badge badge--grey">📋 待辦</span><span class="badge badge--grey" title="半天">⏱ M</span></div><div class="card-sub">FinMind 沒有分析師預估 (IBES/FactSet) 資料，但可自算 Forward PE：
 
 推薦方法 — 月營收外推法 (台股法人實戰 SOP):
   Forward EPS = 最近 N 月營收 × 預估淨利率 / 流通股本
@@ -408,4 +306,120 @@ Dossier 新 section:
 
 5. 寫 schema 自動生成工具：從 TypedDict → JSON Schema
 
-適合時機：Phase 1+2 在生產線跑 1 個月、累積足夠 audit log、確認規範可行後再做。現在做有過度工程化風險（規範還在演進）。</div><div class="kv-row"><span class="kv-row__k">來源</span><span class="kv-row__v">IF Phase 2 後續規劃</span></div><div class="kv-row"><span class="kv-row__k">效益</span><span class="kv-row__v">強制 schema 守規，breaking change 在 CI 階段就抓到；新人入手快</span></div><div class="note">📁 docs/schemas/*.schema.json (新, ~20 個)、src/shared/interface_validator.py (擴充 strict mode)、tests/test_interface_schemas.py (新)、.github/workflows/validate.yml (新, 可選)</div><div class="note note--warn">💬 等 Phase 1+2 在 production 跑 ≥ 1 個月後再評估是否真的需要。Phase 2 的 runtime warning 已足以抓到大多數規約違反。</div></div></div><footer class="page-footer">本頁由 <code>src/agents/todo_page.py</code> 渲染（單一資料源：TODOS dict）<br>新增/編輯項目 → 直接編輯 .py 檔的 TODOS list → 跑 <code>python -m src.agents.todo_page</code> 重生<br>未來可加：完成日期、實際工時統計、依優先級 RSS feed</footer></body></html>
+適合時機：Phase 1+2 在生產線跑 1 個月、累積足夠 audit log、確認規範可行後再做。現在做有過度工程化風險（規範還在演進）。</div><div class="kv-row"><span class="kv-row__k">來源</span><span class="kv-row__v">IF Phase 2 後續規劃</span></div><div class="kv-row"><span class="kv-row__k">效益</span><span class="kv-row__v">強制 schema 守規，breaking change 在 CI 階段就抓到；新人入手快</span></div><div class="note">📁 docs/schemas/*.schema.json (新, ~20 個)、src/shared/interface_validator.py (擴充 strict mode)、tests/test_interface_schemas.py (新)、.github/workflows/validate.yml (新, 可選)</div><div class="note note--warn">💬 等 Phase 1+2 在 production 跑 ≥ 1 個月後再評估是否真的需要。Phase 2 的 runtime warning 已足以抓到大多數規約違反。</div></div></div><footer class="page-footer">本頁由 <code>src/agents/todo_page.py</code> 渲染（單一資料源：TODOS dict）<br>新增/編輯項目 → 直接編輯 .py 檔的 TODOS list → 跑 <code>python -m src.agents.todo_page</code> 重生<br>未來可加：完成日期、實際工時統計、依優先級 RSS feed</footer>
+<style id='MS_N_RRR_tooltip_inject_v2'>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: var(--th-bg,#0f172a);
+  color: var(--th-text,#e2e8f0);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid var(--th-border2,#475569);
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>
