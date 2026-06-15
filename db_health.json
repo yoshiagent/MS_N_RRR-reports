@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-14 22:09:02",
-  "as_of": "2026-06-14",
-  "fix_applied": false,
+  "generated_at": "2026-06-15 14:48:59",
+  "as_of": "2026-06-15",
+  "fix_applied": true,
   "overall_status": "warning",
   "summary": {
     "total": 10,
@@ -18,8 +18,8 @@
       "message": "全部 8 個必要表存在",
       "detail": {
         "counts": {
-          "price": 2100511,
-          "indices": 2148,
+          "price": 2102455,
+          "indices": 2150,
           "institutional": 622292,
           "futures": 248,
           "macro": 3371,
@@ -36,17 +36,21 @@
       "name": "最新日資料齊全度",
       "category": "freshness",
       "status": "healthy",
-      "message": "最新日 2026-06-12 全市場 1923 檔齊全（≥ 1000）",
+      "message": "最新日 2026-06-15 全市場 1932 檔齊全（≥ 1000）",
       "detail": {
-        "latest_date": "2026-06-12",
-        "latest_count": 1923,
-        "second_date": "2026-06-11",
-        "second_count": 1935,
-        "days_lag": 2,
+        "latest_date": "2026-06-15",
+        "latest_count": 1932,
+        "second_date": "2026-06-12",
+        "second_count": 1934,
+        "days_lag": 0,
         "recent_5": [
           {
+            "date": "2026-06-15",
+            "n": 1932
+          },
+          {
             "date": "2026-06-12",
-            "n": 1923
+            "n": 1934
           },
           {
             "date": "2026-06-11",
@@ -58,10 +62,6 @@
           },
           {
             "date": "2026-06-09",
-            "n": 1935
-          },
-          {
-            "date": "2026-06-08",
             "n": 1935
           }
         ]
@@ -90,8 +90,8 @@
       "detail": {
         "future_dates": 0,
         "non_positive_close": 0,
-        "zero_volume": 28305,
-        "total_rows": 2100511,
+        "zero_volume": 28332,
+        "total_rows": 2102455,
         "zero_vol_pct": 1.35
       },
       "fixable": true,
@@ -102,7 +102,7 @@
       "name": "價量完整度",
       "category": "integrity",
       "status": "healthy",
-      "message": "近 132 交易日 price 檔數皆齊全（無部分缺料日）",
+      "message": "近 130 交易日 price 檔數皆齊全（無部分缺料日）",
       "detail": {},
       "fixable": false,
       "fix_applied": false,
@@ -115,13 +115,13 @@
       "message": "全部 2 個關鍵指數齊全",
       "detail": {
         "latest_per_index": {
-          "OTCI": {
-            "last_date": "2026-06-12",
-            "rows": 1073
-          },
           "TWII": {
-            "last_date": "2026-06-12",
-            "rows": 1075
+            "last_date": "2026-06-15",
+            "rows": 1076
+          },
+          "OTCI": {
+            "last_date": "2026-06-15",
+            "rows": 1074
           }
         }
       },
@@ -133,20 +133,20 @@
       "name": "輔助資料時效",
       "category": "freshness",
       "status": "warning",
-      "message": "macro/SOX 落後 23 天",
+      "message": "macro/SOX 落後 24 天",
       "detail": {
         "futures": {
           "last_date": "2026-06-12",
-          "days_lag": 2
+          "days_lag": 3
         },
         "macro": {
+          "USDTWD": "2026-06-12",
           "SOX": "2026-05-22",
-          "VIX": "2026-06-11",
-          "USDTWD": "2026-06-12"
+          "VIX": "2026-06-11"
         },
         "institutional": {
           "last_date": "2026-06-12",
-          "days_lag": 2
+          "days_lag": 3
         }
       },
       "fixable": false,
@@ -157,14 +157,14 @@
       "name": "Sector map 對照表",
       "category": "coverage",
       "status": "healthy",
-      "message": "1977 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1847 ｜ 市值 1935 ｜ 19 天前更新",
+      "message": "1977 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1847 ｜ 市值 1935 ｜ 20 天前更新",
       "detail": {
         "total": 1977,
         "with_xq": 1935,
         "with_theme": 1847,
         "with_mcap": 1935,
         "xq_coverage_pct": 97.9,
-        "file_age_days": 19,
+        "file_age_days": 20,
         "last_modified": "2026-05-26 08:17"
       },
       "fixable": false,
