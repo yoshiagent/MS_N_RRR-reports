@@ -43,9 +43,6 @@
 })();
 </script>
 <!-- GLOBAL_NAV_END -->
-
-
-
 <h1 class="page-title">📊 籌碼集中度排行 (Chip Concentration)</h1><div class="page-meta">資料 <strong>2026-06-15</strong> ｜ <a href='../index.html'>← 回主頁</a> ｜ <a href='../org/pm_custom.html'>⭐ Custom PM</a></div><div class="banner"><div class="grid-4"><div class="card card--compact text-center"><div class="metric__value">49</div><div class="label">已評估個股數</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-bull">13</span></div><div class="label">📥 主力吸籌中</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-bear">33</span></div><div class="label">📤 主力出貨中</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-warn">3</span></div><div class="label">🚨 Z 警示</div></div></div></div><details class="explainer" open><summary class="explainer__title">💡 籌碼集中度核心邏輯 — 大戶/中戶/散戶比例變化 + Z-score 異常偵測</summary><p><b class="value">📋 籌碼集中度 (Chip Concentration)</b> — 基於 FinMind 股權分散表 (週更), 追蹤大戶 (≥400 張) / 中戶 (1-400 張) / 散戶 (&lt;1 張) 比例變化。</p><p><b class="text-bull">主力吸籌</b> (大戶加碼 + 散戶減碼) = 經典籌碼鎖定多頭訊號；<b class="text-bear">主力出貨</b> (反之) = 警示。Z-score ≥ +2σ = 8 週內異常吸籌, 主力動向強烈。</p><div class="note">CR1 = 最高級距占比 ｜ CR5 = 前 5 級距 ｜ HHI = Herfindahl 指數。色點代表大戶占比強度 (綠=高度集中 / 琥珀=中等 / 紅=偏散)。</div></details><div class="section-head"><span class="text-bull">📥 主力吸籌 (本週) — 進場觀察</span> <span class="label">(13 檔)</span></div><table class="data-table"><thead><tr><th>Symbol</th><th>大戶/中戶/散戶 (堆疊) · 大戶 %</th><th class="text-right">CR1</th><th class="text-right">HHI</th><th class="text-right">大戶 1w</th><th class="text-right">散戶 1w</th><th class="text-right">Z (8w)</th><th>訊號</th></tr></thead><tbody>
     <tr>
       <td><a href="../dossier/3231.html"><strong>3231</strong></a></td>
@@ -874,4 +871,120 @@
       <td class="text-right">4497</td>
       
       <td><span class="text-bull">↑ 大戶加碼</span></td>
-    </tr></tbody></table><footer class="page-footer">資料: FinMind TaiwanStockHoldingSharesPer 週更 ｜ 涵蓋 custom_pool + mainstream_pool (前 50 檔) ｜ 指標: 大戶 (≥400 張) / 中戶 (1-400 張) / 散戶 (&lt;1 張) / 千張 (&gt;1,000 張) ｜ CR1 = 最高級距占比 / CR5 = 前 5 級距 / HHI = Herfindahl 指數</footer></body></html>
+    </tr></tbody></table><footer class="page-footer">資料: FinMind TaiwanStockHoldingSharesPer 週更 ｜ 涵蓋 custom_pool + mainstream_pool (前 50 檔) ｜ 指標: 大戶 (≥400 張) / 中戶 (1-400 張) / 散戶 (&lt;1 張) / 千張 (&gt;1,000 張) ｜ CR1 = 最高級距占比 / CR5 = 前 5 級距 / HHI = Herfindahl 指數</footer>
+<style id='MS_N_RRR_tooltip_inject_v2'>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: var(--th-bg,#0f172a);
+  color: var(--th-text,#e2e8f0);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid var(--th-border2,#475569);
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>

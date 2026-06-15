@@ -1,7 +1,7 @@
 {
   "as_of": "2026-06-15",
   "n_pairs": 5,
-  "n_z_gate_passed": 2,
+  "n_z_gate_passed": 1,
   "n_strong": 0,
   "n_strong_stays_strong": 0,
   "z_mode": "gate",
@@ -23,13 +23,13 @@
         "南電",
         "欣興"
       ],
-      "signal": "hold_B",
-      "z_gate_passed": false,
+      "signal": "switch_to_A",
+      "z_gate_passed": true,
       "zscore": -1.25,
-      "switch_direction": "B",
+      "switch_direction": "A",
       "switch_into": {
-        "code": "3037",
-        "name": "欣興"
+        "code": "8046",
+        "name": "南電"
       },
       "components": {
         "rcga": {
@@ -37,7 +37,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 3.16,
+          "score": 12.89,
           "src": "no_rotation"
         },
         "box": {
@@ -58,14 +58,14 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": null,
-      "switch_score_ref": 21.1,
+      "switch_score": 24.6,
+      "switch_score_ref": 24.6,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "延後 · Z60 未過換股門檻",
-        "color": "#64748b",
-        "icon": "⏸"
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
       }
     },
     {
@@ -79,8 +79,8 @@
         "晶豪科",
         "智原"
       ],
-      "signal": "switch_to_B",
-      "z_gate_passed": true,
+      "signal": "hold_B",
+      "z_gate_passed": false,
       "zscore": -0.0,
       "switch_direction": "B",
       "switch_into": {
@@ -114,14 +114,14 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 47.4,
+      "switch_score": null,
       "switch_score_ref": 47.4,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "Z 到但籌碼/結構不支持 · 觀望",
-        "color": "#ef4444",
-        "icon": "🚫"
+        "label": "延後 · Z60 未過換股門檻",
+        "color": "#64748b",
+        "icon": "⏸"
       }
     },
     {
@@ -135,28 +135,33 @@
         "華邦電",
         "南亞科"
       ],
-      "signal": "no_action",
+      "signal": "hold_A",
       "z_gate_passed": false,
       "zscore": 1.75,
-      "switch_direction": null,
-      "switch_into": null,
+      "switch_direction": "A",
+      "switch_into": {
+        "code": "2344",
+        "name": "華邦電"
+      },
       "components": {
         "rcga": {
           "score": 90.0,
           "src": "GREEN"
         },
         "rcr": {
-          "score": null,
+          "score": 4.02,
           "src": "no_rotation"
         },
         "box": {
-          "score": null,
-          "src": null,
-          "healthy": null
+          "score": 90.0,
+          "src": "above_up",
+          "healthy": true
         }
       },
       "active_weights": {
-        "rcga": 25
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
       },
       "z_mode": "gate",
       "weights": {
@@ -166,7 +171,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 90.0,
+      "switch_score_ref": 59.3,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -242,13 +247,13 @@
         "巨大",
         "美利達"
       ],
-      "signal": "switch_to_A",
-      "z_gate_passed": true,
+      "signal": "hold_B",
+      "z_gate_passed": false,
       "zscore": -0.99,
-      "switch_direction": "A",
+      "switch_direction": "B",
       "switch_into": {
-        "code": "9921",
-        "name": "巨大"
+        "code": "9914",
+        "name": "美利達"
       },
       "components": {
         "rcga": {
@@ -256,13 +261,13 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 1.2,
+          "score": 4.67,
           "src": "no_rotation"
         },
         "box": {
-          "score": 45.0,
-          "src": "inbox_side",
-          "healthy": false
+          "score": 90.0,
+          "src": "above_up",
+          "healthy": true
         }
       },
       "active_weights": {
@@ -277,18 +282,18 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 32.9,
-      "switch_score_ref": 32.9,
+      "switch_score": null,
+      "switch_score_ref": 47.0,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "Z 到但籌碼/結構不支持 · 觀望",
-        "color": "#ef4444",
-        "icon": "🚫"
+        "label": "延後 · Z60 未過換股門檻",
+        "color": "#64748b",
+        "icon": "⏸"
       }
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-06-15T15:25:55",
+  "generated_at": "2026-06-15T15:34:11",
   "available": true
 }

@@ -1,51 +1,45 @@
 {
   "schema_version": "v1",
   "meta": {
-    "ms_phase": "EARLY_BULL",
-    "risk_mode": "CASH",
-    "max_position_ratio": 20.0,
-    "max_total_exposure": 21.0,
-    "cash_minimum_ratio": 79.0,
-    "allow_new_position": false,
-    "allow_add_position": false,
+    "ms_phase": "MARKUP",
+    "risk_mode": "DEFENSIVE",
+    "max_position_ratio": 25.0,
+    "max_total_exposure": 68.0,
+    "cash_minimum_ratio": 32.0,
+    "allow_new_position": true,
+    "allow_add_position": true,
     "stop_loss_strictness": "HIGH"
   },
-  "overall_verdict": "VETO",
+  "overall_verdict": "WARN",
   "system_check": {
     "verdict": "PASS",
     "flags": [],
-    "total_weight": 17.39,
-    "cash_pct": 82.61
+    "total_weight": 53.5,
+    "cash_pct": 46.5
   },
   "positions": [
     {
       "rank": 1,
-      "symbol": "2637",
-      "name": "慧洋-KY",
-      "stock_type": "全能均優股",
+      "symbol": "2891",
+      "name": "中信金",
+      "stock_type": "結構趨勢股",
       "risk_label": "🟢 低風險",
-      "target_weight": 2.65,
-      "target_value": 26510.0,
-      "lead_manager": "Defensive",
-      "lead_manager_zh": "防禦現金型",
+      "target_weight": 4.52,
+      "target_value": 45153.0,
+      "lead_manager": "Trend",
+      "lead_manager_zh": "趨勢波段型",
       "managers": [
         {
-          "manager": "Defensive",
-          "manager_zh": "防禦現金型",
-          "weight": 1.73,
-          "bid": 64.8
-        },
-        {
-          "manager": "Rotation",
-          "manager_zh": "相對輪動型",
-          "weight": 0.48,
-          "bid": 64.7
+          "manager": "Trend",
+          "manager_zh": "趨勢波段型",
+          "weight": 3.21,
+          "bid": 61.8
         },
         {
           "manager": "Balanced",
           "manager_zh": "核心配置型",
-          "weight": 0.44,
-          "bid": 70.5
+          "weight": 1.3,
+          "bid": 61.8
         }
       ],
       "verdict": "WARN",
@@ -55,26 +49,20 @@
     },
     {
       "rank": 2,
-      "symbol": "1301",
-      "name": "台塑",
-      "stock_type": "結構趨勢股",
-      "risk_label": "🟢 低風險",
-      "target_weight": 2.49,
-      "target_value": 24941.0,
-      "lead_manager": "Defensive",
-      "lead_manager_zh": "防禦現金型",
+      "symbol": "1303",
+      "name": "南亞",
+      "stock_type": "成長動能股",
+      "risk_label": "⚪ 風險中性",
+      "target_weight": 4.01,
+      "target_value": 40131.0,
+      "lead_manager": "Growth",
+      "lead_manager_zh": "積極成長型",
       "managers": [
         {
-          "manager": "Defensive",
-          "manager_zh": "防禦現金型",
-          "weight": 2.09,
-          "bid": 78.5
-        },
-        {
-          "manager": "Balanced",
-          "manager_zh": "核心配置型",
-          "weight": 0.4,
-          "bid": 64.5
+          "manager": "Growth",
+          "manager_zh": "積極成長型",
+          "weight": 4.01,
+          "bid": 67.4
         }
       ],
       "verdict": "WARN",
@@ -84,146 +72,19 @@
     },
     {
       "rank": 3,
-      "symbol": "2609",
-      "name": "陽明",
-      "stock_type": "結構趨勢股",
-      "risk_label": "🟢 低風險",
-      "target_weight": 1.79,
-      "target_value": 17895.0,
-      "lead_manager": "Defensive",
-      "lead_manager_zh": "防禦現金型",
-      "managers": [
-        {
-          "manager": "Defensive",
-          "manager_zh": "防禦現金型",
-          "weight": 1.79,
-          "bid": 67.2
-        }
-      ],
-      "verdict": "WARN",
-      "discipline_flags": [
-        "composite=0 < 50 + strictness=HIGH"
-      ]
-    },
-    {
-      "rank": 4,
-      "symbol": "2031",
-      "name": "新光鋼",
+      "symbol": "2492",
+      "name": "華新科",
       "stock_type": "成長動能股",
-      "risk_label": "🟢 低風險",
-      "target_weight": 1.79,
-      "target_value": 17895.0,
-      "lead_manager": "Defensive",
-      "lead_manager_zh": "防禦現金型",
+      "risk_label": "⚪ 風險中性",
+      "target_weight": 3.96,
+      "target_value": 39595.0,
+      "lead_manager": "Growth",
+      "lead_manager_zh": "積極成長型",
       "managers": [
         {
-          "manager": "Defensive",
-          "manager_zh": "防禦現金型",
-          "weight": 1.79,
-          "bid": 67.2
-        }
-      ],
-      "verdict": "WARN",
-      "discipline_flags": [
-        "composite=0 < 50 + strictness=HIGH"
-      ]
-    },
-    {
-      "rank": 5,
-      "symbol": "2890",
-      "name": "永豐金",
-      "stock_type": "結構趨勢股",
-      "risk_label": "🟢 低風險",
-      "target_weight": 1.55,
-      "target_value": 15525.0,
-      "lead_manager": "Defensive",
-      "lead_manager_zh": "防禦現金型",
-      "managers": [
-        {
-          "manager": "Defensive",
-          "manager_zh": "防禦現金型",
-          "weight": 1.55,
-          "bid": 58.3
-        }
-      ],
-      "verdict": "WARN",
-      "discipline_flags": [
-        "composite=0 < 50 + strictness=HIGH"
-      ]
-    },
-    {
-      "rank": 6,
-      "symbol": "2603",
-      "name": "長榮",
-      "stock_type": "成長動能股",
-      "risk_label": "🟢 低風險",
-      "target_weight": 1.55,
-      "target_value": 15525.0,
-      "lead_manager": "Defensive",
-      "lead_manager_zh": "防禦現金型",
-      "managers": [
-        {
-          "manager": "Defensive",
-          "manager_zh": "防禦現金型",
-          "weight": 1.55,
-          "bid": 58.3
-        }
-      ],
-      "verdict": "WARN",
-      "discipline_flags": [
-        "composite=0 < 50 + strictness=HIGH"
-      ]
-    },
-    {
-      "rank": 7,
-      "symbol": "6121",
-      "name": "新普",
-      "stock_type": "全能均優股",
-      "risk_label": "🟢 低風險",
-      "target_weight": 0.93,
-      "target_value": 9256.0,
-      "lead_manager": "Rotation",
-      "lead_manager_zh": "相對輪動型",
-      "managers": [
-        {
-          "manager": "Rotation",
-          "manager_zh": "相對輪動型",
-          "weight": 0.5,
-          "bid": 66.9
-        },
-        {
-          "manager": "Balanced",
-          "manager_zh": "核心配置型",
-          "weight": 0.43,
-          "bid": 67.9
-        }
-      ],
-      "verdict": "WARN",
-      "discipline_flags": [
-        "composite=0 < 50 + strictness=HIGH"
-      ]
-    },
-    {
-      "rank": 8,
-      "symbol": "5288",
-      "name": "豐祥-KY",
-      "stock_type": "全能均優股",
-      "risk_label": "🟢 低風險",
-      "target_weight": 0.92,
-      "target_value": 9168.0,
-      "lead_manager": "Rotation",
-      "lead_manager_zh": "相對輪動型",
-      "managers": [
-        {
-          "manager": "Rotation",
-          "manager_zh": "相對輪動型",
-          "weight": 0.5,
-          "bid": 66.9
-        },
-        {
-          "manager": "Balanced",
-          "manager_zh": "核心配置型",
-          "weight": 0.42,
+          "manager": "Growth",
+          "manager_zh": "積極成長型",
+          "weight": 3.96,
           "bid": 66.5
         }
       ],
@@ -233,27 +94,148 @@
       ]
     },
     {
-      "rank": 9,
+      "rank": 4,
+      "symbol": "9921",
+      "name": "巨大",
+      "stock_type": "成長動能股",
+      "risk_label": "🟢 低風險",
+      "target_weight": 3.86,
+      "target_value": 38583.0,
+      "lead_manager": "Growth",
+      "lead_manager_zh": "積極成長型",
+      "managers": [
+        {
+          "manager": "Growth",
+          "manager_zh": "積極成長型",
+          "weight": 3.86,
+          "bid": 64.8
+        }
+      ],
+      "verdict": "WARN",
+      "discipline_flags": [
+        "composite=0 < 50 + strictness=HIGH"
+      ]
+    },
+    {
+      "rank": 5,
+      "symbol": "8021",
+      "name": "尖點",
+      "stock_type": "成長動能股",
+      "risk_label": "⚪ 風險中性",
+      "target_weight": 3.84,
+      "target_value": 38404.0,
+      "lead_manager": "Growth",
+      "lead_manager_zh": "積極成長型",
+      "managers": [
+        {
+          "manager": "Growth",
+          "manager_zh": "積極成長型",
+          "weight": 3.84,
+          "bid": 64.5
+        }
+      ],
+      "verdict": "WARN",
+      "discipline_flags": [
+        "composite=0 < 50 + strictness=HIGH"
+      ]
+    },
+    {
+      "rank": 6,
       "symbol": "5434",
       "name": "崇越",
       "stock_type": "全能均優股",
       "risk_label": "🟢 低風險",
-      "target_weight": 0.91,
-      "target_value": 9057.0,
+      "target_weight": 3.81,
+      "target_value": 38075.0,
       "lead_manager": "Rotation",
       "lead_manager_zh": "相對輪動型",
       "managers": [
         {
           "manager": "Rotation",
           "manager_zh": "相對輪動型",
-          "weight": 0.48,
-          "bid": 63.9
+          "weight": 1.68,
+          "bid": 65.1
         },
         {
           "manager": "Balanced",
           "manager_zh": "核心配置型",
-          "weight": 0.43,
-          "bid": 68.3
+          "weight": 1.47,
+          "bid": 69.5
+        },
+        {
+          "manager": "Defensive",
+          "manager_zh": "防禦現金型",
+          "weight": 0.66,
+          "bid": 54.5
+        }
+      ],
+      "verdict": "WARN",
+      "discipline_flags": [
+        "composite=0 < 50 + strictness=HIGH"
+      ]
+    },
+    {
+      "rank": 7,
+      "symbol": "3026",
+      "name": "禾伸堂",
+      "stock_type": "成長動能股",
+      "risk_label": "—",
+      "target_weight": 3.75,
+      "target_value": 37511.0,
+      "lead_manager": "Growth",
+      "lead_manager_zh": "積極成長型",
+      "managers": [
+        {
+          "manager": "Growth",
+          "manager_zh": "積極成長型",
+          "weight": 3.75,
+          "bid": 63.0
+        }
+      ],
+      "verdict": "WARN",
+      "discipline_flags": [
+        "composite=0 < 50 + strictness=HIGH"
+      ]
+    },
+    {
+      "rank": 8,
+      "symbol": "6585",
+      "name": "鼎基",
+      "stock_type": "成長動能股",
+      "risk_label": "⚪ 風險中性",
+      "target_weight": 3.7,
+      "target_value": 36975.0,
+      "lead_manager": "Growth",
+      "lead_manager_zh": "積極成長型",
+      "managers": [
+        {
+          "manager": "Growth",
+          "manager_zh": "積極成長型",
+          "weight": 3.7,
+          "bid": 62.1
+        }
+      ],
+      "verdict": "WARN",
+      "discipline_flags": [
+        "composite=0 < 50 + strictness=HIGH"
+      ]
+    },
+    {
+      "rank": 9,
+      "symbol": "8926",
+      "name": "台汽電",
+      "stock_type": "結構趨勢股",
+      "risk_label": "⚪ 風險中性",
+      "target_weight": 3.25,
+      "target_value": 32469.0,
+      "lead_manager": "Trend",
+      "lead_manager_zh": "趨勢波段型",
+      "managers": [
+        {
+          "manager": "Trend",
+          "manager_zh": "趨勢波段型",
+          "weight": 3.25,
+          "bid": 62.5
         }
       ],
       "verdict": "WARN",
@@ -263,26 +245,20 @@
     },
     {
       "rank": 10,
-      "symbol": "8070",
-      "name": "長華*",
-      "stock_type": "全能均優股",
-      "risk_label": "🟢 低風險",
-      "target_weight": 0.9,
-      "target_value": 8979.0,
-      "lead_manager": "Rotation",
-      "lead_manager_zh": "相對輪動型",
+      "symbol": "2637",
+      "name": "慧洋-KY",
+      "stock_type": "結構趨勢股",
+      "risk_label": "—",
+      "target_weight": 3.2,
+      "target_value": 32002.0,
+      "lead_manager": "Trend",
+      "lead_manager_zh": "趨勢波段型",
       "managers": [
         {
-          "manager": "Rotation",
-          "manager_zh": "相對輪動型",
-          "weight": 0.49,
-          "bid": 65.7
-        },
-        {
-          "manager": "Balanced",
-          "manager_zh": "核心配置型",
-          "weight": 0.41,
-          "bid": 64.9
+          "manager": "Trend",
+          "manager_zh": "趨勢波段型",
+          "weight": 3.2,
+          "bid": 61.6
         }
       ],
       "verdict": "WARN",
@@ -292,20 +268,20 @@
     },
     {
       "rank": 11,
-      "symbol": "4923",
-      "name": "力士",
-      "stock_type": "全能均優股",
-      "risk_label": "⚪ 風險中性",
-      "target_weight": 0.48,
-      "target_value": 4849.0,
-      "lead_manager": "Rotation",
-      "lead_manager_zh": "相對輪動型",
+      "symbol": "6944",
+      "name": "兆聯實業",
+      "stock_type": "結構趨勢股",
+      "risk_label": "—",
+      "target_weight": 3.16,
+      "target_value": 31586.0,
+      "lead_manager": "Trend",
+      "lead_manager_zh": "趨勢波段型",
       "managers": [
         {
-          "manager": "Rotation",
-          "manager_zh": "相對輪動型",
-          "weight": 0.48,
-          "bid": 64.8
+          "manager": "Trend",
+          "manager_zh": "趨勢波段型",
+          "weight": 3.16,
+          "bid": 60.8
         }
       ],
       "verdict": "WARN",
@@ -315,20 +291,26 @@
     },
     {
       "rank": 12,
-      "symbol": "1303",
-      "name": "南亞",
-      "stock_type": "成長動能股",
+      "symbol": "5288",
+      "name": "豐祥-KY",
+      "stock_type": "全能均優股",
       "risk_label": "🟢 低風險",
-      "target_weight": 0.37,
-      "target_value": 3679.0,
-      "lead_manager": "Growth",
-      "lead_manager_zh": "積極成長型",
+      "target_weight": 3.16,
+      "target_value": 31556.0,
+      "lead_manager": "Rotation",
+      "lead_manager_zh": "相對輪動型",
       "managers": [
         {
-          "manager": "Growth",
-          "manager_zh": "積極成長型",
-          "weight": 0.37,
-          "bid": 67.5
+          "manager": "Rotation",
+          "manager_zh": "相對輪動型",
+          "weight": 1.71,
+          "bid": 65.9
+        },
+        {
+          "manager": "Balanced",
+          "manager_zh": "核心配置型",
+          "weight": 1.45,
+          "bid": 68.7
         }
       ],
       "verdict": "WARN",
@@ -338,20 +320,20 @@
     },
     {
       "rank": 13,
-      "symbol": "3026",
-      "name": "禾伸堂",
-      "stock_type": "成長動能股",
+      "symbol": "1723",
+      "name": "中碳",
+      "stock_type": "結構趨勢股",
       "risk_label": "⚪ 風險中性",
-      "target_weight": 0.36,
-      "target_value": 3619.0,
-      "lead_manager": "Growth",
-      "lead_manager_zh": "積極成長型",
+      "target_weight": 3.12,
+      "target_value": 31171.0,
+      "lead_manager": "Trend",
+      "lead_manager_zh": "趨勢波段型",
       "managers": [
         {
-          "manager": "Growth",
-          "manager_zh": "積極成長型",
-          "weight": 0.36,
-          "bid": 66.4
+          "manager": "Trend",
+          "manager_zh": "趨勢波段型",
+          "weight": 3.12,
+          "bid": 60.0
         }
       ],
       "verdict": "WARN",
@@ -361,20 +343,20 @@
     },
     {
       "rank": 14,
-      "symbol": "8112",
-      "name": "至上",
-      "stock_type": "成長動能股",
-      "risk_label": "🟢 低風險",
-      "target_weight": 0.35,
-      "target_value": 3532.0,
-      "lead_manager": "Growth",
-      "lead_manager_zh": "積極成長型",
+      "symbol": "6223",
+      "name": "旺矽",
+      "stock_type": "結構趨勢股",
+      "risk_label": "—",
+      "target_weight": 3.11,
+      "target_value": 31067.0,
+      "lead_manager": "Trend",
+      "lead_manager_zh": "趨勢波段型",
       "managers": [
         {
-          "manager": "Growth",
-          "manager_zh": "積極成長型",
-          "weight": 0.35,
-          "bid": 64.8
+          "manager": "Trend",
+          "manager_zh": "趨勢波段型",
+          "weight": 3.11,
+          "bid": 59.8
         }
       ],
       "verdict": "WARN",
@@ -384,20 +366,26 @@
     },
     {
       "rank": 15,
-      "symbol": "2882",
-      "name": "國泰金",
-      "stock_type": "成長動能股",
+      "symbol": "3152",
+      "name": "璟德",
+      "stock_type": "全能均優股",
       "risk_label": "⚪ 風險中性",
-      "target_weight": 0.35,
-      "target_value": 3455.0,
-      "lead_manager": "Growth",
-      "lead_manager_zh": "積極成長型",
+      "target_weight": 3.05,
+      "target_value": 30505.0,
+      "lead_manager": "Rotation",
+      "lead_manager_zh": "相對輪動型",
       "managers": [
         {
-          "manager": "Growth",
-          "manager_zh": "積極成長型",
-          "weight": 0.35,
-          "bid": 63.4
+          "manager": "Rotation",
+          "manager_zh": "相對輪動型",
+          "weight": 1.71,
+          "bid": 66.0
+        },
+        {
+          "manager": "Balanced",
+          "manager_zh": "核心配置型",
+          "weight": 1.34,
+          "bid": 63.6
         }
       ],
       "verdict": "WARN",
@@ -408,170 +396,99 @@
   ],
   "rebalance_review": [
     {
-      "action": "WAIT",
-      "symbol": "—",
-      "reason": "MS allow_new_position=False (phase=EARLY_BULL)",
-      "new_weight": 0,
+      "action": "BUY",
+      "symbol": "6223",
+      "name": "旺矽",
+      "reason": "趨勢波段型主買 結構趨勢股, rank=14",
+      "new_weight": 3.11,
       "verdict": "PASS",
       "flags": []
     },
     {
       "action": "BUY",
-      "symbol": "1303",
-      "name": "南亞",
-      "reason": "積極成長型主買 成長動能股, rank=12",
-      "new_weight": 0.37,
-      "verdict": "VETO",
-      "flags": [
-        "MS allow_new_position=False"
-      ]
-    },
-    {
-      "action": "BUY",
-      "symbol": "6121",
-      "name": "新普",
-      "reason": "相對輪動型主買 全能均優股, rank=7",
-      "new_weight": 0.93,
-      "verdict": "VETO",
-      "flags": [
-        "MS allow_new_position=False"
-      ]
-    },
-    {
-      "action": "BUY",
-      "symbol": "3026",
-      "name": "禾伸堂",
-      "reason": "積極成長型主買 成長動能股, rank=13",
-      "new_weight": 0.36,
-      "verdict": "VETO",
-      "flags": [
-        "MS allow_new_position=False"
-      ]
-    },
-    {
-      "action": "BUY",
-      "symbol": "8070",
-      "name": "長華*",
-      "reason": "相對輪動型主買 全能均優股, rank=10",
-      "new_weight": 0.9,
-      "verdict": "VETO",
-      "flags": [
-        "MS allow_new_position=False"
-      ]
-    },
-    {
-      "action": "BUY",
-      "symbol": "5434",
-      "name": "崇越",
-      "reason": "相對輪動型主買 全能均優股, rank=9",
-      "new_weight": 0.91,
-      "verdict": "VETO",
-      "flags": [
-        "MS allow_new_position=False"
-      ]
-    },
-    {
-      "action": "BUY",
-      "symbol": "2882",
-      "name": "國泰金",
-      "reason": "積極成長型主買 成長動能股, rank=15",
-      "new_weight": 0.35,
-      "verdict": "VETO",
-      "flags": [
-        "MS allow_new_position=False"
-      ]
-    },
-    {
-      "action": "BUY",
-      "symbol": "4923",
-      "name": "力士",
-      "reason": "相對輪動型主買 全能均優股, rank=11",
-      "new_weight": 0.48,
-      "verdict": "VETO",
-      "flags": [
-        "MS allow_new_position=False"
-      ]
-    },
-    {
-      "action": "BUY",
-      "symbol": "5288",
-      "name": "豐祥-KY",
-      "reason": "相對輪動型主買 全能均優股, rank=8",
-      "new_weight": 0.92,
-      "verdict": "VETO",
-      "flags": [
-        "MS allow_new_position=False"
-      ]
-    },
-    {
-      "action": "BUY",
-      "symbol": "8112",
-      "name": "至上",
-      "reason": "積極成長型主買 成長動能股, rank=14",
-      "new_weight": 0.35,
-      "verdict": "VETO",
-      "flags": [
-        "MS allow_new_position=False"
-      ]
-    },
-    {
-      "action": "SELL",
-      "symbol": "2461",
-      "name": "光群雷",
-      "reason": "無經理填倉 / 跌出 Top 15",
-      "new_weight": 0,
+      "symbol": "9921",
+      "name": "巨大",
+      "reason": "積極成長型主買 成長動能股, rank=4",
+      "new_weight": 3.86,
       "verdict": "PASS",
       "flags": []
     },
     {
-      "action": "SELL",
-      "symbol": "2801",
-      "name": "彰銀",
-      "reason": "無經理填倉 / 跌出 Top 15",
-      "new_weight": 0,
+      "action": "BUY",
+      "symbol": "1723",
+      "name": "中碳",
+      "reason": "趨勢波段型主買 結構趨勢股, rank=13",
+      "new_weight": 3.12,
       "verdict": "PASS",
       "flags": []
     },
     {
-      "action": "SELL",
-      "symbol": "5876",
-      "name": "上海商銀",
-      "reason": "無經理填倉 / 跌出 Top 15",
-      "new_weight": 0,
+      "action": "BUY",
+      "symbol": "6585",
+      "name": "鼎基",
+      "reason": "積極成長型主買 成長動能股, rank=8",
+      "new_weight": 3.7,
       "verdict": "PASS",
       "flags": []
     },
     {
-      "action": "SELL",
-      "symbol": "5536",
-      "name": "聖暉*",
-      "reason": "無經理填倉 / 跌出 Top 15",
-      "new_weight": 0,
-      "verdict": "PASS",
-      "flags": []
-    },
-    {
-      "action": "SELL",
-      "symbol": "1904",
-      "name": "正隆",
-      "reason": "無經理填倉 / 跌出 Top 15",
-      "new_weight": 0,
-      "verdict": "PASS",
-      "flags": []
-    },
-    {
-      "action": "SELL",
-      "symbol": "3624",
-      "name": "光頡",
-      "reason": "無經理填倉 / 跌出 Top 15",
-      "new_weight": 0,
-      "verdict": "PASS",
-      "flags": []
-    },
-    {
-      "action": "SELL",
+      "action": "BUY",
       "symbol": "6944",
       "name": "兆聯實業",
+      "reason": "趨勢波段型主買 結構趨勢股, rank=11",
+      "new_weight": 3.16,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "BUY",
+      "symbol": "2492",
+      "name": "華新科",
+      "reason": "積極成長型主買 成長動能股, rank=3",
+      "new_weight": 3.96,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "BUY",
+      "symbol": "8926",
+      "name": "台汽電",
+      "reason": "趨勢波段型主買 結構趨勢股, rank=9",
+      "new_weight": 3.25,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "BUY",
+      "symbol": "8021",
+      "name": "尖點",
+      "reason": "積極成長型主買 成長動能股, rank=5",
+      "new_weight": 3.84,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "BUY",
+      "symbol": "3152",
+      "name": "璟德",
+      "reason": "相對輪動型主買 全能均優股, rank=15",
+      "new_weight": 3.05,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "BUY",
+      "symbol": "2891",
+      "name": "中信金",
+      "reason": "趨勢波段型主買 結構趨勢股, rank=1",
+      "new_weight": 4.52,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "SELL",
+      "symbol": "8112",
+      "name": "至上",
       "reason": "無經理填倉 / 跌出 Top 15",
       "new_weight": 0,
       "verdict": "PASS",
@@ -579,8 +496,80 @@
     },
     {
       "action": "SELL",
-      "symbol": "5871",
-      "name": "中租-KY",
+      "symbol": "2031",
+      "name": "新光鋼",
+      "reason": "無經理填倉 / 跌出 Top 15",
+      "new_weight": 0,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "SELL",
+      "symbol": "1301",
+      "name": "台塑",
+      "reason": "無經理填倉 / 跌出 Top 15",
+      "new_weight": 0,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "SELL",
+      "symbol": "2603",
+      "name": "長榮",
+      "reason": "無經理填倉 / 跌出 Top 15",
+      "new_weight": 0,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "SELL",
+      "symbol": "4923",
+      "name": "力士",
+      "reason": "無經理填倉 / 跌出 Top 15",
+      "new_weight": 0,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "SELL",
+      "symbol": "2882",
+      "name": "國泰金",
+      "reason": "無經理填倉 / 跌出 Top 15",
+      "new_weight": 0,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "SELL",
+      "symbol": "6121",
+      "name": "新普",
+      "reason": "無經理填倉 / 跌出 Top 15",
+      "new_weight": 0,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "SELL",
+      "symbol": "2890",
+      "name": "永豐金",
+      "reason": "無經理填倉 / 跌出 Top 15",
+      "new_weight": 0,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "SELL",
+      "symbol": "2609",
+      "name": "陽明",
+      "reason": "無經理填倉 / 跌出 Top 15",
+      "new_weight": 0,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "SELL",
+      "symbol": "8070",
+      "name": "長華*",
       "reason": "無經理填倉 / 跌出 Top 15",
       "new_weight": 0,
       "verdict": "PASS",
@@ -588,73 +577,53 @@
     },
     {
       "action": "ADD",
-      "symbol": "1301",
-      "name": "台塑",
-      "reason": "防禦現金型 配置 1.8% → 2.5%",
-      "new_weight": 2.49,
-      "weight_diff": 0.7,
-      "verdict": "VETO",
-      "flags": [
-        "MS allow_add_position=False"
-      ]
+      "symbol": "3026",
+      "name": "禾伸堂",
+      "reason": "積極成長型 配置 0.4% → 3.8%",
+      "new_weight": 3.75,
+      "weight_diff": 3.39,
+      "verdict": "PASS",
+      "flags": []
     },
     {
       "action": "ADD",
-      "symbol": "2031",
-      "name": "新光鋼",
-      "reason": "防禦現金型 配置 1.1% → 1.8%",
-      "new_weight": 1.79,
-      "weight_diff": 0.73,
-      "verdict": "VETO",
-      "flags": [
-        "MS allow_add_position=False"
-      ]
+      "symbol": "5434",
+      "name": "崇越",
+      "reason": "相對輪動型 配置 0.9% → 3.8%",
+      "new_weight": 3.81,
+      "weight_diff": 2.9,
+      "verdict": "PASS",
+      "flags": []
+    },
+    {
+      "action": "ADD",
+      "symbol": "5288",
+      "name": "豐祥-KY",
+      "reason": "相對輪動型 配置 0.9% → 3.2%",
+      "new_weight": 3.16,
+      "weight_diff": 2.24,
+      "verdict": "PASS",
+      "flags": []
     },
     {
       "action": "ADD",
       "symbol": "2637",
       "name": "慧洋-KY",
-      "reason": "防禦現金型 配置 1.0% → 2.6%",
-      "new_weight": 2.65,
-      "weight_diff": 1.62,
-      "verdict": "VETO",
-      "flags": [
-        "MS allow_add_position=False"
-      ]
-    },
-    {
-      "action": "HOLD",
-      "symbol": "2609",
-      "name": "陽明",
-      "reason": "防禦現金型 配置 1.6% → 1.8%",
-      "new_weight": 1.79,
-      "weight_diff": 0.18,
+      "reason": "趨勢波段型 配置 2.6% → 3.2%",
+      "new_weight": 3.2,
+      "weight_diff": 0.55,
       "verdict": "PASS",
       "flags": []
     },
     {
       "action": "ADD",
-      "symbol": "2603",
-      "name": "長榮",
-      "reason": "防禦現金型 配置 0.9% → 1.6%",
-      "new_weight": 1.55,
-      "weight_diff": 0.63,
-      "verdict": "VETO",
-      "flags": [
-        "MS allow_add_position=False"
-      ]
-    },
-    {
-      "action": "ADD",
-      "symbol": "2890",
-      "name": "永豐金",
-      "reason": "防禦現金型 配置 0.9% → 1.6%",
-      "new_weight": 1.55,
-      "weight_diff": 0.63,
-      "verdict": "VETO",
-      "flags": [
-        "MS allow_add_position=False"
-      ]
+      "symbol": "1303",
+      "name": "南亞",
+      "reason": "積極成長型 配置 0.4% → 4.0%",
+      "new_weight": 4.01,
+      "weight_diff": 3.64,
+      "verdict": "PASS",
+      "flags": []
     }
   ],
   "summary": {
@@ -662,9 +631,9 @@
     "n_pass": 0,
     "n_warn": 15,
     "n_veto": 0,
-    "n_action_veto": 14
+    "n_action_veto": 0
   },
   "as_of": "2026-06-15",
-  "generated_at": "2026-06-15T14:49:53",
+  "generated_at": "2026-06-15T15:29:42",
   "available": true
 }
