@@ -1,6 +1,79 @@
-<!DOCTYPE html><html lang='zh-Hant'><head>
+<!doctype html><html lang="zh-Hant"><head>
 <link rel="stylesheet" href="../assets/site.css?v=bdcde63b">
-<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=bdcde63b"><meta charset='utf-8'><title>Custom PM — 自選股基金經理人</title><meta name='viewport' content='width=device-width,initial-scale=1'></head><body>
+<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=bdcde63b"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>個股 日K+週K 技術頁 總覽</title><style>
+/* === Chart interaction lock (chart_buttons.py) === */
+/* 鎖定 plotly 觸控：保留 tap，禁用 pinch & pan */
+.plotly-graph-div, .js-plotly-plot {
+  touch-action: manipulation !important;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Toolbar 樣式 */
+.chart-toolbar {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 6px 8px;
+  background: var(--th-card,#0f1a2c);
+  border: 1px solid var(--th-border,#2d3f55);
+  border-radius: 6px;
+  margin: -8px 0 14px;
+  font-family: "Microsoft JhengHei", sans-serif;
+}
+.chart-toolbar button {
+  background: var(--th-card,#1e293b);
+  color: var(--th-text2,#cbd5e1);
+  border: 1px solid var(--th-border2,#334155);
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  min-height: 30px;
+  min-width: 36px;
+}
+.chart-toolbar button:hover {
+  border-color: #3b82f6;
+  color: var(--th-blue,#93c5fd);
+}
+.chart-toolbar button:active {
+  transform: scale(0.95);
+  background: var(--th-card,#0f1a2c);
+}
+/* 篩選按鈕 active 高亮（RRG 4 象限切換） */
+.chart-toolbar button.active {
+  background: var(--th-blue-bg,#1e3a5f);
+  color: var(--th-blue,#93c5fd);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6 inset;
+}
+/* 4 象限色彩標記 */
+.chart-toolbar button.q-leading.active   { background:var(--th-green-bg,#064e3b); color:var(--th-green,#6ee7b7); border-color:#10b981; box-shadow:0 0 0 1px #10b981 inset; }
+.chart-toolbar button.q-improving.active { background:var(--th-blue-bg,#0f2a44); color:var(--th-blue,#93c5fd); border-color:#60a5fa; box-shadow:0 0 0 1px #60a5fa inset; }
+.chart-toolbar button.q-weakening.active { background:var(--th-amber-bg,#3a1c08); color:var(--th-amber,#fcd34d); border-color:#fb923c; box-shadow:0 0 0 1px #fb923c inset; }
+.chart-toolbar button.q-lagging.active   { background:var(--th-red-bg,#3f0d1a); color:var(--th-red,#fda4af); border-color:#fda4af; box-shadow:0 0 0 1px #fda4af inset; }
+.chart-toolbar .sep {
+  width: 1px;
+  background: var(--th-hover,#334155);
+  margin: 2px 4px;
+  align-self: stretch;
+}
+.chart-toolbar .lbl {
+  color: var(--th-faint,#64748b);
+  font-size: 11px;
+  padding: 4px 4px;
+  align-self: center;
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .chart-toolbar { padding: 4px 6px; gap: 3px; }
+  .chart-toolbar button { padding: 5px 8px; font-size: 11px; min-width: 32px; }
+  .chart-toolbar .lbl { display: none; }
+  .chart-toolbar .sep { margin: 2px 2px; }
+}.dwk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-top:10px}</style></head><body>
 <div class="theme-switch" title="切換視覺風格"><select id="ms-theme-sel" aria-label="主題"><option value="auto">🌈 每日輪播 (自動)</option><option value="theme-classic.css">經典</option><option value="theme-light.css">研究報告 ☀</option><option value="theme-dark.css">終端 ☾</option><option value="theme-red.css">🔴 紅 (週日)</option><option value="theme-orange.css">🟠 橙 (週一)</option><option value="theme-yellow.css">🟡 黃 (週二)</option><option value="theme-green.css">🟢 綠 (週三)</option><option value="theme-blue.css">🔵 藍 (週四)</option><option value="theme-indigo.css">🟣 靛 (週五)</option><option value="theme-violet.css">🟪 紫 (週六)</option></select></div><script>(function(){var L=document.getElementById("ms-theme-css"),S=document.getElementById("ms-theme-sel");if(!L||!S)return;var q="?v=bdcde63b",b="../assets/";var DAY=["theme-red.css","theme-orange.css","theme-yellow.css","theme-green.css","theme-blue.css","theme-indigo.css","theme-violet.css"];function dayT(){return DAY[(new Date()).getDay()];}function ap(v){var t=(v==="auto")?dayT():v;L.setAttribute("href",b+t+q);}var sv=null;try{sv=localStorage.getItem("ms_theme");}catch(e){}if(!sv)sv="auto";ap(sv);S.value=sv;S.addEventListener("change",function(){ap(S.value);try{localStorage.setItem("ms_theme",S.value);}catch(e){}});})();</script>
 <!-- GLOBAL_NAV_START -->
 <nav class="gnav" id="gnav">
@@ -44,4 +117,4 @@
 </script>
 <!-- GLOBAL_NAV_END -->
 
-<h1 class="page-title">⭐ Custom PM · 自選股基金經理人</h1><div class="page-meta">資料日 <strong>2026-06-15</strong> ｜ <a href='../index.html'>← 回主頁</a></div><div class="card"><span class="text-warn">投資哲學</span><div>高信念配置 + 全方位評估 (High-Conviction Bespoke Investing)</div><div class="note">Universe: <strong class="value">custom_pool (使用者自選)</strong> · 不限風格 (配對 / 趨勢 / 價值 / 轉機皆可) · 全方位評估</div></div><div class="card"><div class="section-head">📊 MS 指引 + Sleeve 配置</div><div class="banner__row"><div class="metric"><span class="metric__label">Market Phase</span><span class="metric__value">EARLY_BULL</span></div><div class="metric"><span class="metric__label">Phase Multiplier</span><span class="metric__value">×1.0</span></div><div class="metric"><span class="metric__label">Sleeve 配額</span><span class="metric__value">45%</span></div><div class="metric"><span class="metric__label">單股上限</span><span class="metric__value">20.0%</span></div><div class="metric"><span class="metric__label">允許新加倉</span><span class="metric__value">✗</span></div></div></div><div class="section-head">🎯 目標持倉 (點 🔗 跳該股 Dossier)</div><div class="note">共 0 檔 · 總配重 0% · Sleeve 使用率 0.0% · 平均 CS = 0</div><table class="data-table"><thead><tr><th>#</th><th>標的</th><th>CS Score</th><th>權重</th><th>金額</th><th>主導名人</th><th>Composite Tier</th><th>IUE Lifecycle</th></tr></thead><tbody><tr><td colspan="8">無</td></tr></tbody></table><div class="section-head">📋 評分明細 (CS = composite×0.40 + IUE×0.30 + structure×0.20 + chip×0.10)</div><table class="data-table"><thead><tr><th>標的</th><th>CS</th><th>Base</th><th>Composite</th><th>IUE Att</th><th>Struct</th><th>Chip</th><th>Top Master</th></tr></thead><tbody><tr><td><a href="../dossier/2408.html"><strong>2408</strong> 南亞科 🔗</a></td><td class="text-right"><strong><span class="text-bull">90.6</span></strong></td><td class="text-right">76.6</td><td class="text-right">50</td><td class="text-right">100</td><td class="text-right">100</td><td class="text-right">68</td><td>ONeil</td></tr><tr><td><a href="../dossier/2344.html"><strong>2344</strong> 華邦電 🔗</a></td><td class="text-right"><strong><span class="text-bull">74.3</span></strong></td><td class="text-right">72.8</td><td class="text-right">51</td><td class="text-right">84</td><td class="text-right">100</td><td class="text-right">72</td><td>ONeil</td></tr><tr><td><a href="../dossier/8046.html"><strong>8046</strong> 南電 🔗</a></td><td class="text-right"><strong><span class="text-bull">72.6</span></strong></td><td class="text-right">58.6</td><td class="text-right">43</td><td class="text-right">52</td><td class="text-right">100</td><td class="text-right">58</td><td>ONeil</td></tr><tr><td><a href="../dossier/3037.html"><strong>3037</strong> 欣興 🔗</a></td><td class="text-right"><strong><span class="text-warn">62.3</span></strong></td><td class="text-right">64.8</td><td class="text-right">45</td><td class="text-right">72</td><td class="text-right">100</td><td class="text-right">53</td><td>ONeil</td></tr><tr><td><a href="../dossier/4576.html"><strong>4576</strong> 大銀微系統 🔗</a></td><td class="text-right"><strong><span class="text-warn">56.1</span></strong></td><td class="text-right">58.6</td><td class="text-right">44</td><td class="text-right">51</td><td class="text-right">100</td><td class="text-right">57</td><td>ONeil</td></tr><tr><td><a href="../dossier/2049.html"><strong>2049</strong> 上銀 🔗</a></td><td class="text-right"><strong><span class="text-orange">53.4</span></strong></td><td class="text-right">57.4</td><td class="text-right">43</td><td class="text-right">50</td><td class="text-right">100</td><td class="text-right">50</td><td>ONeil</td></tr><tr><td><a href="../dossier/3006.html"><strong>3006</strong> 晶豪科 🔗</a></td><td class="text-right"><strong><span class="text-orange">42.3</span></strong></td><td class="text-right">45.8</td><td class="text-right">45</td><td class="text-right">40</td><td class="text-right">56</td><td class="text-right">46</td><td>ONeil</td></tr><tr><td><a href="../dossier/9921.html"><strong>9921</strong> 巨大 🔗</a></td><td class="text-right"><strong><span class="text-muted">38.1</span></strong></td><td class="text-right">34.6</td><td class="text-right">38</td><td class="text-right">34</td><td class="text-right">22</td><td class="text-right">49</td><td>ONeil</td></tr><tr><td><a href="../dossier/9914.html"><strong>9914</strong> 美利達 🔗</a></td><td class="text-right"><strong><span class="text-muted">30.9</span></strong></td><td class="text-right">30.9</td><td class="text-right">39</td><td class="text-right">30</td><td class="text-right">10</td><td class="text-right">42</td><td>ONeil</td></tr><tr><td><a href="../dossier/3035.html"><strong>3035</strong> 智原 🔗</a></td><td class="text-right"><strong><span class="text-muted">23.9</span></strong></td><td class="text-right">35.4</td><td class="text-right">37</td><td class="text-right">35</td><td class="text-right">25</td><td class="text-right">50</td><td>ONeil</td></tr></tbody></table><footer class="page-footer">V.2 Phase K-Custom · Custom PM · as_of=2026-06-15</footer></body></html>
+<a class="back-link" href="../index.html">← 返回主頁</a><div class="card" style="max-width:1120px;margin:12px auto"><div class="card-title">📈 個股 日K+週K 技術頁（自選股池）</div><div class="page-meta">每檔含 日K(上)/週K(下) 同步 + 6 副圖(量／三大法人／融資／本益比PER) + 十字游標3列資訊 + 分價量／扣抵／SH·SL／箱壓撐 + 體質 banner</div><div class="dwk-grid"><a class="info-card" href="daily_weekly_8046.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">南電 <span style="color:var(--th-faint,#94a3b8);font-size:14px">8046</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_3037.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">欣興 <span style="color:var(--th-faint,#94a3b8);font-size:14px">3037</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_2344.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">華邦電 <span style="color:var(--th-faint,#94a3b8);font-size:14px">2344</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_2408.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">南亞科 <span style="color:var(--th-faint,#94a3b8);font-size:14px">2408</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_9921.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">巨大 <span style="color:var(--th-faint,#94a3b8);font-size:14px">9921</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_9914.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">美利達 <span style="color:var(--th-faint,#94a3b8);font-size:14px">9914</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_4576.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">大銀微系統 <span style="color:var(--th-faint,#94a3b8);font-size:14px">4576</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_3035.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">智原 <span style="color:var(--th-faint,#94a3b8);font-size:14px">3035</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_2049.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">上銀 <span style="color:var(--th-faint,#94a3b8);font-size:14px">2049</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_3006.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">晶豪科 <span style="color:var(--th-faint,#94a3b8);font-size:14px">3006</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a></div></div></body></html>
