@@ -30,28 +30,28 @@
       "自營台指期：未平倉 +0 口（自營淨多 < 8000）；趨勢 5d 均略高於 20d 均",
       "大盤法人現貨：外資+投信 5日 -2655 億（外資+投信 5日淨賣 ≥ 500 億）；近5日轉賣 (5d均<20d均)",
       "散戶融資：大盤融資 20日 -0.5%（微減）；大盤券資比 2.43%",
-      "Z-score 模型：foreign_pressure=-1.08、etf_support=-0.34、市場結構分=+0.74（mild_bull）；RR 動態 Z 門檻=2.0"
+      "Z-score 模型：foreign_pressure=-1.37、etf_support=-0.33、市場結構分=+1.04（strong_bull）；RR 動態 Z 門檻=2.5"
     ],
     "allowed_action": "normal",
-    "foreign_pressure_score": -1.077,
-    "etf_support_score": -0.339,
-    "market_structure_score": 0.739,
-    "regime": "mild_bull",
-    "dynamic_z_threshold": 2.0,
+    "foreign_pressure_score": -1.374,
+    "etf_support_score": -0.332,
+    "market_structure_score": 1.041,
+    "regime": "strong_bull",
+    "dynamic_z_threshold": 2.5,
     "taiex_above_wma20": true,
     "z_subscores": {
-      "Z_foreign_spot": null,
+      "Z_foreign_spot": 0.988,
       "Z_foreign_fut": 3.358,
       "Z_usdtwd": -0.348,
       "Z_sox": null,
-      "Z_trust": null,
+      "Z_trust": 0.017,
       "Z_hidiv_vol": null,
       "Z_mkt_dd_narrow": -1.693,
       "Z_etf_holder": null
     },
     "raw_values": {
-      "foreign_spot_billion": null,
-      "trust_billion": null,
+      "foreign_spot_billion": 492.9,
+      "trust_billion": 61.5,
       "foreign_fut_net_oi": 0,
       "foreign_opt_pcr_net": 0.0,
       "usdtwd": 31.544,
@@ -10491,87 +10491,28 @@
   "chips": {
     "3231": {
       "symbol": "3231",
-      "chip_score": 40,
+      "chip_score": 44,
       "foreign_score": 50,
       "investment_trust_score": 25,
-      "dealer_score": 40,
+      "dealer_score": 55,
       "main_force_score": 50,
       "warning": [
-        "投信佔量比 5d=-3.83%（持續賣超）"
+        "投信佔量比 5d=-4.27%（持續賣超）"
       ],
       "status": "warning",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": -0.1326,
-        "foreign_pct_20d": 0.0652,
-        "trust_pct_5d": -0.0383,
-        "dealer_pct_5d": -0.0076,
+        "foreign_pct_5d": -0.1712,
+        "foreign_pct_20d": 0.0637,
+        "trust_pct_5d": -0.0427,
+        "dealer_pct_5d": -0.0017,
         "rows_used": 20
       }
     },
     "2615": {
       "symbol": "2615",
-      "chip_score": 72,
-      "foreign_score": 90,
-      "investment_trust_score": 55,
-      "dealer_score": 55,
-      "main_force_score": 50,
-      "warning": [],
-      "status": "support",
-      "stubbed": false,
-      "details": {
-        "foreign_pct_5d": 0.0935,
-        "foreign_pct_20d": 0.1545,
-        "trust_pct_5d": -0.0012,
-        "dealer_pct_5d": 0.0043,
-        "rows_used": 20
-      }
-    },
-    "3324": {
-      "symbol": "3324",
-      "chip_score": 40,
-      "foreign_score": 37,
-      "investment_trust_score": 55,
-      "dealer_score": 25,
-      "main_force_score": 50,
-      "warning": [
-        "自營佔量比 5d=-2.06%（持續賣超）"
-      ],
-      "status": "warning",
-      "stubbed": false,
-      "details": {
-        "foreign_pct_5d": -0.1259,
-        "foreign_pct_20d": 0.0199,
-        "trust_pct_5d": 0.0007,
-        "dealer_pct_5d": -0.0206,
-        "rows_used": 20
-      }
-    },
-    "2603": {
-      "symbol": "2603",
-      "chip_score": 23,
-      "foreign_score": 10,
-      "investment_trust_score": 10,
-      "dealer_score": 75,
-      "main_force_score": 50,
-      "warning": [
-        "外資佔量比 5d=-9.42% / 20d=-10.30%（持續賣超）",
-        "投信佔量比 5d=-7.70%（持續賣超）"
-      ],
-      "status": "reject",
-      "stubbed": false,
-      "details": {
-        "foreign_pct_5d": -0.0942,
-        "foreign_pct_20d": -0.103,
-        "trust_pct_5d": -0.077,
-        "dealer_pct_5d": 0.0412,
-        "rows_used": 20
-      }
-    },
-    "3504": {
-      "symbol": "3504",
-      "chip_score": 58,
-      "foreign_score": 60,
+      "chip_score": 66,
+      "foreign_score": 77,
       "investment_trust_score": 55,
       "dealer_score": 55,
       "main_force_score": 50,
@@ -10579,10 +10520,67 @@
       "status": "neutral",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": 0.0048,
-        "foreign_pct_20d": 0.0124,
+        "foreign_pct_5d": 0.008,
+        "foreign_pct_20d": 0.1168,
+        "trust_pct_5d": -0.0013,
+        "dealer_pct_5d": 0.0035,
+        "rows_used": 20
+      }
+    },
+    "3324": {
+      "symbol": "3324",
+      "chip_score": 43,
+      "foreign_score": 37,
+      "investment_trust_score": 55,
+      "dealer_score": 40,
+      "main_force_score": 50,
+      "warning": [],
+      "status": "warning",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": -0.1268,
+        "foreign_pct_20d": 0.0194,
+        "trust_pct_5d": 0.0001,
+        "dealer_pct_5d": -0.0162,
+        "rows_used": 20
+      }
+    },
+    "2603": {
+      "symbol": "2603",
+      "chip_score": 28,
+      "foreign_score": 10,
+      "investment_trust_score": 25,
+      "dealer_score": 75,
+      "main_force_score": 50,
+      "warning": [
+        "外資佔量比 5d=-12.23% / 20d=-9.02%（持續賣超）",
+        "投信佔量比 5d=-4.06%（持續賣超）"
+      ],
+      "status": "warning",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": -0.1223,
+        "foreign_pct_20d": -0.0902,
+        "trust_pct_5d": -0.0406,
+        "dealer_pct_5d": 0.0362,
+        "rows_used": 20
+      }
+    },
+    "3504": {
+      "symbol": "3504",
+      "chip_score": 68,
+      "foreign_score": 82,
+      "investment_trust_score": 55,
+      "dealer_score": 55,
+      "main_force_score": 50,
+      "warning": [],
+      "status": "neutral",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": 0.0668,
+        "foreign_pct_20d": 0.0291,
         "trust_pct_5d": 0.0,
-        "dealer_pct_5d": -0.0009,
+        "dealer_pct_5d": 0.001,
         "rows_used": 20
       }
     },
@@ -10594,33 +10592,33 @@
       "dealer_score": 55,
       "main_force_score": 50,
       "warning": [
-        "外資佔量比 5d=-23.85% / 20d=-14.21%（持續賣超）"
+        "外資佔量比 5d=-11.29% / 20d=-11.68%（持續賣超）"
       ],
       "status": "warning",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": -0.2385,
-        "foreign_pct_20d": -0.1421,
-        "trust_pct_5d": 0.0177,
-        "dealer_pct_5d": 0.0024,
+        "foreign_pct_5d": -0.1129,
+        "foreign_pct_20d": -0.1168,
+        "trust_pct_5d": 0.0166,
+        "dealer_pct_5d": 0.0044,
         "rows_used": 20
       }
     },
     "2356": {
       "symbol": "2356",
-      "chip_score": 40,
+      "chip_score": 44,
       "foreign_score": 32,
       "investment_trust_score": 55,
-      "dealer_score": 40,
+      "dealer_score": 55,
       "main_force_score": 50,
       "warning": [],
       "status": "warning",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": -0.0305,
-        "foreign_pct_20d": -0.0152,
-        "trust_pct_5d": 0.0003,
-        "dealer_pct_5d": -0.0058,
+        "foreign_pct_5d": -0.027,
+        "foreign_pct_20d": -0.0167,
+        "trust_pct_5d": -0.0009,
+        "dealer_pct_5d": 0.0003,
         "rows_used": 20
       }
     },
@@ -10632,15 +10630,15 @@
       "dealer_score": 40,
       "main_force_score": 50,
       "warning": [
-        "外資佔量比 5d=-29.11% / 20d=-15.46%（持續賣超）"
+        "外資佔量比 5d=-25.35% / 20d=-17.11%（持續賣超）"
       ],
       "status": "warning",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": -0.2911,
-        "foreign_pct_20d": -0.1546,
-        "trust_pct_5d": 0.3021,
-        "dealer_pct_5d": -0.0099,
+        "foreign_pct_5d": -0.2535,
+        "foreign_pct_20d": -0.1711,
+        "trust_pct_5d": 0.2739,
+        "dealer_pct_5d": -0.0089,
         "rows_used": 20
       }
     },
@@ -10652,15 +10650,15 @@
       "dealer_score": 25,
       "main_force_score": 50,
       "warning": [
-        "自營佔量比 5d=-3.55%（持續賣超）"
+        "自營佔量比 5d=-2.51%（持續賣超）"
       ],
       "status": "warning",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": -0.0199,
-        "foreign_pct_20d": -0.0268,
-        "trust_pct_5d": -0.0002,
-        "dealer_pct_5d": -0.0355,
+        "foreign_pct_5d": -0.0243,
+        "foreign_pct_20d": -0.0193,
+        "trust_pct_5d": -0.0003,
+        "dealer_pct_5d": -0.0251,
         "rows_used": 20
       }
     },
@@ -10675,35 +10673,35 @@
       "status": "neutral",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": -0.1812,
-        "foreign_pct_20d": 0.0914,
+        "foreign_pct_5d": -0.125,
+        "foreign_pct_20d": 0.0963,
         "trust_pct_5d": -0.0002,
-        "dealer_pct_5d": -0.0167,
+        "dealer_pct_5d": -0.0058,
         "rows_used": 20
       }
     },
     "2376": {
       "symbol": "2376",
-      "chip_score": 58,
-      "foreign_score": 60,
+      "chip_score": 46,
+      "foreign_score": 32,
       "investment_trust_score": 65,
-      "dealer_score": 40,
+      "dealer_score": 55,
       "main_force_score": 50,
       "warning": [],
       "status": "neutral",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": 0.0077,
-        "foreign_pct_20d": -0.0038,
-        "trust_pct_5d": 0.0121,
-        "dealer_pct_5d": -0.0177,
+        "foreign_pct_5d": -0.0244,
+        "foreign_pct_20d": -0.0054,
+        "trust_pct_5d": 0.0155,
+        "dealer_pct_5d": -0.0032,
         "rows_used": 20
       }
     },
     "4906": {
       "symbol": "4906",
-      "chip_score": 58,
-      "foreign_score": 60,
+      "chip_score": 54,
+      "foreign_score": 52,
       "investment_trust_score": 55,
       "dealer_score": 55,
       "main_force_score": 50,
@@ -10711,28 +10709,28 @@
       "status": "neutral",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": 0.0001,
-        "foreign_pct_20d": 0.0115,
+        "foreign_pct_5d": -0.0151,
+        "foreign_pct_20d": 0.0155,
         "trust_pct_5d": -0.0002,
-        "dealer_pct_5d": -0.0027,
+        "dealer_pct_5d": 0.0,
         "rows_used": 20
       }
     },
     "8046": {
       "symbol": "8046",
-      "chip_score": 66,
-      "foreign_score": 70,
-      "investment_trust_score": 65,
+      "chip_score": 68,
+      "foreign_score": 82,
+      "investment_trust_score": 55,
       "dealer_score": 55,
       "main_force_score": 50,
       "warning": [],
       "status": "neutral",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": 0.0103,
-        "foreign_pct_20d": 0.0319,
-        "trust_pct_5d": 0.0125,
-        "dealer_pct_5d": 0.0008,
+        "foreign_pct_5d": 0.0525,
+        "foreign_pct_20d": 0.0425,
+        "trust_pct_5d": 0.0037,
+        "dealer_pct_5d": -0.001,
         "rows_used": 20
       }
     },
@@ -10744,127 +10742,128 @@
       "dealer_score": 55,
       "main_force_score": 50,
       "warning": [
-        "外資佔量比 5d=-23.05% / 20d=-22.04%（持續賣超）"
+        "外資佔量比 5d=-21.43% / 20d=-21.73%（持續賣超）"
       ],
       "status": "warning",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": -0.2305,
-        "foreign_pct_20d": -0.2204,
-        "trust_pct_5d": 0.3162,
-        "dealer_pct_5d": -0.0015,
+        "foreign_pct_5d": -0.2143,
+        "foreign_pct_20d": -0.2173,
+        "trust_pct_5d": 0.2934,
+        "dealer_pct_5d": 0.0019,
         "rows_used": 20
       }
     },
     "3260": {
       "symbol": "3260",
-      "chip_score": 28,
-      "foreign_score": 17,
+      "chip_score": 43,
+      "foreign_score": 40,
       "investment_trust_score": 40,
-      "dealer_score": 40,
+      "dealer_score": 55,
       "main_force_score": 50,
-      "warning": [
-        "外資佔量比 5d=-10.98% / 20d=-2.10%（持續賣超）"
-      ],
+      "warning": [],
       "status": "warning",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": -0.1098,
-        "foreign_pct_20d": -0.021,
-        "trust_pct_5d": -0.0089,
-        "dealer_pct_5d": -0.0115,
+        "foreign_pct_5d": -0.0127,
+        "foreign_pct_20d": -0.0067,
+        "trust_pct_5d": -0.0088,
+        "dealer_pct_5d": -0.0036,
         "rows_used": 20
       }
     },
     "3711": {
       "symbol": "3711",
-      "chip_score": 38,
+      "chip_score": 29,
       "foreign_score": 17,
-      "investment_trust_score": 55,
+      "investment_trust_score": 25,
       "dealer_score": 65,
       "main_force_score": 50,
       "warning": [
-        "外資佔量比 5d=-14.26% / 20d=-4.75%（持續賣超）"
+        "外資佔量比 5d=-8.82% / 20d=-3.25%（持續賣超）",
+        "投信佔量比 5d=-3.68%（持續賣超）"
       ],
       "status": "warning",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": -0.1426,
-        "foreign_pct_20d": -0.0475,
-        "trust_pct_5d": 0.0041,
-        "dealer_pct_5d": 0.0103,
+        "foreign_pct_5d": -0.0882,
+        "foreign_pct_20d": -0.0325,
+        "trust_pct_5d": -0.0368,
+        "dealer_pct_5d": 0.0102,
         "rows_used": 20
       }
     },
     "2308": {
       "symbol": "2308",
-      "chip_score": 46,
-      "foreign_score": 32,
-      "investment_trust_score": 55,
+      "chip_score": 38,
+      "foreign_score": 25,
+      "investment_trust_score": 40,
       "dealer_score": 65,
       "main_force_score": 50,
-      "warning": [],
-      "status": "neutral",
+      "warning": [
+        "外資佔量比 5d=-11.31% / 20d=-0.59%（持續賣超）"
+      ],
+      "status": "warning",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": -0.0951,
-        "foreign_pct_20d": 0.0013,
-        "trust_pct_5d": -0.0001,
-        "dealer_pct_5d": 0.005,
+        "foreign_pct_5d": -0.1131,
+        "foreign_pct_20d": -0.0059,
+        "trust_pct_5d": -0.0085,
+        "dealer_pct_5d": 0.0087,
         "rows_used": 20
       }
     },
     "6213": {
       "symbol": "6213",
-      "chip_score": 66,
+      "chip_score": 68,
       "foreign_score": 82,
       "investment_trust_score": 55,
-      "dealer_score": 40,
+      "dealer_score": 55,
       "main_force_score": 50,
       "warning": [],
       "status": "neutral",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": 0.0656,
-        "foreign_pct_20d": 0.0227,
+        "foreign_pct_5d": 0.0988,
+        "foreign_pct_20d": 0.0275,
         "trust_pct_5d": -0.0002,
-        "dealer_pct_5d": -0.0069,
+        "dealer_pct_5d": -0.0,
         "rows_used": 20
       }
     },
     "3105": {
       "symbol": "3105",
       "chip_score": 53,
-      "foreign_score": 57,
-      "investment_trust_score": 55,
-      "dealer_score": 40,
+      "foreign_score": 45,
+      "investment_trust_score": 65,
+      "dealer_score": 55,
       "main_force_score": 50,
       "warning": [],
       "status": "neutral",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": 0.0217,
-        "foreign_pct_20d": -0.0106,
-        "trust_pct_5d": 0.005,
-        "dealer_pct_5d": -0.008,
+        "foreign_pct_5d": 0.0147,
+        "foreign_pct_20d": -0.0203,
+        "trust_pct_5d": 0.0099,
+        "dealer_pct_5d": -0.0021,
         "rows_used": 20
       }
     },
     "3037": {
       "symbol": "3037",
-      "chip_score": 58,
-      "foreign_score": 77,
-      "investment_trust_score": 40,
-      "dealer_score": 40,
+      "chip_score": 68,
+      "foreign_score": 82,
+      "investment_trust_score": 55,
+      "dealer_score": 55,
       "main_force_score": 50,
       "warning": [],
       "status": "neutral",
       "stubbed": false,
       "details": {
-        "foreign_pct_5d": 0.0153,
-        "foreign_pct_20d": 0.0506,
-        "trust_pct_5d": -0.0082,
-        "dealer_pct_5d": -0.0084,
+        "foreign_pct_5d": 0.0295,
+        "foreign_pct_20d": 0.055,
+        "trust_pct_5d": 0.0032,
+        "dealer_pct_5d": -0.0013,
         "rows_used": 20
       }
     }
@@ -10889,12 +10888,14 @@
         "2356",
         "2603"
       ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "50%",
+      "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 警示 → 最大部位 75%",
-        "買入端 2603 籌碼判定為賣壓（外資/投信/自營持續賣超）"
+        "confidence=90 → conf_size 100%；取 min(市場上限, conf_size) = 75%",
+        "買入端 2603 籌碼 warning → 部位 75% → 50%"
       ]
     },
     {
@@ -10931,12 +10932,14 @@
         "3231",
         "2603"
       ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "50%",
+      "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 警示 → 最大部位 75%",
-        "買入端 2603 籌碼判定為賣壓（外資/投信/自營持續賣超）"
+        "confidence=90 → conf_size 100%；取 min(市場上限, conf_size) = 75%",
+        "買入端 2603 籌碼 warning → 部位 75% → 50%"
       ]
     },
     {
@@ -10974,12 +10977,14 @@
         "1503",
         "2603"
       ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "50%",
+      "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 警示 → 最大部位 75%",
-        "買入端 2603 籌碼判定為賣壓（外資/投信/自營持續賣超）"
+        "confidence=90 → conf_size 100%；取 min(市場上限, conf_size) = 75%",
+        "買入端 2603 籌碼 warning → 部位 75% → 50%"
       ]
     },
     {
@@ -11166,12 +11171,14 @@
         "3504",
         "2603"
       ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "50%",
+      "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 警示 → 最大部位 75%",
-        "買入端 2603 籌碼判定為賣壓（外資/投信/自營持續賣超）"
+        "confidence=80 → conf_size 100%；取 min(市場上限, conf_size) = 75%",
+        "買入端 2603 籌碼 warning → 部位 75% → 50%"
       ]
     },
     {
@@ -11283,12 +11290,14 @@
         "2603",
         "2615"
       ],
-      "allowed": false,
-      "position_action": "hold",
-      "position_size": "0%",
+      "allowed": true,
+      "position_action": "partial_switch",
+      "position_size": "50%",
+      "signal": "switch_to_A",
       "risk_reason": [
         "市場狀態 警示 → 最大部位 75%",
-        "買入端 2603 籌碼判定為賣壓（外資/投信/自營持續賣超）"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
+        "買入端 2603 籌碼 warning → 部位 75% → 50%"
       ]
     },
     {
@@ -11427,11 +11436,12 @@
       ],
       "allowed": true,
       "position_action": "partial_switch",
-      "position_size": "75%",
+      "position_size": "50%",
       "signal": "switch_to_B",
       "risk_reason": [
         "市場狀態 警示 → 最大部位 75%",
-        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%"
+        "confidence=70 → conf_size 75%；取 min(市場上限, conf_size) = 75%",
+        "買入端 2308 籌碼 warning → 部位 75% → 50%"
       ]
     },
     {
