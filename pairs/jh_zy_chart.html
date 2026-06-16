@@ -74,19 +74,6 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
 </script>
 <!-- GLOBAL_NAV_END -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="back-bar">
 <a href="../index.html">← 返回主頁</a>
 <a class="dossier-link" href="../dossier/3006.html">📋 晶豪科 個股檔案</a>
@@ -199,12 +186,13 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
   var CLR_V='rgba(255,255,255,0.55)', CLR_H='rgba(255,255,255,0.28)';
 
   var tip = document.createElement('div');
-  tip.style.cssText='display:none;position:fixed;z-index:9999;cursor:grab;user-select:none;'
-    +'background:rgba(15,23,42,0.93);border:1px solid var(--th-border2,#334155);border-radius:6px;'
-    +'padding:8px 12px;font-size:16px;color:var(--th-text,#e2e8f0);line-height:1.9;white-space:nowrap;'
+  // 固定資訊列: 放圖形上方(不浮動遮圖); 橫向 ｜ 分隔, 窄螢幕可左右捲
+  tip.style.cssText='display:none;margin:2px 0 6px;padding:6px 12px;'
+    +'background:var(--th-card,#0f1a2c);border:1px solid var(--th-border2,#334155);border-radius:6px;'
+    +'font-size:13px;color:var(--th-text,#e2e8f0);line-height:1.8;white-space:nowrap;overflow-x:auto;'
     +'font-family:"Microsoft JhengHei",sans-serif;';
-  document.body.appendChild(tip);
-  var tipMoved=false;
+  gd.parentNode.insertBefore(tip, gd);
+  var tipMoved=true;
 
   function n2s(v,d){ return v===null?'—':v.toFixed(d); }
 
@@ -220,35 +208,19 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
     // 偏離中軸 = ln 價差 − RS_MA20
     var dev = (df!==null && rsma!==null) ? (df - rsma) : null;
     tip.innerHTML=
-      '<b style="color:var(--th-blue,#93c5fd)">'+DATES[idx]+'</b><br>'
-      +'<span style="color:var(--th-red,#f87171)">'+A_NAME+' </span>'+n2s(a,2)+' 元<br>'
-      +'<span style="color:var(--th-blue,#60a5fa)">'+B_NAME+' </span>'+n2s(b,2)+' 元<br>'
-      +'<span style="color:var(--th-muted,#94a3b8)">ln('+A_NAME.charAt(0)+'/'+B_NAME.charAt(0)+') </span>'+n2s(df,4)+'<br>'
-      +'<span style="color:rgba(203,213,225,0.85)">RS_MA20 中軸 </span>'+n2s(rsma,4)
-      +(dev!==null?'　<span style="color:var(--th-muted,#94a3b8);font-size:13px">偏離 '+(dev>=0?'+':'')+dev.toFixed(4)+'</span>':'')
-      +'<hr style="border:none;border-top:1px solid var(--th-border2,#334155);margin:4px 0">'
-      +'<span style="color:var(--th-orange,#fb923c)">對數價差Z60　</span><b style="color:'+zc+'">'+n2s(z,3)+'</b><br>'
-      +'<span style="color:rgba(248,113,113,0.8)">BB上軌 </span>'+n2s(bu,3)+'<br>'
-      +'<span style="color:var(--th-faint,#64748b)">BB中軌 </span>'+n2s(bm,3)+'<br>'
-      +'<span style="color:rgba(96,165,250,0.8)">BB下軌 </span>'+n2s(bl,3)
-      +'<hr style="border:none;border-top:1px solid var(--th-border2,#334155);margin:4px 0">'
-      +'<span style="color:var(--th-purple,#a78bfa)">RVGO（相對成交重心）　</span><b style="color:'+rvgoc+'">'+n2s(rvgo,3)+'</b><br>'
-      +'<span style="color:var(--th-amber,#fbbf24)">RVGO velocity 　</span><b style="color:'+velc+'">'+n2s(rvgov,3)+'</b><br>'
-      +'<span style="color:var(--th-green,#34d399)">RVWAP slope 　</span><b style="color:'+slpc+'">'+n2s(rvwap,3)+'</b>';
-    if(!tipMoved){
-      try{
-        var rect=gd.getBoundingClientRect();
-        var ml=gd._fullLayout.margin.l;
-        if(window.innerWidth<768){
-          var midY=rect.top+gd._fullLayout.yaxis._offset+gd._fullLayout.yaxis._length*0.3;
-          tip.style.left=(ml+6)+'px'; tip.style.top=midY+'px'; tip.style.bottom='auto';
-        }else{
-          var topPx=gd._fullLayout.yaxis._offset;
-          tip.style.left=(rect.left+ml+6)+'px';
-          tip.style.top=(rect.top+topPx)+'px'; tip.style.bottom='auto';
-        }
-      }catch(e){tip.style.left='8px';tip.style.top='120px';tip.style.bottom='auto';}
-    }
+      '<b style="color:var(--th-blue,#93c5fd)">'+DATES[idx]+'</b>　'
+      +'<span style="color:var(--th-red,#f87171)">'+A_NAME+'</span> '+n2s(a,2)+' 元　'
+      +'<span style="color:var(--th-blue,#60a5fa)">'+B_NAME+'</span> '+n2s(b,2)+' 元　'
+      +'<span style="color:var(--th-muted,#94a3b8)">ln('+A_NAME.charAt(0)+'/'+B_NAME.charAt(0)+')</span> '+n2s(df,4)+'　'
+      +'<span style="color:rgba(203,213,225,0.85)">RS_MA20中軸</span> '+n2s(rsma,4)
+      +(dev!==null?'<span style="color:var(--th-muted,#94a3b8)">（偏離 '+(dev>=0?'+':'')+dev.toFixed(4)+'）</span>':'')
+      +'　｜　<span style="color:var(--th-orange,#fb923c)">對數價差Z60</span> <b style="color:'+zc+'">'+n2s(z,3)+'</b>　'
+      +'<span style="color:rgba(248,113,113,0.8)">BB上</span> '+n2s(bu,3)
+      +' <span style="color:var(--th-faint,#64748b)">/中</span> '+n2s(bm,3)
+      +' <span style="color:rgba(96,165,250,0.8)">/下</span> '+n2s(bl,3)
+      +'　｜　<span style="color:var(--th-purple,#a78bfa)">RVGO</span> <b style="color:'+rvgoc+'">'+n2s(rvgo,3)+'</b>　'
+      +'<span style="color:var(--th-amber,#fbbf24)">vel</span> <b style="color:'+velc+'">'+n2s(rvgov,3)+'</b>　'
+      +'<span style="color:var(--th-green,#34d399)">slope</span> <b style="color:'+slpc+'">'+n2s(rvwap,3)+'</b>';
     tip.style.display='block';
   }
 
@@ -370,7 +342,8 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
     var backH = back ? back.offsetHeight : 0;
     document.body.style.paddingTop = backH + 'px';   // nav-bar 已移入流內, 只需讓出固定的左上返回列
     var w = window.innerWidth;
-    var h = Math.max(window.innerHeight - navH - backH - 24, 700);
+    var tipH = (tip && tip.style.display!=='none') ? tip.offsetHeight + 8 : 0;
+    var h = Math.max(window.innerHeight - navH - backH - tipH - 24, 700);
     gd.style.width  = w + 'px';
     gd.style.height = h + 'px';
     return Plotly.Plots.resize(gd);
@@ -383,9 +356,8 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
 
   window.addEventListener('load', function(){
     setTimeout(function(){
-      resizeChart().then(function(){
-        showAt(DATES.length-1);
-      });
+      showAt(DATES.length-1);   // 先顯示資訊列(才量得到高度)
+      resizeChart();            // 再依資訊列高度調整圖高(不被推到溢出)
     }, 400);
   });
 })();
@@ -419,14 +391,6 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
         <span style="color:var(--th-amber,#facc15);font-weight:bold">🟡 YELLOW</span>
       </div>
       
-        <div style="color:var(--th-text2,#cbd5e1);font-size:12px;margin-top:6px">
-          💰 資金流入 ↗
-          <b style="color:var(--th-green,#22c55e)">24_半導體業</b>
-          <span style="color:var(--th-muted,#94a3b8)">在 RRG 象限</span>
-          <b style="color:var(--th-green,#22c55e)">Leading</b>
-          <span style="color:var(--th-muted,#94a3b8)">(RS=100.2, 動能 +0.7)</span>
-        </div>
-        
       
             <div style="color:var(--th-text2,#cbd5e1);font-size:12px;margin-top:4px;
                         padding:6px 10px;background:rgba(58,52,40,0.05);
@@ -469,7 +433,7 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
       </div>
       <div style="color:var(--th-text2,#cbd5e1);font-size:12px;line-height:1.8">
         晶豪科 (3006) 與 智原 (3035) 同屬
-        <b style="color:var(--th-text,#e2e8f0)">IC 設計</b>, 長期股價高度連動.<br>
+        <b style="color:var(--th-text,#e2e8f0)">同產業</b>, 長期股價高度連動.<br>
         當價差偏離歷史均值, 預期會回歸均值, 換股套利.
       </div>
       <div style="background:rgba(58,52,40,0.06);padding:8px 12px;border-radius:5px;
@@ -516,7 +480,7 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
                   margin-top:8px;font-size:11px;line-height:1.9">
         <div style="color:var(--th-text2,#cbd5e1)">▸ C1: 當日 Z60 開始回落 (動能轉向)</div>
         <div style='color:var(--th-green,#22c55e)'>✓ 兩檔週線站上 MA20 <span style='color:var(--th-muted,#94a3b8)'>(0 週（MA20=1.0783 / MA60=0.6507）)</span></div>
-        <div style="color:var(--th-text2,#cbd5e1)">▸ IC 設計 族群維持強勢</div>
+        <div style="color:var(--th-text2,#cbd5e1)">▸ 同產業 族群維持強勢</div>
         <div style='color:var(--th-green,#22c55e)'>✓ 60日漲幅差 &lt; 40% <span style='color:var(--th-muted,#94a3b8)'>(19.0%（晶豪科 +4.2% / 智原 +23.2%）)</span></div>
       </div>
     </div>
@@ -563,7 +527,7 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
 
       <div style="flex:1;min-width:240px;background:var(--th-card,#111827);border-radius:8px;padding:14px 16px;">
         <div style="color:var(--th-text,#e2e8f0);font-weight:bold;margin-bottom:8px;">📌 策略核心概念</div>
-        晶豪科（3006）與 智原（3035）同屬 IC 設計，長期股價走勢高度連動。<br>
+        晶豪科（3006）與 智原（3035）同屬 同產業，長期股價走勢高度連動。<br>
         當兩者<b style="color:var(--th-text,#e2e8f0);">價差偏離歷史均值</b>過大時，預期會回歸，
         將資金在兩檔之間切換，賺取均值回歸的價差收益。
       </div>
@@ -630,8 +594,8 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
             <span style="color:var(--th-muted,#94a3b8);font-size:12px;">晶豪科（3006）與 智原（3035）週K收盤價<br>均須高於各自 20週均線</span>
           </div>
           <div style="background:var(--th-bg,#0d1117);border-left:3px solid var(--th-amber,#facc15);padding:8px 12px;border-radius:0 4px 4px 0;">
-            <b style="color:var(--th-text,#e2e8f0);">② IC 設計 族群維持強勢</b><br>
-            <span style="color:var(--th-muted,#94a3b8);font-size:12px;">IC 設計 相關族群整體趨勢<br>仍屬多頭，未出現明顯反轉訊號</span>
+            <b style="color:var(--th-text,#e2e8f0);">② 同產業 族群維持強勢</b><br>
+            <span style="color:var(--th-muted,#94a3b8);font-size:12px;">同產業 相關族群整體趨勢<br>仍屬多頭，未出現明顯反轉訊號</span>
           </div>
           <div style="background:var(--th-bg,#0d1117);border-left:3px solid var(--th-amber,#facc15);padding:8px 12px;border-radius:0 4px 4px 0;">
             <b style="color:var(--th-text,#e2e8f0);">③ 兩檔近 60 日漲幅差距 &lt; 40%</b><br>
@@ -652,122 +616,6 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
   </div>
 </div>
 
-
-<style id='MS_N_RRR_tooltip_inject_v2'>
-.tip { position: relative; cursor: help; }
-/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
-#tip-floater {
-  position: fixed;
-  background: var(--th-bg,#0f172a);
-  color: var(--th-text,#e2e8f0);
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: normal;
-  white-space: pre-line;
-  max-width: 320px;
-  width: max-content;
-  text-align: left;
-  border: 1px solid var(--th-border2,#475569);
-  z-index: 999999;
-  pointer-events: none;
-  line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
-  display: none;
-}
-.tip:focus { outline: none; }
-@media (max-width: 600px) {
-  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
-}
-</style>
-<script>
-(function(){
-  var floater = null;
-  function ensureFloater(){
-    if (floater) return floater;
-    floater = document.createElement('div');
-    floater.id = 'tip-floater';
-    document.body.appendChild(floater);
-    return floater;
-  }
-  function showTip(el){
-    var text = el.getAttribute('data-tip');
-    if (!text) return;
-    var f = ensureFloater();
-    f.textContent = text;
-    f.style.display = 'block';
-    // 量元素位置
-    var rect = el.getBoundingClientRect();
-    var vw = window.innerWidth, vh = window.innerHeight;
-    var pad = 8;
-    // 預設放上方居中
-    var tw = f.offsetWidth, th = f.offsetHeight;
-    var left = rect.left + rect.width / 2 - tw / 2;
-    var top = rect.top - th - 10;
-    // 邊界修正
-    if (left < pad) left = pad;
-    if (left + tw > vw - pad) left = vw - tw - pad;
-    // 若上方空間不夠，改放下方
-    if (top < pad) top = rect.bottom + 10;
-    // 若下方也不夠（窄屏），就靠近底部
-    if (top + th > vh - pad) top = vh - th - pad;
-    f.style.left = left + 'px';
-    f.style.top  = top + 'px';
-  }
-  function hideTip(){
-    if (floater) floater.style.display = 'none';
-  }
-  function init(){
-    // 把所有 title 屬性轉成 data-tip
-    document.querySelectorAll('[title]').forEach(function(el){
-      var t = el.getAttribute('title');
-      if (!t) return;
-      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
-      el.setAttribute('data-tip', t);
-      el.removeAttribute('title');
-      if (!el.classList.contains('tip')) el.classList.add('tip');
-      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
-    });
-    // hover / focus 顯示
-    document.addEventListener('mouseover', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) showTip(tip);
-    });
-    document.addEventListener('mouseout', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) hideTip();
-    });
-    document.addEventListener('focusin', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) showTip(tip);
-    });
-    document.addEventListener('focusout', hideTip);
-    // 手機 tap 切換顯示
-    document.addEventListener('click', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) {
-        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
-          hideTip();
-        } else {
-          showTip(tip);
-          ensureFloater().dataset.tipFor = tip.dataset.tip;
-        }
-        e.stopPropagation();
-      } else {
-        hideTip();
-      }
-    });
-    // 滾動 / resize 隱藏（避免位置漂移）
-    window.addEventListener('scroll', hideTip, true);
-    window.addEventListener('resize', hideTip);
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
 <!-- CHR_CMG_SECTION -->
 <style>
 /* === Chart interaction lock (chart_buttons.py) === */
