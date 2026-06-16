@@ -601,8 +601,7 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
     var backH = back ? back.offsetHeight : 0;
     document.body.style.paddingTop = backH + 'px';   // nav-bar 已移入流內, 只需讓出固定的左上返回列
     var w = window.innerWidth;
-    var tipH = (tip && tip.style.display!=='none') ? tip.offsetHeight + 8 : 0;
-    var h = Math.max(window.innerHeight - navH - backH - tipH - 24, 700);
+    var h = Math.max(window.innerHeight - navH - backH - 44, 700);   // -44: 讓出上方資訊列
     gd.style.width  = w + 'px';
     gd.style.height = h + 'px';
     return Plotly.Plots.resize(gd);
@@ -615,8 +614,9 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
 
   window.addEventListener('load', function(){
     setTimeout(function(){
-      showAt(DATES.length-1);   // 先顯示資訊列(才量得到高度)
-      resizeChart();            // 再依資訊列高度調整圖高(不被推到溢出)
+      resizeChart().then(function(){
+        showAt(DATES.length-1);
+      });
     }, 400);
   });
 })();
