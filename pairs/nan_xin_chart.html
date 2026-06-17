@@ -2103,5 +2103,28 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
 })();
 </script>
 <!-- NANXIN_HISTORY_BOTTOM_END -->
+
+<!-- NANXIN_NAVBAR_MOVE_START -->
+<script>
+(function(){
+  function go(){
+    var nb=document.getElementById('nav-bar');
+    var pc=document.getElementById('pair-chart');
+    if(nb){
+      // 1) 移除「最新更新日期」列（換股決策摘要卡已有資料日）
+      var kids=nb.children;
+      for(var i=0;i<kids.length;i++){
+        if(/最新更新日期/.test(kids[i].textContent||'')){
+          kids[i].parentNode.removeChild(kids[i]); break;
+        }
+      }
+    }
+    // 2) 換日/顯示範圍導覽列移到圖正上方（資訊列之下、緊鄰圖）
+    if(nb && pc && pc.parentNode){ pc.parentNode.insertBefore(nb, pc); }
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',go); else go();
+})();
+</script>
+<!-- NANXIN_NAVBAR_MOVE_END -->
 </body>
 </html>
