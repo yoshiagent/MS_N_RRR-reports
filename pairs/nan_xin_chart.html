@@ -1669,60 +1669,7 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
 
 <!-- /CMG_RRG_SECTION -->
 
-<!-- NANXIN_RRGTABS_START -->
-<script>
-(function(){
-  var TABS=[{"id": "hrr", "label": "🎯 持有者輪動"}, {"id": "pqr", "label": "📐 個股相對輪動"}, {"id": "cr", "label": "🧭 法人×融資"}, {"id": "cm", "label": "💰 大資金×籌碼集中"}];
-  function panelOf(id){            // 往上找到「parent 是 body」的那層 card 當作可切換 panel
-    var d=document.getElementById(id); if(!d) return null;
-    var n=d;
-    while(n&&n.parentElement&&n.parentElement.tagName!=='BODY') n=n.parentElement;
-    return (n&&n.parentElement&&n.parentElement.tagName==='BODY')?n:null;
-  }
-  function init(){
-    var items=TABS.map(function(t){return {t:t,panel:panelOf(t.id)};}).filter(function(x){return x.panel;});
-    if(items.length<2) return;     // 不足兩張不需切換
-    // 取 document order 最前的 panel 當插入點(鈕列放它前面 → 在四張之上)
-    var top=items[0].panel;
-    items.forEach(function(x){
-      if(top.compareDocumentPosition(x.panel)&Node.DOCUMENT_POSITION_PRECEDING) top=x.panel; });
-    var hint=document.createElement('div');
-    hint.style.cssText='text-align:center;color:var(--th-faint,#64748b);font-size:12px;margin:18px 0 4px';
-    hint.textContent='▼ 四張相位圖 — 點鈕切換（一次顯示一張）';
-    var bar=document.createElement('div');
-    bar.style.cssText='display:flex;gap:8px;justify-content:center;flex-wrap:wrap;'
-      +'max-width:1100px;margin:0 auto 8px;padding:0 12px';
-    items.forEach(function(x){
-      var b=document.createElement('button');
-      b.type='button'; b.id='rrgtab-'+x.t.id; b.textContent=x.t.label;
-      b.style.cssText='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8);'
-        +'border:1px solid var(--th-border2,#334155);border-radius:8px;padding:6px 16px;'
-        +'font-size:13px;font-family:inherit;cursor:pointer';
-      b.onclick=function(){show(x.t.id);};
-      bar.appendChild(b);
-    });
-    top.parentElement.insertBefore(hint, top);
-    top.parentElement.insertBefore(bar, top);
-    function show(id){
-      items.forEach(function(x){
-        var on=(x.t.id===id);
-        x.panel.style.display=on?'':'none';
-        var b=document.getElementById('rrgtab-'+x.t.id);
-        if(b){ b.style.background=on?'#1d4ed8':'var(--th-card,#1e293b)';
-          b.style.color=on?'#fff':'var(--th-muted,#94a3b8)';
-          b.style.borderColor=on?'#3b82f6':'var(--th-border2,#334155)'; }
-        if(on&&window.Plotly){ var g=document.getElementById(x.t.id);
-          if(g){ try{Plotly.Plots.resize(g);}catch(e){} } }
-      });
-    }
-    window.nxRrgShow=show;
-    show(items[0].t.id);           // 預設顯示第一張
-  }
-  function boot(){ if(window.Plotly) init(); else setTimeout(boot,150); }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
-})();
-</script>
-<!-- NANXIN_RRGTABS_END -->
+
 
 <style id='MS_N_RRR_tooltip_inject_v2'>
 .tip { position: relative; cursor: help; }
@@ -2126,5 +2073,61 @@ td{padding:7px 14px;text-align:center;border-bottom:1px solid var(--th-border,#1
 })();
 </script>
 <!-- NANXIN_NAVBAR_MOVE_END -->
+
+<!-- NANXIN_RRGTABS_START -->
+<script>
+(function(){
+  var TABS=[{"id": "hrr", "label": "🎯 持有者輪動"}, {"id": "pqr", "label": "📐 個股相對輪動"}, {"id": "cr", "label": "🧭 法人×融資"}, {"id": "cm", "label": "💰 主力×賣買家差", "dflt": true}];
+  function panelOf(id){            // 往上找到「parent 是 body」的那層 card 當作可切換 panel
+    var d=document.getElementById(id); if(!d) return null;
+    var n=d;
+    while(n&&n.parentElement&&n.parentElement.tagName!=='BODY') n=n.parentElement;
+    return (n&&n.parentElement&&n.parentElement.tagName==='BODY')?n:null;
+  }
+  function init(){
+    var items=TABS.map(function(t){return {t:t,panel:panelOf(t.id)};}).filter(function(x){return x.panel;});
+    if(items.length<2) return;     // 不足兩張不需切換
+    // 取 document order 最前的 panel 當插入點(鈕列放它前面 → 在四張之上)
+    var top=items[0].panel;
+    items.forEach(function(x){
+      if(top.compareDocumentPosition(x.panel)&Node.DOCUMENT_POSITION_PRECEDING) top=x.panel; });
+    var hint=document.createElement('div');
+    hint.style.cssText='text-align:center;color:var(--th-faint,#64748b);font-size:12px;margin:18px 0 4px';
+    hint.textContent='▼ 四張相位圖 — 點鈕切換（一次顯示一張）';
+    var bar=document.createElement('div');
+    bar.style.cssText='display:flex;gap:8px;justify-content:center;flex-wrap:wrap;'
+      +'max-width:1100px;margin:0 auto 8px;padding:0 12px';
+    items.forEach(function(x){
+      var b=document.createElement('button');
+      b.type='button'; b.id='rrgtab-'+x.t.id; b.textContent=x.t.label;
+      b.style.cssText='background:var(--th-card,#1e293b);color:var(--th-muted,#94a3b8);'
+        +'border:1px solid var(--th-border2,#334155);border-radius:8px;padding:6px 16px;'
+        +'font-size:13px;font-family:inherit;cursor:pointer';
+      b.onclick=function(){show(x.t.id);};
+      bar.appendChild(b);
+    });
+    top.parentElement.insertBefore(hint, top);
+    top.parentElement.insertBefore(bar, top);
+    function show(id){
+      items.forEach(function(x){
+        var on=(x.t.id===id);
+        x.panel.style.display=on?'':'none';
+        var b=document.getElementById('rrgtab-'+x.t.id);
+        if(b){ b.style.background=on?'#1d4ed8':'var(--th-card,#1e293b)';
+          b.style.color=on?'#fff':'var(--th-muted,#94a3b8)';
+          b.style.borderColor=on?'#3b82f6':'var(--th-border2,#334155)'; }
+        if(on&&window.Plotly){ var g=document.getElementById(x.t.id);
+          if(g){ try{Plotly.Plots.resize(g);}catch(e){} } }
+      });
+    }
+    window.nxRrgShow=show;
+    var dft=items.filter(function(x){return x.t.dflt;})[0]||items[0];
+    show(dft.t.id);                // 預設顯示指定張(dflt), 否則第一張
+  }
+  function boot(){ if(window.Plotly) init(); else setTimeout(boot,150); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
+})();
+</script>
+<!-- NANXIN_RRGTABS_END -->
 </body>
 </html>
