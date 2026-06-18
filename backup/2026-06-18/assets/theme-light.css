@@ -1,0 +1,34 @@
+/* ====================================================================
+   theme-light.css — 白底研究報告風
+   --------------------------------------------------------------------
+   只覆蓋 :root 的 A層(chrome) + B層(card-surface)。
+   卡片變「白底深字」、頁面清爽白。Information Layer(.info-card/.cio-dash)
+   與 plotly 圖內部維持固定深 (不受此檔影響)。
+   不得加任何選擇器規則 (見 docs/THEME_ENGINE.md §4)。
+   ==================================================================== */
+:root{
+  --th-theme:"light";
+
+  /* ── A層 chrome (頁底/導覽/body 文字/連結/.chart-card 外框) ── */
+  --th-bg:#f6f8fb;  --th-bg2:#eef2f7;  --th-card:#ffffff;  --th-card2:#f8fafc;  --th-hover:#f1f5f9;
+  --th-text:#1f2937; --th-text2:#374151; --th-muted:#6b7280; --th-faint:#9ca3af;
+  --th-border:#e5e7eb; --th-border2:#d1d5db;
+  --th-line:#eef2f7; --th-line2:#e5e7eb; --th-text-inv:#ffffff;
+  --th-blue:#2563eb; --th-green:#15803d; --th-red:#dc2626; --th-amber:#b45309;
+  --th-orange:#c2410c; --th-purple:#7c3aed; --th-cyan:#0c7bb3;
+  --th-gold:#a16207; --th-indigo:#4f46e5; --th-pink:#db2777;
+  --th-blue-bg:#dbeafe; --th-green-bg:#dcfce7; --th-red-bg:#fee2e2;
+  --th-amber-bg:#fef3c7; --th-purple-bg:#ead5fb;
+
+  /* ── B層 card-surface (.card 翻成白底深字) ── */
+  --th-card-surface:#ffffff;  --th-card-fx:#e5e7eb;
+  --th-on-text:#1f2937; --th-on-text2:#374151; --th-on-muted:#6b7280; --th-on-faint:#9ca3af;
+  --th-on-card:#ffffff; --th-on-card2:#f8fafc; --th-on-bg2:#eef2f7; --th-on-hover:#f1f5f9;
+  --th-on-border:#e5e7eb; --th-on-border2:#d1d5db;
+  --th-on-cyan:#0c7bb3; --th-on-amber:#b45309; --th-on-green:#15803d; --th-on-red:#dc2626;
+  --th-on-blue:#2563eb; --th-on-purple:#7c3aed; --th-on-orange:#c2410c;
+  --th-on-indigo:#4f46e5; --th-on-pink:#db2777; --th-on-gold:#a16207;
+  --th-on-accent:#2563eb; --th-on-info:#0c7bb3; --th-on-warn:#b45309; --th-on-ok:#15803d; --th-on-bad:#dc2626;
+  --th-on-green-bg:#dcfce7; --th-on-red-bg:#fee2e2; --th-on-amber-bg:#fef3c7;
+  --th-on-blue-bg:#dbeafe; --th-on-purple-bg:#ead5fb;
+}
