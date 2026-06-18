@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang='zh-Hant'><head>
+<link rel="stylesheet" href="../assets/site.css?v=bdcde63b">
+<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=bdcde63b">
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>🎯 多時段箱型狀態 設計預覽 — MS_N_RR/RRR Ver.A</title>
+<style>
+body { margin:0; padding:24px 20px 80px; max-width:1200px; margin:auto;
+       background:var(--th-bg,#f4f7fb); color:var(--th-text,#243244);
+       font-family:var(--th-font,-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif);
+       line-height:1.65; }
+h1 { font-size:24px; margin:0 0 6px; }
+h2 { font-size:18px; color:var(--th-accent,#2563eb); border-bottom:1px solid var(--th-border2,#cdd9e7);
+     padding-bottom:6px; margin:28px 0 14px; }
+.sub { color:var(--th-muted,#61708a); font-size:13px; margin-bottom:18px; }
+.preview-banner { background:rgba(252,211,77,0.08); border-left:3px solid var(--th-amber,#fcd34d);
+                  padding:10px 14px; margin-bottom:18px; border-radius:0 6px 6px 0;
+                  font-size:13px; color:var(--th-warn,#a16207); }
+code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg2,#f1f5f9); color:var(--th-info,#0c7bb3);
+       padding:1px 6px; border-radius:3px; font-size:12px; }
+
+/* 9 宮格 */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+}
+.cell {
+    background: var(--th-card,#ffffff);
+    border: 2px solid;
+    border-radius: 8px;
+    padding: 14px 16px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.cell-head {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+.cell-icon { font-size: 24px; }
+.cell-label { font-size: 16px; font-weight: bold; }
+.cell-key {
+    color: var(--th-muted,#64748b);
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 11px;
+    margin-left: auto;
+}
+.cell-row { font-size: 12px; line-height: 1.7; }
+.cell-row .lbl { color: var(--th-muted,#61708a); min-width: 50px; display: inline-block; }
+.cell-row .val { color: var(--th-text2,#3f4f63); }
+.cell-condition { color: var(--th-muted,#61708a); font-size: 11px; line-height: 1.6;
+                  background: var(--th-bg2,#f1f5f9); padding: 6px 8px; border-radius: 4px;
+                  font-family: ui-monospace, Consolas, monospace; }
+.cell-operation { font-weight: bold; padding: 6px 8px; border-radius: 4px;
+                  background: rgba(255,255,255,0.04); font-size: 13px;
+                  margin-top: auto; }
+.cell-rule { color: var(--th-muted,#64748b); font-size: 10px; margin-top: 4px; }
+.cell-old { color: var(--th-warn,#a16207); font-size: 10px; }
+
+/* 標題列 (row/col labels) */
+.headers-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+.header-cell {
+    text-align: center;
+    color: var(--th-accent,#2563eb);
+    font-size: 13px;
+    font-weight: bold;
+    padding: 6px 0;
+    background: var(--th-card,#ffffff);
+    border-radius: 6px;
+}
+.row-with-label {
+    display: grid;
+    grid-template-columns: 80px repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.row-label {
+    background: var(--th-card,#ffffff);
+    border-radius: 6px;
+    color: var(--th-accent,#2563eb);
+    font-size: 13px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+/* 修飾詞 */
+.modifiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+}
+.modifier-card {
+    background: var(--th-card,#ffffff);
+    border: 1px dashed;
+    border-radius: 8px;
+    padding: 14px 16px;
+}
+.modifier-applies {
+    color: var(--th-muted,#61708a);
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+/* unknown */
+.unknown-card {
+    background: var(--th-card,#ffffff);
+    border: 1px solid var(--th-border2,#cdd9e7);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 24px;
+}
+
+/* 對照表 */
+.mapping {
+    background: var(--th-card,#ffffff);
+    border: 1px solid var(--th-border2,#cdd9e7);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    font-size: 13px;
+}
+.mapping table { width: 100%; border-collapse: collapse; }
+.mapping th, .mapping td { padding: 6px 12px; text-align: left;
+                            border-bottom: 1px solid var(--th-border,#dbe3ee); }
+.mapping th { color: var(--th-muted,#61708a); font-weight: normal; font-size: 11px; }
+.mapping .arrow { color: var(--th-red,#c2410c); }
+
+/* 參數表 */
+.params {
+    background: var(--th-card,#ffffff);
+    border: 1px solid var(--th-border2,#cdd9e7);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+}
+.params-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+}
+.param-cell {
+    background: var(--th-card,#ffffff);
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+.param-cell .name { color: var(--th-accent,#2563eb); font-family: ui-monospace, Consolas, monospace;
+                    font-size: 11px; }
+.param-cell .value { color: var(--th-warn,#a16207); font-weight: bold; font-size: 14px; margin-top: 2px; }
+.param-cell .desc { color: var(--th-muted,#61708a); font-size: 10px; margin-top: 2px; }
+
+/* 決策清單 */
+.decisions {
+    background: rgba(96,165,250,0.05);
+    border: 1px solid var(--th-blue,#60a5fa);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+}
+.decisions h3 { color: var(--th-accent,#2563eb); margin: 0 0 10px; font-size: 16px; }
+.decisions ol { padding-left: 20px; margin: 0; }
+.decisions li { color: var(--th-text2,#3f4f63); margin: 6px 0; font-size: 13px; line-height: 1.7; }
+.decisions li strong { color: var(--th-text,#243244); }
+.decisions .recommend { color: var(--th-green,#059669); font-weight: bold; }
+
+footer { color:var(--th-muted,#64748b); font-size:12px; margin-top:30px;
+         border-top:1px solid var(--th-border2,#cdd9e7); padding-top:12px; }
+</style>
+</head><body>
+<script>(function(){var L=document.getElementById("ms-theme-css");if(!L)return;var q="?v=bdcde63b",b="../assets/";var DAY=["theme-red.css","theme-orange.css","theme-yellow.css","theme-green.css","theme-blue.css","theme-indigo.css","theme-violet.css"];function dayT(){return DAY[(new Date()).getDay()];}function ap(v){var t=(v==="auto")?dayT():v;L.setAttribute("href",b+t+q);}var sv=null;try{sv=localStorage.getItem("ms_theme");}catch(e){}if(!sv)sv="auto";ap(sv);var S=document.getElementById("ms-theme-sel");if(S){S.value=sv;S.addEventListener("change",function(){ap(S.value);try{localStorage.setItem("ms_theme",S.value);}catch(e){}});}})();</script>
+<!-- GLOBAL_NAV_START -->
+<nav class="gnav" id="gnav">
+  <a class="gnav-home" href="../index.html">🏠 主控台</a>
+  <div class='gnav-dd'><button class='gnav-btn' data-dd='0'>🏢 組織架構 ▾</button><div class='gnav-panel' id='gnav-p0'><a class='gnav-it' href='../org/organization.html'>🏢 組織架構圖</a><a class='gnav-it' href='../org/system_flow.html'>🔄 系統流程圖</a><div class='gnav-hd'>─ 投資長 CIO ─</div><a class='gnav-it' href='../market/ms_dashboard.html'>🎩 MS 投資長儀表板</a><div class='gnav-hd'>─ 研究部 ─</div><a class='gnav-it' href='../org/iue.html'>🏛 投資宇宙引擎 IUE</a><a class='gnav-it' href='../org/iue_journey.html'>📜 IUE 股票履歷</a><div class='gnav-hd'>─ 評審 / 決策 ─</div><a class='gnav-it' href='../org/iab.html'>🎖 外聘評審委員會 IAB</a><a class='gnav-it' href='../org/master_score.html'>👥 9 名人評分</a><a class='gnav-it' href='../org/capital_committee.html'>🗳 資金持有委員會</a><div class='gnav-hd'>─ 基金管理部 ─</div><a class='gnav-it' href='../org/fund_managers.html'>💼 CIO × 經理競標</a><a class='gnav-it' href='../org/stock_ops.html'>🎯 操作 Agent (5 階段)</a><a class='gnav-it' href='../org/pm_custom.html'>⭐ 自選股 PM</a><a class='gnav-it' href='../org/pm_trend_growth.html'>💹 趨勢成長 PM</a><a class='gnav-it' href='../org/paper_portfolio.html'>📈 模擬投資組合</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='1'>🔬 分析面向 ▾</button><div class='gnav-panel' id='gnav-p1'><div class='gnav-hd'>─ 技術面 ─</div><a class='gnav-it' href='../tech/n_shape.html'>📦 多時段箱型</a><a class='gnav-it' href='../tech/box_structure.html'>🧱 股票箱結構</a><a class='gnav-it' href='../tech/shsl.html'>⛰ SH/SL 擺動</a><a class='gnav-it' href='../tech/wyckoff_phase.html'>🌀 Wyckoff 階段</a><a class='gnav-it' href='../tech/n_pattern.html'>📐 N 形態</a><a class='gnav-it' href='../tech/structure_chart.html'>🗺 結構圖</a><a class='gnav-it' href='../tech/state_grid_preview.html'>🔳 狀態網格</a><a class='gnav-it' href='../tech/daily_weekly_index.html'>📈 個股 日K+週K (自選池)</a><div class='gnav-hd'>─ 籌碼面 ─</div><a class='gnav-it' href='../chip/chip_concentration.html'>🎯 籌碼集中度</a><a class='gnav-it' href='../chip/broker_branch.html'>🏦 券商分點</a><a class='gnav-it' href='../chip/capital_structure.html'>🧬 資金結構體檢</a><a class='gnav-it' href='../chip/chr.html'>🔄 CHR 持有者輪動</a><a class='gnav-it' href='../chip/cmg.html'>💰 CMG 資金流向</a><a class='gnav-it' href='../chip/cga.html'>📊 CGA 籌碼集中</a><a class='gnav-it' href='../chip/chip_rrg.html'>🧭 法人×融資 相位圖</a><a class='gnav-it' href='../chip/chip_cmg_rrg.html'>🧭 主力×賣買家差 相位圖</a><div class='gnav-hd'>─ 基本面 ─</div><a class='gnav-it' href='../fund/fundamental_score.html'>🧪 基本面 5 維 (PEG/FCF/ROE)</a><div class='gnav-hd'>─ 市場結構 ─</div><a class='gnav-it' href='../market/ms_dashboard.html'>🎩 MS 儀表板</a><a class='gnav-it' href='../market/hotflow.html'>🔥 熱門流向 HotFlow</a><a class='gnav-it' href='../market/sector_rotation.html'>🌐 族群輪動 RRG</a><a class='gnav-it' href='../market/sector_constituents.html'>🗂 族群成分股</a><a class='gnav-it' href='../market/mainstream_pool.html'>🏊 主流股池</a><a class='gnav-it' href='../market/strong_stocks.html'>💪 強勢股</a><div class='gnav-hd'>─ 股池 ─</div><a class='gnav-it' href='../pool/custom_pool.html'>⭐ 自選股池</a><a class='gnav-it' href='../pool/accumulation_pool.html'>🧲 吸籌池</a><a class='gnav-it' href='../pool/distribution_score.html'>🌋 派發評分</a><a class='gnav-it' href='../market/topping_risk.html'>🌡️ 高點過熱·派發風險</a><a class='gnav-it' href='../pool/main_force_entry.html'>🎯 主力進貨</a><a class='gnav-it' href='../pool/trust_sponsor.html'>🏦 法人認養</a><a class='gnav-it' href='../pool/entry_signal_backtest.html'>📊 認養回測驗證</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='2'>🔁 配對交易 ▾</button><div class='gnav-panel' id='gnav-p2'><a class='gnav-it' href='../pairs/rr.html'>🔁 RSR 配對</a><a class='gnav-it' href='../pairs/rrr.html'>📐 RRR 配對</a><a class='gnav-it' href='../pairs/rrr_resonance.html'>🌀 RRR Resonance</a><a class='gnav-it' href='../pairs/dynamic_rr.html'>⚡ 動態 RSR</a><a class='gnav-it' href='../pairs/custom_pairs.html'>⭐ 自選配對</a><a class='gnav-it' href='../pairs/rcga_overview.html'>🚦 RCGA 總覽</a><a class='gnav-it' href='../pairs/rotation_signals.html'>🔄 換股訊號</a><a class='gnav-it' href='../pairs/rotation_confirm_log.html'>📋 換股確認紀錄</a><a class='gnav-it' href='../pairs/rotation_case_study.html'>📚 換股案例</a><a class='gnav-it' href='../pairs/backtest.html'>📊 回測</a><div class='gnav-hd'>─ 配對圖 ─</div><a class='gnav-it' href='../pairs/nan_xin_chart.html'>南電 / 欣興</a><a class='gnav-it' href='../pairs/jh_zy_chart.html'>晶豪科 / 智原</a><a class='gnav-it' href='../pairs/pair_2049_4576.html'>上銀 / 大銀微</a><a class='gnav-it' href='../pairs/pair_2344_2408.html'>華邦電 / 南亞科</a><a class='gnav-it' href='../pairs/pair_9921_9914.html'>巨大 / 美利達</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='3'>🚧 開發中專案 ▾</button><div class='gnav-panel' id='gnav-p3'><div class='gnav-hd'>─ 研究中 / 新頁 ─</div><a class='gnav-it' href='../market/distribution_dynamics.html'>🌋 主力邊拉邊出 派發動力 DS</a><a class='gnav-it' href='../chip/deep_profile.html'>🔬 深度料供給層 (南電)</a><a class='gnav-it' href='../org/holding_alerts.html'>🛡 持股警示 · 監控層</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='4'>⚙ 系統 ▾</button><div class='gnav-panel' id='gnav-p4'><a class='gnav-it' href='../sys/todo.html'>📝 待辦事項</a><a class='gnav-it' href='../sys/db_health.html'>🩺 資料庫健康</a><a class='gnav-it' href='../sys/fs_compare.html'>🆚 FS 對照</a><a class='gnav-it' href='../sys/nomenclature.html'>📖 名詞對照表</a><a class='gnav-it' href='../docs/V2_ARCHITECTURE.html'>📋 V.2 架構文件</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='5'>📂 個股卷宗 ▾</button><div class='gnav-panel' id='gnav-p5'><a class='gnav-it' href='../dossier/1503.html'>1503 士電</a><a class='gnav-it' href='../dossier/2049.html'>2049 上銀</a><a class='gnav-it' href='../dossier/2330.html'>2330 台積電</a><a class='gnav-it' href='../dossier/2344.html'>2344 華邦電</a><a class='gnav-it' href='../dossier/2359.html'>2359 所羅門</a><a class='gnav-it' href='../dossier/2408.html'>2408 南亞科</a><a class='gnav-it' href='../dossier/3006.html'>3006 晶豪科</a><a class='gnav-it' href='../dossier/3035.html'>3035 智原</a><a class='gnav-it' href='../dossier/3037.html'>3037 欣興</a><a class='gnav-it' href='../dossier/4576.html'>4576 大銀微系統</a><a class='gnav-it' href='../dossier/8046.html'>8046 南電</a><a class='gnav-it' href='../dossier/9914.html'>9914 美利達</a><a class='gnav-it' href='../dossier/9921.html'>9921 巨大</a></div></div>
+  <div class="gnav-search">
+    <input id="gnav-q" type="text" placeholder="🔍 找報告…" autocomplete="off">
+    <div id="gnav-sr"></div>
+  </div>
+</nav>
+<script>
+(function(){
+  var DATA="🏢 組織架構圖||../org/organization.html;;🔄 系統流程圖||../org/system_flow.html;;🎩 MS 投資長儀表板||../market/ms_dashboard.html;;🏛 投資宇宙引擎 IUE||../org/iue.html;;📜 IUE 股票履歷||../org/iue_journey.html;;🎖 外聘評審委員會 IAB||../org/iab.html;;👥 9 名人評分||../org/master_score.html;;🗳 資金持有委員會||../org/capital_committee.html;;💼 CIO × 經理競標||../org/fund_managers.html;;🎯 操作 Agent (5 階段)||../org/stock_ops.html;;⭐ 自選股 PM||../org/pm_custom.html;;💹 趨勢成長 PM||../org/pm_trend_growth.html;;📈 模擬投資組合||../org/paper_portfolio.html;;📦 多時段箱型||../tech/n_shape.html;;🧱 股票箱結構||../tech/box_structure.html;;⛰ SH/SL 擺動||../tech/shsl.html;;🌀 Wyckoff 階段||../tech/wyckoff_phase.html;;📐 N 形態||../tech/n_pattern.html;;🗺 結構圖||../tech/structure_chart.html;;🔳 狀態網格||../tech/state_grid_preview.html;;📈 個股 日K+週K (自選池)||../tech/daily_weekly_index.html;;🎯 籌碼集中度||../chip/chip_concentration.html;;🏦 券商分點||../chip/broker_branch.html;;🧬 資金結構體檢||../chip/capital_structure.html;;🔄 CHR 持有者輪動||../chip/chr.html;;💰 CMG 資金流向||../chip/cmg.html;;📊 CGA 籌碼集中||../chip/cga.html;;🧭 法人×融資 相位圖||../chip/chip_rrg.html;;🧭 主力×賣買家差 相位圖||../chip/chip_cmg_rrg.html;;🧪 基本面 5 維 (PEG/FCF/ROE)||../fund/fundamental_score.html;;🎩 MS 儀表板||../market/ms_dashboard.html;;🔥 熱門流向 HotFlow||../market/hotflow.html;;🌐 族群輪動 RRG||../market/sector_rotation.html;;🗂 族群成分股||../market/sector_constituents.html;;🏊 主流股池||../market/mainstream_pool.html;;💪 強勢股||../market/strong_stocks.html;;⭐ 自選股池||../pool/custom_pool.html;;🧲 吸籌池||../pool/accumulation_pool.html;;🌋 派發評分||../pool/distribution_score.html;;🌡️ 高點過熱·派發風險||../market/topping_risk.html;;🎯 主力進貨||../pool/main_force_entry.html;;🏦 法人認養||../pool/trust_sponsor.html;;📊 認養回測驗證||../pool/entry_signal_backtest.html;;🔁 RSR 配對||../pairs/rr.html;;📐 RRR 配對||../pairs/rrr.html;;🌀 RRR Resonance||../pairs/rrr_resonance.html;;⚡ 動態 RSR||../pairs/dynamic_rr.html;;⭐ 自選配對||../pairs/custom_pairs.html;;🚦 RCGA 總覽||../pairs/rcga_overview.html;;🔄 換股訊號||../pairs/rotation_signals.html;;📋 換股確認紀錄||../pairs/rotation_confirm_log.html;;📚 換股案例||../pairs/rotation_case_study.html;;📊 回測||../pairs/backtest.html;;南電 / 欣興||../pairs/nan_xin_chart.html;;晶豪科 / 智原||../pairs/jh_zy_chart.html;;上銀 / 大銀微||../pairs/pair_2049_4576.html;;華邦電 / 南亞科||../pairs/pair_2344_2408.html;;巨大 / 美利達||../pairs/pair_9921_9914.html;;🌋 主力邊拉邊出 派發動力 DS||../market/distribution_dynamics.html;;🔬 深度料供給層 (南電)||../chip/deep_profile.html;;🛡 持股警示 · 監控層||../org/holding_alerts.html;;📝 待辦事項||../sys/todo.html;;🩺 資料庫健康||../sys/db_health.html;;🆚 FS 對照||../sys/fs_compare.html;;📖 名詞對照表||../sys/nomenclature.html;;📋 V.2 架構文件||../docs/V2_ARCHITECTURE.html;;1503 士電||../dossier/1503.html;;2049 上銀||../dossier/2049.html;;2330 台積電||../dossier/2330.html;;2344 華邦電||../dossier/2344.html;;2359 所羅門||../dossier/2359.html;;2408 南亞科||../dossier/2408.html;;3006 晶豪科||../dossier/3006.html;;3035 智原||../dossier/3035.html;;3037 欣興||../dossier/3037.html;;4576 大銀微系統||../dossier/4576.html;;8046 南電||../dossier/8046.html;;9914 美利達||../dossier/9914.html;;9921 巨大||../dossier/9921.html".split(";;").map(function(s){var p=s.split("||");return {l:p[0],h:p[1]};});
+  var nav=document.getElementById('gnav');
+  nav.querySelectorAll('.gnav-btn').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.stopPropagation();
+      var p=document.getElementById('gnav-p'+b.dataset.dd), was=p.classList.contains('open');
+      nav.querySelectorAll('.gnav-panel').forEach(function(x){x.classList.remove('open');});
+      nav.querySelectorAll('.gnav-btn').forEach(function(x){x.classList.remove('on');});
+      if(!was){p.classList.add('open');b.classList.add('on');}
+    });
+  });
+  document.addEventListener('click',function(){
+    nav.querySelectorAll('.gnav-panel').forEach(function(x){x.classList.remove('open');});
+    nav.querySelectorAll('.gnav-btn').forEach(function(x){x.classList.remove('on');});
+    var sr=document.getElementById('gnav-sr'); if(sr) sr.style.display='none';
+  });
+  var q=document.getElementById('gnav-q'), sr=document.getElementById('gnav-sr');
+  q.addEventListener('click',function(e){e.stopPropagation();});
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase();
+    if(!v){sr.style.display='none';return;}
+    var hits=DATA.filter(function(d){return d.l.toLowerCase().indexOf(v)>=0;}).slice(0,15);
+    sr.innerHTML=hits.length?hits.map(function(d){
+      return "<a class='gnav-it' href='"+d.h+"'>"+d.l+"</a>";}).join("")
+      :"<div class='gnav-hd'>無符合</div>";
+    sr.style.display='block';
+  });
+})();
+</script>
+<!-- GLOBAL_NAV_END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>🎯 多時段箱型狀態 — 9 + 3 + 1 設計預覽</h1>
+<div class="sub">產生時間：2026-05-31 20:56:52 ｜ Phase 1 設計層級 ｜ 尚未實作 classify_n_state</div>
+
+<div class="preview-banner">
+🟡 <strong>這是設計預覽頁，僅供 review。</strong>
+classify_n_state 尚未改寫，n_shape.html / box_structure.html 仍跑舊 7 狀態邏輯。
+本頁顯示新狀態定義、條件、操作含意、與舊→新映射。
+</div>
+
+<h2>📐 設計原則</h2>
+<div style="background:var(--th-card,#ffffff);border:1px solid var(--th-border2,#cdd9e7);border-radius:8px;padding:14px 18px;margin-bottom:18px;font-size:13px;line-height:1.8;color:var(--th-text2,#3f4f63)">
+<strong style="color:var(--th-accent,#2563eb)">2D 正交：位置 × 方向</strong><br>
+• <strong>3 位置</strong>：箱上 (above SH) / 箱內 (between SL & SH) / 箱下 (below SL)<br>
+• <strong>3 方向</strong>：向上 (近 3 根 close 斜率 &gt; 0) / 向下 (斜率 &lt; 0) / 特殊（假突破/盤整/破底翻）<br>
+• <strong>3 修飾詞</strong>：突破確認中、跌破確認中、壓縮整理（不破壞 9 宮對稱）<br>
+• <strong>1 unknown</strong>：資料不足（獨立）
+</div>
+
+<h2>🗺 9 宮格主結構</h2>
+<div class='headers-row'><div></div><div class='header-cell'>向上 →</div><div class='header-cell'>向下 ↓</div><div class='header-cell'>特殊 ⚡</div></div><div class='row-with-label'><div class='row-label'>箱上 above</div><div class='cell' style='border-color:#10b981'><div class='cell-head'><span class='cell-icon'>🟢</span><span class='cell-label' style='color:var(--th-green,#10b981)'>箱上推進</span><span class='cell-key'>above_up</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>close &gt; 最近 confirmed SH，且近 3 根 close 斜率 &gt; 0</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>突破前 SH 後持續向上推進，N 形延續最強訊號</span></div><div class='cell-operation' style='color:var(--th-green,#10b981)'>🟢 續抱 / 加碼（趨勢確認）</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ② N 形延續</span><span class='cell-old'>舊：running</span></div></div><div class='cell' style='border-color:#fcd34d'><div class='cell-head'><span class='cell-icon'>🟡</span><span class='cell-label' style='color:var(--th-warn,#a16207)'>箱上回測</span><span class='cell-key'>above_down</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>close &gt; 最近 confirmed SH，但近 3 根 close 斜率 &lt; 0</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>曾突破 SH，現回測中。若 SH 守住 → 健康回檔；若跌回箱內 → 假突破</span></div><div class='cell-operation' style='color:var(--th-warn,#a16207)'>🟡 警戒（測 SH 是否變支撐）</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ② 延伸（健康回檔）</span><span class='cell-old'>舊：running</span></div></div><div class='cell' style='border-color:#fb923c'><div class='cell-head'><span class='cell-icon'>⚠</span><span class='cell-label' style='color:var(--th-red,#c2410c)'>箱上假突破</span><span class='cell-key'>above_fake</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>曾 close &gt; SH，但近 N 根（預設 5）K 棒內 close 又跌回箱內</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>假突破：突破 SH 後快速被打回，主力可能在出貨。比 broken 更早期的警示訊號</span></div><div class='cell-operation' style='color:var(--th-red,#c2410c)'>🔴 立即減碼（突破失敗）</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範新增（實務常見）</span><span class='cell-old'>舊：breaking</span></div></div></div><div class='row-with-label'><div class='row-label'>箱內 in</div><div class='cell' style='border-color:#60a5fa'><div class='cell-head'><span class='cell-icon'>🔵</span><span class='cell-label' style='color:var(--th-accent,#2563eb)'>箱內向上</span><span class='cell-key'>inbox_up</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>SL ≤ close ≤ SH，且近 3 根 close 斜率 &gt; 0</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>箱內向上測試 SH，若突破則進入 N 形延續；若失敗則回箱內整理</span></div><div class='cell-operation' style='color:var(--th-accent,#2563eb)'>🔵 觀察突破，預備進場</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ① N 形觀察（偏多）</span><span class='cell-old'>舊：watching</span></div></div><div class='cell' style='border-color:#fb923c'><div class='cell-head'><span class='cell-icon'>🟠</span><span class='cell-label' style='color:var(--th-red,#c2410c)'>箱內向下</span><span class='cell-key'>inbox_down</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>SL ≤ close ≤ SH，且近 3 根 close 斜率 &lt; 0</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>箱內向下測試 SL，若跌破則進入破壞區；若守住則回箱內整理</span></div><div class='cell-operation' style='color:var(--th-red,#c2410c)'>🟠 警戒 SL，預備減碼</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ① N 形觀察（偏空）</span><span class='cell-old'>舊：breaking</span></div></div><div class='cell' style='border-color:#94a3b8'><div class='cell-head'><span class='cell-icon'>⚪</span><span class='cell-label' style='color:var(--th-muted,#61708a)'>箱內盤整</span><span class='cell-key'>inbox_side</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>SL ≤ close ≤ SH，且近 5 根 close 範圍 ≤ ATR × 1.5（橫盤）</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>箱內橫盤，無明確方向。若伴隨量縮 + 接近箱頂 → 升級為「壓縮整理」修飾詞</span></div><div class='cell-operation' style='color:var(--th-muted,#61708a)'>⚪ 等待方向，不動作</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ① N 形觀察（中性）</span><span class='cell-old'>舊：watching</span></div></div></div><div class='row-with-label'><div class='row-label'>箱下 below</div><div class='cell' style='border-color:#60a5fa'><div class='cell-head'><span class='cell-icon'>🔄</span><span class='cell-label' style='color:var(--th-accent,#2563eb)'>箱下反彈</span><span class='cell-key'>below_up</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>close &lt; 最近 confirmed SL，但近 3 根 close 斜率 &gt; 0</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>跌破 SL 後嘗試反彈，若成功站回 SL → 進入「箱下破底翻」；若失敗 → 回到向下持續</span></div><div class='cell-operation' style='color:var(--th-accent,#2563eb)'>🔄 觀察反彈強度（破底翻機會）</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ③ 破底翻進行中</span><span class='cell-old'>舊：reversing</span></div></div><div class='cell' style='border-color:#ef4444'><div class='cell-head'><span class='cell-icon'>🔴</span><span class='cell-label' style='color:var(--th-red,#ef4444)'>箱下持續</span><span class='cell-key'>below_down</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>close &lt; 最近 confirmed SL，且近 3 根 close 斜率 &lt; 0</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>跌破 SL 後持續創低，N 形已破壞且無反彈跡象</span></div><div class='cell-operation' style='color:var(--th-red,#ef4444)'>🔴 停損 / 退出</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ③ N 形破壞</span><span class='cell-old'>舊：broken</span></div></div><div class='cell' style='border-color:#10b981'><div class='cell-head'><span class='cell-icon'>⚡</span><span class='cell-label' style='color:var(--th-green,#10b981)'>箱下破底翻</span><span class='cell-key'>below_recovery</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>曾跌破 SL，但 close 已站回 SL 之上（或形成新 HH + HL）</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>破底翻成功 — 跌破後反轉站回，可能是底部反轉訊號。對應規範 ④ 重回 N 形</span></div><div class='cell-operation' style='color:var(--th-green,#10b981)'>⚡ 機會（謹慎進場 + 設停損）</div><div style='display:flex;justify-content:space-between'><span class='cell-rule'>規範 Part 2 ④ 重回 N 形</span><span class='cell-old'>舊：resumed_n</span></div></div></div>
+
+<h2>⚡ 3 修飾詞（角標 / tooltip 顯示）</h2>
+<div class='modifiers-grid'><div class='modifier-card' style='border-color:#fcd34d'><div class='cell-head'><span class='cell-icon'>⏳</span><span class='cell-label' style='color:var(--th-warn,#a16207)'>突破確認中</span><span class='cell-key'>breakout_pending</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>close 剛突破 SH，但未滿確認窗（預設 3 根 K 棒）</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>突破與假突破的過渡狀態，最高警覺期</span></div><div class='cell-operation' style='color:var(--th-warn,#a16207)'>⏳ 先觀察 — 等 3 根確認是真突破還是假突破</div><div class='modifier-applies'>套用於：<code>above_up、above_down</code></div></div><div class='modifier-card' style='border-color:#fcd34d'><div class='cell-head'><span class='cell-icon'>⏳</span><span class='cell-label' style='color:var(--th-warn,#a16207)'>跌破確認中</span><span class='cell-key'>breakdown_pending</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>close 剛跌破 SL，但未滿確認窗（預設 3 根 K 棒）</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>跌破與破底翻的過渡狀態，最高警覺期</span></div><div class='cell-operation' style='color:var(--th-warn,#a16207)'>⏳ 先觀察 — 等 3 根確認是真跌破還是破底翻</div><div class='modifier-applies'>套用於：<code>below_down</code></div></div><div class='modifier-card' style='border-color:#fb923c'><div class='cell-head'><span class='cell-icon'>⚡</span><span class='cell-label' style='color:var(--th-red,#c2410c)'>壓縮整理</span><span class='cell-key'>compression</span></div><div class='cell-row'><span class='lbl'>條件</span></div><div class='cell-condition'>箱內盤整 + 量縮 + 接近 SH 上半部</div><div class='cell-row'><span class='lbl'>說明</span><span class='val'>規範特別提到的概念 — 量價收斂於高檔，多頭壓縮約 80% 突破上行</span></div><div class='cell-operation' style='color:var(--th-red,#c2410c)'>⚡ 預備進場 — 高機率即將突破</div><div class='modifier-applies'>套用於：<code>inbox_side</code></div></div></div>
+
+<h2>⚪ 資料不足（獨立）</h2>
+<div class='unknown-card' style='border-color:#94a3b8'><div class='cell-head'><span class='cell-icon'>⚪</span><span class='cell-label' style='color:var(--th-muted,#61708a)'>資料不足</span><span class='cell-key'>unknown</span></div><div class='cell-condition'>無 confirmed SH/SL 或歷史 K 棒不足（如月線 &lt; 24 根）</div><div class='cell-row' style='margin-top:6px'><span class='lbl'>說明</span><span class='val'>常見於新股、月線資料初期、或極端持續創高無回檔的少數狀況</span></div><div class='cell-operation' style='color:var(--th-muted,#61708a);margin-top:6px'>⚪ 觀察 — 等待結構形成</div></div>
+
+<h2>🔄 舊 7 狀態 → 新狀態 映射</h2>
+<div class='mapping'><table><thead><tr><th>舊 7 狀態</th><th></th><th>新狀態 key</th><th>新狀態標籤</th></tr></thead><tbody><tr><td><code>running</code></td><td class='arrow'>→</td><td><code>above_up</code></td><td>🟢 箱上推進</td></tr><tr><td><code>watching</code></td><td class='arrow'>→</td><td><code>inbox_up</code></td><td>🔵 箱內向上</td></tr><tr><td><code>breaking</code></td><td class='arrow'>→</td><td><code>inbox_down</code></td><td>🟠 箱內向下</td></tr><tr><td><code>broken</code></td><td class='arrow'>→</td><td><code>below_down</code></td><td>🔴 箱下持續</td></tr><tr><td><code>reversing</code></td><td class='arrow'>→</td><td><code>below_up</code></td><td>🔄 箱下反彈</td></tr><tr><td><code>resumed_n</code></td><td class='arrow'>→</td><td><code>below_recovery</code></td><td>⚡ 箱下破底翻</td></tr><tr><td><code>unknown</code></td><td class='arrow'>→</td><td><code>unknown</code></td><td>⚪ 資料不足</td></tr></tbody></table><div style='color:var(--th-muted,#61708a);font-size:11px;margin-top:8px'>⚠ <code>watching</code> 預設映射到 <code>inbox_up</code>，但實際依方向再細分為 <code>inbox_up</code> / <code>inbox_down</code> / <code>inbox_side</code>。</div></div>
+
+<h2>⚙ 設定常數</h2>
+<div class='params'><div class='params-grid'><div class='param-cell'><div class='name'>DIRECTION_SLOPE_BARS</div><div class='value'>3</div><div class='desc'>方向判斷：近 N 根 close 算斜率</div></div><div class='param-cell'><div class='name'>SIDEWAYS_LOOKBACK_BARS</div><div class='value'>5</div><div class='desc'>盤整判斷：近 N 根 close 範圍</div></div><div class='param-cell'><div class='name'>SIDEWAYS_ATR_MULT</div><div class='value'>1.5</div><div class='desc'>盤整判斷：範圍 ÷ ATR ≤ 此值</div></div><div class='param-cell'><div class='name'>FAKE_BREAKOUT_WINDOW</div><div class='value'>5</div><div class='desc'>假突破時間窗：突破後 N 根內跌回</div></div><div class='param-cell'><div class='name'>BREAKOUT_PENDING_BARS</div><div class='value'>3</div><div class='desc'>突破/跌破確認：未滿 N 根</div></div><div class='param-cell'><div class='name'>COMPRESSION_LOOKBACK</div><div class='value'>5</div><div class='desc'>壓縮整理：盤整窗格</div></div><div class='param-cell'><div class='name'>COMPRESSION_VOL_RATIO</div><div class='value'>0.8</div><div class='desc'>壓縮整理：近 N 根均量 ÷ 20 根均量</div></div><div class='param-cell'><div class='name'>COMPRESSION_NEAR_SH_PCT</div><div class='value'>0.7</div><div class='desc'>壓縮整理：close 落在箱體上方比例</div></div></div></div>
+
+
+<div class="decisions">
+<h3>🚩 用戶決策清單（請 review 後回覆）</h3>
+<ol>
+  <li><strong>9 + 3 + 1 結構合理嗎？</strong>
+    <br>有沒有想新增/移除/合併的狀態？特別是 above_down 與 above_fake 的區隔是否清楚？
+  </li>
+  <li><strong>條件閾值合理嗎？</strong>
+    <br>方向斜率用近 3 根、盤整用近 5 根 + ATR×1.5、假突破窗 5 根 — 太嚴/太鬆？
+  </li>
+  <li><strong>命名格式</strong>：目前同時顯示 <code>above_up</code>（key）+ 「箱上推進」（label）。
+    <br><span class="recommend">⭐ 推薦：報告主顯示中文標籤，tooltip 內展示 key 與條件</span>
+  </li>
+  <li><strong>修飾詞顯示</strong>：
+    <br>(a) tooltip 內標註  (b) 主標籤旁加角標 ⏳/⚡  (c) 獨立 pill
+    <br><span class="recommend">⭐ 推薦：(a) tooltip + (b) 主標籤加角標（雙重保險）</span>
+  </li>
+  <li><strong>修飾詞優先序</strong>：當多個修飾詞同時觸發（如 compression + breakout_pending），
+    顯示哪個？建議 breakout/breakdown > compression。
+  </li>
+  <li><strong>是否要顯示舊→新映射過渡標籤</strong>？
+    <br>例如：「⏳ 箱上推進（原 running）」過渡期顯示 1-2 個月。
+  </li>
+  <li><strong>盤整 vs 箱內向上/向下的優先序</strong>：
+    <br>若斜率近乎 0 + 範圍小於 ATR×1.5 → 算盤整？
+    <br>若斜率正但仍在窄範圍內 → 算 inbox_up 還是 inbox_side？
+    <br><span class="recommend">⭐ 推薦：先判盤整 → 否則才看斜率</span>
+  </li>
+</ol>
+</div>
+
+
+<footer>
+本頁由 <code>src/agents/state_grid_preview.py</code> 渲染<br>
+狀態定義：<code>src/shared/state_grid.py</code><br>
+回覆設計決定後，將進入 Phase 2 (方向/盤整偵測 helpers) → Phase 3 (classify_n_state 重寫)
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style id='MS_N_RRR_tooltip_inject_v2'>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: var(--th-bg,#f4f7fb);
+  color: var(--th-text,#243244);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid var(--th-border2,#bccadb);
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(15,23,42,0.15);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>
