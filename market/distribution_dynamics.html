@@ -1,0 +1,207 @@
+<!doctype html><html lang="zh-Hant"><head>
+<link rel="stylesheet" href="../assets/site.css?v=bdcde63b">
+<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=bdcde63b"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>主力邊拉邊出 · 派發動力 DS</title><style>
+/* === Chart interaction lock (chart_buttons.py) === */
+/* 鎖定 plotly 觸控：保留 tap，禁用 pinch & pan */
+.plotly-graph-div, .js-plotly-plot {
+  touch-action: manipulation !important;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Toolbar 樣式 */
+.chart-toolbar {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 6px 8px;
+  background: var(--th-card,#0f1a2c);
+  border: 1px solid var(--th-border,#2d3f55);
+  border-radius: 6px;
+  margin: -8px 0 14px;
+  font-family: "Microsoft JhengHei", sans-serif;
+}
+.chart-toolbar button {
+  background: var(--th-card,#1e293b);
+  color: var(--th-text2,#cbd5e1);
+  border: 1px solid var(--th-border2,#334155);
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  min-height: 30px;
+  min-width: 36px;
+}
+.chart-toolbar button:hover {
+  border-color: #3b82f6;
+  color: var(--th-blue,#93c5fd);
+}
+.chart-toolbar button:active {
+  transform: scale(0.95);
+  background: var(--th-card,#0f1a2c);
+}
+/* 篩選按鈕 active 高亮（RRG 4 象限切換） */
+.chart-toolbar button.active {
+  background: var(--th-blue-bg,#1e3a5f);
+  color: var(--th-blue,#93c5fd);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6 inset;
+}
+/* 4 象限色彩標記 */
+.chart-toolbar button.q-leading.active   { background:var(--th-green-bg,#064e3b); color:var(--th-green,#6ee7b7); border-color:#10b981; box-shadow:0 0 0 1px #10b981 inset; }
+.chart-toolbar button.q-improving.active { background:var(--th-blue-bg,#0f2a44); color:var(--th-blue,#93c5fd); border-color:#60a5fa; box-shadow:0 0 0 1px #60a5fa inset; }
+.chart-toolbar button.q-weakening.active { background:var(--th-amber-bg,#3a1c08); color:var(--th-amber,#fcd34d); border-color:#fb923c; box-shadow:0 0 0 1px #fb923c inset; }
+.chart-toolbar button.q-lagging.active   { background:var(--th-red-bg,#3f0d1a); color:var(--th-red,#fda4af); border-color:#fda4af; box-shadow:0 0 0 1px #fda4af inset; }
+.chart-toolbar .sep {
+  width: 1px;
+  background: var(--th-hover,#334155);
+  margin: 2px 4px;
+  align-self: stretch;
+}
+.chart-toolbar .lbl {
+  color: var(--th-faint,#64748b);
+  font-size: 11px;
+  padding: 4px 4px;
+  align-self: center;
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .chart-toolbar { padding: 4px 6px; gap: 3px; }
+  .chart-toolbar button { padding: 5px 8px; font-size: 11px; min-width: 32px; }
+  .chart-toolbar .lbl { display: none; }
+  .chart-toolbar .sep { margin: 2px 2px; }
+}
+.ds-info{margin:2px 0 8px;padding:7px 12px;font-size:13px;line-height:1.5;background:var(--th-card,#0f1a2c);border:1px solid var(--th-border,#2d3f55);border-radius:6px;white-space:nowrap;overflow-x:auto}</style></head><body>
+<script>(function(){var L=document.getElementById("ms-theme-css");if(!L)return;var q="?v=bdcde63b",b="../assets/";var DAY=["theme-red.css","theme-orange.css","theme-yellow.css","theme-green.css","theme-blue.css","theme-indigo.css","theme-violet.css"];function dayT(){return DAY[(new Date()).getDay()];}function ap(v){var t=(v==="auto")?dayT():v;L.setAttribute("href",b+t+q);}var sv=null;try{sv=localStorage.getItem("ms_theme");}catch(e){}if(!sv)sv="auto";ap(sv);var S=document.getElementById("ms-theme-sel");if(S){S.value=sv;S.addEventListener("change",function(){ap(S.value);try{localStorage.setItem("ms_theme",S.value);}catch(e){}});}})();</script><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">主力邊拉邊出 · 派發動力 DS</h1><div class="page-meta">資料日 2026-06-18　｜　49 檔　｜　高風險(高度+危險) 0 檔</div><div class="banner"><b>主力邊拉邊出 · 派發動力 (DS)</b>　「邊拉邊出」= 價格仍創高，但籌碼由強手轉移到追價者 (Wyckoff 派發)。重點不是「有人賣」，而是<b>上漲效率變差 + 籌碼結構惡化</b>。五層綜合 + 三方投票，比「爆量=出貨」可靠 (主升段也爆量；關鍵是量放大後結構有沒有改善)。</div><div class="grid-4"><div class="card"><div class="metric metric--lg"><span class="metric__label">波段危險 (&gt;80)</span><span class="metric__value">0</span></div></div><div class="card"><div class="metric metric--lg"><span class="metric__label">高度派發 (60-80)</span><span class="metric__value">0</span></div></div><div class="card"><div class="metric metric--lg"><span class="metric__label">邊拉邊調節 (30-60)</span><span class="metric__value">6</span></div></div><div class="card"><div class="metric metric--lg"><span class="metric__label">健康拉升 (&lt;30)</span><span class="metric__value">43</span></div></div></div><div class="card"><div class="card-title">📉 派發風險榜（DS 由高到低，前 30）</div><div class="label" style="margin-bottom:8px">五層橫條:越長越偏派發。票=Box/CSA/Wyckoff 三方確認數 (DS 常在三票確認前就抬升=早期預警)。</div><table class="data-table data-table--zebra"><thead><tr><th>#</th><th>代號</th><th>名稱</th><th>DS</th><th>分級</th><th>價量</th><th>籌碼</th><th>Box</th><th>法人</th><th>融資</th><th>票</th></tr></thead><tbody><tr><td>1</td><td>2327</td><td>國巨*</td><td><b>46.0</b></td><td><span class="pill pill--warn pill--sm">邊拉邊調節</span></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:69.9%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>2</td><td>9914</td><td>美利達</td><td><b>41.0</b></td><td><span class="pill pill--warn pill--sm">邊拉邊調節</span></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:40.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:90.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:68.3%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:7.3%"></div></div></td><td><span class="text-muted">1/3</span></td></tr><tr><td>3</td><td>3231</td><td>緯創</td><td><b>36.2</b></td><td><span class="pill pill--warn pill--sm">邊拉邊調節</span></td><td><div class="bar"><div class="bar__fill" style="width:20.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:68.3%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><span class="text-muted">1/3</span></td></tr><tr><td>4</td><td>3042</td><td>3042</td><td><b>33.1</b></td><td><span class="pill pill--warn pill--sm">邊拉邊調節</span></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:40.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:60.8%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>5</td><td>2317</td><td>鴻海</td><td><b>32.8</b></td><td><span class="pill pill--warn pill--sm">邊拉邊調節</span></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:89.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><span class="text-muted">1/3</span></td></tr><tr><td>6</td><td>8021</td><td>8021</td><td><b>30.5</b></td><td><span class="pill pill--warn pill--sm">邊拉邊調節</span></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:46.9%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:14.3%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>7</td><td>2303</td><td>聯電</td><td><b>29.7</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:24.3%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:74.3%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>8</td><td>3026</td><td>3026</td><td><b>28.4</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:81.3%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:26.7%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>9</td><td>3189</td><td>景碩</td><td><b>28.2</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:60.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:68.3%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>10</td><td>2454</td><td>聯發科</td><td><b>26.8</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:27.9%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:68.3%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:81.8%"></div></div></td><td><span class="text-muted">1/3</span></td></tr><tr><td>11</td><td>3090</td><td>3090</td><td><b>26.8</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:45.1%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:88.3%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>12</td><td>6274</td><td>6274</td><td><b>26.8</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:76.1%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:26.7%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>13</td><td>9921</td><td>巨大</td><td><b>26.4</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:20.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:27.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>14</td><td>6239</td><td>力成</td><td><b>26.1</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:40.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:56.7%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:55.7%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>15</td><td>2308</td><td>台達電</td><td><b>26.0</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:20.2%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:49.9%"></div></div></td><td><span class="text-muted">1/3</span></td></tr><tr><td>16</td><td>6488</td><td>環球晶</td><td><b>25.1</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:50.5%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>17</td><td>4958</td><td>4958</td><td><b>24.9</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:69.5%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:26.7%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>18</td><td>3006</td><td>晶豪科</td><td><b>23.8</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:44.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>19</td><td>6770</td><td>力積電</td><td><b>22.7</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:38.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:68.3%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:48.7%"></div></div></td><td><span class="text-muted">1/3</span></td></tr><tr><td>20</td><td>3665</td><td>3665</td><td><b>22.3</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:6.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:55.0%"></div></div></td><td><span class="text-muted">1/3</span></td></tr><tr><td>21</td><td>3008</td><td>大立光</td><td><b>22.0</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:40.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>22</td><td>5289</td><td>5289</td><td><b>21.7</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:22.4%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><span class="text-muted">1/3</span></td></tr><tr><td>23</td><td>3711</td><td>日月光投控</td><td><b>21.6</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:0.4%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:64.5%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>24</td><td>8046</td><td>南電</td><td><b>20.5</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:55.0%"></div></div></td><td><span class="text-muted">1/3</span></td></tr><tr><td>25</td><td>2330</td><td>台積電</td><td><b>20.3</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:39.2%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:38.3%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:27.9%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>26</td><td>2404</td><td>2404</td><td><b>19.3</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:20.2%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:88.3%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>27</td><td>3481</td><td>3481</td><td><b>19.3</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:14.2%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>28</td><td>2382</td><td>廣達</td><td><b>18.8</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:100.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:38.0%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>29</td><td>2383</td><td>台光電</td><td><b>18.1</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:26.1%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--bear" style="width:68.3%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><span class="text-muted">0/3</span></td></tr><tr><td>30</td><td>8299</td><td>群聯</td><td><b>18.1</b></td><td><span class="pill pill--bull pill--sm">健康拉升</span></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:48.0%"></div></div></td><td><div class="bar"><div class="bar__fill bar__fill--warn" style="width:56.7%"></div></div></td><td><div class="bar"><div class="bar__fill" style="width:0.0%"></div></div></td><td><span class="text-muted">1/3</span></td></tr></tbody></table></div><div class="card"><div class="card-title">📈 價量派發壓力 60 日時序 — 2327 國巨* (DS 榜首)</div><div class="label" style="margin-bottom:6px">DS 第1層(價量背離)走勢:紅帶(≥55)=價量明顯派發、橘帶(30-55)=效率轉差。只在「拉升中且近高檔」才計分。</div><div id="ds_pv_info" class="ds-info">👆 移到圖上（手機點圖）讀每日價量派發壓力</div><div>                        <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.5.0.min.js" integrity="sha256-fHbNLP+GlIXN+efbQec78UkemUz3NJp7UmfGxC1tNxs=" crossorigin="anonymous"></script>                <div id="ds_pv_ts" class="plotly-graph-div" style="height:320px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("ds_pv_ts")) {                    Plotly.newPlot(                        "ds_pv_ts",                        [{"hoverinfo":"none","line":{"color":"#f97316","width":2.4},"marker":{"color":"#f97316","size":4},"mode":"lines+markers","name":"\u50f9\u91cf\u6d3e\u767c\u58d3\u529b","x":[-60,-59,-58,-57,-56,-55,-54,-53,-52,-51,-50,-49,-48,-47,-46,-45,-44,-43,-42,-41,-40,-39,-38,-37,-36,-35,-34,-33,-32,-31,-30,-29,-28,-27,-26,-25,-24,-23,-22,-21,-20,-19,-18,-17,-16,-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0],"y":[20.0,6.0,6.0,6.0,6.0,6.0,6.0,6.0,0.0,0.0,0.0,0.0,6.9,26.6,28.2,28.3,47.7,54.7,69.8,69.2,68.3,62.8,60.0,60.0,62.6,70.4,49.5,46.0,28.8,27.0,27.2,33.3,25.0,25.4,17.9,17.2,0.0,22.1,20.0,42.2,61.3,60.0,60.0,60.0,61.0,61.0,60.0,40.0,40.0,20.0,0.0,0.0,0.0,0.0,10.1,23.5,33.0,48.8,47.4,67.0,69.9],"type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"shapes":[{"fillcolor":"rgba(239,68,68,0.06)","layer":"below","line":{"width":0},"type":"rect","x0":0,"x1":1,"xref":"x domain","y0":55,"y1":110,"yref":"y"},{"fillcolor":"rgba(251,146,60,0.05)","layer":"below","line":{"width":0},"type":"rect","x0":0,"x1":1,"xref":"x domain","y0":30,"y1":55,"yref":"y"}],"margin":{"l":44,"r":18,"t":8,"b":34},"font":{"color":"#e2e8f0","size":12},"xaxis":{"tickfont":{"color":"#94a3b8"},"title":{"text":"\u8fd1 60 \u4ea4\u6613\u65e5 (0=\u4eca\u5929)"},"showgrid":true,"gridcolor":"rgba(255,255,255,0.05)","showspikes":true,"spikecolor":"#475569","spikethickness":1,"spikemode":"across","spikesnap":"cursor"},"yaxis":{"tickfont":{"color":"#94a3b8"},"title":{"text":"\u50f9\u91cf\u6d3e\u767c\u58d3\u529b 0-100"},"range":[0,100],"showgrid":true,"gridcolor":"rgba(255,255,255,0.06)"},"height":320,"paper_bgcolor":"#0a0f1a","plot_bgcolor":"#0a0f1a","hovermode":"x","showlegend":false,"dragmode":false},                        {"displayModeBar": false, "scrollZoom": false, "doubleClick": "reset+autosize", "showTips": false, "displaylogo": false, "responsive": true}                    )                };            </script>        </div><div class="chart-toolbar" data-target="ds_pv_ts" title="此圖只顯示近期資料，用範圍鈕聚焦即可"><span class="lbl">⏱ 範圍</span><button onclick="chartRangeDays('ds_pv_ts', 30)" title="顯示近 30 日">近1月</button><button onclick="chartRangeDays('ds_pv_ts', 90)" title="顯示近 90 日">近3月</button><button onclick="chartReset('ds_pv_ts')" title="顯示全部範圍（雙擊圖也可）">全部</button></div>
+<script>(function(){
+  function bind(){
+    var gd=document.getElementById("ds_pv_ts"); var info=document.getElementById("ds_pv_info");
+    if(!gd||!gd._fullLayout||!info){return setTimeout(bind,200);}
+    gd.on('plotly_hover',function(ev){
+      var p=(ev&&ev.points&&ev.points[0]); if(!p)return;
+      info.innerHTML='<b>'+p.x+'</b>　價量派發壓力 <b class="text-orange">'+Math.round(p.y*10)/10+'</b> / 100';
+    });
+  }
+  bind();
+})();</script>
+</div><details class="explainer" open><summary class="explainer__title">🧠 DS 五層權重 + 三方投票 + 派發的兩種臉</summary><div class="label"><b>DS = 0.30×價量 + 0.25×籌碼集中↓ + 0.20×Box劣化 + 0.15×法人轉弱 + 0.10×融資升溫</b><br><br>① <b>價量背離</b>(Effort vs Result):同時認「爆量滯漲」(量大漲不動) 與「量縮無力」(價漲量縮、在高檔)。南電 2021/11 頂部就是量縮型，傳統「爆量=出貨」會漏。<br>② <b>籌碼集中↓</b>:主力×賣買家差 (NBC15_Z60↓ + 集中度 SBD_Z60↓ + CMG 轉 Q3/Q4)。<br>③ <b>Box 劣化</b>:ΔSH 創高幅度縮 + 回檔加深 (box_structure degradation)。<br>④ <b>法人轉弱</b>:投信/外資由買轉賣。<br>⑤ <b>融資升溫</b>:融資快增 × 價創高 = 散戶接手 (最危險)。<br><br><b>三方投票</b>:不讓單一 Agent 判出貨 —— Box(結構變差) + CSA(籌碼擴散) + Wyckoff(派發相位) 各投一票。DS 分數常在三票確認<u>之前</u>就抬升，正是「邊拉邊出」要的早期窗口 (主力跑了、散戶還在衝)。</div></details>
+<script>
+/* === Chart interaction helpers (chart_buttons.py) === */
+(function() {
+  function _getRange(gd, axis) {
+    if (!gd || !gd._fullLayout) return null;
+    var ax = gd._fullLayout[axis];
+    if (!ax || !ax.range) return null;
+    return [ax.range[0], ax.range[1]];
+  }
+  function _toMs(v) {
+    if (v instanceof Date) return v.getTime();
+    if (typeof v === 'number') return v;
+    if (typeof v === 'string') return new Date(v).getTime();
+    return null;
+  }
+  function _toIso(ms) { return new Date(ms).toISOString().slice(0, 10); }
+  function _isDateRange(r) {
+    if (!r) return false;
+    var v = r[0];
+    if (typeof v === 'string' && /^\d{4}-\d{2}-\d{2}/.test(v)) return true;
+    return false;
+  }
+
+  /** 重設所有軸到 autorange */
+  window.chartReset = function(id) {
+    var gd = document.getElementById(id);
+    if (!gd || !gd._fullLayout) return;
+    var update = {};
+    ['xaxis', 'yaxis', 'yaxis2', 'yaxis3', 'yaxis4'].forEach(function(ax) {
+      if (gd._fullLayout[ax]) update[ax + '.autorange'] = true;
+    });
+    Plotly.relayout(gd, update);
+  };
+
+  /** 縮放：factor < 1 = 放大；factor > 1 = 縮小 */
+  window.chartZoom = function(id, factor) {
+    var gd = document.getElementById(id);
+    if (!gd || !gd._fullLayout) return;
+    var xr = _getRange(gd, 'xaxis');
+    var yr = _getRange(gd, 'yaxis');
+    var update = {};
+    if (xr) {
+      if (_isDateRange(xr)) {
+        var a = _toMs(xr[0]), b = _toMs(xr[1]);
+        var c = (a + b) / 2;
+        var w = (b - a) * factor / 2;
+        update['xaxis.range'] = [_toIso(c - w), _toIso(c + w)];
+      } else if (typeof xr[0] === 'number') {
+        var cx = (xr[0] + xr[1]) / 2;
+        var wx = (xr[1] - xr[0]) * factor / 2;
+        update['xaxis.range'] = [cx - wx, cx + wx];
+      }
+    }
+    if (yr && typeof yr[0] === 'number') {
+      var cy = (yr[0] + yr[1]) / 2;
+      var hy = (yr[1] - yr[0]) * factor / 2;
+      update['yaxis.range'] = [cy - hy, cy + hy];
+    }
+    Plotly.relayout(gd, update);
+  };
+
+  /** 平移 N 日（time-series 用） */
+  window.chartPan = function(id, days) {
+    var gd = document.getElementById(id);
+    if (!gd || !gd._fullLayout) return;
+    var xr = _getRange(gd, 'xaxis');
+    if (!xr) return;
+    if (_isDateRange(xr)) {
+      var a = _toMs(xr[0]), b = _toMs(xr[1]);
+      var ms = days * 86400000;
+      Plotly.relayout(gd, {'xaxis.range': [_toIso(a + ms), _toIso(b + ms)]});
+    } else if (typeof xr[0] === 'number') {
+      var d = (xr[1] - xr[0]) * (days / 60);  // 比例位移
+      Plotly.relayout(gd, {'xaxis.range': [xr[0] + d, xr[1] + d]});
+    }
+  };
+
+  /** RRG 4 象限篩選：依 legendgroup 切換 trace 可見性 */
+  window.chartFilterQuadrant = function(id, quadrant) {
+    var gd = document.getElementById(id);
+    if (!gd || !gd.data) return;
+    var values = gd.data.map(function(t) {
+      if (quadrant === 'all') return true;
+      // legendgroup === quadrant 名稱（'Leading'/'Improving'/'Weakening'/'Lagging'）
+      return t.legendgroup === quadrant;
+    });
+    Plotly.restyle(gd, { visible: values });
+    // 更新按鈕 active 狀態
+    var toolbar = document.querySelector('[data-target="' + id + '"]');
+    if (toolbar) {
+      toolbar.querySelectorAll('button').forEach(function(b) {
+        var onclick = b.getAttribute('onclick') || '';
+        if (onclick.indexOf('chartFilterQuadrant') !== -1) {
+          if (onclick.indexOf("'" + quadrant + "'") !== -1) {
+            b.classList.add('active');
+          } else {
+            b.classList.remove('active');
+          }
+        }
+      });
+    }
+  };
+
+  /** 設定範圍為「近 N 日」 */
+  window.chartRangeDays = function(id, days) {
+    var gd = document.getElementById(id);
+    if (!gd || !gd._fullLayout) return;
+    var xr = _getRange(gd, 'xaxis');
+    if (!xr || !_isDateRange(xr)) return;
+    var endMs = _toMs(xr[1]);
+    var startMs = endMs - days * 86400000;
+    Plotly.relayout(gd, {'xaxis.range': [_toIso(startMs), _toIso(endMs)]});
+  };
+})();
+</script>
+<footer class="page-footer">來源 distribution_dynamics｜五層:價量(新算)+籌碼/Box/法人(讀FS)+融資(新算)｜三票 Box+CSA+Wyckoff｜R6 唯讀既算特徵</footer></body></html>
