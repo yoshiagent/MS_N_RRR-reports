@@ -1381,13 +1381,11 @@ C 級會被排除不進入下游池（過熱或結構轉空）
       document.querySelectorAll('.ptab').forEach(function(p){
         p.classList.toggle('on', t==='all' || p.dataset.tab===t);
       });
-      try{localStorage.setItem('haiic_tab',t);}catch(e){}
     });
   });
-  try{
-    var saved=localStorage.getItem('haiic_tab');
-    if(saved){var btn=bar.querySelector("button[data-t='"+saved+"']"); if(btn) btn.click();}
-  }catch(e){}
+  // 首頁一律預設停在「今日操作」(系統流程) — 不再用 localStorage 記憶/還原上次分頁
+  // (避免看別的分頁後, 首頁主視圖被記憶卡住 → 流程看似不見); 並清掉舊的卡住值
+  try{localStorage.removeItem('haiic_tab');}catch(e){}
 })();
 </script>
 
