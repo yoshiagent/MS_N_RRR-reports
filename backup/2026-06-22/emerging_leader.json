@@ -1,0 +1,1924 @@
+{
+  "available": true,
+  "as_of": "2026-06-22",
+  "generated_at": "2026-06-22 22:02:19",
+  "weights": {
+    "position": 25,
+    "velocity": 30,
+    "acceleration": 15,
+    "money_flow": 20,
+    "stability": 10
+  },
+  "params": {
+    "vy_near_zero": 0.005,
+    "reverse_omega_thr": -0.05,
+    "reverse_penalty": 0.7,
+    "leading_early_days": 5,
+    "thresholds": {
+      "emerging_leader": 80,
+      "watch_leader": 65,
+      "early_improving": 55
+    }
+  },
+  "official": {
+    "available": true,
+    "n_sectors": 34,
+    "all_sectors": [
+      {
+        "name": "03_塑膠工業",
+        "stock_count": 25,
+        "quadrant": "Leading",
+        "rs_ratio": 114.34,
+        "rs_momentum": 17.7,
+        "emerging_leader_score": 55,
+        "raw_score": 78,
+        "regime_multiplier": 0.7,
+        "classification": "Early Improving",
+        "sub_scores": {
+          "position": 20,
+          "velocity": 30,
+          "acceleration": 0,
+          "money_flow": 20,
+          "stability": 8
+        },
+        "sub_labels": {
+          "position": "Leading 初期 (0d)",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名大幅上升 (Δ20d=+6)",
+          "stability": "4 週中 3 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "26_光電業",
+        "stock_count": 117,
+        "quadrant": "Leading",
+        "rs_ratio": 104.83,
+        "rs_momentum": 7.6,
+        "emerging_leader_score": 44,
+        "raw_score": 63,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 20,
+          "velocity": 30,
+          "acceleration": 0,
+          "money_flow": 13,
+          "stability": 0
+        },
+        "sub_labels": {
+          "position": "Leading 初期 (0d)",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名小幅上升 (Δ20d=+3)",
+          "stability": "4 週中 0 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "22_生技醫療",
+        "stock_count": 155,
+        "quadrant": "Weakening",
+        "rs_ratio": 100.15,
+        "rs_momentum": -0.85,
+        "emerging_leader_score": 42,
+        "raw_score": 60,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 5,
+          "velocity": 30,
+          "acceleration": 15,
+          "money_flow": 8,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Weakening (動能轉弱)",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading)",
+          "acceleration": "🟢 健康擴張螺旋",
+          "money_flow": "排名持平 (Δ20d=-1)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "08_玻璃陶瓷",
+        "stock_count": 5,
+        "quadrant": "Leading",
+        "rs_ratio": 107.22,
+        "rs_momentum": 9.6,
+        "emerging_leader_score": 41,
+        "raw_score": 59,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 20,
+          "velocity": 21,
+          "acceleration": 0,
+          "money_flow": 13,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Leading 初期 (0d)",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名小幅上升 (Δ20d=+1)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "24_半導體業",
+        "stock_count": 204,
+        "quadrant": "Leading",
+        "rs_ratio": 101.55,
+        "rs_momentum": 1.52,
+        "emerging_leader_score": 38,
+        "raw_score": 54,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 20,
+          "velocity": 21,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Leading 初期 (0d)",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名持平 (Δ20d=+0)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "05_電機機械",
+        "stock_count": 99,
+        "quadrant": "Lagging",
+        "rs_ratio": 97.46,
+        "rs_momentum": -1.47,
+        "emerging_leader_score": 32,
+        "raw_score": 46,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 15,
+          "velocity": 21,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 但 y 即將轉正",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名持平 (Δ20d=-1)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "29_電子通路",
+        "stock_count": 37,
+        "quadrant": "Lagging",
+        "rs_ratio": 93.65,
+        "rs_momentum": -4.63,
+        "emerging_leader_score": 32,
+        "raw_score": 46,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 30,
+          "acceleration": 12,
+          "money_flow": 4,
+          "stability": 0
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading)",
+          "acceleration": "➡ 直線強勢",
+          "money_flow": "排名持平 (Δ20d=+0) ⚠5d流出 ÷2",
+          "stability": "4 週中 0 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "28_電子零組件",
+        "stock_count": 212,
+        "quadrant": "Lagging",
+        "rs_ratio": 98.93,
+        "rs_momentum": -0.78,
+        "emerging_leader_score": 27,
+        "raw_score": 39,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 15,
+          "velocity": 10,
+          "acceleration": 4,
+          "money_flow": 8,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 但 y 即將轉正",
+          "velocity": "Vx↓ Vy↑ (y 走強) ⚠CW 反向 ×0.7",
+          "acceleration": "⏸ 停滯",
+          "money_flow": "排名持平 (Δ20d=+0)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "25_電腦及週邊設備",
+        "stock_count": 111,
+        "quadrant": "Lagging",
+        "rs_ratio": 92.85,
+        "rs_momentum": -5.91,
+        "emerging_leader_score": 20,
+        "raw_score": 28,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 15,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↑ (y 走強)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名持平 (Δ20d=-1)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "32_文化創意",
+        "stock_count": 26,
+        "quadrant": "Lagging",
+        "rs_ratio": 94.67,
+        "rs_momentum": -4.9,
+        "emerging_leader_score": 20,
+        "raw_score": 28,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 10,
+          "acceleration": 0,
+          "money_flow": 13,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↑ (y 走強) ⚠CW 反向 ×0.7",
+          "acceleration": "🟠 反向穩定",
+          "money_flow": "排名小幅上升 (Δ20d=+3)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "09_造紙工業",
+        "stock_count": 7,
+        "quadrant": "Weakening",
+        "rs_ratio": 100.1,
+        "rs_momentum": -1.42,
+        "emerging_leader_score": 19,
+        "raw_score": 27,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 5,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 20,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Weakening (動能轉弱)",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟠 反向穩定",
+          "money_flow": "排名大幅上升 (Δ20d=+5)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "17_金融保險",
+        "stock_count": 41,
+        "quadrant": "Weakening",
+        "rs_ratio": 100.81,
+        "rs_momentum": -0.94,
+        "emerging_leader_score": 16,
+        "raw_score": 23,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 5,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 13,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Weakening (動能轉弱)",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名小幅上升 (Δ20d=+1)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "06_電器電纜",
+        "stock_count": 17,
+        "quadrant": "Lagging",
+        "rs_ratio": 97.62,
+        "rs_momentum": -2.45,
+        "emerging_leader_score": 14,
+        "raw_score": 20,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 15,
+          "money_flow": 0,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "🟢 健康擴張螺旋",
+          "money_flow": "排名下降 (Δ20d=-2)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "21_化學工業",
+        "stock_count": 42,
+        "quadrant": "Lagging",
+        "rs_ratio": 98.12,
+        "rs_momentum": -2.07,
+        "emerging_leader_score": 13,
+        "raw_score": 19,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 10,
+          "acceleration": 4,
+          "money_flow": 0,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↑ Vy↓ (朝 Weakening)",
+          "acceleration": "⏸ 停滯",
+          "money_flow": "排名下降 (Δ20d=-3)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "31_其他電子",
+        "stock_count": 96,
+        "quadrant": "Lagging",
+        "rs_ratio": 93.86,
+        "rs_momentum": -5.46,
+        "emerging_leader_score": 13,
+        "raw_score": 18,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 12,
+          "money_flow": 4,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "➡ 直線強勢",
+          "money_flow": "排名持平 (Δ20d=-1) ⚠5d流出 ÷2",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "11_橡膠工業",
+        "stock_count": 11,
+        "quadrant": "Lagging",
+        "rs_ratio": 89.42,
+        "rs_momentum": -14.33,
+        "emerging_leader_score": 10,
+        "raw_score": 15,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 13,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名小幅上升 (Δ20d=+1)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "37_運動休閒",
+        "stock_count": 27,
+        "quadrant": "Lagging",
+        "rs_ratio": 92.42,
+        "rs_momentum": -12.6,
+        "emerging_leader_score": 10,
+        "raw_score": 15,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 10,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名大幅上升 (Δ20d=+5) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "01_水泥工業",
+        "stock_count": 7,
+        "quadrant": "Lagging",
+        "rs_ratio": 95.99,
+        "rs_momentum": -6.82,
+        "emerging_leader_score": 9,
+        "raw_score": 13,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名持平 (Δ20d=-1)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "91_其他",
+        "stock_count": 10,
+        "quadrant": "Lagging",
+        "rs_ratio": 94.6,
+        "rs_momentum": -7.48,
+        "emerging_leader_score": 9,
+        "raw_score": 13,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名持平 (Δ20d=+0)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "12_汽車工業",
+        "stock_count": 43,
+        "quadrant": "Lagging",
+        "rs_ratio": 95.01,
+        "rs_momentum": -5.29,
+        "emerging_leader_score": 8,
+        "raw_score": 11,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 6,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名小幅上升 (Δ20d=+1) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "14_建材營造",
+        "stock_count": 87,
+        "quadrant": "Lagging",
+        "rs_ratio": 93.54,
+        "rs_momentum": -10.22,
+        "emerging_leader_score": 8,
+        "raw_score": 11,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 6,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名小幅上升 (Δ20d=+1) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "30_資訊服務",
+        "stock_count": 43,
+        "quadrant": "Lagging",
+        "rs_ratio": 93.95,
+        "rs_momentum": -7.7,
+        "emerging_leader_score": 8,
+        "raw_score": 11,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 6,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名小幅上升 (Δ20d=+3) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "36_數位雲端",
+        "stock_count": 36,
+        "quadrant": "Lagging",
+        "rs_ratio": 93.38,
+        "rs_momentum": -9.35,
+        "emerging_leader_score": 8,
+        "raw_score": 11,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 6,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名小幅上升 (Δ20d=+1) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "04_紡織纖維",
+        "stock_count": 52,
+        "quadrant": "Lagging",
+        "rs_ratio": 94.07,
+        "rs_momentum": -7.08,
+        "emerging_leader_score": 7,
+        "raw_score": 10,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名持平 (Δ20d=+0)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "27_通信網路",
+        "stock_count": 92,
+        "quadrant": "Lagging",
+        "rs_ratio": 96.28,
+        "rs_momentum": -3.58,
+        "emerging_leader_score": 7,
+        "raw_score": 10,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名持平 (Δ20d=-1)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "02_食品工業",
+        "stock_count": 33,
+        "quadrant": "Lagging",
+        "rs_ratio": 93.99,
+        "rs_momentum": -9.46,
+        "emerging_leader_score": 6,
+        "raw_score": 9,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 4,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名持平 (Δ20d=-1) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "15_航運業",
+        "stock_count": 33,
+        "quadrant": "Lagging",
+        "rs_ratio": 92.58,
+        "rs_momentum": -10.56,
+        "emerging_leader_score": 6,
+        "raw_score": 9,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 4,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名持平 (Δ20d=-1) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "35_綠能環保",
+        "stock_count": 45,
+        "quadrant": "Lagging",
+        "rs_ratio": 96.64,
+        "rs_momentum": -5.28,
+        "emerging_leader_score": 6,
+        "raw_score": 8,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 6,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名小幅上升 (Δ20d=+1) ⚠5d流出 ÷2",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "38_居家生活",
+        "stock_count": 33,
+        "quadrant": "Lagging",
+        "rs_ratio": 96.08,
+        "rs_momentum": -8.32,
+        "emerging_leader_score": 6,
+        "raw_score": 8,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 0,
+          "stability": 8
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名下降 (Δ20d=-2)",
+          "stability": "4 週中 3 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "16_觀光餐旅",
+        "stock_count": 51,
+        "quadrant": "Lagging",
+        "rs_ratio": 95.53,
+        "rs_momentum": -6.75,
+        "emerging_leader_score": 4,
+        "raw_score": 6,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 4,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名持平 (Δ20d=-1) ⚠5d流出 ÷2",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "20_其他",
+        "stock_count": 96,
+        "quadrant": "Lagging",
+        "rs_ratio": 96.05,
+        "rs_momentum": -7.26,
+        "emerging_leader_score": 4,
+        "raw_score": 6,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 4,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名持平 (Δ20d=+0) ⚠5d流出 ÷2",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "10_鋼鐵工業",
+        "stock_count": 49,
+        "quadrant": "Lagging",
+        "rs_ratio": 95.44,
+        "rs_momentum": -6.96,
+        "emerging_leader_score": 1,
+        "raw_score": 2,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 0,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名下降 (Δ20d=-2)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "18_貿易百貨",
+        "stock_count": 19,
+        "quadrant": "Lagging",
+        "rs_ratio": 93.08,
+        "rs_momentum": -9.57,
+        "emerging_leader_score": 1,
+        "raw_score": 2,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 0,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名下降 (Δ20d=-8)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "23_油電燃氣",
+        "stock_count": 12,
+        "quadrant": "Lagging",
+        "rs_ratio": 95.91,
+        "rs_momentum": -5.35,
+        "emerging_leader_score": 1,
+        "raw_score": 2,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 0,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名下降 (Δ20d=-6)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      }
+    ],
+    "emerging_leaders": [],
+    "watch_leaders": [],
+    "early_improving": [
+      {
+        "name": "03_塑膠工業",
+        "stock_count": 25,
+        "quadrant": "Leading",
+        "rs_ratio": 114.34,
+        "rs_momentum": 17.7,
+        "emerging_leader_score": 55,
+        "raw_score": 78,
+        "regime_multiplier": 0.7,
+        "classification": "Early Improving",
+        "sub_scores": {
+          "position": 20,
+          "velocity": 30,
+          "acceleration": 0,
+          "money_flow": 20,
+          "stability": 8
+        },
+        "sub_labels": {
+          "position": "Leading 初期 (0d)",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名大幅上升 (Δ20d=+6)",
+          "stability": "4 週中 3 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      }
+    ],
+    "stats": {
+      "n_emerging": 0,
+      "n_watch": 0,
+      "n_early": 1,
+      "n_ignore": 33
+    },
+    "market_health": {
+      "n_leading_with_motion": 4,
+      "leading_mean_omega": -0.054,
+      "leading_n_positive": 0,
+      "leading_n_negative": 2,
+      "all_mean_omega": -0.0516,
+      "all_n_positive": 2,
+      "all_n_negative": 14,
+      "health_score": 40,
+      "verdict": "🔴 反向 CW 旋轉 — regime 變化警告"
+    }
+  },
+  "theme": {
+    "available": true,
+    "n_sectors": 35,
+    "all_sectors": [
+      {
+        "name": "塑化",
+        "stock_count": 25,
+        "quadrant": "Leading",
+        "rs_ratio": 114.34,
+        "rs_momentum": 17.7,
+        "emerging_leader_score": 55,
+        "raw_score": 78,
+        "regime_multiplier": 0.7,
+        "classification": "Early Improving",
+        "sub_scores": {
+          "position": 20,
+          "velocity": 30,
+          "acceleration": 0,
+          "money_flow": 20,
+          "stability": 8
+        },
+        "sub_labels": {
+          "position": "Leading 初期 (0d)",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名大幅上升 (Δ20d=+5)",
+          "stability": "4 週中 3 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "太陽能",
+        "stock_count": 12,
+        "quadrant": "Leading",
+        "rs_ratio": 108.13,
+        "rs_momentum": 10.45,
+        "emerging_leader_score": 51,
+        "raw_score": 73,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 20,
+          "velocity": 30,
+          "acceleration": 12,
+          "money_flow": 6,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Leading 初期 (0d)",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading)",
+          "acceleration": "➡ 直線強勢",
+          "money_flow": "排名小幅上升 (Δ20d=+1) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "光電",
+        "stock_count": 115,
+        "quadrant": "Leading",
+        "rs_ratio": 105.02,
+        "rs_momentum": 7.99,
+        "emerging_leader_score": 44,
+        "raw_score": 63,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 20,
+          "velocity": 30,
+          "acceleration": 0,
+          "money_flow": 13,
+          "stability": 0
+        },
+        "sub_labels": {
+          "position": "Leading 初期 (0d)",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名小幅上升 (Δ20d=+3)",
+          "stability": "4 週中 0 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "生技",
+        "stock_count": 154,
+        "quadrant": "Weakening",
+        "rs_ratio": 100.17,
+        "rs_momentum": -0.82,
+        "emerging_leader_score": 42,
+        "raw_score": 60,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 5,
+          "velocity": 30,
+          "acceleration": 15,
+          "money_flow": 8,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Weakening (動能轉弱)",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading)",
+          "acceleration": "🟢 健康擴張螺旋",
+          "money_flow": "排名持平 (Δ20d=-1)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "電子零組件",
+        "stock_count": 211,
+        "quadrant": "Leading",
+        "rs_ratio": 103.73,
+        "rs_momentum": 4.35,
+        "emerging_leader_score": 41,
+        "raw_score": 59,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 20,
+          "velocity": 30,
+          "acceleration": 0,
+          "money_flow": 4,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Leading 初期 (0d)",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名持平 (Δ20d=+0) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "玻璃陶瓷",
+        "stock_count": 5,
+        "quadrant": "Leading",
+        "rs_ratio": 107.22,
+        "rs_momentum": 9.6,
+        "emerging_leader_score": 38,
+        "raw_score": 54,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 20,
+          "velocity": 21,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Leading 初期 (0d)",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名持平 (Δ20d=-1)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "半導體",
+        "stock_count": 192,
+        "quadrant": "Leading",
+        "rs_ratio": 104.43,
+        "rs_momentum": 4.95,
+        "emerging_leader_score": 36,
+        "raw_score": 51,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 20,
+          "velocity": 21,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Leading 初期 (0d)",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名持平 (Δ20d=+0)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "電子通路",
+        "stock_count": 37,
+        "quadrant": "Lagging",
+        "rs_ratio": 93.65,
+        "rs_momentum": -4.63,
+        "emerging_leader_score": 35,
+        "raw_score": 50,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 30,
+          "acceleration": 12,
+          "money_flow": 8,
+          "stability": 0
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading)",
+          "acceleration": "➡ 直線強勢",
+          "money_flow": "排名持平 (Δ20d=+0)",
+          "stability": "4 週中 0 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "AI",
+        "stock_count": 10,
+        "quadrant": "Lagging",
+        "rs_ratio": 99.15,
+        "rs_momentum": -0.66,
+        "emerging_leader_score": 34,
+        "raw_score": 49,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 15,
+          "velocity": 20,
+          "acceleration": 4,
+          "money_flow": 8,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 但 y 即將轉正",
+          "velocity": "Vx↑ Vy≈0 (沿 x 推進)",
+          "acceleration": "⏸ 停滯",
+          "money_flow": "排名持平 (Δ20d=+0)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "權值股",
+        "stock_count": 17,
+        "quadrant": "Lagging",
+        "rs_ratio": 99.94,
+        "rs_momentum": -0.11,
+        "emerging_leader_score": 34,
+        "raw_score": 49,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 15,
+          "velocity": 20,
+          "acceleration": 4,
+          "money_flow": 8,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 但 y 即將轉正",
+          "velocity": "Vx↑ Vy≈0 (沿 x 推進)",
+          "acceleration": "⏸ 停滯",
+          "money_flow": "排名持平 (Δ20d=+0)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "IC設計",
+        "stock_count": 8,
+        "quadrant": "Leading",
+        "rs_ratio": 100.82,
+        "rs_momentum": 1.47,
+        "emerging_leader_score": 27,
+        "raw_score": 39,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 20,
+          "velocity": 7,
+          "acceleration": 4,
+          "money_flow": 6,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Leading 初期 (0d)",
+          "velocity": "Vx↑ Vy↓ (朝 Weakening) ⚠CW 反向 ×0.7",
+          "acceleration": "⏸ 停滯",
+          "money_flow": "排名小幅上升 (Δ20d=+1) ⚠5d流出 ÷2",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "電機機械",
+        "stock_count": 96,
+        "quadrant": "Lagging",
+        "rs_ratio": 97.44,
+        "rs_momentum": -1.62,
+        "emerging_leader_score": 22,
+        "raw_score": 31,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 21,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名持平 (Δ20d=+0)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "文化創意",
+        "stock_count": 26,
+        "quadrant": "Lagging",
+        "rs_ratio": 94.67,
+        "rs_momentum": -4.9,
+        "emerging_leader_score": 20,
+        "raw_score": 28,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 10,
+          "acceleration": 0,
+          "money_flow": 13,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↑ (y 走強) ⚠CW 反向 ×0.7",
+          "acceleration": "🟠 反向穩定",
+          "money_flow": "排名小幅上升 (Δ20d=+4)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "航運",
+        "stock_count": 24,
+        "quadrant": "Lagging",
+        "rs_ratio": 96.35,
+        "rs_momentum": -5.55,
+        "emerging_leader_score": 15,
+        "raw_score": 21,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 13,
+          "stability": 8
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名小幅上升 (Δ20d=+2)",
+          "stability": "4 週中 3 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "化學",
+        "stock_count": 42,
+        "quadrant": "Lagging",
+        "rs_ratio": 98.12,
+        "rs_momentum": -2.07,
+        "emerging_leader_score": 13,
+        "raw_score": 19,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 10,
+          "acceleration": 4,
+          "money_flow": 0,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↑ Vy↓ (朝 Weakening)",
+          "acceleration": "⏸ 停滯",
+          "money_flow": "排名下降 (Δ20d=-3)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "金融",
+        "stock_count": 41,
+        "quadrant": "Weakening",
+        "rs_ratio": 100.81,
+        "rs_momentum": -0.94,
+        "emerging_leader_score": 13,
+        "raw_score": 18,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 5,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Weakening (動能轉弱)",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名持平 (Δ20d=+0)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "其他電子",
+        "stock_count": 95,
+        "quadrant": "Lagging",
+        "rs_ratio": 95.58,
+        "rs_momentum": -6.36,
+        "emerging_leader_score": 10,
+        "raw_score": 15,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 4,
+          "money_flow": 6,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⏸ 靜止漂移",
+          "money_flow": "排名小幅上升 (Δ20d=+1) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "橡膠",
+        "stock_count": 11,
+        "quadrant": "Lagging",
+        "rs_ratio": 89.42,
+        "rs_momentum": -14.33,
+        "emerging_leader_score": 10,
+        "raw_score": 15,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 13,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名小幅上升 (Δ20d=+2)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "傳產資產",
+        "stock_count": 7,
+        "quadrant": "Lagging",
+        "rs_ratio": 95.99,
+        "rs_momentum": -6.82,
+        "emerging_leader_score": 9,
+        "raw_score": 13,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名持平 (Δ20d=-1)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "居家生活",
+        "stock_count": 33,
+        "quadrant": "Lagging",
+        "rs_ratio": 96.08,
+        "rs_momentum": -8.32,
+        "emerging_leader_score": 8,
+        "raw_score": 12,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 4,
+          "stability": 8
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名持平 (Δ20d=-1) ⚠5d流出 ÷2",
+          "stability": "4 週中 3 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "資訊服務",
+        "stock_count": 43,
+        "quadrant": "Lagging",
+        "rs_ratio": 93.95,
+        "rs_momentum": -7.7,
+        "emerging_leader_score": 8,
+        "raw_score": 11,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 6,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名小幅上升 (Δ20d=+2) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "通信網路",
+        "stock_count": 91,
+        "quadrant": "Lagging",
+        "rs_ratio": 96.49,
+        "rs_momentum": -2.32,
+        "emerging_leader_score": 8,
+        "raw_score": 12,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 10,
+          "acceleration": 0,
+          "money_flow": 0,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↑ (y 走強) ⚠CW 反向 ×0.7",
+          "acceleration": "🟠 反向穩定",
+          "money_flow": "排名下降 (Δ20d=-3)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "運動休閒",
+        "stock_count": 25,
+        "quadrant": "Lagging",
+        "rs_ratio": 91.74,
+        "rs_momentum": -13.26,
+        "emerging_leader_score": 8,
+        "raw_score": 12,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 10,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名大幅上升 (Δ20d=+5) ⚠5d流出 ÷2",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "紡織",
+        "stock_count": 52,
+        "quadrant": "Lagging",
+        "rs_ratio": 94.07,
+        "rs_momentum": -7.08,
+        "emerging_leader_score": 7,
+        "raw_score": 10,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名持平 (Δ20d=+0)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "觀光餐旅",
+        "stock_count": 51,
+        "quadrant": "Lagging",
+        "rs_ratio": 95.53,
+        "rs_momentum": -6.75,
+        "emerging_leader_score": 7,
+        "raw_score": 10,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名持平 (Δ20d=+0)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "鋼鐵",
+        "stock_count": 49,
+        "quadrant": "Lagging",
+        "rs_ratio": 95.44,
+        "rs_momentum": -6.96,
+        "emerging_leader_score": 7,
+        "raw_score": 10,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名持平 (Δ20d=-1)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "雲端軟體",
+        "stock_count": 7,
+        "quadrant": "Lagging",
+        "rs_ratio": 92.04,
+        "rs_momentum": -8.68,
+        "emerging_leader_score": 7,
+        "raw_score": 10,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 8,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名持平 (Δ20d=+0)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "建材營造",
+        "stock_count": 87,
+        "quadrant": "Lagging",
+        "rs_ratio": 93.54,
+        "rs_momentum": -10.22,
+        "emerging_leader_score": 6,
+        "raw_score": 9,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 4,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名持平 (Δ20d=+0) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "數位雲端",
+        "stock_count": 36,
+        "quadrant": "Lagging",
+        "rs_ratio": 93.38,
+        "rs_momentum": -9.35,
+        "emerging_leader_score": 6,
+        "raw_score": 9,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 4,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名持平 (Δ20d=+0) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "汽車",
+        "stock_count": 42,
+        "quadrant": "Lagging",
+        "rs_ratio": 95.04,
+        "rs_momentum": -5.21,
+        "emerging_leader_score": 6,
+        "raw_score": 9,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 4,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging) ⚠CW 反向 ×0.7",
+          "acceleration": "🟣 反向衰退",
+          "money_flow": "排名持平 (Δ20d=+0) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "食品",
+        "stock_count": 33,
+        "quadrant": "Lagging",
+        "rs_ratio": 93.99,
+        "rs_momentum": -9.46,
+        "emerging_leader_score": 6,
+        "raw_score": 9,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 4,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名持平 (Δ20d=+0) ⚠5d流出 ÷2",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "綠能",
+        "stock_count": 45,
+        "quadrant": "Lagging",
+        "rs_ratio": 96.64,
+        "rs_momentum": -5.28,
+        "emerging_leader_score": 4,
+        "raw_score": 6,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 4,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名持平 (Δ20d=+0) ⚠5d流出 ÷2",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "電腦周邊",
+        "stock_count": 108,
+        "quadrant": "Lagging",
+        "rs_ratio": 93.66,
+        "rs_momentum": -5.52,
+        "emerging_leader_score": 4,
+        "raw_score": 5,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 0,
+          "stability": 5
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名下降 (Δ20d=-2)",
+          "stability": "4 週中 2 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "油電燃氣",
+        "stock_count": 12,
+        "quadrant": "Lagging",
+        "rs_ratio": 95.91,
+        "rs_momentum": -5.35,
+        "emerging_leader_score": 1,
+        "raw_score": 2,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 0,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名下降 (Δ20d=-5)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      },
+      {
+        "name": "貿易百貨",
+        "stock_count": 19,
+        "quadrant": "Lagging",
+        "rs_ratio": 93.08,
+        "rs_momentum": -9.57,
+        "emerging_leader_score": 1,
+        "raw_score": 2,
+        "regime_multiplier": 0.7,
+        "classification": "Ignore",
+        "sub_scores": {
+          "position": 0,
+          "velocity": 0,
+          "acceleration": 0,
+          "money_flow": 0,
+          "stability": 2
+        },
+        "sub_labels": {
+          "position": "Lagging 且無轉折跡象",
+          "velocity": "Vx↓ Vy↓ (奔 Lagging)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名下降 (Δ20d=-8)",
+          "stability": "4 週中 1 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      }
+    ],
+    "emerging_leaders": [],
+    "watch_leaders": [],
+    "early_improving": [
+      {
+        "name": "塑化",
+        "stock_count": 25,
+        "quadrant": "Leading",
+        "rs_ratio": 114.34,
+        "rs_momentum": 17.7,
+        "emerging_leader_score": 55,
+        "raw_score": 78,
+        "regime_multiplier": 0.7,
+        "classification": "Early Improving",
+        "sub_scores": {
+          "position": 20,
+          "velocity": 30,
+          "acceleration": 0,
+          "money_flow": 20,
+          "stability": 8
+        },
+        "sub_labels": {
+          "position": "Leading 初期 (0d)",
+          "velocity": "Vx↑ Vy↑ (直奔 Leading)",
+          "acceleration": "⬅ 直線退場",
+          "money_flow": "排名大幅上升 (Δ20d=+5)",
+          "stability": "4 週中 3 週 (Vx>0 Vy>0)",
+          "regime": "market_health=40 → ×0.7"
+        }
+      }
+    ],
+    "stats": {
+      "n_emerging": 0,
+      "n_watch": 0,
+      "n_early": 1,
+      "n_ignore": 34
+    },
+    "market_health": {
+      "n_leading_with_motion": 6,
+      "leading_mean_omega": -0.0184,
+      "leading_n_positive": 0,
+      "leading_n_negative": 2,
+      "all_mean_omega": -0.0374,
+      "all_n_positive": 2,
+      "all_n_negative": 12,
+      "health_score": 40,
+      "verdict": "⚪ 無明顯輪動方向"
+    }
+  },
+  "schema_version": "v1"
+}
