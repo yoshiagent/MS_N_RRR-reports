@@ -219,7 +219,7 @@ code { font-family: ui-monospace, Consolas, monospace; background:var(--th-bg,#0
 <!-- GLOBAL_NAV_END -->
 <div id="haiic-masthead" style="text-align:center">
 <h1>Huang's AI Investment Institute (HAIII)</h1>
-<div class="sub">資料日：2026-06-18 ｜ 產生時間：2026-06-22 16:10</div>
+<div class="sub">資料日：2026-06-18 ｜ 產生時間：2026-06-22 16:38</div>
 </div>
 <script>(function(){var m=document.getElementById("haiic-masthead");if(m&&m!==document.body.firstChild)document.body.insertBefore(m,document.body.firstChild);})();</script>
 
@@ -1104,8 +1104,8 @@ C 級會被排除不進入下游池（過熱或結構轉空）
     🏢 業務流程 (Business Pipeline) — 候選股池 (Universe) → 3 維分析 (Analytics) → 外聘評審委員會 (IAB · 性格分類) → 基金經理 (PM) → 風控 (CRO) → 績效 (Performance)
   </div>
 
-  <!-- 5 池候選股池 -->
-  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:10px">
+  <!-- 5 池候選股池 + 主動ETF(SMI) 試用 -->
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:10px">
     <div title="熱門股 (主流偵測 A+B) — hotflow Agent 對全市場 ~671 檔個股按 7 個 PR 維度合成主流評分 0-100,分成 A/B/C 三級,候選股池只收 A+B (C=無視/排除)。&#10;&#10;A 主流形成中 (PR ≥ 80 + 5 條件全達標): 20 檔&#10;B 加速 (PR ≥ 70 + 部分條件): 113 檔&#10;C 無視/排除: 538 檔&#10;&#10;依成交金額排行篩選 (HotFlow 概念 = 資金熱度)"
          style="background:var(--th-red-bg,#7f1d1d);padding:8px 10px;border-radius:8px;text-align:center;
                 border-left:4px solid var(--th-red,#ef4444);cursor:help">
@@ -1141,10 +1141,19 @@ C 級會被排除不進入下游池（過熱或結構轉空）
       <div style="color:var(--th-text,#fff);font-weight:bold;font-size:16px">8</div>
       <div style="color:var(--th-cyan,#67e8f9);font-size:9px">剛認養·貼成本 (inst_entry)</div>
     </div>
+    <div title="主動型 ETF 資金生命週期 (SMI) — 🧪 試用中(shadow)。SMP 相位為 強吸籌/早期吸籌/主升 的 8 檔候選。第 6 入池候選, 預計 2026-08-31 正式納入 universe_selector; 現試用·不計入 5 池 union。&#10;點擊看 SMI 總覽"
+         style="background:var(--th-card,#0f1a2c);padding:8px 10px;border-radius:8px;text-align:center;
+                border:1px dashed var(--th-amber,#fbbf24);border-left:4px solid var(--th-amber,#fbbf24);cursor:pointer">
+      <a href="market/smi_overview.html" style="text-decoration:none;color:inherit">
+        <div style="color:var(--th-amber,#fbbf24);font-size:10px">主動ETF 🧪試用</div>
+        <div style="color:var(--th-text,#fff);font-weight:bold;font-size:16px">8</div>
+        <div style="color:var(--th-amber,#fbbf24);font-size:9px">資金生命週期 (SMI)</div>
+      </a>
+    </div>
   </div>
 
   <!-- 箭頭 + 候選股池總結 (含實際計算說明) -->
-  <div style="text-align:center;color:var(--th-muted,#94a3b8);font-size:12px;margin:6px 0">↓ 5 池 union (不再依 MS bias 限額)</div>
+  <div style="text-align:center;color:var(--th-muted,#94a3b8);font-size:12px;margin:6px 0">↓ 5 池 union (不再依 MS bias 限額)　·　主動ETF (SMI) 🧪 試用中暫不計入</div>
   <div title="候選股池計算公式 (V.2 Phase J 修正後):&#10;&#10;5 池原始和  = 熱門 133 + 強勢 80 + 打底 100 + 自選 10 + 法人進場 8 = 331 檔&#10;扣重複     = 90 檔 (5 池交叉重複, set union dedup)&#10;候選股池   = 241 檔&#10;&#10;V.2 Phase J: 5 池完整 union (含 Tier-2 法人進場), MS bias 改影響後續「排序權重」, 不縮減 universe 大小&#10;&#10;「後續皆以此股池分析(不再擴大範圍)」"
        style="background:var(--th-card,#0f1a2c);padding:10px 14px;border-radius:6px;
               text-align:center;border:1px dashed var(--th-amber,#fbbf24);margin-bottom:10px;cursor:help">
