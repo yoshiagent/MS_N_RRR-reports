@@ -1,0 +1,113 @@
+{
+  "as_of": "2026-06-23",
+  "schema_version": "v2",
+  "market_phase": {
+    "value": "DISTRIBUTION",
+    "confidence": 73,
+    "confidence_band": "HIGH",
+    "reason": [
+      "外資轉賣壓力高",
+      "上漲 / 下跌家數 = 0.23, 嚴重失衡",
+      "風險訊號 3 個"
+    ]
+  },
+  "risk_mode": {
+    "value": "CASH",
+    "confidence": 90,
+    "confidence_band": "HIGH",
+    "reason": [
+      "🚨 TWII Z250=+2.44σ 過熱 (>+2σ, ~2.3% 機率) — Phase B 強制降風險",
+      "額外風險: triggers=3, level=warning"
+    ]
+  },
+  "market_structure": {
+    "taiex_trend": "DOWN",
+    "otc_trend": "DOWN",
+    "leadership": "LARGE_CAP",
+    "breadth_status": "EXPANDING",
+    "volume_status": "NORMAL"
+  },
+  "rotation_status": {
+    "value": "NONE",
+    "leading_sectors": [],
+    "weakening_sectors": []
+  },
+  "candidate_bias": {
+    "hot_stock_weight": 5,
+    "strong_stock_weight": 25,
+    "base_stock_weight": 70,
+    "preferred_pool": [
+      "BASE",
+      "STRONG",
+      "HOT"
+    ],
+    "reason": [
+      "派發期僅保留打底股池",
+      "熱門 / 強勢股池應降至最低"
+    ]
+  },
+  "master_weight_policy": {
+    "Wyckoff": 34,
+    "Minervini": 6,
+    "ONeil": 6,
+    "Weinstein": 11,
+    "Darvas": 4,
+    "Livermore": 5,
+    "Lynch": 7,
+    "Fisher": 10,
+    "Buffett": 17
+  },
+  "discipline_policy": {
+    "max_position_ratio_per_stock": 10,
+    "max_total_exposure": 12,
+    "allow_new_position": false,
+    "allow_add_position": false,
+    "stop_loss_strictness": "HIGH",
+    "cash_minimum_ratio": 88
+  },
+  "orchestrator_instruction": {
+    "action_bias": "WAIT",
+    "priority": [
+      "大幅降曝險",
+      "只挑深度價值或 Wyckoff Spring 候選"
+    ],
+    "warning": [
+      "大量不漲 + 法人轉賣 + 廣度惡化"
+    ]
+  },
+  "transition_signals": {
+    "next_likely_phase": "DISTRIBUTION",
+    "confidence": 0,
+    "early_warning_days": 0,
+    "triggers": [],
+    "note": "無階段轉換訊號"
+  },
+  "skill_feedback": {
+    "active": true,
+    "skill_index": {
+      "Wyckoff": 19.11,
+      "Minervini": 19.57,
+      "ONeil": 19.26,
+      "Weinstein": 14.07,
+      "Darvas": 12.34,
+      "Livermore": 15.67,
+      "Lynch": 0.0,
+      "Fisher": 0.0,
+      "Buffett": 0.0
+    },
+    "n_days_with_data": 7,
+    "alpha": 0.33,
+    "alpha_mode": "dynamic",
+    "avg_skill_std": 7.04,
+    "skill_source": "global",
+    "phase_days_current": 1
+  },
+  "summary": {
+    "phase": "DISTRIBUTION",
+    "risk_mode": "CASH",
+    "action_bias": "WAIT",
+    "skill_feedback_active": true
+  },
+  "generated_at": "2026-06-23T22:01:33",
+  "available": true
+}
