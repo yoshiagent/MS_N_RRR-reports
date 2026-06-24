@@ -437,3 +437,11 @@ a{color:var(--th-accent)}
   max-height:60vh;overflow-y:auto;background:var(--th-card);
   border:1px solid var(--th-border2);border-radius:8px;padding:6px;z-index:99991}
 @media (max-width:760px){.gnav{padding:4px 8px}.gnav-search input{width:100px}}
+
+/* ── 欄位標題 tooltip (桌機 hover + 手機 tap 皆可; JS 見 ui.tooltip_runtime) ── */
+.th-tip{cursor:help;border-bottom:1px dotted var(--th-border2,#475569);outline:none}
+#th-tip-pop{position:absolute;z-index:99999;display:none;max-width:300px;
+  font-weight:400;font-size:12px;line-height:1.55;text-align:left;
+  color:var(--th-text,#e2e8f0);background:var(--th-card,#1e293b);
+  border:1px solid var(--th-border,#2d3f55);border-radius:8px;padding:9px 11px;
+  box-shadow:0 8px 24px rgba(0,0,0,.4);white-space:normal;pointer-events:none}
