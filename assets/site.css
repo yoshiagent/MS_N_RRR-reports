@@ -438,6 +438,16 @@ a{color:var(--th-accent)}
   border:1px solid var(--th-border2);border-radius:8px;padding:6px;z-index:99991}
 @media (max-width:760px){.gnav{padding:4px 8px}.gnav-search input{width:100px}}
 
+/* ── 🧱 block 積木區塊框 (data-block 標記; 登錄表 src/shared/blocks.py) ── */
+.block-region{position:relative;border:1px dashed var(--th-border2);border-radius:8px;
+  padding:14px 14px 4px;margin:12px 0}
+.block-region__tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.3px;
+  color:var(--th-accent);background:var(--th-bg2);border:1px solid var(--th-border2);
+  border-radius:5px;padding:2px 8px;margin-bottom:10px}
+.block-refs{display:inline-block;font-size:11px;font-weight:600;color:var(--th-muted);
+  background:var(--th-bg2);border:1px dashed var(--th-border2);border-radius:5px;
+  padding:2px 9px;margin:0 0 10px}
+
 /* ── 欄位標題 tooltip (桌機 hover + 手機 tap 皆可; JS 見 ui.tooltip_runtime) ── */
 .th-tip{cursor:help;border-bottom:1px dotted var(--th-border2,#475569);outline:none}
 #th-tip-pop{position:absolute;z-index:99999;display:none;max-width:300px;
