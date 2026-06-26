@@ -1,0 +1,110 @@
+{
+  "as_of": "2026-06-26",
+  "schema_version": "v2",
+  "market_phase": {
+    "value": "ACCUMULATION",
+    "confidence": 71,
+    "confidence_band": "HIGH",
+    "reason": [
+      "站上 MA20 比例 28.3%, 多數仍在均線下",
+      "近期 20 日新高股 2.6%, 偏少",
+      "大盤風險訊號少 (≤2)"
+    ]
+  },
+  "risk_mode": {
+    "value": "DEFENSIVE",
+    "confidence": 60,
+    "confidence_band": "MEDIUM",
+    "reason": [
+      "phase=ACCUMULATION, triggers=2"
+    ]
+  },
+  "market_structure": {
+    "taiex_trend": "SIDEWAYS",
+    "otc_trend": "SIDEWAYS",
+    "leadership": "LARGE_CAP",
+    "breadth_status": "EXPANDING",
+    "volume_status": "NORMAL"
+  },
+  "rotation_status": {
+    "value": "NONE",
+    "leading_sectors": [],
+    "weakening_sectors": []
+  },
+  "candidate_bias": {
+    "hot_stock_weight": 10,
+    "strong_stock_weight": 30,
+    "base_stock_weight": 60,
+    "preferred_pool": [
+      "BASE",
+      "STRONG",
+      "HOT"
+    ],
+    "reason": [
+      "吸籌期應優先佈局打底股, Wyckoff Spring 候選為主",
+      "強勢股可少量配置作為先行指標"
+    ]
+  },
+  "master_weight_policy": {
+    "Wyckoff": 31,
+    "Minervini": 6,
+    "ONeil": 6,
+    "Weinstein": 25,
+    "Darvas": 18,
+    "Livermore": 5,
+    "Lynch": 3,
+    "Fisher": 3,
+    "Buffett": 3
+  },
+  "discipline_policy": {
+    "max_position_ratio_per_stock": 15,
+    "max_total_exposure": 52,
+    "allow_new_position": true,
+    "allow_add_position": true,
+    "stop_loss_strictness": "HIGH",
+    "cash_minimum_ratio": 48
+  },
+  "orchestrator_instruction": {
+    "action_bias": "MAINTAIN",
+    "priority": [
+      "優先評估打底股池 (Wyckoff Spring)",
+      "強勢股池可少量配置作為先行確認"
+    ],
+    "warning": []
+  },
+  "transition_signals": {
+    "next_likely_phase": "ACCUMULATION",
+    "confidence": 0,
+    "early_warning_days": 0,
+    "triggers": [],
+    "note": "無階段轉換訊號"
+  },
+  "skill_feedback": {
+    "active": true,
+    "skill_index": {
+      "Wyckoff": 20.8,
+      "Minervini": 18.19,
+      "ONeil": 17.5,
+      "Weinstein": 14.67,
+      "Darvas": 13.74,
+      "Livermore": 14.9,
+      "Lynch": 0.06,
+      "Fisher": 0.17,
+      "Buffett": 0.0
+    },
+    "n_days_with_data": 7,
+    "alpha": 0.348,
+    "alpha_mode": "dynamic",
+    "avg_skill_std": 5.25,
+    "skill_source": "global",
+    "phase_days_current": 0
+  },
+  "summary": {
+    "phase": "ACCUMULATION",
+    "risk_mode": "DEFENSIVE",
+    "action_bias": "MAINTAIN",
+    "skill_feedback_active": true
+  },
+  "generated_at": "2026-06-26T22:01:27",
+  "available": true
+}
