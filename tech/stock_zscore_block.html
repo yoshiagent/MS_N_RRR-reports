@@ -1,6 +1,6 @@
 <!doctype html><html lang="zh-Hant"><head>
 <link rel="stylesheet" href="../assets/site.css?v=d8f7634d">
-<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=d8f7634d"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>持股警示 · 監控層</title></head><body>
+<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=d8f7634d"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>雙 Z-score 過熱偵測 — Price Z250 + Volume Z60 ｜ MS_N_RR/RRR</title></head><body>
 <script>(function(){var L=document.getElementById("ms-theme-css");if(!L)return;var q="?v=d8f7634d",b="../assets/";var DAY=["theme-red.css","theme-orange.css","theme-yellow.css","theme-green.css","theme-blue.css","theme-indigo.css","theme-violet.css"];function dayT(){return DAY[(new Date()).getDay()];}function ap(v){var t=(v==="auto")?dayT():v;L.setAttribute("href",b+t+q);}var sv=null;try{sv=localStorage.getItem("ms_theme");}catch(e){}if(!sv)sv="auto";ap(sv);var S=document.getElementById("ms-theme-sel");if(S){S.value=sv;S.addEventListener("change",function(){ap(S.value);try{localStorage.setItem("ms_theme",S.value);}catch(e){}});}})();</script>
 <!-- GLOBAL_NAV_START -->
 <nav class="gnav" id="gnav">
@@ -42,120 +42,63 @@
   });
 })();
 </script>
-<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">持股警示 · 監控層</h1><div class="page-meta">資料日 2026-06-26　｜　14 持股　｜　🔴3 🟡0 🟢11　｜　5 位經理</div><div class="banner"><b>持股警示 · 監控層</b>　對應真實基金的「監控部」:每位經理「已持有」的股票，去各警示來源（DS派發／高點過熱／見頂D1-D5／結構劣化／主力派發／處置）彙整成統一<b>燈號 + 建議動作</b>。亮紅燈的持股會在下一期競標<b>自動降 bid（減碼/換出）</b> → 閉環。</div><div class="grid-4"><div class="card"><div class="metric metric--lg"><span class="metric__label">⛔ 硬停損·換出</span><span class="metric__value">3</span></div></div><div class="card"><div class="metric metric--lg"><span class="metric__label">🔴 減碼/換出</span><span class="metric__value">3</span></div></div><div class="card"><div class="metric metric--lg"><span class="metric__label">🟡 觀察/留意</span><span class="metric__value">0</span></div></div><div class="card"><div class="metric metric--lg"><span class="metric__label">🟢 持有</span><span class="metric__value">11</span></div></div></div><div class="card"><div class="card-title">🗂 各經理 book 健康度</div><div class="grid-3"><div class="card"><div class="card-title">防禦現金型</div><div class="metric metric--lg"><span class="metric__label">book 健康</span><span class="metric__value"><span class="text-bear">需處理</span></span></div><div class="kv-row"><span class="kv-row__k">🔴 紅 / 🟡 黃 / 🟢 綠</span><span class="kv-row__v">1 / 0 / 3</span></div><div class="kv-row"><span class="kv-row__k">持股數</span><span class="kv-row__v">4</span></div><div class="label" style="margin-top:6px">🔴台塑　🟢京元電子　🟢三商壽　🟢中華電</div></div><div class="card"><div class="card-title">核心配置型</div><div class="metric metric--lg"><span class="metric__label">book 健康</span><span class="metric__value"><span class="text-bear">需處理</span></span></div><div class="kv-row"><span class="kv-row__k">🔴 紅 / 🟡 黃 / 🟢 綠</span><span class="kv-row__v">1 / 0 / 3</span></div><div class="kv-row"><span class="kv-row__k">持股數</span><span class="kv-row__v">4</span></div><div class="label" style="margin-top:6px">🔴台塑　🟢三商壽　🟢永豐金　🟢臺企銀</div></div><div class="card"><div class="card-title">趨勢波段型</div><div class="metric metric--lg"><span class="metric__label">book 健康</span><span class="metric__value"><span class="text-bear">需處理</span></span></div><div class="kv-row"><span class="kv-row__k">🔴 紅 / 🟡 黃 / 🟢 綠</span><span class="kv-row__v">1 / 0 / 3</span></div><div class="kv-row"><span class="kv-row__k">持股數</span><span class="kv-row__v">4</span></div><div class="label" style="margin-top:6px">🔴菱生　🟢和桐　🟢永豐金　🟢矽創</div></div><div class="card"><div class="card-title">積極成長型</div><div class="metric metric--lg"><span class="metric__label">book 健康</span><span class="metric__value"><span class="text-bear">需處理</span></span></div><div class="kv-row"><span class="kv-row__k">🔴 紅 / 🟡 黃 / 🟢 綠</span><span class="kv-row__v">1 / 0 / 3</span></div><div class="kv-row"><span class="kv-row__k">持股數</span><span class="kv-row__v">4</span></div><div class="label" style="margin-top:6px">🔴南亞　🟢台化　🟢大成　🟢兆豐金</div></div><div class="card"><div class="card-title">相對輪動型</div><div class="metric metric--lg"><span class="metric__label">book 健康</span><span class="metric__value"><span class="text-bull">健康</span></span></div><div class="kv-row"><span class="kv-row__k">🔴 紅 / 🟡 黃 / 🟢 綠</span><span class="kv-row__v">0 / 0 / 4</span></div><div class="kv-row"><span class="kv-row__k">持股數</span><span class="kv-row__v">4</span></div><div class="label" style="margin-top:6px">🟢三商壽　🟢永豐金　🟢臺企銀　🟢聖暉*</div></div></div></div><div class="card"><div class="card-title">📋 持股警示明細（警示分高到低）</div><div class="label" style="margin-bottom:8px">⛔=觸發硬停損(成本/移動/結構/週線/爆量)→強制換出。警示分=各亮燈訊號加權累加;≥60 紅(減碼/換出)、≥30 黃(觀察)。扣bid=下一期競標降分。</div><table class="data-table data-table--zebra"><thead><tr><th>代號</th><th>名稱</th><th>損益%</th><th>燈號</th><th>建議動作</th><th>扣bid</th><th>持有經理</th><th>亮燈訊號</th></tr></thead><tbody><tr><td>1301</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1301" target="_blank" rel="noopener" title="TradingView 圖表 — 1301" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">台塑</a> <span class="text-bear" title="觸發硬停損(成本/移動/結構/週線/爆量)">⛔</span></td><td><span class="text-bear">-0.2</span></td><td>🔴</td><td><span class="text-bear">⛔ 硬停損·換出</span></td><td>−50.0</td><td>防禦現金、核心配置</td><td>硬停損·爆量破低</td></tr><tr><td>2369</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2369" target="_blank" rel="noopener" title="TradingView 圖表 — 2369" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">菱生</a> <span class="text-bear" title="觸發硬停損(成本/移動/結構/週線/爆量)">⛔</span></td><td><span class="text-bear">-0.2</span></td><td>🔴</td><td><span class="text-bear">⛔ 硬停損·換出</span></td><td>−50.0</td><td>趨勢波段</td><td>硬停損·爆量破低</td></tr><tr><td>1303</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1303" target="_blank" rel="noopener" title="TradingView 圖表 — 1303" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">南亞</a> <span class="text-bear" title="觸發硬停損(成本/移動/結構/週線/爆量)">⛔</span></td><td><span class="text-bear">-0.2</span></td><td>🔴</td><td><span class="text-bear">⛔ 硬停損·換出</span></td><td>−50.0</td><td>積極成長</td><td>硬停損·爆量破低、高點過熱、主力×賣買家差、處置中</td></tr><tr><td>1326</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1326" target="_blank" rel="noopener" title="TradingView 圖表 — 1326" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">台化</a></td><td><span class="text-bear">-0.2</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>積極成長</td><td>結構劣化</td></tr><tr><td>2449</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2449" target="_blank" rel="noopener" title="TradingView 圖表 — 2449" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">京元電子</a></td><td><span class="text-bear">-6.8</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>防禦現金</td><td>DS 邊拉邊出</td></tr><tr><td>1714</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1714" target="_blank" rel="noopener" title="TradingView 圖表 — 1714" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">和桐</a></td><td><span class="text-bear">-0.2</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>趨勢波段</td><td>處置中</td></tr><tr><td>2867</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2867" target="_blank" rel="noopener" title="TradingView 圖表 — 2867" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">三商壽</a></td><td><span class="text-bear">-1.2</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>防禦現金、核心配置、相對輪動</td><td>—</td></tr><tr><td>2890</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2890" target="_blank" rel="noopener" title="TradingView 圖表 — 2890" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">永豐金</a></td><td><span class="text-bear">-0.2</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>相對輪動、核心配置、趨勢波段</td><td>—</td></tr><tr><td>2834</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2834" target="_blank" rel="noopener" title="TradingView 圖表 — 2834" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">臺企銀</a></td><td><span class="text-bear">-0.4</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>核心配置、相對輪動</td><td>—</td></tr><tr><td>2412</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2412" target="_blank" rel="noopener" title="TradingView 圖表 — 2412" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">中華電</a></td><td><span class="text-bear">-0.2</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>防禦現金</td><td>—</td></tr><tr><td>5536</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A5536" target="_blank" rel="noopener" title="TradingView 圖表 — 5536" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">聖暉*</a></td><td><span class="text-bear">-0.2</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>相對輪動</td><td>—</td></tr><tr><td>8016</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8016" target="_blank" rel="noopener" title="TradingView 圖表 — 8016" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">矽創</a></td><td><span class="text-bear">-0.2</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>趨勢波段</td><td>—</td></tr><tr><td>1210</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1210" target="_blank" rel="noopener" title="TradingView 圖表 — 1210" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">大成</a></td><td><span class="text-bear">-0.2</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>積極成長</td><td>—</td></tr><tr><td>2886</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2886" target="_blank" rel="noopener" title="TradingView 圖表 — 2886" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">兆豐金</a></td><td><span class="text-bear">-0.2</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>積極成長</td><td>—</td></tr></tbody></table></div><details class="explainer" open><summary class="explainer__title">🧠 監控層怎麼運作（閉環）</summary><div class="label"><b>買→持→監控→賣 的迴圈:</b><br>研究部(各 score/警示 agent → FS) → 經理讀 FS bid 選股 → decision 持倉 → <b>本頁(監控層)</b>把每位經理的持股 ⋈ 各警示來源 → 統一燈號 → 寫回 FS → 經理下一期競標時，對亮紅燈的持股自動降 bid → decision 減碼/換出。<br><br><b>⛔ 硬停損(任一觸發=強制換出，不需多訊號共振):</b><br>　① 成本停損:跌破平均成本 ≥ 10.0%(paper_portfolio 真實 avg_cost)<br>　② 移動停損:自進場後最高收盤回落 ≥ 15.0%(鎖獲利)<br>　③ 結構停損:跌破最新有效 SL(box_structure stage_4)<br>　④ 週線停損:買進後現獲利 ≥ 20.0% 時(鎖利波段續抱)，週收盤跌破前一週最低點 → 賣出(以週線判斷，避免日內雜訊)<br>　⑤ 爆量停損:跌破最近一根爆大量 K(量 ≥ 2.5×20日均量)的最低點<br>硬停損觸發 → 強制紅燈 + 扣滿 bid → 該持股下期被換出。<br><br><b>單一調校點:</b>嚴重度模型、停損門檻、動作對應、扣 bid 全在 <code>holding_alerts</code> agent，以後只要優化這一支即可。<br><b>燈號需多訊號共振:</b>單一輕警示(如僅結構劣化)不足以亮燈;兩個以上來源同時警示才轉黃/紅(避免單一指標誤殺)。<br><b>R6 clean:</b>純讀各警示既算 feature + decision 持倉,不重算。</div></details><footer class="page-footer">來源 holding_alerts｜監控部:持股 ⋈ 7 警示來源 → 燈號 + 閉環降bid｜單一調校點 holding_alerts｜R6 唯讀</footer>
-<style id='MS_N_RRR_tooltip_inject_v2'>
-.tip { position: relative; cursor: help; }
-/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
-#tip-floater {
-  position: fixed;
-  background: var(--th-bg,#0f172a);
-  color: var(--th-text,#e2e8f0);
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: normal;
-  white-space: pre-line;
-  max-width: 320px;
-  width: max-content;
-  text-align: left;
-  border: 1px solid var(--th-border2,#475569);
-  z-index: 999999;
-  pointer-events: none;
-  line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
-  display: none;
-}
-.tip:focus { outline: none; }
-@media (max-width: 600px) {
-  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
-}
-</style>
-<script>
-(function(){
-  var floater = null;
-  function ensureFloater(){
-    if (floater) return floater;
-    floater = document.createElement('div');
-    floater.id = 'tip-floater';
-    document.body.appendChild(floater);
-    return floater;
-  }
-  function showTip(el){
-    var text = el.getAttribute('data-tip');
-    if (!text) return;
-    var f = ensureFloater();
-    f.textContent = text;
-    f.style.display = 'block';
-    // 量元素位置
-    var rect = el.getBoundingClientRect();
-    var vw = window.innerWidth, vh = window.innerHeight;
-    var pad = 8;
-    // 預設放上方居中
-    var tw = f.offsetWidth, th = f.offsetHeight;
-    var left = rect.left + rect.width / 2 - tw / 2;
-    var top = rect.top - th - 10;
-    // 邊界修正
-    if (left < pad) left = pad;
-    if (left + tw > vw - pad) left = vw - tw - pad;
-    // 若上方空間不夠，改放下方
-    if (top < pad) top = rect.bottom + 10;
-    // 若下方也不夠（窄屏），就靠近底部
-    if (top + th > vh - pad) top = vh - th - pad;
-    f.style.left = left + 'px';
-    f.style.top  = top + 'px';
-  }
-  function hideTip(){
-    if (floater) floater.style.display = 'none';
-  }
-  function init(){
-    // 把所有 title 屬性轉成 data-tip
-    document.querySelectorAll('[title]').forEach(function(el){
-      var t = el.getAttribute('title');
-      if (!t) return;
-      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
-      el.setAttribute('data-tip', t);
-      el.removeAttribute('title');
-      if (!el.classList.contains('tip')) el.classList.add('tip');
-      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
-    });
-    // hover / focus 顯示
-    document.addEventListener('mouseover', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) showTip(tip);
-    });
-    document.addEventListener('mouseout', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) hideTip();
-    });
-    document.addEventListener('focusin', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) showTip(tip);
-    });
-    document.addEventListener('focusout', hideTip);
-    // 手機 tap 切換顯示
-    document.addEventListener('click', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) {
-        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
-          hideTip();
-        } else {
-          showTip(tip);
-          ensureFloater().dataset.tipFor = tip.dataset.tip;
-        }
-        e.stopPropagation();
-      } else {
-        hideTip();
-      }
-    });
-    // 滾動 / resize 隱藏（避免位置漂移）
-    window.addEventListener('scroll', hideTip, true);
-    window.addEventListener('resize', hideTip);
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
-</body></html>
+<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">⚡ 雙 Z-score 過熱偵測 block — Price Z250 + Volume Z60</h1><!-- BLOCK B9 START --><div class="block-region" id="block-B9" data-block="B9" data-block-file="stock_zscore_block.html" data-block-kind="圖"><div class="block-region__tag">🧱 B9 · 📊 圖</div><h1 class="page-title">⚡ 雙 Z-score 過熱偵測 — 8046 南電 · Price Z250 + Volume Z60</h1><div class="note">8046 南電 的價量過熱偵測:Price Z250(價格相對近 250 日)與 Volume Z60(量能相對近 60 日)；|Z|≥2 為統計極端,價量同步過熱 = 追高風險。</div><div class="card">
+    <div>
+      <div style="margin-bottom:4px">
+        💵 close <b>1125.0</b> · 距 60d 高 +0.0%
+      </div>
+      <div style="margin-top:8px;font-size:12px;color:var(--th-text2)">
+        <b>Price Z250</b> (長線位階): <span style="color:var(--th-red,#ef4444);font-weight:bold">+2.67σ</span>
+        · 🔴 個股過熱 · Z60=+2.42σ
+      </div>
+      
+        <svg viewBox="0 0 360 36" width="100%" style="display:block">
+          <defs><linearGradient id="g267" x1="0" x2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="0.33" stop-color="#60a5fa"/><stop offset="0.5" stop-color="#22c55e"/><stop offset="0.67" stop-color="#fb923c"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs>
+          <rect x="8" y="12" width="344" height="12" rx="6"
+                fill="url(#g267)" opacity="0.5"/>
+          <line x1="180.0" y1="9" x2="180.0" y2="27"
+                stroke="#fff" stroke-width="1" opacity="0.6"/>
+          <text x="180.0" y="33" fill="#94a3b8" font-size="8" text-anchor="middle">0</text>
+          <text x="8" y="33" fill="#a78bfa" font-size="8" text-anchor="start">-3σ</text>
+          <text x="352" y="33" fill="#ef4444" font-size="8" text-anchor="end">+3σ</text>
+          <circle cx="333.1" cy="18" r="6"
+                  fill="#ef4444" stroke="#fff" stroke-width="1.5"/>
+          <text x="333.1" y="9" fill="#fff" font-size="10"
+                font-weight="bold" text-anchor="middle">+2.67</text>
+        </svg>
+        
+      <div style="margin-top:10px;font-size:12px;color:var(--th-text2)">
+        <b>Volume Z60</b> (量能異動): <span style="color:var(--th-orange,#fb923c);font-weight:bold">+1.25σ</span>
+        · ↑ 量增 ·
+        5d 均量 28,521,459 vs 60d 均量 19,380,224
+      </div>
+      
+        <svg viewBox="0 0 360 36" width="100%" style="display:block">
+          <defs><linearGradient id="g125" x1="0" x2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="0.33" stop-color="#60a5fa"/><stop offset="0.5" stop-color="#22c55e"/><stop offset="0.67" stop-color="#fb923c"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs>
+          <rect x="8" y="12" width="344" height="12" rx="6"
+                fill="url(#g125)" opacity="0.5"/>
+          <line x1="180.0" y1="9" x2="180.0" y2="27"
+                stroke="#fff" stroke-width="1" opacity="0.6"/>
+          <text x="180.0" y="33" fill="#94a3b8" font-size="8" text-anchor="middle">0</text>
+          <text x="8" y="33" fill="#a78bfa" font-size="8" text-anchor="start">-3σ</text>
+          <text x="352" y="33" fill="#ef4444" font-size="8" text-anchor="end">+3σ</text>
+          <circle cx="251.7" cy="18" r="6"
+                  fill="#fb923c" stroke="#fff" stroke-width="1.5"/>
+          <text x="251.7" y="9" fill="#fff" font-size="10"
+                font-weight="bold" text-anchor="middle">+1.25</text>
+        </svg>
+        
+      
+        <div style="background:rgba(58,52,40,0.08);padding:8px 10px;border-radius:4px;
+                    margin-top:8px;border-left:3px solid var(--th-green,#84cc16)">
+          <b style="color:var(--th-green,#84cc16)">🟢 強勢動能</b>
+          — <span style="color:var(--th-text2);font-size:12px">價量同向上升, 主升段持續</span>
+        </div>
+        
+      <div style="font-size:10px;color:var(--th-faint);margin-top:6px">
+        💡 雙 Z 讀法: Price Z250 ≥ +2σ = 個股長線過熱 (5% 機率);
+        Volume Z60 ≥ +1.5σ = 量能異動.
+        雙過熱 (價量同步) = 派發風險 · 止跌爆量 = 轉強機會 · PM 加分 +5
+      </div>
+    </div>
+    </div><details class="explainer"><summary class="explainer__title">🗺 這個 block（B9 · 定義 · 判讀 · 資料 · 程式 · 換股 — 點開）</summary><div class="section-head">定義</div><div class="formula">Price Z250 = (收盤 − 近250日均) ÷ 近250日標準差(價格過熱/超賣)</div><div class="formula">Volume Z60 = (量 − 近60日均) ÷ 近60日標準差(量能過熱)</div><div class="formula">gauge 軸 [-3,+3]·0 居中;漸層 藍(超賣)→綠(常態)→紅(過熱)</div><div class="section-head">判讀（過熱偵測）</div><div class="note">|Z|≥2 = 統計極端;Price Z 高 + Volume Z 高 = &lt;b&gt;價量同步過熱&lt;/b&gt;(追高風險);Price Z 低 = 超賣。z-score 是相對自身近期的伸展度, 非絕對買賣訊號, 須搭配結構/籌碼判讀。</div><div class="section-head">資料來源 / 程式</div><div class="formula">FS <code>stock_zscore</code>(stock_zscore Agent;Price Z250 / Volume Z60)<br>R6 只讀 FS feature 不重算;渲染 100% 重用 src/agents/stock_dossier_report.py:_render_stock_zscore(sym)<br>程式:src/agents/stock_zscore_block.py:fragment / build_block</div><div class="section-head">換股 / 可組裝</div><div class="formula">換股:改 BLOCK_SYMBOL（本卡 8046 南電）或呼叫 fragment(symbol=…)<br>可組裝:blocks.fragment(&quot;B9&quot;) · blocks.assemble([…,&quot;B9&quot;])</div></details></div><!-- BLOCK B9 END --></body></html>
