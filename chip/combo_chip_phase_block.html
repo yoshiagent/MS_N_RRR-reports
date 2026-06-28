@@ -526,7 +526,11 @@
     KEYS.forEach(function(k){var p=document.getElementById(id+"_"+k);if(p)p.style.display=(k===key?"":"none");});
     if(btn){btn.parentNode.querySelectorAll("button").forEach(function(b){b.classList.remove("active");});btn.classList.add("active");}
     var pan=document.getElementById(id+"_"+key);
-    if(pan&&window.Plotly)setTimeout(function(){
-      pan.querySelectorAll(".js-plotly-plot").forEach(function(g){try{Plotly.Plots.resize(g);}catch(e){}});},40);
+    if(pan&&window.Plotly){
+      // 隱藏 div 0 寬→初次渲染退回預設 700;切到顯示後須等 reflow 完成再 resize 才會貼齊容器寬。
+      // 重圖(RRG/持有者)單一 40ms 太早接不到 → rAF + 150 + 350ms 多次補打,確保三圖寬度一致。
+      var doR=function(){pan.querySelectorAll(".js-plotly-plot").forEach(function(g){try{Plotly.Plots.resize(g);}catch(e){}});};
+      requestAnimationFrame(doR);setTimeout(doR,150);setTimeout(doR,350);
+    }
   };
 })();</script><details class="explainer"><summary class="explainer__title">🗺 這個 block（A1 · 組合 · 三圖 · 換股 — 點開）</summary><div class="section-head">組成（3 顆按鈕切換 · 同一檔股）</div><div class="formula">📐 <b>CMG 相位圖 (B1)</b>:分點籌碼 NBC15_Z60 × SBD_Z60(大資金方向 × 籌碼集中)</div><div class="formula">🧭 <b>法人×融資 RRG (B11)</b>:融資水位 × 法人動向(右=融資退、上=法人買)</div><div class="formula">🎯 <b>持有者輪動 RRG (B12)</b>:CS 持有強度 × CM 動能(每個持有者一條軌跡)</div><div class="formula">B11/B12 資訊列另顯示「三大法人(合計)+融資(單獨)」的 Q1/Q3/Qpower/Q變化</div><div class="section-head">資料 / 程式</div><div class="formula">三圖各自讀 FS(R6) · 組裝不重算:cmg_report._stock_cmg_section / chip_rrg._section / chr_holder_rrg_block._chart_block<br>程式:src/agents/combo_chip_phase_block.py:fragment / build_block</div><div class="section-head">換股 / 可組裝</div><div class="formula">換股:改 BLOCK_SYMBOL（本卡 8046 南電）或呼叫 fragment(symbol=…)<br>可組裝:blocks.fragment(&quot;A1&quot;) · blocks.assemble([…,&quot;A1&quot;])</div></details></div><!-- BLOCK A1 END --></body></html>
