@@ -1,6 +1,6 @@
 <!doctype html><html lang="zh-Hant"><head>
 <link rel="stylesheet" href="../assets/site.css?v=d8f7634d">
-<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=d8f7634d"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>雙 Z-score 過熱偵測 — Price Z250 + Volume Z60 ｜ MS_N_RR/RRR</title></head><body>
+<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=d8f7634d"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>換股決策摘要 — 資料卡 block ｜ MS_N_RR/RRR</title></head><body>
 <script>(function(){var L=document.getElementById("ms-theme-css");if(!L)return;var q="?v=d8f7634d",b="../assets/";var DAY=["theme-red.css","theme-orange.css","theme-yellow.css","theme-green.css","theme-blue.css","theme-indigo.css","theme-violet.css"];function dayT(){return DAY[(new Date()).getDay()];}function ap(v){var t=(v==="auto")?dayT():v;L.setAttribute("href",b+t+q);}var sv=null;try{sv=localStorage.getItem("ms_theme");}catch(e){}if(!sv)sv="auto";ap(sv);var S=document.getElementById("ms-theme-sel");if(S){S.value=sv;S.addEventListener("change",function(){ap(S.value);try{localStorage.setItem("ms_theme",S.value);}catch(e){}});}})();</script>
 <!-- GLOBAL_NAV_START -->
 <nav class="gnav" id="gnav">
@@ -42,63 +42,4 @@
   });
 })();
 </script>
-<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">⚡ 雙 Z-score 過熱偵測 block — Price Z250 + Volume Z60</h1><!-- BLOCK B9 START --><div class="block-region" id="block-B9" data-block="B9" data-block-file="stock_zscore_block.html" data-block-kind="圖"><div class="block-region__tag">🧱 B9 · 📊 圖</div><h1 class="page-title">⚡ 雙 Z-score 過熱偵測 — 8046 南電 · Price Z250 + Volume Z60</h1><div class="note">8046 南電 的價量過熱偵測:Price Z250(價格相對近 250 日)與 Volume Z60(量能相對近 60 日)；|Z|≥2 為統計極端,價量同步過熱 = 追高風險。</div><div class="card">
-    <div>
-      <div style="margin-bottom:4px">
-        💵 close <b>1125.0</b> · 距 60d 高 +0.0%
-      </div>
-      <div style="margin-top:8px;font-size:12px;color:var(--th-text2)">
-        <b>Price Z250</b> (長線位階): <span style="color:var(--th-red,#ef4444);font-weight:bold">+2.67σ</span>
-        · 🔴 個股過熱 · Z60=+2.42σ
-      </div>
-      
-        <svg viewBox="0 0 360 36" width="100%" style="display:block">
-          <defs><linearGradient id="g267" x1="0" x2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="0.33" stop-color="#60a5fa"/><stop offset="0.5" stop-color="#22c55e"/><stop offset="0.67" stop-color="#fb923c"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs>
-          <rect x="8" y="12" width="344" height="12" rx="6"
-                fill="url(#g267)" opacity="0.5"/>
-          <line x1="180.0" y1="9" x2="180.0" y2="27"
-                stroke="#fff" stroke-width="1" opacity="0.6"/>
-          <text x="180.0" y="33" fill="#94a3b8" font-size="8" text-anchor="middle">0</text>
-          <text x="8" y="33" fill="#a78bfa" font-size="8" text-anchor="start">-3σ</text>
-          <text x="352" y="33" fill="#ef4444" font-size="8" text-anchor="end">+3σ</text>
-          <circle cx="333.1" cy="18" r="6"
-                  fill="#ef4444" stroke="#fff" stroke-width="1.5"/>
-          <text x="333.1" y="9" fill="#fff" font-size="10"
-                font-weight="bold" text-anchor="middle">+2.67</text>
-        </svg>
-        
-      <div style="margin-top:10px;font-size:12px;color:var(--th-text2)">
-        <b>Volume Z60</b> (量能異動): <span style="color:var(--th-orange,#fb923c);font-weight:bold">+1.25σ</span>
-        · ↑ 量增 ·
-        5d 均量 28,521,459 vs 60d 均量 19,380,224
-      </div>
-      
-        <svg viewBox="0 0 360 36" width="100%" style="display:block">
-          <defs><linearGradient id="g125" x1="0" x2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="0.33" stop-color="#60a5fa"/><stop offset="0.5" stop-color="#22c55e"/><stop offset="0.67" stop-color="#fb923c"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs>
-          <rect x="8" y="12" width="344" height="12" rx="6"
-                fill="url(#g125)" opacity="0.5"/>
-          <line x1="180.0" y1="9" x2="180.0" y2="27"
-                stroke="#fff" stroke-width="1" opacity="0.6"/>
-          <text x="180.0" y="33" fill="#94a3b8" font-size="8" text-anchor="middle">0</text>
-          <text x="8" y="33" fill="#a78bfa" font-size="8" text-anchor="start">-3σ</text>
-          <text x="352" y="33" fill="#ef4444" font-size="8" text-anchor="end">+3σ</text>
-          <circle cx="251.7" cy="18" r="6"
-                  fill="#fb923c" stroke="#fff" stroke-width="1.5"/>
-          <text x="251.7" y="9" fill="#fff" font-size="10"
-                font-weight="bold" text-anchor="middle">+1.25</text>
-        </svg>
-        
-      
-        <div style="background:rgba(58,52,40,0.08);padding:8px 10px;border-radius:4px;
-                    margin-top:8px;border-left:3px solid var(--th-green,#84cc16)">
-          <b style="color:var(--th-green,#84cc16)">🟢 強勢動能</b>
-          — <span style="color:var(--th-text2);font-size:12px">價量同向上升, 主升段持續</span>
-        </div>
-        
-      <div style="font-size:10px;color:var(--th-faint);margin-top:6px">
-        💡 雙 Z 讀法: Price Z250 ≥ +2σ = 個股長線過熱 (5% 機率);
-        Volume Z60 ≥ +1.5σ = 量能異動.
-        雙過熱 (價量同步) = 派發風險 · 止跌爆量 = 轉強機會 · PM 加分 +5
-      </div>
-    </div>
-    </div><details class="explainer"><summary class="explainer__title">🗺 這個 block（B9 · 定義 · 判讀 · 資料 · 程式 · 換股 — 點開）</summary><div class="section-head">定義</div><div class="formula">Price Z250 = (收盤 − 近250日均) ÷ 近250日標準差(價格過熱/超賣)</div><div class="formula">Volume Z60 = (量 − 近60日均) ÷ 近60日標準差(量能過熱)</div><div class="formula">gauge 軸 [-3,+3]·0 居中;漸層 藍(超賣)→綠(常態)→紅(過熱)</div><div class="section-head">判讀（過熱偵測）</div><div class="note">|Z|≥2 = 統計極端;Price Z 高 + Volume Z 高 = &lt;b&gt;價量同步過熱&lt;/b&gt;(追高風險);Price Z 低 = 超賣。z-score 是相對自身近期的伸展度, 非絕對買賣訊號, 須搭配結構/籌碼判讀。</div><div class="section-head">資料來源 / 程式</div><div class="formula">FS <code>stock_zscore</code>(stock_zscore Agent;Price Z250 / Volume Z60)<br>R6 只讀 FS feature 不重算;渲染 100% 重用 src/agents/stock_dossier_report.py:_render_stock_zscore(sym)<br>程式:src/agents/stock_zscore_block.py:fragment / build_block</div><div class="section-head">換股 / 可組裝</div><div class="formula">換股:改 BLOCK_SYMBOL（本卡 8046 南電）或呼叫 fragment(symbol=…)<br>可組裝:blocks.fragment(&quot;B9&quot;) · blocks.assemble([…,&quot;B9&quot;])</div></details></div><!-- BLOCK B9 END --></body></html>
+<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">🎯 換股決策摘要 — 資料卡 block（B15）</h1><!-- BLOCK B15 START --><div class="block-region" id="block-B15" data-block="B15" data-block-file="rr_decision_card_block.html" data-block-kind="資"><div class="block-region__tag">🧱 B15 · 📋 資</div><h1 class="page-title">🎯 換股決策摘要 — 南電/欣興（資料卡）</h1><div class="note">一眼判讀『今天該不該換』:換股分 + 三道燈（Z60 觸發／RCGA 環境／籌碼 RCR）+ 箱型 + 強者恆強 + 結論。擷取自配對圖頂卡（同一函式,永遠一致;純讀 rr_switch_score,R6 不重算）。</div><div style="max-width:1100px;margin:18px auto 4px;padding:0 12px"><div class="card" style="border-left:5px solid var(--th-red,#ef4444)"><div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px"><div><div style="font-size:12px;color:var(--th-muted,#94a3b8)">🎯 換股決策摘要 · 南電 ⇄ 欣興 · 資料日 2026-06-26</div><div style="font-size:22px;font-weight:700;color:var(--th-red,#ef4444);margin-top:3px">🚫 Z 到但籌碼/結構不支持 · 觀望</div><div style="font-size:13px;color:var(--th-muted,#94a3b8);margin-top:3px">訊號：Z 偏向 <b>換入 南電</b> ／ 減 欣興</div></div><div style="text-align:center;min-width:96px"><div style="font-size:11px;color:var(--th-muted,#94a3b8)">換股分</div><div style="font-size:32px;font-weight:800;color:var(--th-red,#ef4444);line-height:1.1">🔴39.4<span style="font-size:13px;color:var(--th-faint,#64748b)"> /100</span></div></div></div><div style="margin-top:12px"><span style="display:inline-flex;align-items:baseline;gap:4px;font-size:12px;padding:4px 10px;border-radius:10px;border:1px solid var(--th-green,#22c55e);color:var(--th-green,#22c55e);white-space:nowrap;margin:0 6px 6px 0">🟢 Z60 +1.38 觸發<span style="color:var(--th-faint,#64748b);font-size:11px">　→ 換入 南電</span></span><span style="display:inline-flex;align-items:baseline;gap:4px;font-size:12px;padding:4px 10px;border-radius:10px;border:1px solid var(--th-red,#ef4444);color:var(--th-red,#ef4444);white-space:nowrap;margin:0 6px 6px 0">🔴 RCGA 環境<span style="color:var(--th-faint,#64748b);font-size:11px">　逆 · 阻擋</span></span><span style="display:inline-flex;align-items:baseline;gap:4px;font-size:12px;padding:4px 10px;border-radius:10px;border:1px solid var(--th-red,#ef4444);color:var(--th-red,#ef4444);white-space:nowrap;margin:0 6px 6px 0">🔴 籌碼輪動<span style="color:var(--th-faint,#64748b);font-size:11px">　無輪動（防接刀）</span></span><span style="display:inline-flex;align-items:baseline;gap:4px;font-size:12px;padding:4px 10px;border-radius:10px;border:1px solid var(--th-green,#22c55e);color:var(--th-green,#22c55e);white-space:nowrap;margin:0 6px 6px 0">🟢 換入南電箱型<span style="color:var(--th-faint,#64748b);font-size:11px">　站上箱頂·升 · 健康</span></span></div><div class="note" style="margin-top:6px">換股分 = Z60 觸發(gate) → RCGA 環境×25 ＋ 籌碼 RCR×25 ＋ 箱型×20（重正規化到 100）。三道資料源獨立（價格／環境／籌碼），一致時才有信心；任一反對即降分或觀望（防接刀）。</div><div style="margin-top:8px;font-size:12px">🔬 <a href="../chip/deep_profile.html" style="color:var(--th-cyan,#38bdf8);text-decoration:none;font-weight:600">深度料供給層：南電/欣興 吸收 vs 派發進程（CMG 動力學 ＋ Absorption Score 60 日時序）→</a><span style="color:var(--th-faint,#64748b)">　換股前先確認「換入的那檔」籌碼是被吸收還是真派發</span></div></div></div><details class="explainer"><summary class="explainer__title">🗺 這個 block（B15 · 換股決策摘要 · 定義 · 資料 · 程式 — 點開）</summary><div class="section-head">內容（一眼判讀「今天該不該換」）</div><div class="formula">換股分 = <b>Z60 觸發(gate)</b> → RCGA 環境×25 ＋ 籌碼 RCR×25 ＋ 箱型×20（重正規化到 100）</div><div class="formula">三道燈：🟢/🟡/🔴 = Z60 觸發 ｜ RCGA 環境（順/中性/逆）｜ 籌碼輪動 RCR（防接刀）；另含 箱型健康度、強者恆強（延後換股/減碼）</div><div class="note">三道資料源獨立（價格／環境／籌碼），一致時才有信心;任一反對即降分或觀望（防接刀）。</div><div class="section-head">資料來源 / 程式</div><div class="formula">R6 不重算：純讀 rr_switch_score snapshot（fs_snapshot）<br>單一事實來源 = src/agents/nan_xin_decision_card_inject.py:build_card_html（= 注入 nan_xin_chart 頂卡的同一函式 → 本 block 與配對圖頂卡永遠一致）<br>本 block 程式 = src/agents/rr_decision_card_block.py:fragment / build_block<br>原卡出處 = nan_xin_chart.html 第一張圖卡（本 block 即由此擷取獨立）</div><div class="section-head">換股 / 可組裝</div><div class="formula">換配對：改 PAIR_IDS（本卡 南電/欣興）或 fragment(pair_ids=…, deep_label=…)<br>可組裝：blocks.fragment(&quot;B15&quot;) · blocks.assemble([…,&quot;B15&quot;])</div></details></div><!-- BLOCK B15 END --></body></html>
