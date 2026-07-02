@@ -1,6 +1,6 @@
 <!doctype html><html lang="zh-Hant"><head>
 <link rel="stylesheet" href="../assets/site.css?v=d8f7634d">
-<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=d8f7634d"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>持股警示 · 監控層</title></head><body>
+<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=d8f7634d"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>配對輪動換股決策模型 演化（顧問討論 Claude×codex×Gemini）</title></head><body>
 <script>(function(){var L=document.getElementById("ms-theme-css");if(!L)return;var q="?v=d8f7634d",b="../assets/";var DAY=["theme-red.css","theme-orange.css","theme-yellow.css","theme-green.css","theme-blue.css","theme-indigo.css","theme-violet.css"];function dayT(){return DAY[(new Date()).getDay()];}function ap(v){var t=(v==="auto")?dayT():v;L.setAttribute("href",b+t+q);}var sv=null;try{sv=localStorage.getItem("ms_theme");}catch(e){}if(!sv)sv="auto";ap(sv);var S=document.getElementById("ms-theme-sel");if(S){S.value=sv;S.addEventListener("change",function(){ap(S.value);try{localStorage.setItem("ms_theme",S.value);}catch(e){}});}})();</script>
 <!-- GLOBAL_NAV_START -->
 <nav class="gnav" id="gnav">
@@ -42,120 +42,54 @@
   });
 })();
 </script>
-<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">持股警示 · 監控層</h1><div class="page-meta">資料日 2026-07-01　｜　9 持股　｜　🔴2 🟡0 🟢7　｜　4 位經理</div><div class="banner"><b>持股警示 · 監控層</b>　對應真實基金的「監控部」:每位經理「已持有」的股票，去各警示來源（DS派發／高點過熱／見頂D1-D5／結構劣化／主力派發／處置）彙整成統一<b>燈號 + 建議動作</b>。亮紅燈的持股會在下一期競標<b>自動降 bid（減碼/換出）</b> → 閉環。</div><div class="grid-4"><div class="card"><div class="metric metric--lg"><span class="metric__label">⛔ 硬停損·換出</span><span class="metric__value">2</span></div></div><div class="card"><div class="metric metric--lg"><span class="metric__label">🔴 減碼/換出</span><span class="metric__value">2</span></div></div><div class="card"><div class="metric metric--lg"><span class="metric__label">🟡 觀察/留意</span><span class="metric__value">0</span></div></div><div class="card"><div class="metric metric--lg"><span class="metric__label">🟢 持有</span><span class="metric__value">7</span></div></div></div><div class="card"><div class="card-title">🗂 各經理 book 健康度</div><div class="grid-3"><div class="card"><div class="card-title">相對輪動型</div><div class="metric metric--lg"><span class="metric__label">book 健康</span><span class="metric__value"><span class="text-bear">需處理</span></span></div><div class="kv-row"><span class="kv-row__k">🔴 紅 / 🟡 黃 / 🟢 綠</span><span class="kv-row__v">2 / 0 / 2</span></div><div class="kv-row"><span class="kv-row__k">持股數</span><span class="kv-row__v">4</span></div><div class="label" style="margin-top:6px">🔴聯成　🔴安勤　🟢弘塑　🟢王品</div></div><div class="card"><div class="card-title">核心配置型</div><div class="metric metric--lg"><span class="metric__label">book 健康</span><span class="metric__value"><span class="text-bear">需處理</span></span></div><div class="kv-row"><span class="kv-row__k">🔴 紅 / 🟡 黃 / 🟢 綠</span><span class="kv-row__v">1 / 0 / 3</span></div><div class="kv-row"><span class="kv-row__k">持股數</span><span class="kv-row__v">4</span></div><div class="label" style="margin-top:6px">🔴聯成　🟢弘塑　🟢王品　🟢中砂</div></div><div class="card"><div class="card-title">趨勢波段型</div><div class="metric metric--lg"><span class="metric__label">book 健康</span><span class="metric__value"><span class="text-bull">健康</span></span></div><div class="kv-row"><span class="kv-row__k">🔴 紅 / 🟡 黃 / 🟢 綠</span><span class="kv-row__v">0 / 0 / 2</span></div><div class="kv-row"><span class="kv-row__k">持股數</span><span class="kv-row__v">2</span></div><div class="label" style="margin-top:6px">🟢弘塑　🟢中砂</div></div><div class="card"><div class="card-title">防禦現金型</div><div class="metric metric--lg"><span class="metric__label">book 健康</span><span class="metric__value"><span class="text-bull">健康</span></span></div><div class="kv-row"><span class="kv-row__k">🔴 紅 / 🟡 黃 / 🟢 綠</span><span class="kv-row__v">0 / 0 / 4</span></div><div class="kv-row"><span class="kv-row__k">持股數</span><span class="kv-row__v">4</span></div><div class="label" style="margin-top:6px">🟢京元電子　🟢台灣大　🟢華票　🟢聯邦銀</div></div></div></div><div class="card"><div class="card-title">📋 持股警示明細（警示分高到低）</div><div class="label" style="margin-bottom:8px">⛔=觸發硬停損(成本/移動/結構/週線/爆量)→強制換出。警示分=各亮燈訊號加權累加;≥60 紅(減碼/換出)、≥30 黃(觀察)。扣bid=下一期競標降分。</div><table class="data-table data-table--zebra"><thead><tr><th>代號</th><th>名稱</th><th>損益%</th><th>燈號</th><th>建議動作</th><th>扣bid</th><th>持有經理</th><th>亮燈訊號</th></tr></thead><tbody><tr><td>1313</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1313" target="_blank" rel="noopener" title="TradingView 圖表 — 1313" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">聯成</a> <span class="text-bear" title="觸發硬停損(成本/移動/結構/週線/爆量)">⛔</span></td><td><span class="text-bear">-0.2</span></td><td>🔴</td><td><span class="text-bear">⛔ 硬停損·換出</span></td><td>−50.0</td><td>相對輪動、核心配置</td><td>硬停損·爆量破低、結構劣化</td></tr><tr><td>3479</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3479" target="_blank" rel="noopener" title="TradingView 圖表 — 3479" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">安勤</a> <span class="text-bear" title="觸發硬停損(成本/移動/結構/週線/爆量)">⛔</span></td><td><span class="text-bear">-0.2</span></td><td>🔴</td><td><span class="text-bear">⛔ 硬停損·換出</span></td><td>−50.0</td><td>相對輪動</td><td>硬停損·爆量破低</td></tr><tr><td>3131</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3131" target="_blank" rel="noopener" title="TradingView 圖表 — 3131" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">弘塑</a></td><td><span class="text-bear">-0.2</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>相對輪動、核心配置、趨勢波段</td><td>結構劣化</td></tr><tr><td>2449</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2449" target="_blank" rel="noopener" title="TradingView 圖表 — 2449" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">京元電子</a></td><td><span class="text-bear">-0.2</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>防禦現金</td><td>DS 邊拉邊出</td></tr><tr><td>2727</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2727" target="_blank" rel="noopener" title="TradingView 圖表 — 2727" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">王品</a></td><td><span class="text-bear">-0.6</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>核心配置、相對輪動</td><td>—</td></tr><tr><td>3045</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3045" target="_blank" rel="noopener" title="TradingView 圖表 — 3045" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">台灣大</a></td><td><span class="text-bull">+1.0</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>防禦現金</td><td>—</td></tr><tr><td>2820</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2820" target="_blank" rel="noopener" title="TradingView 圖表 — 2820" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">華票</a></td><td><span class="text-bear">-0.2</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>防禦現金</td><td>—</td></tr><tr><td>2838</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2838" target="_blank" rel="noopener" title="TradingView 圖表 — 2838" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">聯邦銀</a></td><td><span class="text-bear">-0.4</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>防禦現金</td><td>—</td></tr><tr><td>1560</td><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1560" target="_blank" rel="noopener" title="TradingView 圖表 — 1560" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">中砂</a></td><td><span class="text-bear">-0.2</span></td><td>🟢</td><td><span class="text-bull">🟢 持有</span></td><td>—</td><td>核心配置、趨勢波段</td><td>—</td></tr></tbody></table></div><details class="explainer" open><summary class="explainer__title">🧠 監控層怎麼運作（閉環）</summary><div class="label"><b>買→持→監控→賣 的迴圈:</b><br>研究部(各 score/警示 agent → FS) → 經理讀 FS bid 選股 → decision 持倉 → <b>本頁(監控層)</b>把每位經理的持股 ⋈ 各警示來源 → 統一燈號 → 寫回 FS → 經理下一期競標時，對亮紅燈的持股自動降 bid → decision 減碼/換出。<br><br><b>⛔ 硬停損(任一觸發=強制換出，不需多訊號共振):</b><br>　① 成本停損:跌破平均成本 ≥ 10.0%(paper_portfolio 真實 avg_cost)<br>　② 移動停損:自進場後最高收盤回落 ≥ 15.0%(鎖獲利)<br>　③ 結構停損:跌破最新有效 SL(box_structure stage_4)<br>　④ 週線停損:買進後現獲利 ≥ 20.0% 時(鎖利波段續抱)，週收盤跌破前一週最低點 → 賣出(以週線判斷，避免日內雜訊)<br>　⑤ 爆量停損:跌破最近一根爆大量 K(量 ≥ 2.5×20日均量)的最低點<br>硬停損觸發 → 強制紅燈 + 扣滿 bid → 該持股下期被換出。<br><br><b>單一調校點:</b>嚴重度模型、停損門檻、動作對應、扣 bid 全在 <code>holding_alerts</code> agent，以後只要優化這一支即可。<br><b>燈號需多訊號共振:</b>單一輕警示(如僅結構劣化)不足以亮燈;兩個以上來源同時警示才轉黃/紅(避免單一指標誤殺)。<br><b>R6 clean:</b>純讀各警示既算 feature + decision 持倉,不重算。</div></details><footer class="page-footer">來源 holding_alerts｜監控部:持股 ⋈ 7 警示來源 → 燈號 + 閉環降bid｜單一調校點 holding_alerts｜R6 唯讀</footer>
-<style id='MS_N_RRR_tooltip_inject_v2'>
-.tip { position: relative; cursor: help; }
-/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
-#tip-floater {
-  position: fixed;
-  background: var(--th-bg,#0f172a);
-  color: var(--th-text,#e2e8f0);
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: normal;
-  white-space: pre-line;
-  max-width: 320px;
-  width: max-content;
-  text-align: left;
-  border: 1px solid var(--th-border2,#475569);
-  z-index: 999999;
-  pointer-events: none;
-  line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
-  display: none;
-}
-.tip:focus { outline: none; }
-@media (max-width: 600px) {
-  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
-}
-</style>
-<script>
-(function(){
-  var floater = null;
-  function ensureFloater(){
-    if (floater) return floater;
-    floater = document.createElement('div');
-    floater.id = 'tip-floater';
-    document.body.appendChild(floater);
-    return floater;
-  }
-  function showTip(el){
-    var text = el.getAttribute('data-tip');
-    if (!text) return;
-    var f = ensureFloater();
-    f.textContent = text;
-    f.style.display = 'block';
-    // 量元素位置
-    var rect = el.getBoundingClientRect();
-    var vw = window.innerWidth, vh = window.innerHeight;
-    var pad = 8;
-    // 預設放上方居中
-    var tw = f.offsetWidth, th = f.offsetHeight;
-    var left = rect.left + rect.width / 2 - tw / 2;
-    var top = rect.top - th - 10;
-    // 邊界修正
-    if (left < pad) left = pad;
-    if (left + tw > vw - pad) left = vw - tw - pad;
-    // 若上方空間不夠，改放下方
-    if (top < pad) top = rect.bottom + 10;
-    // 若下方也不夠（窄屏），就靠近底部
-    if (top + th > vh - pad) top = vh - th - pad;
-    f.style.left = left + 'px';
-    f.style.top  = top + 'px';
-  }
-  function hideTip(){
-    if (floater) floater.style.display = 'none';
-  }
-  function init(){
-    // 把所有 title 屬性轉成 data-tip
-    document.querySelectorAll('[title]').forEach(function(el){
-      var t = el.getAttribute('title');
-      if (!t) return;
-      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
-      el.setAttribute('data-tip', t);
-      el.removeAttribute('title');
-      if (!el.classList.contains('tip')) el.classList.add('tip');
-      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
-    });
-    // hover / focus 顯示
-    document.addEventListener('mouseover', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) showTip(tip);
-    });
-    document.addEventListener('mouseout', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) hideTip();
-    });
-    document.addEventListener('focusin', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) showTip(tip);
-    });
-    document.addEventListener('focusout', hideTip);
-    // 手機 tap 切換顯示
-    document.addEventListener('click', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) {
-        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
-          hideTip();
-        } else {
-          showTip(tip);
-          ensureFloater().dataset.tipFor = tip.dataset.tip;
-        }
-        e.stopPropagation();
-      } else {
-        hideTip();
-      }
-    });
-    // 滾動 / resize 隱藏（避免位置漂移）
-    window.addEventListener('scroll', hideTip, true);
-    window.addEventListener('resize', hideTip);
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
-</body></html>
+<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">配對輪動換股決策模型 演化（顧問討論 Claude×codex×Gemini）</h1><div class="page-meta">顧問討論紀實 ｜ Claude×codex×Gemini ｜ Z20 vs RVGOZ20 打架 → v1 兩層模型 ｜ 🟢 已上線 SHADOW</div><div class="banner" style="border-left:3px solid var(--th-cyan,#38bdf8)"><b style="color:var(--th-cyan,#38bdf8)">狀態</b>　v1 兩層模型<b>已上線 SHADOW</b>（換股決策摘要主讀數）；門檻待回測校準、<b>不接單</b>。執行層護欄上線接單才做。</div><div class="note">本頁記錄配對輪動『換股決策摘要』模型的整段演化：從 CIO 一個疑問(Z20 與 RVGOZ20 方向打架)，經 Claude 分析 + codex 三輪 + Gemini 兩輪的辯論，收斂成 v1 兩層模型。對應頁面：配對輪動精簡版(pair_rotation_lite) 的最上方橫幅。</div><div class="card"><div class="card-title">🔗 對應上線頁</div><div class="label">v1 讀數就在配對輪動精簡版最上方：<a href="pair_rotation_lite.html" style="color:var(--th-cyan,#38bdf8)">🔁 南電/欣興 配對輪動(精簡)</a>（🧱 B15 換股決策摘要 · 依 B14 換股時機×RVGO）。</div></div><div class="section-head">🧭 演化時間線（從一個疑問到 v1 模型）</div><div class="card" style="border-left:4px solid var(--th-cyan,#38bdf8)"><div style="font-size:15px;font-weight:700;color:var(--th-cyan,#38bdf8)">① 起點：Z20 與 RVGOZ20 打架</div><div class="label" style="margin-top:5px;line-height:1.85">CIO 觀察 B14 主圖：Z20(ln A/B 價差) 最近說『A→B』(南電漲多)，但 RVGOZ20(資金重心) 像說『B→A』——兩個都在極端卻方向相反，到底聽誰？該如何決定最佳換股時機？</div></div><div class="card" style="border-left:4px solid var(--th-purple,#a78bfa)"><div style="font-size:15px;font-weight:700;color:var(--th-purple,#a78bfa)">② v0：四項平權『轉折一致度』(codex×2 + Gemini×1)</div><div class="label" style="margin-top:5px;line-height:1.85">第一版把 價(Z20折返)/資(RVGO)/速(Z20速度)/勢(slope) 做成 N/4 一致度，叫『轉折一致度』不叫信心分數(是執行閘門非預測)。Gemini 點出共線性：RVGO/vel/slope 全是價量家族，四項並非真獨立。</div></div><div class="card" style="border-left:4px solid var(--th-cyan,#7dd3fc)"><div style="font-size:15px;font-weight:700;color:var(--th-cyan,#7dd3fc)">③ 拉進 RR 籌碼流向 CAB 當『獨立第三源』</div><div class="label" style="margin-top:5px;line-height:1.85">CIO 問頁面下方那張 RR 籌碼流向輪動圖該不該加入。發現其 Y 軸 CAB=Qpower_A−Qpower_B (分點主力淨力) 是唯一非價量家族的獨立資料源 → 拉進來做交叉驗證(價 Z20·資 RVGO·籌 CAB)。</div></div><div class="card" style="border-left:4px solid var(--th-amber,#fbbf24)"><div style="font-size:15px;font-weight:700;color:var(--th-amber,#fbbf24)">④ 架構辯論：誰當 Z20 的共同主角？</div><div class="label" style="margin-top:5px;line-height:1.85">CIO 追問 Z20×CAB＋RVGO 輔 vs Z20×RVGO＋CAB 輔。結論：主框該用『最獨立的兩個訊號』(Z20 價 × CAB 籌)，RVGO 與 Z20 半相關 → 退成輔助；把相關訊號當共同主角＝假信心。</div></div><div class="card" style="border-left:4px solid var(--th-green,#34d399)"><div style="font-size:15px;font-weight:700;color:var(--th-green,#34d399)">⑤ 收斂提案：Z20 折返當閘門 → 再看 CAB＋RVGO 是否同向</div><div class="label" style="margin-top:5px;line-height:1.85">CIO 提『Z20 極端折返=閘門，再看 CAB＋RVGO 同向』。Claude 贊同並補兩但書：(1) CAB 才是獨立票、權重高；RVGO 改管動能(velocity/slope)不重複投方向。(2) 硬閘門=純右側，會漏籌碼領先的左側 → 留早期觀察旁路。</div></div><div class="card" style="border-left:4px solid var(--th-green,#22c55e)"><div style="font-size:15px;font-weight:700;color:var(--th-green,#22c55e)">⑥ 顧問兩輪補洞 → 定案 v1</div><div class="label" style="margin-top:5px;line-height:1.85">codex 支持並加 Hard/Soft 雙門檻、RVGO 用 velocity/slope 投動能、CAB 中性明確降級、旁路只當雷達。Gemini 再補：協整鎖(corr/beta 破裂 Gate 上鎖)、CAB 可用性門檻(無效🈳非中性)、流動性護欄、交易成本/time-out。收斂成 v1 兩層模型並上線 SHADOW。</div></div><div class="section-head">🎯 定案 v1：Z20 Gate + CAB Direction + RVGO Momentum</div><div class="formula"><b>Layer 1 · 閘門 Gate</b>：Z20 極端+離帶折返 才開窗+定方向；前置<b>協整鎖</b>(corr60&lt;0.35 → LOCK，不論 Z20 多極端都不開)。<b>Hard</b> |Z20peak|≥1.5／<b>Soft</b> 1.2~1.5(降一級·只試單不反向換)。Z20 只當觸發器,不平權。</div><div class="formula"><b>Layer 2 · 確認 Confirm（兩票）</b>：<b>CAB</b>(=Qpower_A−Qpower_B 分點主力淨力·<b>唯一非價量家族的真獨立源</b>) 投<b>方向票</b>(換 B 則 CAB&lt;0；|分點淨力| 不足 → 判「無效🈳」非「中性」,無效時禁試單)；<b>RVGO</b>(velocity/slope) 投<b>動能票</b>(轉向即可·不強求 level 翻負,因 level 是狀態、slope 是變化)。CAB 管方向、RVGO 管動能,分工避免與 Z20 共線。</div><div class="formula"><b>Verdict</b>（CAB 是唯一真確認）：CAB同向+RVGO同向=<b>換</b>｜CAB同向+動能中性=試單｜CAB中性=最多試單(標非雙源確認)｜CAB背離即使 RVGO同向也只能<b>等</b>｜雙背離=<b>別換</b>(接刀)。<b>旁路</b>：Gate 未開但 CAB 強同向 → 早期觀察(雷達·不進攻)。</div><div class="note">執行層護欄（換股最小利差&gt;3%才全換／Soft 只減倉／5 日 time-out 拆解／流動性&gt;0.8×5MA／CAB 混投信外資×0.6 防借券騙線）＝上線接單才需要，v1 SHADOW 先不做；CAB 純度 v1 維持純分點＋可用性門檻。</div><div class="section-head">📟 目前實測（南電 8046 / 欣興 3037）</div><div class="card"><div style="font-size:15px;line-height:1.9">🚪 <b>HARD 開窗</b>　方向 <b>減南電換欣興</b>　→　⚪ <b>等（CAB 未表態）</b><br><span style="color:var(--th-muted,#94a3b8)">方向票·獨立</span> CAB ◦中性 (−0.013)　<span style="color:var(--th-muted,#94a3b8)">動能票</span> RVGO ◦中性 (vel −0.084·slope +0.855)</div><div class="note">白話：價格夠極端、窗開了、方向也定了(減南電換欣興)，但獨立的分點籌碼(CAB) 沒表態、動能也還沒轉(vel 略降但 slope 還升) → 等，別追。這正好化解 CIO 最初『RVGOZ20 像要 B 換 A』的錯覺：不是要反向，而是資金早在 B 側極端、且獨立源尚未確認。</div></div><div class="note">舊版四項平權(對照組)同日 = 0/4『等時機』，兩版都說『等』但 v1 把『為什麼等』講得更清楚。每日兩版 verdict 並排存 rotation_signal_compare journal，累積後回測比哪版準。</div><details class="explainer"><summary class="explainer__title">📜 codex 顧問全文（GPT-5.5·閘門模型收斂輪·原文）</summary><pre style="white-space:pre-wrap;word-break:break-word;line-height:1.7;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;margin:0">可以收斂成 CIO 的兩層模型，而且我會明確支持：Z20 降級為 Gate，不再與 CAB/RVGO 平權。這比前一版「四項平權」乾淨很多，因為它把問題拆成：
+1. 價格是否已經到可換股區？
+2. 這次折返是否有資金與動能確認？
+這兩題不應該混在同一層投票。
+
+1. Z20 當 Gate：同意，但門檻要分成硬門與軟門
+|Z20| &gt;= 1.5 + 離帶折返 適合當主 Gate，不算太嚴。因為配對輪動不是每天都該換，Gate 的功能本來就是限制交易頻率，避免在中段震盪時被 CAB/RVGO 的雜訊拉著跑。
+但我不建議只有單一硬門，可以分兩級：
+- Hard Gate：|Z20| &gt;= 1.5 且出現折返 → 可進入正式換股決策。
+- Soft Gate：1.2 &lt;= |Z20| &lt; 1.5 且出現折返 → 只允許「試單」或「觀察升級」，不直接滿倉換。
+如果回測後訊號太少，再把主門檻從 1.5 降到 1.3，但不要一開始就降。先保留乾淨訊號。
+
+2. CAB 管方向、RVGO 管動能：同意，但 RVGO 不應完全失去方向資訊
+你的但書是對的：RVGO 和 Z20 半相關，所以如果 RVGO 只是說「A/B 也在同方向」，它很容易只是重複價格相對強弱，造成假獨立。
+最乾淨的分工是：CAB = 獨立資金方向確認；RVGO = 價量重心是否真的轉向，主看 velocity / slope。
+但我不會讓 RVGO 完全不投方向票，更精確地說：CAB 投方向票、RVGO 投動能票、RVGO 的 level 方向只作為輔助不作為主確認。
+如果 RVGO level 還在正值、但 slope 已經轉負，這不一定是背離；反而常是合理的早期轉折。因為 level 是狀態，slope/velocity 是變化。所以 RVGO 的判定應該避免寫成「RVGO 必須已經小於 0」。
+
+3. CAB 常中性時，不能假裝雙源確認
+CAB 中性時，模型應該明確降級，不應說「雙源同向」。CAB 同向才有真正確認；CAB 中性最多只能支持試單；CAB 背離時，RVGO 同向也不能壓過 CAB。因為 CAB 是唯一真正不同資料源，它缺席時模型信心要降級。
+
+4. 早期觀察旁路值得留，但不能變成交易旁門
+旁路值得留，因為它捕捉的是「籌碼與價量重心先轉，價格還沒進極端區」的左側訊號，對研究系統很有價值。但對實務交易（尤其非機構），旁路不應直接觸發正式換股，只能：標記 early watch、提前提高監控頻率、當 Z20 之後進入 Gate 時提高確認權重。純右側對散戶更安全；旁路適合當「雷達」，不適合當「扳機」。
+
+5. 最終定案命名：Z20 Gate + CAB Direction + RVGO Momentum
+這個版本比「轉折一致度四項平權」更好，因為它不再把觸發、方向、動能、獨立驗證混成同一個分數。CAB 中性時明確降級，RVGO 避免和 Z20 重複投票，旁路只做早期雷達。邏輯乾淨，也比較能直接落地回測。
+</pre></details><details class="explainer"><summary class="explainer__title">📜 Gemini 顧問全文（閘門模型補洞輪·重點原文）</summary><pre style="white-space:pre-wrap;word-break:break-word;line-height:1.7;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;margin:0">這套『Z20 Gate + CAB Direction + RVGO Momentum』兩層模型邏輯極佳，成功解決了傳統配對交易「過早摸底」與「指標多重共線性」的痛點。我高度同意此框架，但實戰上必須針對以下 5 點進行「容錯性」的批判與修補：
+
+① 門檻盲點：配對協整破裂 (Cointegration Breakdown) — 批判同意
+ABF 雙雄雖同屬載板，但常因單一客戶比重或製程良率出現結構性分歧，此時 Z20 會因「均值不回歸」而成為奪命索。
+定案修補（前置檢查）：導入「動態 Beta / 殘差走勢」檢查（60 日滾動 ADF 或 20 日 rolling Beta 偏離度）。若 Rolling Beta 偏離其 240 日均值超過 ±2 個標準差，判定「協整暫時失效」，Gate 直接上鎖（Lock），不論 Z20 多極端都不開窗。
+
+② CAB 假中性：退化成價量兩半相關 — 批判同意
+南電/欣興是法人盤，分點主力（CAB）若無大戶表態，多數時候日淨力差確實貼近 0。若把「無信號」當作「中性/可試單」，等於讓系統裸奔於價量指標中。
+定案修補（可用性門檻）：設立 CAB 活躍度門檻 Active_Ratio = |A 分點買超 − A 分點賣超| / A 成交量。若 Active_Ratio &lt; 5% 且絕對張數未達門檻，CAB 票宣告「無效 (NaN)」而非「中性」。當 CAB 為 NaN 時，全面禁止試單。唯有 CAB 活躍且投同向票，方可啟動交易。
+
+③ 量能/參與度：是否漏了第三維度？ — 半反駁
+RVGO 已含 ATR（與量能正相關），若再塞入純成交量易造成指標過載。但配對交易最怕「無量乾拉」導致假突破。
+定案修補：無需新增第三維度，但限制「換股信號當日，目標股成交量必須 &gt; 5 日均量 0.8 倍」，確保換過去的股票有流動性承接，避免流動性折價。
+
+④ 手機一行文（Dashboard）
+[Z:HARD▲] [CAB:✔(強) | RVG:✔(斜)] ➔ 🚀換股(全) [Z:+1.62/C:-85/R:+12]
+若 CAB 判定無效：[Z:SOFT▼] [CAB:🈳(無效) | RVG:✔] ➔ ⏳觀望 [Z:-1.35/C:0/R:-3]
+
+⑤ 最大實戰盲點 + 定案調整
+盲點：外資與投信的「左手拉右手」與換股摩擦成本。分點主力（CAB）呈現賣超，有時其實是外資過帳或借券賣出，而非真正看空；且台灣一進一出換股成本約 0.5%~0.6%，Soft Gate 頻繁開窗會被交易成本吃光。
+定案調整：
+1. CAB 資料源升級：CAB = (分點主力淨力差 × 0.4) + (投信+外資買賣超差額 × 0.6)，納入真法人動向，才不易被特定分點隔日沖手法欺騙。
+2. 加入「換股最小利差門檻」：非到 Hard Gate 且價差偏離預期利潤 &gt; 3% 不輕易全額換股；Soft Gate 僅允許「減倉」，不做「反向換股」，降低摩擦成本。
+3. 時效性防禦 (Time-out Stop)：換股後若 5 個交易日內 Z20 未收斂且 CAB 轉向，強制拆解配對（認賠平倉），防止協整破裂造成無底深淵。
+</pre></details><div class="banner" style="border-left:3px solid var(--th-purple,#a855f7)"><b style="color:var(--th-purple,#a855f7)">🎯 一句話收斂</b>　把 Z20 降級成<b>閘門</b>（極端+折返才開窗定方向·協整破裂則鎖），用<b>最獨立的一票 CAB(分點籌碼) 定方向、RVGO(動能) 做確認</b>；<b>CAB 是唯一真確認</b>（中性最多試單·背離壓過動能·雙背離接刀），左側留早期觀察雷達。比「四項平權」乾淨、不再把觸發/方向/動能/獨立驗證混成一個分數。先 SHADOW 並排回測，才談接單。</div><footer class="page-footer">設計/決策紀錄 ｜ Z20 Gate + CAB Direction + RVGO Momentum ｜ Z20 降級閘門·CAB 唯一獨立源定方向·RVGO 投動能·協整鎖+CAB可用性門檻 ｜ 先並排回測再接單</footer></body></html>
