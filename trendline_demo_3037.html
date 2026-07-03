@@ -1,0 +1,352 @@
+<!doctype html><html lang="zh-Hant"><head>
+<link rel="stylesheet" href="assets/site.css?v=d8f7634d">
+<link id="ms-theme-css" rel="stylesheet" href="assets/theme-classic.css?v=d8f7634d"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>趨勢線 demo 3037</title><style>
+/* === Chart interaction lock (chart_buttons.py) === */
+/* 鎖定 plotly 觸控：保留 tap，禁用 pinch & pan */
+.plotly-graph-div, .js-plotly-plot {
+  touch-action: manipulation !important;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Toolbar 樣式 */
+.chart-toolbar {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 6px 8px;
+  background: var(--th-card,#0f1a2c);
+  border: 1px solid var(--th-border,#2d3f55);
+  border-radius: 6px;
+  margin: -8px 0 14px;
+  font-family: "Microsoft JhengHei", sans-serif;
+}
+.chart-toolbar button {
+  background: var(--th-card,#1e293b);
+  color: var(--th-text2,#cbd5e1);
+  border: 1px solid var(--th-border2,#334155);
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  min-height: 30px;
+  min-width: 36px;
+}
+.chart-toolbar button:hover {
+  border-color: #3b82f6;
+  color: var(--th-blue,#93c5fd);
+}
+.chart-toolbar button:active {
+  transform: scale(0.95);
+  background: var(--th-card,#0f1a2c);
+}
+/* 篩選按鈕 active 高亮（RRG 4 象限切換） */
+.chart-toolbar button.active {
+  background: var(--th-blue-bg,#1e3a5f);
+  color: var(--th-blue,#93c5fd);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6 inset;
+}
+/* 4 象限色彩標記 */
+.chart-toolbar button.q-leading.active   { background:var(--th-green-bg,#064e3b); color:var(--th-green,#6ee7b7); border-color:#10b981; box-shadow:0 0 0 1px #10b981 inset; }
+.chart-toolbar button.q-improving.active { background:var(--th-blue-bg,#0f2a44); color:var(--th-blue,#93c5fd); border-color:#60a5fa; box-shadow:0 0 0 1px #60a5fa inset; }
+.chart-toolbar button.q-weakening.active { background:var(--th-amber-bg,#3a1c08); color:var(--th-amber,#fcd34d); border-color:#fb923c; box-shadow:0 0 0 1px #fb923c inset; }
+.chart-toolbar button.q-lagging.active   { background:var(--th-red-bg,#3f0d1a); color:var(--th-red,#fda4af); border-color:#fda4af; box-shadow:0 0 0 1px #fda4af inset; }
+.chart-toolbar .sep {
+  width: 1px;
+  background: var(--th-hover,#334155);
+  margin: 2px 4px;
+  align-self: stretch;
+}
+.chart-toolbar .lbl {
+  color: var(--th-faint,#64748b);
+  font-size: 11px;
+  padding: 4px 4px;
+  align-self: center;
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .chart-toolbar { padding: 4px 6px; gap: 3px; }
+  .chart-toolbar button { padding: 5px 8px; font-size: 11px; min-width: 32px; }
+  .chart-toolbar .lbl { display: none; }
+  .chart-toolbar .sep { margin: 2px 2px; }
+}
+</style></head><body>
+<script>(function(){var L=document.getElementById("ms-theme-css");if(!L)return;var q="?v=d8f7634d",b="assets/";var DAY=["theme-red.css","theme-orange.css","theme-yellow.css","theme-green.css","theme-blue.css","theme-indigo.css","theme-violet.css"];function dayT(){return DAY[(new Date()).getDay()];}function ap(v){var t=(v==="auto")?dayT():v;L.setAttribute("href",b+t+q);}var sv=null;try{sv=localStorage.getItem("ms_theme");}catch(e){}if(!sv)sv="auto";ap(sv);var S=document.getElementById("ms-theme-sel");if(S){S.value=sv;S.addEventListener("change",function(){ap(S.value);try{localStorage.setItem("ms_theme",S.value);}catch(e){}});}})();</script>
+<!-- GLOBAL_NAV_START -->
+<nav class="gnav" id="gnav">
+  <a class="gnav-home" href="index.html">🏠 主控台</a>
+  <div class='gnav-dd'><button class='gnav-btn' data-dd='0'>🏢 組織架構 ▾</button><div class='gnav-panel' id='gnav-p0'><a class='gnav-it' href='org/organization.html'>🏢 組織架構圖</a><a class='gnav-it' href='org/system_flow.html'>🔄 系統流程圖</a><div class='gnav-hd'>─ 投資長 CIO ─</div><a class='gnav-it' href='market/ms_dashboard.html'>🎩 MS 投資長儀表板</a><div class='gnav-hd'>─ 研究部 ─</div><a class='gnav-it' href='org/iue.html'>🏛 投資宇宙引擎 IUE</a><a class='gnav-it' href='org/iue_journey.html'>📜 IUE 股票履歷</a><div class='gnav-hd'>─ 評審 / 決策 ─</div><a class='gnav-it' href='org/iab.html'>🎖 外聘評審委員會 IAB</a><a class='gnav-it' href='org/master_score.html'>👥 9 名人評分</a><a class='gnav-it' href='org/capital_committee.html'>🗳 資金持有委員會</a><div class='gnav-hd'>─ 基金管理部 ─</div><a class='gnav-it' href='org/fund_managers.html'>💼 CIO × 經理競標</a><a class='gnav-it' href='org/stock_ops.html'>🎯 操作 Agent (5 階段)</a><a class='gnav-it' href='org/pm_custom.html'>⭐ 自選股 PM</a><a class='gnav-it' href='org/pm_trend_growth.html'>💹 趨勢成長 PM</a><a class='gnav-it' href='org/paper_portfolio.html'>📈 模擬投資組合</a><a class='gnav-it' href='market/rec_performance.html'>📊 推薦持有梯次績效</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='1'>🔬 分析面向 ▾</button><div class='gnav-panel' id='gnav-p1'><div class='gnav-hd'>─ 技術面 ─</div><a class='gnav-it' href='tech/n_shape.html'>📦 多時段箱型</a><a class='gnav-it' href='tech/box_structure.html'>🧱 股票箱結構</a><a class='gnav-it' href='tech/shsl.html'>⛰ SH/SL 擺動</a><a class='gnav-it' href='tech/wyckoff_phase.html'>🌀 Wyckoff 階段</a><a class='gnav-it' href='tech/n_pattern.html'>📐 N 形態</a><a class='gnav-it' href='tech/structure_chart.html'>🗺 結構圖</a><a class='gnav-it' href='tech/state_grid_preview.html'>🔳 狀態網格</a><a class='gnav-it' href='tech/daily_weekly_index.html'>📈 個股 日K+週K (自選池)</a><div class='gnav-hd'>─ 籌碼面 ─</div><a class='gnav-it' href='chip/chip_concentration.html'>🎯 籌碼集中度</a><a class='gnav-it' href='chip/ownership_engine.html'>📊 流通股權集中度 (Ownership)</a><a class='gnav-it' href='chip/broker_branch.html'>🏦 券商分點</a><a class='gnav-it' href='chip/capital_structure.html'>🧬 資金結構體檢</a><a class='gnav-it' href='chip/chr.html'>🔄 CHR 持有者輪動</a><a class='gnav-it' href='chip/cmg.html'>💰 CMG 資金流向</a><a class='gnav-it' href='chip/cga.html'>📊 CGA 籌碼集中</a><a class='gnav-it' href='chip/chip_rrg.html'>🧭 法人×融資 相位圖</a><a class='gnav-it' href='chip/chip_cmg_rrg.html'>🧭 主力×賣買家差 相位圖</a><a class='gnav-it' href='chip/csa_phase.html'>🧬 CSA 籌碼相位 (SMI)</a><div class='gnav-hd'>─ 基本面 ─</div><a class='gnav-it' href='fund/fundamental_score.html'>🧪 基本面 5 維 (PEG/FCF/ROE)</a><div class='gnav-hd'>─ 市場結構 ─</div><a class='gnav-it' href='market/ms_dashboard.html'>🎩 MS 儀表板</a><a class='gnav-it' href='market/hotflow.html'>🔥 熱門流向 HotFlow</a><a class='gnav-it' href='market/sector_rotation.html'>🌐 族群輪動 RRG</a><a class='gnav-it' href='market/sector_constituents.html'>🗂 族群成分股</a><a class='gnav-it' href='market/mainstream_pool.html'>🏊 主流股池</a><a class='gnav-it' href='market/strong_stocks.html'>💪 強勢股</a><div class='gnav-hd'>─ 股池 ─</div><a class='gnav-it' href='pool/custom_pool.html'>⭐ 自選股池</a><a class='gnav-it' href='pool/accumulation_pool.html'>🧲 吸籌池</a><a class='gnav-it' href='pool/distribution_score.html'>🌋 派發評分</a><a class='gnav-it' href='market/topping_risk.html'>🌡️ 高點過熱·派發風險</a><a class='gnav-it' href='pool/main_force_entry.html'>🎯 主力進貨</a><a class='gnav-it' href='pool/trust_sponsor.html'>🏦 法人認養</a><a class='gnav-it' href='pool/inst_entry_pool.html'>🆕 法人進場池 (第5入池·Tier-2)</a><a class='gnav-it' href='pool/disposition_pool.html'>🚧 處置觀察池 (便利貼牆)</a><a class='gnav-it' href='pool/entry_signal_backtest.html'>📊 認養回測驗證</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='2'>🔁 配對交易 ▾</button><div class='gnav-panel' id='gnav-p2'><a class='gnav-it' href='pairs/rr.html'>🔁 RSR 配對</a><a class='gnav-it' href='pairs/rrr.html'>📐 RRR 配對</a><a class='gnav-it' href='pairs/rrr_resonance.html'>🌀 RRR Resonance</a><a class='gnav-it' href='pairs/dynamic_rr.html'>⚡ 動態 RSR</a><a class='gnav-it' href='pairs/custom_pairs.html'>⭐ 自選配對</a><a class='gnav-it' href='pairs/rcga_overview.html'>🚦 RCGA 總覽</a><a class='gnav-it' href='pairs/rotation_signals.html'>🔄 換股訊號</a><a class='gnav-it' href='pairs/rotation_confirm_log.html'>📋 換股確認紀錄</a><a class='gnav-it' href='pairs/rotation_case_study.html'>📚 換股案例</a><a class='gnav-it' href='pairs/backtest.html'>📊 回測</a><div class='gnav-hd'>─ 配對圖 ─</div><a class='gnav-it' href='pairs/nan_xin_chart.html'>南電 / 欣興</a><a class='gnav-it' href='pairs/jh_zy_chart.html'>晶豪科 / 智原</a><a class='gnav-it' href='pairs/pair_2049_4576.html'>上銀 / 大銀微</a><a class='gnav-it' href='pairs/pair_2344_2408.html'>華邦電 / 南亞科</a><a class='gnav-it' href='pairs/pair_9921_9914.html'>巨大 / 美利達</a><a class='gnav-it' href='pairs/pair_rotation_lite.html'>🔁 南電/欣興 RR輪動(精簡)</a><a class='gnav-it' href='pairs/pair_rotation_lite_3006_3035.html'>🔁 晶豪科/智原 RR輪動(精簡)</a><a class='gnav-it' href='pairs/pair_rotation_lite_2344_2408.html'>🔁 華邦電/南亞科 RR輪動(精簡)</a><a class='gnav-it' href='pairs/pair_rotation_lite_9921_9914.html'>🔁 巨大/美利達 RR輪動(精簡)</a><a class='gnav-it' href='pairs/pair_rotation_lite_2049_4576.html'>🔁 上銀/大銀微 RR輪動(精簡)</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='3'>🚧 開發中專案 ▾</button><div class='gnav-panel' id='gnav-p3'><div class='gnav-hd'>─ 研究中 / 新頁 ─</div><a class='gnav-it' href='market/harbor.html'>⚓ 避風港三桶配置 (SHADOW Harbor)</a><a class='gnav-it' href='market/jade_pool.html'>💎 璞玉低波動優質池 (SHADOW 避風港)</a><a class='gnav-it' href='market/global_stress.html'>🌐 全球流動性風險雷達 (SHADOW 觀察)</a><a class='gnav-it' href='market/distribution_dynamics.html'>🌋 主力邊拉邊出 派發動力 DS</a><a class='gnav-it' href='market/disposition_study.html'>🧪 處置股價量籌碼觀察</a><a class='gnav-it' href='chip/deep_profile.html'>🔬 深度料供給層 (個股總覽)</a><a class='gnav-it' href='org/holding_alerts.html'>🛡 持股警示 · 監控層</a><a class='gnav-it' href='chip/depledge_events.html'>🔓 大股東/董監 設質解質事件 (SHADOW)</a><a class='gnav-it' href='chip/depledge_backtest.html'>🧪 解質押訊號 回測 (SHADOW·研究)</a><a class='gnav-it' href='market/active_etf_hub.html'>🏠 主動型 ETF 中樞 (總入口)</a><a class='gnav-it' href='market/active_etf.html'>📊 主動型 ETF 績效榜 (聰明錢)</a><a class='gnav-it' href='market/active_etf_holdings.html'>🧩 主動型 ETF 持股共識 (跨投信)</a><a class='gnav-it' href='market/active_etf_coverage.html'>🗂 主動型 ETF 個股涵蓋表</a><a class='gnav-it' href='market/active_etf_flow.html'>🟢🔴 主動型 ETF 建倉/清倉 日誌</a><a class='gnav-it' href='market/active_etf_cochange.html'>🤝 主動型 ETF 當日共同調整榜</a><a class='gnav-it' href='market/smi_overview.html'>🌐 SMI 智能資金系統 (總覽)</a><a class='gnav-it' href='market/ica.html'>🏛 ICA 法人意圖 (SMI)</a><a class='gnav-it' href='market/smp.html'>🌊 SMP 聰明資金生命週期 (SMI)</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='4'>💬 顧問討論 ▾</button><div class='gnav-panel' id='gnav-p4'><div class='gnav-hd'>─ 設計紀實 (Claude×codex×Gemini) ─</div><a class='gnav-it' href='market/etf_consensus_debate.html'>🧠 ETF 共識訊號設計辯論 (Claude×codex)</a><a class='gnav-it' href='market/disposition_strategy.html'>🎯 注意×處置 選股策略 (Claude×codex)</a><a class='gnav-it' href='chip_redesign_discussion.html'>🧬 週股權集中度重設計 (顧問討論)</a><a class='gnav-it' href='market/swing_detection_discussion.html'>🌊 SHSL 波段偵測→狀態機 (Claude×codex)</a><a class='gnav-it' href='market/global_liquidity_radar_discussion.html'>🌐 全球流動性風險雷達→market agent (Claude×codex)</a><a class='gnav-it' href='market/harbor_discussion.html'>⚓ Harbor 避風港 Agent 設計 (Claude×codex×Gemini)</a><a class='gnav-it' href='market/depledge_discussion.html'>🔓 解質押≠利多 三輪辯論 (Claude×codex×Gemini)</a><a class='gnav-it' href='pairs/rotation_decision_discussion.html'>🔁 配對輪動換股決策模型 演化 (Claude×codex×Gemini)</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='5'>🧱 blocks ▾</button><div class='gnav-panel' id='gnav-p5'><div class='gnav-hd'>─ 內容積木 (B 系列) ─</div><a class='gnav-it' href='chip/cmg_block.html'>B1 📖說明 · CMG 公式說明 (NBC15_Z60/SBD_Z60)</a><a class='gnav-it' href='chip/rr_chip_flow_block.html'>B2 📊圖 · RR 籌碼流向圖 (PAB×CAB)</a><a class='gnav-it' href='tech/daily_weekly_block.html'>B3 📊圖 · 日K + 週K 雙格同步圖</a><a class='gnav-it' href='pairs/rotation_timing_block.html'>B4 📊圖 · 換股時機圖 (Z20 配對價差 + 布林)</a><a class='gnav-it' href='tech/shsl_swing_block.html'>B5 📊圖 · SHSL Swing 結構 (波段高低點·三時段對齊)</a><a class='gnav-it' href='fund/pe_river_block.html'>B6 📊圖 · PE 河流圖 (估值分位 · FinMind 5 年)</a><a class='gnav-it' href='chip/broker_branch_block.html'>B7 📋資 · 券商分點 (真分點 · 主力辨識)</a><a class='gnav-it' href='chip/chip_concentration_block.html'>B8 📊圖 · 籌碼集中度 (大戶/散戶 · 股權分散)</a><a class='gnav-it' href='tech/stock_zscore_block.html'>B9 📊圖 · 雙 Z-score 過熱 (Price Z250 + Volume Z60)</a><a class='gnav-it' href='tech/technical_block.html'>B10 📋資 · 技術型態 (Box/Wyckoff/N-Shape/CGA)</a><a class='gnav-it' href='chip/chip_rrg_block.html'>B11 📊圖 · 法人×融資 籌碼相位圖 RRG (單股)</a><a class='gnav-it' href='chip/chr_holder_rrg_block.html'>B12 📊圖 · 持有者輪動 RRG (CS×CM 單股)</a><a class='gnav-it' href='pairs/rvgo_block.html'>B13 📊圖 · RVGO 相對成交重心 (圖4 RVGO + 圖5 velocity/slope)</a><a class='gnav-it' href='pairs/combo_rotation_rvgo_block.html'>B14 📊圖 · 換股時機 × RVGO 三合一 (Z20｜RVGO｜vel/slope)</a><a class='gnav-it' href='pairs/rr_decision_card_block.html'>B15 📋資 · 換股決策摘要 (RCGA環境+Z20時機·依B14)</a><a class='gnav-it' href='market/sector_rrg_block.html'>B16 📊圖 · 族群 RRG 散佈圖 (官方35/主題·按鈕切換)</a><a class='gnav-it' href='chip/insider_holdings_block.html'>B17 📋資 · 董監持股 (質押/解質/申報轉讓事件)</a><a class='gnav-it' href='pairs/rcga_guide_block.html'>B18 📋資 · RCGA 換股指標說明 (RVGO系列·6態換股建議)</a><a class='gnav-it' href='pairs/three_category_block.html'>B19 📋資 · 三類判讀 (相對價格·主力籌碼·相對價籌·先下結論)</a><a class='gnav-it' href='trendline_block.html'>B20 📊圖 · 趨勢線 (上升/下降·方法1兩點+方法4碰觸驗證)</a><div class='gnav-hd'>─ 組合頁 (A 系列) ─</div><a class='gnav-it' href='chip/combo_chip_phase_block.html'>A1 📊圖 · 籌碼相位三圖 (CMG·法人融資·持有者)</a><div class='gnav-hd'>─ 🧰 元件 (P 系列) ─</div><a class='gnav-it' href='chip/component_toolbox_block.html'>🧰 元件工具箱 (P1 逐日回放…)</a><div class='gnav-hd'>─ 系統說明 / 組裝 ─</div><a class='gnav-it' href='chip/blocks_assembly_demo.html'>🧩 blocks 系統說明 + 組裝法 (名冊·Bm↔Bn 間加 Bx)</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='6'>⚙ 系統 ▾</button><div class='gnav-panel' id='gnav-p6'><a class='gnav-it' href='sys/todo.html'>📝 待辦事項</a><a class='gnav-it' href='sys/db_health.html'>🩺 資料庫健康</a><a class='gnav-it' href='sys/fs_compare.html'>🆚 FS 對照</a><a class='gnav-it' href='sys/nomenclature.html'>📖 名詞對照表</a><a class='gnav-it' href='docs/V2_ARCHITECTURE.html'>📋 V.2 架構文件</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='7'>🔬 深度料 ▾</button><div class='gnav-panel' id='gnav-p7'><a class='gnav-it' href='chip/deep_profile.html'>🔬 個股總覽 (hub)</a><div class='gnav-hd'>─ 個股深度料 (CMG動力學＋吸收/派發) ─</div><a class='gnav-it' href='chip/deep_profile_8046.html'>8046 南電</a><a class='gnav-it' href='chip/deep_profile_3037.html'>3037 欣興</a><a class='gnav-it' href='chip/deep_profile_3006.html'>3006 晶豪科</a><a class='gnav-it' href='chip/deep_profile_3035.html'>3035 智原</a><a class='gnav-it' href='chip/deep_profile_2344.html'>2344 華邦電</a><a class='gnav-it' href='chip/deep_profile_2408.html'>2408 南亞科</a><a class='gnav-it' href='chip/deep_profile_9921.html'>9921 巨大</a><a class='gnav-it' href='chip/deep_profile_9914.html'>9914 美利達</a><a class='gnav-it' href='chip/deep_profile_2049.html'>2049 上銀</a><a class='gnav-it' href='chip/deep_profile_4576.html'>4576 大銀微系統</a></div></div><div class='gnav-dd'><button class='gnav-btn' data-dd='8'>📂 個股卷宗 ▾</button><div class='gnav-panel' id='gnav-p8'><a class='gnav-it' href='dossier/1503.html'>1503 士電</a><a class='gnav-it' href='dossier/2049.html'>2049 上銀</a><a class='gnav-it' href='dossier/2327.html'>2327 國巨*</a><a class='gnav-it' href='dossier/2330.html'>2330 台積電</a><a class='gnav-it' href='dossier/2344.html'>2344 華邦電</a><a class='gnav-it' href='dossier/2359.html'>2359 所羅門</a><a class='gnav-it' href='dossier/2408.html'>2408 南亞科</a><a class='gnav-it' href='dossier/3006.html'>3006 晶豪科</a><a class='gnav-it' href='dossier/3035.html'>3035 智原</a><a class='gnav-it' href='dossier/3037.html'>3037 欣興</a><a class='gnav-it' href='dossier/4576.html'>4576 大銀微系統</a><a class='gnav-it' href='dossier/8046.html'>8046 南電</a><a class='gnav-it' href='dossier/9914.html'>9914 美利達</a><a class='gnav-it' href='dossier/9921.html'>9921 巨大</a></div></div>
+  <div class="gnav-search">
+    <input id="gnav-q" type="text" placeholder="🔍 找報告…" autocomplete="off">
+    <div id="gnav-sr"></div>
+  </div>
+</nav>
+<script>
+(function(){
+  var DATA="🏢 組織架構圖||org/organization.html;;🔄 系統流程圖||org/system_flow.html;;🎩 MS 投資長儀表板||market/ms_dashboard.html;;🏛 投資宇宙引擎 IUE||org/iue.html;;📜 IUE 股票履歷||org/iue_journey.html;;🎖 外聘評審委員會 IAB||org/iab.html;;👥 9 名人評分||org/master_score.html;;🗳 資金持有委員會||org/capital_committee.html;;💼 CIO × 經理競標||org/fund_managers.html;;🎯 操作 Agent (5 階段)||org/stock_ops.html;;⭐ 自選股 PM||org/pm_custom.html;;💹 趨勢成長 PM||org/pm_trend_growth.html;;📈 模擬投資組合||org/paper_portfolio.html;;📊 推薦持有梯次績效||market/rec_performance.html;;📦 多時段箱型||tech/n_shape.html;;🧱 股票箱結構||tech/box_structure.html;;⛰ SH/SL 擺動||tech/shsl.html;;🌀 Wyckoff 階段||tech/wyckoff_phase.html;;📐 N 形態||tech/n_pattern.html;;🗺 結構圖||tech/structure_chart.html;;🔳 狀態網格||tech/state_grid_preview.html;;📈 個股 日K+週K (自選池)||tech/daily_weekly_index.html;;🎯 籌碼集中度||chip/chip_concentration.html;;📊 流通股權集中度 (Ownership)||chip/ownership_engine.html;;🏦 券商分點||chip/broker_branch.html;;🧬 資金結構體檢||chip/capital_structure.html;;🔄 CHR 持有者輪動||chip/chr.html;;💰 CMG 資金流向||chip/cmg.html;;📊 CGA 籌碼集中||chip/cga.html;;🧭 法人×融資 相位圖||chip/chip_rrg.html;;🧭 主力×賣買家差 相位圖||chip/chip_cmg_rrg.html;;🧬 CSA 籌碼相位 (SMI)||chip/csa_phase.html;;🧪 基本面 5 維 (PEG/FCF/ROE)||fund/fundamental_score.html;;🎩 MS 儀表板||market/ms_dashboard.html;;🔥 熱門流向 HotFlow||market/hotflow.html;;🌐 族群輪動 RRG||market/sector_rotation.html;;🗂 族群成分股||market/sector_constituents.html;;🏊 主流股池||market/mainstream_pool.html;;💪 強勢股||market/strong_stocks.html;;⭐ 自選股池||pool/custom_pool.html;;🧲 吸籌池||pool/accumulation_pool.html;;🌋 派發評分||pool/distribution_score.html;;🌡️ 高點過熱·派發風險||market/topping_risk.html;;🎯 主力進貨||pool/main_force_entry.html;;🏦 法人認養||pool/trust_sponsor.html;;🆕 法人進場池 (第5入池·Tier-2)||pool/inst_entry_pool.html;;🚧 處置觀察池 (便利貼牆)||pool/disposition_pool.html;;📊 認養回測驗證||pool/entry_signal_backtest.html;;🔁 RSR 配對||pairs/rr.html;;📐 RRR 配對||pairs/rrr.html;;🌀 RRR Resonance||pairs/rrr_resonance.html;;⚡ 動態 RSR||pairs/dynamic_rr.html;;⭐ 自選配對||pairs/custom_pairs.html;;🚦 RCGA 總覽||pairs/rcga_overview.html;;🔄 換股訊號||pairs/rotation_signals.html;;📋 換股確認紀錄||pairs/rotation_confirm_log.html;;📚 換股案例||pairs/rotation_case_study.html;;📊 回測||pairs/backtest.html;;南電 / 欣興||pairs/nan_xin_chart.html;;晶豪科 / 智原||pairs/jh_zy_chart.html;;上銀 / 大銀微||pairs/pair_2049_4576.html;;華邦電 / 南亞科||pairs/pair_2344_2408.html;;巨大 / 美利達||pairs/pair_9921_9914.html;;🔁 南電/欣興 RR輪動(精簡)||pairs/pair_rotation_lite.html;;🔁 晶豪科/智原 RR輪動(精簡)||pairs/pair_rotation_lite_3006_3035.html;;🔁 華邦電/南亞科 RR輪動(精簡)||pairs/pair_rotation_lite_2344_2408.html;;🔁 巨大/美利達 RR輪動(精簡)||pairs/pair_rotation_lite_9921_9914.html;;🔁 上銀/大銀微 RR輪動(精簡)||pairs/pair_rotation_lite_2049_4576.html;;⚓ 避風港三桶配置 (SHADOW Harbor)||market/harbor.html;;💎 璞玉低波動優質池 (SHADOW 避風港)||market/jade_pool.html;;🌐 全球流動性風險雷達 (SHADOW 觀察)||market/global_stress.html;;🌋 主力邊拉邊出 派發動力 DS||market/distribution_dynamics.html;;🧪 處置股價量籌碼觀察||market/disposition_study.html;;🔬 深度料供給層 (個股總覽)||chip/deep_profile.html;;🛡 持股警示 · 監控層||org/holding_alerts.html;;🔓 大股東/董監 設質解質事件 (SHADOW)||chip/depledge_events.html;;🧪 解質押訊號 回測 (SHADOW·研究)||chip/depledge_backtest.html;;🏠 主動型 ETF 中樞 (總入口)||market/active_etf_hub.html;;📊 主動型 ETF 績效榜 (聰明錢)||market/active_etf.html;;🧩 主動型 ETF 持股共識 (跨投信)||market/active_etf_holdings.html;;🗂 主動型 ETF 個股涵蓋表||market/active_etf_coverage.html;;🟢🔴 主動型 ETF 建倉/清倉 日誌||market/active_etf_flow.html;;🤝 主動型 ETF 當日共同調整榜||market/active_etf_cochange.html;;🌐 SMI 智能資金系統 (總覽)||market/smi_overview.html;;🏛 ICA 法人意圖 (SMI)||market/ica.html;;🌊 SMP 聰明資金生命週期 (SMI)||market/smp.html;;🧠 ETF 共識訊號設計辯論 (Claude×codex)||market/etf_consensus_debate.html;;🎯 注意×處置 選股策略 (Claude×codex)||market/disposition_strategy.html;;🧬 週股權集中度重設計 (顧問討論)||chip_redesign_discussion.html;;🌊 SHSL 波段偵測→狀態機 (Claude×codex)||market/swing_detection_discussion.html;;🌐 全球流動性風險雷達→market agent (Claude×codex)||market/global_liquidity_radar_discussion.html;;⚓ Harbor 避風港 Agent 設計 (Claude×codex×Gemini)||market/harbor_discussion.html;;🔓 解質押≠利多 三輪辯論 (Claude×codex×Gemini)||market/depledge_discussion.html;;🔁 配對輪動換股決策模型 演化 (Claude×codex×Gemini)||pairs/rotation_decision_discussion.html;;B1 📖說明 · CMG 公式說明 (NBC15_Z60/SBD_Z60)||chip/cmg_block.html;;B2 📊圖 · RR 籌碼流向圖 (PAB×CAB)||chip/rr_chip_flow_block.html;;B3 📊圖 · 日K + 週K 雙格同步圖||tech/daily_weekly_block.html;;B4 📊圖 · 換股時機圖 (Z20 配對價差 + 布林)||pairs/rotation_timing_block.html;;B5 📊圖 · SHSL Swing 結構 (波段高低點·三時段對齊)||tech/shsl_swing_block.html;;B6 📊圖 · PE 河流圖 (估值分位 · FinMind 5 年)||fund/pe_river_block.html;;B7 📋資 · 券商分點 (真分點 · 主力辨識)||chip/broker_branch_block.html;;B8 📊圖 · 籌碼集中度 (大戶/散戶 · 股權分散)||chip/chip_concentration_block.html;;B9 📊圖 · 雙 Z-score 過熱 (Price Z250 + Volume Z60)||tech/stock_zscore_block.html;;B10 📋資 · 技術型態 (Box/Wyckoff/N-Shape/CGA)||tech/technical_block.html;;B11 📊圖 · 法人×融資 籌碼相位圖 RRG (單股)||chip/chip_rrg_block.html;;B12 📊圖 · 持有者輪動 RRG (CS×CM 單股)||chip/chr_holder_rrg_block.html;;B13 📊圖 · RVGO 相對成交重心 (圖4 RVGO + 圖5 velocity/slope)||pairs/rvgo_block.html;;B14 📊圖 · 換股時機 × RVGO 三合一 (Z20｜RVGO｜vel/slope)||pairs/combo_rotation_rvgo_block.html;;B15 📋資 · 換股決策摘要 (RCGA環境+Z20時機·依B14)||pairs/rr_decision_card_block.html;;B16 📊圖 · 族群 RRG 散佈圖 (官方35/主題·按鈕切換)||market/sector_rrg_block.html;;B17 📋資 · 董監持股 (質押/解質/申報轉讓事件)||chip/insider_holdings_block.html;;B18 📋資 · RCGA 換股指標說明 (RVGO系列·6態換股建議)||pairs/rcga_guide_block.html;;B19 📋資 · 三類判讀 (相對價格·主力籌碼·相對價籌·先下結論)||pairs/three_category_block.html;;B20 📊圖 · 趨勢線 (上升/下降·方法1兩點+方法4碰觸驗證)||trendline_block.html;;A1 📊圖 · 籌碼相位三圖 (CMG·法人融資·持有者)||chip/combo_chip_phase_block.html;;🧰 元件工具箱 (P1 逐日回放…)||chip/component_toolbox_block.html;;🧩 blocks 系統說明 + 組裝法 (名冊·Bm↔Bn 間加 Bx)||chip/blocks_assembly_demo.html;;📝 待辦事項||sys/todo.html;;🩺 資料庫健康||sys/db_health.html;;🆚 FS 對照||sys/fs_compare.html;;📖 名詞對照表||sys/nomenclature.html;;📋 V.2 架構文件||docs/V2_ARCHITECTURE.html;;🔬 個股總覽 (hub)||chip/deep_profile.html;;8046 南電||chip/deep_profile_8046.html;;3037 欣興||chip/deep_profile_3037.html;;3006 晶豪科||chip/deep_profile_3006.html;;3035 智原||chip/deep_profile_3035.html;;2344 華邦電||chip/deep_profile_2344.html;;2408 南亞科||chip/deep_profile_2408.html;;9921 巨大||chip/deep_profile_9921.html;;9914 美利達||chip/deep_profile_9914.html;;2049 上銀||chip/deep_profile_2049.html;;4576 大銀微系統||chip/deep_profile_4576.html;;1503 士電||dossier/1503.html;;2049 上銀||dossier/2049.html;;2327 國巨*||dossier/2327.html;;2330 台積電||dossier/2330.html;;2344 華邦電||dossier/2344.html;;2359 所羅門||dossier/2359.html;;2408 南亞科||dossier/2408.html;;3006 晶豪科||dossier/3006.html;;3035 智原||dossier/3035.html;;3037 欣興||dossier/3037.html;;4576 大銀微系統||dossier/4576.html;;8046 南電||dossier/8046.html;;9914 美利達||dossier/9914.html;;9921 巨大||dossier/9921.html".split(";;").map(function(s){var p=s.split("||");return {l:p[0],h:p[1]};});
+  var nav=document.getElementById('gnav');
+  nav.querySelectorAll('.gnav-btn').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.stopPropagation();
+      var p=document.getElementById('gnav-p'+b.dataset.dd), was=p.classList.contains('open');
+      nav.querySelectorAll('.gnav-panel').forEach(function(x){x.classList.remove('open');});
+      nav.querySelectorAll('.gnav-btn').forEach(function(x){x.classList.remove('on');});
+      if(!was){p.classList.add('open');b.classList.add('on');}
+    });
+  });
+  document.addEventListener('click',function(){
+    nav.querySelectorAll('.gnav-panel').forEach(function(x){x.classList.remove('open');});
+    nav.querySelectorAll('.gnav-btn').forEach(function(x){x.classList.remove('on');});
+    var sr=document.getElementById('gnav-sr'); if(sr) sr.style.display='none';
+  });
+  var q=document.getElementById('gnav-q'), sr=document.getElementById('gnav-sr');
+  q.addEventListener('click',function(e){e.stopPropagation();});
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase();
+    if(!v){sr.style.display='none';return;}
+    var hits=DATA.filter(function(d){return d.l.toLowerCase().indexOf(v)>=0;}).slice(0,15);
+    sr.innerHTML=hits.length?hits.map(function(d){
+      return "<a class='gnav-it' href='"+d.h+"'>"+d.l+"</a>";}).join("")
+      :"<div class='gnav-hd'>無符合</div>";
+    sr.style.display='block';
+  });
+})();
+</script>
+<!-- GLOBAL_NAV_END --><a class="back-link" href="index.html">← 返回主頁</a><h1 class="page-title">📐 趨勢線 demo — 3037</h1><!-- BLOCK B20 START --><div class="block-region" id="block-B20" data-block="B20" data-block-file="trendline_block.html" data-block-kind="圖"><div class="block-region__tag">🧱 B20 · 📊 圖</div><h1 class="page-title">📐 趨勢線 — 3037 欣興 · 上升/下降趨勢線（方法1+4）</h1><div class="note">3037 欣興 的上升趨勢線（連波段低點＝支撐）與下降趨勢線（連波段高點＝壓力），自動由 swing 樞紐點擬合並延伸到今日。方法1 兩點枚舉 ＋ 方法4 碰觸驗證挑最可靠一條；若近期漲/跌勢過陡、直線貼不上現價（±15% 外）則不畫（改看對數座標較合適）。</div><div class="card"><div class="chart-toolbar" data-target="trendline_3037" title="✋ 滑鼠平移/滾輪縮放已關閉，請用按鈕操作；雙擊圖=重設"><span class="lbl">⏱ 範圍</span><button onclick="tlRange('trendline_3037','3m')" title="顯示近約 3 月">近3月</button><button onclick="tlRange('trendline_3037','6m')" title="顯示近約 6 月">近6月</button><button onclick="tlRange('trendline_3037','1y')" title="顯示近約 1 年">近1年</button><button onclick="tlRange('trendline_3037','all')" title="顯示全部">全部</button><span class="sep"></span><span class="lbl">🔍 縮放</span><button onclick="chartZoom('trendline_3037',0.7)" title="放大">➕</button><button onclick="chartZoom('trendline_3037',1.4)" title="縮小">➖</button><button onclick="chartReset('trendline_3037')" title="重設（雙擊圖也可）">↻</button></div><div style="height:520px; width:100%;">                        <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.6.0.min.js" integrity="sha256-QaOVwtVY0T02VaHrr6pnoHLCwayMJp4O5n4YyaE3rJk=" crossorigin="anonymous"></script>                <div id="trendline_3037" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("trendline_3037")) {                    Plotly.newPlot(                        "trendline_3037",                        [{"close":{"dtype":"f8","bdata":"AAAAwOKqZUAAAAAAuTZmQAAAAGAcCGZAAAAAwOKqZUAAAADAkvhlQAAAAOBFfGVAAAAAAKlNZUAAAACAUWZnQAAAAKAfdmdAAAAAILyVZ0AAAABgA3NoQAAAAGA1nGpAAAAAoEpQaUAAAADgJsVnQAAAAODthWdAAAAAwF8EaEAAAAAgvJVnQAAAAICfWWZAAAAAoKaoZkAAAADgNCpmQAAAAIDYmGZAAAAAoHR\u002fZEAAAAAA33ViQAAAAOBeWWFAAAAAgEJWYkAAAACAAshhQAAAAEB0RmJAAAAA4JCCY0AAAACgwnJjQAAAAKD7sWNAAAAAgPRiY0AAAACg+7FjQAAAACBfkmNAAAAA4JCCY0AAAACgguRiQAAAAIA08WNAAAAAANEQZEAAAAAAmNFjQAAAAODJwWNAAAAAYC2iY0AAAADgCVBkQAAAAIBtMGRAAAAAANEQZEAAAABAJlNjQAAAAABmqGFAAAAAgMmIYUAAAADAl5hhQAAAAIDJiGFAAAAAYMI5YUAAAACgVwphQAAAAGA7B2JAAAAAAKY2YkAAAACgCRdiQAAAAABmqGFAAAAA4NcmYkAAAADg1yZiQAAAAADfdWJAAAAA4J7nYUAAAACgCRdiQAAAAKAJF2JAAAAAwBBmYkAAAACAAshhQAAAAKDQ12FAAAAA4F5ZYUAAAABA+3hhQAAAAEC76mBAAAAAwJeYYUAAAAAALWlhQAAAAEA0uGFAAAAA4J7nYUAAAADAl5hhQAAAAODXJmJAAAAAoNDXYUAAAADgF7ViQAAAAIBtMGRAAAAAQN+uZEAAAACANPFjQAAAAKB0f2RAAAAAoHR\u002fZEAAAACAbTBkQAAAAIA08WNAAAAAoHR\u002fZEAAAACAbTBkQAAAACDYX2RAAAAAoHR\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\u002fQAAAAAAAwHxAAAAAAACgf0AAAAAAAGB\u002fQAAAAAAAkH9AAAAAAADYfkAAAAAAAMh7QAAAAAAAiH5AAAAAAAA4gEAAAAAAAKCBQAAAAAAAYINAAAAAAACIg0AAAAAAAPCDQAAAAAAAkINAAAAAAACogkAAAAAAAFCDQAAAAAAAKIRAAAAAAAAYhEAAAAAAADCFQAAAAAAAMIZAAAAAAABghkAAAAAAAMCGQAAAAAAAsIhAAAAAAAA4ikAAAAAAAMiJQAAAAAAAGIlAAAAAAACYi0AAAAAAAHiMQAAAAAAAOIxAAAAAAADQikAAAAAAAACMQAAAAAAAkIlAAAAAAADoikAAAAAAAFiLQAAAAAAA4ItAAAAAAACIi0AAAAAAAKiJQAAAAAAAgIlAAAAAAACQiUAAAAAAALiJQAAAAAAASIxAAAAAAABQjkAAAAAAAPCOQAAAAAAA9JBAAAAAAADgkEAAAAAAAASQQAAAAAAAfJBAAAAAAACQkEAAAAAAAHiOQAAAAAAAQI9AAAAAAABYjkAAAAAAACiNQAAAAAAAeIxAAAAAAABIjkAAAAAAAKCLQAAAAAAAsIpAAAAAAAAwjEAAAAAAAACOQAAAAAAAqI5AAAAAAADgjkAAAAAAAECOQAAAAAAAaI9AAAAAAABwjkAAAAAAABiNQAAAAAAA4I9AAAAAAAB4jkAAAAAAAICOQAAAAAAAuJBAAAAAAABAkEAAAAAAAJiOQA=="},"decreasing":{"fillcolor":"#22c55e","line":{"color":"#22c55e"}},"high":{"dtype":"f8","bdata":"PvVivpL4ZUAAAAAAuTZmQEBymo+PwmZAferFvEJGZkDyIUhZHAhmQFsRNNylF2ZAy7d8y0V8ZUAAAACAUWZnQHxuiYvRgmhA83VYgpH0Z0CUTTYRbqJoQNaZExGgy2pAAvYnoDzrakCvecmRg49pQFJ+lN9mU2hAND0HcUMBaUCgt0lHw+RnQDAmcTD8I2hA4gQXURHYZkCEynwHPHlmQESwjvbthWdAyGXFeF\u002fLZUDYiZ3YUPRiQIt\u002flKWC5GJAUdIsbHuVYkAdx3FsOwdiQLRuMN0XtWJA9gxEfTTxY0CO4zju0BBkQKtWbMcCAWRACsLdWGbhY0B5V614bTBkQKYvKdHJwWNAQVQ6QmbhY0AvhNnukIJjQM5UR+IJUGRAdmIndm0wZECr6RudO0BkQJmZGRuY0WNAr41YhzTxY0C1WB6RdH9kQMubf7u0DWVAndiJnXR\u002fZEBpgHvxCVBkQBM7sROmNmJA47dLHW33YUCpFD2s0NdhQGFzIDE0uGFAQFaurtDXYUD8jBLHXllhQIkRI9bXJmJAVwQNJ62FYkDbDoMC33ViQNiJndjXJmJAsj40VnRGYkDRWB9qtNRiQAAAAADfdWJALPc0QnRGYkDbDoMC33ViQEiWxLNJpWJAKAXJv4kzY0CO4zgK33ViQIZJDVE7B2JAg\u002fC4fQLIYUAIVQZ7yYhhQPVVwhgtaWFAJ+RqXTsHYkDE5ApiAshhQGkVGHsCyGFA3dMIG233YUDTWUznnudhQG7btn17lWJAQLgwKa2FYkD5dy4HHwRjQMgAiad0f2RAyTcZ8UneZEAUjZp\u002frb5kQGbFQFHfrmRAZsVAUd+uZECrM1Ix2F9kQK3ids5Cj2RAIpcV20KPZEB0NNtY365kQCXIU4KtvmRAiFxWjK2+ZEA21Rq7LdtlQJ9GWI5mGmZANM88s\u002fSbZUBtP0MYUS1lQOc6RvGCHWVAD7mseOb9ZEB0NNtY365kQH+vjTifIGRAmwGCAtEQZEAAAACgwnJjQD3zD+zQEGRAHs0fLJ8gZEBP0cLpCVBkQGTUbfjQEGRAexSuZy2iY0Bu27Z9e5ViQDTaPaxJpWJAejtD4he1YkBntHuYguRiQMaSXyzmxGJANUCBB1hDY0CPWUq4iTNjQOUGOKdJpWJAtG4w3Re1YkA3mCJne5ViQCp4OaWC5GJAYfxLBKY2YkDylCDPl5hhQCBUGSw0uGFAdmIndgLIYUAQqgy2l5hhQMTkCmICyGFAlMg0DKY2YkC8WZ7kF7ViQCz3NEJ0RmJAlMg0DKY2YkAs9zRCdEZiQDH+JaLQ12FAl6EDdsmIYUC8nIIH33ViQOzETuwXtWJAxywlzFD0YkB4TA3sV0NjQEJBQVHtE2NA4YurH+bEYkAs9zRCdEZiQPmKr3gCyGFAAdc0Vvt4YUCllikHLWlhQGFzIDE0uGFAYXMgMTS4YUDE5ApiAshhQBRNNBEtaWFAv8gZlpBJYUB+1EbCHstgQF9Ce6nZfF9Ah410WMveXkBiJ3Ziy95eQC\u002fdJNZn\u002fl5ATuzETgQeX0CVp4UuPV1fQBCsoz09XV9AAAAAIHacX0DXnImYErxfQI6XbsKgPV9AAAAglhK8X0DYiZ3Y5YtgQGNjY+OsTGBAPK4LjBd8YEAvkEnxrExgQBZOO6zePGBAv7+MQj1dX0B+eWxVy95eQEN5DQUE5VxAJdUhNlknXEC5pxF2Z8VcQN\u002f+yoRnxVxAbtu2rvVGXEA7RnGOLoZcQAAAAADZCltAkyRJTCDoW0CAc3m29UZcQNnnkEJnjFpAN35aLKDLWkAK7SWMPOtaQFCPmzGgy1pAAAAAANkKW0DE2jdsrmlbQIlW2NxKiVtA+xxSG9kKW0BpfGQioMtaQNTjZmz1DVpAddFFh4OPWUDIh9SIR9tXQHMsYZ6zqFdAAAAAoKLOV0AAAABgs29VQH4S5j5m4VNAqH51Ub5fUkAAAAAAaR1TQNbbjc5d9FNAhoh\u002fynFDVUCH45ii+kxWQH0\u002f60XsrlVAclxf3jgEVUDL6UFbaVZVQI2nLemT91RAUgaeDhGfVEDJGSenHAFWQJC7vrXBDVZAycdPyTBQV0ABQqGlWLVXQCugdJ6izldArTOA9ZnhV0CzQ9eIos5XQGJBZYr9wVdAa2LNtFIEV0Ah\u002fIe\u002fUgRXQIhw5s1SBFdABl8VtjBQV0BeP1ssrjBZQAywTdmRLVpAxepUjIOPWUBeP1ssrjBZQFpaWoKDj1lABmr9mkpQWUDDr8aEg49ZQGJ1Khbnb1lAHh4elkpQWUBqgvEuoMtaQE7sxE4uTVpA2Imd2IPIW0CtBLQSkmZcQB1SE\u002fRKiVtAyF0\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"},"hoverinfo":"skip","increasing":{"fillcolor":"#ef4444","line":{"color":"#ef4444"}},"low":{"dtype":"f8","bdata":"dAYr9EV8ZUBDsI42bLplQEtCZi0J6WVAAAAAwOKqZUBVNE8oWZtlQAAAAOBFfGVAm7VZm4IPZUCDDQTO9JtlQBhpxwJ8B2dAusuYghgnZ0CzySabWLVnQLm4B52YQ2hAidqVeEMBaUA1MbYuvJVnQBvjxrjmNmdAhqTODvXUZ0Bu0l2W3+dmQAAAAICfWWZASzuF78KrZUANi7vfu1xlQJUae1jRSWZA3mjqZKZvZEAAAAAA33ViQPvM95BQu2BA5B9jRft4YUAdx3FY+3hhQEU+644JF2JAqXRkL62FYkClT\u002fpk9GJjQFSpk3j0YmNAfY\u002fICVhDY0ARVepkLaJjQM4VyTMmU2NAAAAA4JCCY0Aqf9Qp5sRiQP2rTQofBGNAdmIndvRiY0AwA\u002fzEycFjQGZmZn30YmNAMN7KrsJyY0DF60m5iTNjQOMyyQnREGRAEzuxE5jRY0D5R+gEWENjQIqd2InJiGFAAAAAgMmIYUCrdeFJ+3hhQD0Zvx30KWFA7bLLrlcKYUA0SvxkifpgQKFChcKXmGFAqfvy2J7nYUBiUNQpbfdhQIqd2InJiGFAL6fgVft4YUAAAADg1yZiQJ3YiZ0JF2JAR1juaQLIYUAAAACgCRdiQGJQ1Clt92FAc4nwhEJWYkAAAACAAshhQHq28u5lqGFAf5TlpJBJYUDnAO2OkElhQAAAAEC76mBAAmGkXcI5YUA1L\u002f7EXllhQI5\u002fb91eWWFAjbDc82WoYUCrdeFJ+3hhQOtDY30CyGFAUST3KTS4YUCqeZAbbfdhQBiXSc6JM2NAgSjFojtAZECIHPREZuFjQPFGU8cCAWRAz689jDTxY0CpmFsdmNFjQNs5ffZXQ2NAOJo6x4kzY0DjMskJ0RBkQO0b1m5tMGRAmjq\u002f7glQZECKgsymdH9kQEdY7sm7XGVAn3zyKRjuZEAlMO\u002fJQo9kQEtPLSzYX2RAeKOpsztAZEBUzK3OAgFkQFBypzgmU2NAEVXqZC2iY0AAAACgwnJjQOYf2LGJM2NAcRnwycnBY0AAAABgLaJjQOeK5KnCcmNAAAAAQK2FYkDrQ2N9AshhQH9eZXECyGFAAAAAgEJWYkBzifCEQlZiQJ020MkQZmJAOVkXzBBmYkDOtPakSaViQENi3s7XJmJAAAAAQHRGYkBFPuuOCRdiQAAAAODXJmJA5wDtjpBJYUBOJONEu+pgQM8B2t0lGmFA2Imd2F5ZYUDXVuAY9ClhQDUv\u002fsReWWFAI9OwvZeYYUDbzfLknudhQEdY7mkCyGFA283y5J7nYUAAAADgnudhQPiq+QQtaWFAno36TsI5YUDWh8YaLWlhQJ3YiZ0JF2JAONPa8951YkDEWfmJguRiQJU\u002f6mS01GJAAAAAIG33YUAjLPek0NdhQCVJkniJ+mBA\u002fyjLacI5YUCsrvekVwphQOAu9UT7eGFAv13qCS1pYUA1L\u002f7EXllhQPMh3eklGmFAgW7MM7vqYECVMbvTZ\u002f5eQAAAACCEAV5AF09uMUvCXUCJndiJWWBeQESLbIdZYF5AAAAAAPZ\u002fXkDiROVpkp9eQAAAAKAgIV5AAACAliAhXkCVMbvTZ\u002f5eQKJFtnOSn15AAABAW8veXkCd2ImdErxfQOrp6Sk9XV9A8W\u002fLGT1dX0DY1DunErxfQPVY4gmv219AQkBzfZKfXkBS9+VpoARdQOksplMg6FtAIAE1+xFKW0BhuaexvAdcQAAAAMC8B1xAt23b6UqJW0AAAABAIOhbQGNxjcWRLVpAkyRJEdkKW0AAAABAZ4xaQJZ9DpGDj1lAkwNLZ\u002fUNWkB8Ce0pZ4xaQBaOzAkgr1lAY3GNxZEtWkB5SpCnA6xaQAAAAEAuTVpAAAAA4JEtWkAAAADAymxaQCwcmZODj1lAkZi3c8ozWECJBdzpdLhWQIESk8wZxVZA+2193K33VkAAAABgs29VQAAAAOD8T1NAAAAAoNpiUUCHOUcSevdSQPF2l1qFIFJAIqfNjL6YVECB\u002fN\u002fPYGlVQAAAAGCLClVA1qe\u002fB31sVEBPJBILpdFUQE8OorACAVRAHIc5boiVU0D\u002fBa1ZxElVQDWMXnp6MFVAGTpCB\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\u002fQAAAAAAAGHxAAAAAAAB4fkAAAAAAAEB\u002fQAAAAAAAkH1AAAAAAACYfUAAAAAAAMh7QAAAAAAA0H1AAAAAAAAYgEAAAAAAAAiBQAAAAAAAqIJAAAAAAAAwg0AAAAAAAGCDQAAAAAAAgINAAAAAAACAgkAAAAAAAMCCQAAAAAAA8IJAAAAAAADIg0AAAAAAACCEQAAAAAAA4IVAAAAAAAA4hkAAAAAAAKCEQAAAAAAAwIdAAAAAAACwiEAAAAAAALCJQAAAAAAAcIhAAAAAAAB4iUAAAAAAAPCKQAAAAAAA6ItAAAAAAABwikAAAAAAAPCKQAAAAAAAQIlAAAAAAACwiUAAAAAAAECLQAAAAAAAqIpAAAAAAAB4i0AAAAAAAHCJQAAAAAAAQIhAAAAAAABAiUAAAAAAAMiIQAAAAAAAIItAAAAAAAAYjUAAAAAAAJCOQAAAAAAA6I5AAAAAAABUkEAAAAAAAECPQAAAAAAALJBAAAAAAABUkEAAAAAAALCNQAAAAAAAII5AAAAAAABQjkAAAAAAANCLQAAAAAAAQIpAAAAAAADAjEAAAAAAAFiLQAAAAAAAWIlAAAAAAADQi0AAAAAAAMCMQAAAAAAAKI5AAAAAAAAojkAAAAAAACiOQAAAAAAAAI9AAAAAAABwjkAAAAAAAKCMQAAAAAAAgI1AAAAAAAAgjkAAAAAAALCNQAAAAAAAkI9AAAAAAAAskEAAAAAAAJCOQA=="},"name":"\u65e5K","open":{"dtype":"f8","bdata":"AAAAwOKqZUA72rzP9cllQLDVs8Pyk2ZAyu43ii8nZkAqmif09cllQBVBw6mS+GVAAAAAAKlNZUBSZR4Jw6tlQMSp37PmNmdAoLdJR8PkZ0CP4zjWJsVnQI9SG04Dc2hA2ZqUPe6+aUDkqn\u002fgGGBpQJvNZvMtFGhAelsxccozaEAUT3sMfAdnQBn2Sn+R9GdAiKLZeJ9ZZkBkFc5pmApmQJIoNfZ0uGZA\u002fdpDFopsZUDsxE7sF7ViQInRKrlJpWJADYl5u5eYYUByHMcJZqhhQDeYImd7lWJAqXRkL62FYkAiIiICmNFjQN5VKxaY0WNABeFubC2iY0DNAEFRZuFjQBl1G5b7sWNA1uImzMnBY0BZA6549GJjQHSPWUXtE2NAT+zETmbhY0AN8BMnnyBkQM3MzGktomNAv9dGTGbhY0DoJl4vJlNjQOXNvx0Rn2RA7MRO7AlQZEBOoBwF0RBkQCd2Yidt92FAgkQrbALIYUAAAADAl5hhQD0Zvx30KWFALQl6\u002fWWoYUD8jBLHXllhQGXLlv1lqGFAAAAAAKY2YkBth0FRdEZiQNiJndjXJmJA60NjfQLIYUAVvJxCrYViQMVO7MQQZmJALPc0QnRGYkBth0FRdEZiQDxfV4xCVmJAc4nwhEJWYkCrqqri1yZiQNdtBNue52FAg\u002fC4fQLIYUAAAABA+3hhQHfAkaKQSWFAAmGkXcI5YUBicgWxl5hhQMe\u002ft47JiGFAIyz3pNDXYUAAAADAl5hhQERjfbjQ12FAaEos7t51YkDcxJlWOwdiQDVkgEQmU2NAJTDvyUKPZEAUjZp\u002frb5kQJo6v+4JUGRARC4rFhGfZECrM1Ix2F9kQJlV3M7JwWNAWTFQAlhDY0Dlzb8dEZ9kQO0b1m5tMGRA3mjqZKZvZED2LAIdEZ9kQJ9GWI5mGmZAgw02eCaMZUAAAABA365kQBEu0cl7zmRAqvNrx3vOZEBXZ6TiQo9kQH+vjTifIGRAzQBBUWbhY0AAAACgwnJjQLYc3OxXQ2NAj+YPtgIBZECfQ2rCAgFkQAAAACBfkmNAexSuZy2iY0AVvJxCrYViQJlLhOee52FA5QY4p0mlYkA02j2sSaViQLLkF3t7lWJAy79+uEmlYkD5dy4HHwRjQL2dITGthWJAu8EU8d51YkDCFPkEpjZiQBW8nEKthWJAUVI\u002fjgkXYkBAuQOUyYhhQM8B2t0lGmFAip3YicmIYUDnAO2OkElhQMvQATv7eGFAbDfLMzS4YUCUyDQMpjZiQE8jLAemNmJAb5Yn0dcmYkDd0wgbbfdhQDH+JaLQ12FANS\u002f+xF5ZYUCIxvqQyYhhQDuxEzuthWJAAAAA4Be1YkA8pgZ2uyNjQAAAAKCC5GJAvFme5Be1YkDd0wgbbfdhQPmKr3gCyGFAf5TlpJBJYUCoohBWwjlhQOAu9UT7eGFAQaIV9mWoYUD5EwknNLhhQBRNNBEtaWFAAAAAIPQpYUBIbSRMgqtgQIKnWzM9XV9APLnFkyAhXkAAAAAA9n9eQHNokf31f15A2Imd2Gf+XkAAAADgLr9eQD\u002fFJdtn\u002fl5AAACgDL1AXkDXnImYErxfQC\u002fdJNZn\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\u002fQAAAAAAA4H9AAAAAAAB4fkAAAAAAAOB\u002fQAAAAAAAkH1AAAAAAABQfkAAAAAAAPB9QAAAAAAAQH5AAAAAAAC4gEAAAAAAABCBQAAAAAAA8IJAAAAAAACAg0AAAAAAAAiEQAAAAAAA2INAAAAAAACwg0AAAAAAAMCCQAAAAAAAYINAAAAAAAAAhEAAAAAAACCEQAAAAAAAMIZAAAAAAABwhkAAAAAAALCGQAAAAAAAOIhAAAAAAAAYikAAAAAAAACLQAAAAAAAKIlAAAAAAADgiUAAAAAAAICMQAAAAAAAGIxAAAAAAABgjEAAAAAAAFiLQAAAAAAAOItAAAAAAADwiUAAAAAAAECMQAAAAAAAqIpAAAAAAABwjEAAAAAAACiMQAAAAAAAuIhAAAAAAACoiUAAAAAAAJiJQAAAAAAAMItAAAAAAAAgjUAAAAAAAOCPQAAAAAAAAI9AAAAAAABEkUAAAAAAAJSRQAAAAAAACJFAAAAAAAC4kEAAAAAAAGiQQAAAAAAAgI5AAAAAAACIjkAAAAAAALCNQAAAAAAAQIpAAAAAAACwjUAAAAAAAFCNQAAAAAAAoItAAAAAAADQjEAAAAAAAKCNQAAAAAAA0I5AAAAAAABQjkAAAAAAAECPQAAAAAAAOI9AAAAAAABAj0AAAAAAAFCNQAAAAAAAqI1AAAAAAABAj0AAAAAAADiPQAAAAAAAuI9AAAAAAAD0kEAAAAAAADCPQA=="},"showlegend":false,"x":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,363,364,365,366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418,419,420,421,422,423,424,425,426,427,428,429,430,431,432,433,434,435,436,437,438,439,440,441,442,443,444,445,446,447,448,449,450,451,452,453,454,455,456,457,458,459,460,461,462,463,464,465,466,467,468,469,470,471,472,473,474,475,476,477,478,479,480,481,482,483,484],"type":"candlestick"},{"hoverinfo":"skip","legendgroup":"swing","marker":{"color":"#f87171","size":8,"symbol":"triangle-down"},"mode":"markers","name":"SH \u6ce2\u6bb5\u9ad8","x":[12,31,41,55,60,75,86,105,118,127,151,173,187,198,206,217,226,251,260,275,282,300,310,314,325,336,353,390,400,411,427,443,448,460],"y":[216.6432574906512,162.48244338663991,169.438881934863,151.55090539893325,154.53222847363773,167.94820525412487,177.88596916146113,155.02912274070516,150.55712163079647,155.02910957158076,133.16603823617785,110.80606542066117,89.73801434059266,96.09817204232054,105.34029906828125,114.28428158555401,109.31540511804984,142.349,145.87,146.373,154.421,165.99,168.505,169.008,180.577,180.074,236.41,403.406,507.024,597.564,663.96,953.688,931.556,1136.78],"type":"scatter"},{"hoverinfo":"skip","legendgroup":"swing","marker":{"color":"#4ade80","size":8,"symbol":"triangle-up"},"mode":"markers","name":"SL \u6ce2\u6bb5\u4f4e","x":[6,23,34,49,57,65,81,101,112,123,141,167,183,192,202,210,224,234,255,263,277,285,303,312,319,330,340,358,392,405,421,429,446,452,470],"y":[167.47378505817642,133.05046324260886,149.25217754129648,135.01429615573608,141.39679288456358,134.52334552001952,152.6889052207671,141.39679642276636,134.52334783647015,136.97813948481135,118.32162438543057,101.62895075852016,69.12732624816894,77.8664333485054,88.86395832386654,97.21029850769042,96.32656416738558,96.52295445327594,126.735,132.202,131.705,128.723,147.112,145.124,154.07,155.83906094360353,156.555,203.273,327.026,386.666,441.83299999999997,588.448,803.152,771.344,806.134],"type":"scatter"},{"hoverinfo":"skip","legendgroup":"tl_up","line":{"color":"#4ade80","width":2.4},"marker":{"color":"#4ade80","size":7,"symbol":"circle-open"},"mode":"lines+markers","name":"\u2197 \u4e0a\u5347\u8da8\u52e2\u7dda\uff08\u652f\u6490\uff09","x":[421,484],"y":[444.5,915.71],"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#f2f5fa"},"error_y":{"color":"#f2f5fa"},"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"baxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"line":{"color":"#283442"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"marker":{"line":{"color":"#283442"}},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#506784"},"line":{"color":"rgb(17,17,17)"}},"header":{"fill":{"color":"#2a3f5f"},"line":{"color":"rgb(17,17,17)"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#f2f5fa","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#f2f5fa"},"geo":{"bgcolor":"rgb(17,17,17)","lakecolor":"rgb(17,17,17)","landcolor":"rgb(17,17,17)","showlakes":true,"showland":true,"subunitcolor":"#506784"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"dark"},"paper_bgcolor":"rgb(17,17,17)","plot_bgcolor":"rgb(17,17,17)","polar":{"angularaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","radialaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"yaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"zaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"}},"shapedefaults":{"line":{"color":"#f2f5fa"}},"sliderdefaults":{"bgcolor":"#C8D4E3","bordercolor":"rgb(17,17,17)","borderwidth":1,"tickwidth":0},"ternary":{"aaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"baxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","caxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"title":{"x":0.05},"updatemenudefaults":{"bgcolor":"#506784","borderwidth":0},"xaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2}}},"margin":{"l":54,"r":20,"t":16,"b":40},"legend":{"orientation":"h","yanchor":"bottom","y":1.01,"xanchor":"left","x":0,"bgcolor":"rgba(0,0,0,0)","groupclick":"togglegroup"},"paper_bgcolor":"#0f172a","plot_bgcolor":"#0f172a","dragmode":false,"hovermode":false,"height":520,"xaxis":{"rangeslider":{"visible":false},"tickvals":[0,20,42,62,81,102,124,139,158,179,199,219,240,263,284,305,325,345,367,388,400,422,442,462,483],"ticktext":["24\u002f07","24\u002f08","24\u002f09","24\u002f10","24\u002f11","24\u002f12","25\u002f01","25\u002f02","25\u002f03","25\u002f04","25\u002f05","25\u002f06","25\u002f07","25\u002f08","25\u002f09","25\u002f10","25\u002f11","25\u002f12","26\u002f01","26\u002f02","26\u002f03","26\u002f04","26\u002f05","26\u002f06","26\u002f07"],"tickangle":0,"gridcolor":"rgba(58,52,40,0.04)","range":[358.5,488]},"yaxis":{"title":{"text":"\u50f9\u683c\uff08\u5143\uff09"},"gridcolor":"rgba(58,52,40,0.04)","zeroline":false}},                        {"displayModeBar": false, "scrollZoom": false, "doubleClick": "reset+autosize", "showTips": false, "displaylogo": false, "responsive": true}                    )                };            </script>        </div></div><script>(function(){window._TLRG=window._TLRG||{};window._TLRG["trendline_3037"]={"3m": [421.5, 488], "6m": [358.5, 488], "1y": [232.5, 488], "all": [-0.5, 488]};window.tlRange=window.tlRange||function(id,key){var o=window._TLRG[id];if(!o||!o[key])return;var g=document.getElementById(id);if(!g||!g._fullLayout)return;Plotly.relayout(g,{'xaxis.range':o[key]});};})();</script><div class="card"><div class="section-head">趨勢線讀數</div><div class="kv-row"><span class="kv-row__k">🟩 上升趨勢線</span><span class="kv-row__v"><b style="color:var(--th-green,#4ade80)">↗ 上升趨勢線</b></span></div><div class="kv-row"><span class="kv-row__k">　斜率</span><span class="kv-row__v">+7.48 元/日（每日墊高）</span></div><div class="kv-row"><span class="kv-row__k">　碰觸點數</span><span class="kv-row__v">2 點　（越多越可靠）</span></div><div class="kv-row"><span class="kv-row__k">　最近錨點</span><span class="kv-row__v">2026-06-11　→ 延伸到今日 ≈ 915.71 元</span></div><div class="kv-row"><span class="kv-row__k">　影線刺穿</span><span class="kv-row__v">0 根（容忍雜訊內）</span></div><div class="kv-row"><span class="kv-row__k">　目前狀態</span><span class="kv-row__v">🟢 仍守（收盤在支撐線上）</span></div><div style="height:8px"></div><div class="kv-row"><span class="kv-row__k">🟥 下降趨勢線</span><span class="kv-row__v">—　目前無有效下降趨勢線（連續下移的高點）</span></div></div><details class="explainer"><summary class="explainer__title">🗺 這個 block（B20 · 趨勢線 — 定義 · 方法 · 判讀 · 資料 · 程式 · 換股 — 點開）</summary><div class="section-head">定義</div><div class="formula"><b style="color:var(--th-green,#4ade80)">上升趨勢線</b> = 連續墊高的 swing low（波段低點）連線並向右延伸 → 動態<b>支撐</b>（斜率 &gt; 0）<br><b style="color:var(--th-red,#f87171)">下降趨勢線</b> = 連續下移的 swing high（波段高點）連線並向右延伸 → 動態<b>壓力</b>（斜率 &lt; 0）</div><div class="section-head">怎麼畫出來的（方法1 + 方法4）</div><div class="formula">① <b>方法1 兩點連線（pivot-to-pivot）</b>：枚舉所有同向樞紐點對，每對連成一條候選線。<br>② <b>方法4 碰觸驗證（touch-count）</b>：只留「使用期間不被 K 棒顯著穿越」的候選（穿越容忍 1.5%、容許 2 根影線刺穿），再用<b>碰觸數（±2% 內算一次）× 跨度 × 越當前</b>挑最佳一條。<br>樞紐點（swing high/low）來自 SHSL 三階段確認，與 SHSL Agent 同源。</div><div class="section-head">判讀</div><div class="note">上升趨勢線 = 只要收盤仍站在線上，多頭結構未破，回測到線=potential 買點；跌破（收盤有效摜破）= 上升趨勢轉弱的第一警訊。下降趨勢線 = 壓力，反彈到線常受阻；有效突破 = 空頭趨勢可能反轉。碰觸點越多、跨度越長 → 這條線越被市場認同、越可靠。</div><div class="section-head">資料來源 / 程式</div><div class="formula">swing 點：src/shared/swing_core.py:find_swings_3stage（SH/SL 三階段確認 · R6 只讀）<br>趨勢線擬合：src/shared/swing_core.py:fit_trendlines（方法1+4 純函式，不重算 FS）<br>本 block 程式：src/agents/trendline_block.py:fragment / build_block</div><div class="section-head">換股 / 可組裝</div><div class="formula">換股：改 BLOCK_SYMBOL（本圖 3037 欣興）或 fragment(symbol=…)<br>可組裝：blocks.fragment(&quot;B20&quot;) · blocks.assemble([…,&quot;B20&quot;])</div></details></div><!-- BLOCK B20 END -->
+<script>
+/* === Chart interaction helpers (chart_buttons.py) === */
+(function() {
+  function _getRange(gd, axis) {
+    if (!gd || !gd._fullLayout) return null;
+    var ax = gd._fullLayout[axis];
+    if (!ax || !ax.range) return null;
+    return [ax.range[0], ax.range[1]];
+  }
+  function _toMs(v) {
+    if (v instanceof Date) return v.getTime();
+    if (typeof v === 'number') return v;
+    if (typeof v === 'string') return new Date(v).getTime();
+    return null;
+  }
+  function _toIso(ms) { return new Date(ms).toISOString().slice(0, 10); }
+  function _isDateRange(r) {
+    if (!r) return false;
+    var v = r[0];
+    if (typeof v === 'string' && /^\d{4}-\d{2}-\d{2}/.test(v)) return true;
+    return false;
+  }
+
+  /** 重設所有軸到 autorange */
+  window.chartReset = function(id) {
+    var gd = document.getElementById(id);
+    if (!gd || !gd._fullLayout) return;
+    var update = {};
+    ['xaxis', 'yaxis', 'yaxis2', 'yaxis3', 'yaxis4'].forEach(function(ax) {
+      if (gd._fullLayout[ax]) update[ax + '.autorange'] = true;
+    });
+    Plotly.relayout(gd, update);
+  };
+
+  /** 縮放：factor < 1 = 放大；factor > 1 = 縮小 */
+  window.chartZoom = function(id, factor) {
+    var gd = document.getElementById(id);
+    if (!gd || !gd._fullLayout) return;
+    var xr = _getRange(gd, 'xaxis');
+    var yr = _getRange(gd, 'yaxis');
+    var update = {};
+    if (xr) {
+      if (_isDateRange(xr)) {
+        var a = _toMs(xr[0]), b = _toMs(xr[1]);
+        var c = (a + b) / 2;
+        var w = (b - a) * factor / 2;
+        update['xaxis.range'] = [_toIso(c - w), _toIso(c + w)];
+      } else if (typeof xr[0] === 'number') {
+        var cx = (xr[0] + xr[1]) / 2;
+        var wx = (xr[1] - xr[0]) * factor / 2;
+        update['xaxis.range'] = [cx - wx, cx + wx];
+      }
+    }
+    if (yr && typeof yr[0] === 'number') {
+      var cy = (yr[0] + yr[1]) / 2;
+      var hy = (yr[1] - yr[0]) * factor / 2;
+      update['yaxis.range'] = [cy - hy, cy + hy];
+    }
+    Plotly.relayout(gd, update);
+  };
+
+  /** 平移 N 日（time-series 用） */
+  window.chartPan = function(id, days) {
+    var gd = document.getElementById(id);
+    if (!gd || !gd._fullLayout) return;
+    var xr = _getRange(gd, 'xaxis');
+    if (!xr) return;
+    if (_isDateRange(xr)) {
+      var a = _toMs(xr[0]), b = _toMs(xr[1]);
+      var ms = days * 86400000;
+      Plotly.relayout(gd, {'xaxis.range': [_toIso(a + ms), _toIso(b + ms)]});
+    } else if (typeof xr[0] === 'number') {
+      var d = (xr[1] - xr[0]) * (days / 60);  // 比例位移
+      Plotly.relayout(gd, {'xaxis.range': [xr[0] + d, xr[1] + d]});
+    }
+  };
+
+  /** RRG 4 象限篩選：依 legendgroup 切換 trace 可見性 */
+  window.chartFilterQuadrant = function(id, quadrant) {
+    var gd = document.getElementById(id);
+    if (!gd || !gd.data) return;
+    var values = gd.data.map(function(t) {
+      if (quadrant === 'all') return true;
+      // legendgroup === quadrant 名稱（'Leading'/'Improving'/'Weakening'/'Lagging'）
+      return t.legendgroup === quadrant;
+    });
+    Plotly.restyle(gd, { visible: values });
+    // 更新按鈕 active 狀態
+    var toolbar = document.querySelector('[data-target="' + id + '"]');
+    if (toolbar) {
+      toolbar.querySelectorAll('button').forEach(function(b) {
+        var onclick = b.getAttribute('onclick') || '';
+        if (onclick.indexOf('chartFilterQuadrant') !== -1) {
+          if (onclick.indexOf("'" + quadrant + "'") !== -1) {
+            b.classList.add('active');
+          } else {
+            b.classList.remove('active');
+          }
+        }
+      });
+    }
+  };
+
+  /** 設定範圍為「近 N 日」 */
+  window.chartRangeDays = function(id, days) {
+    var gd = document.getElementById(id);
+    if (!gd || !gd._fullLayout) return;
+    var xr = _getRange(gd, 'xaxis');
+    if (!xr || !_isDateRange(xr)) return;
+    var endMs = _toMs(xr[1]);
+    var startMs = endMs - days * 86400000;
+    Plotly.relayout(gd, {'xaxis.range': [_toIso(startMs), _toIso(endMs)]});
+  };
+})();
+</script>
+
+<style id='MS_N_RRR_tooltip_inject_v2'>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: var(--th-bg,#0f172a);
+  color: var(--th-text,#e2e8f0);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid var(--th-border2,#475569);
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>

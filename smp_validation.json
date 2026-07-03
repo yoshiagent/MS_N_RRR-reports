@@ -3,15 +3,63 @@
   "agent_name": "smp_validation",
   "agent_kind": "aggregator",
   "available": true,
-  "as_of": "2026-07-02",
+  "as_of": "2026-07-03",
   "summary": {
-    "history_days": 10,
+    "history_days": 11,
     "eval_window": 10,
-    "n_eval_cohorts": 0,
+    "n_eval_cohorts": 1,
+    "n_bull_samples": 4,
+    "baseline_avg_ret": -1.86,
     "verdict": "累積中",
-    "note": "相位歷史 10 日，需 ≥11 日才有可評估世代（前瞻窗 10 交易日）。shadow 累積期，屬正常。"
+    "min_cohort": 20
   },
-  "by_phase": {},
-  "cohorts": [],
-  "generated_at": "2026-07-02T22:25:23"
+  "by_phase": {
+    "EARLY_ACCUMULATION": {
+      "n": 4,
+      "markup_rate": 0.0,
+      "still_bull_rate": 25.0,
+      "avg_fwd_ret": -3.98,
+      "excess_vs_base": -2.12,
+      "reliable": false
+    },
+    "ACCUMULATION": {
+      "n": 0,
+      "markup_rate": null,
+      "still_bull_rate": null,
+      "avg_fwd_ret": null,
+      "excess_vs_base": null,
+      "reliable": false
+    }
+  },
+  "cohorts": [
+    {
+      "entry_date": "2026-06-18",
+      "symbol": "2327",
+      "entry_phase": "EARLY_ACCUMULATION",
+      "future_phase": "UNKNOWN",
+      "fwd_ret_pct": -3.24
+    },
+    {
+      "entry_date": "2026-06-18",
+      "symbol": "2455",
+      "entry_phase": "EARLY_ACCUMULATION",
+      "future_phase": null,
+      "fwd_ret_pct": -13.94
+    },
+    {
+      "entry_date": "2026-06-18",
+      "symbol": "3443",
+      "entry_phase": "EARLY_ACCUMULATION",
+      "future_phase": "UNKNOWN",
+      "fwd_ret_pct": 3.7
+    },
+    {
+      "entry_date": "2026-06-18",
+      "symbol": "6274",
+      "entry_phase": "EARLY_ACCUMULATION",
+      "future_phase": "EARLY_ACCUMULATION",
+      "fwd_ret_pct": -2.45
+    }
+  ],
+  "generated_at": "2026-07-03T22:17:23"
 }
