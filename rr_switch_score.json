@@ -1,7 +1,7 @@
 {
-  "as_of": "2026-07-03",
-  "n_pairs": 5,
-  "n_z_gate_passed": 1,
+  "as_of": "2026-07-06",
+  "n_pairs": 6,
+  "n_z_gate_passed": 4,
   "n_strong": 0,
   "n_strong_stays_strong": 0,
   "z_mode": "gate",
@@ -23,28 +23,33 @@
         "南電",
         "欣興"
       ],
-      "signal": "no_action",
-      "z_gate_passed": false,
-      "zscore": 1.88,
-      "switch_direction": null,
-      "switch_into": null,
+      "signal": "switch_to_A",
+      "z_gate_passed": true,
+      "zscore": 1.45,
+      "switch_direction": "A",
+      "switch_into": {
+        "code": "8046",
+        "name": "南電"
+      },
       "components": {
         "rcga": {
           "score": 55.0,
           "src": "YELLOW"
         },
         "rcr": {
-          "score": null,
+          "score": 2.1,
           "src": "no_rotation"
         },
         "box": {
-          "score": null,
-          "src": null,
-          "healthy": null
+          "score": 70.0,
+          "src": "above_down",
+          "healthy": true
         }
       },
       "active_weights": {
-        "rcga": 25
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
       },
       "z_mode": "gate",
       "weights": {
@@ -53,14 +58,14 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": null,
-      "switch_score_ref": 55.0,
+      "switch_score": 40.4,
+      "switch_score_ref": 40.4,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "延後 · Z60 未過換股門檻",
-        "color": "#64748b",
-        "icon": "⏸"
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
       }
     },
     {
@@ -76,7 +81,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -1.33,
+      "zscore": -0.47,
       "switch_direction": "B",
       "switch_into": {
         "code": "3035",
@@ -88,7 +93,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 8.06,
+          "score": 0.79,
           "src": "no_rotation"
         },
         "box": {
@@ -110,7 +115,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 48.2,
+      "switch_score_ref": 45.6,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -132,7 +137,7 @@
       ],
       "signal": "switch_to_B",
       "z_gate_passed": true,
-      "zscore": 0.7,
+      "zscore": 0.17,
       "switch_direction": "B",
       "switch_into": {
         "code": "2408",
@@ -144,7 +149,7 @@
           "src": "GREEN"
         },
         "rcr": {
-          "score": 5.54,
+          "score": 13.47,
           "src": "no_rotation"
         },
         "box": {
@@ -165,8 +170,8 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 54.1,
-      "switch_score_ref": 54.1,
+      "switch_score": 57.0,
+      "switch_score_ref": 57.0,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -188,7 +193,7 @@
       ],
       "signal": "hold_A",
       "z_gate_passed": false,
-      "zscore": 0.9,
+      "zscore": 0.3,
       "switch_direction": "A",
       "switch_into": {
         "code": "2049",
@@ -200,13 +205,13 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 30.22,
+          "score": 37.11,
           "src": "no_rotation"
         },
         "box": {
-          "score": 45.0,
-          "src": "inbox_side",
-          "healthy": false
+          "score": 60.0,
+          "src": "inbox_up",
+          "healthy": true
         }
       },
       "active_weights": {
@@ -222,7 +227,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 30.8,
+      "switch_score_ref": 37.5,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -242,13 +247,13 @@
         "巨大",
         "美利達"
       ],
-      "signal": "hold_B",
-      "z_gate_passed": false,
-      "zscore": -1.28,
-      "switch_direction": "B",
+      "signal": "switch_to_A",
+      "z_gate_passed": true,
+      "zscore": -0.93,
+      "switch_direction": "A",
       "switch_into": {
-        "code": "9914",
-        "name": "美利達"
+        "code": "9921",
+        "name": "巨大"
       },
       "components": {
         "rcga": {
@@ -256,7 +261,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 17.65,
+          "score": 15.59,
           "src": "no_rotation"
         },
         "box": {
@@ -277,18 +282,74 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": null,
-      "switch_score_ref": 38.8,
+      "switch_score": 38.1,
+      "switch_score_ref": 38.1,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "延後 · Z60 未過換股門檻",
-        "color": "#64748b",
-        "icon": "⏸"
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
+      }
+    },
+    {
+      "pair_id": "2492_3026",
+      "pair_name": "",
+      "pair": [
+        "2492",
+        "3026"
+      ],
+      "names": [
+        "華新科",
+        "禾伸堂"
+      ],
+      "signal": "switch_to_B",
+      "z_gate_passed": true,
+      "zscore": -0.82,
+      "switch_direction": "B",
+      "switch_into": {
+        "code": "3026",
+        "name": "禾伸堂"
+      },
+      "components": {
+        "rcga": {
+          "score": 20.0,
+          "src": "RED"
+        },
+        "rcr": {
+          "score": 3.04,
+          "src": "no_rotation"
+        },
+        "box": {
+          "score": 45.0,
+          "src": "unknown",
+          "healthy": false
+        }
+      },
+      "active_weights": {
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
+      },
+      "z_mode": "gate",
+      "weights": {
+        "z_reversal": 30,
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
+      },
+      "switch_score": 21.1,
+      "switch_score_ref": 21.1,
+      "strong_stays_strong": false,
+      "trim": null,
+      "recommendation": {
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
       }
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-07-03T22:20:15",
+  "generated_at": "2026-07-06T22:39:11",
   "available": true
 }
