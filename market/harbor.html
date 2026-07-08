@@ -42,4 +42,120 @@
   });
 })();
 </script>
-<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">避風港三桶配置（SHADOW 觀察層）</h1><div class="page-meta">SHADOW ｜ 攻擊RR→璞玉低波→現金 三桶平滑切換 ｜ 分層狀態機+不對稱遲滯 ｜ 不接決策</div><div class="banner" style="border-left:3px solid var(--th-amber,#fbbf24)"><b style="color:var(--th-amber,#fbbf24)">🧪 SHADOW 觀察層（開發中／試用）</b>　｜　本頁跑分層狀態機算三桶目標配置，<b>不改 cio_allocator、不接 decision</b>——純觀察留痕。證明「L2 轉璞玉真能降回撤」才併入 cio_allocator（第 7 虛擬經理）。設計依據見 <a href="harbor_discussion.html">⚓ Harbor 避風港 Agent 顧問討論</a>。</div><div class="banner"><b>避風港三桶配置 Harbor</b>　2026-07-06　<span class="pill pill--bear">🔴 L3 空頭·現金</span>　<span style="font-size:13px;color:var(--th-muted,#94a3b8)">已 4 日（自 2026-07-01）｜維持 L3(恐慌未解)｜璞玉限 ≤20%</span><div class="label" style="margin-top:6px">真崩/流動性危機 → 現金為王，低波股照跌故只留少量</div><div style="display:flex;width:100%;border-radius:8px;overflow:hidden;margin:8px 0"><div style="width:10%;background:var(--th-green,#22c55e);display:flex;align-items:center;justify-content:center;color:var(--th-blue,#0b1220);font-weight:700;font-size:12px;padding:10px 0;min-width:2px" title="RR 攻擊 10%">RR 攻擊 10%</div><div style="width:10%;background:var(--th-amber,#fbbf24);display:flex;align-items:center;justify-content:center;color:var(--th-blue,#0b1220);font-weight:700;font-size:12px;padding:10px 0;min-width:2px" title="璞玉 低波 10%">璞玉 低波 10%</div><div style="width:80%;background:var(--th-blue,#60a5fa);display:flex;align-items:center;justify-content:center;color:var(--th-blue,#0b1220);font-weight:700;font-size:12px;padding:10px 0;min-width:2px" title="現金 80%">現金 80%</div></div></div><div class="card"><div class="card-title">市場訊號盤（狀態機輸入）</div><table class="data-table data-table--zebra"><thead><tr><th>訊號</th><th>當前值</th><th>門檻參考</th></tr></thead><tbody><tr><td>risk_mode</td><td>CASH</td><td></td></tr><tr><td>市場溫度 score</td><td>41.9</td><td>&lt;45 偏弱 / &gt;55 健康</td></tr><tr><td>breadth 寬度</td><td>70.2</td><td>&lt;15 崩壞</td></tr><tr><td>rr_environment</td><td>45</td><td></td></tr><tr><td>market_zscore</td><td>OVERHEATED（Z250=2.111）</td><td>&gt;+2σ 過熱</td></tr><tr><td>TWII 20日報酬</td><td>3.3%</td><td>&lt;-8% 進恐慌</td></tr></tbody></table><div class="label" style="margin-top:6px">觸發狀態：進避風 L2 <span style="color:var(--th-red,#ef4444)">觸發</span>　進恐慌 L3 <span style="color:var(--th-red,#ef4444)">觸發</span>　解恐慌 <span style="color:var(--th-muted,#94a3b8)">—</span>　解避風 <span style="color:var(--th-muted,#94a3b8)">—</span></div></div><div class="card"><div class="card-title">分層狀態機（不對稱遲滯：升風險快、降風險慢）</div><table class="data-table data-table--zebra"><thead><tr><th>轉換</th><th>條件</th><th>速度</th></tr></thead><tbody><tr><td>L1→L2 進避風</td><td>risk_mode∈{DEFENSIVE,CASH}｜溫度&lt;45｜OVERHEATED｜TWII20d&lt;-5%</td><td>快（任一即進）</td></tr><tr><td>→L3 進恐慌</td><td>risk_mode=CASH｜TWII20d&lt;-8%｜(breadth&lt;15 且 Z250&lt;-2)</td><td>快（硬觸發）</td></tr><tr><td>L3→L2 解恐慌</td><td>非恐慌 且 breadth&gt;25，確認 ≥10 日</td><td>慢</td></tr><tr><td>L2→L1 解避風</td><td>risk_on 且 溫度&gt;55 且 非過熱，確認 ≥15 日</td><td>更慢</td></tr></tbody></table><div class="note">三桶配比：L1 85/10/5、L2 50/30/20、L3 10/10/80（RR/璞玉/現金）；jade regime cap L1≤15/L2 20-40/L3≤20。配比與門檻為回測校準前預設。</div></div><div class="card"><div class="card-title">璞玉桶持股（jade sleeve → 組合權重，池共 47 檔）</div><table class="data-table data-table--zebra"><thead><tr><th>股票</th><th>類股</th><th>sleeve權重</th><th>組合權重</th></tr></thead><tbody><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A9917" target="_blank" rel="noopener" title="TradingView 圖表 — 9917" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">中保科</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">9917</span></td><td>其他</td><td>3.06%</td><td>0.31%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2820" target="_blank" rel="noopener" title="TradingView 圖表 — 2820" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">華票</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">2820</span></td><td>金融保險</td><td>3.96%</td><td>0.4%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A5876" target="_blank" rel="noopener" title="TradingView 圖表 — 5876" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">上海商銀</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">5876</span></td><td>金融保險</td><td>3.09%</td><td>0.31%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1215" target="_blank" rel="noopener" title="TradingView 圖表 — 1215" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">卜蜂</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">1215</span></td><td>食品工業</td><td>1.72%</td><td>0.17%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2812" target="_blank" rel="noopener" title="TradingView 圖表 — 2812" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">台中銀</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">2812</span></td><td>金融保險</td><td>3.81%</td><td>0.38%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2006" target="_blank" rel="noopener" title="TradingView 圖表 — 2006" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">東和鋼鐵</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">2006</span></td><td>鋼鐵工業</td><td>1.82%</td><td>0.18%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2597" target="_blank" rel="noopener" title="TradingView 圖表 — 2597" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">潤弘</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">2597</span></td><td>建材營造</td><td>1.62%</td><td>0.16%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1216" target="_blank" rel="noopener" title="TradingView 圖表 — 1216" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">統一</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">1216</span></td><td>食品工業</td><td>3.22%</td><td>0.32%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2912" target="_blank" rel="noopener" title="TradingView 圖表 — 2912" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">統一超</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">2912</span></td><td>貿易百貨</td><td>2.14%</td><td>0.21%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2206" target="_blank" rel="noopener" title="TradingView 圖表 — 2206" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">三陽工業</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">2206</span></td><td>汽車工業</td><td>2.61%</td><td>0.26%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2010" target="_blank" rel="noopener" title="TradingView 圖表 — 2010" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">春源</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">2010</span></td><td>鋼鐵工業</td><td>2.15%</td><td>0.21%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1104" target="_blank" rel="noopener" title="TradingView 圖表 — 1104" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">環泥</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">1104</span></td><td>水泥工業</td><td>2.63%</td><td>0.26%</td></tr></tbody></table><div class="note">組合權重 = 璞玉池內波動倒數權重 × 璞玉桶占比。完整池見「💎 璞玉低波動優質池」頁。</div></div><footer class="page-footer">harbor（SHADOW）｜ L1/L2/L3 三桶 ｜ 狀態機讀 risk_mode/溫度/breadth/Z250/TWII ｜ 證明降回撤才併入 cio_allocator 第7虛擬經理</footer></body></html>
+<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">避風港三桶配置（SHADOW 觀察層）</h1><div class="page-meta">SHADOW ｜ 攻擊RR→璞玉低波→現金 三桶平滑切換 ｜ 分層狀態機+不對稱遲滯 ｜ 不接決策</div><div class="banner" style="border-left:3px solid var(--th-amber,#fbbf24)"><b style="color:var(--th-amber,#fbbf24)">🧪 SHADOW 觀察層（開發中／試用）</b>　｜　本頁跑分層狀態機算三桶目標配置，<b>不改 cio_allocator、不接 decision</b>——純觀察留痕。證明「L2 轉璞玉真能降回撤」才併入 cio_allocator（第 7 虛擬經理）。設計依據見 <a href="harbor_discussion.html">⚓ Harbor 避風港 Agent 顧問討論</a>。</div><div class="banner"><b>避風港三桶配置 Harbor</b>　2026-07-09　<span class="pill pill--bear">🔴 L3 空頭·現金</span>　<span style="font-size:13px;color:var(--th-muted,#94a3b8)">已 5 日（自 2026-07-01）｜L3 等待解恐慌確認｜璞玉限 ≤20%</span><div class="label" style="margin-top:6px">真崩/流動性危機 → 現金為王，低波股照跌故只留少量</div><div style="display:flex;width:100%;border-radius:8px;overflow:hidden;margin:8px 0"><div style="width:10%;background:var(--th-green,#22c55e);display:flex;align-items:center;justify-content:center;color:var(--th-blue,#0b1220);font-weight:700;font-size:12px;padding:10px 0;min-width:2px" title="RR 攻擊 10%">RR 攻擊 10%</div><div style="width:10%;background:var(--th-amber,#fbbf24);display:flex;align-items:center;justify-content:center;color:var(--th-blue,#0b1220);font-weight:700;font-size:12px;padding:10px 0;min-width:2px" title="璞玉 低波 10%">璞玉 低波 10%</div><div style="width:80%;background:var(--th-blue,#60a5fa);display:flex;align-items:center;justify-content:center;color:var(--th-blue,#0b1220);font-weight:700;font-size:12px;padding:10px 0;min-width:2px" title="現金 80%">現金 80%</div></div></div><div class="card"><div class="card-title">市場訊號盤（狀態機輸入）</div><table class="data-table data-table--zebra"><thead><tr><th>訊號</th><th>當前值</th><th>門檻參考</th></tr></thead><tbody><tr><td>risk_mode</td><td>DEFENSIVE</td><td></td></tr><tr><td>市場溫度 score</td><td>43.8</td><td>&lt;45 偏弱 / &gt;55 健康</td></tr><tr><td>breadth 寬度</td><td>42.7</td><td>&lt;15 崩壞</td></tr><tr><td>rr_environment</td><td>70</td><td></td></tr><tr><td>market_zscore</td><td>HOT（Z250=1.953）</td><td>&gt;+2σ 過熱</td></tr><tr><td>TWII 20日報酬</td><td>2.3%</td><td>&lt;-8% 進恐慌</td></tr></tbody></table><div class="label" style="margin-top:6px">觸發狀態：進避風 L2 <span style="color:var(--th-red,#ef4444)">觸發</span>　進恐慌 L3 <span style="color:var(--th-muted,#94a3b8)">—</span>　解恐慌 <span style="color:var(--th-red,#ef4444)">觸發</span>　解避風 <span style="color:var(--th-muted,#94a3b8)">—</span></div></div><div class="card"><div class="card-title">分層狀態機（不對稱遲滯：升風險快、降風險慢）</div><table class="data-table data-table--zebra"><thead><tr><th>轉換</th><th>條件</th><th>速度</th></tr></thead><tbody><tr><td>L1→L2 進避風</td><td>risk_mode∈{DEFENSIVE,CASH}｜溫度&lt;45｜OVERHEATED｜TWII20d&lt;-5%</td><td>快（任一即進）</td></tr><tr><td>→L3 進恐慌</td><td>risk_mode=CASH｜TWII20d&lt;-8%｜(breadth&lt;15 且 Z250&lt;-2)</td><td>快（硬觸發）</td></tr><tr><td>L3→L2 解恐慌</td><td>非恐慌 且 breadth&gt;25，確認 ≥10 日</td><td>慢</td></tr><tr><td>L2→L1 解避風</td><td>risk_on 且 溫度&gt;55 且 非過熱，確認 ≥15 日</td><td>更慢</td></tr></tbody></table><div class="note">三桶配比：L1 85/10/5、L2 50/30/20、L3 10/10/80（RR/璞玉/現金）；jade regime cap L1≤15/L2 20-40/L3≤20。配比與門檻為回測校準前預設。</div></div><div class="card"><div class="card-title">璞玉桶持股（jade sleeve → 組合權重，池共 45 檔）</div><table class="data-table data-table--zebra"><thead><tr><th>股票</th><th>類股</th><th>sleeve權重</th><th>組合權重</th></tr></thead><tbody><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A9917" target="_blank" rel="noopener" title="TradingView 圖表 — 9917" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">中保科</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">9917</span></td><td>其他</td><td>3.35%</td><td>0.34%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2820" target="_blank" rel="noopener" title="TradingView 圖表 — 2820" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">華票</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">2820</span></td><td>金融保險</td><td>4.11%</td><td>0.41%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1215" target="_blank" rel="noopener" title="TradingView 圖表 — 1215" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">卜蜂</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">1215</span></td><td>食品工業</td><td>1.8%</td><td>0.18%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2812" target="_blank" rel="noopener" title="TradingView 圖表 — 2812" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">台中銀</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">2812</span></td><td>金融保險</td><td>3.96%</td><td>0.4%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A5876" target="_blank" rel="noopener" title="TradingView 圖表 — 5876" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">上海商銀</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">5876</span></td><td>金融保險</td><td>3.21%</td><td>0.32%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2597" target="_blank" rel="noopener" title="TradingView 圖表 — 2597" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">潤弘</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">2597</span></td><td>建材營造</td><td>1.68%</td><td>0.17%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2006" target="_blank" rel="noopener" title="TradingView 圖表 — 2006" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">東和鋼鐵</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">2006</span></td><td>鋼鐵工業</td><td>1.89%</td><td>0.19%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A1216" target="_blank" rel="noopener" title="TradingView 圖表 — 1216" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">統一</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">1216</span></td><td>食品工業</td><td>3.34%</td><td>0.33%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2912" target="_blank" rel="noopener" title="TradingView 圖表 — 2912" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">統一超</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">2912</span></td><td>貿易百貨</td><td>2.23%</td><td>0.22%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2010" target="_blank" rel="noopener" title="TradingView 圖表 — 2010" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">春源</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">2010</span></td><td>鋼鐵工業</td><td>2.24%</td><td>0.22%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2206" target="_blank" rel="noopener" title="TradingView 圖表 — 2206" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">三陽工業</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">2206</span></td><td>汽車工業</td><td>2.71%</td><td>0.27%</td></tr><tr><td><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A9941" target="_blank" rel="noopener" title="TradingView 圖表 — 9941" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">裕融</a> <span style="color:var(--th-muted,#94a3b8);font-size:11px">9941</span></td><td>其他</td><td>2.39%</td><td>0.24%</td></tr></tbody></table><div class="note">組合權重 = 璞玉池內波動倒數權重 × 璞玉桶占比。完整池見「💎 璞玉低波動優質池」頁。</div></div><footer class="page-footer">harbor（SHADOW）｜ L1/L2/L3 三桶 ｜ 狀態機讀 risk_mode/溫度/breadth/Z250/TWII ｜ 證明降回撤才併入 cio_allocator 第7虛擬經理</footer>
+<style id='MS_N_RRR_tooltip_inject_v2'>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: var(--th-bg,#0f172a);
+  color: var(--th-text,#e2e8f0);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid var(--th-border2,#475569);
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>

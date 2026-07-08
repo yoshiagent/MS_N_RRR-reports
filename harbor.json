@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-06",
+  "as_of": "2026-07-09",
   "schema_version": "v1",
   "available": true,
   "shadow": true,
@@ -9,8 +9,8 @@
   "state_tone": "bear",
   "state_desc": "真崩/流動性危機 → 現金為王，低波股照跌故只留少量",
   "prev_state": "L3",
-  "transition": "維持 L3(恐慌未解)",
-  "days_in_state": 4,
+  "transition": "L3 等待解恐慌確認",
+  "days_in_state": 5,
   "since": "2026-07-01",
   "buckets": {
     "rr": 10,
@@ -18,18 +18,18 @@
     "cash": 80
   },
   "signals": {
-    "risk_mode": "CASH",
-    "temp": 41.9,
-    "breadth": 70.2,
-    "rr_env": 45,
-    "zone": "OVERHEATED",
-    "z250": 2.111,
-    "twii20": 3.3
+    "risk_mode": "DEFENSIVE",
+    "temp": 43.8,
+    "breadth": 42.7,
+    "rr_env": 70,
+    "zone": "HOT",
+    "z250": 1.953,
+    "twii20": 2.3
   },
   "triggers": {
     "enter_L2": true,
-    "enter_L3": true,
-    "exit_L3": false,
+    "enter_L3": false,
+    "exit_L3": true,
     "exit_L2": false
   },
   "jade_constraint": "≤20%",
@@ -38,12 +38,26 @@
       "symbol": "9917",
       "name": "中保科",
       "industry": "其他",
-      "sleeve_weight": 3.06,
-      "port_weight": 0.31
+      "sleeve_weight": 3.35,
+      "port_weight": 0.34
     },
     {
       "symbol": "2820",
       "name": "華票",
+      "industry": "金融保險",
+      "sleeve_weight": 4.11,
+      "port_weight": 0.41
+    },
+    {
+      "symbol": "1215",
+      "name": "卜蜂",
+      "industry": "食品工業",
+      "sleeve_weight": 1.8,
+      "port_weight": 0.18
+    },
+    {
+      "symbol": "2812",
+      "name": "台中銀",
       "industry": "金融保險",
       "sleeve_weight": 3.96,
       "port_weight": 0.4
@@ -52,74 +66,60 @@
       "symbol": "5876",
       "name": "上海商銀",
       "industry": "金融保險",
-      "sleeve_weight": 3.09,
-      "port_weight": 0.31
-    },
-    {
-      "symbol": "1215",
-      "name": "卜蜂",
-      "industry": "食品工業",
-      "sleeve_weight": 1.72,
-      "port_weight": 0.17
-    },
-    {
-      "symbol": "2812",
-      "name": "台中銀",
-      "industry": "金融保險",
-      "sleeve_weight": 3.81,
-      "port_weight": 0.38
-    },
-    {
-      "symbol": "2006",
-      "name": "東和鋼鐵",
-      "industry": "鋼鐵工業",
-      "sleeve_weight": 1.82,
-      "port_weight": 0.18
+      "sleeve_weight": 3.21,
+      "port_weight": 0.32
     },
     {
       "symbol": "2597",
       "name": "潤弘",
       "industry": "建材營造",
-      "sleeve_weight": 1.62,
-      "port_weight": 0.16
+      "sleeve_weight": 1.68,
+      "port_weight": 0.17
+    },
+    {
+      "symbol": "2006",
+      "name": "東和鋼鐵",
+      "industry": "鋼鐵工業",
+      "sleeve_weight": 1.89,
+      "port_weight": 0.19
     },
     {
       "symbol": "1216",
       "name": "統一",
       "industry": "食品工業",
-      "sleeve_weight": 3.22,
-      "port_weight": 0.32
+      "sleeve_weight": 3.34,
+      "port_weight": 0.33
     },
     {
       "symbol": "2912",
       "name": "統一超",
       "industry": "貿易百貨",
-      "sleeve_weight": 2.14,
-      "port_weight": 0.21
-    },
-    {
-      "symbol": "2206",
-      "name": "三陽工業",
-      "industry": "汽車工業",
-      "sleeve_weight": 2.61,
-      "port_weight": 0.26
+      "sleeve_weight": 2.23,
+      "port_weight": 0.22
     },
     {
       "symbol": "2010",
       "name": "春源",
       "industry": "鋼鐵工業",
-      "sleeve_weight": 2.15,
-      "port_weight": 0.21
+      "sleeve_weight": 2.24,
+      "port_weight": 0.22
     },
     {
-      "symbol": "1104",
-      "name": "環泥",
-      "industry": "水泥工業",
-      "sleeve_weight": 2.63,
-      "port_weight": 0.26
+      "symbol": "2206",
+      "name": "三陽工業",
+      "industry": "汽車工業",
+      "sleeve_weight": 2.71,
+      "port_weight": 0.27
+    },
+    {
+      "symbol": "9941",
+      "name": "裕融",
+      "industry": "其他",
+      "sleeve_weight": 2.39,
+      "port_weight": 0.24
     }
   ],
-  "jade_pool_n": 47,
+  "jade_pool_n": 45,
   "confirm_days": {
     "L3→L2": 10,
     "L2→L1": 15
@@ -129,8 +129,8 @@
     "rr": 10,
     "jade": 10,
     "cash": 80,
-    "days_in_state": 4,
+    "days_in_state": 5,
     "note": "SHADOW 避風港三桶, 不接 cio_allocator/decision; 證明降回撤才併入"
   },
-  "generated_at": "2026-07-06T22:23:53"
+  "generated_at": "2026-07-09T00:31:24"
 }
