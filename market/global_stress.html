@@ -42,4 +42,120 @@
   });
 })();
 </script>
-<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">全球流動性風險雷達（SHADOW 觀察層）</h1><div class="page-meta">SHADOW 觀察層 ｜ 跨市場 risk-off 連續分數 ｜ 不接決策 ｜ Claude×codex 設計</div><div class="banner" style="border-left:3px solid var(--th-amber,#fbbf24)"><b style="color:var(--th-amber,#fbbf24)">🧪 SHADOW 觀察層（開發中／試用）</b>　｜　本頁<b>不接</b> regime／選股／換股／decision，僅每日留痕。路線：累積歷史 → as_of 對齊回測（Base vs Base+overlay 增量）→ 證明有 edge 才接策略 overlay。設計依據與 codex 裁決見 <a href="global_liquidity_radar_discussion.html">🌐 全球流動性風險雷達 顧問討論</a>。</div><div class="banner"><b>全球流動性風險雷達</b>　資料日 2026-07-06　<span class="pill pill--warn">🟠 壓力升高</span>　<span style="font-size:13px;color:var(--th-muted,#94a3b8)">composite=+0.571　歷史分位=81.2%</span></div><div class="card"><div class="card-title">分量拆解（z>0＝risk-off；trailing 250D，無前視）</div><table class="data-table data-table--zebra"><thead><tr><th>分量</th><th>公式</th><th>權重</th><th>z 分數</th><th>貢獻</th><th>水位</th></tr></thead><tbody><tr><td>SOX 半導體隔夜</td><td>z(-SOX 5D 報酬)</td><td>30%</td><td><span class="text-bear">+1.09</span></td><td>+0.326</td><td>13,229.94</td></tr><tr><td>JPY carry unwind</td><td>mean[z(-USDJPY 5D), z(vol10/60)]</td><td>30%</td><td><span class="text-bull">-0.00</span></td><td>-0.001</td><td>162.3</td></tr><tr><td>KRW 韓元走弱</td><td>z(+USDKRW 10D 報酬)</td><td>15%</td><td><span class="text-bull">-0.29</span></td><td>-0.044</td><td>1,532.41</td></tr><tr><td>KOSPI 韓國破位</td><td>z(-KOSPI 10D 報酬)</td><td>15%</td><td><span class="text-bear">+2.30</span></td><td>+0.345</td><td>8,051.33</td></tr><tr><td>VIX 全球風險</td><td>z(VIX 水位)</td><td>10%</td><td><span class="text-bull">-0.56</span></td><td>-0.056</td><td>16.29</td></tr></tbody></table><div class="note">composite = Σ 權重×clip(z,±3)；zone 依 composite 的擴張視窗歷史分位（≥95→🔴極端、≥80→🟠升高、else🟢平穩），非固定門檻。</div></div><div class="card"><div class="card-title">歷史分位趨勢（近 180 交易日）</div><svg viewBox="0 0 920 200" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" style="max-width:100%"><rect x="34" y="10.0" width="876" height="8.5" fill="var(--th-red,#ef4444)" opacity="0.14"/><rect x="34" y="18.5" width="876" height="25.5" fill="var(--th-amber,#fbbf24)" opacity="0.13"/><line x1="34" y1="18.5" x2="910" y2="18.5" stroke="var(--th-red,#ef4444)" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/><text x="30" y="21.5" text-anchor="end" font-size="10" fill="var(--th-red,#ef4444)">95</text><line x1="34" y1="44.0" x2="910" y2="44.0" stroke="var(--th-amber,#fbbf24)" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/><text x="30" y="47.0" text-anchor="end" font-size="10" fill="var(--th-amber,#fbbf24)">80</text><line x1="34" y1="95.0" x2="910" y2="95.0" stroke="var(--th-muted,#94a3b8)" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/><text x="30" y="98.0" text-anchor="end" font-size="10" fill="var(--th-muted,#94a3b8)">50</text><polyline points="34.0,160.6 38.9,173.4 43.8,174.7 48.7,176.3 53.6,159.8 58.5,154.0 63.4,145.7 68.3,99.4 73.2,90.9 78.0,82.6 82.9,44.7 87.8,53.2 92.7,63.7 97.6,58.3 102.5,47.7 107.4,49.1 112.3,40.1 117.2,35.8 122.1,45.7 127.0,40.4 131.9,49.8 136.8,73.8 141.7,86.8 146.6,98.9 151.5,125.9 156.3,148.5 161.2,83.8 166.1,123.7 171.0,131.7 175.9,138.0 180.8,157.1 185.7,165.7 190.6,163.7 195.5,148.0 200.4,138.0 205.3,92.1 210.2,73.1 215.1,52.0 220.0,35.3 224.9,42.1 229.8,84.8 234.6,100.1 239.5,101.1 244.4,127.1 249.3,139.5 254.2,125.4 259.1,101.1 264.0,106.0 268.9,140.7 273.8,167.8 278.7,174.2 283.6,177.8 288.5,177.4 293.4,177.8 298.3,164.5 303.2,143.3 308.1,140.2 312.9,161.8 317.8,149.1 322.7,102.6 327.6,74.6 332.5,92.6 337.4,110.5 342.3,91.3 347.2,55.4 352.1,82.6 357.0,85.8 361.9,75.5 366.8,59.1 371.7,68.7 376.6,68.0 381.5,58.3 386.4,38.2 391.3,59.5 396.1,90.9 401.0,75.6 405.9,110.0 410.8,70.9 415.7,46.0 420.6,75.3 425.5,69.3 430.4,62.0 435.3,135.3 440.2,160.1 445.1,131.7 450.0,148.2 454.9,169.1 459.8,155.2 464.7,121.4 469.6,131.7 474.4,51.5 479.3,33.0 484.2,40.4 489.1,33.0 494.0,34.1 498.9,48.4 503.8,43.3 508.7,34.3 513.6,43.8 518.5,36.2 523.4,55.9 528.3,122.0 533.2,81.6 538.1,54.2 543.0,48.9 547.9,45.4 552.7,54.0 557.6,33.1 562.5,34.3 567.4,29.9 572.3,31.6 577.2,34.0 582.1,47.1 587.0,63.7 591.9,150.9 596.8,88.0 601.7,158.4 606.6,176.6 611.5,179.3 616.4,179.7 621.3,179.8 626.2,178.0 631.1,179.3 635.9,178.1 640.8,175.8 645.7,174.2 650.6,173.4 655.5,173.7 660.4,174.7 665.3,176.1 670.2,162.2 675.1,150.9 680.0,144.6 684.9,53.0 689.8,57.8 694.7,121.0 699.6,164.5 704.5,128.5 709.4,173.4 714.2,176.8 719.1,127.0 724.0,100.6 728.9,160.4 733.8,100.9 738.7,52.5 743.6,64.6 748.5,50.5 753.4,69.3 758.3,121.9 763.2,122.5 768.1,173.2 773.0,160.8 777.9,158.9 782.8,169.8 787.7,174.2 792.5,174.9 797.4,178.6 802.3,155.0 807.2,48.2 812.1,55.6 817.0,41.5 821.9,29.7 826.8,48.1 831.7,136.1 836.6,150.1 841.5,130.2 846.4,165.0 851.3,167.9 856.2,168.3 861.1,175.2 866.0,102.6 870.8,113.0 875.7,99.6 880.6,40.9 885.5,42.8 890.4,113.9 895.3,55.1 900.2,30.6 905.1,38.4 910.0,42.0" fill="none" stroke="var(--th-accent,#38bdf8)" stroke-width="1.6"/><circle cx="910.0" cy="42.0" r="3.2" fill="var(--th-accent,#38bdf8)"/></svg><div class="note">縱軸＝composite 的歷史分位(0–100)；橘帶 80–95、紅帶 ≥95。分位越高＝當前跨市場壓力相對自身歷史越極端。</div></div><details class="explainer"><summary class="explainer__title">📐 方法學 / 資料源 / 已知限制（點開）</summary><div class="label" style="line-height:1.9"><b>資料源</b>：yfinance（SOX=^SOX、USDJPY=JPY=X、USDKRW=KRW=X、VIX=^VIX、KOSPI=^KS11），與系統既有 VIX/SOX 同一條管線（stock_data MACRO_MAP/INDEX_MAP）。FinMind 無韓國故不採。<br><b>權重</b>：反映 codex 優先序——SOX/JPY 各 30%（隔夜半導體 + carry unwind 最有價值）、KOSPI/KRW 各 15%（多與台股同步/與 USDTWD 重複，先監控）、VIX 10%（已被現有 market agent 用）。<br><b>已知限制（待階段 3 回測處理）</b>：① as_of 對齊——KOSPI/SOX/VIX 收盤晚於台股，本頁為「當前狀態」快照，尚未做「台股開盤前可知」的嚴格時間對齊，故<b>不可</b>直接當前視訊號用；② 分量間 collinearity（壓力時齊動）尚未去重；③ 權重為先驗設定，未經 outcome 校準。這些正是「先觀察、後回測、有增量才接線」的原因。</div></details><details class="explainer"><summary class="explainer__title">📚 概念來源留痕（NotebookLM 報告 × codex）</summary><div class="label" style="line-height:1.9">本 overlay 的設計概念來自兩份 NotebookLM 報告（notebook「台股重挫警訊」）＋ codex 批判，經取捨後採納下列、並記下已知限制：</div><table class="data-table data-table--zebra"><thead><tr><th>概念</th><th>來源</th><th>採納狀態</th></tr></thead><tbody><tr><td>定價風險(Fed/利率) vs 數量風險(日圓/資金供給) 二分</td><td>報告B「去槓桿化」</td><td>✅ 已採納：VIX/利率軸 與 JPY carry 軸分開計</td></tr><tr><td>日圓看『波動率/速度』非 160 固定價位</td><td>報告B × codex（三方收斂）</td><td>✅ 已採納：jpy 分量含 vol10/vol60</td></tr><tr><td>半導體高本益比『負凸性』→ risk-off 挨更重</td><td>報告B</td><td>✅ 已採納：SOX 給最高權重 30%</td></tr><tr><td>韓國 KOSPI/KRW 為亞洲先行雷達</td><td>報告A/B</td><td>🟡 監控：先低權(各15%)，待回測證明領先性</td></tr><tr><td>韓國『7倍槓桿/未成年帳戶』、6/24-26 賣超數字</td><td>報告A/B</td><td>⚠ 未採信為事實：單一來源、無法查證，不當回測校準錨</td></tr><tr><td>台股內部脆性(融資餘額/權值集中/擁擠度)</td><td>報告B 第4段</td><td>🔜 另案：屬台股內部，未來可用既有融資資料做獨立 sub-score</td></tr></tbody></table></details><footer class="page-footer">global_stress（SHADOW）｜ SOX/JPY/KRW/KOSPI/VIX composite + 歷史分位 ｜ 資料源 yfinance ｜ 待 as_of 回測證明增量才接策略 overlay</footer></body></html>
+<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">全球流動性風險雷達（SHADOW 觀察層）</h1><div class="page-meta">SHADOW 觀察層 ｜ 跨市場 risk-off 連續分數 ｜ 不接決策 ｜ Claude×codex 設計</div><div class="banner" style="border-left:3px solid var(--th-amber,#fbbf24)"><b style="color:var(--th-amber,#fbbf24)">🧪 SHADOW 觀察層（開發中／試用）</b>　｜　本頁<b>不接</b> regime／選股／換股／decision，僅每日留痕。路線：累積歷史 → as_of 對齊回測（Base vs Base+overlay 增量）→ 證明有 edge 才接策略 overlay。設計依據與 codex 裁決見 <a href="global_liquidity_radar_discussion.html">🌐 全球流動性風險雷達 顧問討論</a>。</div><div class="banner"><b>全球流動性風險雷達</b>　資料日 2026-07-08　<span class="pill pill--warn">🟠 壓力升高</span>　<span style="font-size:13px;color:var(--th-muted,#94a3b8)">composite=+0.631　歷史分位=82.5%</span></div><div class="card"><div class="card-title">分量拆解（z>0＝risk-off；trailing 250D，無前視）</div><table class="data-table data-table--zebra"><thead><tr><th>分量</th><th>公式</th><th>權重</th><th>z 分數</th><th>貢獻</th><th>水位</th></tr></thead><tbody><tr><td>SOX 半導體隔夜</td><td>z(-SOX 5D 報酬)</td><td>30%</td><td><span class="text-bear">+1.71</span></td><td>+0.512</td><td>12,437.93</td></tr><tr><td>JPY carry unwind</td><td>mean[z(-USDJPY 5D), z(vol10/60)]</td><td>30%</td><td><span class="text-bear">+0.14</span></td><td>+0.042</td><td>162.637</td></tr><tr><td>KRW 韓元走弱</td><td>z(+USDKRW 10D 報酬)</td><td>15%</td><td><span class="text-bull">-1.48</span></td><td>-0.222</td><td>1,510.89</td></tr><tr><td>KOSPI 韓國破位</td><td>z(-KOSPI 10D 報酬)</td><td>15%</td><td><span class="text-bear">+1.96</span></td><td>+0.294</td><td>7,656.31</td></tr><tr><td>VIX 全球風險</td><td>z(VIX 水位)</td><td>10%</td><td><span class="text-bear">+0.05</span></td><td>+0.005</td><td>18.3</td></tr></tbody></table><div class="note">composite = Σ 權重×clip(z,±3)；zone 依 composite 的擴張視窗歷史分位（≥95→🔴極端、≥80→🟠升高、else🟢平穩），非固定門檻。</div></div><div class="card"><div class="card-title">歷史分位趨勢（近 180 交易日）</div><svg viewBox="0 0 920 200" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" style="max-width:100%"><rect x="34" y="10.0" width="876" height="8.5" fill="var(--th-red,#ef4444)" opacity="0.14"/><rect x="34" y="18.5" width="876" height="25.5" fill="var(--th-amber,#fbbf24)" opacity="0.13"/><line x1="34" y1="18.5" x2="910" y2="18.5" stroke="var(--th-red,#ef4444)" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/><text x="30" y="21.5" text-anchor="end" font-size="10" fill="var(--th-red,#ef4444)">95</text><line x1="34" y1="44.0" x2="910" y2="44.0" stroke="var(--th-amber,#fbbf24)" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/><text x="30" y="47.0" text-anchor="end" font-size="10" fill="var(--th-amber,#fbbf24)">80</text><line x1="34" y1="95.0" x2="910" y2="95.0" stroke="var(--th-muted,#94a3b8)" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/><text x="30" y="98.0" text-anchor="end" font-size="10" fill="var(--th-muted,#94a3b8)">50</text><polyline points="34.0,174.7 38.9,176.3 43.8,159.8 48.7,154.0 53.6,145.7 58.5,99.4 63.4,90.9 68.3,82.6 73.2,44.7 78.0,53.2 82.9,63.7 87.8,58.3 92.7,47.7 97.6,49.1 102.5,40.1 107.4,35.8 112.3,45.7 117.2,40.4 122.1,49.8 127.0,73.8 131.9,86.8 136.8,98.9 141.7,125.9 146.6,148.5 151.5,83.8 156.3,123.7 161.2,131.7 166.1,138.0 171.0,157.1 175.9,165.7 180.8,163.7 185.7,148.0 190.6,138.0 195.5,92.1 200.4,73.1 205.3,52.0 210.2,35.3 215.1,42.1 220.0,84.8 224.9,100.1 229.8,101.1 234.6,127.1 239.5,139.5 244.4,125.4 249.3,101.1 254.2,106.0 259.1,140.7 264.0,167.8 268.9,174.2 273.8,177.8 278.7,177.4 283.6,177.8 288.5,164.5 293.4,143.3 298.3,140.2 303.2,161.8 308.1,149.1 312.9,102.6 317.8,74.6 322.7,92.6 327.6,110.5 332.5,91.3 337.4,55.4 342.3,82.6 347.2,85.8 352.1,75.5 357.0,59.1 361.9,68.7 366.8,68.0 371.7,58.3 376.6,38.2 381.5,59.5 386.4,90.9 391.3,75.6 396.1,110.0 401.0,70.9 405.9,46.0 410.8,75.3 415.7,69.3 420.6,62.0 425.5,135.3 430.4,160.1 435.3,131.7 440.2,148.2 445.1,169.1 450.0,155.2 454.9,121.4 459.8,131.7 464.7,51.5 469.6,33.0 474.4,40.4 479.3,33.0 484.2,34.1 489.1,48.4 494.0,43.3 498.9,34.3 503.8,43.8 508.7,36.2 513.6,55.9 518.5,122.0 523.4,81.6 528.3,54.2 533.2,48.9 538.1,45.4 543.0,54.0 547.9,33.1 552.7,34.3 557.6,29.9 562.5,31.6 567.4,34.0 572.3,47.1 577.2,63.7 582.1,150.9 587.0,88.0 591.9,158.4 596.8,176.6 601.7,179.3 606.6,179.7 611.5,179.8 616.4,178.0 621.3,179.3 626.2,178.1 631.1,175.8 635.9,174.2 640.8,173.4 645.7,173.7 650.6,174.7 655.5,176.1 660.4,162.2 665.3,150.9 670.2,144.6 675.1,53.0 680.0,57.8 684.9,121.0 689.8,164.5 694.7,128.5 699.6,173.4 704.5,176.8 709.4,127.0 714.2,100.6 719.1,160.4 724.0,100.9 728.9,52.5 733.8,64.6 738.7,50.5 743.6,69.3 748.5,121.9 753.4,122.5 758.3,173.2 763.2,160.8 768.1,158.9 773.0,169.8 777.9,174.2 782.8,174.9 787.7,178.6 792.5,155.0 797.4,48.2 802.3,55.6 807.2,41.5 812.1,29.7 817.0,48.1 821.9,136.1 826.8,150.1 831.7,130.2 836.6,165.0 841.5,167.9 846.4,168.3 851.3,175.2 856.2,102.6 861.1,113.0 866.0,99.6 870.8,40.9 875.7,42.8 880.6,113.9 885.5,55.1 890.4,30.6 895.3,38.4 900.2,36.5 905.1,31.6 910.0,39.8" fill="none" stroke="var(--th-accent,#38bdf8)" stroke-width="1.6"/><circle cx="910.0" cy="39.8" r="3.2" fill="var(--th-accent,#38bdf8)"/></svg><div class="note">縱軸＝composite 的歷史分位(0–100)；橘帶 80–95、紅帶 ≥95。分位越高＝當前跨市場壓力相對自身歷史越極端。</div></div><details class="explainer"><summary class="explainer__title">📐 方法學 / 資料源 / 已知限制（點開）</summary><div class="label" style="line-height:1.9"><b>資料源</b>：yfinance（SOX=^SOX、USDJPY=JPY=X、USDKRW=KRW=X、VIX=^VIX、KOSPI=^KS11），與系統既有 VIX/SOX 同一條管線（stock_data MACRO_MAP/INDEX_MAP）。FinMind 無韓國故不採。<br><b>權重</b>：反映 codex 優先序——SOX/JPY 各 30%（隔夜半導體 + carry unwind 最有價值）、KOSPI/KRW 各 15%（多與台股同步/與 USDTWD 重複，先監控）、VIX 10%（已被現有 market agent 用）。<br><b>已知限制（待階段 3 回測處理）</b>：① as_of 對齊——KOSPI/SOX/VIX 收盤晚於台股，本頁為「當前狀態」快照，尚未做「台股開盤前可知」的嚴格時間對齊，故<b>不可</b>直接當前視訊號用；② 分量間 collinearity（壓力時齊動）尚未去重；③ 權重為先驗設定，未經 outcome 校準。這些正是「先觀察、後回測、有增量才接線」的原因。</div></details><details class="explainer"><summary class="explainer__title">📚 概念來源留痕（NotebookLM 報告 × codex）</summary><div class="label" style="line-height:1.9">本 overlay 的設計概念來自兩份 NotebookLM 報告（notebook「台股重挫警訊」）＋ codex 批判，經取捨後採納下列、並記下已知限制：</div><table class="data-table data-table--zebra"><thead><tr><th>概念</th><th>來源</th><th>採納狀態</th></tr></thead><tbody><tr><td>定價風險(Fed/利率) vs 數量風險(日圓/資金供給) 二分</td><td>報告B「去槓桿化」</td><td>✅ 已採納：VIX/利率軸 與 JPY carry 軸分開計</td></tr><tr><td>日圓看『波動率/速度』非 160 固定價位</td><td>報告B × codex（三方收斂）</td><td>✅ 已採納：jpy 分量含 vol10/vol60</td></tr><tr><td>半導體高本益比『負凸性』→ risk-off 挨更重</td><td>報告B</td><td>✅ 已採納：SOX 給最高權重 30%</td></tr><tr><td>韓國 KOSPI/KRW 為亞洲先行雷達</td><td>報告A/B</td><td>🟡 監控：先低權(各15%)，待回測證明領先性</td></tr><tr><td>韓國『7倍槓桿/未成年帳戶』、6/24-26 賣超數字</td><td>報告A/B</td><td>⚠ 未採信為事實：單一來源、無法查證，不當回測校準錨</td></tr><tr><td>台股內部脆性(融資餘額/權值集中/擁擠度)</td><td>報告B 第4段</td><td>🔜 另案：屬台股內部，未來可用既有融資資料做獨立 sub-score</td></tr></tbody></table></details><footer class="page-footer">global_stress（SHADOW）｜ SOX/JPY/KRW/KOSPI/VIX composite + 歷史分位 ｜ 資料源 yfinance ｜ 待 as_of 回測證明增量才接策略 overlay</footer>
+<style id='MS_N_RRR_tooltip_inject_v2'>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: var(--th-bg,#0f172a);
+  color: var(--th-text,#e2e8f0);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid var(--th-border2,#475569);
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>
