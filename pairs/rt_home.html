@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>配對自選股 即時看盤入口</title>
+<style>
+  html { overflow-x: hidden; }
+  body {
+    width:100vw; max-width:100vw; overflow-x:hidden; margin:0; padding:0;
+    background:#0d1117; color:#e2e8f0;
+    font-family:-apple-system,"Segoe UI","Microsoft JhengHei",sans-serif;
+    line-height:1.7;
+  }
+  #wrap { max-width:900px; margin:0 auto; padding:14px; }
+  h1 { font-size:1.15rem; margin:4px 0 6px 0; font-weight:700; }
+  #status { font-size:.82rem; color:#94a3b8; margin-bottom:12px; }
+  #status .dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+  .dot.live { background:#4ade80; box-shadow:0 0 6px #4ade80; }
+  .dot.stale { background:#64748b; }
+  #hint { display:none; background:#0f2040; border:1px solid rgba(59,130,246,.3); color:#93c5fd;
+          border-radius:8px; padding:8px 12px; font-size:.8rem; margin-bottom:12px; }
+  .cards { display:grid; grid-template-columns:1fr; gap:12px; }
+  @media(min-width:640px){ .cards { grid-template-columns:1fr 1fr; } }
+  a.card {
+    display:block; text-decoration:none; color:#e2e8f0;
+    background:#131f2e; border:1px solid #2d3f55; border-radius:10px; padding:14px 16px;
+    transition:border-color .15s;
+  }
+  a.card:hover { border-color:#3b82f6; }
+  a.card .ttl { font-size:1rem; font-weight:700; color:#93c5fd; }
+  a.card .desc { font-size:.78rem; color:#94a3b8; margin-top:2px; }
+  h2 { font-size:.9rem; color:#93c5fd; margin:18px 0 8px 0; }
+  .pairgrid { display:grid; grid-template-columns:1fr; gap:8px; }
+  @media(min-width:640px){ .pairgrid { grid-template-columns:1fr 1fr; } }
+  @media(min-width:980px){ .pairgrid { grid-template-columns:1fr 1fr 1fr; } }
+  .pair { background:#131f2e; border:1px solid #2d3f55; border-radius:8px; padding:6px 10px; }
+  .pair .g { font-size:.7rem; color:#94a3b8; }
+  .row { display:flex; justify-content:space-between; align-items:baseline; gap:6px; font-size:.84rem; }
+  .row .nm { font-weight:700; min-width:5.5em; }
+  .row .px { min-width:4.2em; text-align:right; }
+  .row .pct { min-width:4.6em; text-align:right; font-size:.78rem; }
+  .row .tv { min-width:7.5em; text-align:right; font-size:.72rem; color:#94a3b8; }
+  .up { color:#f87171; } .down { color:#4ade80; } .flat { color:#94a3b8; }
+  footer { padding:16px 0; font-size:.72rem; color:#94a3b8; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <h1>配對自選股 即時看盤入口</h1>
+  <div id="status"><span class="dot stale"></span><span id="statustext">載入中…</span></div>
+  <div id="hint">資料靜止:請確認 XQ 已登入,並點桌面捷徑「配對即時日K」啟動 poller。</div>
+
+  <div class="cards">
+    <a class="card" href="pair_realtime_k.html">
+      <div class="ttl">📈 即時日K</div>
+      <div class="desc">12 檔日K+量能,今日K棒盤中即時跳動,MA5/MA20,近3月/6月/全部</div>
+    </a>
+    <a class="card" href="pair_mainforce_live.html">
+      <div class="ttl">🔍 主力動向即時觀察</div>
+      <div class="desc">T(特大+大單)/ V(主散背離)盤中走勢+快照表,配對篩選,訊號研判表</div>
+    </a>
+  </div>
+
+  <h2>12 檔即時速覽 <span style="font-weight:400;color:#94a3b8;font-size:.72rem;">現價/漲跌% · T=主力 V=背離</span></h2>
+  <div id="pairgrid" class="pairgrid"></div>
+
+  <footer>資料源:XQ RTD 約 5 秒更新 · 手機請開 Tailscale VPN 後訪問同路徑</footer>
+</div>
+<script>
+"use strict";
+const PAIRS = [
+  {g:"PCB載板", ss:[["8046","南電"],["3037","欣興"]]},
+  {g:"IC設計",  ss:[["3006","晶豪科"],["3035","智原"]]},
+  {g:"記憶體",  ss:[["2344","華邦電"],["2408","南亞科"]]},
+  {g:"傳動元件",ss:[["2049","上銀"],["4576","大銀微系統"]]},
+  {g:"自行車",  ss:[["9921","巨大"],["9914","美利達"]]},
+  {g:"被動元件",ss:[["2492","華新科"],["3026","禾伸堂"]]},
+];
+const POLL_MS = 5000, STALE_MS = 30000;
+let QUOTES = null;
+const $ = s => document.querySelector(s);
+const pc = v => v > 0 ? "up" : v < 0 ? "down" : "flat";
+const f = (v,d=2) => v == null ? "–" : Number(v).toFixed(d);
+
+function render(){
+  const el = $("#pairgrid");
+  el.innerHTML = "";
+  for (const p of PAIRS){
+    const d = document.createElement("div");
+    d.className = "pair";
+    let html = `<div class="g">${p.g}</div>`;
+    for (const [sym, name] of p.ss){
+      const q = QUOTES && QUOTES.stocks[sym];
+      const chg = q ? q.change_pct : null;
+      html += `<div class="row">
+        <span class="nm">${name}</span>
+        <span class="px ${chg==null?"flat":pc(chg)}">${q?f(q.price):"–"}</span>
+        <span class="pct ${chg==null?"flat":pc(chg)}">${chg==null?"–":(chg>0?"+":"")+f(chg)}%</span>
+        <span class="tv">T ${q?f(q.t_main,1):"–"} · V ${q?f(q.v_div,1):"–"}</span>
+      </div>`;
+    }
+    d.innerHTML = html;
+    el.appendChild(d);
+  }
+}
+function renderStatus(){
+  const dot = $("#status .dot"), txt = $("#statustext"), hint = $("#hint");
+  if (!QUOTES){ dot.className="dot stale"; txt.textContent="無即時資料"; hint.style.display="block"; return; }
+  const age = Date.now() - new Date(QUOTES.updated.replace(" ","T")).getTime();
+  let stale = false;
+  if (QUOTES.session === "prev_day"){ dot.className="dot stale"; txt.textContent=`盤前/非本日資料 · 快照 ${QUOTES.updated}`; }
+  else if (QUOTES.session === "closed"){ dot.className="dot stale"; txt.textContent=`非交易日 · 快照 ${QUOTES.updated}`; }
+  else if (age < STALE_MS){ dot.className="dot live"; txt.textContent=`即時更新中 · 快照 ${QUOTES.updated}`; }
+  else {
+    dot.className="dot stale"; stale = true;
+    const t = QUOTES.stocks["8046"] ? QUOTES.stocks["8046"].time : "";
+    txt.textContent = (t >= "13:30:00" ? "已收盤 · " : "資料靜止 · ") + `最後快照 ${QUOTES.updated}`;
+    if (t >= "13:30:00") stale = false;   // 收盤屬正常靜止,不提示
+  }
+  hint.style.display = stale ? "block" : "none";
+}
+async function poll(){
+  try {
+    const r = await fetch(`rt_quotes.json?t=${Date.now()}`, {cache:"no-store"});
+    if (r.ok) QUOTES = await r.json();
+  } catch(e){}
+  render(); renderStatus();
+}
+poll();
+setInterval(poll, POLL_MS);
+</script>
+</body>
+</html>
