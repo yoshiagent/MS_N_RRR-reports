@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>配對自選股 主力動向即時觀察</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<style>
+  html { overflow-x: hidden; }
+  body {
+    width:100vw; max-width:100vw; overflow-x:hidden; margin:0; padding:0;
+    background:#0d1117; color:#e2e8f0;
+    font-family:-apple-system,"Segoe UI","Microsoft JhengHei",sans-serif;
+    line-height:1.7;
+  }
+  #topbar { padding:10px 14px 0 14px; }
+  h1 { font-size:1.05rem; margin:0 0 6px 0; font-weight:700; }
+  #status { font-size:.8rem; color:#94a3b8; }
+  #status .dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px; vertical-align:middle; }
+  .dot.live { background:#4ade80; box-shadow:0 0 6px #4ade80; }
+  .dot.stale { background:#64748b; }
+  #filters { display:flex; flex-wrap:wrap; gap:6px; padding:8px 14px; align-items:center; }
+  #filters .lbl { font-size:.75rem; color:#94a3b8; }
+  .fchip { border:1px solid #334155; background:#1e293b; color:#e2e8f0; border-radius:6px; padding:3px 10px; font-size:.8rem; cursor:pointer; white-space:nowrap; }
+  .fchip.active { border-color:#3b82f6; background:#0f2040; color:#93c5fd; }
+  .card { background:#131f2e; border:1px solid #2d3f55; border-radius:8px; margin:10px 14px; padding:8px 10px; }
+  .card h2 { font-size:.92rem; color:#93c5fd; margin:0 0 4px 0; }
+  .chartbox { width:100%; }
+  .sw-wrap { box-sizing:border-box; width:100%; overflow-x:auto; }
+  table.snap { width:100%; border-collapse:collapse; font-size:.82rem; white-space:nowrap; }
+  table.snap th, table.snap td { padding:4px 8px; border:1px solid #2d3f55; text-align:center; }
+  table.snap th { background:#0f2040; color:#93c5fd; font-weight:600; }
+  table.snap td.name { font-weight:700; }
+  .pos { color:#f87171; font-weight:700; }   /* 台股慣例:紅=買方/漲 */
+  .neg { color:#4ade80; font-weight:700; }   /* 綠=賣方/跌 */
+  .neutral { color:#94a3b8; }
+  details.info { margin-top:8px; border:1px solid #2d3f55; border-radius:6px; }
+  details.info summary { padding:6px 10px; cursor:pointer; font-size:.8rem; font-weight:700; color:#93c5fd; background:#0f2040; user-select:none; }
+  details.info .info-desc { padding:8px 10px; font-size:.8rem; color:#cbd5e1; }
+  details.info table { width:100%; border-collapse:collapse; font-size:.78rem; }
+  details.info th, details.info td { padding:4px 8px; border:1px solid #2d3f55; text-align:center; }
+  details.info th { background:#0f2040; color:#93c5fd; }
+  details.info td:last-child { text-align:left; }
+  details.info .tips { padding:8px 12px; font-size:.8rem; background:#07111e; border-top:1px solid #2d3f55; }
+  details.info .tips ul { margin:4px 0 0 18px; }
+  footer { padding:10px 14px 20px 14px; font-size:.72rem; color:#94a3b8; }
+</style>
+</head>
+<body>
+<div id="topbar">
+  <h1>主力動向即時觀察 <span style="font-size:.7rem;color:#fb923c;">12檔配對版</span></h1>
+  <div id="status"><span class="dot stale"></span><span id="statustext">載入中…</span></div>
+</div>
+
+<div id="filters">
+  <span class="lbl">只看</span>
+  <button class="fchip active" data-g="*">全部</button>
+</div>
+
+<div class="card">
+  <h2>主力合計 T 走勢(特大單+大單買賣差)</h2>
+  <div id="chart-t" class="chartbox"></div>
+  <details class="info">
+    <summary>圖說 / 訊號表 / 研判要點</summary>
+    <p class="info-desc">T = 特大單買賣差 + 大單買賣差(占當日成交金額比)。反映大單以上(一般視為主力/法人)的當下淨買賣方向。配合量比觀察,量比 &gt; 2 時訊號最可信。</p>
+    <table>
+      <thead><tr><th>T 值區間</th><th>訊號</th><th>解讀</th></tr></thead>
+      <tbody>
+        <tr><td>≥ +10</td><td class="pos">強買</td><td>主力強力進場,多方主導</td></tr>
+        <tr><td>+5 ~ +10</td><td class="pos">偏多</td><td>主力買進佔優</td></tr>
+        <tr><td>+1 ~ +5</td><td class="pos">中性偏多</td><td>小幅買盤</td></tr>
+        <tr><td>−1 ~ +1</td><td class="neutral">中性</td><td>力道平衡</td></tr>
+        <tr><td>−5 ~ −1</td><td class="neg">中性偏空</td><td>小幅賣盤</td></tr>
+        <tr><td>−10 ~ −5</td><td class="neg">偏空</td><td>主力賣出佔優</td></tr>
+        <tr><td>≤ −10</td><td class="neg">強賣</td><td>主力強力出場</td></tr>
+      </tbody>
+    </table>
+    <div class="tips"><b>研判要點:</b>
+      <ul>
+        <li>T 持續正值且走升 → 趨勢買盤累積</li>
+        <li>T 大幅震盪(正負反覆)→ 主力觀望/無方向</li>
+        <li>開盤前 30 分鐘 T 變動最具方向性意義</li>
+        <li>收盤前 30 分鐘 T 突變 → 隔日布局/作價</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+<div class="card">
+  <h2>主散背離 V 走勢(主力 − 散戶)</h2>
+  <div id="chart-v" class="chartbox"></div>
+  <details class="info">
+    <summary>圖說 / 訊號表 / 經典型態</summary>
+    <p class="info-desc">V = 主力合計 T − 散戶合計 U(中小單買賣差)。主力與散戶方向相反通常是更強的訊號。正大 = 主力買散戶賣(吸籌),負大 = 主力賣散戶買(出貨)。</p>
+    <table>
+      <thead><tr><th>V 值區間</th><th>訊號</th><th>解讀</th></tr></thead>
+      <tbody>
+        <tr><td>≥ +10</td><td class="pos">強吸籌</td><td>主力買、散戶賣,後續易漲</td></tr>
+        <tr><td>+5 ~ +10</td><td class="pos">吸籌中</td><td>主散分歧偏多</td></tr>
+        <tr><td>−5 ~ +5</td><td class="neutral">同向</td><td>主散共識,無明顯分歧</td></tr>
+        <tr><td>−10 ~ −5</td><td class="neg">出貨中</td><td>主散分歧偏空</td></tr>
+        <tr><td>≤ −10</td><td class="neg">強出貨</td><td>主力賣、散戶買(警告)</td></tr>
+      </tbody>
+    </table>
+    <div class="tips"><b>經典型態:</b>
+      <ul>
+        <li><b>吸籌型態:</b>價平甚至跌,但 V 大幅正 → 主力悄悄收集,後續易漲</li>
+        <li><b>出貨型態:</b>價漲且 V 大幅負 → 主力高位出貨給散戶,後續易跌</li>
+        <li>V 由負轉正且持續 → 主力開始進場</li>
+        <li>V 由正轉負且持續 → 主力撤退</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+<div class="card">
+  <h2>最新快照</h2>
+  <div class="sw-wrap">
+    <table class="snap">
+      <thead><tr>
+        <th>股名</th><th>現價</th><th>漲跌%</th><th>量比</th>
+        <th>主力T</th><th>背離V</th><th>特大單</th><th>大單</th><th>中單</th><th>小單</th><th>時間</th>
+      </tr></thead>
+      <tbody id="snap-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<footer>
+  資料來源:XQ 全球贏家 RTD(約 5 秒更新)。T=特大單差%+大單差%;V=T−(中單差%+小單差%);
+  各「差%」為該級距買賣金額差占當日成交金額比。曲線自 poller 啟動時起累積。
+</footer>
+
+<script>
+"use strict";
+const POLL_MS = 5000, STALE_MS = 30000;
+// 6 配對 × 同色系,配對內第一檔實線、第二檔點線
+const PAIRS = [
+  {g:"PCB載板", hue:"#f87171", ss:[["8046","南電"],["3037","欣興"]]},
+  {g:"IC設計",  hue:"#60a5fa", ss:[["3006","晶豪科"],["3035","智原"]]},
+  {g:"記憶體",  hue:"#4ade80", ss:[["2344","華邦電"],["2408","南亞科"]]},
+  {g:"傳動元件",hue:"#fb923c", ss:[["2049","上銀"],["4576","大銀微系統"]]},
+  {g:"自行車",  hue:"#c084fc", ss:[["9921","巨大"],["9914","美利達"]]},
+  {g:"被動元件",hue:"#facc15", ss:[["2492","華新科"],["3026","禾伸堂"]]},
+];
+const SYMS = PAIRS.flatMap(p => p.ss.map(s => s[0]));
+const META = {};  // sym -> {name, color, dash, group}
+PAIRS.forEach(p => p.ss.forEach(([sym, name], i) => {
+  META[sym] = {name, color:p.hue, dash: i ? "dot" : "solid", group:p.g};
+}));
+
+let QUOTES = null;
+let times = [];                                  // "HH:MM:SS"
+const S = {};                                    // sym -> {t:[], v:[]}
+SYMS.forEach(s => S[s] = {t:[], v:[]});
+let lastStamp = "";
+
+const $ = s => document.querySelector(s);
+function cls(v, hi, lo){ return v == null ? "neutral" : v > hi ? "pos" : v < lo ? "neg" : "neutral"; }
+function fmt(v, d=2){ return v == null ? "–" : Number(v).toFixed(d); }
+
+/* ---------- 圖表 ---------- */
+let curGroup = "*";
+function mkTraces(key){
+  return SYMS.map(sym => ({
+    type:"scatter", mode:"lines", name:META[sym].name,
+    visible: curGroup === "*" || META[sym].group === curGroup ? true : "legendonly",
+    x:times, y:S[sym][key], connectgaps:false,
+    line:{color:META[sym].color, width:1.6, dash:META[sym].dash},
+    hovertemplate:META[sym].name + " %{y:.2f}<extra>%{x}</extra>",
+    hoverlabel:{bgcolor:"#1e293b", bordercolor:"#334155", font:{color:"#e2e8f0", size:12}},
+  }));
+}
+function layout(){
+  const h = Math.max(300, Math.min(420, window.innerHeight * 0.42));
+  return {
+    height:h, autosize:true,
+    paper_bgcolor:"#131f2e", plot_bgcolor:"#111827",
+    font:{color:"#94a3b8", size:11},
+    margin:{l:34, r:44, t:8, b:56},
+    dragmode:false, hovermode:"x",
+    legend:{orientation:"h", y:-0.12, font:{size:10.5}},
+    xaxis:{ gridcolor:"#1f2937", fixedrange:true, nticks:7 },
+    yaxis:{ gridcolor:"#1f2937", fixedrange:true, side:"right",
+            zeroline:true, zerolinecolor:"#334155", zerolinewidth:1.5 },
+  };
+}
+const CFG = {displayModeBar:false, scrollZoom:false, doubleClick:false, responsive:true};
+function drawAll(){
+  Plotly.react("chart-t", mkTraces("t"), layout(), CFG);
+  Plotly.react("chart-v", mkTraces("v"), layout(), CFG);
+}
+
+/* ---------- 配對篩選 ---------- */
+function applyFilter(group){
+  curGroup = group;
+  drawAll();
+}
+function buildFilters(){
+  const el = $("#filters");
+  PAIRS.forEach(p => {
+    const b = document.createElement("button");
+    b.className = "fchip"; b.dataset.g = p.g; b.textContent = p.g;
+    b.style.borderColor = p.hue;
+    el.appendChild(b);
+  });
+  el.addEventListener("click", e => {
+    if (!e.target.dataset.g) return;
+    el.querySelectorAll(".fchip").forEach(x => x.classList.toggle("active", x === e.target));
+    applyFilter(e.target.dataset.g);
+  });
+}
+
+/* ---------- 快照表 ---------- */
+function renderTable(){
+  if (!QUOTES) return;
+  const tb = $("#snap-tbody");
+  tb.innerHTML = "";
+  for (const sym of SYMS){
+    const q = QUOTES.stocks[sym];
+    if (!q) continue;
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="name" style="color:${META[sym].color}">${META[sym].name}</td>
+      <td>${fmt(q.price)}</td>
+      <td class="${cls(q.change_pct, 0.001, -0.001)}">${q.change_pct==null?"–":(q.change_pct>0?"+":"")+fmt(q.change_pct)}</td>
+      <td class="${q.vol_ratio > 2 ? "pos" : "neutral"}">${fmt(q.vol_ratio)}</td>
+      <td class="${cls(q.t_main, 1, -1)}">${fmt(q.t_main)}</td>
+      <td class="${cls(q.v_div, 5, -5)}">${fmt(q.v_div)}</td>
+      <td class="${cls(q.dxl, 1, -1)}">${fmt(q.dxl)}</td>
+      <td class="${cls(q.dl, 1, -1)}">${fmt(q.dl)}</td>
+      <td class="${cls(q.dm, 1, -1)}">${fmt(q.dm)}</td>
+      <td class="${cls(q.ds, 1, -1)}">${fmt(q.ds)}</td>
+      <td class="neutral">${q.time || "–"}</td>`;
+    tb.appendChild(tr);
+  }
+}
+function renderStatus(){
+  const dot = $("#status .dot"), txt = $("#statustext");
+  if (!QUOTES){ dot.className = "dot stale"; txt.textContent = "無即時資料(poller 未執行?)"; return; }
+  const age = Date.now() - new Date(QUOTES.updated.replace(" ", "T")).getTime();
+  if (QUOTES.session === "prev_day"){
+    dot.className = "dot stale"; txt.textContent = `盤前/非本日資料 · 快照 ${QUOTES.updated}`;
+  } else if (QUOTES.session === "closed"){
+    dot.className = "dot stale"; txt.textContent = `非交易日 · 快照 ${QUOTES.updated}`;
+  } else if (age < STALE_MS){
+    dot.className = "dot live"; txt.textContent = `即時更新中 · 快照 ${QUOTES.updated} · 累積 ${times.length} 點`;
+  } else {
+    dot.className = "dot stale";
+    txt.textContent = "資料靜止(收盤或 poller 停止) · 最後快照 " + QUOTES.updated;
+  }
+}
+
+/* ---------- 資料流 ---------- */
+async function seed(){
+  try {
+    const r = await fetch(`rt_intraday.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) return;
+    const d = await r.json();
+    const today = new Date();
+    const ymd = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,"0")}-${String(today.getDate()).padStart(2,"0")}`;
+    if (d.date !== ymd) return;               // 舊日檔不當今日畫
+    times = d.times.slice();
+    for (const sym of SYMS){
+      const s = d.stocks[sym] || {t:[], v:[]};
+      S[sym].t = s.t.slice(); S[sym].v = s.v.slice();
+    }
+    if (times.length) lastStamp = times[times.length-1];
+  } catch(e){}
+}
+async function poll(){
+  try {
+    const r = await fetch(`rt_quotes.json?t=${Date.now()}`, {cache:"no-store"});
+    if (r.ok) QUOTES = await r.json();
+  } catch(e){}
+  if (QUOTES && QUOTES.session === "live"){
+    const stamp = QUOTES.updated.slice(11);
+    if (stamp !== lastStamp){                  // 新快照 → 增量 append(免重抓整個 intraday 檔)
+      lastStamp = stamp;
+      times.push(stamp);
+      for (const sym of SYMS){
+        const q = QUOTES.stocks[sym];
+        S[sym].t.push(q && q.fresh ? q.t_main : null);
+        S[sym].v.push(q && q.fresh ? q.v_div : null);
+      }
+      drawAll();
+    }
+  }
+  renderTable(); renderStatus();
+}
+async function init(){
+  buildFilters();
+  await seed();
+  drawAll();
+  await poll();
+  setInterval(poll, POLL_MS);
+  window.addEventListener("resize", drawAll);
+}
+init();
+</script>
+</body>
+</html>
