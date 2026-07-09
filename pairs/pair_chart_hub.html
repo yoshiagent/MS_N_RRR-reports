@@ -1,6 +1,6 @@
 <!doctype html><html lang="zh-Hant"><head>
 <link rel="stylesheet" href="../assets/site.css?v=d8f7634d">
-<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=d8f7634d"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>全球流動性風險雷達 → market agent 升級評估（顧問討論）</title></head><body>
+<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=d8f7634d"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>配對圖 入口</title></head><body>
 <script>(function(){var L=document.getElementById("ms-theme-css");if(!L)return;var q="?v=d8f7634d",b="../assets/";var DAY=["theme-red.css","theme-orange.css","theme-yellow.css","theme-green.css","theme-blue.css","theme-indigo.css","theme-violet.css"];function dayT(){return DAY[(new Date()).getDay()];}function ap(v){var t=(v==="auto")?dayT():v;L.setAttribute("href",b+t+q);}var sv=null;try{sv=localStorage.getItem("ms_theme");}catch(e){}if(!sv)sv="auto";ap(sv);var S=document.getElementById("ms-theme-sel");if(S){S.value=sv;S.addEventListener("change",function(){ap(S.value);try{localStorage.setItem("ms_theme",S.value);}catch(e){}});}})();</script>
 <!-- GLOBAL_NAV_START -->
 <nav class="gnav" id="gnav">
@@ -43,168 +43,120 @@
   });
 })();
 </script>
-<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">全球流動性風險雷達 → market agent 升級評估（顧問討論）</h1><div class="page-meta">顧問討論紀實 ｜ Claude × codex(GPT-5.5) ｜ NotebookLM 報告 → FinMind 查證 → 跨市場 risk-off overlay ｜ 🟡 研究提案</div><div class="banner" style="border-left:3px solid var(--th-amber,#fbbf24)"><b style="color:var(--th-amber,#fbbf24)">🟡 狀態：研究提案（尚未接線）</b>　｜　資料源已定（走 yfinance，非 FinMind）；codex 已批一輪。下一步待 CIO 拍板：先做「觀察頁 + global stress score（shadow 不接決策）」，回測證明控制既有因子後仍有增量，才接策略 overlay（而非 regime 總開關）。</div><div class="banner"><b>全球流動性風險雷達 → market agent 升級評估（顧問討論紀實）</b>　Claude(CEO) × codex(GPT-5.5, 含 web search)　｜　2026-07-01<br>CIO 從 NotebookLM 取回一份報告「<b>關鍵信號觀察手冊：新手解讀全球金融風險的邏輯指南</b>」（notebook：台股重挫警訊：全球資金反轉與韓日市場連鎖風險）。內容是一套<b>全球流動性 regime</b>判讀框架：<b>Fed 利率（重力）→ 日圓 carry unwind（引信，看 160）→ 韓國 KOSPI/KRW（亞洲先行雷達）→ 半導體權值 → 台股外資賣超</b>，收斂成 6 大盤後檢查點。<br>本頁記錄：報告解讀 → FinMind 資料查證 → 系統現況對照 → codex 批判裁決 → 分階段落地路徑。</div><div class="card"><div class="card-title">① 報告來源與解讀（NotebookLM）</div><div class="label" style="line-height:1.9">報告的<b>本質</b>不是交易規則書，而是一套「全球流動性 regime」的宏觀判讀<b>框架</b>。核心主張：真正殺盤的不是基本面變壞，而是<b>資金結構崩毀</b>，台股是這條鏈的末端。<br>因果鏈：<b>Fed 利率/PCE（重力源）→ 日圓 Carry Trade 強制平倉（看 USD/JPY 160 + 暴力升值）→ 韓國 KOSPI/韓元（亞洲科技股先行雷達）→ 台積電/半導體權值 → 台股外資無差別賣超</b>。<br>最後收斂成 <b>6 大盤後檢查點</b>：①外資賣超 ②費半/NVDA ③日圓 ④KOSPI ⑤韓元 ⑥半導體核心權值同步重挫。</div><div class="note note--warn">⚠ 可靠性警訊（供評估）：(1) 敘事框架、非量化門檻（「160 定律」「暴力升值」無可回測閾值）；(2) NotebookLM 單一來源生成（source_count=1），會繼承來源偏誤；(3) 有事實/日期瑕疵（日期、「韓國槓桿 7 倍」「未成年帳戶」屬修辭、無法查證）。→ 當「框架」讀可以，當「事實」引用不行。</div></div><div class="card"><div class="card-title">② 資料盤點：FinMind 有沒有？（實測 API）</div><div class="label" style="line-height:1.85">直接打 FinMind API 問它自己（非猜測）：涵蓋地區只有 <b>台灣/日本/中國/歐洲/英國/加拿大 六地區——沒有韓國</b>。逐項對報告需求：</div><table class="data-table data-table--zebra"><thead><tr><th>報告訊號</th><th>FinMind</th><th>yfinance</th><th>說明</th></tr></thead><tbody><tr><td>④ 韓國 KOSPI</td><td>❌ 無</td><td>✅ ^KS11</td><td>FinMind 完全不涵蓋韓國</td></tr><tr><td>⑤ 韓元 KRW</td><td>❌ 無</td><td>✅ KRW=X</td><td>同上</td></tr><tr><td>③ 日圓 USD/JPY</td><td>❌ 取不到</td><td>✅ JPY=X</td><td>ExchangeRate dataset 帶 data_id 仍回空</td></tr><tr><td>② NVDA/美股個股</td><td>✅ USStockPrice</td><td>✅</td><td>FinMind 實測 NVDA 有 OHLCV</td></tr><tr><td>② 費半 SOX 指數</td><td>❌ 無指數</td><td>✅ ^SOX（已有）</td><td>系統 MACRO_MAP 已含 ^SOX/^NDX</td></tr><tr><td>黃金/原油商品</td><td>✅ GoldPrice</td><td>✅</td><td>FinMind 實測 1998 筆</td></tr></tbody></table><div class="note">結論：報告最有差異化價值的三個訊號（KOSPI/KRW/日圓 carry）FinMind 全部拿不到；yfinance 一次全包，且與系統現有 VIX/SOX/NDX 同一條管線（stock_data MACRO_MAP/INDEX_MAP）。→ 資料源該走 yfinance，FinMind 僅美股個股是 nice-to-have。</div></div><div class="card"><div class="card-title">③ 系統現況對照（market agent 目前吃什麼）</div><div class="label" style="line-height:1.85">現行 <code>market_structure</code>（系統總開關，判 bullish/warning/defensive/exit）吃：<b>TWII/OTCI 日週月線 + USDTWD + VIX + 外資台指期 OI + 三大法人現貨</b>；<code>market_regime</code>（regime tilt）只用 <b>TWII MA20/MA60</b>。報告 6 點對到系統：</div><table class="data-table data-table--zebra"><thead><tr><th>報告檢查點</th><th>系統現況</th><th>缺口</th></tr></thead><tbody><tr><td>①外資賣超</td><td>✅ 已有（market_institutional foreign_net 已入評分）</td><td>—</td></tr><tr><td>②費半/NVDA</td><td>🟡 SOX/NDX 資料層有抓，但 market_structure 沒消費</td><td>接進評分即可</td></tr><tr><td>③日圓 USD/JPY</td><td>❌ 沒有</td><td>MACRO_MAP 加 JPY=X</td></tr><tr><td>④KOSPI</td><td>❌ 沒有</td><td>INDEX_MAP 加 ^KS11</td></tr><tr><td>⑤韓元 KRW</td><td>❌ 沒有</td><td>MACRO_MAP 加 KRW=X</td></tr><tr><td>⑥半導體權值同步</td><td>🟡 台積電有，三星/海力士無（可用 KOSPI 代理）</td><td>—</td></tr></tbody></table><div class="note">好消息：資料源是 yfinance，缺的三個（日圓/KOSPI/韓元）新增成本近乎為零，改兩個 dict 就抓得到。</div></div><div class="card"><div class="card-title">④ codex 顧問裁決（GPT-5.5，含 web search）— 摘要</div><div class="label" style="line-height:1.85"><b style="color:var(--th-amber,#fbbf24)">核心結論：方向合理，但原始版本太像「事後解釋型全球風險清單」。不應太快接進 regime 總開關，應改成「有時間戳、可執行、控制既有因子後仍有增量」的<b>風控 overlay（煞車，不是方向盤）</b>。</b></div><table class="data-table data-table--zebra"><thead><tr><th>議題</th><th>codex 觀點</th></tr></thead><tbody><tr><td>①領先/同步</td><td>區分「經濟領先 vs 交易領先」。SOX/NVDA＝隔夜交易領先（最該優先測）；JPY carry＝偶爾領先、常同步（crash detector，非 regime 因子）；KOSPI 日線破位＝多半同步/落後；KRW＝小幅領先但易與 USDTWD 重複</td></tr><tr><td>②回測陷阱</td><td>最大坑＝拿已知回檔反推訊號。須嚴格 as_of_time（勿混各市場「日期」，KOSPI 收盤晚於台股＝前視）、破位只用 shift(1) 過去資料、門檻只在訓練窗選、purged walk-forward、regime 循環論證</td></tr><tr><td>③樣本太少</td><td>真正獨立全球風險事件 &lt;20 次，難用 p-value 證明。改成「連續風險分數」增樣本+HAC/block bootstrap；評估看方向一致性/左尾改善/增量，而非勝率。&lt;20 事件只能當假說，50-100 才評穩定性</td></tr><tr><td>④取代 160 定律</td><td>固定價位會隨利差/政策漂移。用「速度+波動+利差+basket」composite：USDJPY 5D z-score、realized vol 10D/60D、US-JP 2Y 利差壓縮、AUDJPY/NZDJPY basket、進 90/95 分位才觸發</td></tr><tr><td>⑤值不值得</td><td>值得做觀察頁+研究，不建議直接接 regime（collinearity 會讓 regime 過度轉空、錯過反彈）。優先接『策略 overlay』：SOX/NVDA→電子股扣分/半導體曝險上限；JPY→極端分位才降槓桿</td></tr></tbody></table><div class="label" style="line-height:1.9;margin-top:8px"><b>codex 明確 7 點建議：</b></div><table class="data-table data-table--zebra"><thead><tr><th>#</th><th>建議</th></tr></thead><tbody><tr><td>1</td><td>做觀察頁：值得</td></tr><tr><td>2</td><td>做回測研究：值得，但要用嚴格 as-of time</td></tr><tr><td>3</td><td>直接接 regime：不建議</td></tr><tr><td>4</td><td>優先接策略 overlay，而不是總開關</td></tr><tr><td>5</td><td>若只能選一個做：先做 SOX/NVDA 隔夜訊號</td></tr><tr><td>6</td><td>若做第二個：做 JPY carry unwind composite，不要做 160 固定門檻</td></tr><tr><td>7</td><td>KOSPI/KRW 先列入監控，不要讓它們左右 regime，除非通過增量測試</td></tr></tbody></table></div><details class="explainer"><summary class="explainer__title">📜 codex 顧問全文（原文，點開展）</summary><pre style="white-space:pre-wrap;word-break:break-word;line-height:1.7;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;margin:0">以下用批判角度講結論：這套「全球流動性風險雷達」可以做，但不應該太快接進 regime。它比較像 風控 overlay / kill-switch 候選因子，不是穩定的 regime 判斷核心。最有價值的是「美股半導體隔夜訊號」和「日圓急升造成的槓桿平倉壓力」，但很多訊號會跟你現有的 VIX + 外資期貨 OI + TWII MA 高度重疊。
-
-────────────────────────────────────────────
-1. 這些跨市場訊號對台股是領先、同步、還是落後？
-
-先分清楚「經濟上領先」和「交易上領先」。台股交易時間在亞洲盤，美股 SOX/NVDA 是前一晚收盤資訊，所以對台股隔日開盤有交易上的領先性；但 KOSPI/KRW 多半和台股同屬亞洲盤風險資產，很多時候只是同步反應。
-
-● JPY carry unwind：有時真領先，但更多時候是尾部事件偵測器。
-  日圓急升、USD/JPY 快速下跌，確實可能代表 carry trade 平倉、槓桿降風險、全球資產同步賣壓。
-  研究與市場經驗都支持 carry trade 存在尾部風險與跨市場風險傳染，尤其在高槓桿、波動率升高、利差反轉時更明顯。
-  但陷阱是：你看到 USD/JPY 暴力升值時，通常 VIX、日股、美股期貨、亞幣、外資期貨部位也已經在反應。
-  它未必比 VIX 或外資期貨 OI 更早。真正有用的不是「日圓升值」本身，而是
-  日圓急升 + 全球股市下跌 + 波動率跳升 + 利差壓縮 這種組合。
-  判斷：偶爾領先，常常同步。適合當 crash-risk detector，不適合當一般 regime 因子。
-
-● KOSPI 破位：對台股多半同步，不是穩定領先。
-  韓股與台股都高度連動全球電子、記憶體、半導體循環。KOSPI/KOSDAQ 破位通常反映的是
-  同一批全球資金在亞洲科技鏈降風險。日線級別上，它對 TWII 不一定有穩定領先性。
-  交易上，韓股開盤比台股早約一小時，所以盤中第一小時 KOSPI/KOSDAQ 跌破關鍵位可能對台股當日有一點訊號價值。
-  但如果你只用 Yahoo 日線收盤資料，那韓股收盤其實晚於台股收盤，不能拿當天 KOSPI 收盤去判斷當天台股，否則是前視。
-  判斷：日線收盤多半同步或落後；盤中早盤資料才可能小幅領先。
-
-● KRW 走弱：比 KOSPI 稍有機會領先，但容易跟 USD/TWD 重複。
-  韓元通常比台幣更市場化、更敏感，對亞洲出口鏈、美元流動性、外資風險偏好反應快。
-  KRW 走弱有時會比 TWD 早釋放壓力，因此可作為亞洲風險偏好的 proxy。
-  但你已經有 USDTWD，再加 USDKRW 可能只是多一個高度相關的亞洲 FX risk-off 指標。
-  它的增量價值要看：KRW 是否在 TWD 尚未貶、TWII 尚未破線前，就能預警後續台股 5-20 日下跌。
-  判斷：可能小幅領先 USDTWD/TWII，但需要嚴格驗證。單獨用容易變成重複資訊。
-
-● SOX/NVDA 破底：交易上最明確領先台股，但不一定比台積電 ADR / Nasdaq / 費半期貨更好。
-  這是四個裡面最合理的。台股權重高度集中在半導體，SOX/NVDA 前一晚大跌或破底，對隔日台股尤其電子權值股有直接影響。
-  這不是宏觀先行，而是時間帶來的隔夜領先。
-  但問題是：如果你的現有 market agent 已經透過 TWII MA、VIX、外資期貨 OI 反映到台股內部趨勢，
-  SOX/NVDA 的價值主要在更早一日或更早一個開盤捕捉電子股壓力。它比較適合作為隔日開盤降風險或選股扣分，
-  而不是重新定義大盤 regime。
-  判斷：對台股隔日最有交易領先性。建議優先測。
-
-────────────────────────────────────────────
-2. 用「是否領先 TWII 回檔」回測，最容易犯哪些錯？怎麼設計才穩健？
-
-最大錯誤是把「已經知道 TWII 回檔」拿來反推訊號。常見陷阱：
-
-1) 前視偏誤
-   例如用當天 KOSPI 收盤、KRW 紐約收盤、SOX 收盤去預測同一天 TWII 表現，時間順序很容易錯。
-   正確做法是所有特徵都要有 as_of_time。台股 09:00 開盤前，只能用前一晚美股收盤、前一交易日 KOSPI 收盤、
-   當時可觀測匯率、期貨夜盤資料。不能混用不同市場的「日期」。
-
-2) 用未來定義破位
-   例如「SOX 破前低」如果前低是用整段資料滾動最低，會偷看未來。
-   正確做法是只用當下之前 N 日資料，例如 close &lt; rolling_min(close, 60).shift(1)。
-
-3) 事件定義事後最佳化
-   160、破 MA60、三日升值 3%、五日跌 5%，這些門檻如果是看完歷史才挑，就是資料窺探。
-   正確做法是先定義少量合理規則，再做 walk-forward。門檻選擇只能在訓練窗內完成。
-
-4) 樣本重疊造成假顯著
-   如果每天都測「未來 20 日是否回檔」，相鄰樣本高度重疊，t-stat 會膨脹。
-   正確做法是用事件法、purged walk-forward、block bootstrap，或者用 non-overlapping windows 補驗。
-
-5) regime 循環論證
-   你已經證明動能溢價是 regime-conditional，現在又用 TWII 回檔定義新訊號價值，
-   最後可能只是證明「下跌前會有下跌跡象」。
-   正確做法是把評估目標改成策略層面的增量：加入訊號後，是否提高 out-of-sample CAGR、降低 MDD、
-   改善 downside capture、減少大虧換股，而不是只問能不能解釋 TWII 回檔。
-
-6) 忽略交易成本與可執行性
-   risk-off 訊號如果觸發後隔天開盤已經 gap down，降低曝險可能賣在最低點。
-   正確做法要測：訊號在台股開盤前已知時，以開盤、VWAP、收盤執行各自結果如何。
-
-穩健設計建議：
- - 每個特徵建立嚴格的 available_at 時間。
- - 先做「觀察頁」是對的，但觀察頁也要記錄訊號快照，不能事後重算。
- - 先測單一訊號的 forward return distribution，再測加入現有 regime 後的 incremental value。
- - 用 walk-forward：例如 2010-2018 訓練、2019-2021 驗證、2022-2026 測試，或 rolling 5Y train / 1Y test。
- - 評估不只看勝率，要看 tail：觸發後未來 5/10/20 日 TWII 的左尾、最大不利變動、個股策略 drawdown。
- - 和 baseline 比：現有 regime vs 現有 regime + 新 risk-off score，不要只測新訊號本身。
-
-────────────────────────────────────────────
-3. risk-off 訊號一年沒幾次（樣本少），怎麼證明有增量價值？需要多少事件數？
-
-先講難聽的：一年觸發 3-5 次，台股完整可用歷史就算 15 年，也只有 45-75 次，而且這些事件不獨立。
-真正獨立的全球風險事件可能不到 20 次。你很難用傳統統計「證明」。
-
-事件太少時，不能追求漂亮 p-value，要追求三件事：
-1) 方向一致性：觸發後未來 5/10/20 日的平均報酬、左尾風險、策略回撤，是否在不同年代都同方向改善。
-2) 經濟意義：即使事件少，只要能明顯降低 2008、2011、2015、2018、2020、2022、2024 類型的 drawdown，
-   對策略可能仍有價值。重點是有沒有改善 MDD、Calmar、left-tail loss，而不是勝率。
-3) 增量，不是替代：要測在控制 VIX、TWII MA、外資期貨 OI、USDTWD 後，新訊號是否還有解釋力。
-   可以用 logistic / hazard model / tree-based model，但要限制自由度。
-
-事件數粗估：
- - 少於 20 個獨立事件：只能當風控規則或研究假說，不能說有統計證明。
- - 30-50 個獨立事件：可以初步判斷方向，但信心仍低。
- - 50-100 個獨立事件：才比較能評估訊號穩定性。
- - 100+ 個事件：才適合做較細的門檻、分層、交互作用。
-
-但 risk-off 本來就是尾部事件，不太可能有 100 個乾淨樣本。比較務實的方法是把訊號做成連續風險分數，
-例如 JPY 5 日 z-score、KRW 20 日動能、SOX 距離 60 日低點、VIX term shock，而不是二元觸發。
-這樣樣本變多，但要用 HAC / block bootstrap 處理自相關。
-
-────────────────────────────────────────────
-4. 「160 定律」這種固定價位門檻，可靠替代是什麼？
-
-固定價位最危險。USD/JPY 160 在某個利率環境、央行口徑、市場倉位下有意義，但不是永恆門檻。
-2024 的 160 和 2026、2028 的 160 不一定代表同樣壓力。
-比較可靠的 carry unwind proxy 應該是「變化率、波動率、利差、倉位」組合。
-
-1) JPY 升值速度（比固定價位更重要）
-   USDJPY 5日報酬 &lt; -2%、USDJPY 10日報酬 &lt; -4%、USDJPY return z-score &lt; -2。
-   對 carry unwind，暴力升值比匯率在 160 還重要。
-2) 匯率波動率跳升
-   USDJPY 10日 realized vol / 60日 realized vol &gt; 1.8；USDJPY ATR percentile &gt; 90%。
-3) 利差壓縮
-   美國 2Y - 日本 2Y、美國 10Y - 日本 10Y、利差 20 日變化、Fed/BOJ 預期變化。
-   若 USDJPY 下跌 + 美日利差壓縮 同時發生，比單純跌破某價位可信。
-4) JPY funding stress basket
-   不要只看 USD/JPY。看 JPY 是否對多數高息或風險貨幣同步升值：AUDJPY、NZDJPY、MXNJPY、KRWJPY、TWDJPY。
-   若 JPY 對整個 carry basket 急升，才比較像去槓桿，不只是美元因素。
-5) 交叉資產確認
-   Carry unwind 應該伴隨：VIX 上升、Nikkei/Topix 下跌、SOX/Nasdaq 下跌、高 beta FX 走弱、美債殖利率下行。
-   單一 USD/JPY 訊號不夠，最好設計成 composite score。
-
-簡化版本：
-   JPY unwind score =
-     z(-USDJPY 5D return)
-   + z(USDJPY realized vol 10D / 60D)
-   + z(-(US2Y - JP2Y) 20D change)
-   + z(-AUDJPY 5D return)
-   + z(VIX 5D change)
-當 score 進入歷史 90 或 95 分位，再當作 risk-off，而不是 USD/JPY 到 160 就觸發。
-
-────────────────────────────────────────────
-5. 值不值得做？相對現有訊號是否只是重複資訊？明確取捨
-
-我的取捨：值得做觀察頁與研究，不建議短期直接接 regime 總開關。
-
-原因很直接：你現有系統已經有 TWII MA20/MA60（本地趨勢）、OTCI（中小型風險偏好）、
-USDTWD（台幣資金壓力）、VIX（全球風險）、外資台指期 OI（外資槓桿方向）、三大法人現貨（本地資金流）。
-這些已經覆蓋大部分 risk-off 資訊。新增 JPY/KOSPI/KRW/SOX 很可能有 collinearity。
-尤其 KRW、KOSPI、VIX、SOX 在壓力時通常一起動，最後模型可能只是把同一件事算四次，導致 regime 過度轉空、錯過反彈。
-
-但有兩個方向仍值得做：
-● 第一優先：SOX/NVDA 隔夜半導體風險。
-  這對台股最有交易時差價值。建議不要先接 regime，而是接到：電子股選股扣分、半導體曝險上限、
-  隔日換股節奏、高 beta 動能股降權。它是產業鏈訊號，不只是宏觀 risk-off。
-● 第二優先：JPY carry unwind composite。
-  不要用 160。做成連續分數，專門處理尾部風險。它不應該每天影響 regime，而應該在極端分位時啟動：
-  暫停加碼、降低持股上限、提高現金、禁止買進高 beta / 高融資 / 高波動標的。
-● KOSPI/KRW：先放觀察頁，不急著接線。
-  KOSPI 日線破位多半同步。KRW 可能有一點亞洲 FX 領先性，但很可能和 USDTWD 重複。
-  除非回測證明它在控制 USDTWD 後仍能改善策略左尾，否則不值得增加模型複雜度。
-
-明確建議：
- 1. 做觀察頁：值得。
- 2. 做回測研究：值得，但要用嚴格 as-of time。
- 3. 直接接 regime：不建議。
- 4. 優先接策略 overlay，而不是總開關。
- 5. 若只能選一個做：先做 SOX/NVDA 隔夜訊號。
- 6. 若做第二個：做 JPY carry unwind composite，不要做 160 固定門檻。
- 7. KOSPI/KRW 先列入監控，不要讓它們左右 regime，除非通過增量測試。
-
-最終結論：這個提案方向合理，但原始版本太像「事後解釋型全球風險清單」。要把它變成可交易的
-market agent 模組，必須從「跨市場故事」改成「有時間戳、可執行、控制既有因子後仍有增量」的風控 overlay。
-否則只是把 VIX、USDTWD、TWII MA 已經告訴你的事情，用更多市場名稱重複一次。
-</pre></details><div class="card"><div class="card-title">⑤ 落地路徑（分階段，與 codex 收斂）</div><div class="label" style="line-height:1.9">報告方向對（補系統最弱的跨市場維度），但<b>不能照抄敘事接線</b>。落地應該是：</div><table class="data-table data-table--zebra"><thead><tr><th>階段</th><th>動作</th><th>風險/接線程度</th></tr></thead><tbody><tr><td>1 資料層</td><td>yfinance 補 JPY=X / ^KS11 / KRW=X（+已有 ^SOX）</td><td>零風險、不接決策</td></tr><tr><td>2 觀察頁 shadow</td><td>做一個 global_stress_score（波動調整、非四個孤立紅燈）+ 每日訊號快照留痕</td><td>只顯示、不影響選股/切檔</td></tr><tr><td>3 回測驗證</td><td>嚴格 as_of_time；Base regime vs Base+overlay 的 OOS 增量（MaxDD/左尾/Calmar）</td><td>研究，不接線</td></tr><tr><td>4a 接策略 overlay</td><td>SOX/NVDA→電子股扣分/半導體曝險上限；JPY composite→極端分位降槓桿</td><td>接『個股/曝險』，非 regime</td></tr><tr><td>4b regime（最後）</td><td>僅在 OOS 證明控制既有因子後仍有增量，才接 regime，且只當降檔煞車</td><td>最高門檻、可能永不接</td></tr></tbody></table><div class="note">若測完發現只降波動卻砍掉太多報酬 → 永遠留在 dashboard 當人工風險提示，不接決策。此路徑符合家規：重要決策先過 codex、先累積再改、FS 不重算。</div></div><div class="banner" style="border-left:3px solid var(--th-purple,#a855f7)"><b style="color:var(--th-purple,#a855f7)">🎯 決策要點</b>　真正的價值不是「多抓幾個市場」，而是一個<b>不重複、不偷看、能解釋左尾</b>的 stress overlay。跨市場訊號適合當<b>煞車輔助、不適合搶方向盤</b>。優先序：SOX/NVDA 隔夜訊號（最有交易時差價值）＞ JPY carry composite（尾部風控）＞ KOSPI/KRW（先監控）。此案適合「低成本做研究+監控」，不適合一開始就工程化進核心決策邏輯。</div><footer class="page-footer">設計/決策紀錄 ｜ 全球流動性風險雷達：跨市場故事 → 有時間戳可執行的風控 overlay ｜ codex 裁決：煞車不是方向盤</footer></body></html>
+<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">配對圖 入口</h1><div class="page-meta">6 組完整配對輪動圖總入口 ｜ 卡面 Z60 規則現況讀 pair_chart json（R6 不重算）</div><div class="card"><div class="card-title" style="color:var(--th-green,#10b981)">🗺 配對圖 入口</div><div class="label" style="line-height:1.7"><b>完整配對輪動圖</b>＝每組一頁互動工作台：Plotly 三聯圖（價格／對數價差＋Z60／Z60＋布林）＋5 項健康檢查燈＋<b>Z60 規則換股歷史</b>（含當次/累計績效）＋策略說明，並注入 K線×籌碼、雙 RRG、Z60 折返統計等套件。卡上「持有」為 <b>Z60 規則</b>現況；三類判讀決策看 🚪 精簡輪動入口（兩套框架並行對照）。</div></div><div style="display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin:0 0 6px"><a class="back-link" href="pair_rotation_lite_hub.html">🚪 精簡輪動入口</a><a class="back-link" href="pair_three_category_overview.html">🧭 三類判讀總覽</a></div><div class="card"><div class="card-title" style="color:var(--th-green,#10b981)">完整圖頁（6 組）</div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-top:8px"><a href="nan_xin_chart.html" class="card card--compact" style="display:block;text-decoration:none;color:inherit;border-left:3px solid var(--th-green,#10b981);padding:12px 14px"><div style="font-size:15px;font-weight:800">🗺 南電／欣興 <span style="font-size:11.5px;font-weight:400;color:var(--th-faint,#64748b)">8046/3037</span> <span style="color:var(--th-cyan,#7dd3fc);font-size:12px;font-weight:normal">→</span></div><div style="font-size:12.5px;line-height:2;margin-top:3px"><div><span style="color:var(--th-muted,#94a3b8)">持有（Z60 規則）</span> <b style="color:var(--th-cyan,#38bdf8)">→ 南電 8046</b></div><div><span style="color:var(--th-muted,#94a3b8)">Z60</span> <b>+2.59</b>　<span style="color:var(--th-muted,#94a3b8)">健康</span> <b style="color:var(--th-red,#ef4444)">🔴 RED</b>（警示 2）　<span style="color:var(--th-muted,#94a3b8)">換股</span> 3 次</div></div><div style="margin:3px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span style="color:var(--th-faint,#64748b);font-size:11px">PCB 載板（ABF）　資料日 2026-07-09</span></div></a><a href="jh_zy_chart.html" class="card card--compact" style="display:block;text-decoration:none;color:inherit;border-left:3px solid var(--th-green,#10b981);padding:12px 14px"><div style="font-size:15px;font-weight:800">🗺 晶豪科／智原 <span style="font-size:11.5px;font-weight:400;color:var(--th-faint,#64748b)">3006/3035</span> <span style="color:var(--th-cyan,#7dd3fc);font-size:12px;font-weight:normal">→</span></div><div style="font-size:12.5px;line-height:2;margin-top:3px"><div><span style="color:var(--th-muted,#94a3b8)">持有（Z60 規則）</span> <b style="color:var(--th-cyan,#38bdf8)">→ 智原 3035</b></div><div><span style="color:var(--th-muted,#94a3b8)">Z60</span> <b>+0.09</b>　<span style="color:var(--th-muted,#94a3b8)">健康</span> <b style="color:var(--th-amber,#eab308)">🟡 YELLOW</b>（警示 1）　<span style="color:var(--th-muted,#94a3b8)">換股</span> 1 次</div></div><div style="margin:3px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span style="color:var(--th-faint,#64748b);font-size:11px">IC 設計　資料日 2026-07-09</span></div></a><a href="pair_2344_2408.html" class="card card--compact" style="display:block;text-decoration:none;color:inherit;border-left:3px solid var(--th-green,#10b981);padding:12px 14px"><div style="font-size:15px;font-weight:800">🗺 華邦電／南亞科 <span style="font-size:11.5px;font-weight:400;color:var(--th-faint,#64748b)">2344/2408</span> <span style="color:var(--th-cyan,#7dd3fc);font-size:12px;font-weight:normal">→</span></div><div style="font-size:12.5px;line-height:2;margin-top:3px"><div><span style="color:var(--th-muted,#94a3b8)">持有（Z60 規則）</span> <b style="color:var(--th-cyan,#38bdf8)">→ 華邦電 2344</b></div><div><span style="color:var(--th-muted,#94a3b8)">Z60</span> <b>-0.92</b>　<span style="color:var(--th-muted,#94a3b8)">健康</span> <b style="color:var(--th-green,#22c55e)">🟢 GREEN</b>（警示 0）　<span style="color:var(--th-muted,#94a3b8)">換股</span> 0 次</div></div><div style="margin:3px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span style="color:var(--th-faint,#64748b);font-size:11px">電子業　資料日 2026-07-09</span></div></a><a href="pair_2049_4576.html" class="card card--compact" style="display:block;text-decoration:none;color:inherit;border-left:3px solid var(--th-green,#10b981);padding:12px 14px"><div style="font-size:15px;font-weight:800">🗺 上銀／大銀微系統 <span style="font-size:11.5px;font-weight:400;color:var(--th-faint,#64748b)">2049/4576</span> <span style="color:var(--th-cyan,#7dd3fc);font-size:12px;font-weight:normal">→</span></div><div style="font-size:12.5px;line-height:2;margin-top:3px"><div><span style="color:var(--th-muted,#94a3b8)">持有（Z60 規則）</span> <b style="color:var(--th-cyan,#38bdf8)">→ 上銀 2049</b></div><div><span style="color:var(--th-muted,#94a3b8)">Z60</span> <b>+0.16</b>　<span style="color:var(--th-muted,#94a3b8)">健康</span> <b style="color:var(--th-red,#ef4444)">🔴 RED</b>（警示 2）　<span style="color:var(--th-muted,#94a3b8)">換股</span> 2 次</div></div><div style="margin:3px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span style="color:var(--th-faint,#64748b);font-size:11px">滾珠螺桿　資料日 2026-07-09</span></div></a><a href="pair_9921_9914.html" class="card card--compact" style="display:block;text-decoration:none;color:inherit;border-left:3px solid var(--th-green,#10b981);padding:12px 14px"><div style="font-size:15px;font-weight:800">🗺 巨大／美利達 <span style="font-size:11.5px;font-weight:400;color:var(--th-faint,#64748b)">9921/9914</span> <span style="color:var(--th-cyan,#7dd3fc);font-size:12px;font-weight:normal">→</span></div><div style="font-size:12.5px;line-height:2;margin-top:3px"><div><span style="color:var(--th-muted,#94a3b8)">持有（Z60 規則）</span> <b style="color:var(--th-cyan,#38bdf8)">→ 美利達 9914</b></div><div><span style="color:var(--th-muted,#94a3b8)">Z60</span> <b>-1.07</b>　<span style="color:var(--th-muted,#94a3b8)">健康</span> <b style="color:var(--th-amber,#eab308)">🟡 YELLOW</b>（警示 1）　<span style="color:var(--th-muted,#94a3b8)">換股</span> 2 次</div></div><div style="margin:3px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span style="color:var(--th-faint,#64748b);font-size:11px">自行車　資料日 2026-07-09</span></div></a><a href="pair_2492_3026.html" class="card card--compact" style="display:block;text-decoration:none;color:inherit;border-left:3px solid var(--th-green,#10b981);padding:12px 14px"><div style="font-size:15px;font-weight:800">🗺 華新科／禾伸堂 <span style="font-size:11.5px;font-weight:400;color:var(--th-faint,#64748b)">2492/3026</span> <span style="color:var(--th-cyan,#7dd3fc);font-size:12px;font-weight:normal">→</span></div><div style="font-size:12.5px;line-height:2;margin-top:3px"><div><span style="color:var(--th-muted,#94a3b8)">持有（Z60 規則）</span> <b style="color:var(--th-cyan,#38bdf8)">→ 華新科 2492</b></div><div><span style="color:var(--th-muted,#94a3b8)">Z60</span> <b>-2.87</b>　<span style="color:var(--th-muted,#94a3b8)">健康</span> <b style="color:var(--th-red,#ef4444)">🔴 RED</b>（警示 3）　<span style="color:var(--th-muted,#94a3b8)">換股</span> 4 次</div></div><div style="margin:3px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span style="color:var(--th-faint,#64748b);font-size:11px">同產業　資料日 2026-07-09</span></div></a></div></div><footer class="page-footer">導覽頁｜配對清單=配對表.xlsx 單一來源｜每日隨管線更新</footer>
+<style id='MS_N_RRR_tooltip_inject_v2'>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: var(--th-bg,#0f172a);
+  color: var(--th-text,#e2e8f0);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid var(--th-border2,#475569);
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>
