@@ -1,6 +1,6 @@
 <!doctype html><html lang="zh-Hant"><head>
 <link rel="stylesheet" href="../assets/site.css?v=d8f7634d">
-<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=d8f7634d"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>雙 Z-score 過熱偵測 — Price Z250 + Volume Z60 ｜ MS_N_RR/RRR</title></head><body>
+<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=d8f7634d"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>配對交易入口 ｜ MS_N_RR/RRR</title></head><body>
 <script>(function(){var L=document.getElementById("ms-theme-css");if(!L)return;var q="?v=d8f7634d",b="../assets/";var DAY=["theme-red.css","theme-orange.css","theme-yellow.css","theme-green.css","theme-blue.css","theme-indigo.css","theme-violet.css"];function dayT(){return DAY[(new Date()).getDay()];}function ap(v){var t=(v==="auto")?dayT():v;L.setAttribute("href",b+t+q);}var sv=null;try{sv=localStorage.getItem("ms_theme");}catch(e){}if(!sv)sv="auto";ap(sv);var S=document.getElementById("ms-theme-sel");if(S){S.value=sv;S.addEventListener("change",function(){ap(S.value);try{localStorage.setItem("ms_theme",S.value);}catch(e){}});}})();</script>
 <!-- GLOBAL_NAV_START -->
 <nav class="gnav" id="gnav">
@@ -43,60 +43,7 @@
   });
 })();
 </script>
-<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">⚡ 雙 Z-score 過熱偵測 block — Price Z250 + Volume Z60</h1><!-- BLOCK B9 START --><div class="block-region" id="block-B9" data-block="B9" data-block-file="stock_zscore_block.html" data-block-kind="圖"><div class="block-region__tag">🧱 B9 · 📊 圖</div><h1 class="page-title">⚡ 雙 Z-score 過熱偵測 — 8046 南電 · Price Z250 + Volume Z60</h1><div class="note">8046 南電 的價量過熱偵測:Price Z250(價格相對近 250 日)與 Volume Z60(量能相對近 60 日)；|Z|≥2 為統計極端,價量同步過熱 = 追高風險。</div><div class="card">
-    <div>
-      <div style="margin-bottom:4px">
-        💵 close <b>1215.0</b> · 距 60d 高 +0.0%
-      </div>
-      <div style="margin-top:8px;font-size:12px;color:var(--th-text2)">
-        <b>Price Z250</b> (長線位階): <span style="color:var(--th-red,#ef4444);font-weight:bold">+2.62σ</span>
-        · 🔴 個股過熱 · Z60=+2.51σ
-      </div>
-      
-        <svg viewBox="0 0 360 36" width="100%" style="display:block">
-          <defs><linearGradient id="g262" x1="0" x2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="0.33" stop-color="#60a5fa"/><stop offset="0.5" stop-color="#22c55e"/><stop offset="0.67" stop-color="#fb923c"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs>
-          <rect x="8" y="12" width="344" height="12" rx="6"
-                fill="url(#g262)" opacity="0.5"/>
-          <line x1="180.0" y1="9" x2="180.0" y2="27"
-                stroke="#fff" stroke-width="1" opacity="0.6"/>
-          <text x="180.0" y="33" fill="#94a3b8" font-size="8" text-anchor="middle">0</text>
-          <text x="8" y="33" fill="#a78bfa" font-size="8" text-anchor="start">-3σ</text>
-          <text x="352" y="33" fill="#ef4444" font-size="8" text-anchor="end">+3σ</text>
-          <circle cx="330.2" cy="18" r="6"
-                  fill="#ef4444" stroke="#fff" stroke-width="1.5"/>
-          <text x="330.2" y="9" fill="#fff" font-size="10"
-                font-weight="bold" text-anchor="middle">+2.62</text>
-        </svg>
-        
-      <div style="margin-top:10px;font-size:12px;color:var(--th-text2)">
-        <b>Volume Z60</b> (量能異動): <span style="color:var(--th-green,#22c55e);font-weight:bold">-0.13σ</span>
-        · — 量平 ·
-        5d 均量 18,382,331 vs 60d 均量 19,172,607
-      </div>
-      
-        <svg viewBox="0 0 360 36" width="100%" style="display:block">
-          <defs><linearGradient id="g-13" x1="0" x2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="0.33" stop-color="#60a5fa"/><stop offset="0.5" stop-color="#22c55e"/><stop offset="0.67" stop-color="#fb923c"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs>
-          <rect x="8" y="12" width="344" height="12" rx="6"
-                fill="url(#g-13)" opacity="0.5"/>
-          <line x1="180.0" y1="9" x2="180.0" y2="27"
-                stroke="#fff" stroke-width="1" opacity="0.6"/>
-          <text x="180.0" y="33" fill="#94a3b8" font-size="8" text-anchor="middle">0</text>
-          <text x="8" y="33" fill="#a78bfa" font-size="8" text-anchor="start">-3σ</text>
-          <text x="352" y="33" fill="#ef4444" font-size="8" text-anchor="end">+3σ</text>
-          <circle cx="172.5" cy="18" r="6"
-                  fill="#22c55e" stroke="#fff" stroke-width="1.5"/>
-          <text x="172.5" y="9" fill="#fff" font-size="10"
-                font-weight="bold" text-anchor="middle">-0.13</text>
-        </svg>
-        
-      
-      <div style="font-size:10px;color:var(--th-faint);margin-top:6px">
-        💡 雙 Z 讀法: Price Z250 ≥ +2σ = 個股長線過熱 (5% 機率);
-        Volume Z60 ≥ +1.5σ = 量能異動.
-        雙過熱 (價量同步) = 派發風險 · 止跌爆量 = 轉強機會 · PM 加分 +0
-      </div>
-    </div>
-    </div><details class="explainer"><summary class="explainer__title">🗺 這個 block（B9 · 定義 · 判讀 · 資料 · 程式 · 換股 — 點開）</summary><div class="section-head">定義</div><div class="formula">Price Z250 = (收盤 − 近250日均) ÷ 近250日標準差(價格過熱/超賣)</div><div class="formula">Volume Z60 = (量 − 近60日均) ÷ 近60日標準差(量能過熱)</div><div class="formula">gauge 軸 [-3,+3]·0 居中;漸層 藍(超賣)→綠(常態)→紅(過熱)</div><div class="section-head">判讀（過熱偵測）</div><div class="note">|Z|≥2 = 統計極端;Price Z 高 + Volume Z 高 = &lt;b&gt;價量同步過熱&lt;/b&gt;(追高風險);Price Z 低 = 超賣。z-score 是相對自身近期的伸展度, 非絕對買賣訊號, 須搭配結構/籌碼判讀。</div><div class="section-head">資料來源 / 程式</div><div class="formula">FS <code>stock_zscore</code>(stock_zscore Agent;Price Z250 / Volume Z60)<br>R6 只讀 FS feature 不重算;渲染 100% 重用 src/agents/stock_dossier_report.py:_render_stock_zscore(sym)<br>程式:src/agents/stock_zscore_block.py:fragment / build_block</div><div class="section-head">換股 / 可組裝</div><div class="formula">換股:改 BLOCK_SYMBOL（本卡 8046 南電）或呼叫 fragment(symbol=…)<br>可組裝:blocks.fragment(&quot;B9&quot;) · blocks.assemble([…,&quot;B9&quot;])</div></details></div><!-- BLOCK B9 END -->
+<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">🔁 配對交易 入口 — 配對輪動全系統</h1><div class="note">配對輪動全系統：日常看「精簡輪動入口」（6 配對卡＋三類判讀＋配對圖），盤中看「即時看盤」；其餘為 RSR/RRR 訊號系統與換股決策紀錄。　<span style="color:var(--th-faint,#64748b)">（共 12 頁；本入口由 nav 收斂而來）</span></div><div class="section-head">🚪 主要入口（日常從這進）</div><div class="grid-3"><a href="pair_rotation_lite_hub.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-pink,#f472b6);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🔁 精簡輪動 入口</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">6 配對輪動卡＋三類判讀總覽＋配對圖入口（B15/B22/B14 全套）</div></div></a><a href="rt_home.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-pink,#f472b6);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📡 即時看盤 入口</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">盤中即時日K／主力動向（XQ RTD 5 秒流）</div></div></a></div><div class="section-head">🔁 RSR / RRR 訊號系統</div><div class="grid-3"><a href="rr.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-pink,#f472b6);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🔁 RSR 配對</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">相對強弱比值 配對訊號</div></div></a><a href="rrr.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-pink,#f472b6);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📐 RRR 配對</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">RRR 配對訊號</div></div></a><a href="rrr_resonance.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-pink,#f472b6);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🌀 RRR Resonance</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">RRR 共振訊號</div></div></a><a href="dynamic_rr.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-pink,#f472b6);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">⚡ 動態 RSR</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">動態配對 RSR</div></div></a><a href="custom_pairs.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-pink,#f472b6);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">⭐ 自選配對</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">自選 6 配對總表</div></div></a></div><div class="section-head">🔄 換股決策 / 紀錄</div><div class="grid-3"><a href="rcga_overview.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-pink,#f472b6);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🚦 RCGA 總覽</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">RVGO 系列 6 態換股環境總覽</div></div></a><a href="rotation_signals.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-pink,#f472b6);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🔄 換股訊號</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">換股訊號榜</div></div></a><a href="rotation_confirm_log.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-pink,#f472b6);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 換股確認紀錄</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">換股確認留痕（決策軌跡）</div></div></a><a href="rotation_case_study.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-pink,#f472b6);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📚 換股案例</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">換股案例研究</div></div></a><a href="backtest.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-pink,#f472b6);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📊 回測</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">配對策略回測</div></div></a></div>
 <style id='MS_N_RRR_tooltip_inject_v2'>
 .tip { position: relative; cursor: help; }
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
