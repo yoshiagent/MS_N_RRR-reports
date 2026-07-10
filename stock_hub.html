@@ -1,34 +1,6 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
+<!doctype html><html lang="zh-Hant"><head>
 <link rel="stylesheet" href="assets/site.css?v=d8f7634d">
-<link id="ms-theme-css" rel="stylesheet" href="assets/theme-classic.css?v=d8f7634d">
-<meta charset="utf-8">
-<title>週股權集中度重設計 — 顧問討論紀實 ｜ MS_N_RR/RRR</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-  .doc-wrap{max-width:860px;margin:0 auto;padding:18px 16px 60px}
-  .doc-wrap p{line-height:1.85;margin:10px 0;color:var(--th-text)}
-  .doc-wrap h2{margin:30px 0 10px;font-size:20px;border-bottom:1px solid var(--th-border);padding-bottom:6px}
-  .doc-wrap h3{margin:20px 0 6px;font-size:16px;color:var(--th-text2)}
-  .doc-wrap li{line-height:1.8;margin:5px 0}
-  .lead{color:var(--th-text2);font-size:15px;line-height:1.9}
-  .who{display:inline-block;font-size:12px;padding:1px 8px;border-radius:10px;
-       border:1px solid var(--th-border2);margin-right:4px}
-  .who-cio{color:var(--th-purple,#a78bfa)}
-  .who-codex{color:var(--th-info,#60a5fa)}
-  .who-gemini{color:var(--th-bull,#34d399)}
-  .podcast{background:var(--th-card);border:1px solid var(--th-border);border-radius:12px;
-           padding:18px 20px;margin:18px 0}
-  .podcast audio{width:100%;margin-top:10px}
-  .key{background:var(--th-card);border-left:3px solid var(--th-info,#60a5fa);
-       border-radius:6px;padding:12px 16px;margin:14px 0}
-  .key b{color:var(--th-info,#60a5fa)}
-  blockquote{border-left:3px solid var(--th-border2);margin:12px 0;padding:6px 14px;
-             color:var(--th-text2);font-style:italic}
-</style>
-</head>
-<body>
+<link id="ms-theme-css" rel="stylesheet" href="assets/theme-classic.css?v=d8f7634d"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>個股入口 ｜ MS_N_RR/RRR</title></head><body>
 <script>(function(){var L=document.getElementById("ms-theme-css");if(!L)return;var q="?v=d8f7634d",b="assets/";var DAY=["theme-red.css","theme-orange.css","theme-yellow.css","theme-green.css","theme-blue.css","theme-indigo.css","theme-violet.css"];function dayT(){return DAY[(new Date()).getDay()];}function ap(v){var t=(v==="auto")?dayT():v;L.setAttribute("href",b+t+q);}var sv=null;try{sv=localStorage.getItem("ms_theme");}catch(e){}if(!sv)sv="auto";ap(sv);var S=document.getElementById("ms-theme-sel");if(S){S.value=sv;S.addEventListener("change",function(){ap(S.value);try{localStorage.setItem("ms_theme",S.value);}catch(e){}});}})();</script>
 <!-- GLOBAL_NAV_START -->
 <nav class="gnav" id="gnav">
@@ -71,154 +43,7 @@
   });
 })();
 </script>
-<!-- GLOBAL_NAV_END -->
-<div class="doc-wrap">
-
-  <div class="page-title">📋 週股權集中度重設計 — 顧問討論紀實</div>
-  <div class="page-meta">
-    2026-06-24 ｜ 參與：
-    <span class="who who-cio">CIO（提案）</span>
-    <span class="who who-codex">codex ×3（gpt-5.5）</span>
-    <span class="who who-gemini">Gemini ×2</span>
-    ｜ <a href="chip_concentration.html">→ 看現行報告</a>
-  </div>
-
-  <p class="lead">這份文件記錄一次「多顧問交叉批判」的完整過程：從 CIO 對籌碼分析定義的兩個質疑出發，
-  經 codex 三輪、Gemini 兩輪的獨立討論與反覆驗證，最後靠「親手查證資料」收斂出可落地的設計。
-  本頁也附上把整段討論餵給 NotebookLM 自動生成的 Podcast。</p>
-
-  <div class="podcast" id="podcast">
-    <div class="section-head">🎙️ 討論 Podcast（NotebookLM 自動生成 · 繁體中文對談）</div>
-    <audio controls preload="none" src="media/chip_redesign_podcast.m4a">
-      您的瀏覽器不支援音訊播放，請<a href="media/chip_redesign_podcast.m4a">點此下載</a>。
-    </audio>
-    <p style="font-size:12px;color:var(--th-muted,#94a3b8);margin-top:8px">
-      由 NotebookLM 對本討論紀實生成的雙主持深度對談。內容為 AI 整理，細節以本文為準。</p>
-  </div>
-
-  <h2>緣起：CIO 的兩個質疑</h2>
-  <p>「週股權集中度排行」報告頁，CIO 在審閱時提出兩個尖銳質疑：</p>
-  <ol>
-    <li><b>散戶＝零股（&lt;1 張）不合理。</b> 系統把「散戶」定義成只持有 1–999 股（不滿一張）的零股族，
-    但真正的小股東（持幾張到幾十張）卻被歸進「中戶」。結果散戶占比常只有 0.2%–1.8%，
-    當成「主力吸籌＝大戶加碼＋散戶減碼」訊號的一條腿時幾乎沒有鑑別度。</li>
-    <li><b>董監持股（南電 63.38%）是否該排除，再分大戶散戶？</b> 控制股東（台塑集團）持約 63% 股權，
-    幾乎永不交易卻坐在「&gt;1000 張」級距，把大戶占比灌到 80% 以上，掩蓋真實流通盤的籌碼攻防。
-    董監／內部人動向（尤其申報轉讓）應另開一層追蹤。</li>
-  </ol>
-
-  <h2>根因：FinMind 只給匿名級距，大戶／散戶是我們自訂的</h2>
-  <p>資料源 FinMind 股權分散表（週更，2010 起）提供 15 個「按持股股數」切的<b>匿名級距</b>（人數／股數／占比），
-  但<b>沒有「大戶／散戶」標籤</b>，也不標明誰持有。目前的分類（大戶≥400 張、散戶=零股、中戶=其餘）
-  完全是系統自訂——要怎麼分檔、門檻設哪、標籤叫什麼，全由我們決定，改了重跑即可。</p>
-
-  <h2>四輪顧問交叉討論</h2>
-  <table class="data-table" style="margin:10px 0">
-    <thead><tr><th>輪次</th><th>顧問</th><th>重點</th></tr></thead>
-    <tbody>
-      <tr><td>R1</td><td class="who-codex">codex</td><td>認同直覺；散戶改≤10 張、多尺度、董監剔除概念、自估流通盤只能叫 proxy</td></tr>
-      <tr><td>R2</td><td class="who-codex">codex</td><td>可落地 v1（只用現有資料）、分階段、保留 400/1000 張、自列 10 項待二審</td></tr>
-      <tr><td>R3</td><td class="who-gemini">Gemini</td><td><b>反對 v1 單獨上線</b>（警示沒人看會誘導追高）、借券盲點、分點整合、市值分桶</td></tr>
-      <tr><td>R4</td><td class="who-codex">codex</td><td><b>借券語意修正</b>（成交量≠賣出餘額）、架構（股權維明細頁）、分點結合矩陣</td></tr>
-      <tr><td>R5</td><td class="who-gemini">Gemini</td><td><b>借券賣出餘額其實有日資料</b>、漏斗架構、專戶灌水、假量／還券／關鍵分點</td></tr>
-    </tbody>
-  </table>
-
-  <h3>第一、二輪（codex）：認同直覺 + 可落地 v1</h3>
-  <p>codex 認同 CIO 兩個直覺並修正：散戶停用零股、改「≤10 張」為主指標（可切換 10/30/50），零股獨立列；
-  多尺度六桶（零股／≤10／10–50／50–400／400–1000／&gt;1000 張）；訊號改「變化」（Δ4 週大戶↑ 且 Δ4 週散戶↓）；
-  大戶保留 400、1000 張兩條慣例線；自估流通盤只能叫 <code>adjusted_float_proxy</code> + 上下界 + 品質旗標。</p>
-
-  <h3>第三輪（Gemini）：強烈反對 v1 單獨上線</h3>
-  <blockquote>「警示文字在金融產品中效用趨近於零。南電出現大戶占比上升時，使用者會直覺解讀為主力買進而追高，
-  忽視那只是長年死籌。這不是分析工具，會變成誘導散戶接刀的工具。」</blockquote>
-  <p>Gemini 主張至少做到 v1.5（揭露董監持股）才可上線，並指出 codex 低估跨股可比性（張數分桶），
-  另拋三個盲點：時間滯後、分點斷層、<b>借券賣出會讓大戶加碼變成假吸籌</b>。</p>
-
-  <h3>第四輪（codex）：資料語意修正與架構切分</h3>
-  <p>codex 丟出一個會打臉系統現有程式的發現：我們存的 <code>securities_lending</code> 是<b>「借券成交量」</b>，
-  不是借券賣出餘額——借到股票≠已放空（含交割/套利/避險），所以現有 <code>lending_trend()</code> 標成「借券放空趨勢」其實標錯了，
-  只能軟降級、不能否決吸籌。架構上，<b>chip_concentration 應定位成 capital_structure「股權維」的明細頁</b>，
-  跨維交叉（借券/分點/融券）只在整合層做一份，避免重複計分。</p>
-
-  <h3>第五輪（Gemini）：推翻資料前提，補三個盲點</h3>
-  <p>Gemini 指出<b>證交所/FinMind 其實有「借券賣出餘額」日資料</b>，應直接切換使用；不同意把股權頁降格（應用「漏斗」：股權選潛力池→分點/借券加權）；
-  「專戶灌水大戶」嚴重性高（券商避險/權證/信託專戶被歸千張大戶）；並補三盲點：分點假量敲單、借券還券=軋空前兆、冷門股關鍵分點被聚合稀釋。</p>
-
-  <h2>🔑 決定性查證：借券賣出餘額資料一直都在</h2>
-  <div class="key">
-    <p>實測 FinMind <b>TaiwanDailyShortSaleBalances</b>，確認 Gemini 是對的，它有：</p>
-    <ul>
-      <li><code>SBLShortSalesCurrentDayBalance</code> ＝ <b>借券賣出餘額</b>（不是系統現存的成交量）</li>
-      <li><code>SBLShortSalesReturns</code> / <code>ShortCovering</code> ＝ 借券還券/回補（覆蓋 Gemini 的軋空前兆盲點）</li>
-      <li><code>MarginShortSalesCurrentDayBalance</code> ＝ 融券餘額</li>
-    </ul>
-    <p>全部日更、逐股。codex「只能軟降級（因缺真餘額）」的前提被推翻——<b>資料一直都在，系統只是用錯 dataset</b>。
-    這把 codex 與 Gemini 在「借券訊號強度」上的分歧直接解掉。</p>
-    <p style="font-size:13px;color:var(--th-text2)">實證（南電 8046）：借券賣出餘額近日 2.20M→2.39M→2.44M 持續上升＝空方部位建立中；融券餘額幾近 0
-    ——借券才是主力放空管道。這批數據（全池 49 檔、12,691 列、回補至 2025-06）已於今日抓妥落地。</p>
-  </div>
-
-  <h2>四輪收斂的最終設計</h2>
-  <ul>
-    <li><b>多尺度分桶</b>：零股／≤10 張（主散戶，可切換 10/30/50）／10–50／50–400／400–1000／&gt;1000 張。零股獨立列。</li>
-    <li><b>訊號改變化</b>：吸籌候選＝Δ4 週大戶↑ 且 Δ4 週散戶↓；棄用零股變化；加 1/4/12 週 + 千張同向確認。</li>
-    <li><b>借券改抓餘額</b>：lending 改抓 TaiwanDailyShortSaleBalances（借券賣出餘額/還券/融券餘額）；
-        高控制股 + 借券賣出餘額顯著上升＝籌碼惡化強警示（Z-score）。</li>
-    <li><b>架構（兩派調和）</b>：chip_concentration 保留獨立頁＝股權結構 + 候選訊號；
-        最終跨維信心由 capital_structure 一處算，股權頁顯唯讀融合標籤。股權是結構基底，行為（分點/借券）是修飾不是稀釋。</li>
-    <li><b>已知限制（誠實標示）</b>：匿名級距無法識別券商/信託專戶，「專戶灌水大戶」難在此層清洗，列已知限制；
-        proxy 不可叫官方 free float；級距中間用整檔歸類不要 pro-rate。</li>
-  </ul>
-
-  <h2>待 CIO 拍板 / 待回測</h2>
-  <p><b>待拍板：</b>v1 範圍（單純股權 / v1+v1.5 董監揭露 / 含借券交叉）；架構（降為股權維明細 vs 獨立漏斗）；借券是否先改抓餘額 dataset。</p>
-  <p><b>待回測：</b>訊號窗（4 週是否最佳）、警示門檻（借券 Z-score/千張集中度）、公司行動（除權息/減資/增資假訊號）、ETF/KY/金融股特例、四維等權是否獨立、FinMind 日期語義。</p>
-
-  <h2>方法論啟示</h2>
-  <p>codex 提供結構化嚴謹框架；Gemini 提供尖銳逆向質疑；而最關鍵的進展來自<b>親手查證資料</b>——
-  借券賣出餘額的存在直接解掉兩位顧問的核心分歧。設計決策不該只靠記憶或單一意見，
-  而要靠獨立交叉驗證 + 親手查證。</p>
-
-  <div class="page-footer">
-    顧問：codex（gpt-5.5，具網路查證）× Gemini（flash-lite）｜ Podcast：NotebookLM ｜
-    資料：FinMind 股權分散表 / TaiwanDailyShortSaleBalances ｜ 生成 2026-06-24
-  </div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- GLOBAL_NAV_END --><a class="back-link" href="index.html">← 返回主頁</a><h1 class="page-title">📂 個股 入口 — 卷宗＋深度料</h1><div class="note">個股兩個層級：<b>卷宗</b>＝單股完整檔案（股價結構×籌碼×警示×深度料卡）；<b>深度料</b>＝配對池深籌碼專頁（CMG 動力學＋吸收/派發）。皆每日重建。　<span style="color:var(--th-faint,#64748b)">（共 27 頁；本入口由 nav 收斂而來）</span></div><div class="section-head">📂 個股卷宗（16 檔·完整檔案）</div><div class="grid-3"><a href="dossier/1503.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 1503 士電</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">士電 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/2049.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 2049 上銀</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">上銀 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/2327.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 2327 國巨*</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">國巨* 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/2330.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 2330 台積電</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">台積電 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/2344.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 2344 華邦電</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">華邦電 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/2359.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 2359 所羅門</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">所羅門 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/2408.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 2408 南亞科</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">南亞科 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/2492.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 2492 華新科</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">華新科 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/3006.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 3006 晶豪科</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">晶豪科 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/3026.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 3026 禾伸堂</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">禾伸堂 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/3035.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 3035 智原</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">智原 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/3037.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 3037 欣興</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">欣興 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/4576.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 4576 大銀微系統</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">大銀微系統 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/8046.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 8046 南電</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">南電 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/9914.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 9914 美利達</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">美利達 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a><a href="dossier/9921.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">📋 9921 巨大</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">巨大 完整卷宗（結構／籌碼／警示／深度料卡）</div></div></a></div><div class="section-head">🔬 深度料（10 檔＋總覽·配對池深籌碼）</div><div class="grid-3"><a href="deep_profile.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🔬 深度料 個股總覽（hub）</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">深度料供給層總覽：CMG 動力學＋吸收/派發</div></div></a><a href="deep_profile_8046.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🔬 8046 南電</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">南電 深度料（CMG 動力學／吸收分／派發）</div></div></a><a href="deep_profile_3037.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🔬 3037 欣興</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">欣興 深度料（CMG 動力學／吸收分／派發）</div></div></a><a href="deep_profile_3006.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🔬 3006 晶豪科</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">晶豪科 深度料（CMG 動力學／吸收分／派發）</div></div></a><a href="deep_profile_3035.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🔬 3035 智原</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">智原 深度料（CMG 動力學／吸收分／派發）</div></div></a><a href="deep_profile_2344.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🔬 2344 華邦電</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">華邦電 深度料（CMG 動力學／吸收分／派發）</div></div></a><a href="deep_profile_2408.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🔬 2408 南亞科</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">南亞科 深度料（CMG 動力學／吸收分／派發）</div></div></a><a href="deep_profile_9921.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🔬 9921 巨大</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">巨大 深度料（CMG 動力學／吸收分／派發）</div></div></a><a href="deep_profile_9914.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🔬 9914 美利達</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">美利達 深度料（CMG 動力學／吸收分／派發）</div></div></a><a href="deep_profile_2049.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🔬 2049 上銀</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">上銀 深度料（CMG 動力學／吸收分／派發）</div></div></a><a href="deep_profile_4576.html" style="text-decoration:none;color:inherit"><div class="card" style="border-left:4px solid var(--th-green,#2dd4bf);height:100%"><div style="font-size:15.5px;font-weight:700;color:var(--th-cyan,#38bdf8)">🔬 4576 大銀微系統</div><div style="font-size:12.5px;color:var(--th-muted,#94a3b8);margin-top:5px;line-height:1.7">大銀微系統 深度料（CMG 動力學／吸收分／派發）</div></div></a></div>
 <style id='MS_N_RRR_tooltip_inject_v2'>
 .tip { position: relative; cursor: help; }
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
@@ -334,5 +159,4 @@
   }
 })();
 </script>
-</body>
-</html>
+</body></html>
