@@ -5,7 +5,8 @@
 <link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=d8f7634d">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>配對自選股 即時看盤入口</title>
+<title>配對 即時價差日K</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
 <style>
   html { overflow-x: hidden; }
   body {
@@ -14,37 +15,41 @@
     font-family:-apple-system,"Segoe UI","Microsoft JhengHei",sans-serif;
     line-height:1.7;
   }
-  #wrap { max-width:900px; margin:0 auto; padding:14px; }
-  h1 { font-size:1.15rem; margin:4px 0 6px 0; font-weight:700; }
-  #status { font-size:.82rem; color:var(--th-muted,#94a3b8); margin-bottom:12px; }
-  #status .dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+  #topbar { padding:10px 14px 0 14px; }
+  h1 { font-size:1.05rem; margin:0 0 6px 0; font-weight:700; }
+  #status { font-size:.8rem; color:var(--th-muted,#94a3b8); }
+  #status .dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px; vertical-align:middle; }
   .dot.live { background:var(--th-green,#4ade80); box-shadow:0 0 6px #4ade80; }
   .dot.stale { background:var(--th-hover,#64748b); }
-  #hint { display:none; background:var(--th-blue-bg,#0f2040); border:1px solid rgba(59,130,246,.3); color:var(--th-blue,#93c5fd);
-          border-radius:8px; padding:8px 12px; font-size:.8rem; margin-bottom:12px; }
-  .cards { display:grid; grid-template-columns:1fr; gap:12px; }
-  @media(min-width:640px){ .cards { grid-template-columns:1fr 1fr; } }
-  a.card {
-    display:block; text-decoration:none; color:var(--th-text,#e2e8f0);
-    background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:10px; padding:14px 16px;
-    transition:border-color .15s;
+  #chips { display:flex; flex-wrap:wrap; gap:6px; padding:8px 14px; }
+  .chip {
+    border:1px solid var(--th-border2,#334155); background:var(--th-card,#1e293b); color:var(--th-text,#e2e8f0);
+    border-radius:6px; padding:4px 9px; font-size:.8rem; cursor:pointer; white-space:nowrap;
   }
-  a.card:hover { border-color:#3b82f6; }
-  a.card .ttl { font-size:1rem; font-weight:700; color:var(--th-blue,#93c5fd); }
-  a.card .desc { font-size:.78rem; color:var(--th-muted,#94a3b8); margin-top:2px; }
-  h2 { font-size:.9rem; color:var(--th-blue,#93c5fd); margin:18px 0 8px 0; }
-  .pairgrid { display:grid; grid-template-columns:1fr; gap:8px; }
-  @media(min-width:640px){ .pairgrid { grid-template-columns:1fr 1fr; } }
-  @media(min-width:980px){ .pairgrid { grid-template-columns:1fr 1fr 1fr; } }
-  .pair { background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:8px; padding:6px 10px; }
-  .pair .g { font-size:.7rem; color:var(--th-muted,#94a3b8); }
-  .row { display:flex; justify-content:space-between; align-items:baseline; gap:6px; font-size:.84rem; }
-  .row .nm { font-weight:700; min-width:5.5em; }
-  .row .px { min-width:4.2em; text-align:right; }
-  .row .pct { min-width:4.6em; text-align:right; font-size:.78rem; }
-  .row .tv { min-width:7.5em; text-align:right; font-size:.72rem; color:var(--th-muted,#94a3b8); }
-  .up { color:var(--th-red,#f87171); } .down { color:var(--th-green,#4ade80); } .flat { color:var(--th-muted,#94a3b8); }
-  footer { padding:16px 0; font-size:.72rem; color:var(--th-muted,#94a3b8); }
+  .chip.active { border-color:#3b82f6; background:var(--th-blue-bg,#0f2040); color:var(--th-blue,#93c5fd); }
+  .chip .g { font-size:.66rem; color:var(--th-muted,#94a3b8); display:block; margin-bottom:1px; }
+  .up { color:var(--th-red,#f87171); }   /* 台股慣例:紅=價差走高(A 相對強) */
+  .down { color:var(--th-green,#4ade80); } /* 綠=價差走低(B 相對強) */
+  .flat { color:var(--th-muted,#94a3b8); }
+  #stats {
+    display:flex; flex-wrap:wrap; gap:4px 16px; padding:6px 14px; font-size:.86rem;
+    background:var(--th-card,#131f2e); border-top:1px solid var(--th-border,#2d3f55); border-bottom:1px solid var(--th-border,#2d3f55);
+  }
+  #stats b { font-size:1.02rem; }
+  #stats .lbl { color:var(--th-muted,#94a3b8); font-size:.75rem; margin-right:4px; }
+  #stats .sep { color:var(--th-border2,#334155); }
+  #verdict { padding:6px 14px; font-size:.84rem; }
+  .badge { display:inline-block; border-radius:6px; padding:2px 8px; font-size:.8rem; font-weight:700; }
+  .badge.a { background:rgba(248,113,113,.14); color:var(--th-red,#f87171); border:1px solid rgba(248,113,113,.35); }
+  .badge.b { background:rgba(74,222,128,.14); color:var(--th-green,#4ade80); border:1px solid rgba(74,222,128,.35); }
+  .badge.n { background:var(--th-blue-bg,#0f2040); color:var(--th-blue,#93c5fd); border:1px solid rgba(59,130,246,.3); }
+  #rangebtns { padding:6px 14px; display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
+  .rbtn { border:1px solid var(--th-border2,#334155); background:var(--th-card,#1e293b); color:var(--th-muted,#94a3b8); border-radius:6px; padding:2px 10px; font-size:.78rem; cursor:pointer; }
+  .rbtn.active { border-color:#3b82f6; color:var(--th-blue,#93c5fd); background:var(--th-blue-bg,#0f2040); }
+  .tgl { border:1px solid var(--th-border2,#334155); background:var(--th-card,#1e293b); color:var(--th-muted,#94a3b8); border-radius:6px; padding:2px 10px; font-size:.78rem; cursor:pointer; }
+  .tgl.active { border-color:#fb923c; color:var(--th-orange,#fb923c); }
+  #chart { display:block; width:100vw !important; max-width:100vw; margin:0; overflow:hidden; }
+  footer { padding:10px 14px 20px 14px; font-size:.72rem; color:var(--th-muted,#94a3b8); }
 </style>
 </head>
 <body>
@@ -91,93 +96,362 @@
 })();
 </script>
 <!-- GLOBAL_NAV_END -->
-<div id="wrap">
-  <h1>配對自選股 即時看盤入口</h1>
-  <div id="status"><span class="dot stale"></span><span id="statustext">載入中…</span></div>
-  <div id="hint">資料靜止:請確認 XQ 已登入,並點桌面捷徑「配對即時日K」啟動 poller。</div>
-
-  <div class="cards">
-    <a class="card" href="pair_realtime_k.html">
-      <div class="ttl">📈 即時日K</div>
-      <div class="desc">12 檔日K+量能,今日K棒盤中即時跳動,MA5/MA20,近3月/6月/全部</div>
-    </a>
-    <a class="card" href="pair_mainforce_live.html">
-      <div class="ttl">🔍 主力動向即時觀察</div>
-      <div class="desc">T(特大+大單)/ V(主散背離)盤中走勢+快照表,配對篩選,訊號研判表</div>
-    </a>
-    <a class="card" href="pair_realtime_spread_k.html">
-      <div class="ttl">📊 即時價差日K</div>
-      <div class="desc">6 配對 ln(A/B) 價差K線,今日盤中即時併棒,布林 MA20±2σ + Z20/Z60 換股訊號</div>
-    </a>
+<div id="topbar">
+  <h1>配對 即時價差日K <span style="font-size:.7rem;color:var(--th-orange,#fb923c);">ln(A/B) · prototype</span></h1>
+  <div style="font-size:.75rem;margin-bottom:2px;">
+    <a href="rt_home.html" style="color:var(--th-blue,#93c5fd);text-decoration:none;">🏠 入口</a>
+    <span style="color:var(--th-text,#334155);"> | </span>
+    <a href="pair_realtime_k.html" style="color:var(--th-blue,#93c5fd);text-decoration:none;">📈 個股即時日K</a>
+    <span style="color:var(--th-text,#334155);"> | </span>
+    <a href="pair_mainforce_live.html" style="color:var(--th-blue,#93c5fd);text-decoration:none;">🔍 主力動向</a>
+    <span style="color:var(--th-text,#334155);"> | </span>
+    <a href="spread_candle_block.html" style="color:var(--th-blue,#93c5fd);text-decoration:none;">🧱 B22 價差K線(逐筆精確)</a>
   </div>
-
-  <h2>12 檔即時速覽 <span style="font-weight:400;color:var(--th-muted,#94a3b8);font-size:.72rem;">現價/漲跌% · T=主力 V=背離</span></h2>
-  <div id="pairgrid" class="pairgrid"></div>
-
-  <footer>資料源:XQ RTD 約 5 秒更新 · 手機請開 Tailscale VPN 後訪問同路徑</footer>
+  <div id="status"><span class="dot stale"></span><span id="statustext">載入中…</span></div>
 </div>
+<div id="chips"></div>
+<div id="stats"></div>
+<div id="verdict"></div>
+<div id="rangebtns">
+  <span class="lbl" style="color:var(--th-muted,#94a3b8);font-size:.75rem;">顯示範圍</span>
+  <button class="rbtn" data-n="60">近3月</button>
+  <button class="rbtn" data-n="120">近6月</button>
+  <button class="rbtn" data-n="0">全部</button>
+  <span class="sep" style="width:8px;"></span>
+  <button id="bbtn" class="tgl active">布林 MA20±2σ</button>
+</div>
+<div id="chart"></div>
+<footer>
+  價差定義 = <b>ln(A/B) = ln(A) − ln(B)</b>(對數比值,尺度無關,與 Z20/RVGO 訊號鏈同源)。
+  紅 K = 價差走高(A 相對走強)、綠 K = 價差走低(B 相對走強)。
+  High/Low 為<b>日線相關性收縮估計</b>(rA,rB,ρ60),非逐筆同步極值,不可用於觸價/停損;逐筆精確版見
+  <a href="spread_candle_block.html" style="color:var(--th-blue,#93c5fd);">B22 價差K線</a>。
+  最後一根為今日盤中即時(RTD 約 5 秒),兩腿皆需成交才併入;盤中總量為當日累計,量比僅供參考。
+  資料源:XQ 全球贏家 RTD(即時)+ FinMind 還原價(歷史,stockHisData)。
+</footer>
 <script>
 "use strict";
-const PAIRS = [
-  {g:"PCB載板", ss:[["8046","南電"],["3037","欣興"]]},
-  {g:"IC設計",  ss:[["3006","晶豪科"],["3035","智原"]]},
-  {g:"記憶體",  ss:[["2344","華邦電"],["2408","南亞科"]]},
-  {g:"傳動元件",ss:[["2049","上銀"],["4576","大銀微系統"]]},
-  {g:"自行車",  ss:[["9921","巨大"],["9914","美利達"]]},
-  {g:"被動元件",ss:[["2492","華新科"],["3026","禾伸堂"]]},
-];
+const UP = "#f87171", DOWN = "#4ade80";          // 台股紅漲綠跌(此處=價差升/降)
+const MIDC = "#fb923c", BANDC = "rgba(148,163,184,.55)", BANDFILL = "rgba(148,163,184,.07)";
+const VA_C = "#38bdf8", VB_C = "#c084fc";         // 兩腿相對量色(天藍/紫)
 const POLL_MS = 5000, STALE_MS = 30000;
-let QUOTES = null;
-const $ = s => document.querySelector(s);
-const pc = v => v > 0 ? "up" : v < 0 ? "down" : "flat";
-const f = (v,d=2) => v == null ? "–" : Number(v).toFixed(d);
+const CORR_WIN = 60, CORR_MIN = 20, BB_WIN = 20, Z60_WIN = 60;
 
-function render(){
-  const el = $("#pairgrid");
-  el.innerHTML = "";
-  for (const p of PAIRS){
-    const d = document.createElement("div");
-    d.className = "pair";
-    let html = `<div class="g">${p.g}</div>`;
-    for (const [sym, name] of p.ss){
-      const q = QUOTES && QUOTES.stocks[sym];
-      const chg = q ? q.change_pct : null;
-      html += `<div class="row">
-        <span class="nm">${name}</span>
-        <span class="px ${chg==null?"flat":pc(chg)}">${q?f(q.price):"–"}</span>
-        <span class="pct ${chg==null?"flat":pc(chg)}">${chg==null?"–":(chg>0?"+":"")+f(chg)}%</span>
-        <span class="tv">T ${q?f(q.t_main,1):"–"} · V ${q?f(q.v_div,1):"–"}</span>
-      </div>`;
+let HIST = null, QUOTES = null;
+let pi = 0, rangeN = 60, showBB = true;
+
+const $ = s => document.querySelector(s);
+const pctClass = v => v > 0 ? "up" : v < 0 ? "down" : "flat";
+function fmt(v, d=2){ return v == null || !isFinite(v) ? "–" : Number(v).toFixed(d); }
+
+/* ---------- 對齊兩腿日期 (交集) ---------- */
+function alignPair(sa, sb){
+  const mb = new Map();
+  for (let i=0;i<sb.dates.length;i++) mb.set(sb.dates[i], i);
+  const out = { dates:[], oA:[],hA:[],lA:[],cA:[],vA:[], oB:[],hB:[],lB:[],cB:[],vB:[] };
+  for (let i=0;i<sa.dates.length;i++){
+    const j = mb.get(sa.dates[i]);
+    if (j === undefined) continue;
+    out.dates.push(sa.dates[i]);
+    out.oA.push(sa.o[i]); out.hA.push(sa.h[i]); out.lA.push(sa.l[i]); out.cA.push(sa.c[i]); out.vA.push(sa.v[i]);
+    out.oB.push(sb.o[j]); out.hB.push(sb.h[j]); out.lB.push(sb.l[j]); out.cB.push(sb.c[j]); out.vB.push(sb.v[j]);
+  }
+  return out;
+}
+
+/* ---------- 併入今日即時價差棒 (兩腿皆 fresh 才併) ---------- */
+function mergeLive(al, symA, symB){
+  const liveOk = QUOTES && (!QUOTES.session || QUOTES.session === "live");
+  if (!liveOk) return al;
+  const qa = QUOTES.stocks[symA], qb = QUOTES.stocks[symB];
+  if (!qa || !qb || qa.fresh === false || qb.fresh === false) return al;
+  if (qa.price == null || qa.open == null || qb.price == null || qb.open == null) return al;
+  const d = QUOTES.market_date;
+  const last = al.dates[al.dates.length - 1];
+  const row = {
+    oA:qa.open, hA:(qa.high!=null?qa.high:Math.max(qa.open,qa.price)), lA:(qa.low!=null?qa.low:Math.min(qa.open,qa.price)), cA:qa.price, vA:qa.total_volume,
+    oB:qb.open, hB:(qb.high!=null?qb.high:Math.max(qb.open,qb.price)), lB:(qb.low!=null?qb.low:Math.min(qb.open,qb.price)), cB:qb.price, vB:qb.total_volume,
+  };
+  const push = () => { al.dates.push(d); for (const k in row) al[k].push(row[k]); };
+  const set  = i => { for (const k in row) al[k][i] = row[k]; };
+  if (d > last) push();
+  else if (d === last) set(al.dates.length - 1);
+  return al;
+}
+
+/* ---------- 滾動相關係數 (log 報酬, 窗 CORR_WIN, 最少 CORR_MIN) ---------- */
+function rollingCorr(retA, retB){
+  const n = retA.length, out = new Array(n).fill(null);
+  for (let i=0;i<n;i++){
+    const s = Math.max(0, i - CORR_WIN + 1);
+    let na=0, sa=0, sb=0, saa=0, sbb=0, sab=0;
+    for (let k=s;k<=i;k++){
+      const a=retA[k], b=retB[k];
+      if (a==null||b==null) continue;
+      na++; sa+=a; sb+=b; saa+=a*a; sbb+=b*b; sab+=a*b;
     }
-    d.innerHTML = html;
-    el.appendChild(d);
+    if (na < CORR_MIN) continue;
+    const cov = sab/na - (sa/na)*(sb/na);
+    const va = saa/na - (sa/na)**2, vb = sbb/na - (sb/na)**2;
+    if (va<=0 || vb<=0) continue;
+    out[i] = Math.max(-1, Math.min(1, cov/Math.sqrt(va*vb)));
   }
+  return out;
 }
+
+/* ---------- 價差 OHLC (open/close 精確;high/low 相關性收縮估計) ---------- */
+function spreadCandles(al){
+  const n = al.dates.length;
+  const so=new Array(n), sc=new Array(n), sh=new Array(n), sl=new Array(n);
+  // 兩腿收盤 log 報酬 → 滾動相關
+  const retA=new Array(n).fill(null), retB=new Array(n).fill(null);
+  for (let i=1;i<n;i++){ retA[i]=Math.log(al.cA[i]/al.cA[i-1]); retB[i]=Math.log(al.cB[i]/al.cB[i-1]); }
+  const rho = rollingCorr(retA, retB);
+  for (let i=0;i<n;i++){
+    so[i] = Math.log(al.oA[i]/al.oB[i]);
+    sc[i] = Math.log(al.cA[i]/al.cB[i]);
+    const bodyHi = Math.max(so[i], sc[i]), bodyLo = Math.min(so[i], sc[i]);
+    const r = rho[i];
+    if (r == null){ sh[i]=bodyHi; sl[i]=bodyLo; continue; }   // ρ 暖身期:只畫實體
+    const rA = Math.log(al.hA[i]/al.lA[i]), rB = Math.log(al.hB[i]/al.lB[i]);
+    const range = Math.sqrt(Math.max(0, rA*rA + rB*rB - 2*r*rA*rB));
+    const span = bodyHi - bodyLo;
+    const extra = Math.max(0, range - span) / 2;
+    sh[i] = bodyHi + extra; sl[i] = bodyLo - extra;
+  }
+  return { so, sc, sh, sl, rho };
+}
+
+/* ---------- 移動平均 / 標準差 (母體 σ, ÷n) ---------- */
+function ma(arr, w){
+  const out=new Array(arr.length).fill(null); let s=0;
+  for (let i=0;i<arr.length;i++){ s+=arr[i]; if(i>=w)s-=arr[i-w]; if(i>=w-1)out[i]=s/w; }
+  return out;
+}
+function rollStd(arr, mean, w){
+  const out=new Array(arr.length).fill(null);
+  for (let i=w-1;i<arr.length;i++){
+    let s=0; for (let k=i-w+1;k<=i;k++){ const d=arr[k]-mean[i]; s+=d*d; }
+    out[i]=Math.sqrt(s/w);
+  }
+  return out;
+}
+
+/* ---------- 繪圖 ---------- */
+function currentPair(){ return HIST.pairs[pi]; }
+
+function draw(){
+  if (!HIST) return;
+  const p = currentPair();
+  const symA = p.stocks[0].symbol, symB = p.stocks[1].symbol;
+  const nameA = p.stocks[0].name, nameB = p.stocks[1].name;
+  const ha = HIST.history[symA], hb = HIST.history[symB];
+  if (!ha || !hb){ return; }
+
+  let al = alignPair(ha, hb);
+  al = mergeLive(al, symA, symB);
+  const { so, sc, sh, sl } = spreadCandles(al);
+  const n = al.dates.length;
+
+  const mid = ma(sc, BB_WIN);
+  const sd  = rollStd(sc, mid, BB_WIN);
+  const bbUp = mid.map((m,i)=> m==null||sd[i]==null ? null : m+2*sd[i]);
+  const bbLo = mid.map((m,i)=> m==null||sd[i]==null ? null : m-2*sd[i]);
+
+  // 相對量 = 各腿量 ÷ 自身 20 日均量
+  const vaMa = ma(al.vA, BB_WIN), vbMa = ma(al.vB, BB_WIN);
+  const relA = al.vA.map((v,i)=> vaMa[i]? v/vaMa[i] : null);
+  const relB = al.vB.map((v,i)=> vbMa[i]? v/vbMa[i] : null);
+
+  const start = rangeN > 0 ? Math.max(0, n - rangeN) : 0;
+  const shV = sh.slice(start), slV = sl.slice(start);
+  let yLo = Math.min(...slV), yHi = Math.max(...shV);
+  if (showBB){
+    for (let i=start;i<n;i++){ if(bbLo[i]!=null) yLo=Math.min(yLo,bbLo[i]); if(bbUp[i]!=null) yHi=Math.max(yHi,bbUp[i]); }
+  }
+  const pad = (yHi - yLo) * 0.06 || 0.01;
+  const relSlice = relA.slice(start).concat(relB.slice(start)).filter(x=>x!=null);
+  const vHi = Math.max(1.2, ...relSlice) * 1.1;
+
+  const upC = sc.map((c,i)=> c >= so[i] ? UP : DOWN);
+  const traces = [
+    { type:"candlestick", x:al.dates, open:so, high:sh, low:sl, close:sc,
+      increasing:{line:{color:UP, width:1}, fillcolor:UP},
+      decreasing:{line:{color:DOWN, width:1}, fillcolor:DOWN},
+      name:"價差K", yaxis:"y", showlegend:false, line:{width:1},
+      hoverlabel:{bgcolor:"#1e293b", bordercolor:"#334155", font:{color:"#e2e8f0", size:12}} },
+  ];
+  if (showBB){
+    traces.push(
+      { type:"scatter", mode:"lines", x:al.dates, y:bbUp, name:"+2σ",
+        line:{color:BANDC, width:1, dash:"dot"}, hoverinfo:"skip", yaxis:"y" },
+      { type:"scatter", mode:"lines", x:al.dates, y:bbLo, name:"−2σ",
+        line:{color:BANDC, width:1, dash:"dot"}, fill:"tonexty", fillcolor:BANDFILL,
+        hoverinfo:"skip", yaxis:"y" },
+      { type:"scatter", mode:"lines", x:al.dates, y:mid, name:"MA20",
+        line:{color:MIDC, width:1.3}, hoverinfo:"skip", yaxis:"y" },
+    );
+  }
+  traces.push(
+    { type:"bar", x:al.dates, y:relA, name:`${nameA} 量比`, yaxis:"y2",
+      marker:{color:VA_C, opacity:.6},
+      hovertemplate:`${nameA} 量能 %{y:.2f}×<extra></extra>`,
+      hoverlabel:{bgcolor:"#1e293b", bordercolor:"#334155", font:{color:"#e2e8f0", size:11}} },
+    { type:"bar", x:al.dates, y:relB, name:`${nameB} 量比`, yaxis:"y2",
+      marker:{color:VB_C, opacity:.6},
+      hovertemplate:`${nameB} 量能 %{y:.2f}×<extra></extra>`,
+      hoverlabel:{bgcolor:"#1e293b", bordercolor:"#334155", font:{color:"#e2e8f0", size:11}} },
+  );
+
+  const css = getComputedStyle(document.body);
+  const T = (k, fb) => (css.getPropertyValue(k) || "").trim() || fb;
+  const h = Math.max(Math.min(window.innerHeight - 300, 720), 400);
+  const layout = {
+    height:h, autosize:true, barmode:"group", bargap:0.15,
+    paper_bgcolor:T("--th-bg","#0d1117"), plot_bgcolor:T("--th-card","#111827"),
+    font:{color:T("--th-muted","#94a3b8"), size:11},
+    margin:{l:8, r:56, t:10, b:26},
+    dragmode:false, hovermode:"x unified",
+    legend:{orientation:"h", x:1, xanchor:"right", y:1.04, font:{color:"#94a3b8", size:10}},
+    xaxis:{ type:"category", range:[start-0.5, n-0.5], rangeslider:{visible:false},
+      gridcolor:T("--th-border","#1f2937"), tickmode:"auto", nticks:8, fixedrange:true },
+    yaxis:{ domain:[0.26, 1], range:[yLo-pad, yHi+pad], side:"right",
+      gridcolor:T("--th-border","#1f2937"), fixedrange:true, tickformat:".3f",
+      zeroline:true, zerolinecolor:"rgba(148,163,184,.25)" },
+    yaxis2:{ domain:[0, 0.22], range:[0, vHi], side:"right",
+      gridcolor:T("--th-border","#1f2937"), fixedrange:true, tickformat:".1f",
+      title:{text:"量比×", font:{size:9}} },
+    shapes:[{ type:"line", xref:"paper", x0:0, x1:1, yref:"y2", y0:1, y1:1,
+      line:{color:"rgba(148,163,184,.4)", width:1, dash:"dot"} }],
+    title:{ text:`${nameA} ${symA} ÷ ${nameB} ${symB} 價差`, font:{color:T("--th-text","#e2e8f0"), size:13}, x:0.02, y:0.99 },
+  };
+  Plotly.react("chart", traces, layout,
+    {displayModeBar:false, scrollZoom:false, doubleClick:false, responsive:true});
+}
+
+/* ---------- 上方資訊 ---------- */
+function renderChips(){
+  const el = $("#chips"); el.innerHTML = "";
+  HIST.pairs.forEach((p, i) => {
+    const b = document.createElement("button");
+    b.className = "chip" + (i === pi ? " active" : "");
+    b.innerHTML = `<span class="g">${p.group}</span>${p.stocks[0].name} / ${p.stocks[1].name}`;
+    b.onclick = () => { pi = i; renderChips(); renderStats(); draw(); };
+    el.appendChild(b);
+  });
+}
+
+/* 依當前對齊序列重算最新一根的價差讀數 (與圖同源) */
+function latestMetrics(){
+  const p = currentPair();
+  const symA = p.stocks[0].symbol, symB = p.stocks[1].symbol;
+  const ha = HIST.history[symA], hb = HIST.history[symB];
+  if (!ha || !hb) return null;
+  let al = alignPair(ha, hb);
+  al = mergeLive(al, symA, symB);
+  const { sc } = spreadCandles(al);
+  const n = sc.length, i = n - 1;
+  const mid = ma(sc, BB_WIN), sd = rollStd(sc, mid, BB_WIN);
+  const mid60 = ma(sc, Z60_WIN), sd60 = rollStd(sc, mid60, Z60_WIN);
+  const up = mid[i]!=null && sd[i]!=null ? mid[i]+2*sd[i] : null;
+  const lo = mid[i]!=null && sd[i]!=null ? mid[i]-2*sd[i] : null;
+  const z20 = (sd[i]) ? (sc[i]-mid[i])/sd[i] : null;
+  const z60 = (sd60[i]) ? (sc[i]-mid60[i])/sd60[i] : null;
+  const pctB = (up!=null && lo!=null && up>lo) ? (sc[i]-lo)/(up-lo) : null;
+  const prev = i>0 ? sc[i-1] : null;
+  return { symA, symB, nameA:p.stocks[0].name, nameB:p.stocks[1].name,
+           date:al.dates[i], sc:sc[i], prev, z20, z60, pctB,
+           ratio:Math.exp(sc[i]), cA:al.cA[i], cB:al.cB[i] };
+}
+
+function renderStats(){
+  const el = $("#stats");
+  const m = latestMetrics();
+  if (!m){ el.innerHTML = `<span class="lbl">無資料</span>`; $("#verdict").innerHTML=""; return; }
+  const qa = QUOTES && QUOTES.stocks[m.symA], qb = QUOTES && QUOTES.stocks[m.symB];
+  const dSpread = m.prev!=null ? m.sc - m.prev : null;
+  const dCls = pctClass(dSpread);
+  const legHtml = (nm, q) => {
+    if (!q) return `<span><span class="lbl">${nm}</span>–</span>`;
+    const c = pctClass(q.change_pct);
+    return `<span><span class="lbl">${nm}</span><b class="${c}">${fmt(q.price)}</b> <span class="${c}" style="font-size:.78rem;">${q.change_pct>0?"+":""}${fmt(q.change_pct)}%</span></span>`;
+  };
+  el.innerHTML = `
+    ${legHtml(m.nameA, qa)}
+    <span class="sep">│</span>
+    ${legHtml(m.nameB, qb)}
+    <span class="sep">│</span>
+    <span><span class="lbl">價差 ln(A/B)</span><b class="${dCls}">${fmt(m.sc,3)}</b>
+      ${dSpread!=null?`<span class="${dCls}" style="font-size:.78rem;">${dSpread>0?"▲":dSpread<0?"▼":""}${fmt(Math.abs(dSpread),3)}</span>`:""}</span>
+    <span><span class="lbl">比值 A/B</span>${fmt(m.ratio,3)}</span>
+    <span><span class="lbl">Z20</span><b class="${zCls(m.z20)}">${fmt(m.z20,2)}</b>σ</span>
+    <span><span class="lbl">Z60</span>${fmt(m.z60,2)}σ</span>
+    <span><span class="lbl">%B</span>${m.pctB==null?"–":fmt(m.pctB*100,0)+"%"}</span>`;
+  renderVerdict(m);
+}
+
+function zCls(z){ return z==null?"flat": z>=2?"up": z<=-2?"down":"flat"; }
+
+function renderVerdict(m){
+  const el = $("#verdict");
+  const z = m.z20;
+  if (z == null){ el.innerHTML = `<span class="badge n">資料不足</span> <span style="color:var(--th-muted,#94a3b8);font-size:.8rem;">價差樣本未滿 ${BB_WIN} 日</span>`; return; }
+  let badge, txt;
+  if (z >= 2){ badge = `<span class="badge a">價差偏高 · ${m.nameA} 相對貴</span>`;
+    txt = `價差站上 +2σ:<b>${m.nameA}</b> 相對 <b>${m.nameB}</b> 偏貴,配對輪動偏向 <b>減 ${m.nameA} / 加 ${m.nameB}</b>(等待回歸中軸)。`; }
+  else if (z <= -2){ badge = `<span class="badge b">價差偏低 · ${m.nameB} 相對貴</span>`;
+    txt = `價差跌破 −2σ:<b>${m.nameB}</b> 相對 <b>${m.nameA}</b> 偏貴,配對輪動偏向 <b>減 ${m.nameB} / 加 ${m.nameA}</b>(等待回歸中軸)。`; }
+  else if (z >= 1){ badge = `<span class="badge n">中軸上方</span>`; txt = `價差在中軸上方(+1σ~+2σ),${m.nameA} 略強,尚未到極端,觀察是否觸帶。`; }
+  else if (z <= -1){ badge = `<span class="badge n">中軸下方</span>`; txt = `價差在中軸下方(−1σ~−2σ),${m.nameB} 略強,尚未到極端,觀察是否觸帶。`; }
+  else { badge = `<span class="badge n">中性</span>`; txt = `價差貼近中軸(±1σ 內),兩檔相對強弱均衡,無明顯輪動訊號。`; }
+  el.innerHTML = `${badge} <span style="color:var(--th-text,#cbd5e1);font-size:.82rem;">${txt}</span>`;
+}
+
 function renderStatus(){
-  const dot = $("#status .dot"), txt = $("#statustext"), hint = $("#hint");
-  if (!QUOTES){ dot.className="dot stale"; txt.textContent="無即時資料"; hint.style.display="block"; return; }
-  const age = Date.now() - new Date(QUOTES.updated.replace(" ","T")).getTime();
-  let stale = false;
-  if (QUOTES.session === "prev_day"){ dot.className="dot stale"; txt.textContent=`盤前/非本日資料 · 快照 ${QUOTES.updated}`; }
-  else if (QUOTES.session === "closed"){ dot.className="dot stale"; txt.textContent=`非交易日 · 快照 ${QUOTES.updated}`; }
-  else if (age < STALE_MS){ dot.className="dot live"; txt.textContent=`即時更新中 · 快照 ${QUOTES.updated}`; }
-  else {
-    dot.className="dot stale"; stale = true;
-    const t = QUOTES.stocks["8046"] ? QUOTES.stocks["8046"].time : "";
-    txt.textContent = (t >= "13:30:00" ? "已收盤 · " : "資料靜止 · ") + `最後快照 ${QUOTES.updated}`;
-    if (t >= "13:30:00") stale = false;   // 收盤屬正常靜止,不提示
+  const dot = $("#status .dot"), txt = $("#statustext");
+  if (!QUOTES){ dot.className = "dot stale"; txt.textContent = "無即時資料"; return; }
+  const age = Date.now() - new Date(QUOTES.updated.replace(" ", "T")).getTime();
+  const p = currentPair();
+  const t = QUOTES.stocks[p.stocks[0].symbol] ? QUOTES.stocks[p.stocks[0].symbol].time : "";
+  if (QUOTES.session === "prev_day"){
+    dot.className = "dot stale"; txt.textContent = `盤前/非本日資料 · 價差為前一交易日收盤 · 快照 ${QUOTES.updated}`;
+  } else if (QUOTES.session === "closed"){
+    dot.className = "dot stale"; txt.textContent = `非交易日 · 快照 ${QUOTES.updated}`;
+  } else if (age < STALE_MS){
+    dot.className = "dot live"; txt.textContent = `即時更新中 · 快照 ${QUOTES.updated}`;
+  } else {
+    dot.className = "dot stale";
+    const closed = t >= "13:30:00";
+    txt.textContent = (closed ? "已收盤 · " : "資料靜止 · ") + `最後快照 ${QUOTES.updated}`;
   }
-  hint.style.display = stale ? "block" : "none";
 }
-async function poll(){
+
+/* ---------- 資料載入 ---------- */
+async function loadQuotes(){
   try {
     const r = await fetch(`rt_quotes.json?t=${Date.now()}`, {cache:"no-store"});
     if (r.ok) QUOTES = await r.json();
-  } catch(e){}
-  render(); renderStatus();
+  } catch(e){ /* 離線:保持上次狀態 */ }
+  renderChips(); renderStats(); renderStatus();
+  if (HIST) draw();
 }
-poll();
-setInterval(poll, POLL_MS);
+async function init(){
+  const r = await fetch(`rt_history.json?t=${Date.now()}`, {cache:"no-store"});
+  HIST = await r.json();
+  document.querySelectorAll(".rbtn").forEach(b => {
+    if (+b.dataset.n === rangeN) b.classList.add("active");
+    b.onclick = () => {
+      rangeN = +b.dataset.n;
+      document.querySelectorAll(".rbtn").forEach(x=>x.classList.toggle("active", x===b));
+      draw();
+    };
+  });
+  $("#bbtn").onclick = () => { showBB = !showBB; $("#bbtn").classList.toggle("active", showBB); draw(); };
+  await loadQuotes();
+  setInterval(loadQuotes, POLL_MS);
+  window.addEventListener("resize", () => draw());
+}
+init();
 </script>
 </body>
 </html>
