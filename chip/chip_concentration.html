@@ -43,7 +43,7 @@
   });
 })();
 </script>
-<!-- GLOBAL_NAV_END --><h1 class="page-title">📊 週股權集中度變化排行</h1><div class="page-meta">資料 <strong>2026-07-09</strong> ｜ <a href='../index.html'>← 回主頁</a> ｜ <a href='../org/pm_custom.html'>⭐ Custom PM</a></div><div class="banner"><div class="grid-4"><div class="card card--compact text-center"><div class="metric__value">48</div><div class="label">已評估個股數</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-bull">17</span></div><div class="label">📥 主力吸籌中</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-bear">27</span></div><div class="label">📤 主力出貨中</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-warn">4</span></div><div class="label">🚨 Z 警示</div></div></div></div><details class="explainer" open><summary class="explainer__title">💡 籌碼集中度核心邏輯 — 大戶/中戶/散戶比例變化 + Z-score 異常偵測</summary><p><b class="value">📋 籌碼集中度 (Chip Concentration)</b> — 基於 FinMind 股權分散表 (週更), 追蹤大戶 (≥400 張) / 中戶 (1-400 張) / 散戶 (&lt;1 張) 比例變化。</p><p><b class="text-bull">主力吸籌</b> (大戶加碼 + 散戶減碼) = 經典籌碼鎖定多頭訊號；<b class="text-bear">主力出貨</b> (反之) = 警示。Z-score ≥ +2σ = 8 週內異常吸籌, 主力動向強烈。</p><div class="note">CR1 = 最高級距占比 ｜ CR5 = 前 5 級距 ｜ HHI = Herfindahl 指數。色點代表大戶占比強度 (綠=高度集中 / 琥珀=中等 / 紅=偏散)。</div></details><div class="section-head"><span class="text-bull">📥 主力吸籌 (本週) — 進場觀察</span> <span class="label">(17 檔)</span></div><table class="data-table"><thead><tr><th class="text-center"><span class="th-tip" data-tip="個股名稱（點擊開 TradingView 技術圖）＋代號。涵蓋自選池＋主流池前 50，股名由 symbol_meta 對照">個股</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 股權分散表·週更〕依持股級距分大戶(≥400 張)/中戶(1–400 張)/散戶(&lt;1 張)。堆疊長條＝三者占比，數字＝大戶占比%。色點：綠=高度集中／琥珀=中等／紅=偏散">大戶/中戶/散戶 (堆疊) · 大戶 %</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 級距〕CR1＝最高持股級距占比（最大級距集中度）">CR1</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕HHI＝Herfindahl 指數，各持股級距占比平方和，越大越集中">HHI</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕大戶占比週變化（本週−上週）。正(綠)＝大戶加碼">大戶增率</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕散戶占比週變化。負(綠)＝散戶減碼（籌碼向大戶集中為佳）">散戶 1w</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕大戶占比 8 週 Z-score。≥+2σ＝8 週內異常吸籌；≤−2σ＝異常出貨">Z (8w)</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕綜合判定：大戶加碼＋散戶減碼→📥主力吸籌；反之→📤主力出貨">訊號</span></th></tr></thead><tbody>
+<!-- GLOBAL_NAV_END --><h1 class="page-title">📊 週股權集中度變化排行</h1><div class="page-meta">資料 <strong>2026-07-09</strong> ｜ <a href='../index.html'>← 回主頁</a> ｜ <a href='../org/pm_custom.html'>⭐ Custom PM</a></div><div class="banner"><div class="grid-4"><div class="card card--compact text-center"><div class="metric__value">48</div><div class="label">已評估個股數</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-bull">17</span></div><div class="label">📥 大戶吸籌中</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-bear">27</span></div><div class="label">📤 大戶出貨中</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-warn">4</span></div><div class="label">🚨 Z 警示</div></div></div></div><details class="explainer" open><summary class="explainer__title">💡 股權集中度核心邏輯 — 大戶/中戶/散戶比例變化 + Z-score 異常偵測</summary><p><b class="value">📋 股權集中度 (Chip Concentration)</b> — 基於 FinMind 股權分散表 (週更), 追蹤大戶 (≥400 張) / 中戶 (1-400 張) / 散戶 (&lt;1 張) 比例變化。</p><p><b class="text-bull">大戶吸籌</b> (大戶加碼 + 散戶減碼) = 經典股權鎖定多頭訊號；<b class="text-bear">大戶出貨</b> (反之) = 警示。Z-score ≥ +2σ = 8 週內異常吸籌, 大戶動向強烈。</p><div class="note">CR1 = 最高級距占比 ｜ CR5 = 前 5 級距 ｜ HHI = Herfindahl 指數。色點代表大戶占比強度 (綠=高度集中 / 琥珀=中等 / 紅=偏散)。</div></details><div class="section-head"><span class="text-bull">📥 大戶吸籌 (本週) — 進場觀察</span> <span class="label">(17 檔)</span></div><table class="data-table"><thead><tr><th class="text-center"><span class="th-tip" data-tip="個股名稱（點擊開 TradingView 技術圖）＋代號。涵蓋自選池＋主流池前 50，股名由 symbol_meta 對照">個股</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 股權分散表·週更〕依持股級距分大戶(≥400 張)/中戶(1–400 張)/散戶(&lt;1 張)。堆疊長條＝三者占比，數字＝大戶占比%。色點：綠=高度集中／琥珀=中等／紅=偏散">大戶/中戶/散戶 (堆疊) · 大戶 %</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 級距〕CR1＝最高持股級距占比（最大級距集中度）">CR1</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕HHI＝Herfindahl 指數，各持股級距占比平方和，越大越集中">HHI</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕大戶占比週變化（本週−上週）。正(綠)＝大戶加碼">大戶增率</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕散戶占比週變化。負(綠)＝散戶減碼（股權向大戶集中為佳）">散戶 1w</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕大戶占比 8 週 Z-score。≥+2σ＝8 週內異常吸籌；≤−2σ＝異常出貨">Z (8w)</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕綜合判定：大戶加碼＋散戶減碼→📥大戶吸籌；反之→📤大戶出貨">訊號</span></th></tr></thead><tbody>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2484" target="_blank" rel="noopener" title="TradingView 圖表 — 2484" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">希華</a></b> <span class="text-muted" style="font-size:11px">2484</span></td>
       <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
@@ -54,7 +54,7 @@
       <td class="text-right">36.0</td>
       <td class="text-right">2007</td>
       <td class="text-right"><span class="text-bull">+11.330%</span></td><td class="text-right"><span class="text-bull">-0.090%</span></td><td class="text-right"><span class="text-bull">+2.19σ</span></td>
-      <td><span class="text-bull">📥 主力吸籌</span></td>
+      <td><span class="text-bull">📥 大戶吸籌</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6213" target="_blank" rel="noopener" title="TradingView 圖表 — 6213" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">聯茂</a></b> <span class="text-muted" style="font-size:11px">6213</span></td>
@@ -66,7 +66,7 @@
       <td class="text-right">59.1</td>
       <td class="text-right">3749</td>
       <td class="text-right"><span class="text-bull">+7.690%</span></td><td class="text-right"><span class="text-bull">-0.310%</span></td><td class="text-right"><span class="text-bull">+2.39σ</span></td>
-      <td><span class="text-bull">📥 主力吸籌</span></td>
+      <td><span class="text-bull">📥 大戶吸籌</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6182" target="_blank" rel="noopener" title="TradingView 圖表 — 6182" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">合晶</a></b> <span class="text-muted" style="font-size:11px">6182</span></td>
@@ -102,7 +102,7 @@
       <td class="text-right">61.9</td>
       <td class="text-right">4030</td>
       <td class="text-right"><span class="text-bull">+1.730%</span></td><td class="text-right"><span class="text-bull">-0.130%</span></td><td class="text-right"><span class="text-bull">+1.78σ</span></td>
-      <td><span class="text-bull">📥 主力吸籌</span></td>
+      <td><span class="text-bull">📥 大戶吸籌</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3661" target="_blank" rel="noopener" title="TradingView 圖表 — 3661" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">世芯-KY</a></b> <span class="text-muted" style="font-size:11px">3661</span></td>
@@ -114,7 +114,7 @@
       <td class="text-right">13.4</td>
       <td class="text-right">902</td>
       <td class="text-right"><span class="text-bull">+1.360%</span></td><td class="text-right"><span class="text-bull">-0.300%</span></td><td class="text-right">-0.69σ</td>
-      <td><span class="text-bull">📥 主力吸籌</span></td>
+      <td><span class="text-bull">📥 大戶吸籌</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2337" target="_blank" rel="noopener" title="TradingView 圖表 — 2337" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">旺宏</a></b> <span class="text-muted" style="font-size:11px">2337</span></td>
@@ -126,7 +126,7 @@
       <td class="text-right">46.2</td>
       <td class="text-right">2606</td>
       <td class="text-right"><span class="text-bull">+1.010%</span></td><td class="text-right"><span class="text-bull">-0.060%</span></td><td class="text-right">+0.05σ</td>
-      <td><span class="text-bull">📥 主力吸籌</span></td>
+      <td><span class="text-bull">📥 大戶吸籌</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6770" target="_blank" rel="noopener" title="TradingView 圖表 — 6770" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">力積電</a></b> <span class="text-muted" style="font-size:11px">6770</span></td>
@@ -150,7 +150,7 @@
       <td class="text-right">80.7</td>
       <td class="text-right">6558</td>
       <td class="text-right"><span class="text-bull">+0.820%</span></td><td class="text-right"><span class="text-bull">-0.210%</span></td><td class="text-right"><span class="text-bull">+1.98σ</span></td>
-      <td><span class="text-bull">📥 主力吸籌</span></td>
+      <td><span class="text-bull">📥 大戶吸籌</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A4576" target="_blank" rel="noopener" title="TradingView 圖表 — 4576" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">大銀微系統</a></b> <span class="text-muted" style="font-size:11px">4576</span></td>
@@ -222,7 +222,7 @@
       <td class="text-right">57.0</td>
       <td class="text-right">3469</td>
       <td class="text-right"><span class="text-bull">+0.110%</span></td><td class="text-right"><span class="text-bull">-0.080%</span></td><td class="text-right"><span class="text-bull">+1.41σ</span></td>
-      <td><span class="text-bull">📥 主力吸籌</span></td>
+      <td><span class="text-bull">📥 大戶吸籌</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2382" target="_blank" rel="noopener" title="TradingView 圖表 — 2382" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">廣達</a></b> <span class="text-muted" style="font-size:11px">2382</span></td>
@@ -247,7 +247,7 @@
       <td class="text-right">3845</td>
       <td class="text-right"><span class="text-bull">+0.050%</span></td><td class="text-right"><span class="text-bear">+0.030%</span></td><td class="text-right">-1.49σ</td>
       <td><span class="text-bull">↑ 大戶加碼</span></td>
-    </tr></tbody></table><div class="section-head"><span class="text-bear">📤 主力出貨 (本週) — 持股警示</span> <span class="label">(27 檔)</span></div><table class="data-table"><thead><tr><th class="text-center"><span class="th-tip" data-tip="個股名稱（點擊開 TradingView 技術圖）＋代號。涵蓋自選池＋主流池前 50，股名由 symbol_meta 對照">個股</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 股權分散表·週更〕依持股級距分大戶(≥400 張)/中戶(1–400 張)/散戶(&lt;1 張)。堆疊長條＝三者占比，數字＝大戶占比%。色點：綠=高度集中／琥珀=中等／紅=偏散">大戶/中戶/散戶 (堆疊) · 大戶 %</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 級距〕CR1＝最高持股級距占比（最大級距集中度）">CR1</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕HHI＝Herfindahl 指數，各持股級距占比平方和，越大越集中">HHI</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕大戶占比週變化（本週−上週）。正(綠)＝大戶加碼">大戶增率</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕散戶占比週變化。負(綠)＝散戶減碼（籌碼向大戶集中為佳）">散戶 1w</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕大戶占比 8 週 Z-score。≥+2σ＝8 週內異常吸籌；≤−2σ＝異常出貨">Z (8w)</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕綜合判定：大戶加碼＋散戶減碼→📥主力吸籌；反之→📤主力出貨">訊號</span></th></tr></thead><tbody>
+    </tr></tbody></table><div class="section-head"><span class="text-bear">📤 大戶出貨 (本週) — 持股警示</span> <span class="label">(27 檔)</span></div><table class="data-table"><thead><tr><th class="text-center"><span class="th-tip" data-tip="個股名稱（點擊開 TradingView 技術圖）＋代號。涵蓋自選池＋主流池前 50，股名由 symbol_meta 對照">個股</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 股權分散表·週更〕依持股級距分大戶(≥400 張)/中戶(1–400 張)/散戶(&lt;1 張)。堆疊長條＝三者占比，數字＝大戶占比%。色點：綠=高度集中／琥珀=中等／紅=偏散">大戶/中戶/散戶 (堆疊) · 大戶 %</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 級距〕CR1＝最高持股級距占比（最大級距集中度）">CR1</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕HHI＝Herfindahl 指數，各持股級距占比平方和，越大越集中">HHI</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕大戶占比週變化（本週−上週）。正(綠)＝大戶加碼">大戶增率</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕散戶占比週變化。負(綠)＝散戶減碼（股權向大戶集中為佳）">散戶 1w</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕大戶占比 8 週 Z-score。≥+2σ＝8 週內異常吸籌；≤−2σ＝異常出貨">Z (8w)</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕綜合判定：大戶加碼＋散戶減碼→📥大戶吸籌；反之→📤大戶出貨">訊號</span></th></tr></thead><tbody>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3042" target="_blank" rel="noopener" title="TradingView 圖表 — 3042" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">晶技</a></b> <span class="text-muted" style="font-size:11px">3042</span></td>
       <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
@@ -258,7 +258,7 @@
       <td class="text-right">47.4</td>
       <td class="text-right">2688</td>
       <td class="text-right"><span class="text-bear">-6.750%</span></td><td class="text-right"><span class="text-bear">+0.370%</span></td><td class="text-right"><span class="text-bear">-2.38σ</span></td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3481" target="_blank" rel="noopener" title="TradingView 圖表 — 3481" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">群創</a></b> <span class="text-muted" style="font-size:11px">3481</span></td>
@@ -282,7 +282,7 @@
       <td class="text-right">68.1</td>
       <td class="text-right">4797</td>
       <td class="text-right"><span class="text-bear">-2.230%</span></td><td class="text-right"><span class="text-bear">+0.130%</span></td><td class="text-right">-0.86σ</td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A5483" target="_blank" rel="noopener" title="TradingView 圖表 — 5483" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">中美晶</a></b> <span class="text-muted" style="font-size:11px">5483</span></td>
@@ -294,7 +294,7 @@
       <td class="text-right">53.6</td>
       <td class="text-right">3167</td>
       <td class="text-right"><span class="text-bear">-2.110%</span></td><td class="text-right"><span class="text-bear">+0.080%</span></td><td class="text-right">-0.53σ</td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A3105" target="_blank" rel="noopener" title="TradingView 圖表 — 3105" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">穩懋</a></b> <span class="text-muted" style="font-size:11px">3105</span></td>
@@ -306,7 +306,7 @@
       <td class="text-right">46.9</td>
       <td class="text-right">2720</td>
       <td class="text-right"><span class="text-bear">-2.000%</span></td><td class="text-right"><span class="text-bear">+0.220%</span></td><td class="text-right">-1.72σ</td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3035" target="_blank" rel="noopener" title="TradingView 圖表 — 3035" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">智原</a></b> <span class="text-muted" style="font-size:11px">3035</span></td>
@@ -330,7 +330,7 @@
       <td class="text-right">64.0</td>
       <td class="text-right">4319</td>
       <td class="text-right"><span class="text-bear">-1.470%</span></td><td class="text-right"><span class="text-bear">+0.060%</span></td><td class="text-right">-1.69σ</td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3006" target="_blank" rel="noopener" title="TradingView 圖表 — 3006" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">晶豪科</a></b> <span class="text-muted" style="font-size:11px">3006</span></td>
@@ -354,7 +354,7 @@
       <td class="text-right">69.6</td>
       <td class="text-right">4947</td>
       <td class="text-right"><span class="text-bear">-0.930%</span></td><td class="text-right"><span class="text-bear">+0.250%</span></td><td class="text-right"><span class="text-bear">-2.17σ</span></td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2317" target="_blank" rel="noopener" title="TradingView 圖表 — 2317" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">鴻海</a></b> <span class="text-muted" style="font-size:11px">2317</span></td>
@@ -378,7 +378,7 @@
       <td class="text-right">80.8</td>
       <td class="text-right">6588</td>
       <td class="text-right"><span class="text-bear">-0.820%</span></td><td class="text-right"><span class="text-bear">+0.090%</span></td><td class="text-right">+0.12σ</td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2303" target="_blank" rel="noopener" title="TradingView 圖表 — 2303" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">聯電</a></b> <span class="text-muted" style="font-size:11px">2303</span></td>
@@ -402,7 +402,7 @@
       <td class="text-right">66.2</td>
       <td class="text-right">4546</td>
       <td class="text-right"><span class="text-bear">-0.760%</span></td><td class="text-right"><span class="text-bear">+0.100%</span></td><td class="text-right">-1.72σ</td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A8299" target="_blank" rel="noopener" title="TradingView 圖表 — 8299" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">群聯</a></b> <span class="text-muted" style="font-size:11px">8299</span></td>
@@ -414,7 +414,7 @@
       <td class="text-right">34.7</td>
       <td class="text-right">1700</td>
       <td class="text-right"><span class="text-bear">-0.760%</span></td><td class="text-right"><span class="text-bear">+0.220%</span></td><td class="text-right">-0.95σ</td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2313" target="_blank" rel="noopener" title="TradingView 圖表 — 2313" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">華通</a></b> <span class="text-muted" style="font-size:11px">2313</span></td>
@@ -462,7 +462,7 @@
       <td class="text-right">69.0</td>
       <td class="text-right">4869</td>
       <td class="text-right"><span class="text-bear">-0.440%</span></td><td class="text-right"><span class="text-bear">+0.110%</span></td><td class="text-right">-0.51σ</td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3443" target="_blank" rel="noopener" title="TradingView 圖表 — 3443" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">創意</a></b> <span class="text-muted" style="font-size:11px">3443</span></td>
@@ -486,7 +486,7 @@
       <td class="text-right">64.9</td>
       <td class="text-right">4343</td>
       <td class="text-right"><span class="text-bear">-0.420%</span></td><td class="text-right"><span class="text-bear">+0.200%</span></td><td class="text-right">-1.56σ</td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2308" target="_blank" rel="noopener" title="TradingView 圖表 — 2308" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">台達電</a></b> <span class="text-muted" style="font-size:11px">2308</span></td>
@@ -498,7 +498,7 @@
       <td class="text-right">74.6</td>
       <td class="text-right">5636</td>
       <td class="text-right"><span class="text-bear">-0.400%</span></td><td class="text-right"><span class="text-bear">+0.150%</span></td><td class="text-right">-1.87σ</td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6274" target="_blank" rel="noopener" title="TradingView 圖表 — 6274" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">台燿</a></b> <span class="text-muted" style="font-size:11px">6274</span></td>
@@ -510,7 +510,7 @@
       <td class="text-right">55.8</td>
       <td class="text-right">3342</td>
       <td class="text-right"><span class="text-bear">-0.380%</span></td><td class="text-right"><span class="text-bear">+0.090%</span></td><td class="text-right">-1.23σ</td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6488" target="_blank" rel="noopener" title="TradingView 圖表 — 6488" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">環球晶</a></b> <span class="text-muted" style="font-size:11px">6488</span></td>
@@ -546,7 +546,7 @@
       <td class="text-right">37.5</td>
       <td class="text-right">1794</td>
       <td class="text-right"><span class="text-bear">-0.250%</span></td><td class="text-right"><span class="text-bear">+0.470%</span></td><td class="text-right">-1.39σ</td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A9921" target="_blank" rel="noopener" title="TradingView 圖表 — 9921" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">巨大</a></b> <span class="text-muted" style="font-size:11px">9921</span></td>
@@ -571,7 +571,7 @@
       <td class="text-right">3374</td>
       <td class="text-right"><span class="text-bear">-0.050%</span></td><td class="text-right">+0.000%</td><td class="text-right">+0.67σ</td>
       <td><span class="text-bear">↓ 大戶減碼</span></td>
-    </tr></tbody></table><div class="section-head"><span class="text-warn">🚨 Z-score 異常吸籌/出貨警示</span> <span class="label">(4 檔)</span></div><table class="data-table"><thead><tr><th class="text-center"><span class="th-tip" data-tip="個股名稱（點擊開 TradingView 技術圖）＋代號。涵蓋自選池＋主流池前 50，股名由 symbol_meta 對照">個股</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 股權分散表·週更〕依持股級距分大戶(≥400 張)/中戶(1–400 張)/散戶(&lt;1 張)。堆疊長條＝三者占比，數字＝大戶占比%。色點：綠=高度集中／琥珀=中等／紅=偏散">大戶/中戶/散戶 (堆疊) · 大戶 %</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 級距〕CR1＝最高持股級距占比（最大級距集中度）">CR1</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕HHI＝Herfindahl 指數，各持股級距占比平方和，越大越集中">HHI</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕大戶占比週變化（本週−上週）。正(綠)＝大戶加碼">大戶增率</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕散戶占比週變化。負(綠)＝散戶減碼（籌碼向大戶集中為佳）">散戶 1w</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕大戶占比 8 週 Z-score。≥+2σ＝8 週內異常吸籌；≤−2σ＝異常出貨">Z (8w)</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕綜合判定：大戶加碼＋散戶減碼→📥主力吸籌；反之→📤主力出貨">訊號</span></th></tr></thead><tbody>
+    </tr></tbody></table><div class="section-head"><span class="text-warn">🚨 Z-score 異常吸籌/出貨警示</span> <span class="label">(4 檔)</span></div><table class="data-table"><thead><tr><th class="text-center"><span class="th-tip" data-tip="個股名稱（點擊開 TradingView 技術圖）＋代號。涵蓋自選池＋主流池前 50，股名由 symbol_meta 對照">個股</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 股權分散表·週更〕依持股級距分大戶(≥400 張)/中戶(1–400 張)/散戶(&lt;1 張)。堆疊長條＝三者占比，數字＝大戶占比%。色點：綠=高度集中／琥珀=中等／紅=偏散">大戶/中戶/散戶 (堆疊) · 大戶 %</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 級距〕CR1＝最高持股級距占比（最大級距集中度）">CR1</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕HHI＝Herfindahl 指數，各持股級距占比平方和，越大越集中">HHI</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕大戶占比週變化（本週−上週）。正(綠)＝大戶加碼">大戶增率</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕散戶占比週變化。負(綠)＝散戶減碼（股權向大戶集中為佳）">散戶 1w</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕大戶占比 8 週 Z-score。≥+2σ＝8 週內異常吸籌；≤−2σ＝異常出貨">Z (8w)</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕綜合判定：大戶加碼＋散戶減碼→📥大戶吸籌；反之→📤大戶出貨">訊號</span></th></tr></thead><tbody>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2368" target="_blank" rel="noopener" title="TradingView 圖表 — 2368" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">金像電</a></b> <span class="text-muted" style="font-size:11px">2368</span></td>
       <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
@@ -582,7 +582,7 @@
       <td class="text-right">69.6</td>
       <td class="text-right">4947</td>
       <td class="text-right"><span class="text-bear">-0.930%</span></td><td class="text-right"><span class="text-bear">+0.250%</span></td><td class="text-right"><span class="text-bear">-2.17σ</span></td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2484" target="_blank" rel="noopener" title="TradingView 圖表 — 2484" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">希華</a></b> <span class="text-muted" style="font-size:11px">2484</span></td>
@@ -594,7 +594,7 @@
       <td class="text-right">36.0</td>
       <td class="text-right">2007</td>
       <td class="text-right"><span class="text-bull">+11.330%</span></td><td class="text-right"><span class="text-bull">-0.090%</span></td><td class="text-right"><span class="text-bull">+2.19σ</span></td>
-      <td><span class="text-bull">📥 主力吸籌</span></td>
+      <td><span class="text-bull">📥 大戶吸籌</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A3042" target="_blank" rel="noopener" title="TradingView 圖表 — 3042" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">晶技</a></b> <span class="text-muted" style="font-size:11px">3042</span></td>
@@ -606,7 +606,7 @@
       <td class="text-right">47.4</td>
       <td class="text-right">2688</td>
       <td class="text-right"><span class="text-bear">-6.750%</span></td><td class="text-right"><span class="text-bear">+0.370%</span></td><td class="text-right"><span class="text-bear">-2.38σ</span></td>
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A6213" target="_blank" rel="noopener" title="TradingView 圖表 — 6213" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">聯茂</a></b> <span class="text-muted" style="font-size:11px">6213</span></td>
@@ -618,8 +618,8 @@
       <td class="text-right">59.1</td>
       <td class="text-right">3749</td>
       <td class="text-right"><span class="text-bull">+7.690%</span></td><td class="text-right"><span class="text-bull">-0.310%</span></td><td class="text-right"><span class="text-bull">+2.39σ</span></td>
-      <td><span class="text-bull">📥 主力吸籌</span></td>
-    </tr></tbody></table><div class="section-head">🏆 集中度 TOP 20 (大戶比例) <span class="label">(20 檔)</span></div><table class="data-table"><thead><tr><th class="text-center"><span class="th-tip" data-tip="個股名稱（點擊開 TradingView 技術圖）＋代號。涵蓋自選池＋主流池前 50，股名由 symbol_meta 對照">個股</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 股權分散表·週更〕依持股級距分大戶(≥400 張)/中戶(1–400 張)/散戶(&lt;1 張)。堆疊長條＝三者占比，數字＝大戶占比%。色點：綠=高度集中／琥珀=中等／紅=偏散">大戶/中戶/散戶 (堆疊) · 大戶 %</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 級距〕CR1＝最高持股級距占比（最大級距集中度）">CR1</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕HHI＝Herfindahl 指數，各持股級距占比平方和，越大越集中">HHI</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕綜合判定：大戶加碼＋散戶減碼→📥主力吸籌；反之→📤主力出貨">訊號</span></th></tr></thead><tbody>
+      <td><span class="text-bull">📥 大戶吸籌</span></td>
+    </tr></tbody></table><div class="section-head">🏆 集中度 TOP 20 (大戶比例) <span class="label">(20 檔)</span></div><table class="data-table"><thead><tr><th class="text-center"><span class="th-tip" data-tip="個股名稱（點擊開 TradingView 技術圖）＋代號。涵蓋自選池＋主流池前 50，股名由 symbol_meta 對照">個股</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 股權分散表·週更〕依持股級距分大戶(≥400 張)/中戶(1–400 張)/散戶(&lt;1 張)。堆疊長條＝三者占比，數字＝大戶占比%。色點：綠=高度集中／琥珀=中等／紅=偏散">大戶/中戶/散戶 (堆疊) · 大戶 %</span></th><th class="text-center"><span class="th-tip" data-tip="〔FinMind 級距〕CR1＝最高持股級距占比（最大級距集中度）">CR1</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕HHI＝Herfindahl 指數，各持股級距占比平方和，越大越集中">HHI</span></th><th class="text-center"><span class="th-tip" data-tip="〔我們算〕綜合判定：大戶加碼＋散戶減碼→📥大戶吸籌；反之→📤大戶出貨">訊號</span></th></tr></thead><tbody>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2330" target="_blank" rel="noopener" title="TradingView 圖表 — 2330" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">台積電</a></b> <span class="text-muted" style="font-size:11px">2330</span></td>
       <td><svg viewBox="0 0 100 10" width="100" style="vertical-align:middle">
@@ -666,7 +666,7 @@
       <td class="text-right">80.7</td>
       <td class="text-right">6558</td>
       
-      <td><span class="text-bull">📥 主力吸籌</span></td>
+      <td><span class="text-bull">📥 大戶吸籌</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2382" target="_blank" rel="noopener" title="TradingView 圖表 — 2382" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">廣達</a></b> <span class="text-muted" style="font-size:11px">2382</span></td>
@@ -690,7 +690,7 @@
       <td class="text-right">80.8</td>
       <td class="text-right">6588</td>
       
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2308" target="_blank" rel="noopener" title="TradingView 圖表 — 2308" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">台達電</a></b> <span class="text-muted" style="font-size:11px">2308</span></td>
@@ -702,7 +702,7 @@
       <td class="text-right">74.6</td>
       <td class="text-right">5636</td>
       
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6488" target="_blank" rel="noopener" title="TradingView 圖表 — 6488" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">環球晶</a></b> <span class="text-muted" style="font-size:11px">6488</span></td>
@@ -726,7 +726,7 @@
       <td class="text-right">69.6</td>
       <td class="text-right">4947</td>
       
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2303" target="_blank" rel="noopener" title="TradingView 圖表 — 2303" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">聯電</a></b> <span class="text-muted" style="font-size:11px">2303</span></td>
@@ -762,7 +762,7 @@
       <td class="text-right">64.9</td>
       <td class="text-right">4343</td>
       
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2327" target="_blank" rel="noopener" title="TradingView 圖表 — 2327" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">國巨*</a></b> <span class="text-muted" style="font-size:11px">2327</span></td>
@@ -774,7 +774,7 @@
       <td class="text-right">69.0</td>
       <td class="text-right">4869</td>
       
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2492" target="_blank" rel="noopener" title="TradingView 圖表 — 2492" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">華新科</a></b> <span class="text-muted" style="font-size:11px">2492</span></td>
@@ -798,7 +798,7 @@
       <td class="text-right">66.2</td>
       <td class="text-right">4546</td>
       
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A8150" target="_blank" rel="noopener" title="TradingView 圖表 — 8150" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">南茂</a></b> <span class="text-muted" style="font-size:11px">8150</span></td>
@@ -822,7 +822,7 @@
       <td class="text-right">57.0</td>
       <td class="text-right">3469</td>
       
-      <td><span class="text-bull">📥 主力吸籌</span></td>
+      <td><span class="text-bull">📥 大戶吸籌</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2344" target="_blank" rel="noopener" title="TradingView 圖表 — 2344" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">華邦電</a></b> <span class="text-muted" style="font-size:11px">2344</span></td>
@@ -834,7 +834,7 @@
       <td class="text-right">68.1</td>
       <td class="text-right">4797</td>
       
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TPEX%3A6147" target="_blank" rel="noopener" title="TradingView 圖表 — 6147" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">頎邦</a></b> <span class="text-muted" style="font-size:11px">6147</span></td>
@@ -846,7 +846,7 @@
       <td class="text-right">64.0</td>
       <td class="text-right">4319</td>
       
-      <td><span class="text-bear">📤 主力出貨</span></td>
+      <td><span class="text-bear">📤 大戶出貨</span></td>
     </tr>
     <tr>
       <td><b><a href="https://www.tradingview.com/chart/jXJoWlk5/?symbol=TWSE%3A2383" target="_blank" rel="noopener" title="TradingView 圖表 — 2383" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--th-border2,#475569);cursor:pointer">台光電</a></b> <span class="text-muted" style="font-size:11px">2383</span></td>
@@ -859,120 +859,4 @@
       <td class="text-right">3552</td>
       
       <td><span class="text-bear">↓ 大戶減碼</span></td>
-    </tr></tbody></table><footer class="page-footer">資料: FinMind TaiwanStockHoldingSharesPer 週更 ｜ 涵蓋 custom_pool + mainstream_pool (前 50 檔) ｜ 指標: 大戶 (≥400 張) / 中戶 (1-400 張) / 散戶 (&lt;1 張) / 千張 (&gt;1,000 張) ｜ CR1 = 最高級距占比 / CR5 = 前 5 級距 / HHI = Herfindahl 指數</footer><script>(function(){if(window.__thTip)return;window.__thTip=1;var pop=null,curr=null;function ensure(){if(!pop){pop=document.createElement('div');pop.id='th-tip-pop';document.body.appendChild(pop);}return pop;}function show(el){var tip=el.getAttribute('data-tip');if(!tip)return;var p=ensure();p.textContent=tip;p.style.display='block';var de=document.documentElement,vw=de.clientWidth,vh=de.clientHeight;p.style.maxWidth=Math.min(300,vw-16)+'px';var r=el.getBoundingClientRect(),pw=p.offsetWidth,ph=p.offsetHeight;var left=Math.max(8,Math.min(r.left+r.width/2-pw/2,vw-pw-8));var top=r.bottom+6;if(top+ph>vh-8){var up=r.top-ph-6;if(up>=8)top=up;}p.style.left=(left+window.scrollX)+'px';p.style.top=(top+window.scrollY)+'px';curr=el;}function hide(){if(pop)pop.style.display='none';curr=null;}var hov=window.matchMedia&&window.matchMedia('(hover:hover)').matches;document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('.th-tip');if(t){e.stopPropagation();if(curr===t)hide();else show(t);}else hide();});if(hov){document.addEventListener('mouseover',function(e){var t=e.target.closest&&e.target.closest('.th-tip');if(t)show(t);});document.addEventListener('mouseout',function(e){var t=e.target.closest&&e.target.closest('.th-tip');if(t){var to=e.relatedTarget;if(!(to&&to.closest&&to.closest('.th-tip')))hide();}});}window.addEventListener('scroll',hide,true);window.addEventListener('resize',hide);})();</script>
-<style id='MS_N_RRR_tooltip_inject_v2'>
-.tip { position: relative; cursor: help; }
-/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
-#tip-floater {
-  position: fixed;
-  background: var(--th-bg,#0f172a);
-  color: var(--th-text,#e2e8f0);
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: normal;
-  white-space: pre-line;
-  max-width: 320px;
-  width: max-content;
-  text-align: left;
-  border: 1px solid var(--th-border2,#475569);
-  z-index: 999999;
-  pointer-events: none;
-  line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
-  display: none;
-}
-.tip:focus { outline: none; }
-@media (max-width: 600px) {
-  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
-}
-</style>
-<script>
-(function(){
-  var floater = null;
-  function ensureFloater(){
-    if (floater) return floater;
-    floater = document.createElement('div');
-    floater.id = 'tip-floater';
-    document.body.appendChild(floater);
-    return floater;
-  }
-  function showTip(el){
-    var text = el.getAttribute('data-tip');
-    if (!text) return;
-    var f = ensureFloater();
-    f.textContent = text;
-    f.style.display = 'block';
-    // 量元素位置
-    var rect = el.getBoundingClientRect();
-    var vw = window.innerWidth, vh = window.innerHeight;
-    var pad = 8;
-    // 預設放上方居中
-    var tw = f.offsetWidth, th = f.offsetHeight;
-    var left = rect.left + rect.width / 2 - tw / 2;
-    var top = rect.top - th - 10;
-    // 邊界修正
-    if (left < pad) left = pad;
-    if (left + tw > vw - pad) left = vw - tw - pad;
-    // 若上方空間不夠，改放下方
-    if (top < pad) top = rect.bottom + 10;
-    // 若下方也不夠（窄屏），就靠近底部
-    if (top + th > vh - pad) top = vh - th - pad;
-    f.style.left = left + 'px';
-    f.style.top  = top + 'px';
-  }
-  function hideTip(){
-    if (floater) floater.style.display = 'none';
-  }
-  function init(){
-    // 把所有 title 屬性轉成 data-tip
-    document.querySelectorAll('[title]').forEach(function(el){
-      var t = el.getAttribute('title');
-      if (!t) return;
-      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
-      el.setAttribute('data-tip', t);
-      el.removeAttribute('title');
-      if (!el.classList.contains('tip')) el.classList.add('tip');
-      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
-    });
-    // hover / focus 顯示
-    document.addEventListener('mouseover', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) showTip(tip);
-    });
-    document.addEventListener('mouseout', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) hideTip();
-    });
-    document.addEventListener('focusin', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) showTip(tip);
-    });
-    document.addEventListener('focusout', hideTip);
-    // 手機 tap 切換顯示
-    document.addEventListener('click', function(e){
-      var tip = e.target.closest('.tip');
-      if (tip) {
-        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
-          hideTip();
-        } else {
-          showTip(tip);
-          ensureFloater().dataset.tipFor = tip.dataset.tip;
-        }
-        e.stopPropagation();
-      } else {
-        hideTip();
-      }
-    });
-    // 滾動 / resize 隱藏（避免位置漂移）
-    window.addEventListener('scroll', hideTip, true);
-    window.addEventListener('resize', hideTip);
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
-</body></html>
+    </tr></tbody></table><footer class="page-footer">資料: FinMind TaiwanStockHoldingSharesPer 週更 ｜ 涵蓋 custom_pool + mainstream_pool (前 50 檔) ｜ 指標: 大戶 (≥400 張) / 中戶 (1-400 張) / 散戶 (&lt;1 張) / 千張 (&gt;1,000 張) ｜ CR1 = 最高級距占比 / CR5 = 前 5 級距 / HHI = Herfindahl 指數</footer><script>(function(){if(window.__thTip)return;window.__thTip=1;var pop=null,curr=null;function ensure(){if(!pop){pop=document.createElement('div');pop.id='th-tip-pop';document.body.appendChild(pop);}return pop;}function show(el){var tip=el.getAttribute('data-tip');if(!tip)return;var p=ensure();p.textContent=tip;p.style.display='block';var de=document.documentElement,vw=de.clientWidth,vh=de.clientHeight;p.style.maxWidth=Math.min(300,vw-16)+'px';var r=el.getBoundingClientRect(),pw=p.offsetWidth,ph=p.offsetHeight;var left=Math.max(8,Math.min(r.left+r.width/2-pw/2,vw-pw-8));var top=r.bottom+6;if(top+ph>vh-8){var up=r.top-ph-6;if(up>=8)top=up;}p.style.left=(left+window.scrollX)+'px';p.style.top=(top+window.scrollY)+'px';curr=el;}function hide(){if(pop)pop.style.display='none';curr=null;}var hov=window.matchMedia&&window.matchMedia('(hover:hover)').matches;document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('.th-tip');if(t){e.stopPropagation();if(curr===t)hide();else show(t);}else hide();});if(hov){document.addEventListener('mouseover',function(e){var t=e.target.closest&&e.target.closest('.th-tip');if(t)show(t);});document.addEventListener('mouseout',function(e){var t=e.target.closest&&e.target.closest('.th-tip');if(t){var to=e.relatedTarget;if(!(to&&to.closest&&to.closest('.th-tip')))hide();}});}window.addEventListener('scroll',hide,true);window.addEventListener('resize',hide);})();</script></body></html>
