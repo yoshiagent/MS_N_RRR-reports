@@ -409,12 +409,12 @@ function draw(){
   if (showBB){
     traces.push(
       { type:"scatter", mode:"lines", x:xIdx, y:bbUp, name:"+2σ",
-        line:{color:BANDC, width:1, dash:"dot"}, hoverinfo:"skip", yaxis:"y" },
+        line:{color:BANDC, width:1, dash:"dot"}, hoverinfo:"skip", yaxis:"y", showlegend:false },
       { type:"scatter", mode:"lines", x:xIdx, y:bbLo, name:"−2σ",
         line:{color:BANDC, width:1, dash:"dot"}, fill:"tonexty", fillcolor:BANDFILL,
-        hoverinfo:"skip", yaxis:"y" },
+        hoverinfo:"skip", yaxis:"y", showlegend:false },
       { type:"scatter", mode:"lines", x:xIdx, y:mid, name:"MA20",
-        line:{color:MIDC, width:1.3}, hoverinfo:"skip", yaxis:"y" },
+        line:{color:MIDC, width:1.3}, hoverinfo:"skip", yaxis:"y", showlegend:false },
     );
   }
   traces.push(
@@ -442,9 +442,11 @@ function draw(){
     height:h, autosize:true, barmode:"group", bargap:0.15,
     paper_bgcolor:T("--th-bg","#0d1117"), plot_bgcolor:T("--th-card","#111827"),
     font:{color:T("--th-muted","#94a3b8"), size:11},
-    margin:{l:8, r:56, t:10, b:26},
+    margin:{l:8, r:56, t:30, b:26},
     dragmode:false, hovermode:false,
-    legend:{orientation:"h", x:1, xanchor:"right", y:1.04, font:{color:"#94a3b8", size:10}},
+    // 圖例只留 CP_power/CAB20(布林由工具列按鈕標示);錨在繪圖區上緣往上長進 margin,永不蓋圖
+    legend:{orientation:"h", x:1, xanchor:"right", y:1.0, yanchor:"bottom",
+      font:{color:"#94a3b8", size:9.5}, bgcolor:"rgba(0,0,0,0)"},
     xaxis:{ type:"linear", range:rng.slice(), rangeslider:{visible:false},
       tickmode:"array", tickvals, ticktext, tickangle:0,
       gridcolor:T("--th-border","#1f2937") },
