@@ -209,6 +209,8 @@
   High/Low 為<b>日線相關性收縮估計</b>(rA,rB,ρ60),非逐筆同步極值,不可用於觸價/停損;逐筆精確版見
   <a href="spread_candle_block.html" style="color:var(--th-blue,#93c5fd);">B22 價差K線</a>。
   最後一根為今日盤中即時(RTD 約 5 秒),兩腿皆需成交才併入;盤中總量為當日累計,量比僅供參考。
+  ③ <b>CP_power(柱)</b> = B2 相位(PAB×CAB) Q1−Q3 象限力量差(近 20 日窗)：紅≥0 偏抱 A / 綠&lt;0 偏換 B;
+  <b style="color:var(--th-pink,#e879f9);">CAB20(線)</b> = Qpower20(A)−Qpower20(B)(當日純籌碼淨力差·±0.05 為決策門檻)。二者為<b>每日</b>序列(pair_rotation journal·非即時),與 <a href="spread_candle_block.html" style="color:var(--th-blue,#93c5fd);">B22 ③格</a>同源。
   下方「主力動向觀察」為本配對兩檔的 T(主力)/V(主散背離)盤中走勢,自 poller 啟動起累積(讀 rt_intraday.json + 5 秒增量),與 <a href="pair_mainforce_live.html" style="color:var(--th-blue,#93c5fd);">主力動向 12 檔版</a>同源。
   資料源:XQ 全球贏家 RTD(即時)+ FinMind 還原價(歷史,stockHisData)。
 </footer>
@@ -217,10 +219,11 @@
 const UP = "#f87171", DOWN = "#4ade80";          // 台股紅漲綠跌(此處=價差升/降)
 const MIDC = "#fb923c", BANDC = "rgba(148,163,184,.55)", BANDFILL = "rgba(148,163,184,.07)";
 const VA_C = "#38bdf8", VB_C = "#c084fc";         // 兩腿相對量色(天藍/紫)
+const C_CAB = "#e879f9", CAB20_THR = 0.05;        // ③ CP_power(柱)/CAB20(線)
 const POLL_MS = 5000, STALE_MS = 30000;
 const CORR_WIN = 60, CORR_MIN = 20, BB_WIN = 20, Z60_WIN = 60;
 
-let HIST = null, QUOTES = null;
+let HIST = null, QUOTES = null, CPP = null;
 let pi = 0, showBB = true;
 let curRangeKey = "3m", curIdx = null;      // 房規游標:範圍鍵 + 當前游標索引
 
@@ -367,21 +370,28 @@ function draw(){
   const relA = al.vA.map((v,i)=> vaMa[i]? v/vaMa[i] : null);
   const relB = al.vB.map((v,i)=> vbMa[i]? v/vbMa[i] : null);
 
+  // ③ CP_power(柱)+CAB20(線) — 每日序列(pair_rotation journal·非即時);對齊日期
+  const cpMap = (CPP && CPP.pairs && CPP.pairs[`${symA}_${symB}`]) || {};
+  const cpArr = al.dates.map(d => cpMap[d] ? cpMap[d][0] : null);
+  const cabArr = al.dates.map(d => cpMap[d] ? cpMap[d][1] : null);
+
   SD = { dates:al.dates, so, sh, sl, sc, mid, bbUp, bbLo, z60, relA, relB,
-         cA:al.cA, cB:al.cB, na:nameA, nb:nameB, liveLast };
+         cA:al.cA, cB:al.cB, cp:cpArr, cab:cabArr, na:nameA, nb:nameB, liveLast };
   if (curIdx == null || curIdx > n-1) curIdx = n-1;
 
   const xIdx = al.dates.map((_,i)=> i);          // x = 數字索引
   const rng = skRanges(n)[curRangeKey];
   const i0 = Math.max(0, Math.ceil(rng[0])), i1 = Math.min(n-1, Math.floor(rng[1]));
   // y 軸隨可見視窗重算 (避免壓扁)
-  let yLo = Infinity, yHi = -Infinity, vHi = 1.2;
+  let yLo = Infinity, yHi = -Infinity, vHi = 1.2, cpM = CAB20_THR*1.6;
   for (let i=i0;i<=i1;i++){
     if (sl[i]!=null && sl[i]<yLo) yLo=sl[i];
     if (sh[i]!=null && sh[i]>yHi) yHi=sh[i];
     if (showBB){ if(bbLo[i]!=null&&bbLo[i]<yLo) yLo=bbLo[i]; if(bbUp[i]!=null&&bbUp[i]>yHi) yHi=bbUp[i]; }
     if (relA[i]!=null && relA[i]>vHi) vHi=relA[i];
     if (relB[i]!=null && relB[i]>vHi) vHi=relB[i];
+    if (cpArr[i]!=null && Math.abs(cpArr[i])>cpM) cpM=Math.abs(cpArr[i]);
+    if (cabArr[i]!=null && Math.abs(cabArr[i])>cpM) cpM=Math.abs(cabArr[i]);
   }
   if (yLo===Infinity){ yLo=Math.min(...sl.filter(x=>x!=null)); yHi=Math.max(...sh.filter(x=>x!=null)); }
   const pad = (yHi - yLo) * 0.06 || 0.01;
@@ -409,14 +419,25 @@ function draw(){
   }
   traces.push(
     { type:"bar", x:xIdx, y:relA, name:`${nameA} 量比`, yaxis:"y2",
-      marker:{color:VA_C, opacity:.6}, hoverinfo:"skip" },
+      marker:{color:VA_C, opacity:.6}, hoverinfo:"skip", showlegend:false },
     { type:"bar", x:xIdx, y:relB, name:`${nameB} 量比`, yaxis:"y2",
-      marker:{color:VB_C, opacity:.6}, hoverinfo:"skip" },
+      marker:{color:VB_C, opacity:.6}, hoverinfo:"skip", showlegend:false },
+  );
+  // ③ CP_power 柱(紅≥0 抱A/綠<0 換B) + CAB20 細線(純籌碼淨力差) + ±0.05 門檻虛線
+  traces.push(
+    { type:"scatter", mode:"lines", x:[0,n-1], y:[CAB20_THR,CAB20_THR], yaxis:"y3",
+      line:{color:"rgba(232,121,249,0.28)", width:1, dash:"dot"}, showlegend:false, hoverinfo:"skip" },
+    { type:"scatter", mode:"lines", x:[0,n-1], y:[-CAB20_THR,-CAB20_THR], yaxis:"y3",
+      line:{color:"rgba(232,121,249,0.28)", width:1, dash:"dot"}, showlegend:false, hoverinfo:"skip" },
+    { type:"bar", x:xIdx, y:cpArr, name:"CP_power", yaxis:"y3", opacity:.85,
+      marker:{color: cpArr.map(v=> (v==null||v>=0) ? UP : DOWN)}, hoverinfo:"skip" },
+    { type:"scatter", mode:"lines+markers", x:xIdx, y:cabArr, name:"CAB20", yaxis:"y3",
+      line:{color:C_CAB, width:1.5}, marker:{size:2.5, color:C_CAB}, connectgaps:false, hoverinfo:"skip" },
   );
 
   const css = getComputedStyle(document.body);
   const T = (k, fb) => (css.getPropertyValue(k) || "").trim() || fb;
-  const h = Math.max(Math.min(window.innerHeight - 320, 720), 400);
+  const h = Math.max(Math.min(window.innerHeight - 300, 800), 460);
   const layout = {
     height:h, autosize:true, barmode:"group", bargap:0.15,
     paper_bgcolor:T("--th-bg","#0d1117"), plot_bgcolor:T("--th-card","#111827"),
@@ -427,10 +448,14 @@ function draw(){
     xaxis:{ type:"linear", range:rng.slice(), rangeslider:{visible:false},
       tickmode:"array", tickvals, ticktext, tickangle:0,
       gridcolor:T("--th-border","#1f2937") },
-    yaxis:{ domain:[0.26, 1], range:[yLo-pad, yHi+pad], side:"right",
+    yaxis:{ domain:[0.42, 1], range:[yLo-pad, yHi+pad], side:"right",
       gridcolor:T("--th-border","#1f2937"), fixedrange:true, tickformat:".3f",
       zeroline:true, zerolinecolor:"rgba(148,163,184,.25)" },
-    yaxis2:{ domain:[0, 0.22], range:[0, vHi*1.1], side:"right",
+    yaxis3:{ domain:[0.20, 0.38], range:[-cpM*1.15, cpM*1.15], side:"right",
+      gridcolor:T("--th-border","#1f2937"), fixedrange:true, tickformat:".2f",
+      zeroline:true, zerolinecolor:"rgba(148,163,184,.35)",
+      title:{text:"CP柱/CAB線", font:{size:9}} },
+    yaxis2:{ domain:[0, 0.16], range:[0, vHi*1.1], side:"right",
       gridcolor:T("--th-border","#1f2937"), fixedrange:true, tickformat:".1f",
       title:{text:"量比×", font:{size:9}} },
     shapes: skCrosshair(curIdx),
@@ -465,8 +490,12 @@ function showInfo(){
   const pd = pdv==null ? "—" : `${s.cA[i]}−${s.cB[i]}=<b class="${pdc}">${(pdv>=0?"+":"")+pdv.toFixed(2)}</b> 元`;
   const vx = v => v==null ? "—" : v.toFixed(2)+"x";
   const vtxt = `　量${s.na} ${vx(s.relA[i])} ${s.nb} ${vx(s.relB[i])}`;
+  const cpv = s.cp[i], cbv = s.cab[i];
+  const cptxt = (cpv==null && cbv==null) ? "" :
+    `　<span style="color:${C_CAB}">CP</span> ${cpv==null?"—":`<b class="${cpv>=0?"up":"down"}">${(cpv>=0?"+":"")+cpv.toFixed(3)}</b>(利${cpv>=0?s.na:s.nb})`}`
+    + ` CAB20 ${cbv==null?"—":`<b class="${cbv>=0?"up":"down"}">${(cbv>=0?"+":"")+cbv.toFixed(3)}</b>`}`;
   const src = (s.liveLast && i === s.sc.length-1) ? `　<span style="color:#22d3ee">◉RTD即時</span>` : `　<span class="flat">◐日線近似</span>`;
-  info.innerHTML = `<b>${s.dates[i]}</b>　價差(${s.na}−${s.nb}) ${pd}　收(log) ${f4(s.sc[i])}　開 ${f4(s.so[i])}　高 ${f4(s.sh[i])}　低 ${f4(s.sl[i])}　${dir}　比值 ${s.na}/${s.nb}=${rt}${bstat}　Z20 ${z20s}　Z60 ${z60s}${vtxt}${src}`;
+  info.innerHTML = `<b>${s.dates[i]}</b>　價差(${s.na}−${s.nb}) ${pd}　收(log) ${f4(s.sc[i])}　開 ${f4(s.so[i])}　高 ${f4(s.sh[i])}　低 ${f4(s.sl[i])}　${dir}　比值 ${s.na}/${s.nb}=${rt}${bstat}　Z20 ${z20s}　Z60 ${z60s}${cptxt}${vtxt}${src}`;
 }
 
 /* 只更新游標(輕量,不整張 react) */
@@ -716,6 +745,7 @@ async function loadQuotes(){
 async function init(){
   const r = await fetch(`rt_history.json?t=${Date.now()}`, {cache:"no-store"});
   HIST = await r.json();
+  try { const rc = await fetch(`rt_cppower.json?t=${Date.now()}`, {cache:"no-store"}); if (rc.ok) CPP = await rc.json(); } catch(e){ /* CP 資料缺→③格空白,不致命 */ }
   initMF();
   await seedIntraday();
   await loadQuotes();
