@@ -49,6 +49,28 @@
   .tgl { border:1px solid var(--th-border2,#334155); background:var(--th-card,#1e293b); color:var(--th-muted,#94a3b8); border-radius:6px; padding:2px 10px; font-size:.78rem; cursor:pointer; }
   .tgl.active { border-color:#fb923c; color:var(--th-orange,#fb923c); }
   #chart { display:block; width:100vw !important; max-width:100vw; margin:0; overflow:hidden; }
+  /* 主力動向觀察 (T/V) — 沿用 pair_mainforce_live 版面 */
+  .mf-h { font-size:.95rem; color:var(--th-blue,#93c5fd); margin:16px 14px 2px 14px; font-weight:700; }
+  .mfcard { background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:8px; margin:10px 14px; padding:8px 10px; }
+  .mf-title { font-size:.88rem; color:var(--th-text,#cbd5e1); margin:0 0 4px 0; font-weight:600; }
+  #chart-t, #chart-v { width:100%; }
+  .sw-wrap { box-sizing:border-box; width:100%; overflow-x:auto; }
+  table.snap { width:100%; border-collapse:collapse; font-size:.82rem; white-space:nowrap; }
+  table.snap th, table.snap td { padding:4px 8px; border:1px solid var(--th-border,#2d3f55); text-align:center; }
+  table.snap th { background:var(--th-blue-bg,#0f2040); color:var(--th-blue,#93c5fd); font-weight:600; }
+  table.snap td.name { font-weight:700; }
+  .pos { color:var(--th-red,#f87171); font-weight:700; }     /* 台股慣例:紅=買方/漲 */
+  .neg { color:var(--th-green,#4ade80); font-weight:700; }   /* 綠=賣方/跌 */
+  .neutral { color:var(--th-muted,#94a3b8); }
+  details.info { margin:8px 14px; border:1px solid var(--th-border,#2d3f55); border-radius:6px; }
+  details.info summary { padding:6px 10px; cursor:pointer; font-size:.8rem; font-weight:700; color:var(--th-blue,#93c5fd); background:var(--th-blue-bg,#0f2040); user-select:none; }
+  details.info .info-desc { padding:8px 10px; font-size:.8rem; color:var(--th-text2,#cbd5e1); }
+  details.info table { width:100%; border-collapse:collapse; font-size:.78rem; }
+  details.info th, details.info td { padding:4px 8px; border:1px solid var(--th-border,#2d3f55); text-align:center; }
+  details.info th { background:var(--th-blue-bg,#0f2040); color:var(--th-blue,#93c5fd); }
+  details.info td:last-child { text-align:left; }
+  details.info .tips { padding:8px 12px; font-size:.8rem; background:var(--th-bg,#07111e); border-top:1px solid var(--th-border,#2d3f55); }
+  details.info .tips ul { margin:4px 0 0 18px; }
   footer { padding:10px 14px 20px 14px; font-size:.72rem; color:var(--th-muted,#94a3b8); }
 </style>
 </head>
@@ -121,12 +143,60 @@
   <button id="bbtn" class="tgl active">布林 MA20±2σ</button>
 </div>
 <div id="chart"></div>
+
+<div id="mf-section">
+  <div class="mf-h">🔍 主力動向觀察 · <span id="mf-pair"></span></div>
+  <div class="mfcard">
+    <div class="mf-title">主力合計 T 走勢(特大單+大單買賣差)</div>
+    <div id="chart-t"></div>
+  </div>
+  <div class="mfcard">
+    <div class="mf-title">主散背離 V 走勢(主力 − 散戶)</div>
+    <div id="chart-v"></div>
+  </div>
+  <div class="mfcard">
+    <div class="mf-title">最新快照(本配對兩檔)</div>
+    <div class="sw-wrap">
+      <table class="snap">
+        <thead><tr>
+          <th>股名</th><th>現價</th><th>漲跌%</th><th>量比</th>
+          <th>主力T</th><th>背離V</th><th>特大單</th><th>大單</th><th>中單</th><th>小單</th><th>時間</th>
+        </tr></thead>
+        <tbody id="mf-snap"></tbody>
+      </table>
+    </div>
+  </div>
+  <details class="info">
+    <summary>圖說 / 訊號研判 (T 主力 · V 主散背離)</summary>
+    <p class="info-desc"><b>T</b> = 特大單買賣差% + 大單買賣差%(占當日成交金額比),反映主力/法人當下淨買賣方向;量比 &gt; 2 時最可信。
+      <b>V</b> = T − 散戶(中單+小單)買賣差,主散方向相反通常是更強訊號:正大=主力買散戶賣(吸籌)、負大=主力賣散戶買(出貨)。曲線自 poller 啟動時起累積。</p>
+    <table>
+      <thead><tr><th>區間</th><th>T 訊號(主力)</th><th>V 訊號(主散背離)</th></tr></thead>
+      <tbody>
+        <tr><td>≥ +10</td><td class="pos">強買 · 主力強力進場</td><td class="pos">強吸籌 · 主力買散戶賣,後續易漲</td></tr>
+        <tr><td>+5 ~ +10</td><td class="pos">偏多 · 主力買進佔優</td><td class="pos">吸籌中 · 主散分歧偏多</td></tr>
+        <tr><td>−5 ~ +5</td><td class="neutral">中性 · 力道平衡</td><td class="neutral">同向 · 主散共識無分歧</td></tr>
+        <tr><td>−10 ~ −5</td><td class="neg">偏空 · 主力賣出佔優</td><td class="neg">出貨中 · 主散分歧偏空</td></tr>
+        <tr><td>≤ −10</td><td class="neg">強賣 · 主力強力出場</td><td class="neg">強出貨 · 主力賣散戶買(警告)</td></tr>
+      </tbody>
+    </table>
+    <div class="tips"><b>經典型態:</b>
+      <ul>
+        <li><b>吸籌:</b>價平/跌但 V 大幅正 → 主力悄悄收集,後續易漲</li>
+        <li><b>出貨:</b>價漲且 V 大幅負 → 主力高位出貨給散戶,後續易跌</li>
+        <li>配對用法:比較兩檔的 T/V 誰更強 → 佐證價差K的換股方向(強腿抱、弱腿減)</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
 <footer>
   價差定義 = <b>ln(A/B) = ln(A) − ln(B)</b>(對數比值,尺度無關,與 Z20/RVGO 訊號鏈同源)。
   紅 K = 價差走高(A 相對走強)、綠 K = 價差走低(B 相對走強)。
   High/Low 為<b>日線相關性收縮估計</b>(rA,rB,ρ60),非逐筆同步極值,不可用於觸價/停損;逐筆精確版見
   <a href="spread_candle_block.html" style="color:var(--th-blue,#93c5fd);">B22 價差K線</a>。
   最後一根為今日盤中即時(RTD 約 5 秒),兩腿皆需成交才併入;盤中總量為當日累計,量比僅供參考。
+  下方「主力動向觀察」為本配對兩檔的 T(主力)/V(主散背離)盤中走勢,自 poller 啟動起累積(讀 rt_intraday.json + 5 秒增量),與 <a href="pair_mainforce_live.html" style="color:var(--th-blue,#93c5fd);">主力動向 12 檔版</a>同源。
   資料源:XQ 全球贏家 RTD(即時)+ FinMind 還原價(歷史,stockHisData)。
 </footer>
 <script>
@@ -336,7 +406,7 @@ function renderChips(){
     const b = document.createElement("button");
     b.className = "chip" + (i === pi ? " active" : "");
     b.innerHTML = `<span class="g">${p.group}</span>${p.stocks[0].name} / ${p.stocks[1].name}`;
-    b.onclick = () => { pi = i; renderChips(); renderStats(); draw(); };
+    b.onclick = () => { pi = i; renderChips(); renderStats(); draw(); drawMainforce(); renderMfSnapshot(); };
     el.appendChild(b);
   });
 }
@@ -426,6 +496,104 @@ function renderStatus(){
   }
 }
 
+/* ---------- 主力動向觀察 (T/V 盤中走勢, 讀 rt_intraday + 5秒增量·同 pair_mainforce_live) ---------- */
+let mfTimes = [];          // "HH:MM:SS"
+const MF = {};             // sym -> {t:[], v:[]} (全 12 檔累積; 畫圖時濾當前配對兩檔)
+let mfLastStamp = "";
+const CFG_MF = {displayModeBar:false, scrollZoom:false, doubleClick:false, responsive:true};
+function mfCls(v, hi, lo){ return v==null?"neutral": v>hi?"pos": v<lo?"neg":"neutral"; }
+function initMF(){ HIST.pairs.forEach(p => p.stocks.forEach(s => { MF[s.symbol] = {t:[], v:[]}; })); }
+
+async function seedIntraday(){
+  try {
+    const r = await fetch(`rt_intraday.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) return;
+    const d = await r.json();
+    const now = new Date();
+    const ymd = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
+    if (d.date !== ymd) return;                 // 舊日檔不當今日畫(換日自癒)
+    mfTimes = d.times.slice();
+    for (const sym in MF){
+      const s = d.stocks[sym] || {t:[], v:[]};
+      MF[sym].t = (s.t||[]).slice(); MF[sym].v = (s.v||[]).slice();
+    }
+    if (mfTimes.length) mfLastStamp = mfTimes[mfTimes.length-1];
+  } catch(e){}
+}
+function appendIntraday(){                       // 新快照 → 全 12 檔增量 append(免重抓整檔)
+  if (!QUOTES || QUOTES.session !== "live") return false;
+  const stamp = QUOTES.updated.slice(11);
+  if (stamp === mfLastStamp) return false;
+  mfLastStamp = stamp;
+  mfTimes.push(stamp);
+  for (const sym in MF){
+    const q = QUOTES.stocks[sym];
+    MF[sym].t.push(q && q.fresh ? q.t_main : null);
+    MF[sym].v.push(q && q.fresh ? q.v_div : null);
+  }
+  return true;
+}
+function mfTraces(key){                           // 只畫當前配對兩檔(A 天藍實線 / B 紫實線)
+  const p = currentPair();
+  return p.stocks.map((s, i) => ({
+    type:"scatter", mode:"lines", name:s.name,
+    x:mfTimes, y:(MF[s.symbol]||{})[key]||[], connectgaps:false,
+    line:{color: i ? VB_C : VA_C, width:1.9},
+    hovertemplate:s.name+" %{y:.2f}<extra>%{x}</extra>",
+    hoverlabel:{bgcolor:"#1e293b", bordercolor:"#334155", font:{color:"#e2e8f0", size:12}},
+  }));
+}
+function mfLayout(){
+  const css = getComputedStyle(document.body);
+  const T = (n, fb) => (css.getPropertyValue(n) || "").trim() || fb;
+  const h = Math.max(240, Math.min(360, window.innerHeight * 0.36));
+  return {
+    height:h, autosize:true,
+    paper_bgcolor:T("--th-card","#131f2e"), plot_bgcolor:T("--th-bg","#111827"),
+    font:{color:T("--th-muted","#94a3b8"), size:11},
+    margin:{l:34, r:44, t:6, b:44},
+    dragmode:false, hovermode:"x",
+    legend:{orientation:"h", y:-0.16, font:{size:10.5}},
+    xaxis:{ gridcolor:T("--th-border","#1f2937"), fixedrange:true, nticks:7 },
+    yaxis:{ gridcolor:T("--th-border","#1f2937"), fixedrange:true, side:"right",
+            zeroline:true, zerolinecolor:T("--th-border2","#334155"), zerolinewidth:1.5 },
+  };
+}
+function drawMainforce(){
+  if (!HIST) return;
+  Plotly.react("chart-t", mfTraces("t"), mfLayout(), CFG_MF);
+  Plotly.react("chart-v", mfTraces("v"), mfLayout(), CFG_MF);
+  const p = currentPair(), el = $("#mf-pair");
+  if (el) el.innerHTML = `<span style="color:${VA_C}">${p.stocks[0].name}</span> / <span style="color:${VB_C}">${p.stocks[1].name}</span>`;
+}
+function renderMfSnapshot(){
+  const p = currentPair(), tb = $("#mf-snap");
+  if (!tb) return;
+  tb.innerHTML = "";
+  p.stocks.forEach((s, i) => {
+    const q = QUOTES && QUOTES.stocks[s.symbol];
+    const col = i ? VB_C : VA_C;
+    const tr = document.createElement("tr");
+    if (!q){
+      tr.innerHTML = `<td class="name" style="color:${col}">${s.name}</td>` + `<td class="neutral">–</td>`.repeat(10);
+    } else {
+      tr.innerHTML = `
+        <td class="name" style="color:${col}">${s.name}</td>
+        <td>${fmt(q.price)}</td>
+        <td class="${mfCls(q.change_pct,0.001,-0.001)}">${q.change_pct==null?"–":(q.change_pct>0?"+":"")+fmt(q.change_pct)}</td>
+        <td class="${q.vol_ratio>2?"pos":"neutral"}">${fmt(q.vol_ratio)}</td>
+        <td class="${mfCls(q.t_main,1,-1)}">${fmt(q.t_main)}</td>
+        <td class="${mfCls(q.v_div,5,-5)}">${fmt(q.v_div)}</td>
+        <td class="${mfCls(q.dxl,1,-1)}">${fmt(q.dxl)}</td>
+        <td class="${mfCls(q.dl,1,-1)}">${fmt(q.dl)}</td>
+        <td class="${mfCls(q.dm,1,-1)}">${fmt(q.dm)}</td>
+        <td class="${mfCls(q.ds,1,-1)}">${fmt(q.ds)}</td>
+        <td class="neutral">${q.time || "–"}</td>`;
+    }
+    tb.appendChild(tr);
+  });
+}
+
 /* ---------- 資料載入 ---------- */
 async function loadQuotes(){
   try {
@@ -434,10 +602,13 @@ async function loadQuotes(){
   } catch(e){ /* 離線:保持上次狀態 */ }
   renderChips(); renderStats(); renderStatus();
   if (HIST) draw();
+  if (appendIntraday()) drawMainforce();
+  renderMfSnapshot();
 }
 async function init(){
   const r = await fetch(`rt_history.json?t=${Date.now()}`, {cache:"no-store"});
   HIST = await r.json();
+  initMF();
   document.querySelectorAll(".rbtn").forEach(b => {
     if (+b.dataset.n === rangeN) b.classList.add("active");
     b.onclick = () => {
@@ -447,9 +618,11 @@ async function init(){
     };
   });
   $("#bbtn").onclick = () => { showBB = !showBB; $("#bbtn").classList.toggle("active", showBB); draw(); };
+  await seedIntraday();
   await loadQuotes();
+  drawMainforce();
   setInterval(loadQuotes, POLL_MS);
-  window.addEventListener("resize", () => draw());
+  window.addEventListener("resize", () => { draw(); drawMainforce(); });
 }
 init();
 </script>
