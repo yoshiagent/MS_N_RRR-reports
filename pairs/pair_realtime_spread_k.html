@@ -496,7 +496,7 @@ function showInfo(){
   const cptxt = (cpv==null && cbv==null) ? "" :
     `　<span style="color:${C_CAB}">CP</span> ${cpv==null?"—":`<b class="${cpv>=0?"up":"down"}">${(cpv>=0?"+":"")+cpv.toFixed(3)}</b>(利${cpv>=0?s.na:s.nb})`}`
     + ` CAB20 ${cbv==null?"—":`<b class="${cbv>=0?"up":"down"}">${(cbv>=0?"+":"")+cbv.toFixed(3)}</b>`}`;
-  const src = (s.liveLast && i === s.sc.length-1) ? `　<span style="color:#22d3ee">◉RTD即時</span>` : `　<span class="flat">◐日線近似</span>`;
+  const src = (s.liveLast && i === s.sc.length-1) ? `　<span style="color:var(--th-cyan,#22d3ee)">◉RTD即時</span>` : `　<span class="flat">◐日線近似</span>`;
   info.innerHTML = `<b>${s.dates[i]}</b>　價差(${s.na}−${s.nb}) ${pd}　收(log) ${f4(s.sc[i])}　開 ${f4(s.so[i])}　高 ${f4(s.sh[i])}　低 ${f4(s.sl[i])}　${dir}　比值 ${s.na}/${s.nb}=${rt}${bstat}　Z20 ${z20s}　Z60 ${z60s}${cptxt}${vtxt}${src}`;
 }
 

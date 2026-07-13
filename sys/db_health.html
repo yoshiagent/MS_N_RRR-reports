@@ -53,45 +53,45 @@ details.detail summary{cursor:pointer;user-select:none}
   });
 })();
 </script>
-<!-- GLOBAL_NAV_END --><h1 class="page-title">🗄 DuckDB 資料庫健康檢查</h1><div class="page-meta">資料日 <strong>2026-07-09</strong> ｜ 產生時間 2026-07-09 22:00:34 ｜ 來源：<code>stockHisData/stock_data/db_health.py</code> ｜ 每日 orchestrator step 0 自動執行 ｜ <a href='../index.html'>← 返回主頁</a></div><div class="banner"><div class="banner__row"><div class="metric metric--lg"><span class="metric__value"><span class="text-bull">✅</span></span></div><div><div class="metric__value"><span class="text-bull">整體狀態：正常</span></div><div class="text-muted">共 10 項檢查 ｜ <span class="text-bull">✅ 9</span> ｜ <span class="text-info">ℹ 1</span> ｜ <span class="text-warn">⚠ 0</span> ｜ <span class="text-bear">🔴 0</span> ｜ 已執行自動修復</div></div></div></div><div class="grid-4"><div class="card card--compact text-center"><div class="metric__value"><span class="text-bull">9</span></div><div class="label">✅ 正常</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-info">1</span></div><div class="label">ℹ 資訊</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-warn">0</span></div><div class="label">⚠ 警告</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-bear">0</span></div><div class="label">🔴 嚴重</div></div></div><div class="section-head">🗺 資料來源總覽（FinMind 優先原則）</div><div class="note"><strong>原則：FinMind（Sponsor）有的資料一律優先使用</strong>；只有 FinMind 根本沒提供的（美股/FX、主動 ETF 持股、公司治理/公告事件、上櫃大盤法人）才走各自官方源。下表為全系統資料源對照。</div><div class="card card--padded"><div class="section-head">🔁 今日更新記錄（2026-07-06 · 資料源稽核 + FinMind 化）</div><ul style="margin:4px 0 0;padding-left:20px;line-height:1.9;font-size:13px"><li>全市場 <strong>2,979 檔</strong>價格庫重建為 FinMind 還原價（修國巨 2327 分割殘留假跳空 → 133.79）</li><li>每日更新改 <strong>FinMind 還原價優先</strong>（每日批次 + load_price refresh），yfinance 降為 fallback</li><li><strong>期貨 / 選擇權</strong>因 TAIFEX 限流 → 改抓 FinMind（一次抓整段；值 99.2% / 98.3% 一致，端到端驗證通過）</li><li><strong>大盤三大法人（上市 TWSE）</strong>→ FinMind；上櫃 TPEX 因 FinMind 無彙總、保留 TPEX API</li><li>新增每週六 08:00 全市場 <strong>re-baseline 排程</strong>（MSNRRR_FinMindRebaseline，消除除權息回溯漂移）</li></ul></div><div class="section-head">① FinMind 為主來源</div><div class="srcmap-wrap"><table class="srcmap"><tr><th>資料類型</th><th>主來源</th><th>fallback</th><th>備註</th></tr><tr><td>個股價量 OHLCV（還原價）</td><td>FinMind <code>TaiwanStockPriceAdj</code></td><td>TWSE STOCK_DAY → yfinance</td><td>全市場 2,979 檔已重建為還原價</td></tr><tr><td>個股三大法人</td><td>FinMind batch</td><td>TWSE T86</td><td></td></tr><tr><td>融資融券</td><td>FinMind batch</td><td>—</td><td></td></tr><tr><td>指數 TWII / OTCI</td><td>FinMind</td><td>TWSE / TPEX 官方</td><td></td></tr><tr><td>券商分點（真分點）</td><td>FinMind Sponsor</td><td>—</td><td>custom_pool 限定</td></tr><tr><td>借券 / 八大行庫</td><td>FinMind</td><td>—</td><td></td></tr><tr><td>基本面 EPS / 月營收、PE 河流、分價量</td><td>FinMind</td><td>—</td><td></td></tr></table></div><div class="section-head">② 今日轉入 FinMind（原為交易所直源）</div><div class="srcmap-wrap"><table class="srcmap"><tr><th>資料類型</th><th>主來源</th><th>fallback</th><th>備註</th></tr><tr><td>大盤三大法人（上市 TWSE）</td><td>FinMind <code>TotalInstitutionalInvestors</code></td><td>TWSE BFI82U</td><td>四欄值與 BFI82U 一致（6/6·5/6）</td></tr><tr><td>期貨未平倉（外資台指期 OI）</td><td>FinMind <code>FuturesInstitutionalInvestors</code></td><td>TAIFEX</td><td>因 TAIFEX 限流；值 99.2% 完全一致</td></tr><tr><td>選擇權（外資 TXO）</td><td>FinMind <code>OptionInstitutionalInvestors</code></td><td>TAIFEX</td><td>值 98.3% 完全一致</td></tr></table></div><div class="section-head">③ FinMind 沒提供 → 各自專屬來源（合理例外）</div><div class="srcmap-wrap"><table class="srcmap"><tr><th>資料類型</th><th>來源</th><th>為何非 FinMind</th></tr><tr><td>macro 美股/FX/韓股（SOX·VIX·USDJPY·USDKRW·KOSPI）</td><td>yfinance</td><td>FinMind 無美股指數/匯率/韓股</td></tr><tr><td>大盤三大法人（上櫃 TPEX）</td><td>TPEX API</td><td>FinMind Total 僅含上市、不含上櫃</td></tr><tr><td>主動型 ETF 持股明細（成分股/股數）</td><td>兆豐 emega API ＋ MoneyDJ</td><td>FinMind 無主動 ETF 成分股</td></tr><tr><td>主動型 ETF 每日成交</td><td>TWSE ETFReport/ETFDaily</td><td></td></tr><tr><td>處置股</td><td>TWSE / TPEX OpenAPI</td><td>announcement/punish · tpex_disposal</td></tr><tr><td>鉅額交易 BFIAUU（配對交易）</td><td>TWSE RWD</td><td>twse.com.tw/rwd/block/BFIAUU</td></tr><tr><td>董監質押 / 解質（STAMAK03）</td><td>MOPS 公開資訊觀測站</td><td>mopsov.twse.com.tw</td></tr><tr><td>董監持股（t187ap11）</td><td>TWSE / TPEX OpenAPI</td><td></td></tr><tr><td>股權轉讓申報（t187ap12）</td><td>TWSE / TPEX OpenAPI</td><td></td></tr><tr><td>產業分類·市值（t187ap03）</td><td>TWSE / TPEX OpenAPI</td><td></td></tr></table></div><div class="section-head">📋 詳細檢查項目（依嚴重性排序）</div><div class="card"><div class="card-head"><span class="dot dot--grey"></span> <span class="value">ℹ Update log 時效</span> <span class="label">📋 Update log</span> <span class="badge badge--blue">info</span></div><div class="check-msg">共 1 個資料源；最新紀錄 2026-05-24 10:19:45.706960</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
+<!-- GLOBAL_NAV_END --><h1 class="page-title">🗄 DuckDB 資料庫健康檢查</h1><div class="page-meta">資料日 <strong>2026-07-13</strong> ｜ 產生時間 2026-07-13 22:00:41 ｜ 來源：<code>stockHisData/stock_data/db_health.py</code> ｜ 每日 orchestrator step 0 自動執行 ｜ <a href='../index.html'>← 返回主頁</a></div><div class="banner"><div class="banner__row"><div class="metric metric--lg"><span class="metric__value"><span class="text-bull">✅</span></span></div><div><div class="metric__value"><span class="text-bull">整體狀態：正常</span></div><div class="text-muted">共 10 項檢查 ｜ <span class="text-bull">✅ 9</span> ｜ <span class="text-info">ℹ 1</span> ｜ <span class="text-warn">⚠ 0</span> ｜ <span class="text-bear">🔴 0</span> ｜ 已執行自動修復</div></div></div></div><div class="grid-4"><div class="card card--compact text-center"><div class="metric__value"><span class="text-bull">9</span></div><div class="label">✅ 正常</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-info">1</span></div><div class="label">ℹ 資訊</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-warn">0</span></div><div class="label">⚠ 警告</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-bear">0</span></div><div class="label">🔴 嚴重</div></div></div><div class="section-head">🗺 資料來源總覽（FinMind 優先原則）</div><div class="note"><strong>原則：FinMind（Sponsor）有的資料一律優先使用</strong>；只有 FinMind 根本沒提供的（美股/FX、主動 ETF 持股、公司治理/公告事件、上櫃大盤法人）才走各自官方源。下表為全系統資料源對照。</div><div class="card card--padded"><div class="section-head">🔁 今日更新記錄（2026-07-06 · 資料源稽核 + FinMind 化）</div><ul style="margin:4px 0 0;padding-left:20px;line-height:1.9;font-size:13px"><li>全市場 <strong>2,979 檔</strong>價格庫重建為 FinMind 還原價（修國巨 2327 分割殘留假跳空 → 133.79）</li><li>每日更新改 <strong>FinMind 還原價優先</strong>（每日批次 + load_price refresh），yfinance 降為 fallback</li><li><strong>期貨 / 選擇權</strong>因 TAIFEX 限流 → 改抓 FinMind（一次抓整段；值 99.2% / 98.3% 一致，端到端驗證通過）</li><li><strong>大盤三大法人（上市 TWSE）</strong>→ FinMind；上櫃 TPEX 因 FinMind 無彙總、保留 TPEX API</li><li>新增每週六 08:00 全市場 <strong>re-baseline 排程</strong>（MSNRRR_FinMindRebaseline，消除除權息回溯漂移）</li></ul></div><div class="section-head">① FinMind 為主來源</div><div class="srcmap-wrap"><table class="srcmap"><tr><th>資料類型</th><th>主來源</th><th>fallback</th><th>備註</th></tr><tr><td>個股價量 OHLCV（還原價）</td><td>FinMind <code>TaiwanStockPriceAdj</code></td><td>TWSE STOCK_DAY → yfinance</td><td>全市場 2,979 檔已重建為還原價</td></tr><tr><td>個股三大法人</td><td>FinMind batch</td><td>TWSE T86</td><td></td></tr><tr><td>融資融券</td><td>FinMind batch</td><td>—</td><td></td></tr><tr><td>指數 TWII / OTCI</td><td>FinMind</td><td>TWSE / TPEX 官方</td><td></td></tr><tr><td>券商分點（真分點）</td><td>FinMind Sponsor</td><td>—</td><td>custom_pool 限定</td></tr><tr><td>借券 / 八大行庫</td><td>FinMind</td><td>—</td><td></td></tr><tr><td>基本面 EPS / 月營收、PE 河流、分價量</td><td>FinMind</td><td>—</td><td></td></tr></table></div><div class="section-head">② 今日轉入 FinMind（原為交易所直源）</div><div class="srcmap-wrap"><table class="srcmap"><tr><th>資料類型</th><th>主來源</th><th>fallback</th><th>備註</th></tr><tr><td>大盤三大法人（上市 TWSE）</td><td>FinMind <code>TotalInstitutionalInvestors</code></td><td>TWSE BFI82U</td><td>四欄值與 BFI82U 一致（6/6·5/6）</td></tr><tr><td>期貨未平倉（外資台指期 OI）</td><td>FinMind <code>FuturesInstitutionalInvestors</code></td><td>TAIFEX</td><td>因 TAIFEX 限流；值 99.2% 完全一致</td></tr><tr><td>選擇權（外資 TXO）</td><td>FinMind <code>OptionInstitutionalInvestors</code></td><td>TAIFEX</td><td>值 98.3% 完全一致</td></tr></table></div><div class="section-head">③ FinMind 沒提供 → 各自專屬來源（合理例外）</div><div class="srcmap-wrap"><table class="srcmap"><tr><th>資料類型</th><th>來源</th><th>為何非 FinMind</th></tr><tr><td>macro 美股/FX/韓股（SOX·VIX·USDJPY·USDKRW·KOSPI）</td><td>yfinance</td><td>FinMind 無美股指數/匯率/韓股</td></tr><tr><td>大盤三大法人（上櫃 TPEX）</td><td>TPEX API</td><td>FinMind Total 僅含上市、不含上櫃</td></tr><tr><td>主動型 ETF 持股明細（成分股/股數）</td><td>兆豐 emega API ＋ MoneyDJ</td><td>FinMind 無主動 ETF 成分股</td></tr><tr><td>主動型 ETF 每日成交</td><td>TWSE ETFReport/ETFDaily</td><td></td></tr><tr><td>處置股</td><td>TWSE / TPEX OpenAPI</td><td>announcement/punish · tpex_disposal</td></tr><tr><td>鉅額交易 BFIAUU（配對交易）</td><td>TWSE RWD</td><td>twse.com.tw/rwd/block/BFIAUU</td></tr><tr><td>董監質押 / 解質（STAMAK03）</td><td>MOPS 公開資訊觀測站</td><td>mopsov.twse.com.tw</td></tr><tr><td>董監持股（t187ap11）</td><td>TWSE / TPEX OpenAPI</td><td></td></tr><tr><td>股權轉讓申報（t187ap12）</td><td>TWSE / TPEX OpenAPI</td><td></td></tr><tr><td>產業分類·市值（t187ap03）</td><td>TWSE / TPEX OpenAPI</td><td></td></tr></table></div><div class="section-head">📋 詳細檢查項目（依嚴重性排序）</div><div class="card"><div class="card-head"><span class="dot dot--grey"></span> <span class="value">ℹ Update log 時效</span> <span class="label">📋 Update log</span> <span class="badge badge--blue">info</span></div><div class="check-msg">共 1 個資料源；最新紀錄 2026-05-24 10:19:45.706960</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;db_migrate_from_csv&quot;: &quot;2026-05-24 10:19:45.706960&quot;
 }</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ DuckDB 表結構</span> <span class="label">🗂 表結構</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">全部 8 個必要表存在</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;counts&quot;: {
-    &quot;price&quot;: 2854003,
-    &quot;indices&quot;: 3285,
-    &quot;institutional&quot;: 961052,
-    &quot;futures&quot;: 265,
+    &quot;price&quot;: 2860764,
+    &quot;indices&quot;: 3287,
+    &quot;institutional&quot;: 979791,
+    &quot;futures&quot;: 266,
     &quot;macro&quot;: 5782,
     &quot;symbols&quot;: 1935,
-    &quot;signal_history&quot;: 90509,
+    &quot;signal_history&quot;: 91646,
     &quot;update_log&quot;: 1
   }
-}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 最新日資料齊全度</span> <span class="label">📅 資料時效</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">最新日 2026-07-09 全市場 2818 檔齊全（≥ 1000）</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
-  &quot;latest_date&quot;: &quot;2026-07-09&quot;,
-  &quot;latest_count&quot;: 2818,
-  &quot;second_date&quot;: &quot;2026-07-08&quot;,
-  &quot;second_count&quot;: 2751,
+}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 最新日資料齊全度</span> <span class="label">📅 資料時效</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">最新日 2026-07-13 全市場 2752 檔齊全（≥ 1000）</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
+  &quot;latest_date&quot;: &quot;2026-07-13&quot;,
+  &quot;latest_count&quot;: 2752,
+  &quot;second_date&quot;: &quot;2026-07-09&quot;,
+  &quot;second_count&quot;: 2866,
   &quot;days_lag&quot;: 0,
   &quot;recent_5&quot;: [
     {
+      &quot;date&quot;: &quot;2026-07-13&quot;,
+      &quot;n&quot;: 2752
+    },
+    {
       &quot;date&quot;: &quot;2026-07-09&quot;,
-      &quot;n&quot;: 2818
+      &quot;n&quot;: 2866
     },
     {
       &quot;date&quot;: &quot;2026-07-08&quot;,
-      &quot;n&quot;: 2751
+      &quot;n&quot;: 2865
     },
     {
       &quot;date&quot;: &quot;2026-07-07&quot;,
-      &quot;n&quot;: 2759
+      &quot;n&quot;: 2800
     },
     {
       &quot;date&quot;: &quot;2026-07-06&quot;,
-      &quot;n&quot;: 2788
-    },
-    {
-      &quot;date&quot;: &quot;2026-07-03&quot;,
-      &quot;n&quot;: 2784
+      &quot;n&quot;: 2798
     }
   ]
 }</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 重複資料</span> <span class="label">🛡 資料完整性</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">price 表無重複 (symbol, date) 配對</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
@@ -99,47 +99,47 @@ details.detail summary{cursor:pointer;user-select:none}
 }</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 無效值檢查</span> <span class="label">🛡 資料完整性</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">無未來日期、無非正價、零量比例 &lt;5%</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;future_dates&quot;: 0,
   &quot;non_positive_close&quot;: 0,
-  &quot;zero_volume&quot;: 43799,
-  &quot;total_rows&quot;: 2854003,
-  &quot;zero_vol_pct&quot;: 1.53
-}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 價量完整度</span> <span class="label">🛡 資料完整性</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">近 130 交易日 price 檔數皆齊全（無部分缺料日）</div></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 關鍵指數完整性</span> <span class="label">📊 資料覆蓋</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">全部 2 個關鍵指數齊全</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
+  &quot;zero_volume&quot;: 44411,
+  &quot;total_rows&quot;: 2860764,
+  &quot;zero_vol_pct&quot;: 1.55
+}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 價量完整度</span> <span class="label">🛡 資料完整性</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">近 128 交易日 price 檔數皆齊全（無部分缺料日）</div></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 關鍵指數完整性</span> <span class="label">📊 資料覆蓋</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">全部 2 個關鍵指數齊全</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;latest_per_index&quot;: {
     &quot;KOSPI&quot;: {
       &quot;last_date&quot;: &quot;2026-07-08&quot;,
       &quot;rows&quot;: 1101
     },
-    &quot;TWII&quot;: {
-      &quot;last_date&quot;: &quot;2026-07-09&quot;,
-      &quot;rows&quot;: 1093
-    },
     &quot;OTCI&quot;: {
-      &quot;last_date&quot;: &quot;2026-07-09&quot;,
-      &quot;rows&quot;: 1091
+      &quot;last_date&quot;: &quot;2026-07-13&quot;,
+      &quot;rows&quot;: 1092
+    },
+    &quot;TWII&quot;: {
+      &quot;last_date&quot;: &quot;2026-07-13&quot;,
+      &quot;rows&quot;: 1094
     }
   }
 }</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ 輔助資料時效</span> <span class="label">📅 資料時效</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">期貨/總經/三大法人皆 ≤ 7 天</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;futures&quot;: {
-    &quot;last_date&quot;: &quot;2026-07-08&quot;,
-    &quot;days_lag&quot;: 1
+    &quot;last_date&quot;: &quot;2026-07-09&quot;,
+    &quot;days_lag&quot;: 4
   },
   &quot;macro&quot;: {
     &quot;SOX&quot;: &quot;2026-07-08&quot;,
-    &quot;USDKRW&quot;: &quot;2026-07-08&quot;,
-    &quot;USDTWD&quot;: &quot;2026-07-08&quot;,
     &quot;VIX&quot;: &quot;2026-07-08&quot;,
-    &quot;USDJPY&quot;: &quot;2026-07-08&quot;
+    &quot;USDJPY&quot;: &quot;2026-07-08&quot;,
+    &quot;USDKRW&quot;: &quot;2026-07-08&quot;,
+    &quot;USDTWD&quot;: &quot;2026-07-08&quot;
   },
   &quot;institutional&quot;: {
-    &quot;last_date&quot;: &quot;2026-07-09&quot;,
+    &quot;last_date&quot;: &quot;2026-07-13&quot;,
     &quot;days_lag&quot;: 0
   }
-}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ Sector map 對照表</span> <span class="label">📊 資料覆蓋</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">1977 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1847 ｜ 市值 1935 ｜ 44 天前更新</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
+}</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ Sector map 對照表</span> <span class="label">📊 資料覆蓋</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">1977 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1847 ｜ 市值 1935 ｜ 48 天前更新</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;total&quot;: 1977,
   &quot;with_xq&quot;: 1935,
   &quot;with_theme&quot;: 1847,
   &quot;with_mcap&quot;: 1935,
   &quot;xq_coverage_pct&quot;: 97.9,
-  &quot;file_age_days&quot;: 44,
+  &quot;file_age_days&quot;: 48,
   &quot;last_modified&quot;: &quot;2026-05-26 08:17&quot;
 }</div></details></div><div class="card"><div class="card-head"><span class="dot dot--green"></span> <span class="value">✅ Market map (TWSE/TPEX)</span> <span class="label">📊 資料覆蓋</span> <span class="badge badge--green">healthy</span></div><div class="check-msg">2095 檔 ｜ TWSE 1088 ｜ TPEX 1007</div><details class="detail"><summary class="note">查看細節</summary><div class="formula detail__json">{
   &quot;total&quot;: 2095,
