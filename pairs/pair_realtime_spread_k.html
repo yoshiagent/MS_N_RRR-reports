@@ -43,11 +43,16 @@
   .badge.a { background:rgba(248,113,113,.14); color:var(--th-red,#f87171); border:1px solid rgba(248,113,113,.35); }
   .badge.b { background:rgba(74,222,128,.14); color:var(--th-green,#4ade80); border:1px solid rgba(74,222,128,.35); }
   .badge.n { background:var(--th-blue-bg,#0f2040); color:var(--th-blue,#93c5fd); border:1px solid rgba(59,130,246,.3); }
-  #rangebtns { padding:6px 14px; display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
-  .rbtn { border:1px solid var(--th-border2,#334155); background:var(--th-card,#1e293b); color:var(--th-muted,#94a3b8); border-radius:6px; padding:2px 10px; font-size:.78rem; cursor:pointer; }
-  .rbtn.active { border-color:#3b82f6; color:var(--th-blue,#93c5fd); background:var(--th-blue-bg,#0f2040); }
   .tgl { border:1px solid var(--th-border2,#334155); background:var(--th-card,#1e293b); color:var(--th-muted,#94a3b8); border-radius:6px; padding:2px 10px; font-size:.78rem; cursor:pointer; }
   .tgl.active { border-color:#fb923c; color:var(--th-orange,#fb923c); }
+  /* 房規互動工具列 (仿 chart_buttons.py; 本頁自帶因 site.css 未含) */
+  .chart-toolbar { display:flex; gap:4px; align-items:center; flex-wrap:wrap; padding:6px 14px; }
+  .chart-toolbar button { background:var(--th-card,#1e293b); color:var(--th-text2,#cbd5e1); border:1px solid var(--th-border2,#334155); border-radius:5px; padding:3px 9px; font-size:.78rem; cursor:pointer; min-height:28px; transition:all .15s; }
+  .chart-toolbar button:hover { border-color:#3b82f6; color:var(--th-blue,#93c5fd); }
+  .chart-toolbar button.active { border-color:#3b82f6; color:var(--th-blue,#93c5fd); background:var(--th-blue-bg,#0f2040); }
+  .chart-toolbar .lbl { color:var(--th-muted,#94a3b8); font-size:.72rem; padding:0 2px; }
+  .chart-toolbar .sep { width:1px; align-self:stretch; background:var(--th-border2,#334155); margin:2px 4px; }
+  #chart-info { margin:2px 14px 6px; padding:6px 11px; background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:6px; font-size:.82rem; line-height:1.7; color:var(--th-text2,#cbd5e1); white-space:nowrap; overflow-x:auto; }
   #chart { display:block; width:100vw !important; max-width:100vw; margin:0; overflow:hidden; }
   /* 主力動向觀察 (T/V) — 沿用 pair_mainforce_live 版面 */
   .mf-h { font-size:.95rem; color:var(--th-blue,#93c5fd); margin:16px 14px 2px 14px; font-weight:700; }
@@ -134,14 +139,22 @@
 <div id="chips"></div>
 <div id="stats"></div>
 <div id="verdict"></div>
-<div id="rangebtns">
-  <span class="lbl" style="color:var(--th-muted,#94a3b8);font-size:.75rem;">顯示範圍</span>
-  <button class="rbtn" data-n="60">近3月</button>
-  <button class="rbtn" data-n="120">近6月</button>
-  <button class="rbtn" data-n="0">全部</button>
-  <span class="sep" style="width:8px;"></span>
-  <button id="bbtn" class="tgl active">布林 MA20±2σ</button>
+<div class="chart-toolbar" id="sk-toolbar" title="✋ 滑鼠拖曳/滾輪縮放已關;點圖=定游標;雙擊=全部">
+  <span class="lbl">⏱ 範圍</span>
+  <button data-rk="1m" onclick="skRange('1m')">近1月</button>
+  <button data-rk="3m" class="active" onclick="skRange('3m')">近3月</button>
+  <button data-rk="6m" onclick="skRange('6m')">近6月</button>
+  <button data-rk="all" onclick="skRange('all')">全部</button>
+  <span class="sep"></span>
+  <span class="lbl">⭢ 游標</span>
+  <button onclick="skCursor(-5)" title="左移 5 日">◀◀</button>
+  <button onclick="skCursor(-1)" title="左移 1 日(或鍵盤 ←)">◀</button>
+  <button onclick="skCursor(1)" title="右移 1 日(或鍵盤 →)">▶</button>
+  <button onclick="skCursor(5)" title="右移 5 日">▶▶</button>
+  <span class="sep"></span>
+  <button id="bbtn" class="active" onclick="toggleBB()">布林 MA20±2σ</button>
 </div>
+<div id="chart-info">（點圖／◀▶ 或鍵盤 ← → 移游標 → 顯示當日 價差 OHLC ＋ 布林 ＋ Z20/Z60 ＋ 來源）</div>
 <div id="chart"></div>
 
 <div id="mf-section">
@@ -208,7 +221,8 @@ const POLL_MS = 5000, STALE_MS = 30000;
 const CORR_WIN = 60, CORR_MIN = 20, BB_WIN = 20, Z60_WIN = 60;
 
 let HIST = null, QUOTES = null;
-let pi = 0, rangeN = 60, showBB = true;
+let pi = 0, showBB = true;
+let curRangeKey = "3m", curIdx = null;      // 房規游標:範圍鍵 + 當前游標索引
 
 const $ = s => document.querySelector(s);
 const pctClass = v => v > 0 ? "up" : v < 0 ? "down" : "flat";
@@ -307,8 +321,23 @@ function rollStd(arr, mean, w){
   return out;
 }
 
-/* ---------- 繪圖 ---------- */
+/* ---------- 繪圖 (房規 UI:數字索引 x·無浮動 tooltip·點圖/鍵盤定十字游標·訊息列·y 隨視窗重算) ---------- */
 function currentPair(){ return HIST.pairs[pi]; }
+let SD = null;                              // 當前配對價差序列 (供游標訊息列同源)
+const SK_PAD = 2;
+function skRanges(n){
+  return { "1m":[Math.max(-0.5, n-21-0.5), n-1+SK_PAD],
+           "3m":[Math.max(-0.5, n-63-0.5), n-1+SK_PAD],
+           "6m":[Math.max(-0.5, n-126-0.5), n-1+SK_PAD],
+           "all":[-0.5, n-1+SK_PAD] };
+}
+function skCrosshair(idx){                  // 量能基準線(y2=1) + 十字游標垂直線
+  const a = [{type:"line", xref:"paper", x0:0, x1:1, yref:"y2", y0:1, y1:1,
+              line:{color:"rgba(148,163,184,.4)", width:1, dash:"dot"}}];
+  if (idx != null) a.push({type:"line", xref:"x", yref:"paper", x0:idx, x1:idx, y0:0, y1:1,
+              line:{color:"rgba(148,163,184,0.9)", width:1, dash:"dot"}});
+  return a;
+}
 
 function draw(){
   if (!HIST) return;
@@ -319,84 +348,159 @@ function draw(){
   if (!ha || !hb){ return; }
 
   let al = alignPair(ha, hb);
+  const nBefore = al.dates.length;
   al = mergeLive(al, symA, symB);
   const { so, sc, sh, sl } = spreadCandles(al);
   const n = al.dates.length;
+  const liveLast = (n > nBefore) || (QUOTES && QUOTES.session === "live" &&
+                    al.dates[n-1] === QUOTES.market_date);
 
   const mid = ma(sc, BB_WIN);
   const sd  = rollStd(sc, mid, BB_WIN);
   const bbUp = mid.map((m,i)=> m==null||sd[i]==null ? null : m+2*sd[i]);
   const bbLo = mid.map((m,i)=> m==null||sd[i]==null ? null : m-2*sd[i]);
+  const mid60 = ma(sc, Z60_WIN), sd60 = rollStd(sc, mid60, Z60_WIN);
+  const z60 = sc.map((c,i)=> (c==null||sd60[i]==null||!sd60[i]) ? null : (c-mid60[i])/sd60[i]);
 
   // 相對量 = 各腿量 ÷ 自身 20 日均量
   const vaMa = ma(al.vA, BB_WIN), vbMa = ma(al.vB, BB_WIN);
   const relA = al.vA.map((v,i)=> vaMa[i]? v/vaMa[i] : null);
   const relB = al.vB.map((v,i)=> vbMa[i]? v/vbMa[i] : null);
 
-  const start = rangeN > 0 ? Math.max(0, n - rangeN) : 0;
-  const shV = sh.slice(start), slV = sl.slice(start);
-  let yLo = Math.min(...slV), yHi = Math.max(...shV);
-  if (showBB){
-    for (let i=start;i<n;i++){ if(bbLo[i]!=null) yLo=Math.min(yLo,bbLo[i]); if(bbUp[i]!=null) yHi=Math.max(yHi,bbUp[i]); }
-  }
-  const pad = (yHi - yLo) * 0.06 || 0.01;
-  const relSlice = relA.slice(start).concat(relB.slice(start)).filter(x=>x!=null);
-  const vHi = Math.max(1.2, ...relSlice) * 1.1;
+  SD = { dates:al.dates, so, sh, sl, sc, mid, bbUp, bbLo, z60, relA, relB, na:nameA, nb:nameB, liveLast };
+  if (curIdx == null || curIdx > n-1) curIdx = n-1;
 
-  const upC = sc.map((c,i)=> c >= so[i] ? UP : DOWN);
+  const xIdx = al.dates.map((_,i)=> i);          // x = 數字索引
+  const rng = skRanges(n)[curRangeKey];
+  const i0 = Math.max(0, Math.ceil(rng[0])), i1 = Math.min(n-1, Math.floor(rng[1]));
+  // y 軸隨可見視窗重算 (避免壓扁)
+  let yLo = Infinity, yHi = -Infinity, vHi = 1.2;
+  for (let i=i0;i<=i1;i++){
+    if (sl[i]!=null && sl[i]<yLo) yLo=sl[i];
+    if (sh[i]!=null && sh[i]>yHi) yHi=sh[i];
+    if (showBB){ if(bbLo[i]!=null&&bbLo[i]<yLo) yLo=bbLo[i]; if(bbUp[i]!=null&&bbUp[i]>yHi) yHi=bbUp[i]; }
+    if (relA[i]!=null && relA[i]>vHi) vHi=relA[i];
+    if (relB[i]!=null && relB[i]>vHi) vHi=relB[i];
+  }
+  if (yLo===Infinity){ yLo=Math.min(...sl.filter(x=>x!=null)); yHi=Math.max(...sh.filter(x=>x!=null)); }
+  const pad = (yHi - yLo) * 0.06 || 0.01;
+
+  // 月份刻度 (數字索引 x 上標日期 MM/YY)
+  const tickvals=[], ticktext=[]; let prevM=null;
+  for (let i=0;i<n;i++){ const ym=al.dates[i].slice(0,7); if(ym!==prevM){ tickvals.push(i); ticktext.push(al.dates[i].slice(2,7).replace("-","/")); prevM=ym; } }
+
   const traces = [
-    { type:"candlestick", x:al.dates, open:so, high:sh, low:sl, close:sc,
+    { type:"candlestick", x:xIdx, open:so, high:sh, low:sl, close:sc,
       increasing:{line:{color:UP, width:1}, fillcolor:UP},
       decreasing:{line:{color:DOWN, width:1}, fillcolor:DOWN},
-      name:"價差K", yaxis:"y", showlegend:false, line:{width:1},
-      hoverlabel:{bgcolor:"#1e293b", bordercolor:"#334155", font:{color:"#e2e8f0", size:12}} },
+      name:"價差K", yaxis:"y", showlegend:false, line:{width:1}, hoverinfo:"skip" },
   ];
   if (showBB){
     traces.push(
-      { type:"scatter", mode:"lines", x:al.dates, y:bbUp, name:"+2σ",
+      { type:"scatter", mode:"lines", x:xIdx, y:bbUp, name:"+2σ",
         line:{color:BANDC, width:1, dash:"dot"}, hoverinfo:"skip", yaxis:"y" },
-      { type:"scatter", mode:"lines", x:al.dates, y:bbLo, name:"−2σ",
+      { type:"scatter", mode:"lines", x:xIdx, y:bbLo, name:"−2σ",
         line:{color:BANDC, width:1, dash:"dot"}, fill:"tonexty", fillcolor:BANDFILL,
         hoverinfo:"skip", yaxis:"y" },
-      { type:"scatter", mode:"lines", x:al.dates, y:mid, name:"MA20",
+      { type:"scatter", mode:"lines", x:xIdx, y:mid, name:"MA20",
         line:{color:MIDC, width:1.3}, hoverinfo:"skip", yaxis:"y" },
     );
   }
   traces.push(
-    { type:"bar", x:al.dates, y:relA, name:`${nameA} 量比`, yaxis:"y2",
-      marker:{color:VA_C, opacity:.6},
-      hovertemplate:`${nameA} 量能 %{y:.2f}×<extra></extra>`,
-      hoverlabel:{bgcolor:"#1e293b", bordercolor:"#334155", font:{color:"#e2e8f0", size:11}} },
-    { type:"bar", x:al.dates, y:relB, name:`${nameB} 量比`, yaxis:"y2",
-      marker:{color:VB_C, opacity:.6},
-      hovertemplate:`${nameB} 量能 %{y:.2f}×<extra></extra>`,
-      hoverlabel:{bgcolor:"#1e293b", bordercolor:"#334155", font:{color:"#e2e8f0", size:11}} },
+    { type:"bar", x:xIdx, y:relA, name:`${nameA} 量比`, yaxis:"y2",
+      marker:{color:VA_C, opacity:.6}, hoverinfo:"skip" },
+    { type:"bar", x:xIdx, y:relB, name:`${nameB} 量比`, yaxis:"y2",
+      marker:{color:VB_C, opacity:.6}, hoverinfo:"skip" },
   );
 
   const css = getComputedStyle(document.body);
   const T = (k, fb) => (css.getPropertyValue(k) || "").trim() || fb;
-  const h = Math.max(Math.min(window.innerHeight - 300, 720), 400);
+  const h = Math.max(Math.min(window.innerHeight - 320, 720), 400);
   const layout = {
     height:h, autosize:true, barmode:"group", bargap:0.15,
     paper_bgcolor:T("--th-bg","#0d1117"), plot_bgcolor:T("--th-card","#111827"),
     font:{color:T("--th-muted","#94a3b8"), size:11},
     margin:{l:8, r:56, t:10, b:26},
-    dragmode:false, hovermode:"x unified",
+    dragmode:false, hovermode:false,
     legend:{orientation:"h", x:1, xanchor:"right", y:1.04, font:{color:"#94a3b8", size:10}},
-    xaxis:{ type:"category", range:[start-0.5, n-0.5], rangeslider:{visible:false},
-      gridcolor:T("--th-border","#1f2937"), tickmode:"auto", nticks:8, fixedrange:true },
+    xaxis:{ type:"linear", range:rng.slice(), rangeslider:{visible:false},
+      tickmode:"array", tickvals, ticktext, tickangle:0,
+      gridcolor:T("--th-border","#1f2937") },
     yaxis:{ domain:[0.26, 1], range:[yLo-pad, yHi+pad], side:"right",
       gridcolor:T("--th-border","#1f2937"), fixedrange:true, tickformat:".3f",
       zeroline:true, zerolinecolor:"rgba(148,163,184,.25)" },
-    yaxis2:{ domain:[0, 0.22], range:[0, vHi], side:"right",
+    yaxis2:{ domain:[0, 0.22], range:[0, vHi*1.1], side:"right",
       gridcolor:T("--th-border","#1f2937"), fixedrange:true, tickformat:".1f",
       title:{text:"量比×", font:{size:9}} },
-    shapes:[{ type:"line", xref:"paper", x0:0, x1:1, yref:"y2", y0:1, y1:1,
-      line:{color:"rgba(148,163,184,.4)", width:1, dash:"dot"} }],
+    shapes: skCrosshair(curIdx),
     title:{ text:`${nameA} ${symA} ÷ ${nameB} ${symB} 價差`, font:{color:T("--th-text","#e2e8f0"), size:13}, x:0.02, y:0.99 },
   };
   Plotly.react("chart", traces, layout,
     {displayModeBar:false, scrollZoom:false, doubleClick:false, responsive:true});
+  showInfo();
+}
+
+/* 訊息列:當前游標日的 價差 OHLC + 布林 + Z20/Z60 + 比值 + 來源 (與圖同源) */
+function showInfo(){
+  const info = $("#chart-info");
+  if (!info || !SD || curIdx == null) return;
+  const s = SD, i = curIdx;
+  if (i < 0 || i >= s.sc.length) return;
+  const f4 = v => v==null ? "—" : ((v>=0?"+":"")+(Math.round(v*1e4)/1e4).toFixed(4));
+  const up = s.sc[i]!=null && s.so[i]!=null && s.sc[i] >= s.so[i];
+  const dir = up ? `<b class="up">▲收漲(${s.na}強)</b>` : `<b class="down">▼收跌(${s.nb}強)</b>`;
+  let bstat = "";
+  if (s.mid[i]!=null && s.bbUp[i]!=null && s.bbLo[i]!=null){
+    const pb = s.bbUp[i] > s.bbLo[i] ? (s.sc[i]-s.bbLo[i])/(s.bbUp[i]-s.bbLo[i])*100 : null;
+    const pos = s.sc[i] > s.bbUp[i] ? `<b class="up">上軌外</b>` : (s.sc[i] < s.bbLo[i] ? `<b class="down">下軌外</b>` : "帶內");
+    bstat = `　布林 ${pos}${pb==null?"":`（%B ${pb.toFixed(0)}）`}`;
+  }
+  const z20 = (s.mid[i]!=null && s.bbUp[i]!=null && s.bbUp[i]>s.mid[i] && s.sc[i]!=null) ? (s.sc[i]-s.mid[i])/((s.bbUp[i]-s.mid[i])/2) : null;
+  const z20s = z20==null ? "—" : ((z20>=0?"+":"")+z20.toFixed(2)+"σ");
+  const z60s = s.z60[i]==null ? "—" : ((s.z60[i]>=0?"+":"")+s.z60[i].toFixed(2)+"σ");
+  const rt = s.sc[i]==null ? "—" : Math.exp(s.sc[i]).toFixed(3);
+  const vx = v => v==null ? "—" : v.toFixed(2)+"x";
+  const vtxt = `　量${s.na} ${vx(s.relA[i])} ${s.nb} ${vx(s.relB[i])}`;
+  const src = (s.liveLast && i === s.sc.length-1) ? `　<span style="color:#22d3ee">◉RTD即時</span>` : `　<span class="flat">◐日線近似</span>`;
+  info.innerHTML = `<b>${s.dates[i]}</b>　開 ${f4(s.so[i])}　高 ${f4(s.sh[i])}　低 ${f4(s.sl[i])}　收 ${f4(s.sc[i])}　${dir}　比值 ${s.na}/${s.nb}=${rt}${bstat}　Z20 ${z20s}　Z60 ${z60s}${vtxt}${src}`;
+}
+
+/* 只更新游標(輕量,不整張 react) */
+function skRedrawCursor(){
+  const g = $("#chart");
+  if (g && g._fullLayout){ Plotly.relayout(g, {shapes: skCrosshair(curIdx)}); }
+  showInfo();
+}
+window.skRange = function(key){
+  curRangeKey = key;
+  document.querySelectorAll("#sk-toolbar [data-rk]").forEach(b => b.classList.toggle("active", b.dataset.rk === key));
+  draw();
+};
+window.skCursor = function(step){
+  if (!SD) return;
+  curIdx = Math.max(0, Math.min(SD.sc.length-1, (curIdx==null ? SD.sc.length-1 : curIdx) + step));
+  skRedrawCursor();
+};
+window.toggleBB = function(){ showBB = !showBB; $("#bbtn").classList.toggle("active", showBB); draw(); };
+function skAttach(){
+  const g = $("#chart");
+  if (!g || g._skBound) return;
+  g._skBound = true;
+  g.addEventListener("click", function(e){
+    const fl = g._fullLayout; if (!fl || !fl.xaxis) return;
+    const rect = g.getBoundingClientRect(), px = e.clientX - rect.left - fl._size.l, len = fl.xaxis._length;
+    if (px < 0 || px > len) return;
+    const r = fl.xaxis.range, dx = r[0] + (px/len)*(r[1]-r[0]);
+    curIdx = Math.max(0, Math.min(SD ? SD.sc.length-1 : 0, Math.round(dx)));
+    skRedrawCursor();
+  });
+  g.addEventListener("dblclick", function(){ window.skRange("all"); });
+  document.addEventListener("keydown", function(e){
+    const t = document.activeElement;
+    if (t && /^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName)) return;
+    if (e.key === "ArrowLeft"){ window.skCursor(-1); e.preventDefault(); }
+    else if (e.key === "ArrowRight"){ window.skCursor(1); e.preventDefault(); }
+  });
 }
 
 /* ---------- 上方資訊 ---------- */
@@ -406,7 +510,7 @@ function renderChips(){
     const b = document.createElement("button");
     b.className = "chip" + (i === pi ? " active" : "");
     b.innerHTML = `<span class="g">${p.group}</span>${p.stocks[0].name} / ${p.stocks[1].name}`;
-    b.onclick = () => { pi = i; renderChips(); renderStats(); draw(); drawMainforce(); renderMfSnapshot(); };
+    b.onclick = () => { pi = i; curIdx = null; renderChips(); renderStats(); draw(); drawMainforce(); renderMfSnapshot(); };
     el.appendChild(b);
   });
 }
@@ -609,17 +713,9 @@ async function init(){
   const r = await fetch(`rt_history.json?t=${Date.now()}`, {cache:"no-store"});
   HIST = await r.json();
   initMF();
-  document.querySelectorAll(".rbtn").forEach(b => {
-    if (+b.dataset.n === rangeN) b.classList.add("active");
-    b.onclick = () => {
-      rangeN = +b.dataset.n;
-      document.querySelectorAll(".rbtn").forEach(x=>x.classList.toggle("active", x===b));
-      draw();
-    };
-  });
-  $("#bbtn").onclick = () => { showBB = !showBB; $("#bbtn").classList.toggle("active", showBB); draw(); };
   await seedIntraday();
   await loadQuotes();
+  skAttach();                 // 點圖定游標 + 鍵盤 ← → (綁一次)
   drawMainforce();
   setInterval(loadQuotes, POLL_MS);
   window.addEventListener("resize", () => { draw(); drawMainforce(); });
