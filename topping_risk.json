@@ -2,13 +2,13 @@
   "schema_version": "v1",
   "agent_name": "topping_risk",
   "agent_kind": "overlay",
-  "as_of": "2026-07-14",
-  "generated_at": "2026-07-14 22:20:59.628767",
+  "as_of": "2026-07-15",
+  "generated_at": "2026-07-15 22:47:37.460720",
   "available": true,
   "market_regime": {
     "level_key": "warning",
     "level_label": "🟡 警告區",
-    "trigger_count": 3,
+    "trigger_count": 2,
     "total_signals": 7,
     "multiplier": 1.05
   },
@@ -29,62 +29,122 @@
     {
       "symbol": "6182",
       "name": "合晶",
-      "topping_risk": 79.3,
+      "topping_risk": 78.6,
       "tier": "S",
       "tier_label": "高度過熱·派發",
       "components": {
-        "base_distribution": 38.8,
-        "stretch": 100.0,
+        "base_distribution": 39.6,
+        "stretch": 94.8,
         "momentum": 100.0,
         "chip_distribution": 100.0
       },
       "features": {
-        "distMA240": 316.2,
-        "distMA240_z": 3.76,
-        "ret60": 404.1,
-        "drawdown_from_high": -1.6,
+        "distMA240": 294.9,
+        "distMA240_z": 3.37,
+        "ret60": 401.4,
+        "drawdown_from_high": -5.3,
         "near_high": true,
         "high_factor": 1.0,
         "confirm_factor": 1.0,
-        "nbc15_z60": -1.0,
-        "sbd_z60": -1.74,
+        "nbc15_z60": -0.91,
+        "sbd_z60": -1.35,
         "quadrant": "Q3",
         "quadrant_name_cn": "籌碼擴散"
       },
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +316%（z=+3.8）；60日動能 +404%；主力×賣買家差 籌碼擴散(Q3) 派發分 100；distribution 基底 39；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +295%（z=+3.4）；60日動能 +401%；主力×賣買家差 籌碼擴散(Q3) 派發分 100；distribution 基底 40；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "6488",
+      "name": "環球晶",
+      "topping_risk": 66.9,
+      "tier": "A",
+      "tier_label": "過熱警戒",
+      "components": {
+        "base_distribution": 40.4,
+        "stretch": 96.0,
+        "momentum": 100.0,
+        "chip_distribution": 61.0
+      },
+      "features": {
+        "distMA240": 172.4,
+        "distMA240_z": 3.4,
+        "ret60": 193.1,
+        "drawdown_from_high": -2.3,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 1.0,
+        "nbc15_z60": -0.35,
+        "sbd_z60": -0.91,
+        "quadrant": "Q3",
+        "quadrant_name_cn": "籌碼擴散"
+      },
+      "dist_tier": "B",
+      "dist_phase": "Phase C（UTAD / 假突破）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +172%（z=+3.4）；60日動能 +193%；主力×賣買家差 籌碼擴散(Q3) 派發分 61；distribution 基底 40；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "1303",
       "name": "南亞",
-      "topping_risk": 67.2,
+      "topping_risk": 58.3,
       "tier": "A",
       "tier_label": "過熱警戒",
       "components": {
-        "base_distribution": 30.6,
-        "stretch": 87.6,
-        "momentum": 100.0,
-        "chip_distribution": 80.0
+        "base_distribution": 31.7,
+        "stretch": 93.3,
+        "momentum": 93.3,
+        "chip_distribution": 49.7
       },
       "features": {
-        "distMA240": 193.7,
-        "distMA240_z": 3.19,
-        "ret60": 133.2,
+        "distMA240": 214.5,
+        "distMA240_z": 3.58,
+        "ret60": 160.7,
         "drawdown_from_high": 0.0,
         "near_high": true,
         "high_factor": 1.0,
-        "confirm_factor": 1.0,
-        "nbc15_z60": -0.43,
-        "sbd_z60": -0.17,
+        "confirm_factor": 0.93,
+        "nbc15_z60": -0.18,
+        "sbd_z60": -0.08,
         "quadrant": "Q3",
         "quadrant_name_cn": "籌碼擴散"
       },
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +194%（z=+3.2）；60日動能 +133%；主力×賣買家差 籌碼擴散(Q3) 派發分 80；distribution 基底 31；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +214%（z=+3.6）；60日動能 +161%；主力×賣買家差 籌碼擴散(Q3) 派發分 50；distribution 基底 32；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "2492",
+      "name": "華新科",
+      "topping_risk": 54.4,
+      "tier": "B",
+      "tier_label": "偏熱觀察",
+      "components": {
+        "base_distribution": 42.5,
+        "stretch": 0.0,
+        "momentum": 40.0,
+        "chip_distribution": 100.0
+      },
+      "features": {
+        "distMA240": 119.8,
+        "distMA240_z": 0.84,
+        "ret60": 159.2,
+        "drawdown_from_high": -38.2,
+        "near_high": false,
+        "high_factor": 0.4,
+        "confirm_factor": 1.0,
+        "nbc15_z60": -1.3,
+        "sbd_z60": -1.84,
+        "quadrant": "Q3",
+        "quadrant_name_cn": "籌碼擴散"
+      },
+      "dist_tier": "B",
+      "dist_phase": "Phase C（UTAD / 假突破）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +120%（z=+0.8）；60日動能 +159%；主力×賣買家差 籌碼擴散(Q3) 派發分 100；已離高點 -38.2%（過熱權重×0.40）；distribution 基底 42；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "3532",
@@ -94,14 +154,14 @@
       "tier_label": "偏熱觀察",
       "components": {
         "base_distribution": 37.0,
-        "stretch": 62.9,
+        "stretch": 63.2,
         "momentum": 77.1,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 227.3,
-        "distMA240_z": 3.04,
-        "ret60": 162.9,
+        "distMA240": 231.7,
+        "distMA240_z": 3.05,
+        "ret60": 177.5,
         "drawdown_from_high": 0.0,
         "near_high": true,
         "high_factor": 1.0,
@@ -114,148 +174,148 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +227%（z=+3.0）；60日動能 +163%；distribution 基底 37；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +232%（z=+3.0）；60日動能 +178%；distribution 基底 37；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "3035",
+      "name": "智原",
+      "topping_risk": 49.6,
+      "tier": "B",
+      "tier_label": "偏熱觀察",
+      "components": {
+        "base_distribution": 35.2,
+        "stretch": 26.0,
+        "momentum": 12.2,
+        "chip_distribution": 90.2
+      },
+      "features": {
+        "distMA240": 21.4,
+        "distMA240_z": 1.76,
+        "ret60": 31.4,
+        "drawdown_from_high": -11.2,
+        "near_high": false,
+        "high_factor": 0.85,
+        "confirm_factor": 1.0,
+        "nbc15_z60": -0.89,
+        "sbd_z60": -0.61,
+        "quadrant": "Q3",
+        "quadrant_name_cn": "籌碼擴散"
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +21%（z=+1.8）；60日動能 +31%；主力×賣買家差 籌碼擴散(Q3) 派發分 90；已離高點 -11.2%（過熱權重×0.85）；distribution 基底 35；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "3026",
       "name": "禾伸堂",
-      "topping_risk": 51.6,
-      "tier": "B",
-      "tier_label": "偏熱觀察",
-      "components": {
-        "base_distribution": 34.2,
-        "stretch": 10.5,
-        "momentum": 50.5,
-        "chip_distribution": 91.8
-      },
-      "features": {
-        "distMA240": 268.6,
-        "distMA240_z": 1.52,
-        "ret60": 241.1,
-        "drawdown_from_high": -18.9,
-        "near_high": false,
-        "high_factor": 0.5,
-        "confirm_factor": 1.0,
-        "nbc15_z60": -0.49,
-        "sbd_z60": -0.88,
-        "quadrant": "Q3",
-        "quadrant_name_cn": "籌碼擴散"
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +269%（z=+1.5）；60日動能 +241%；主力×賣買家差 籌碼擴散(Q3) 派發分 92；已離高點 -18.9%（過熱權重×0.50）；distribution 基底 34；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "6488",
-      "name": "環球晶",
       "topping_risk": 49.0,
       "tier": "B",
       "tier_label": "偏熱觀察",
       "components": {
-        "base_distribution": 40.4,
-        "stretch": 81.4,
-        "momentum": 81.4,
-        "chip_distribution": 20.3
+        "base_distribution": 29.6,
+        "stretch": 13.2,
+        "momentum": 60.9,
+        "chip_distribution": 83.8
       },
       "features": {
-        "distMA240": 181.3,
-        "distMA240_z": 3.71,
-        "ret60": 180.6,
-        "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.81,
-        "nbc15_z60": 0.01,
-        "sbd_z60": -0.63,
-        "quadrant": "Q4",
-        "quadrant_name_cn": "短線推升"
-      },
-      "dist_tier": "B",
-      "dist_phase": "Phase C（UTAD / 假突破）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +181%（z=+3.7）；60日動能 +181%；主力×賣買家差 短線推升(Q4) 派發分 20；distribution 基底 40；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "4958",
-      "name": "臻鼎-KY",
-      "topping_risk": 47.0,
-      "tier": "B",
-      "tier_label": "偏熱觀察",
-      "components": {
-        "base_distribution": 34.1,
-        "stretch": 24.7,
-        "momentum": 94.9,
-        "chip_distribution": 51.0
-      },
-      "features": {
-        "distMA240": 154.1,
-        "distMA240_z": 1.65,
-        "ret60": 146.9,
-        "drawdown_from_high": -2.6,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.95,
-        "nbc15_z60": -0.37,
-        "sbd_z60": -0.89,
+        "distMA240": 273.7,
+        "distMA240_z": 1.54,
+        "ret60": 261.2,
+        "drawdown_from_high": -16.6,
+        "near_high": false,
+        "high_factor": 0.61,
+        "confirm_factor": 1.0,
+        "nbc15_z60": -0.53,
+        "sbd_z60": -0.3,
         "quadrant": "Q3",
         "quadrant_name_cn": "籌碼擴散"
       },
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +154%（z=+1.6）；60日動能 +147%；主力×賣買家差 籌碼擴散(Q3) 派發分 51；distribution 基底 34；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +274%（z=+1.5）；60日動能 +261%；主力×賣買家差 籌碼擴散(Q3) 派發分 84；已離高點 -16.6%（過熱權重×0.61）；distribution 基底 30；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "3374",
-      "name": "精材",
-      "topping_risk": 46.0,
+      "symbol": "2881",
+      "name": "富邦金",
+      "topping_risk": 45.4,
       "tier": "B",
       "tier_label": "偏熱觀察",
       "components": {
-        "base_distribution": 31.7,
-        "stretch": 64.1,
-        "momentum": 74.6,
-        "chip_distribution": 35.3
+        "base_distribution": 43.0,
+        "stretch": 50.8,
+        "momentum": 32.8,
+        "chip_distribution": null
       },
       "features": {
-        "distMA240": 107.3,
-        "distMA240_z": 3.14,
-        "ret60": 99.7,
+        "distMA240": 39.8,
+        "distMA240_z": 2.5,
+        "ret60": 51.0,
+        "drawdown_from_high": -4.1,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.85,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "B",
+      "dist_phase": "Phase C（UTAD / 假突破）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +40%（z=+2.5）；60日動能 +51%；distribution 基底 43；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "1718",
+      "name": "中纖",
+      "topping_risk": 42.8,
+      "tier": "B",
+      "tier_label": "偏熱觀察",
+      "components": {
+        "base_distribution": 25.0,
+        "stretch": 61.8,
+        "momentum": 61.8,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 102.2,
+        "distMA240_z": 4.01,
+        "ret60": 116.3,
+        "drawdown_from_high": -2.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.62,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +102%（z=+4.0）；60日動能 +116%；distribution 基底 25；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "3479",
+      "name": "安勤",
+      "topping_risk": 42.0,
+      "tier": "B",
+      "tier_label": "偏熱觀察",
+      "components": {
+        "base_distribution": 35.6,
+        "stretch": 48.2,
+        "momentum": 42.5,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 45.6,
+        "distMA240_z": 2.6,
+        "ret60": 65.2,
         "drawdown_from_high": 0.0,
         "near_high": true,
         "high_factor": 1.0,
         "confirm_factor": 0.75,
-        "nbc15_z60": -0.17,
-        "sbd_z60": -0.15,
-        "quadrant": "Q3",
-        "quadrant_name_cn": "籌碼擴散"
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +107%（z=+3.1）；60日動能 +100%；主力×賣買家差 籌碼擴散(Q3) 派發分 35；distribution 基底 32；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "6538",
-      "name": "倉和",
-      "topping_risk": 45.5,
-      "tier": "B",
-      "tier_label": "偏熱觀察",
-      "components": {
-        "base_distribution": 27.3,
-        "stretch": 64.7,
-        "momentum": 64.7,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 92.3,
-        "distMA240_z": 3.52,
-        "ret60": 113.2,
-        "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.65,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -264,67 +324,7 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +92%（z=+3.5）；60日動能 +113%；distribution 基底 27；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "8150",
-      "name": "南茂",
-      "topping_risk": 44.5,
-      "tier": "B",
-      "tier_label": "偏熱觀察",
-      "components": {
-        "base_distribution": 23.5,
-        "stretch": 0.0,
-        "momentum": 24.6,
-        "chip_distribution": 100.0
-      },
-      "features": {
-        "distMA240": 90.3,
-        "distMA240_z": 0.95,
-        "ret60": 42.9,
-        "drawdown_from_high": -11.1,
-        "near_high": false,
-        "high_factor": 0.86,
-        "confirm_factor": 1.0,
-        "nbc15_z60": -1.48,
-        "sbd_z60": -1.27,
-        "quadrant": "Q3",
-        "quadrant_name_cn": "籌碼擴散"
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +90%（z=+0.9）；60日動能 +43%；主力×賣買家差 籌碼擴散(Q3) 派發分 100；已離高點 -11.1%（過熱權重×0.86）；distribution 基底 24；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "3362",
-      "name": "先進光",
-      "topping_risk": 41.6,
-      "tier": "B",
-      "tier_label": "偏熱觀察",
-      "components": {
-        "base_distribution": 52.7,
-        "stretch": 23.3,
-        "momentum": 20.5,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 50.6,
-        "distMA240_z": 2.15,
-        "ret60": 52.3,
-        "drawdown_from_high": -18.5,
-        "near_high": false,
-        "high_factor": 0.52,
-        "confirm_factor": 0.97,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "B",
-      "dist_phase": "Phase C（UTAD / 假突破）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +51%（z=+2.1）；60日動能 +52%；已離高點 -18.5%（過熱權重×0.52）；distribution 基底 53；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +46%（z=+2.6）；60日動能 +65%；distribution 基底 36；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "2434",
@@ -339,9 +339,9 @@
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 136.4,
-        "distMA240_z": 6.97,
-        "ret60": 155.4,
+        "distMA240": 158.2,
+        "distMA240_z": 7.21,
+        "ret60": 179.5,
         "drawdown_from_high": 0.0,
         "near_high": true,
         "high_factor": 1.0,
@@ -354,7 +354,7 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +136%（z=+7.0）；60日動能 +155%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +158%（z=+7.2）；60日動能 +180%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "4556",
@@ -369,9 +369,9 @@
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 270.8,
-        "distMA240_z": 4.78,
-        "ret60": 307.0,
+        "distMA240": 285.8,
+        "distMA240_z": 4.8,
+        "ret60": 290.3,
         "drawdown_from_high": 0.0,
         "near_high": true,
         "high_factor": 1.0,
@@ -384,37 +384,37 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +271%（z=+4.8）；60日動能 +307%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +286%（z=+4.8）；60日動能 +290%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "2492",
-      "name": "華新科",
-      "topping_risk": 39.9,
+      "symbol": "4541",
+      "name": "晟田",
+      "topping_risk": 39.5,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 42.4,
-        "stretch": 0.0,
-        "momentum": 39.6,
-        "chip_distribution": 54.2
+        "base_distribution": 29.4,
+        "stretch": 61.2,
+        "momentum": 29.8,
+        "chip_distribution": null
       },
       "features": {
-        "distMA240": 127.8,
-        "distMA240_z": 0.95,
-        "ret60": 164.0,
-        "drawdown_from_high": -36.5,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.99,
-        "nbc15_z60": -0.28,
-        "sbd_z60": 0.03,
-        "quadrant": "Q2",
-        "quadrant_name_cn": "承接觀察"
+        "distMA240": 60.9,
+        "distMA240_z": 3.27,
+        "ret60": 55.4,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.67,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
       },
-      "dist_tier": "B",
-      "dist_phase": "Phase C（UTAD / 假突破）",
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +128%（z=+0.9）；60日動能 +164%；主力×賣買家差 承接觀察(Q2) 派發分 54；已離高點 -36.5%（過熱權重×0.40）；distribution 基底 42；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +61%（z=+3.3）；60日動能 +55%；distribution 基底 29；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "6748",
@@ -429,9 +429,9 @@
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 231.6,
-        "distMA240_z": 3.76,
-        "ret60": 283.6,
+        "distMA240": 275.7,
+        "distMA240_z": 4.48,
+        "ret60": 341.6,
         "drawdown_from_high": 0.0,
         "near_high": true,
         "high_factor": 1.0,
@@ -444,448 +444,58 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +232%（z=+3.8）；60日動能 +284%；distribution 基底 22；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "1515",
-      "name": "力山",
-      "topping_risk": 38.9,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 23.8,
-        "stretch": 60.3,
-        "momentum": 46.2,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 52.6,
-        "distMA240_z": 4.5,
-        "ret60": 81.3,
-        "drawdown_from_high": -4.1,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.6,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +53%（z=+4.5）；60日動能 +81%；distribution 基底 24；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "8261",
-      "name": "富鼎",
-      "topping_risk": 38.8,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 26.7,
-        "stretch": 48.6,
-        "momentum": 53.8,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 165.8,
-        "distMA240_z": 3.26,
-        "ret60": 168.5,
-        "drawdown_from_high": -11.5,
-        "near_high": false,
-        "high_factor": 0.84,
-        "confirm_factor": 0.64,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +166%（z=+3.3）；60日動能 +168%；已離高點 -11.5%（過熱權重×0.84）；distribution 基底 27；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "8046",
-      "name": "南電",
-      "topping_risk": 38.3,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 28.0,
-        "stretch": 16.6,
-        "momentum": 67.0,
-        "chip_distribution": 47.5
-      },
-      "features": {
-        "distMA240": 177.3,
-        "distMA240_z": 1.46,
-        "ret60": 79.3,
-        "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.9,
-        "nbc15_z60": -0.43,
-        "sbd_z60": -0.5,
-        "quadrant": "Q3",
-        "quadrant_name_cn": "籌碼擴散"
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +177%（z=+1.5）；60日動能 +79%；主力×賣買家差 籌碼擴散(Q3) 派發分 48；distribution 基底 28；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "1301",
-      "name": "台塑",
-      "topping_risk": 37.7,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 38.0,
-        "stretch": 55.2,
-        "momentum": 0.0,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 45.7,
-        "distMA240_z": 2.76,
-        "ret60": 17.8,
-        "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.78,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +46%（z=+2.8）；60日動能 +18%；distribution 基底 38；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "2601",
-      "name": "益航",
-      "topping_risk": 37.2,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 31.6,
-        "stretch": 64.5,
-        "momentum": 4.8,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 25.4,
-        "distMA240_z": 3.72,
-        "ret60": 25.9,
-        "drawdown_from_high": -9.8,
-        "near_high": false,
-        "high_factor": 0.92,
-        "confirm_factor": 0.7,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +25%（z=+3.7）；60日動能 +26%；已離高點 -9.8%（過熱權重×0.92）；distribution 基底 32；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "5488",
-      "name": "松普",
-      "topping_risk": 37.2,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 23.0,
-        "stretch": 59.3,
-        "momentum": 41.1,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 71.2,
-        "distMA240_z": 4.52,
-        "ret60": 75.5,
-        "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.59,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +71%（z=+4.5）；60日動能 +76%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "3035",
-      "name": "智原",
-      "topping_risk": 36.4,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 37.9,
-        "stretch": 23.5,
-        "momentum": 12.7,
-        "chip_distribution": 45.8
-      },
-      "features": {
-        "distMA240": 21.5,
-        "distMA240_z": 1.78,
-        "ret60": 33.5,
-        "drawdown_from_high": -11.2,
-        "near_high": false,
-        "high_factor": 0.85,
-        "confirm_factor": 0.88,
-        "nbc15_z60": -0.33,
-        "sbd_z60": -0.62,
-        "quadrant": "Q3",
-        "quadrant_name_cn": "籌碼擴散"
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +22%（z=+1.8）；60日動能 +34%；主力×賣買家差 籌碼擴散(Q3) 派發分 46；已離高點 -11.2%（過熱權重×0.85）；distribution 基底 38；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "4541",
-      "name": "晟田",
-      "topping_risk": 36.4,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 28.4,
-        "stretch": 54.5,
-        "momentum": 25.6,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 56.3,
-        "distMA240_z": 3.06,
-        "ret60": 51.0,
-        "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.66,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +56%（z=+3.1）；60日動能 +51%；distribution 基底 28；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "2071",
-      "name": "2071",
-      "topping_risk": 36.4,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 23.0,
-        "stretch": 59.3,
-        "momentum": 36.7,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 96.5,
-        "distMA240_z": 5.41,
-        "ret60": 69.6,
-        "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.59,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +96%（z=+5.4）；60日動能 +70%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "2049",
-      "name": "上銀",
-      "topping_risk": 35.9,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 10.5,
-        "stretch": 0.0,
-        "momentum": 0.0,
-        "chip_distribution": 100.0
-      },
-      "features": {
-        "distMA240": 28.5,
-        "distMA240_z": 0.86,
-        "ret60": 14.3,
-        "drawdown_from_high": -22.1,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 1.0,
-        "nbc15_z60": -0.9,
-        "sbd_z60": -1.07,
-        "quadrant": "Q3",
-        "quadrant_name_cn": "籌碼擴散"
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +28%（z=+0.9）；60日動能 +14%；主力×賣買家差 籌碼擴散(Q3) 派發分 100；已離高點 -22.1%（過熱權重×0.40）；distribution 基底 10；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "2236",
-      "name": "百達-KY",
-      "topping_risk": 35.7,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 40.0,
-        "stretch": 36.9,
-        "momentum": 9.4,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 48.0,
-        "distMA240_z": 2.19,
-        "ret60": 29.7,
-        "drawdown_from_high": -8.9,
-        "near_high": false,
-        "high_factor": 0.96,
-        "confirm_factor": 0.81,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +48%（z=+2.2）；60日動能 +30%；已離高點 -8.9%（過熱權重×0.96）；distribution 基底 40；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "2466",
-      "name": "冠西電",
-      "topping_risk": 35.7,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 23.4,
-        "stretch": 59.5,
-        "momentum": 31.0,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 72.5,
-        "distMA240_z": 3.49,
-        "ret60": 61.5,
-        "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.6,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +72%（z=+3.5）；60日動能 +62%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "1810",
-      "name": "和成",
-      "topping_risk": 35.3,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 23.0,
-        "stretch": 59.3,
-        "momentum": 30.5,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 53.8,
-        "distMA240_z": 4.24,
-        "ret60": 61.1,
-        "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.59,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +54%（z=+4.2）；60日動能 +61%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "1718",
-      "name": "中纖",
-      "topping_risk": 34.8,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 19.0,
-        "stretch": 52.7,
-        "momentum": 51.2,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 89.5,
-        "distMA240_z": 3.61,
-        "ret60": 97.7,
-        "drawdown_from_high": -8.6,
-        "near_high": false,
-        "high_factor": 0.97,
-        "confirm_factor": 0.54,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +90%（z=+3.6）；60日動能 +98%；已離高點 -8.6%（過熱權重×0.97）；distribution 基底 19；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +276%（z=+4.5）；60日動能 +342%；distribution 基底 22；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "2332",
       "name": "友訊",
-      "topping_risk": 34.6,
+      "topping_risk": 39.0,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 23.0,
-        "stretch": 59.3,
-        "momentum": 26.5,
+        "base_distribution": 28.8,
+        "stretch": 63.0,
+        "momentum": 26.3,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 47.2,
-        "distMA240_z": 5.43,
-        "ret60": 55.7,
-        "drawdown_from_high": -7.3,
+        "distMA240": 43.9,
+        "distMA240_z": 4.84,
+        "ret60": 53.4,
+        "drawdown_from_high": -9.2,
+        "near_high": false,
+        "high_factor": 0.95,
+        "confirm_factor": 0.67,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +44%（z=+4.8）；60日動能 +53%；已離高點 -9.2%（過熱權重×0.95）；distribution 基底 29；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "1515",
+      "name": "力山",
+      "topping_risk": 38.5,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 23.4,
+        "stretch": 59.8,
+        "momentum": 46.4,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 52.7,
+        "distMA240_z": 4.32,
+        "ret60": 82.1,
+        "drawdown_from_high": -3.9,
         "near_high": true,
         "high_factor": 1.0,
-        "confirm_factor": 0.59,
+        "confirm_factor": 0.6,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -894,58 +504,28 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +47%（z=+5.4）；60日動能 +56%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +53%（z=+4.3）；60日動能 +82%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "3037",
-      "name": "欣興",
-      "topping_risk": 34.4,
+      "symbol": "2601",
+      "name": "益航",
+      "topping_risk": 38.1,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 23.8,
-        "stretch": 0.0,
-        "momentum": 9.6,
-        "chip_distribution": 73.6
-      },
-      "features": {
-        "distMA240": 109.2,
-        "distMA240_z": 0.15,
-        "ret60": 35.8,
-        "drawdown_from_high": -19.3,
-        "near_high": false,
-        "high_factor": 0.49,
-        "confirm_factor": 1.0,
-        "nbc15_z60": -0.57,
-        "sbd_z60": -0.8,
-        "quadrant": "Q3",
-        "quadrant_name_cn": "籌碼擴散"
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +109%（z=+0.1）；60日動能 +36%；主力×賣買家差 籌碼擴散(Q3) 派發分 74；已離高點 -19.3%（過熱權重×0.49）；distribution 基底 24；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "2484",
-      "name": "希華",
-      "topping_risk": 34.3,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 33.8,
-        "stretch": 22.0,
-        "momentum": 44.7,
+        "base_distribution": 33.2,
+        "stretch": 63.8,
+        "momentum": 5.3,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 149.8,
-        "distMA240_z": 2.23,
-        "ret60": 99.8,
-        "drawdown_from_high": -16.5,
+        "distMA240": 24.2,
+        "distMA240_z": 3.49,
+        "ret60": 26.6,
+        "drawdown_from_high": -10.5,
         "near_high": false,
-        "high_factor": 0.61,
-        "confirm_factor": 0.73,
+        "high_factor": 0.89,
+        "confirm_factor": 0.72,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -954,295 +534,25 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +150%（z=+2.2）；60日動能 +100%；已離高點 -16.5%（過熱權重×0.61）；distribution 基底 34；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +24%（z=+3.5）；60日動能 +27%；已離高點 -10.5%（過熱權重×0.89）；distribution 基底 33；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "6525",
-      "name": "捷敏-KY",
-      "topping_risk": 34.2,
+      "symbol": "1301",
+      "name": "台塑",
+      "topping_risk": 37.8,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 30.8,
-        "stretch": 32.7,
-        "momentum": 38.1,
+        "base_distribution": 34.4,
+        "stretch": 60.8,
+        "momentum": 3.9,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 107.9,
-        "distMA240_z": 3.15,
-        "ret60": 114.5,
-        "drawdown_from_high": -17.9,
-        "near_high": false,
-        "high_factor": 0.55,
-        "confirm_factor": 0.69,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +108%（z=+3.1）；60日動能 +114%；已離高點 -17.9%（過熱權重×0.55）；distribution 基底 31；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "5371",
-      "name": "中光電",
-      "topping_risk": 32.9,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 54.7,
-        "stretch": 0.0,
-        "momentum": 0.4,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 7.6,
-        "distMA240_z": -0.07,
-        "ret60": 20.9,
-        "drawdown_from_high": -27.5,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 1.0,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "B",
-      "dist_phase": "Phase C（UTAD / 假突破）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +8%（z=-0.1）；60日動能 +21%；已離高點 -27.5%（過熱權重×0.40）；distribution 基底 55；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "6207",
-      "name": "雷科",
-      "topping_risk": 32.9,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 37.5,
-        "stretch": 11.1,
-        "momentum": 41.0,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 102.4,
-        "distMA240_z": 1.68,
-        "ret60": 136.0,
-        "drawdown_from_high": -18.4,
-        "near_high": false,
-        "high_factor": 0.53,
-        "confirm_factor": 0.78,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +102%（z=+1.7）；60日動能 +136%；已離高點 -18.4%（過熱權重×0.53）；distribution 基底 38；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "7402",
-      "name": "邑錡",
-      "topping_risk": 32.5,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 54.2,
-        "stretch": 0.0,
-        "momentum": 0.0,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 17.7,
-        "distMA240_z": -0.08,
-        "ret60": 13.2,
-        "drawdown_from_high": -13.7,
-        "near_high": false,
-        "high_factor": 0.74,
-        "confirm_factor": 0.99,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "B",
-      "dist_phase": "Phase C（UTAD / 假突破）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +18%（z=-0.1）；60日動能 +13%；已離高點 -13.7%（過熱權重×0.74）；distribution 基底 54；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "6617",
-      "name": "共信-KY",
-      "topping_risk": 32.0,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 23.0,
-        "stretch": 52.3,
-        "momentum": 22.5,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 25.4,
-        "distMA240_z": 3.58,
-        "ret60": 54.4,
-        "drawdown_from_high": -10.6,
-        "near_high": false,
-        "high_factor": 0.88,
-        "confirm_factor": 0.59,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +25%（z=+3.6）；60日動能 +54%；已離高點 -10.6%（過熱權重×0.88）；distribution 基底 23；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "2344",
-      "name": "華邦電",
-      "topping_risk": 31.7,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 36.0,
-        "stretch": 0.0,
-        "momentum": 26.5,
-        "chip_distribution": 42.0
-      },
-      "features": {
-        "distMA240": 92.4,
-        "distMA240_z": -0.29,
-        "ret60": 83.6,
-        "drawdown_from_high": -25.9,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.83,
-        "nbc15_z60": -0.28,
-        "sbd_z60": -0.44,
-        "quadrant": "Q3",
-        "quadrant_name_cn": "籌碼擴散"
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +92%（z=-0.3）；60日動能 +84%；主力×賣買家差 籌碼擴散(Q3) 派發分 42；已離高點 -25.9%（過熱權重×0.40）；distribution 基底 36；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "6226",
-      "name": "光鼎",
-      "topping_risk": 31.2,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 16.9,
-        "stretch": 45.9,
-        "momentum": 47.9,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 161.8,
-        "distMA240_z": 3.23,
-        "ret60": 94.4,
-        "drawdown_from_high": -3.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.52,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +162%（z=+3.2）；60日動能 +94%；distribution 基底 17；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "2630",
-      "name": "亞航",
-      "topping_risk": 31.1,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 49.6,
-        "stretch": 0.0,
-        "momentum": 7.2,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 24.7,
-        "distMA240_z": 0.31,
-        "ret60": 27.9,
-        "drawdown_from_high": -12.8,
-        "near_high": false,
-        "high_factor": 0.78,
-        "confirm_factor": 0.93,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "B",
-      "dist_phase": "Phase B（派發建倉）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +25%（z=+0.3）；60日動能 +28%；已離高點 -12.8%（過熱權重×0.78）；distribution 基底 50；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "5483",
-      "name": "中美晶",
-      "topping_risk": 30.7,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 26.0,
-        "stretch": 63.1,
-        "momentum": 62.5,
-        "chip_distribution": 0.0
-      },
-      "features": {
-        "distMA240": 104.3,
-        "distMA240_z": 4.05,
-        "ret60": 99.2,
+        "distMA240": 50.1,
+        "distMA240_z": 3.06,
+        "ret60": 24.2,
         "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.63,
-        "nbc15_z60": 0.65,
-        "sbd_z60": 1.35,
-        "quadrant": "Q1",
-        "quadrant_name_cn": "主力吸籌"
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +104%（z=+4.0）；60日動能 +99%；主力×賣買家差 主力吸籌(Q1) 派發分 0；distribution 基底 26；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "1326",
-      "name": "台化",
-      "topping_risk": 30.0,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 34.8,
-        "stretch": 27.6,
-        "momentum": 9.4,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 74.8,
-        "distMA240_z": 1.93,
-        "ret60": 30.1,
-        "drawdown_from_high": -1.5,
         "near_high": true,
         "high_factor": 1.0,
         "confirm_factor": 0.74,
@@ -1254,57 +564,87 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +75%（z=+1.9）；60日動能 +30%；distribution 基底 35；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +50%（z=+3.1）；60日動能 +24%；distribution 基底 34；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "3006",
-      "name": "晶豪科",
-      "topping_risk": 29.0,
+      "symbol": "1447",
+      "name": "力鵬",
+      "topping_risk": 37.2,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 22.3,
-        "stretch": 0.0,
-        "momentum": 12.8,
-        "chip_distribution": 57.2
+        "base_distribution": 27.2,
+        "stretch": 55.2,
+        "momentum": 33.1,
+        "chip_distribution": null
       },
       "features": {
-        "distMA240": 65.0,
-        "distMA240_z": 0.13,
-        "ret60": 39.2,
-        "drawdown_from_high": -18.3,
+        "distMA240": 54.6,
+        "distMA240_z": 3.92,
+        "ret60": 68.0,
+        "drawdown_from_high": -11.2,
         "near_high": false,
-        "high_factor": 0.53,
-        "confirm_factor": 1.0,
-        "nbc15_z60": -0.68,
-        "sbd_z60": -0.95,
-        "quadrant": "Q3",
-        "quadrant_name_cn": "籌碼擴散"
+        "high_factor": 0.85,
+        "confirm_factor": 0.65,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
       },
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +65%（z=+0.1）；60日動能 +39%；主力×賣買家差 籌碼擴散(Q3) 派發分 57；已離高點 -18.3%（過熱權重×0.53）；distribution 基底 22；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +55%（z=+3.9）；60日動能 +68%；已離高點 -11.2%（過熱權重×0.85）；distribution 基底 27；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "3189",
-      "name": "景碩",
-      "topping_risk": 28.8,
+      "symbol": "5488",
+      "name": "松普",
+      "topping_risk": 37.1,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 28.6,
-        "stretch": 1.7,
-        "momentum": 61.9,
+        "base_distribution": 23.0,
+        "stretch": 59.3,
+        "momentum": 40.3,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 175.9,
-        "distMA240_z": 1.07,
-        "ret60": 104.9,
-        "drawdown_from_high": -9.5,
+        "distMA240": 68.7,
+        "distMA240_z": 4.2,
+        "ret60": 74.4,
+        "drawdown_from_high": -1.1,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.59,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +69%（z=+4.2）；60日動能 +74%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "6525",
+      "name": "捷敏-KY",
+      "topping_risk": 36.8,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 28.4,
+        "stretch": 42.5,
+        "momentum": 46.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 114.6,
+        "distMA240_z": 3.31,
+        "ret60": 117.4,
+        "drawdown_from_high": -14.7,
         "near_high": false,
-        "high_factor": 0.93,
+        "high_factor": 0.7,
         "confirm_factor": 0.66,
         "nbc15_z60": null,
         "sbd_z60": null,
@@ -1314,7 +654,577 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +176%（z=+1.1）；60日動能 +105%；已離高點 -9.5%（過熱權重×0.93）；distribution 基底 29；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +115%（z=+3.3）；60日動能 +117%；已離高點 -14.7%（過熱權重×0.70）；distribution 基底 28；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "1810",
+      "name": "和成",
+      "topping_risk": 36.4,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 23.0,
+        "stretch": 59.3,
+        "momentum": 36.8,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 65.4,
+        "distMA240_z": 5.01,
+        "ret60": 69.7,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.59,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +65%（z=+5.0）；60日動能 +70%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "4127",
+      "name": "天良",
+      "topping_risk": 36.2,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 23.0,
+        "stretch": 43.4,
+        "momentum": 59.3,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 102.1,
+        "distMA240_z": 2.83,
+        "ret60": 116.5,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.59,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +102%（z=+2.8）；60日動能 +116%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "4707",
+      "name": "磐亞",
+      "topping_risk": 35.8,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 19.0,
+        "stretch": 54.2,
+        "momentum": 54.2,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 226.2,
+        "distMA240_z": 4.22,
+        "ret60": 178.7,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.54,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +226%（z=+4.2）；60日動能 +179%；distribution 基底 19；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "6617",
+      "name": "共信-KY",
+      "topping_risk": 35.5,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 23.0,
+        "stretch": 59.3,
+        "momentum": 31.6,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 29.6,
+        "distMA240_z": 3.83,
+        "ret60": 62.7,
+        "drawdown_from_high": -7.7,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.59,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +30%（z=+3.8）；60日動能 +63%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "2305",
+      "name": "全友",
+      "topping_risk": 34.4,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 36.3,
+        "stretch": 19.3,
+        "momentum": 41.2,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 126.4,
+        "distMA240_z": 2.14,
+        "ret60": 98.0,
+        "drawdown_from_high": -17.8,
+        "near_high": false,
+        "high_factor": 0.55,
+        "confirm_factor": 0.76,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +126%（z=+2.1）；60日動能 +98%；已離高點 -17.8%（過熱權重×0.55）；distribution 基底 36；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "5483",
+      "name": "中美晶",
+      "topping_risk": 34.0,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 29.9,
+        "stretch": 68.1,
+        "momentum": 68.1,
+        "chip_distribution": 0.0
+      },
+      "features": {
+        "distMA240": 123.2,
+        "distMA240_z": 4.63,
+        "ret60": 123.3,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.68,
+        "nbc15_z60": 0.36,
+        "sbd_z60": 1.19,
+        "quadrant": "Q1",
+        "quadrant_name_cn": "主力吸籌"
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +123%（z=+4.6）；60日動能 +123%；主力×賣買家差 主力吸籌(Q1) 派發分 0；distribution 基底 30；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "8261",
+      "name": "富鼎",
+      "topping_risk": 33.9,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 24.0,
+        "stretch": 40.1,
+        "momentum": 48.4,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 161.1,
+        "distMA240_z": 3.07,
+        "ret60": 141.9,
+        "drawdown_from_high": -12.4,
+        "near_high": false,
+        "high_factor": 0.8,
+        "confirm_factor": 0.61,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +161%（z=+3.1）；60日動能 +142%；已離高點 -12.4%（過熱權重×0.80）；distribution 基底 24；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "1709",
+      "name": "和益",
+      "topping_risk": 33.0,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 23.0,
+        "stretch": 59.3,
+        "momentum": 18.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 52.8,
+        "distMA240_z": 3.98,
+        "ret60": 44.3,
+        "drawdown_from_high": -2.5,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.59,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +53%（z=+4.0）；60日動能 +44%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "6207",
+      "name": "雷科",
+      "topping_risk": 32.6,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 26.5,
+        "stretch": 24.0,
+        "momentum": 57.1,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 121.2,
+        "distMA240_z": 2.05,
+        "ret60": 160.1,
+        "drawdown_from_high": -10.3,
+        "near_high": false,
+        "high_factor": 0.9,
+        "confirm_factor": 0.64,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +121%（z=+2.0）；60日動能 +160%；已離高點 -10.3%（過熱權重×0.90）；distribution 基底 26；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "2049",
+      "name": "上銀",
+      "topping_risk": 32.2,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 10.5,
+        "stretch": 0.0,
+        "momentum": 0.0,
+        "chip_distribution": 88.2
+      },
+      "features": {
+        "distMA240": 30.1,
+        "distMA240_z": 0.92,
+        "ret60": 11.1,
+        "drawdown_from_high": -21.0,
+        "near_high": false,
+        "high_factor": 0.41,
+        "confirm_factor": 1.0,
+        "nbc15_z60": -0.68,
+        "sbd_z60": -0.41,
+        "quadrant": "Q3",
+        "quadrant_name_cn": "籌碼擴散"
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +30%（z=+0.9）；60日動能 +11%；主力×賣買家差 籌碼擴散(Q3) 派發分 88；已離高點 -21.0%（過熱權重×0.41）；distribution 基底 10；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "2466",
+      "name": "冠西電",
+      "topping_risk": 32.1,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 17.4,
+        "stretch": 52.1,
+        "momentum": 41.8,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 89.3,
+        "distMA240_z": 4.09,
+        "ret60": 84.2,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.52,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +89%（z=+4.1）；60日動能 +84%；distribution 基底 17；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "4513",
+      "name": "福裕",
+      "topping_risk": 31.8,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 23.0,
+        "stretch": 59.3,
+        "momentum": 10.8,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 25.0,
+        "distMA240_z": 3.63,
+        "ret60": 34.6,
+        "drawdown_from_high": -4.3,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.59,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +25%（z=+3.6）；60日動能 +35%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "3374",
+      "name": "精材",
+      "topping_risk": 31.6,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 27.0,
+        "stretch": 64.4,
+        "momentum": 64.4,
+        "chip_distribution": 0.0
+      },
+      "features": {
+        "distMA240": 126.6,
+        "distMA240_z": 3.65,
+        "ret60": 119.7,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.64,
+        "nbc15_z60": 2.2,
+        "sbd_z60": 1.92,
+        "quadrant": "Q1",
+        "quadrant_name_cn": "主力吸籌"
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +127%（z=+3.6）；60日動能 +120%；主力×賣買家差 主力吸籌(Q1) 派發分 0；distribution 基底 27；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "4534",
+      "name": "慶騰",
+      "topping_risk": 31.2,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 30.5,
+        "stretch": 32.8,
+        "momentum": 22.7,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 79.2,
+        "distMA240_z": 2.19,
+        "ret60": 46.4,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.69,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +79%（z=+2.2）；60日動能 +46%；distribution 基底 30；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "3413",
+      "name": "京鼎",
+      "topping_risk": 31.0,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 35.3,
+        "stretch": 36.3,
+        "momentum": 0.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 16.8,
+        "distMA240_z": 2.21,
+        "ret60": 14.3,
+        "drawdown_from_high": -3.1,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.75,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +17%（z=+2.2）；60日動能 +14%；distribution 基底 35；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "3094",
+      "name": "聯傑",
+      "topping_risk": 30.4,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 26.8,
+        "stretch": 32.3,
+        "momentum": 31.2,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 50.5,
+        "distMA240_z": 2.43,
+        "ret60": 64.2,
+        "drawdown_from_high": -10.6,
+        "near_high": false,
+        "high_factor": 0.88,
+        "confirm_factor": 0.64,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +50%（z=+2.4）；60日動能 +64%；已離高點 -10.6%（過熱權重×0.88）；distribution 基底 27；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "2910",
+      "name": "統領",
+      "topping_risk": 29.8,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 23.0,
+        "stretch": 59.3,
+        "momentum": 0.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 30.1,
+        "distMA240_z": 4.42,
+        "ret60": 18.7,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.59,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +30%（z=+4.4）；60日動能 +19%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "3189",
+      "name": "景碩",
+      "topping_risk": 29.7,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 27.6,
+        "stretch": 5.2,
+        "momentum": 65.1,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 186.5,
+        "distMA240_z": 1.2,
+        "ret60": 116.2,
+        "drawdown_from_high": -5.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.65,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +186%（z=+1.2）；60日動能 +116%；distribution 基底 28；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "2630",
+      "name": "亞航",
+      "topping_risk": 29.5,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 48.5,
+        "stretch": 0.0,
+        "momentum": 2.1,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 20.8,
+        "distMA240_z": 0.15,
+        "ret60": 22.7,
+        "drawdown_from_high": -15.3,
+        "near_high": false,
+        "high_factor": 0.67,
+        "confirm_factor": 0.92,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "B",
+      "dist_phase": "Phase B（派發建倉）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +21%（z=+0.1）；60日動能 +23%；已離高點 -15.3%（過熱權重×0.67）；distribution 基底 48；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "3055",
@@ -1329,10 +1239,10 @@
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 139.3,
-        "distMA240_z": 4.09,
-        "ret60": 183.1,
-        "drawdown_from_high": -0.3,
+        "distMA240": 161.2,
+        "distMA240_z": 4.59,
+        "ret60": 183.0,
+        "drawdown_from_high": 0.0,
         "near_high": true,
         "high_factor": 1.0,
         "confirm_factor": 0.47,
@@ -1344,28 +1254,58 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +139%（z=+4.1）；60日動能 +183%；distribution 基底 13；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +161%（z=+4.6）；60日動能 +183%；distribution 基底 13；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "1447",
-      "name": "力鵬",
-      "topping_risk": 27.7,
+      "symbol": "1326",
+      "name": "台化",
+      "topping_risk": 28.6,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 29.6,
-        "stretch": 28.8,
-        "momentum": 11.8,
+        "base_distribution": 28.5,
+        "stretch": 33.1,
+        "momentum": 16.9,
+        "chip_distribution": 26.0
+      },
+      "features": {
+        "distMA240": 83.8,
+        "distMA240_z": 2.25,
+        "ret60": 40.4,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.66,
+        "nbc15_z60": 0.11,
+        "sbd_z60": 0.18,
+        "quadrant": "Q1",
+        "quadrant_name_cn": "主力吸籌"
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +84%（z=+2.2）；60日動能 +40%；主力×賣買家差 主力吸籌(Q1) 派發分 26；distribution 基底 28；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "2484",
+      "name": "希華",
+      "topping_risk": 28.6,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 26.9,
+        "stretch": 20.7,
+        "momentum": 38.2,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 40.9,
-        "distMA240_z": 3.17,
-        "ret60": 48.3,
-        "drawdown_from_high": -19.2,
+        "distMA240": 151.0,
+        "distMA240_z": 2.22,
+        "ret60": 92.2,
+        "drawdown_from_high": -15.5,
         "near_high": false,
-        "high_factor": 0.49,
-        "confirm_factor": 0.68,
+        "high_factor": 0.66,
+        "confirm_factor": 0.64,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -1374,28 +1314,28 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +41%（z=+3.2）；60日動能 +48%；已離高點 -19.2%（過熱權重×0.49）；distribution 基底 30；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +151%（z=+2.2）；60日動能 +92%；已離高點 -15.5%（過熱權重×0.66）；distribution 基底 27；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "6435",
-      "name": "大中",
-      "topping_risk": 27.1,
+      "symbol": "2887",
+      "name": "台新新光金",
+      "topping_risk": 28.5,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 32.2,
-        "stretch": 8.2,
-        "momentum": 30.7,
+        "base_distribution": 24.2,
+        "stretch": 37.2,
+        "momentum": 21.9,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 112.6,
-        "distMA240_z": 1.67,
-        "ret60": 103.7,
-        "drawdown_from_high": -20.5,
-        "near_high": false,
-        "high_factor": 0.43,
-        "confirm_factor": 0.71,
+        "distMA240": 64.4,
+        "distMA240_z": 2.53,
+        "ret60": 48.8,
+        "drawdown_from_high": -1.9,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.61,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -1404,27 +1344,57 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +113%（z=+1.7）；60日動能 +104%；已離高點 -20.5%（過熱權重×0.43）；distribution 基底 32；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +64%（z=+2.5）；60日動能 +49%；distribution 基底 24；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "8421",
-      "name": "旭源",
-      "topping_risk": 26.6,
+      "symbol": "6505",
+      "name": "台塑化",
+      "topping_risk": 28.2,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 26.1,
+        "stretch": 38.2,
+        "momentum": 12.3,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 50.6,
+        "distMA240_z": 2.51,
+        "ret60": 35.6,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.63,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +51%（z=+2.5）；60日動能 +36%；distribution 基底 26；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "1617",
+      "name": "榮星",
+      "topping_risk": 27.8,
       "tier": "C",
       "tier_label": "正常",
       "components": {
         "base_distribution": 19.0,
-        "stretch": 54.2,
-        "momentum": 3.3,
+        "stretch": 48.0,
+        "momentum": 19.0,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 26.4,
-        "distMA240_z": 6.13,
-        "ret60": 24.8,
-        "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
+        "distMA240": 52.0,
+        "distMA240_z": 3.96,
+        "ret60": 51.7,
+        "drawdown_from_high": -10.5,
+        "near_high": false,
+        "high_factor": 0.89,
         "confirm_factor": 0.54,
         "nbc15_z60": null,
         "sbd_z60": null,
@@ -1434,54 +1404,24 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +26%（z=+6.1）；60日動能 +25%；distribution 基底 19；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "2887",
-      "name": "台新新光金",
-      "topping_risk": 26.5,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 23.9,
-        "stretch": 34.1,
-        "momentum": 16.7,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 61.8,
-        "distMA240_z": 2.41,
-        "ret60": 42.1,
-        "drawdown_from_high": -3.8,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.6,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +62%（z=+2.4）；60日動能 +42%；distribution 基底 24；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +52%（z=+4.0）；60日動能 +52%；已離高點 -10.5%（過熱權重×0.89）；distribution 基底 19；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "2634",
       "name": "漢翔",
-      "topping_risk": 26.3,
+      "topping_risk": 27.5,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 30.3,
-        "stretch": 20.6,
-        "momentum": 14.4,
+        "base_distribution": 30.5,
+        "stretch": 24.2,
+        "momentum": 15.0,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 31.3,
-        "distMA240_z": 1.75,
-        "ret60": 36.8,
+        "distMA240": 33.3,
+        "distMA240_z": 1.88,
+        "ret60": 37.4,
         "drawdown_from_high": 0.0,
         "near_high": true,
         "high_factor": 1.0,
@@ -1494,27 +1434,117 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +31%（z=+1.8）；60日動能 +37%；distribution 基底 30；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +33%（z=+1.9）；60日動能 +37%；distribution 基底 30；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "6573",
-      "name": "虹揚-KY",
-      "topping_risk": 26.1,
+      "symbol": "8932",
+      "name": "智通*",
+      "topping_risk": 27.3,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 39.3,
+        "stretch": 0.0,
+        "momentum": 20.7,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 34.9,
+        "distMA240_z": -0.15,
+        "ret60": 40.7,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.8,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +35%（z=-0.1）；60日動能 +41%；distribution 基底 39；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "8383",
+      "name": "千附",
+      "topping_risk": 26.9,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 17.0,
+        "stretch": 51.6,
+        "momentum": 15.4,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 90.5,
+        "distMA240_z": 4.13,
+        "ret60": 43.9,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.52,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +90%（z=+4.1）；60日動能 +44%；distribution 基底 17；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "6243",
+      "name": "迅杰",
+      "topping_risk": 26.5,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 17.8,
+        "stretch": 49.5,
+        "momentum": 13.8,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 27.5,
+        "distMA240_z": 3.35,
+        "ret60": 40.9,
+        "drawdown_from_high": -4.5,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.53,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +28%（z=+3.4）；60日動能 +41%；distribution 基底 18；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "7714",
+      "name": "創泓科技",
+      "topping_risk": 26.2,
       "tier": "C",
       "tier_label": "正常",
       "components": {
         "base_distribution": 23.0,
-        "stretch": 21.0,
-        "momentum": 37.1,
+        "stretch": 26.8,
+        "momentum": 28.6,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 72.6,
-        "distMA240_z": 2.24,
-        "ret60": 90.1,
-        "drawdown_from_high": -14.3,
-        "near_high": false,
-        "high_factor": 0.71,
+        "distMA240": 56.1,
+        "distMA240_z": 2.13,
+        "ret60": 58.6,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
         "confirm_factor": 0.59,
         "nbc15_z60": null,
         "sbd_z60": null,
@@ -1524,28 +1554,58 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +73%（z=+2.2）；60日動能 +90%；已離高點 -14.3%（過熱權重×0.71）；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +56%（z=+2.1）；60日動能 +59%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "1617",
-      "name": "榮星",
+      "symbol": "1409",
+      "name": "新纖",
+      "topping_risk": 25.9,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 33.6,
+        "stretch": 10.1,
+        "momentum": 17.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 55.6,
+        "distMA240_z": 1.65,
+        "ret60": 55.1,
+        "drawdown_from_high": -18.3,
+        "near_high": false,
+        "high_factor": 0.53,
+        "confirm_factor": 0.73,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +56%（z=+1.6）；60日動能 +55%；已離高點 -18.3%（過熱權重×0.53）；distribution 基底 34；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "1467",
+      "name": "南緯",
       "topping_risk": 25.8,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 19.0,
-        "stretch": 43.3,
-        "momentum": 14.7,
+        "base_distribution": 18.0,
+        "stretch": 51.6,
+        "momentum": 5.7,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 49.2,
-        "distMA240_z": 3.89,
-        "ret60": 47.2,
-        "drawdown_from_high": -12.4,
-        "near_high": false,
-        "high_factor": 0.8,
-        "confirm_factor": 0.54,
+        "distMA240": 21.5,
+        "distMA240_z": 3.44,
+        "ret60": 28.6,
+        "drawdown_from_high": -7.3,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.53,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -1554,28 +1614,28 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +49%（z=+3.9）；60日動能 +47%；已離高點 -12.4%（過熱權重×0.80）；distribution 基底 19；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +22%（z=+3.4）；60日動能 +29%；distribution 基底 18；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "2527",
-      "name": "宏璟",
-      "topping_risk": 24.9,
+      "symbol": "3004",
+      "name": "豐達科",
+      "topping_risk": 25.1,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 31.0,
-        "stretch": 23.3,
-        "momentum": 0.0,
+        "base_distribution": 27.4,
+        "stretch": 22.6,
+        "momentum": 14.3,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 39.9,
-        "distMA240_z": 1.86,
-        "ret60": 5.2,
-        "drawdown_from_high": -8.5,
-        "near_high": false,
-        "high_factor": 0.98,
-        "confirm_factor": 0.69,
+        "distMA240": 35.2,
+        "distMA240_z": 1.87,
+        "ret60": 37.6,
+        "drawdown_from_high": -2.5,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.65,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -1584,7 +1644,7 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +40%（z=+1.9）；60日動能 +5%；已離高點 -8.5%（過熱權重×0.98）；distribution 基底 31；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +35%（z=+1.9）；60日動能 +38%；distribution 基底 27；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "1589",
@@ -1617,115 +1677,55 @@
       "reason": "年線乖離 +320%（z=+6.0）；60日動能 +1117%；已離高點 -16.4%（過熱權重×0.62）；distribution 基底 17；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "7714",
-      "name": "創泓科技",
-      "topping_risk": 24.5,
+      "symbol": "8046",
+      "name": "南電",
+      "topping_risk": 24.0,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 23.0,
-        "stretch": 22.8,
-        "momentum": 25.5,
-        "chip_distribution": null
+        "base_distribution": 28.1,
+        "stretch": 23.1,
+        "momentum": 62.4,
+        "chip_distribution": 0.0
       },
       "features": {
-        "distMA240": 52.5,
-        "distMA240_z": 1.96,
-        "ret60": 54.4,
+        "distMA240": 200.8,
+        "distMA240_z": 1.88,
+        "ret60": 95.9,
         "drawdown_from_high": 0.0,
         "near_high": true,
         "high_factor": 1.0,
-        "confirm_factor": 0.59,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
+        "confirm_factor": 0.66,
+        "nbc15_z60": 0.14,
+        "sbd_z60": 0.93,
+        "quadrant": "Q1",
+        "quadrant_name_cn": "主力吸籌"
       },
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +52%（z=+2.0）；60日動能 +54%；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +201%（z=+1.9）；60日動能 +96%；主力×賣買家差 主力吸籌(Q1) 派發分 0；distribution 基底 28；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "3016",
-      "name": "嘉晶",
-      "topping_risk": 24.4,
+      "symbol": "7402",
+      "name": "邑錡",
+      "topping_risk": 23.2,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 29.7,
-        "stretch": 1.0,
-        "momentum": 35.3,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 85.3,
-        "distMA240_z": 1.07,
-        "ret60": 98.9,
-        "drawdown_from_high": -18.4,
-        "near_high": false,
-        "high_factor": 0.53,
-        "confirm_factor": 0.68,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +85%（z=+1.1）；60日動能 +99%；已離高點 -18.4%（過熱權重×0.53）；distribution 基底 30；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "8383",
-      "name": "千附",
-      "topping_risk": 24.3,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 14.0,
-        "stretch": 47.8,
-        "momentum": 16.9,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 79.4,
-        "distMA240_z": 3.71,
-        "ret60": 48.2,
-        "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.48,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +79%（z=+3.7）；60日動能 +48%；distribution 基底 14；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "1710",
-      "name": "東聯",
-      "topping_risk": 24.2,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 36.4,
-        "stretch": 8.8,
+        "base_distribution": 38.7,
+        "stretch": 0.0,
         "momentum": 0.0,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 18.1,
-        "distMA240_z": 1.54,
-        "ret60": 11.2,
-        "drawdown_from_high": -18.3,
+        "distMA240": 12.5,
+        "distMA240_z": -0.29,
+        "ret60": 8.0,
+        "drawdown_from_high": -17.4,
         "near_high": false,
-        "high_factor": 0.53,
-        "confirm_factor": 0.76,
+        "high_factor": 0.57,
+        "confirm_factor": 0.79,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -1734,88 +1734,28 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +18%（z=+1.5）；60日動能 +11%；已離高點 -18.3%（過熱權重×0.53）；distribution 基底 36；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "3004",
-      "name": "豐達科",
-      "topping_risk": 23.5,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 27.3,
-        "stretch": 19.4,
-        "momentum": 10.4,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 33.6,
-        "distMA240_z": 1.75,
-        "ret60": 32.9,
-        "drawdown_from_high": -3.8,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.65,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +34%（z=+1.8）；60日動能 +33%；distribution 基底 27；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "4513",
-      "name": "福裕",
-      "topping_risk": 23.5,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 23.0,
-        "stretch": 34.8,
-        "momentum": 1.5,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 13.9,
-        "distMA240_z": 2.88,
-        "ret60": 22.6,
-        "drawdown_from_high": -12.8,
-        "near_high": false,
-        "high_factor": 0.78,
-        "confirm_factor": 0.59,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +14%（z=+2.9）；60日動能 +23%；已離高點 -12.8%（過熱權重×0.78）；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +12%（z=-0.3）；60日動能 +8%；已離高點 -17.4%（過熱權重×0.57）；distribution 基底 39；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "4169",
       "name": "泰宗",
-      "topping_risk": 23.4,
+      "topping_risk": 22.8,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 33.6,
+        "base_distribution": 31.2,
         "stretch": 0.0,
-        "momentum": 17.7,
+        "momentum": 22.4,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 54.7,
-        "distMA240_z": -0.2,
-        "ret60": 45.1,
-        "drawdown_from_high": -12.9,
+        "distMA240": 57.7,
+        "distMA240_z": -0.14,
+        "ret60": 49.5,
+        "drawdown_from_high": -10.8,
         "near_high": false,
-        "high_factor": 0.78,
-        "confirm_factor": 0.73,
+        "high_factor": 0.87,
+        "confirm_factor": 0.7,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -1824,25 +1764,55 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +55%（z=-0.2）；60日動能 +45%；已離高點 -12.9%（過熱權重×0.78）；distribution 基底 34；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +58%（z=-0.1）；60日動能 +50%；已離高點 -10.8%（過熱權重×0.87）；distribution 基底 31；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "4764",
+      "name": "雙鍵",
+      "topping_risk": 22.2,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 24.9,
+        "stretch": 0.0,
+        "momentum": 40.3,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 164.4,
+        "distMA240_z": 0.97,
+        "ret60": 72.3,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.62,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +164%（z=+1.0）；60日動能 +72%；distribution 基底 25；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "2645",
       "name": "長榮航太",
-      "topping_risk": 22.7,
+      "topping_risk": 22.0,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 28.3,
+        "base_distribution": 27.9,
         "stretch": 2.6,
-        "momentum": 27.6,
+        "momentum": 25.2,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 50.8,
+        "distMA240": 50.9,
         "distMA240_z": 1.1,
-        "ret60": 53.5,
-        "drawdown_from_high": -4.2,
+        "ret60": 50.8,
+        "drawdown_from_high": -3.8,
         "near_high": true,
         "high_factor": 1.0,
         "confirm_factor": 0.66,
@@ -1854,28 +1824,28 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +51%（z=+1.1）；60日動能 +54%；distribution 基底 28；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +51%（z=+1.1）；60日動能 +51%；distribution 基底 28；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "7719",
-      "name": "7719",
+      "symbol": "6949",
+      "name": "沛爾生醫-創",
       "topping_risk": 21.9,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 32.6,
+        "base_distribution": 33.0,
         "stretch": 0.0,
-        "momentum": 12.8,
+        "momentum": 11.8,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 24.9,
-        "distMA240_z": -0.2,
-        "ret60": 55.9,
-        "drawdown_from_high": -35.4,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.71,
+        "distMA240": 99.1,
+        "distMA240_z": 0.03,
+        "ret60": 33.1,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.72,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -1884,235 +1854,25 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +25%（z=-0.2）；60日動能 +56%；已離高點 -35.4%（過熱權重×0.40）；distribution 基底 33；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "1409",
-      "name": "新纖",
-      "topping_risk": 21.2,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 25.0,
-        "stretch": 12.3,
-        "momentum": 16.3,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 59.1,
-        "distMA240_z": 1.82,
-        "ret60": 54.8,
-        "drawdown_from_high": -16.7,
-        "near_high": false,
-        "high_factor": 0.6,
-        "confirm_factor": 0.62,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +59%（z=+1.8）；60日動能 +55%；已離高點 -16.7%（過熱權重×0.60）；distribution 基底 25；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +99%（z=+0.0）；60日動能 +33%；distribution 基底 33；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "5351",
       "name": "鈺創",
-      "topping_risk": 20.0,
+      "topping_risk": 21.0,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 27.7,
-        "stretch": 0.0,
-        "momentum": 18.9,
+        "base_distribution": 24.2,
+        "stretch": 6.3,
+        "momentum": 26.4,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 72.5,
-        "distMA240_z": 0.84,
-        "ret60": 43.2,
-        "drawdown_from_high": -4.8,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.65,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +72%（z=+0.8）；60日動能 +43%；distribution 基底 28；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "5425",
-      "name": "台半",
-      "topping_risk": 19.9,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 25.9,
-        "stretch": 3.6,
-        "momentum": 18.5,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 63.2,
-        "distMA240_z": 1.36,
-        "ret60": 78.9,
-        "drawdown_from_high": -25.7,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.63,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +63%（z=+1.4）；60日動能 +79%；已離高點 -25.7%（過熱權重×0.40）；distribution 基底 26；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "3564",
-      "name": "其陽",
-      "topping_risk": 19.7,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 23.0,
-        "stretch": 20.8,
-        "momentum": 1.5,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 5.9,
-        "distMA240_z": 3.19,
-        "ret60": 24.9,
-        "drawdown_from_high": -21.5,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.59,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +6%（z=+3.2）；60日動能 +25%；已離高點 -21.5%（過熱權重×0.40）；distribution 基底 23；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "6829",
-      "name": "千附精密",
-      "topping_risk": 19.5,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 17.7,
-        "stretch": 21.6,
-        "momentum": 16.6,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 82.3,
-        "distMA240_z": 2.03,
-        "ret60": 45.3,
-        "drawdown_from_high": -6.2,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.53,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +82%（z=+2.0）；60日動能 +45%；distribution 基底 18；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "6223",
-      "name": "旺矽",
-      "topping_risk": 19.4,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 30.6,
-        "stretch": 0.0,
-        "momentum": 6.0,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 103.7,
-        "distMA240_z": 0.17,
-        "ret60": 29.4,
-        "drawdown_from_high": -13.8,
-        "near_high": false,
-        "high_factor": 0.74,
-        "confirm_factor": 0.69,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +104%（z=+0.2）；60日動能 +29%；已離高點 -13.8%（過熱權重×0.74）；distribution 基底 31；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "1467",
-      "name": "南緯",
-      "topping_risk": 19.1,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 18.0,
-        "stretch": 30.5,
-        "momentum": 0.7,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 14.6,
-        "distMA240_z": 2.82,
-        "ret60": 21.3,
-        "drawdown_from_high": -12.6,
-        "near_high": false,
-        "high_factor": 0.79,
-        "confirm_factor": 0.53,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +15%（z=+2.8）；60日動能 +21%；已離高點 -12.6%（過熱權重×0.79）；distribution 基底 18；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "6505",
-      "name": "台塑化",
-      "topping_risk": 18.9,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 24.5,
-        "stretch": 14.2,
-        "momentum": 2.2,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 37.4,
-        "distMA240_z": 1.58,
-        "ret60": 22.9,
-        "drawdown_from_high": -0.7,
+        "distMA240": 88.2,
+        "distMA240_z": 1.26,
+        "ret60": 54.8,
+        "drawdown_from_high": 0.0,
         "near_high": true,
         "high_factor": 1.0,
         "confirm_factor": 0.61,
@@ -2124,28 +1884,28 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +37%（z=+1.6）；60日動能 +23%；distribution 基底 24；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +88%（z=+1.3）；60日動能 +55%；distribution 基底 24；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "4989",
-      "name": "榮科",
-      "topping_risk": 18.8,
+      "symbol": "6573",
+      "name": "虹揚-KY",
+      "topping_risk": 20.9,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 31.4,
-        "stretch": 0.0,
-        "momentum": 0.0,
+        "base_distribution": 20.0,
+        "stretch": 14.2,
+        "momentum": 28.4,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 45.7,
-        "distMA240_z": -0.83,
-        "ret60": -19.4,
-        "drawdown_from_high": -27.9,
+        "distMA240": 67.5,
+        "distMA240_z": 2.04,
+        "ret60": 86.8,
+        "drawdown_from_high": -16.5,
         "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.7,
+        "high_factor": 0.61,
+        "confirm_factor": 0.55,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -2154,388 +1914,178 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +46%（z=-0.8）；60日動能 -19%；已離高點 -27.9%（過熱權重×0.40）；distribution 基底 31；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "2481",
-      "name": "強茂",
-      "topping_risk": 18.7,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 25.6,
-        "stretch": 3.3,
-        "momentum": 13.7,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 85.3,
-        "distMA240_z": 1.33,
-        "ret60": 63.7,
-        "drawdown_from_high": -22.6,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.63,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +85%（z=+1.3）；60日動能 +64%；已離高點 -22.6%（過熱權重×0.40）；distribution 基底 26；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "6949",
-      "name": "沛爾生醫-創",
-      "topping_risk": 18.2,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 30.4,
-        "stretch": 0.0,
-        "momentum": 0.0,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 82.9,
-        "distMA240_z": -0.3,
-        "ret60": 19.9,
-        "drawdown_from_high": -2.6,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.69,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +83%（z=-0.3）；60日動能 +20%；distribution 基底 30；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "8033",
-      "name": "雷虎",
-      "topping_risk": 18.2,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 16.6,
-        "stretch": 2.9,
-        "momentum": 41.7,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 89.8,
-        "distMA240_z": 1.14,
-        "ret60": 85.2,
-        "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.51,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +90%（z=+1.1）；60日動能 +85%；distribution 基底 17；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "6173",
-      "name": "信昌電",
-      "topping_risk": 17.5,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 22.0,
-        "stretch": 0.4,
-        "momentum": 23.2,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 153.5,
-        "distMA240_z": 1.04,
-        "ret60": 186.8,
-        "drawdown_from_high": -31.4,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.58,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +154%（z=+1.0）；60日動能 +187%；已離高點 -31.4%（過熱權重×0.40）；distribution 基底 22；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "9921",
-      "name": "巨大",
-      "topping_risk": 17.3,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 32.3,
-        "stretch": 19.8,
-        "momentum": 0.0,
-        "chip_distribution": 0.0
-      },
-      "features": {
-        "distMA240": -8.3,
-        "distMA240_z": 2.74,
-        "ret60": 13.9,
-        "drawdown_from_high": -30.5,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.71,
-        "nbc15_z60": 0.54,
-        "sbd_z60": 0.94,
-        "quadrant": "Q1",
-        "quadrant_name_cn": "主力吸籌"
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 -8%（z=+2.7）；60日動能 +14%；主力×賣買家差 主力吸籌(Q1) 派發分 0；已離高點 -30.5%（過熱權重×0.40）；distribution 基底 32；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "9914",
-      "name": "美利達",
-      "topping_risk": 17.1,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 33.9,
-        "stretch": 14.4,
-        "momentum": 0.8,
-        "chip_distribution": 0.0
-      },
-      "features": {
-        "distMA240": -11.4,
-        "distMA240_z": 2.23,
-        "ret60": 22.2,
-        "drawdown_from_high": -33.8,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.73,
-        "nbc15_z60": 0.67,
-        "sbd_z60": 0.75,
-        "quadrant": "Q1",
-        "quadrant_name_cn": "主力吸籌"
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 -11%（z=+2.2）；60日動能 +22%；主力×賣買家差 主力吸籌(Q1) 派發分 0；已離高點 -33.8%（過熱權重×0.40）；distribution 基底 34；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "2103",
-      "name": "台橡",
-      "topping_risk": 16.5,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 13.0,
-        "stretch": 28.1,
-        "momentum": 6.3,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 42.2,
-        "distMA240_z": 2.51,
-        "ret60": 30.9,
-        "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.47,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +42%（z=+2.5）；60日動能 +31%；distribution 基底 13；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +68%（z=+2.0）；60日動能 +87%；已離高點 -16.5%（過熱權重×0.61）；distribution 基底 20；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "2408",
       "name": "南亞科",
-      "topping_risk": 15.8,
+      "topping_risk": 20.8,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 22.5,
+        "base_distribution": 29.3,
         "stretch": 0.0,
-        "momentum": 50.6,
+        "momentum": 67.3,
         "chip_distribution": 0.0
       },
       "features": {
-        "distMA240": 123.4,
-        "distMA240_z": 0.13,
-        "ret60": 110.5,
-        "drawdown_from_high": -11.0,
-        "near_high": false,
-        "high_factor": 0.86,
-        "confirm_factor": 0.59,
-        "nbc15_z60": 0.19,
-        "sbd_z60": 0.65,
+        "distMA240": 137.7,
+        "distMA240_z": 0.33,
+        "ret60": 129.8,
+        "drawdown_from_high": -4.4,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.67,
+        "nbc15_z60": 0.38,
+        "sbd_z60": 0.95,
         "quadrant": "Q1",
         "quadrant_name_cn": "主力吸籌"
       },
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +123%（z=+0.1）；60日動能 +110%；主力×賣買家差 主力吸籌(Q1) 派發分 0；已離高點 -11.0%（過熱權重×0.86）；distribution 基底 22；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +138%（z=+0.3）；60日動能 +130%；主力×賣買家差 主力吸籌(Q1) 派發分 0；distribution 基底 29；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "6753",
-      "name": "龍德造船",
-      "topping_risk": 15.6,
+      "symbol": "3711",
+      "name": "日月光投控",
+      "topping_risk": 20.5,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 26.0,
-        "stretch": 0.0,
-        "momentum": 0.0,
-        "chip_distribution": null
+        "base_distribution": 35.8,
+        "stretch": 6.3,
+        "momentum": 33.9,
+        "chip_distribution": 0.0
       },
       "features": {
-        "distMA240": 18.4,
-        "distMA240_z": 0.39,
-        "ret60": 11.7,
-        "drawdown_from_high": -22.6,
+        "distMA240": 110.6,
+        "distMA240_z": 1.21,
+        "ret60": 55.9,
+        "drawdown_from_high": -5.2,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.76,
+        "nbc15_z60": 1.46,
+        "sbd_z60": 1.59,
+        "quadrant": "Q1",
+        "quadrant_name_cn": "主力吸籌"
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +111%（z=+1.2）；60日動能 +56%；主力×賣買家差 主力吸籌(Q1) 派發分 0；distribution 基底 36；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "8150",
+      "name": "南茂",
+      "topping_risk": 20.5,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 25.8,
+        "stretch": 8.0,
+        "momentum": 40.5,
+        "chip_distribution": 9.8
+      },
+      "features": {
+        "distMA240": 107.2,
+        "distMA240_z": 1.32,
+        "ret60": 71.6,
+        "drawdown_from_high": -2.6,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.63,
+        "nbc15_z60": 1.07,
+        "sbd_z60": 1.46,
+        "quadrant": "Q1",
+        "quadrant_name_cn": "主力吸籌"
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +107%（z=+1.3）；60日動能 +72%；主力×賣買家差 主力吸籌(Q1) 派發分 10；distribution 基底 26；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "9914",
+      "name": "美利達",
+      "topping_risk": 20.3,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 33.5,
+        "stretch": 15.1,
+        "momentum": 2.1,
+        "chip_distribution": 10.0
+      },
+      "features": {
+        "distMA240": -10.7,
+        "distMA240_z": 2.3,
+        "ret60": 25.8,
+        "drawdown_from_high": -33.4,
         "near_high": false,
         "high_factor": 0.4,
-        "confirm_factor": 0.63,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
+        "confirm_factor": 0.73,
+        "nbc15_z60": -0.11,
+        "sbd_z60": 0.38,
+        "quadrant": "Q2",
+        "quadrant_name_cn": "承接觀察"
       },
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +18%（z=+0.4）；60日動能 +12%；已離高點 -22.6%（過熱權重×0.40）；distribution 基底 26；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "1466",
-      "name": "聚隆",
-      "topping_risk": 15.5,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 21.0,
-        "stretch": 10.9,
-        "momentum": 0.0,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 17.7,
-        "distMA240_z": 1.48,
-        "ret60": 10.4,
-        "drawdown_from_high": -7.3,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.57,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +18%（z=+1.5）；60日動能 +10%；distribution 基底 21；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "8039",
-      "name": "台虹",
-      "topping_risk": 15.5,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 17.8,
-        "stretch": 10.7,
-        "momentum": 10.5,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 98.6,
-        "distMA240_z": 1.51,
-        "ret60": 35.9,
-        "drawdown_from_high": 0.0,
-        "near_high": true,
-        "high_factor": 1.0,
-        "confirm_factor": 0.53,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +99%（z=+1.5）；60日動能 +36%；distribution 基底 18；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 -11%（z=+2.3）；60日動能 +26%；主力×賣買家差 承接觀察(Q2) 派發分 10；已離高點 -33.4%（過熱權重×0.40）；distribution 基底 34；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "4576",
       "name": "大銀微系統",
-      "topping_risk": 14.3,
+      "topping_risk": 20.3,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 19.8,
+        "base_distribution": 13.4,
         "stretch": 0.0,
         "momentum": 0.0,
-        "chip_distribution": 19.0
+        "chip_distribution": 46.7
       },
       "features": {
-        "distMA240": 40.2,
-        "distMA240_z": 0.72,
-        "ret60": 5.3,
-        "drawdown_from_high": -28.6,
+        "distMA240": 42.2,
+        "distMA240_z": 0.77,
+        "ret60": 5.5,
+        "drawdown_from_high": -27.3,
         "near_high": false,
         "high_factor": 0.4,
-        "confirm_factor": 0.55,
-        "nbc15_z60": 0.6,
-        "sbd_z60": 0.01,
-        "quadrant": "Q1",
-        "quadrant_name_cn": "主力吸籌"
+        "confirm_factor": 0.89,
+        "nbc15_z60": -0.32,
+        "sbd_z60": -0.08,
+        "quadrant": "Q3",
+        "quadrant_name_cn": "籌碼擴散"
       },
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +40%（z=+0.7）；60日動能 +5%；主力×賣買家差 主力吸籌(Q1) 派發分 19；已離高點 -28.6%（過熱權重×0.40）；distribution 基底 20；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +42%（z=+0.8）；60日動能 +6%；主力×賣買家差 籌碼擴散(Q3) 派發分 47；已離高點 -27.3%（過熱權重×0.40）；distribution 基底 13；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "6164",
-      "name": "華興",
-      "topping_risk": 14.1,
+      "symbol": "4139",
+      "name": "馬光-KY",
+      "topping_risk": 20.1,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 23.0,
-        "stretch": 1.2,
-        "momentum": 0.0,
+        "base_distribution": 12.0,
+        "stretch": 45.3,
+        "momentum": 3.6,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 18.9,
-        "distMA240_z": 1.13,
-        "ret60": 6.2,
-        "drawdown_from_high": -21.3,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.59,
+        "distMA240": 26.6,
+        "distMA240_z": 6.77,
+        "ret60": 26.3,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.45,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -2544,25 +2094,85 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +19%（z=+1.1）；60日動能 +6%；已離高點 -21.3%（過熱權重×0.40）；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +27%（z=+6.8）；60日動能 +26%；distribution 基底 12；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "6696",
-      "name": "6696",
-      "topping_risk": 14.0,
+      "symbol": "2344",
+      "name": "華邦電",
+      "topping_risk": 19.9,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 35.7,
+        "stretch": 0.0,
+        "momentum": 38.7,
+        "chip_distribution": 0.0
+      },
+      "features": {
+        "distMA240": 109.4,
+        "distMA240_z": -0.05,
+        "ret60": 105.6,
+        "drawdown_from_high": -18.7,
+        "near_high": false,
+        "high_factor": 0.51,
+        "confirm_factor": 0.75,
+        "nbc15_z60": 2.21,
+        "sbd_z60": 1.45,
+        "quadrant": "Q1",
+        "quadrant_name_cn": "主力吸籌"
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +109%（z=-0.1）；60日動能 +106%；主力×賣買家差 主力吸籌(Q1) 派發分 0；已離高點 -18.7%（過熱權重×0.51）；distribution 基底 36；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "2892",
+      "name": "第一金",
+      "topping_risk": 19.8,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 27.0,
+        "stretch": 13.4,
+        "momentum": 0.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 13.3,
+        "distMA240_z": 1.52,
+        "ret60": 14.9,
+        "drawdown_from_high": -2.9,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.64,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +13%（z=+1.5）；60日動能 +15%；distribution 基底 27；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "8033",
+      "name": "雷虎",
+      "topping_risk": 18.9,
       "tier": "C",
       "tier_label": "正常",
       "components": {
         "base_distribution": 17.0,
-        "stretch": 0.0,
-        "momentum": 21.4,
+        "stretch": 4.1,
+        "momentum": 42.1,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 91.6,
-        "distMA240_z": 0.85,
-        "ret60": 53.1,
-        "drawdown_from_high": -2.8,
+        "distMA240": 92.5,
+        "distMA240_z": 1.2,
+        "ret60": 85.2,
+        "drawdown_from_high": 0.0,
         "near_high": true,
         "high_factor": 1.0,
         "confirm_factor": 0.52,
@@ -2574,7 +2184,247 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +92%（z=+0.8）；60日動能 +53%；distribution 基底 17；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +92%（z=+1.2）；60日動能 +85%；distribution 基底 17；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "6223",
+      "name": "旺矽",
+      "topping_risk": 18.6,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 30.6,
+        "stretch": 0.0,
+        "momentum": 1.5,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 102.0,
+        "distMA240_z": 0.11,
+        "ret60": 22.3,
+        "drawdown_from_high": -13.9,
+        "near_high": false,
+        "high_factor": 0.73,
+        "confirm_factor": 0.69,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +102%（z=+0.1）；60日動能 +22%；已離高點 -13.9%（過熱權重×0.73）；distribution 基底 31；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "6696",
+      "name": "6696",
+      "topping_risk": 18.5,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 17.0,
+        "stretch": 10.5,
+        "momentum": 30.1,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 118.0,
+        "distMA240_z": 1.51,
+        "ret60": 66.7,
+        "drawdown_from_high": 0.0,
+        "near_high": true,
+        "high_factor": 1.0,
+        "confirm_factor": 0.52,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +118%（z=+1.5）；60日動能 +67%；distribution 基底 17；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "9921",
+      "name": "巨大",
+      "topping_risk": 16.8,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 32.5,
+        "stretch": 16.8,
+        "momentum": 0.0,
+        "chip_distribution": 0.0
+      },
+      "features": {
+        "distMA240": -9.7,
+        "distMA240_z": 2.47,
+        "ret60": 15.6,
+        "drawdown_from_high": -31.6,
+        "near_high": false,
+        "high_factor": 0.4,
+        "confirm_factor": 0.71,
+        "nbc15_z60": 0.13,
+        "sbd_z60": -0.0,
+        "quadrant": "Q1",
+        "quadrant_name_cn": "主力吸籌"
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 -10%（z=+2.5）；60日動能 +16%；主力×賣買家差 主力吸籌(Q1) 派發分 0；已離高點 -31.6%（過熱權重×0.40）；distribution 基底 32；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "3288",
+      "name": "點晶",
+      "topping_risk": 15.6,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 13.0,
+        "stretch": 23.2,
+        "momentum": 8.6,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 27.5,
+        "distMA240_z": 2.68,
+        "ret60": 40.0,
+        "drawdown_from_high": -13.7,
+        "near_high": false,
+        "high_factor": 0.74,
+        "confirm_factor": 0.47,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +28%（z=+2.7）；60日動能 +40%；已離高點 -13.7%（過熱權重×0.74）；distribution 基底 13；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "3564",
+      "name": "其陽",
+      "topping_risk": 14.8,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 17.0,
+        "stretch": 16.9,
+        "momentum": 0.4,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 5.0,
+        "distMA240_z": 3.0,
+        "ret60": 21.7,
+        "drawdown_from_high": -21.0,
+        "near_high": false,
+        "high_factor": 0.41,
+        "confirm_factor": 0.52,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +5%（z=+3.0）；60日動能 +22%；已離高點 -21.0%（過熱權重×0.41）；distribution 基底 17；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "5460",
+      "name": "同協",
+      "topping_risk": 14.7,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 17.0,
+        "stretch": 16.7,
+        "momentum": 0.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 13.9,
+        "distMA240_z": 1.93,
+        "ret60": 15.1,
+        "drawdown_from_high": -10.9,
+        "near_high": false,
+        "high_factor": 0.87,
+        "confirm_factor": 0.52,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +14%（z=+1.9）；60日動能 +15%；已離高點 -10.9%（過熱權重×0.87）；distribution 基底 17；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "1466",
+      "name": "聚隆",
+      "topping_risk": 14.6,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 21.0,
+        "stretch": 7.4,
+        "momentum": 0.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 16.4,
+        "distMA240_z": 1.33,
+        "ret60": 8.9,
+        "drawdown_from_high": -8.3,
+        "near_high": false,
+        "high_factor": 0.99,
+        "confirm_factor": 0.57,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +16%（z=+1.3）；60日動能 +9%；已離高點 -8.3%（過熱權重×0.99）；distribution 基底 21；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "6141",
+      "name": "柏承",
+      "topping_risk": 14.5,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 21.1,
+        "stretch": 4.3,
+        "momentum": 4.1,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 107.5,
+        "distMA240_z": 1.25,
+        "ret60": 27.6,
+        "drawdown_from_high": -13.5,
+        "near_high": false,
+        "high_factor": 0.75,
+        "confirm_factor": 0.57,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +108%（z=+1.2）；60日動能 +28%；已離高點 -13.5%（過熱權重×0.75）；distribution 基底 21；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "6493",
@@ -2585,14 +2435,14 @@
       "components": {
         "base_distribution": 17.0,
         "stretch": 0.0,
-        "momentum": 20.3,
+        "momentum": 20.7,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 61.5,
-        "distMA240_z": 0.67,
-        "ret60": 98.8,
-        "drawdown_from_high": -31.8,
+        "distMA240": 56.1,
+        "distMA240_z": 0.56,
+        "ret60": 103.7,
+        "drawdown_from_high": -33.8,
         "near_high": false,
         "high_factor": 0.4,
         "confirm_factor": 0.52,
@@ -2604,87 +2454,27 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +62%（z=+0.7）；60日動能 +99%；已離高點 -31.8%（過熱權重×0.40）；distribution 基底 17；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +56%（z=+0.6）；60日動能 +104%；已離高點 -33.8%（過熱權重×0.40）；distribution 基底 17；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "2208",
-      "name": "台船",
-      "topping_risk": 12.6,
+      "symbol": "8039",
+      "name": "台虹",
+      "topping_risk": 12.9,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 21.0,
-        "stretch": 0.0,
-        "momentum": 0.0,
+        "base_distribution": 16.9,
+        "stretch": 6.8,
+        "momentum": 5.3,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 3.6,
-        "distMA240_z": -0.39,
-        "ret60": 1.7,
-        "drawdown_from_high": -28.1,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.57,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +4%（z=-0.4）；60日動能 +2%；已離高點 -28.1%（過熱權重×0.40）；distribution 基底 21；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "3042",
-      "name": "晶技",
-      "topping_risk": 12.4,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 19.0,
-        "stretch": 1.2,
-        "momentum": 4.0,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 66.3,
-        "distMA240_z": 1.14,
-        "ret60": 34.8,
-        "drawdown_from_high": -25.7,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.54,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +66%（z=+1.1）；60日動能 +35%；已離高點 -25.7%（過熱權重×0.40）；distribution 基底 19；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "8027",
-      "name": "鈦昇",
-      "topping_risk": 12.4,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 17.0,
-        "stretch": 0.1,
-        "momentum": 12.1,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 79.0,
-        "distMA240_z": 1.01,
-        "ret60": 61.2,
-        "drawdown_from_high": -20.0,
-        "near_high": false,
-        "high_factor": 0.45,
+        "distMA240": 93.1,
+        "distMA240_z": 1.33,
+        "ret60": 28.3,
+        "drawdown_from_high": -2.2,
+        "near_high": true,
+        "high_factor": 1.0,
         "confirm_factor": 0.52,
         "nbc15_z60": null,
         "sbd_z60": null,
@@ -2694,54 +2484,24 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +79%（z=+1.0）；60日動能 +61%；已離高點 -20.0%（過熱權重×0.45）；distribution 基底 17；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "1435",
-      "name": "中福",
-      "topping_risk": 11.1,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 14.0,
-        "stretch": 9.9,
-        "momentum": 0.0,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 5.6,
-        "distMA240_z": 2.29,
-        "ret60": 11.1,
-        "drawdown_from_high": -26.2,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.48,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +6%（z=+2.3）；60日動能 +11%；已離高點 -26.2%（過熱權重×0.40）；distribution 基底 14；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +93%（z=+1.3）；60日動能 +28%；distribution 基底 17；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "6907",
       "name": "雅特力-KY",
-      "topping_risk": 9.6,
+      "topping_risk": 12.7,
       "tier": "C",
       "tier_label": "正常",
       "components": {
         "base_distribution": 11.0,
         "stretch": 0.0,
-        "momentum": 16.5,
+        "momentum": 33.8,
         "chip_distribution": null
       },
       "features": {
         "distMA240": null,
         "distMA240_z": null,
-        "ret60": 50.0,
+        "ret60": 81.5,
         "drawdown_from_high": 0.0,
         "near_high": true,
         "high_factor": 1.0,
@@ -2754,28 +2514,58 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "60日動能 +50%；distribution 基底 11；大盤 🟡 警告區（×1.05）"
+      "reason": "60日動能 +82%；distribution 基底 11；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "2250",
-      "name": "IKKA-KY",
-      "topping_risk": 9.0,
+      "symbol": "3006",
+      "name": "晶豪科",
+      "topping_risk": 12.6,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 15.0,
+        "base_distribution": 22.7,
         "stretch": 0.0,
+        "momentum": 24.4,
+        "chip_distribution": 0.0
+      },
+      "features": {
+        "distMA240": 80.2,
+        "distMA240_z": 0.43,
+        "ret60": 56.9,
+        "drawdown_from_high": -10.2,
+        "near_high": false,
+        "high_factor": 0.9,
+        "confirm_factor": 0.59,
+        "nbc15_z60": 2.68,
+        "sbd_z60": 1.84,
+        "quadrant": "Q1",
+        "quadrant_name_cn": "主力吸籌"
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +80%（z=+0.4）；60日動能 +57%；主力×賣買家差 主力吸籌(Q1) 派發分 0；已離高點 -10.2%（過熱權重×0.90）；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "6164",
+      "name": "華興",
+      "topping_risk": 12.6,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 20.0,
+        "stretch": 2.2,
         "momentum": 0.0,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": -15.0,
-        "distMA240_z": 0.13,
-        "ret60": 0.2,
-        "drawdown_from_high": -37.0,
+        "distMA240": 20.5,
+        "distMA240_z": 1.22,
+        "ret60": 6.9,
+        "drawdown_from_high": -20.1,
         "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.49,
+        "high_factor": 0.45,
+        "confirm_factor": 0.55,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -2784,25 +2574,85 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 -15%（z=+0.1）；60日動能 +0%；已離高點 -37.0%（過熱權重×0.40）；distribution 基底 15；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +20%（z=+1.2）；60日動能 +7%；已離高點 -20.1%（過熱權重×0.45）；distribution 基底 20；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "7785",
-      "name": "7785",
-      "topping_risk": 7.8,
+      "symbol": "3037",
+      "name": "欣興",
+      "topping_risk": 11.6,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 23.4,
+        "stretch": 0.0,
+        "momentum": 14.4,
+        "chip_distribution": 0.0
+      },
+      "features": {
+        "distMA240": 122.2,
+        "distMA240_z": 0.3,
+        "ret60": 45.9,
+        "drawdown_from_high": -13.6,
+        "near_high": false,
+        "high_factor": 0.75,
+        "confirm_factor": 0.6,
+        "nbc15_z60": 0.49,
+        "sbd_z60": 1.08,
+        "quadrant": "Q1",
+        "quadrant_name_cn": "主力吸籌"
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +122%（z=+0.3）；60日動能 +46%；主力×賣買家差 主力吸籌(Q1) 派發分 0；已離高點 -13.6%（過熱權重×0.75）；distribution 基底 23；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "3042",
+      "name": "晶技",
+      "topping_risk": 10.4,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 16.0,
+        "stretch": 1.7,
+        "momentum": 1.9,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 69.7,
+        "distMA240_z": 1.21,
+        "ret60": 27.6,
+        "drawdown_from_high": -23.9,
+        "near_high": false,
+        "high_factor": 0.4,
+        "confirm_factor": 0.5,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +70%（z=+1.2）；60日動能 +28%；已離高點 -23.9%（過熱權重×0.40）；distribution 基底 16；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "1435",
+      "name": "中福",
+      "topping_risk": 10.4,
       "tier": "C",
       "tier_label": "正常",
       "components": {
         "base_distribution": 13.0,
-        "stretch": 0.0,
+        "stretch": 9.5,
         "momentum": 0.0,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": -17.2,
-        "distMA240_z": -0.31,
-        "ret60": -8.7,
-        "drawdown_from_high": -33.9,
+        "distMA240": 5.7,
+        "distMA240_z": 2.27,
+        "ret60": 15.2,
+        "drawdown_from_high": -26.2,
         "near_high": false,
         "high_factor": 0.4,
         "confirm_factor": 0.47,
@@ -2814,7 +2664,127 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 -17%（z=-0.3）；60日動能 -9%；已離高點 -33.9%（過熱權重×0.40）；distribution 基底 13；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +6%（z=+2.3）；60日動能 +15%；已離高點 -26.2%（過熱權重×0.40）；distribution 基底 13；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "2486",
+      "name": "一詮",
+      "topping_risk": 7.8,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 11.0,
+        "stretch": 0.0,
+        "momentum": 6.7,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 83.5,
+        "distMA240_z": 0.82,
+        "ret60": 39.2,
+        "drawdown_from_high": -16.1,
+        "near_high": false,
+        "high_factor": 0.63,
+        "confirm_factor": 0.44,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +84%（z=+0.8）；60日動能 +39%；已離高點 -16.1%（過熱權重×0.63）；distribution 基底 11；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "6187",
+      "name": "萬潤",
+      "topping_risk": 7.2,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 12.0,
+        "stretch": 0.0,
+        "momentum": 0.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 74.1,
+        "distMA240_z": 0.49,
+        "ret60": -11.1,
+        "drawdown_from_high": -22.3,
+        "near_high": false,
+        "high_factor": 0.4,
+        "confirm_factor": 0.45,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +74%（z=+0.5）；60日動能 -11%；已離高點 -22.3%（過熱權重×0.40）；distribution 基底 12；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "3260",
+      "name": "威剛",
+      "topping_risk": 6.7,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 11.2,
+        "stretch": 0.0,
+        "momentum": 0.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 53.4,
+        "distMA240_z": -0.67,
+        "ret60": 10.7,
+        "drawdown_from_high": -19.7,
+        "near_high": false,
+        "high_factor": 0.47,
+        "confirm_factor": 0.44,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +53%（z=-0.7）；60日動能 +11%；已離高點 -19.7%（過熱權重×0.47）；distribution 基底 11；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "3349",
+      "name": "寶德",
+      "topping_risk": 6.0,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 10.0,
+        "stretch": 0.0,
+        "momentum": 0.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 6.0,
+        "distMA240_z": -0.22,
+        "ret60": -13.0,
+        "drawdown_from_high": -22.8,
+        "near_high": false,
+        "high_factor": 0.4,
+        "confirm_factor": 0.43,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +6%（z=-0.2）；60日動能 -13%；已離高點 -22.8%（過熱權重×0.40）；distribution 基底 10；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "6933",
@@ -2829,10 +2799,10 @@
         "chip_distribution": null
       },
       "features": {
-        "distMA240": -2.5,
-        "distMA240_z": 0.36,
-        "ret60": -10.7,
-        "drawdown_from_high": -33.7,
+        "distMA240": 2.0,
+        "distMA240_z": 0.72,
+        "ret60": -13.0,
+        "drawdown_from_high": -30.7,
         "near_high": false,
         "high_factor": 0.4,
         "confirm_factor": 0.43,
@@ -2844,11 +2814,11 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 -2%（z=+0.4）；60日動能 -11%；已離高點 -33.7%（過熱權重×0.40）；distribution 基底 10；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +2%（z=+0.7）；60日動能 -13%；已離高點 -30.7%（過熱權重×0.40）；distribution 基底 10；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "1796",
-      "name": "金穎生技",
+      "symbol": "5248",
+      "name": "5248",
       "topping_risk": 6.0,
       "tier": "C",
       "tier_label": "正常",
@@ -2859,10 +2829,10 @@
         "chip_distribution": null
       },
       "features": {
-        "distMA240": -27.2,
-        "distMA240_z": -1.42,
-        "ret60": -18.8,
-        "drawdown_from_high": -49.8,
+        "distMA240": 34.1,
+        "distMA240_z": 0.56,
+        "ret60": -6.7,
+        "drawdown_from_high": -60.9,
         "near_high": false,
         "high_factor": 0.4,
         "confirm_factor": 0.43,
@@ -2874,28 +2844,28 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 -27%（z=-1.4）；60日動能 -19%；已離高點 -49.8%（過熱權重×0.40）；distribution 基底 10；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +34%（z=+0.6）；60日動能 -7%；已離高點 -60.9%（過熱權重×0.40）；distribution 基底 10；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "2429",
-      "name": "銘旺科",
-      "topping_risk": 4.8,
+      "symbol": "6887",
+      "name": "寶綠特-KY",
+      "topping_risk": 6.0,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 8.0,
+        "base_distribution": 10.0,
         "stretch": 0.0,
         "momentum": 0.0,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": -33.5,
-        "distMA240_z": -0.88,
-        "ret60": 15.9,
-        "drawdown_from_high": -68.4,
+        "distMA240": -28.5,
+        "distMA240_z": -0.14,
+        "ret60": -5.6,
+        "drawdown_from_high": -50.8,
         "near_high": false,
         "high_factor": 0.4,
-        "confirm_factor": 0.4,
+        "confirm_factor": 0.43,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -2904,28 +2874,28 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 -34%（z=-0.9）；60日動能 +16%；已離高點 -68.4%（過熱權重×0.40）；distribution 基底 8；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 -28%（z=-0.1）；60日動能 -6%；已離高點 -50.8%（過熱權重×0.40）；distribution 基底 10；大盤 🟡 警告區（×1.05）"
     },
     {
-      "symbol": "2233",
-      "name": "宇隆",
-      "topping_risk": 4.8,
+      "symbol": "6967",
+      "name": "汎瑋材料",
+      "topping_risk": 6.0,
       "tier": "C",
       "tier_label": "正常",
       "components": {
-        "base_distribution": 8.0,
+        "base_distribution": 10.0,
         "stretch": 0.0,
         "momentum": 0.0,
         "chip_distribution": null
       },
       "features": {
-        "distMA240": -3.0,
-        "distMA240_z": -1.18,
-        "ret60": -1.9,
-        "drawdown_from_high": -40.5,
+        "distMA240": 24.6,
+        "distMA240_z": 0.69,
+        "ret60": 12.6,
+        "drawdown_from_high": -9.1,
         "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.4,
+        "high_factor": 0.95,
+        "confirm_factor": 0.43,
         "nbc15_z60": null,
         "sbd_z60": null,
         "quadrant": null,
@@ -2934,71 +2904,41 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 -3%（z=-1.2）；60日動能 -2%；已離高點 -40.5%（過熱權重×0.40）；distribution 基底 8；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "3349",
-      "name": "寶德",
-      "topping_risk": 4.8,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 8.0,
-        "stretch": 0.0,
-        "momentum": 0.0,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 1.2,
-        "distMA240_z": -0.4,
-        "ret60": -15.3,
-        "drawdown_from_high": -26.4,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.4,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +1%（z=-0.4）；60日動能 -15%；已離高點 -26.4%（過熱權重×0.40）；distribution 基底 8；大盤 🟡 警告區（×1.05）"
-    },
-    {
-      "symbol": "1721",
-      "name": "三晃",
-      "topping_risk": 4.4,
-      "tier": "C",
-      "tier_label": "正常",
-      "components": {
-        "base_distribution": 7.0,
-        "stretch": 0.0,
-        "momentum": 0.9,
-        "chip_distribution": null
-      },
-      "features": {
-        "distMA240": 33.1,
-        "distMA240_z": 0.37,
-        "ret60": 24.7,
-        "drawdown_from_high": -33.1,
-        "near_high": false,
-        "high_factor": 0.4,
-        "confirm_factor": 0.39,
-        "nbc15_z60": null,
-        "sbd_z60": null,
-        "quadrant": null,
-        "quadrant_name_cn": null
-      },
-      "dist_tier": "C",
-      "dist_phase": "Phase A（早期 / 仍強）",
-      "market_multiplier": 1.05,
-      "reason": "年線乖離 +33%（z=+0.4）；60日動能 +25%；已離高點 -33.1%（過熱權重×0.40）；distribution 基底 7；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +25%（z=+0.7）；60日動能 +13%；已離高點 -9.1%（過熱權重×0.95）；distribution 基底 10；大盤 🟡 警告區（×1.05）"
     },
     {
       "symbol": "00715L",
       "name": "00715L",
+      "topping_risk": 5.4,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 9.0,
+        "stretch": 0.0,
+        "momentum": 0.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 33.1,
+        "distMA240_z": 0.12,
+        "ret60": -10.5,
+        "drawdown_from_high": -40.4,
+        "near_high": false,
+        "high_factor": 0.4,
+        "confirm_factor": 0.41,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +33%（z=+0.1）；60日動能 -10%；已離高點 -40.4%（過熱權重×0.40）；distribution 基底 9；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "6820",
+      "name": "6820",
       "topping_risk": 4.2,
       "tier": "C",
       "tier_label": "正常",
@@ -3009,10 +2949,10 @@
         "chip_distribution": null
       },
       "features": {
-        "distMA240": 32.7,
-        "distMA240_z": 0.12,
-        "ret60": -8.0,
-        "drawdown_from_high": -40.7,
+        "distMA240": 87.1,
+        "distMA240_z": 0.67,
+        "ret60": -20.6,
+        "drawdown_from_high": -33.4,
         "near_high": false,
         "high_factor": 0.4,
         "confirm_factor": 0.39,
@@ -3024,18 +2964,103 @@
       "dist_tier": "C",
       "dist_phase": "Phase A（早期 / 仍強）",
       "market_multiplier": 1.05,
-      "reason": "年線乖離 +33%（z=+0.1）；60日動能 -8%；已離高點 -40.7%（過熱權重×0.40）；distribution 基底 7；大盤 🟡 警告區（×1.05）"
+      "reason": "年線乖離 +87%（z=+0.7）；60日動能 -21%；已離高點 -33.4%（過熱權重×0.40）；distribution 基底 7；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "7419",
+      "name": "7419",
+      "topping_risk": 3.6,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 6.0,
+        "stretch": 0.0,
+        "momentum": 0.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": 22.2,
+        "distMA240_z": -0.61,
+        "ret60": -70.0,
+        "drawdown_from_high": -70.6,
+        "near_high": false,
+        "high_factor": 0.4,
+        "confirm_factor": 0.38,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "年線乖離 +22%（z=-0.6）；60日動能 -70%；已離高點 -70.6%（過熱權重×0.40）；distribution 基底 6；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "7909",
+      "name": "7909",
+      "topping_risk": 0.0,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 0.0,
+        "stretch": 0.0,
+        "momentum": 0.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "high_factor": 1.0,
+        "confirm_factor": 0.3,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "distribution 基底 0；大盤 🟡 警告區（×1.05）"
+    },
+    {
+      "symbol": "7886",
+      "name": "7886",
+      "topping_risk": 0.0,
+      "tier": "C",
+      "tier_label": "正常",
+      "components": {
+        "base_distribution": 0.0,
+        "stretch": 0.0,
+        "momentum": 0.0,
+        "chip_distribution": null
+      },
+      "features": {
+        "distMA240": null,
+        "distMA240_z": null,
+        "ret60": -52.9,
+        "drawdown_from_high": -54.0,
+        "near_high": false,
+        "high_factor": 0.4,
+        "confirm_factor": 0.3,
+        "nbc15_z60": null,
+        "sbd_z60": null,
+        "quadrant": null,
+        "quadrant_name_cn": null
+      },
+      "dist_tier": "C",
+      "dist_phase": "Phase A（早期 / 仍強）",
+      "market_multiplier": 1.05,
+      "reason": "60日動能 -53%；已離高點 -54.0%（過熱權重×0.40）；distribution 基底 0；大盤 🟡 警告區（×1.05）"
     }
   ],
   "summary": {
-    "total": 100,
+    "total": 101,
     "by_tier": {
       "S": 1,
-      "A": 1,
-      "B": 10,
-      "C": 88
+      "A": 2,
+      "B": 9,
+      "C": 89
     },
-    "n_high_risk": 2,
-    "avg": 26.9
+    "n_high_risk": 3,
+    "avg": 26.1
   }
 }
