@@ -57,7 +57,8 @@
   /* 主力動向觀察 (T/V) — 沿用 pair_mainforce_live 版面 */
   .mf-h { font-size:.95rem; color:var(--th-blue,#93c5fd); margin:16px 14px 2px 14px; font-weight:700; }
   .mfcard { background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:8px; margin:10px 14px; padding:8px 10px; }
-  .mf-title { font-size:.88rem; color:var(--th-text,#cbd5e1); margin:0 0 4px 0; font-weight:600; }
+  .mf-title { font-size:.88rem; color:var(--th-text,#cbd5e1); margin:0 0 4px 0; font-weight:600; display:flex; justify-content:space-between; align-items:baseline; gap:8px; }
+  .mf-ts { font-size:.78rem; font-weight:400; color:var(--th-muted,#94a3b8); white-space:nowrap; }
   #chart-t, #chart-v { width:100%; }
   .sw-wrap { box-sizing:border-box; width:100%; overflow-x:auto; }
   table.snap { width:100%; border-collapse:collapse; font-size:.82rem; white-space:nowrap; }
@@ -158,13 +159,13 @@
 <div id="chart"></div>
 
 <div id="mf-section">
-  <div class="mf-h">🔍 主力動向觀察 · <span id="mf-pair"></span><span id="mf-fresh" style="font-weight:400;font-size:.8rem;margin-left:10px;color:var(--th-muted,#94a3b8);"></span></div>
+  <div class="mf-h">🔍 主力動向觀察 · <span id="mf-pair"></span></div>
   <div class="mfcard">
     <div class="mf-title">主力合計 T 走勢(特大單+大單買賣差)</div>
     <div id="chart-t"></div>
   </div>
   <div class="mfcard">
-    <div class="mf-title">主散背離 V 走勢(主力 − 散戶)</div>
+    <div class="mf-title">主散背離 V 走勢(主力 − 散戶)<span class="mf-ts" id="mf-ts-v"></span></div>
     <div id="chart-v"></div>
   </div>
   <div class="mfcard">
@@ -734,15 +735,16 @@ function renderMfSnapshot(){
     tb.appendChild(tr);
   });
 }
-function updateFreshBadge(){                     // 診斷:圖最後點時間 vs 快照時間,落後過多標紅
-  const el = $("#mf-fresh"); if (!el) return;
+function updateFreshBadge(){                     // V 走勢圖標題戳記:圖畫到幾點;落後快照>15s 標紅(診斷)
+  const el = $("#mf-ts-v"); if (!el) return;
   if (!QUOTES){ el.textContent = ""; return; }
   const snap = QUOTES.updated.slice(11);
   const chart = mfTimes.length ? mfTimes[mfTimes.length-1] : "--:--:--";
   const toSec = x => { const a=(x||"").split(":"); return a.length===3 ? (+a[0])*3600+(+a[1])*60+(+a[2]) : null; };
   const ss = toSec(snap), cs = toSec(chart), lag = (ss!=null && cs!=null) ? ss-cs : null;
-  el.innerHTML = `圖 ${chart} · 快照 ${snap}` +
-    (lag!=null && lag > 15 ? ` <b style="color:#f87171">圖落後 ${lag}s</b>` : "");
+  const stale = lag!=null && lag > 15;
+  el.innerHTML = `圖 @ ${chart}` + (stale ? ` <b style="color:#f87171">落後 ${lag}s</b>` : "");
+  el.style.color = stale ? "#f87171" : "";
 }
 
 /* ---------- 資料載入 ---------- */
