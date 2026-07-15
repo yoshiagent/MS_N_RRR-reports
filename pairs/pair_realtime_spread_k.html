@@ -158,7 +158,7 @@
 <div id="chart"></div>
 
 <div id="mf-section">
-  <div class="mf-h">🔍 主力動向觀察 · <span id="mf-pair"></span></div>
+  <div class="mf-h">🔍 主力動向觀察 · <span id="mf-pair"></span><span id="mf-fresh" style="font-weight:400;font-size:.8rem;margin-left:10px;color:var(--th-muted,#94a3b8);"></span></div>
   <div class="mfcard">
     <div class="mf-title">主力合計 T 走勢(特大單+大單買賣差)</div>
     <div id="chart-t"></div>
@@ -676,7 +676,9 @@ function mfTraces(key){                           // 只畫當前配對兩檔(A 
   const p = currentPair();
   return p.stocks.map((s, i) => ({
     type:"scatter", mode:"lines", name:s.name,
-    x:mfTimes, y:(MF[s.symbol]||{})[key]||[], connectgaps:false,
+    // 傳「新陣列參考」(slice):appendIntraday 是原地 push 同一陣列,參考不變會讓
+    // Plotly.react 誤判「資料沒變」而跳過重繪 → 圖停格但快照照更新。slice 逼它偵測變化。
+    x:mfTimes.slice(), y:((MF[s.symbol]||{})[key]||[]).slice(), connectgaps:false,
     line:{color: i ? VB_C : VA_C, width:1.9},
     hovertemplate:s.name+" %{y:.2f}<extra>%{x}</extra>",
     hoverlabel:{bgcolor:"#1e293b", bordercolor:"#334155", font:{color:"#e2e8f0", size:12}},
@@ -732,6 +734,16 @@ function renderMfSnapshot(){
     tb.appendChild(tr);
   });
 }
+function updateFreshBadge(){                     // 診斷:圖最後點時間 vs 快照時間,落後過多標紅
+  const el = $("#mf-fresh"); if (!el) return;
+  if (!QUOTES){ el.textContent = ""; return; }
+  const snap = QUOTES.updated.slice(11);
+  const chart = mfTimes.length ? mfTimes[mfTimes.length-1] : "--:--:--";
+  const toSec = x => { const a=(x||"").split(":"); return a.length===3 ? (+a[0])*3600+(+a[1])*60+(+a[2]) : null; };
+  const ss = toSec(snap), cs = toSec(chart), lag = (ss!=null && cs!=null) ? ss-cs : null;
+  el.innerHTML = `圖 ${chart} · 快照 ${snap}` +
+    (lag!=null && lag > 15 ? ` <b style="color:#f87171">圖落後 ${lag}s</b>` : "");
+}
 
 /* ---------- 資料載入 ---------- */
 async function loadQuotes(){
@@ -741,8 +753,10 @@ async function loadQuotes(){
   } catch(e){ /* 離線:保持上次狀態 */ }
   renderChips(); renderStats(); renderStatus();
   if (HIST) draw();
-  if (appendIntraday()) drawMainforce();
+  appendIntraday();                 // 決定是否新增資料點(內部去重)
+  if (HIST) drawMainforce();        // 每輪強制重繪,不依賴 append 的 return(雙保險)
   renderMfSnapshot();
+  updateFreshBadge();
 }
 async function init(){
   const r = await fetch(`rt_history.json?t=${Date.now()}`, {cache:"no-store"});
