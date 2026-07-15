@@ -755,6 +755,18 @@ async function init(){
   drawMainforce();
   setInterval(loadQuotes, POLL_MS);
   window.addEventListener("resize", () => { draw(); drawMainforce(); });
+  // 分頁回前景 → 補抓最新 + 強制重繪三張圖。Plotly 在分頁背景(不可見)時只更新資料不重繪畫布,
+  // 且切分頁不觸發 resize,回前景後圖會停在最後一次可見的重繪(而快照表是純 DOM innerHTML 照更新)
+  // → 造成「快照在動、圖不動」。可見時強制補繪即可自癒(不依賴 appendIntraday 的 return 值)。
+  document.addEventListener("visibilitychange", async () => {
+    if (document.visibilityState !== "visible") return;
+    await loadQuotes();
+    if (HIST){ draw(); drawMainforce(); }
+    ["chart", "chart-t", "chart-v"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.offsetParent !== null){ try { Plotly.Plots.resize(el); } catch(e){} }
+    });
+  });
 }
 init();
 </script>
