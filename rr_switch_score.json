@@ -1,7 +1,7 @@
 {
-  "as_of": "2026-07-15",
+  "as_of": "2026-07-16",
   "n_pairs": 6,
-  "n_z_gate_passed": 1,
+  "n_z_gate_passed": 2,
   "n_strong": 0,
   "n_strong_stays_strong": 0,
   "z_mode": "gate",
@@ -25,13 +25,13 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": 2.68,
+      "zscore": 2.25,
       "switch_direction": null,
       "switch_into": null,
       "components": {
         "rcga": {
-          "score": 20.0,
-          "src": "RED"
+          "score": 55.0,
+          "src": "YELLOW"
         },
         "rcr": {
           "score": null,
@@ -54,7 +54,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 20.0,
+      "switch_score_ref": 55.0,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -74,13 +74,13 @@
         "晶豪科",
         "智原"
       ],
-      "signal": "hold_A",
+      "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": 0.57,
-      "switch_direction": "A",
+      "zscore": -0.14,
+      "switch_direction": "B",
       "switch_into": {
-        "code": "3006",
-        "name": "晶豪科"
+        "code": "3035",
+        "name": "智原"
       },
       "components": {
         "rcga": {
@@ -88,7 +88,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 17.72,
+          "score": 0.85,
           "src": "no_rotation"
         },
         "box": {
@@ -110,7 +110,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 38.8,
+      "switch_score_ref": 32.8,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -130,28 +130,33 @@
         "華邦電",
         "南亞科"
       ],
-      "signal": "no_action",
-      "z_gate_passed": false,
-      "zscore": -1.9,
-      "switch_direction": null,
-      "switch_into": null,
+      "signal": "switch_to_B",
+      "z_gate_passed": true,
+      "zscore": -1.26,
+      "switch_direction": "B",
+      "switch_into": {
+        "code": "2408",
+        "name": "南亞科"
+      },
       "components": {
         "rcga": {
           "score": 90.0,
           "src": "GREEN"
         },
         "rcr": {
-          "score": null,
+          "score": 1.91,
           "src": "no_rotation"
         },
         "box": {
-          "score": null,
-          "src": null,
-          "healthy": null
+          "score": 90.0,
+          "src": "above_up",
+          "healthy": true
         }
       },
       "active_weights": {
-        "rcga": 25
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
       },
       "z_mode": "gate",
       "weights": {
@@ -160,14 +165,14 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": null,
-      "switch_score_ref": 90.0,
+      "switch_score": 58.5,
+      "switch_score_ref": 58.5,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "延後 · Z60 未過換股門檻",
-        "color": "#64748b",
-        "icon": "⏸"
+        "label": "可換股 · 留意結構/籌碼",
+        "color": "#fb923c",
+        "icon": "⚠️"
       }
     },
     {
@@ -183,7 +188,7 @@
       ],
       "signal": "hold_A",
       "z_gate_passed": false,
-      "zscore": 0.65,
+      "zscore": 0.79,
       "switch_direction": "A",
       "switch_into": {
         "code": "2049",
@@ -195,7 +200,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 2.99,
+          "score": 2.84,
           "src": "no_rotation"
         },
         "box": {
@@ -217,7 +222,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 21.1,
+      "switch_score_ref": 21.0,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -239,7 +244,7 @@
       ],
       "signal": "switch_to_A",
       "z_gate_passed": true,
-      "zscore": -0.36,
+      "zscore": -0.33,
       "switch_direction": "A",
       "switch_into": {
         "code": "9921",
@@ -251,13 +256,13 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 8.97,
+          "score": 3.07,
           "src": "no_rotation"
         },
         "box": {
-          "score": 45.0,
-          "src": "inbox_side",
-          "healthy": false
+          "score": 60.0,
+          "src": "inbox_up",
+          "healthy": true
         }
       },
       "active_weights": {
@@ -272,8 +277,8 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 35.7,
-      "switch_score_ref": 35.7,
+      "switch_score": 37.9,
+      "switch_score_ref": 37.9,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -295,7 +300,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": -2.51,
+      "zscore": -2.45,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -335,6 +340,6 @@
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-07-15T22:50:05",
+  "generated_at": "2026-07-16T22:23:20",
   "available": true
 }
