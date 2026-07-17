@@ -43,4 +43,120 @@
   });
 })();
 </script>
-<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">解質押偵測層 設計辯論紀實（Claude × codex × Gemini）</h1><div class="page-meta">顧問討論紀實 ｜ 解質≠利多 ｜ 三輪辯論收斂 ｜ 2026-07-02 ｜ SHADOW</div><div class="banner"><b>設計辯論紀實</b>：2026-07-02，CIO 一個問題「有沒有大股東解質押資料？」，經 <b>Claude（執行）× codex × Gemini（顧問）</b> 多輪辯論、CIO 三次拍板，演化成一個「<b style="color:var(--th-red,#ef4444)">解質 ≠ 利多</b>」的事件偵測層。本頁記錄過程、分歧、收斂與回測結論。<br><span style="font-size:12px;color:var(--th-muted,#94a3b8)">成果頁：<a href="../chip/depledge_events.html">設質·解質事件偵測</a>　｜　<a href="../chip/depledge_backtest.html">訊號回測</a>（SHADOW·不接 decision）</span></div><div class="card"><div class="card-title">① 演化：一個問題的三次轉折</div><div style="display:flex;gap:6px;flex-wrap:wrap;margin:8px 0"><div style="flex:1;min-width:120px;border:1px solid var(--th-muted,#94a3b8);border-radius:8px;padding:8px 10px;background:color-mix(in srgb,var(--th-muted,#94a3b8) 8%,transparent)"><div style="font-weight:700;color:var(--th-muted,#94a3b8)">v1 月快照</div><div style="font-size:11px;color:var(--th-muted,#94a3b8);margin-top:2px">t187ap11 月對月 diff 推解質→待累積、分不清轉質</div></div><div style="align-self:center;color:var(--th-muted,#94a3b8);font-size:18px">→</div><div style="flex:1;min-width:120px;border:1px solid var(--th-blue,#60a5fa);border-radius:8px;padding:8px 10px;background:color-mix(in srgb,var(--th-blue,#60a5fa) 8%,transparent)"><div style="font-weight:700;color:var(--th-blue,#60a5fa)">v2 事件流</div><div style="font-size:11px;color:var(--th-muted,#94a3b8);margin-top:2px">CIO 指路 MOPS STAMAK03→有確切解質股數/事件日/質權人</div></div><div style="align-self:center;color:var(--th-muted,#94a3b8);font-size:18px">→</div><div style="flex:1;min-width:120px;border:1px solid var(--th-green,#4ade80);border-radius:8px;padding:8px 10px;background:color-mix(in srgb,var(--th-green,#4ade80) 8%,transparent)"><div style="font-weight:700;color:var(--th-green,#4ade80)">v3 解質≠利多</div><div style="font-size:11px;color:var(--th-muted,#94a3b8);margin-top:2px">CIO 質疑→三輪辯論→T=0 方向訊號+回測</div></div></div><div class="kv-row"><span class="kv-row__k">🟦 CIO 提問</span><span class="kv-row__v">「目前有大股東解質押的資料嗎？」</span></div><div class="kv-row"><span class="kv-row__k">Claude→codex</span><span class="kv-row__v">先建 v1：t187ap11 月快照，靠月對月 diff 推解質（缺陷：只 1 月歷史待累積、分不清轉質）</span></div><div class="kv-row"><span class="kv-row__k">🟦 CIO 指路</span><span class="kv-row__v">貼 MOPS STAMAK03 + MoneyDJ 網址「請參考」</span></div><div class="kv-row"><span class="kv-row__k">Claude→codex</span><span class="kv-row__v">實測 STAMAK03 可程式化抓（逐檔·有解質股數/確切日/質權人/累積數）→ v2 混合事件流</span></div><div class="kv-row"><span class="kv-row__k">🟦 CIO 質疑</span><span class="kv-row__v">「解質是否全是利多？解質後才能申報轉讓，要後續追蹤，請與 codex、Gemini 討論幾輪」</span></div><div class="kv-row"><span class="kv-row__k">三輪辯論</span><span class="kv-row__v">codex×Gemini 交叉批判 → 收斂「解質≠利多」→ v3 建置 + 回測</span></div></div><div class="card"><div class="card-title">② 核心命題：為何「解質 ≠ 利多」</div><div class="label" style="line-height:1.9">原始直覺：「解質＝內部人還清質押借款＝財務壓力解除＝偏多」。<b>CIO 一句話點破盲點：</b><br><div style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0"><div style="flex:1;min-width:120px;border:1px solid var(--th-muted,#94a3b8);border-radius:8px;padding:8px 10px;background:color-mix(in srgb,var(--th-muted,#94a3b8) 8%,transparent)"><div style="font-weight:700;color:var(--th-muted,#94a3b8)">質押中的股票</div><div style="font-size:11px;color:var(--th-muted,#94a3b8);margin-top:2px">受質權限制、不能自由賣</div></div><div style="align-self:center;color:var(--th-muted,#94a3b8);font-size:18px">→</div><div style="flex:1;min-width:120px;border:1px solid var(--th-amber,#fbbf24);border-radius:8px;padding:8px 10px;background:color-mix(in srgb,var(--th-amber,#fbbf24) 8%,transparent)"><div style="font-weight:700;color:var(--th-amber,#fbbf24)">要賣股</div><div style="font-size:11px;color:var(--th-muted,#94a3b8);margin-top:2px">內部人須『先解質』贖回</div></div><div style="align-self:center;color:var(--th-muted,#94a3b8);font-size:18px">→</div><div style="flex:1;min-width:120px;border:1px solid var(--th-red,#ef4444);border-radius:8px;padding:8px 10px;background:color-mix(in srgb,var(--th-red,#ef4444) 8%,transparent)"><div style="font-weight:700;color:var(--th-red,#ef4444)">解質</div><div style="font-size:11px;color:var(--th-muted,#94a3b8);margin-top:2px">可能是『賣股前置』動作，非利多</div></div></div>所以「解質」有兩種相反動機——<b>還款壓力解除（偏多）</b> vs <b>準備賣股（偏空）</b>——無法在解質當下區分，必須看「解質後有沒有接著申報轉讓、持股有沒有下降」的<b>後續追蹤</b>。</div></div><div class="card"><div class="card-title">③ codex × Gemini 三輪辯論紀實</div><table class="data-table data-table--zebra"><thead><tr><th>輪次</th><th>共識</th><th>分歧 / 各自獨到</th><th>收斂</th></tr></thead><tbody><tr><td>第 1 輪</td><td>兩顧問一致：解質不預設利多、必須 forward tracking、改『狀態機』</td><td>Gemini 給動機比例(賣股30-40%/還款40-50%)；codex 拒給外部比例、主張用自家資料估</td><td>解質→S1待觀察→T+30/60→賣出/防守/轉質；資料鏈 STAMAK03→t187ap12→t187ap11</td></tr><tr><td>第 2 輪</td><td>窗口收斂 T+30主/T+60確認；t187ap12 每日 snapshot＝必要新基建</td><td>Gemini 台灣法規過濾器：解任門檻(26/197)、6月短線歸入(157)、御用分點；codex 查證條文後多改 soft flag</td><td>動機比例不當先驗；解任門檻做 soft flag；6月歸入/御用分點→Phase2</td></tr><tr><td>第 3 輪</td><td>兩分歧全解決；剪枝到『2 個 MVP 訊號』</td><td>賣出判定：逐人 diff＋關係人群組總額分工；Gemini 修正『高質押=偏多』→質押率只是放大器非方向</td><td>壓力解質(偏空) / 主動降槓桿(偏多) 兩訊號；內線前兆用財報日曆錨定(不馬後炮)</td></tr></tbody></table><div class="note">顧問分工：codex＝法規條文查證＋方法嚴謹度（查了證交法 22-2/26/157/157-1、公司法 197）；Gemini＝台灣中小型股籌碼實務＋法規細節；Claude＝執行＋交叉驗證＋裁決分歧；CIO＝關鍵質疑與方向。</div></div><div class="card"><div class="card-title">④ 收斂設計：T=0 方向訊號（質押率只是放大器，方向靠股價位階×持股）</div><table class="data-table data-table--zebra"><thead><tr><th>訊號</th><th>方向</th><th>T=0 定義（可觀測·防前視）</th><th>含義</th></tr></thead><tbody><tr><td>🔴 壓力解質降曝險</td><td>偏空</td><td>質押率≥45% 且（股價近1年分位&lt;30% 或 近20日跌&gt;15%）</td><td>高質押者在弱勢/急跌時解質→偏被迫去槓桿或賣股前處理</td></tr><tr><td>🟢 主動降槓桿(未賣)</td><td>偏多</td><td>質押率≥45% 且 解質幅度≥20% 且 分位&gt;50% 且 近20日跌&lt;10% 且 融資不惡化</td><td>股價不弱時實質降槓桿、未見賣壓→偏風險解除</td></tr><tr><td>⚪ 解質·待觀察</td><td>中性</td><td>其餘解質</td><td>動機未明，待後續追蹤</td></tr><tr><td>🔄 轉質換約</td><td>中性</td><td>同人同月 解≈設、淨≈0（±20%）</td><td>換銀行/展延，非真解除</td></tr><tr><td>🔺 增質</td><td>偏空側</td><td>淨設質增加</td><td>內部人加槓桿</td></tr></tbody></table><div class="label" style="margin-top:8px">本期全市場（1141228~1150702）：偏空 <b style="color:var(--th-red,#ef4444)">307</b> 筆、偏多 <b style="color:var(--th-green,#4ade80)">8</b> 筆——原本天真會全標「偏多」的解質，多數落入中性待觀察，只有極少數符合偏多。</div><div class="note">賣出判定（收斂）：逐人持股 diff 偵測「誰降曝險」＋關係人群組(本人+配偶+未成年子女+100%投資公司)總額確認「真賣 vs 內部調撥」。回測兩層：研究標籤用未來已實現行為、交易訊號只用 T=0 特徵。</div></div><div class="card"><div class="card-title">📊 回測結論（事件研究法·CAAR vs TWII｜1141228~1150702｜事件 466 筆）</div><table class="data-table data-table--zebra"><thead><tr><th>訊號分組</th><th>樣本</th><th>+20日 CAAR·勝率</th><th>+60日 CAAR</th><th>事前20日</th></tr></thead><tbody><tr><td>🔴 壓力解質(偏空)</td><td>n=16</td><td><b style="color:var(--th-red,#ef4444)">-12.7%</b>　勝6.2%</td><td>-36.0%（n=8）</td><td>-8.9%</td></tr><tr><td>🟢 主動降槓桿(偏多)</td><td>n=6</td><td><b style="color:var(--th-red,#ef4444)">-8.3%</b>　勝16.7%</td><td>-20.7%（n=4）</td><td>+4.8%</td></tr><tr><td>⚪ 待觀察(基線)</td><td>n=83</td><td><b style="color:var(--th-green,#4ade80)">+1.0%</b>　勝34.9%</td><td>-4.7%（n=46）</td><td>+10.1%</td></tr><tr><td>🔄 轉質換約(對照)</td><td>n=38</td><td><b style="color:var(--th-red,#ef4444)">-5.9%</b>　勝31.6%</td><td>-25.5%（n=18）</td><td>+8.7%</td></tr><tr><td>🔺 增質</td><td>n=224</td><td><b style="color:var(--th-red,#ef4444)">-6.9%</b>　勝19.6%</td><td>-25.9%（n=123）</td><td>-0.9%</td></tr></tbody></table><div class="note">CAAR＝對 TWII 的超額報酬（綠正紅負）。『事前20日』＝解質前報酬（檢查訊號是否落後）。進場＝申報日 T+1 開盤（防前視）。&lt;b style=&#x27;color:var(--th-amber,#fbbf24)&#x27;&gt;⚠ 近6月·樣本小·單一 regime，僅方向初探，需回補 24-36 月才有統計力。&lt;/b&gt;</div></div><div class="card"><div class="card-title">⑤ 回測結論解讀</div><div class="label" style="line-height:1.9"><b style="color:var(--th-red,#ef4444)">壓力解質(偏空)</b>：+20日 CAAR 大幅為負、勝率極低→ 偏空訊號在小樣本下看來成立（但股價事前已跌，含 momentum 成分，當「風險迴避」用比當「放空 alpha」穩）。<br><b style="color:var(--th-green,#4ade80)">主動降槓桿(偏多)</b>：樣本僅個位數、CAAR 未轉正→ 偏多論點在近 6 月<b>尚未</b>獲支持，需更多資料。<br><b>轉質換約（安慰劑對照）</b>與<b>增質</b>：符合「非利多/偏空側」預期。<br><b style="color:var(--th-amber,#fbbf24)">總結（印證 codex）：風險偵測比 alpha 可靠</b>——這層的價值先在「標出高風險解質」，不在「找飆股」。距離升級為選股/風控因子，還需回補 24-36 月、跨多 regime、控除權息，才有統計力。</div></div><div class="card"><div class="card-title">⑥ 建置成果（已上線·SHADOW 不接 decision）</div><table class="data-table data-table--zebra"><thead><tr><th>模組</th><th>角色</th></tr></thead><tbody><tr><td>fetch_pledge_events (STAMAK03)</td><td>事件層 fetcher：逐檔設質/解質·確切事件日·質權人·累積數</td></tr><tr><td>depledge_events</td><td>聚合(公司×人×月)+T=0 方向訊號分類</td></tr><tr><td>depledge_features</td><td>股價分位/近期跌幅/融資/as-of 取價/TWII（stocks.duckdb）</td></tr><tr><td>backtest_depledge</td><td>事件研究 CAAR vs TWII·申報日 T+1 進場·兩層防前視</td></tr><tr><td>fetch_transfer_declarations</td><td>t187ap12 每日 snapshot（forward tracking 地基·滾動快照會消失）</td></tr><tr><td>fetch_insider_holdings +逐人</td><td>t187ap11 逐人月持股歷史（forward tracking 地基）</td></tr></tbody></table><div class="note">路線圖（需資料累積後成熟）：狀態機 S1→S2 forward tracking（解質後 30/60 天追蹤有無賣股）、事件前降曝險（財報禁售期）二階標籤、關係人群組穿透、回補 24-36 月做有統計力的回測。</div></div><footer class="page-footer">depledge_discussion ｜ Claude(執行)×codex(法規/嚴謹)×Gemini(台灣實務) ｜ CIO 質疑「解質是否全是利多」引發的重建 ｜ 成果不接 decision 待回測</footer></body></html>
+<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">解質押偵測層 設計辯論紀實（Claude × codex × Gemini）</h1><div class="page-meta">顧問討論紀實 ｜ 解質≠利多 ｜ 三輪辯論收斂 ｜ 2026-07-02 ｜ SHADOW</div><div class="banner"><b>設計辯論紀實</b>：2026-07-02，CIO 一個問題「有沒有大股東解質押資料？」，經 <b>Claude（執行）× codex × Gemini（顧問）</b> 多輪辯論、CIO 三次拍板，演化成一個「<b style="color:var(--th-red,#ef4444)">解質 ≠ 利多</b>」的事件偵測層。本頁記錄過程、分歧、收斂與回測結論。<br><span style="font-size:12px;color:var(--th-muted,#94a3b8)">成果頁：<a href="../chip/depledge_events.html">設質·解質事件偵測</a>　｜　<a href="../chip/depledge_backtest.html">訊號回測</a>（SHADOW·不接 decision）</span></div><div class="card"><div class="card-title">① 演化：一個問題的三次轉折</div><div style="display:flex;gap:6px;flex-wrap:wrap;margin:8px 0"><div style="flex:1;min-width:120px;border:1px solid var(--th-muted,#94a3b8);border-radius:8px;padding:8px 10px;background:color-mix(in srgb,var(--th-muted,#94a3b8) 8%,transparent)"><div style="font-weight:700;color:var(--th-muted,#94a3b8)">v1 月快照</div><div style="font-size:11px;color:var(--th-muted,#94a3b8);margin-top:2px">t187ap11 月對月 diff 推解質→待累積、分不清轉質</div></div><div style="align-self:center;color:var(--th-muted,#94a3b8);font-size:18px">→</div><div style="flex:1;min-width:120px;border:1px solid var(--th-blue,#60a5fa);border-radius:8px;padding:8px 10px;background:color-mix(in srgb,var(--th-blue,#60a5fa) 8%,transparent)"><div style="font-weight:700;color:var(--th-blue,#60a5fa)">v2 事件流</div><div style="font-size:11px;color:var(--th-muted,#94a3b8);margin-top:2px">CIO 指路 MOPS STAMAK03→有確切解質股數/事件日/質權人</div></div><div style="align-self:center;color:var(--th-muted,#94a3b8);font-size:18px">→</div><div style="flex:1;min-width:120px;border:1px solid var(--th-green,#4ade80);border-radius:8px;padding:8px 10px;background:color-mix(in srgb,var(--th-green,#4ade80) 8%,transparent)"><div style="font-weight:700;color:var(--th-green,#4ade80)">v3 解質≠利多</div><div style="font-size:11px;color:var(--th-muted,#94a3b8);margin-top:2px">CIO 質疑→三輪辯論→T=0 方向訊號+回測</div></div></div><div class="kv-row"><span class="kv-row__k">🟦 CIO 提問</span><span class="kv-row__v">「目前有大股東解質押的資料嗎？」</span></div><div class="kv-row"><span class="kv-row__k">Claude→codex</span><span class="kv-row__v">先建 v1：t187ap11 月快照，靠月對月 diff 推解質（缺陷：只 1 月歷史待累積、分不清轉質）</span></div><div class="kv-row"><span class="kv-row__k">🟦 CIO 指路</span><span class="kv-row__v">貼 MOPS STAMAK03 + MoneyDJ 網址「請參考」</span></div><div class="kv-row"><span class="kv-row__k">Claude→codex</span><span class="kv-row__v">實測 STAMAK03 可程式化抓（逐檔·有解質股數/確切日/質權人/累積數）→ v2 混合事件流</span></div><div class="kv-row"><span class="kv-row__k">🟦 CIO 質疑</span><span class="kv-row__v">「解質是否全是利多？解質後才能申報轉讓，要後續追蹤，請與 codex、Gemini 討論幾輪」</span></div><div class="kv-row"><span class="kv-row__k">三輪辯論</span><span class="kv-row__v">codex×Gemini 交叉批判 → 收斂「解質≠利多」→ v3 建置 + 回測</span></div></div><div class="card"><div class="card-title">② 核心命題：為何「解質 ≠ 利多」</div><div class="label" style="line-height:1.9">原始直覺：「解質＝內部人還清質押借款＝財務壓力解除＝偏多」。<b>CIO 一句話點破盲點：</b><br><div style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0"><div style="flex:1;min-width:120px;border:1px solid var(--th-muted,#94a3b8);border-radius:8px;padding:8px 10px;background:color-mix(in srgb,var(--th-muted,#94a3b8) 8%,transparent)"><div style="font-weight:700;color:var(--th-muted,#94a3b8)">質押中的股票</div><div style="font-size:11px;color:var(--th-muted,#94a3b8);margin-top:2px">受質權限制、不能自由賣</div></div><div style="align-self:center;color:var(--th-muted,#94a3b8);font-size:18px">→</div><div style="flex:1;min-width:120px;border:1px solid var(--th-amber,#fbbf24);border-radius:8px;padding:8px 10px;background:color-mix(in srgb,var(--th-amber,#fbbf24) 8%,transparent)"><div style="font-weight:700;color:var(--th-amber,#fbbf24)">要賣股</div><div style="font-size:11px;color:var(--th-muted,#94a3b8);margin-top:2px">內部人須『先解質』贖回</div></div><div style="align-self:center;color:var(--th-muted,#94a3b8);font-size:18px">→</div><div style="flex:1;min-width:120px;border:1px solid var(--th-red,#ef4444);border-radius:8px;padding:8px 10px;background:color-mix(in srgb,var(--th-red,#ef4444) 8%,transparent)"><div style="font-weight:700;color:var(--th-red,#ef4444)">解質</div><div style="font-size:11px;color:var(--th-muted,#94a3b8);margin-top:2px">可能是『賣股前置』動作，非利多</div></div></div>所以「解質」有兩種相反動機——<b>還款壓力解除（偏多）</b> vs <b>準備賣股（偏空）</b>——無法在解質當下區分，必須看「解質後有沒有接著申報轉讓、持股有沒有下降」的<b>後續追蹤</b>。</div></div><div class="card"><div class="card-title">③ codex × Gemini 三輪辯論紀實</div><table class="data-table data-table--zebra"><thead><tr><th>輪次</th><th>共識</th><th>分歧 / 各自獨到</th><th>收斂</th></tr></thead><tbody><tr><td>第 1 輪</td><td>兩顧問一致：解質不預設利多、必須 forward tracking、改『狀態機』</td><td>Gemini 給動機比例(賣股30-40%/還款40-50%)；codex 拒給外部比例、主張用自家資料估</td><td>解質→S1待觀察→T+30/60→賣出/防守/轉質；資料鏈 STAMAK03→t187ap12→t187ap11</td></tr><tr><td>第 2 輪</td><td>窗口收斂 T+30主/T+60確認；t187ap12 每日 snapshot＝必要新基建</td><td>Gemini 台灣法規過濾器：解任門檻(26/197)、6月短線歸入(157)、御用分點；codex 查證條文後多改 soft flag</td><td>動機比例不當先驗；解任門檻做 soft flag；6月歸入/御用分點→Phase2</td></tr><tr><td>第 3 輪</td><td>兩分歧全解決；剪枝到『2 個 MVP 訊號』</td><td>賣出判定：逐人 diff＋關係人群組總額分工；Gemini 修正『高質押=偏多』→質押率只是放大器非方向</td><td>壓力解質(偏空) / 主動降槓桿(偏多) 兩訊號；內線前兆用財報日曆錨定(不馬後炮)</td></tr></tbody></table><div class="note">顧問分工：codex＝法規條文查證＋方法嚴謹度（查了證交法 22-2/26/157/157-1、公司法 197）；Gemini＝台灣中小型股籌碼實務＋法規細節；Claude＝執行＋交叉驗證＋裁決分歧；CIO＝關鍵質疑與方向。</div></div><div class="card"><div class="card-title">④ 收斂設計：T=0 方向訊號（質押率只是放大器，方向靠股價位階×持股）</div><table class="data-table data-table--zebra"><thead><tr><th>訊號</th><th>方向</th><th>T=0 定義（可觀測·防前視）</th><th>含義</th></tr></thead><tbody><tr><td>🔴 壓力解質降曝險</td><td>偏空</td><td>質押率≥45% 且（股價近1年分位&lt;30% 或 近20日跌&gt;15%）</td><td>高質押者在弱勢/急跌時解質→偏被迫去槓桿或賣股前處理</td></tr><tr><td>🟢 主動降槓桿(未賣)</td><td>偏多</td><td>質押率≥45% 且 解質幅度≥20% 且 分位&gt;50% 且 近20日跌&lt;10% 且 融資不惡化</td><td>股價不弱時實質降槓桿、未見賣壓→偏風險解除</td></tr><tr><td>⚪ 解質·待觀察</td><td>中性</td><td>其餘解質</td><td>動機未明，待後續追蹤</td></tr><tr><td>🔄 轉質換約</td><td>中性</td><td>同人同月 解≈設、淨≈0（±20%）</td><td>換銀行/展延，非真解除</td></tr><tr><td>🔺 增質</td><td>偏空側</td><td>淨設質增加</td><td>內部人加槓桿</td></tr></tbody></table><div class="label" style="margin-top:8px">本期全市場（1150516~1150717）：偏空 <b style="color:var(--th-red,#ef4444)">339</b> 筆、偏多 <b style="color:var(--th-green,#4ade80)">8</b> 筆——原本天真會全標「偏多」的解質，多數落入中性待觀察，只有極少數符合偏多。</div><div class="note">賣出判定（收斂）：逐人持股 diff 偵測「誰降曝險」＋關係人群組(本人+配偶+未成年子女+100%投資公司)總額確認「真賣 vs 內部調撥」。回測兩層：研究標籤用未來已實現行為、交易訊號只用 T=0 特徵。</div></div><div class="card"><div class="card-title">📊 回測結論（事件研究法·CAAR vs TWII｜1150516~1150717｜事件 533 筆）</div><table class="data-table data-table--zebra"><thead><tr><th>訊號分組</th><th>樣本</th><th>+20日 CAAR·勝率</th><th>+60日 CAAR</th><th>事前20日</th></tr></thead><tbody><tr><td>🔴 壓力解質(偏空)</td><td>n=17</td><td><b style="color:var(--th-red,#ef4444)">-10.1%</b>　勝11.8%</td><td>-36.0%（n=8）</td><td>-7.5%</td></tr><tr><td>🟢 主動降槓桿(偏多)</td><td>n=7</td><td><b style="color:var(--th-red,#ef4444)">-6.2%</b>　勝28.6%</td><td>-20.7%（n=4）</td><td>+4.2%</td></tr><tr><td>⚪ 待觀察(基線)</td><td>n=108</td><td><b style="color:var(--th-green,#4ade80)">+1.2%</b>　勝38.0%</td><td>-8.7%（n=59）</td><td>+9.4%</td></tr><tr><td>🔄 轉質換約(對照)</td><td>n=43</td><td><b style="color:var(--th-red,#ef4444)">-5.8%</b>　勝32.6%</td><td>-27.2%（n=21）</td><td>+10.0%</td></tr><tr><td>🔺 增質</td><td>n=263</td><td><b style="color:var(--th-red,#ef4444)">-6.0%</b>　勝22.8%</td><td>-24.9%（n=144）</td><td>-0.3%</td></tr></tbody></table><div class="note">CAAR＝對 TWII 的超額報酬（綠正紅負）。『事前20日』＝解質前報酬（檢查訊號是否落後）。進場＝申報日 T+1 開盤（防前視）。<b style='color:var(--th-amber,#fbbf24)'>⚠ 近6月·樣本小·單一 regime，僅方向初探，需回補 24-36 月才有統計力。</b></div></div><div class="card"><div class="card-title">⑤ 回測結論解讀</div><div class="label" style="line-height:1.9"><b style="color:var(--th-red,#ef4444)">壓力解質(偏空)</b>：+20日 CAAR 大幅為負、勝率極低→ 偏空訊號在小樣本下看來成立（但股價事前已跌，含 momentum 成分，當「風險迴避」用比當「放空 alpha」穩）。<br><b style="color:var(--th-green,#4ade80)">主動降槓桿(偏多)</b>：樣本僅個位數、CAAR 未轉正→ 偏多論點在近 6 月<b>尚未</b>獲支持，需更多資料。<br><b>轉質換約（安慰劑對照）</b>與<b>增質</b>：符合「非利多/偏空側」預期。<br><b style="color:var(--th-amber,#fbbf24)">總結（印證 codex）：風險偵測比 alpha 可靠</b>——這層的價值先在「標出高風險解質」，不在「找飆股」。距離升級為選股/風控因子，還需回補 24-36 月、跨多 regime、控除權息，才有統計力。</div></div><div class="card"><div class="card-title">⑥ 建置成果（已上線·SHADOW 不接 decision）</div><table class="data-table data-table--zebra"><thead><tr><th>模組</th><th>角色</th></tr></thead><tbody><tr><td>fetch_pledge_events (STAMAK03)</td><td>事件層 fetcher：逐檔設質/解質·確切事件日·質權人·累積數</td></tr><tr><td>depledge_events</td><td>聚合(公司×人×月)+T=0 方向訊號分類</td></tr><tr><td>depledge_features</td><td>股價分位/近期跌幅/融資/as-of 取價/TWII（stocks.duckdb）</td></tr><tr><td>backtest_depledge</td><td>事件研究 CAAR vs TWII·申報日 T+1 進場·兩層防前視</td></tr><tr><td>fetch_transfer_declarations</td><td>t187ap12 每日 snapshot（forward tracking 地基·滾動快照會消失）</td></tr><tr><td>fetch_insider_holdings +逐人</td><td>t187ap11 逐人月持股歷史（forward tracking 地基）</td></tr></tbody></table><div class="note">路線圖（需資料累積後成熟）：狀態機 S1→S2 forward tracking（解質後 30/60 天追蹤有無賣股）、事件前降曝險（財報禁售期）二階標籤、關係人群組穿透、回補 24-36 月做有統計力的回測。</div></div><footer class="page-footer">depledge_discussion ｜ Claude(執行)×codex(法規/嚴謹)×Gemini(台灣實務) ｜ CIO 質疑「解質是否全是利多」引發的重建 ｜ 成果不接 decision 待回測</footer>
+<style id='MS_N_RRR_tooltip_inject_v2'>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: var(--th-bg,#0f172a);
+  color: var(--th-text,#e2e8f0);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid var(--th-border2,#475569);
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>
