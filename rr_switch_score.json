@@ -1,9 +1,9 @@
 {
-  "as_of": "2026-07-16",
+  "as_of": "2026-07-17",
   "n_pairs": 6,
   "n_z_gate_passed": 2,
   "n_strong": 0,
-  "n_strong_stays_strong": 0,
+  "n_strong_stays_strong": 1,
   "z_mode": "gate",
   "weights": {
     "z_reversal": 30,
@@ -25,7 +25,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": 2.25,
+      "zscore": 2.15,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -76,7 +76,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -0.14,
+      "zscore": -0.24,
       "switch_direction": "B",
       "switch_into": {
         "code": "3035",
@@ -88,12 +88,12 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 0.85,
+          "score": 2.77,
           "src": "no_rotation"
         },
         "box": {
-          "score": 45.0,
-          "src": "inbox_side",
+          "score": 35.0,
+          "src": "inbox_down",
           "healthy": false
         }
       },
@@ -110,7 +110,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 32.8,
+      "switch_score_ref": 30.6,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -132,7 +132,7 @@
       ],
       "signal": "switch_to_B",
       "z_gate_passed": true,
-      "zscore": -1.26,
+      "zscore": -1.23,
       "switch_direction": "B",
       "switch_into": {
         "code": "2408",
@@ -144,13 +144,13 @@
           "src": "GREEN"
         },
         "rcr": {
-          "score": 1.91,
+          "score": 4.53,
           "src": "no_rotation"
         },
         "box": {
-          "score": 90.0,
-          "src": "above_up",
-          "healthy": true
+          "score": 45.0,
+          "src": "inbox_side",
+          "healthy": false
         }
       },
       "active_weights": {
@@ -165,14 +165,14 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 58.5,
-      "switch_score_ref": 58.5,
+      "switch_score": 46.6,
+      "switch_score_ref": 46.6,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "可換股 · 留意結構/籌碼",
-        "color": "#fb923c",
-        "icon": "⚠️"
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
       }
     },
     {
@@ -188,7 +188,7 @@
       ],
       "signal": "hold_A",
       "z_gate_passed": false,
-      "zscore": 0.79,
+      "zscore": 0.83,
       "switch_direction": "A",
       "switch_into": {
         "code": "2049",
@@ -200,7 +200,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 2.84,
+          "score": 2.05,
           "src": "no_rotation"
         },
         "box": {
@@ -222,7 +222,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 21.0,
+      "switch_score_ref": 20.7,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -244,7 +244,7 @@
       ],
       "signal": "switch_to_A",
       "z_gate_passed": true,
-      "zscore": -0.33,
+      "zscore": -0.52,
       "switch_direction": "A",
       "switch_into": {
         "code": "9921",
@@ -256,7 +256,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 3.07,
+          "score": 0.04,
           "src": "no_rotation"
         },
         "box": {
@@ -277,14 +277,26 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 37.9,
-      "switch_score_ref": 37.9,
-      "strong_stays_strong": false,
-      "trim": null,
+      "switch_score": 36.8,
+      "switch_score_ref": 36.8,
+      "strong_stays_strong": true,
+      "trim": {
+        "target": {
+          "code": "9914",
+          "name": "美利達"
+        },
+        "pct_range": [
+          0,
+          20
+        ],
+        "sell_chip_state": "healthy_rotation",
+        "buy_chip_state": "distribution_warning",
+        "sell_mbs_increasing": true
+      },
       "recommendation": {
-        "label": "Z 到但籌碼/結構不支持 · 觀望",
-        "color": "#ef4444",
-        "icon": "🚫"
+        "label": "強者恆強 · 延後換股 · 減碼 美利達 0–20% · 等待",
+        "color": "#a78bfa",
+        "icon": "💪"
       }
     },
     {
@@ -300,7 +312,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": -2.45,
+      "zscore": -2.31,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -340,6 +352,6 @@
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-07-16T22:23:20",
+  "generated_at": "2026-07-17T22:24:43",
   "available": true
 }

@@ -1,14 +1,15 @@
 {
-  "as_of": "2026-07-16",
+  "as_of": "2026-07-17",
   "schema_version": "v2",
   "market_phase": {
     "value": "DISTRIBUTION",
-    "confidence": 73,
-    "confidence_band": "HIGH",
+    "confidence": 68,
+    "confidence_band": "MEDIUM",
     "reason": [
       "外資轉賣壓力高",
-      "上漲 / 下跌家數 = 0.37, 嚴重失衡",
-      "風險訊號 3 個"
+      "上漲 / 下跌家數 = 0.13, 嚴重失衡",
+      "風險訊號 4 個",
+      "另符合: ACCUMULATION"
     ]
   },
   "risk_mode": {
@@ -16,13 +17,13 @@
     "confidence": 75,
     "confidence_band": "HIGH",
     "reason": [
-      "phase=DISTRIBUTION, triggers=3",
+      "phase=DISTRIBUTION, triggers=4",
       "派發期偏向防禦",
-      "風險訊號 3 個 (3-5)"
+      "風險訊號 4 個 (3-5)"
     ]
   },
   "market_structure": {
-    "taiex_trend": "DOWN",
+    "taiex_trend": "SIDEWAYS",
     "otc_trend": "DOWN",
     "leadership": "LARGE_CAP",
     "breadth_status": "EXPANDING",
@@ -48,15 +49,15 @@
     ]
   },
   "master_weight_policy": {
-    "Wyckoff": 46,
-    "Minervini": 3,
-    "ONeil": 2,
+    "Wyckoff": 47,
+    "Minervini": 2,
+    "ONeil": 1,
     "Weinstein": 11,
     "Darvas": 3,
-    "Livermore": 3,
-    "Lynch": 6,
+    "Livermore": 2,
+    "Lynch": 7,
     "Fisher": 10,
-    "Buffett": 16
+    "Buffett": 17
   },
   "discipline_policy": {
     "max_position_ratio_per_stock": 10,
@@ -77,31 +78,34 @@
     ]
   },
   "transition_signals": {
-    "next_likely_phase": "DISTRIBUTION",
-    "confidence": 0,
-    "early_warning_days": 0,
-    "triggers": [],
-    "note": "無階段轉換訊號"
+    "next_likely_phase": "BEAR",
+    "confidence": 65,
+    "early_warning_days": 3,
+    "triggers": [
+      "MA20 比例 22.1% 大幅下挫",
+      "風險訊號 4 個"
+    ],
+    "note": "派發期即將進入空頭期"
   },
   "skill_feedback": {
     "active": true,
     "skill_index": {
-      "Wyckoff": 55.4,
-      "Minervini": 8.25,
-      "ONeil": 4.6,
-      "Weinstein": 13.5,
-      "Darvas": 9.55,
-      "Livermore": 8.7,
-      "Lynch": 0.0,
-      "Fisher": 0.0,
+      "Wyckoff": 61.4,
+      "Minervini": 6.77,
+      "ONeil": 3.67,
+      "Weinstein": 13.27,
+      "Darvas": 7.67,
+      "Livermore": 6.93,
+      "Lynch": 0.1,
+      "Fisher": 0.2,
       "Buffett": 0.0
     },
     "n_days_with_data": 7,
-    "alpha": 0.351,
+    "alpha": 0.338,
     "alpha_mode": "dynamic",
-    "avg_skill_std": 4.85,
+    "avg_skill_std": 6.18,
     "skill_source": "phase_specific:DISTRIBUTION",
-    "phase_days_current": 2
+    "phase_days_current": 3
   },
   "summary": {
     "phase": "DISTRIBUTION",
@@ -109,6 +113,6 @@
     "action_bias": "REDUCE",
     "skill_feedback_active": true
   },
-  "generated_at": "2026-07-16T22:01:11",
+  "generated_at": "2026-07-17T22:00:59",
   "available": true
 }

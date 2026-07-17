@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-16",
+  "as_of": "2026-07-17",
   "schema_version": "v1",
   "available": true,
   "shadow": true,
@@ -9,8 +9,8 @@
   "state_tone": "bear",
   "state_desc": "真崩/流動性危機 → 現金為王，低波股照跌故只留少量",
   "prev_state": "L3",
-  "transition": "L3 等待解恐慌確認",
-  "days_in_state": 9,
+  "transition": "維持 L3",
+  "days_in_state": 10,
   "since": "2026-07-01",
   "buckets": {
     "rr": 10,
@@ -19,34 +19,41 @@
   },
   "signals": {
     "risk_mode": "DEFENSIVE",
-    "temp": 43.4,
-    "breadth": 40.2,
+    "temp": 34.0,
+    "breadth": 20.8,
     "rr_env": 55,
-    "zone": "HOT",
-    "z250": 1.841,
-    "twii20": -0.4
+    "zone": "NORMAL",
+    "z250": 1.429,
+    "twii20": -6.99
   },
   "triggers": {
     "enter_L2": true,
     "enter_L3": false,
-    "exit_L3": true,
+    "exit_L3": false,
     "exit_L2": false
   },
   "jade_constraint": "≤20%",
   "jade_holdings": [
     {
-      "symbol": "9917",
-      "name": "中保科",
-      "industry": "其他",
-      "sleeve_weight": 3.7,
-      "port_weight": 0.37
+      "symbol": "4105",
+      "name": "東洋",
+      "industry": "生技醫療業",
+      "sleeve_weight": 4.31,
+      "port_weight": 0.43
     },
     {
       "symbol": "2820",
       "name": "華票",
       "industry": "金融保險",
-      "sleeve_weight": 4.09,
+      "sleeve_weight": 4.06,
       "port_weight": 0.41
+    },
+    {
+      "symbol": "9917",
+      "name": "中保科",
+      "industry": "其他",
+      "sleeve_weight": 3.68,
+      "port_weight": 0.37
     },
     {
       "symbol": "1215",
@@ -56,24 +63,24 @@
       "port_weight": 0.19
     },
     {
-      "symbol": "2812",
-      "name": "台中銀",
-      "industry": "金融保險",
-      "sleeve_weight": 4.28,
-      "port_weight": 0.43
-    },
-    {
       "symbol": "2006",
       "name": "東和鋼鐵",
       "industry": "鋼鐵工業",
-      "sleeve_weight": 2.01,
+      "sleeve_weight": 1.98,
       "port_weight": 0.2
+    },
+    {
+      "symbol": "2812",
+      "name": "台中銀",
+      "industry": "金融保險",
+      "sleeve_weight": 4.26,
+      "port_weight": 0.43
     },
     {
       "symbol": "5876",
       "name": "上海商銀",
       "industry": "金融保險",
-      "sleeve_weight": 3.42,
+      "sleeve_weight": 3.4,
       "port_weight": 0.34
     },
     {
@@ -84,6 +91,20 @@
       "port_weight": 0.16
     },
     {
+      "symbol": "2010",
+      "name": "春源",
+      "industry": "鋼鐵工業",
+      "sleeve_weight": 2.4,
+      "port_weight": 0.24
+    },
+    {
+      "symbol": "1104",
+      "name": "環泥",
+      "industry": "水泥工業",
+      "sleeve_weight": 2.91,
+      "port_weight": 0.29
+    },
+    {
       "symbol": "2912",
       "name": "統一超",
       "industry": "貿易百貨",
@@ -91,31 +112,10 @@
       "port_weight": 0.24
     },
     {
-      "symbol": "1216",
-      "name": "統一",
-      "industry": "食品工業",
-      "sleeve_weight": 3.58,
-      "port_weight": 0.36
-    },
-    {
-      "symbol": "2010",
-      "name": "春源",
-      "industry": "鋼鐵工業",
-      "sleeve_weight": 2.41,
-      "port_weight": 0.24
-    },
-    {
-      "symbol": "9941",
-      "name": "裕融",
-      "industry": "其他",
-      "sleeve_weight": 2.56,
-      "port_weight": 0.26
-    },
-    {
-      "symbol": "1104",
-      "name": "環泥",
-      "industry": "水泥工業",
-      "sleeve_weight": 2.92,
+      "symbol": "2206",
+      "name": "三陽工業",
+      "industry": "汽車工業",
+      "sleeve_weight": 2.91,
       "port_weight": 0.29
     }
   ],
@@ -129,8 +129,8 @@
     "rr": 10,
     "jade": 10,
     "cash": 80,
-    "days_in_state": 9,
+    "days_in_state": 10,
     "note": "SHADOW 避風港三桶, 不接 cio_allocator/decision; 證明降回撤才併入"
   },
-  "generated_at": "2026-07-16T22:10:18"
+  "generated_at": "2026-07-17T22:11:53"
 }
