@@ -230,6 +230,7 @@ const CORR_WIN = 60, CORR_MIN = 20, BB_WIN = 20, Z60_WIN = 60;
 
 let HIST = null, QUOTES = null, CPP = null;
 let pi = 0, showBB = true;
+let lastPdv = null;                         // 上一次的實際價差(A−B 元),供統計列增減箭頭比較
 let curRangeKey = "3m", curIdx = null;      // 房規游標:範圍鍵 + 當前游標索引
 
 const $ = s => document.querySelector(s);
@@ -603,7 +604,7 @@ function renderChips(){
     const b = document.createElement("button");
     b.className = "chip" + (i === pi ? " active" : "");
     b.innerHTML = `<span class="g">${p.group}</span>${p.stocks[0].name} / ${p.stocks[1].name}`;
-    b.onclick = () => { pi = i; curIdx = null; renderChips(); renderStats(); draw(); drawMainforce(); renderMfSnapshot(); };
+    b.onclick = () => { pi = i; curIdx = null; lastPdv = null; renderChips(); renderStats(); draw(); drawMainforce(); renderMfSnapshot(); };
     el.appendChild(b);
   });
 }
@@ -636,24 +637,23 @@ function renderStats(){
   const m = latestMetrics();
   if (!m){ el.innerHTML = `<span class="lbl">無資料</span>`; $("#verdict").innerHTML=""; return; }
   const qa = QUOTES && QUOTES.stocks[m.symA], qb = QUOTES && QUOTES.stocks[m.symB];
-  const dSpread = m.prev!=null ? m.sc - m.prev : null;
-  const dCls = pctClass(dSpread);
   const legHtml = (nm, q) => {
     if (!q) return `<span><span class="lbl">${nm}</span>–</span>`;
     const c = pctClass(q.change_pct);
     return `<span><span class="lbl">${nm}</span><b class="${c}">${fmt(q.price)}</b> <span class="${c}" style="font-size:.78rem;">${q.change_pct>0?"+":""}${fmt(q.change_pct)}%</span></span>`;
   };
+  // 實際價差(A−B 元)即時值 — 取代原本的 ln(A/B)/比值/Z20/Z60/%B 統計(CIO 指定)
+  const pa = qa ? qa.price : null, pb = qb ? qb.price : null;
+  const pdv = (pa!=null && pb!=null) ? (pa - pb) : null;
+  const pdCls = pctClass(pdv);
+  const pdArrow = arrow(pdv, lastPdv);      // 相對上一次更新(5 秒)的增減
+  lastPdv = pdv;
   el.innerHTML = `
     ${legHtml(m.nameA, qa)}
     <span class="sep">│</span>
     ${legHtml(m.nameB, qb)}
     <span class="sep">│</span>
-    <span><span class="lbl">價差 ln(A/B)</span><b class="${dCls}">${fmt(m.sc,3)}</b>
-      ${dSpread!=null?`<span class="${dCls}" style="font-size:.78rem;">${dSpread>0?"▲":dSpread<0?"▼":""}${fmt(Math.abs(dSpread),3)}</span>`:""}</span>
-    <span><span class="lbl">比值 A/B</span>${fmt(m.ratio,3)}</span>
-    <span><span class="lbl">Z20</span><b class="${zCls(m.z20)}">${fmt(m.z20,2)}</b>σ</span>
-    <span><span class="lbl">Z60</span>${fmt(m.z60,2)}σ</span>
-    <span><span class="lbl">%B</span>${m.pctB==null?"–":fmt(m.pctB*100,0)+"%"}</span>`;
+    <span><span class="lbl">價差(${m.nameA}−${m.nameB})</span><b class="${pdCls}">${pdv==null?"–":((pdv>=0?"+":"")+fmt(pdv,2))}</b> 元${pdArrow}</span>`;
   renderVerdict(m);
 }
 
