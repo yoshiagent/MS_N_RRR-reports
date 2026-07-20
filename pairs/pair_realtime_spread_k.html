@@ -390,8 +390,11 @@ function cpAnno(idx){
   // 仍顯示標題列但值給「—」並註明,避免看起來像功能壞掉
   const note = (c==null && b==null) ? `　<span style="color:#64748b">(當日尚無 journal)</span>` : "";
   return [{
-    xref:"paper", yref:"paper", x:0.005, xanchor:"left", y:0.385, yanchor:"bottom",
+    // x 軸月份刻度錨在主圖(xaxis.anchor="y"),標籤畫在 paper y≈0.376~0.408,
+    // 正好佔滿本格上方間隙 → 改放本格內部上緣往下長,並加半透明底色襯開柱狀圖
+    xref:"paper", yref:"paper", x:0.005, xanchor:"left", y:0.37, yanchor:"top",
     showarrow:false, align:"left", font:{size:9.5, color:"#94a3b8"},
+    bgcolor:"rgba(13,17,23,0.72)", borderpad:2,
     text:`<span style="color:${cc}"><b>CP(柱)</b>=${f(c)}${cWho}</span>　　`
        + `<span style="color:${bc}"><b>CAB(線)</b>=${f(b)}${bWho}</span>${note}`,
   }];
