@@ -59,6 +59,7 @@
   .mfcard { background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:8px; margin:10px 14px; padding:8px 10px; }
   .mf-title { font-size:.88rem; color:var(--th-text,#cbd5e1); margin:0 0 4px 0; font-weight:600; display:flex; justify-content:space-between; align-items:baseline; gap:8px; }
   .mf-ts { font-size:.78rem; font-weight:400; color:var(--th-muted,#94a3b8); white-space:nowrap; }
+  .mf-val { font-size:.8rem; font-weight:400; margin-right:auto; white-space:nowrap; }
   #chart-t, #chart-v { width:100%; }
   .sw-wrap { box-sizing:border-box; width:100%; overflow-x:auto; }
   table.snap { width:100%; border-collapse:collapse; font-size:.82rem; white-space:nowrap; }
@@ -161,11 +162,11 @@
 <div id="mf-section">
   <div class="mf-h">🔍 主力動向觀察 · <span id="mf-pair"></span></div>
   <div class="mfcard">
-    <div class="mf-title">主力合計 T 走勢(特大單+大單買賣差)</div>
+    <div class="mf-title">主力合計 T 走勢(特大單+大單買賣差)<span class="mf-val" id="mf-val-t"></span></div>
     <div id="chart-t"></div>
   </div>
   <div class="mfcard">
-    <div class="mf-title">主散背離 V 走勢(主力 − 散戶)<span class="mf-ts" id="mf-ts-v"></span></div>
+    <div class="mf-title">主散背離 V 走勢(主力 − 散戶)<span class="mf-val" id="mf-val-v"></span><span class="mf-ts" id="mf-ts-v"></span></div>
     <div id="chart-v"></div>
   </div>
   <div class="mfcard">
@@ -367,20 +368,22 @@ function macdAnno(idx){
   if (!SD || idx == null || idx < 0 || idx >= SD.sc.length) return [];
   const f = v => v==null ? "—" : ((v>=0?"+":"")+v.toFixed(3));
   const d = SD.dif[idx], e = SD.dea[idx], o = SD.osc[idx];
+  const pd = prevNonNull(SD.dif, idx), pe = prevNonNull(SD.dea, idx), po = prevNonNull(SD.osc, idx);
   const oc = (o==null) ? "#94a3b8" : (o>=0 ? UP : DOWN);
   return [{
     xref:"paper", yref:"paper", x:0.005, xanchor:"left", y:0.165, yanchor:"bottom",
     showarrow:false, align:"left", font:{size:9.5, color:"#94a3b8"},
     text:`<b>MACD(${MACD_F},${MACD_S},${MACD_SIG})</b>　`
-       + `<span style="color:${C_DIF}">DIF ${f(d)}</span>　`
-       + `<span style="color:${C_DEA}">DEA ${f(e)}</span>　`
-       + `<span style="color:${oc}">柱 ${f(o)}</span>`,
+       + `<span style="color:${C_DIF}">DIF ${f(d)}</span>${arrow(d,pd)}　`
+       + `<span style="color:${C_DEA}">DEA ${f(e)}</span>${arrow(e,pe)}　`
+       + `<span style="color:${oc}">柱 ${f(o)}</span>${arrow(o,po)}`,
   }];
 }
 /* CP/CAB 格的標題列:貼在 CP_power+CAB20 面板(y3 domain 0.20-0.38)正上方 */
 function cpAnno(idx){
   if (!SD || idx == null || idx < 0 || idx >= SD.sc.length) return [];
   const c = SD.cp[idx], b = SD.cab[idx];
+  const pc = prevNonNull(SD.cp, idx), pb = prevNonNull(SD.cab, idx);
   const f = v => v==null ? "—" : ((v>=0?"+":"")+v.toFixed(3));
   const cc = (c==null) ? "#94a3b8" : (c>=0 ? UP : DOWN);
   const bc = (b==null) ? "#94a3b8" : (b>=0 ? UP : DOWN);
@@ -395,8 +398,8 @@ function cpAnno(idx){
     xref:"paper", yref:"paper", x:0.005, xanchor:"left", y:0.37, yanchor:"top",
     showarrow:false, align:"left", font:{size:9.5, color:"#94a3b8"},
     bgcolor:"rgba(13,17,23,0.72)", borderpad:2,
-    text:`<span style="color:${cc}"><b>CP(柱)</b>=${f(c)}${cWho}</span>　　`
-       + `<span style="color:${bc}"><b>CAB(線)</b>=${f(b)}${bWho}</span>${note}`,
+    text:`<span style="color:${cc}"><b>CP(柱)</b>=${f(c)}${cWho}</span>${arrow(c,pc)}　　`
+       + `<span style="color:${bc}"><b>CAB(線)</b>=${f(b)}${bWho}</span>${arrow(b,pb)}${note}`,
   }];
 }
 function allAnnos(idx){ return macdAnno(idx).concat(cpAnno(idx)); }
@@ -789,7 +792,46 @@ function renderMfSnapshot(){
     tb.appendChild(tr);
   });
 }
-function updateFreshBadge(){                     // V 走勢圖標題戳記:圖畫到幾點;落後快照>15s 標紅(診斷)
+/* 增減箭頭:相對前一筆(▲增·紅 / ▼減·綠 / ‧持平);兩端皆需有值才顯示 */
+function arrow(cur, prev){
+  if (cur == null || prev == null) return "";
+  const d = cur - prev;
+  if (Math.abs(d) < 1e-9) return ` <span style="color:#64748b">‧</span>`;
+  return d > 0 ? ` <span style="color:${UP}">▲</span>` : ` <span style="color:${DOWN}">▼</span>`;
+}
+/* 取序列中最後兩個「非 null」值 → [最新, 前一筆];序列可能有未成交的空洞 */
+function lastTwo(arr){
+  let cur = null, prev = null;
+  for (let i = (arr||[]).length-1; i >= 0; i--){
+    if (arr[i] == null) continue;
+    if (cur == null){ cur = arr[i]; continue; }
+    prev = arr[i]; break;
+  }
+  return [cur, prev];
+}
+/* 往前找最近一筆非 null(供 journal 類有空洞的序列比較增減) */
+function prevNonNull(arr, i){
+  for (let k = i-1; k >= 0; k--){ if ((arr||[])[k] != null) return arr[k]; }
+  return null;
+}
+
+function updateFreshBadge(){                     // T/V 圖標題:即時值+增減箭頭;V 圖另加「圖 @ 時間」戳記
+  // 兩張圖標題的即時值:股名用線色、值正紅負綠、箭頭=相對前一個 5 秒樣本
+  if (HIST){
+    const pr = currentPair();
+    ["t","v"].forEach(key => {
+      const ve = $(`#mf-val-${key}`);
+      if (!ve) return;
+      ve.innerHTML = pr.stocks.map((s, i) => {
+        const two = lastTwo((MF[s.symbol]||{})[key]);
+        const cur = two[0], prev = two[1];
+        const col = i ? VB_C : VA_C;
+        const vc = cur==null ? "flat" : (cur>=0 ? "up" : "down");
+        const vs = cur==null ? "—" : ((cur>=0?"+":"")+cur.toFixed(2));
+        return `<span style="color:${col}">${s.name}</span> <b class="${vc}">${vs}</b>${arrow(cur, prev)}`;
+      }).join("　");
+    });
+  }
   const el = $("#mf-ts-v"); if (!el) return;
   if (!QUOTES){ el.textContent = ""; return; }
   const snap = QUOTES.updated.slice(11);
