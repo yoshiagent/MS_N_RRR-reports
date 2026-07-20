@@ -384,16 +384,16 @@ function cpAnno(idx){
   const f = v => v==null ? "—" : ((v>=0?"+":"")+v.toFixed(3));
   const cc = (c==null) ? "#94a3b8" : (c>=0 ? UP : DOWN);
   const bc = (b==null) ? "#94a3b8" : (b>=0 ? UP : DOWN);
-  const who = (c==null) ? "" : `(利${c>=0?SD.na:SD.nb})`;
+  const cWho = (c==null) ? "" : `(利${c>=0?SD.na:SD.nb})`;
+  const bWho = (b==null) ? "" : `(利${b>=0?SD.na:SD.nb})`;   // CAB20>0 亦為 A 強
   // CP_power 是每日 journal 序列(非即時),最後一根K當日通常還沒產出 →
   // 仍顯示標題列但值給「—」並註明,避免看起來像功能壞掉
   const note = (c==null && b==null) ? `　<span style="color:#64748b">(當日尚無 journal)</span>` : "";
   return [{
     xref:"paper", yref:"paper", x:0.005, xanchor:"left", y:0.385, yanchor:"bottom",
     showarrow:false, align:"left", font:{size:9.5, color:"#94a3b8"},
-    text:`<b>CP_power(柱)/CAB20(線)</b>　`
-       + `<span style="color:${cc}">CP ${f(c)}${who}</span>　`
-       + `<span style="color:${bc}">CAB20 ${f(b)}</span>${note}`,
+    text:`<span style="color:${cc}"><b>CP(柱)</b>=${f(c)}${cWho}</span>　　`
+       + `<span style="color:${bc}"><b>CAB(線)</b>=${f(b)}${bWho}</span>${note}`,
   }];
 }
 function allAnnos(idx){ return macdAnno(idx).concat(cpAnno(idx)); }
