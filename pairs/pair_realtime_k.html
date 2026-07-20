@@ -131,6 +131,8 @@
 "use strict";
 const UP = "#f87171", DOWN = "#4ade80";      // 台股紅漲綠跌
 const MA5C = "#60a5fa", MA20C = "#fb923c";
+const MACD_F = 12, MACD_S = 26, MACD_SIG = 9;     // MACD 參數(算在收盤價上)
+const C_DIF = "#fbbf24", C_DEA = "#38bdf8";       // DIF(琥珀)/DEA(天藍);柱沿用 UP/DOWN
 const POLL_MS = 5000, STALE_MS = 30000;
 
 let HIST = null, QUOTES = null;
@@ -145,7 +147,7 @@ const $ = s => document.querySelector(s);
 function arrow(cur, prev){
   if (cur == null || prev == null) return "";
   const d = cur - prev;
-  if (Math.abs(d) < 1e-9) return ` <span style="color:#64748b">‧</span>`;
+  if (Math.abs(d) < 1e-9) return ` <span style="color:var(--th-faint,#64748b)">‧</span>`;
   return d > 0 ? ` <span style="color:${UP}">▲</span>` : ` <span style="color:${DOWN}">▼</span>`;
 }
 
@@ -180,6 +182,28 @@ function ma(arr, n){
   }
   return out;
 }
+function ema(arr, w){                       // 缺值沿用前值;首個有效值當種子
+  const k = 2/(w+1), out = new Array(arr.length).fill(null);
+  let prev = null;
+  for (let i=0;i<arr.length;i++){
+    const v = arr[i];
+    if (v == null){ out[i] = prev; continue; }
+    prev = (prev == null) ? v : (v - prev)*k + prev;
+    out[i] = prev;
+  }
+  return out;
+}
+function macdCalc(arr, fast, slow, sig){    // DIF=EMA快−EMA慢, DEA=EMA(DIF), 柱=DIF−DEA
+  const ef = ema(arr, fast), es = ema(arr, slow);
+  const dif = arr.map((_,i)=> (ef[i]==null||es[i]==null) ? null : ef[i]-es[i]);
+  const dea = ema(dif, sig);
+  const osc = dif.map((d,i)=> (d==null||dea[i]==null) ? null : d-dea[i]);
+  return { dif, dea, osc };
+}
+function prevNonNull(arr, i){               // 往前找最近一筆非 null(供增減箭頭比較)
+  for (let k = i-1; k >= 0; k--){ if ((arr||[])[k] != null) return arr[k]; }
+  return null;
+}
 
 /* ---------- 繪圖 ---------- */
 const SK_PAD = 2;
@@ -201,20 +225,27 @@ function draw(){
   const m = mergedSeries(sym);
   const n = m.dates.length;
   const ma5 = ma(m.c, 5), ma20 = ma(m.c, 20);
+  // MACD(12/26/9) — 算在收盤價序列上(與主圖同源)
+  const md = macdCalc(m.c, MACD_F, MACD_S, MACD_SIG);
+  const mdDif = md.dif, mdDea = md.dea, mdOsc = md.osc;
   const name = (HIST.pairs.flatMap(p=>p.stocks).find(x=>x.symbol===sym)||{}).name || sym;
 
-  SD = { dates:m.dates, o:m.o, h:m.h, l:m.l, c:m.c, v:m.v, ma5, ma20, name };
+  SD = { dates:m.dates, o:m.o, h:m.h, l:m.l, c:m.c, v:m.v, ma5, ma20, name,
+         dif:mdDif, dea:mdDea, osc:mdOsc };
   if (curIdx == null || curIdx > n-1) curIdx = n-1;
 
   const xIdx = m.dates.map((_,i)=> i);       // x = 數字索引(供游標定位)
   const rng = skRanges(n)[curRangeKey];
   const i0 = Math.max(0, Math.ceil(rng[0])), i1 = Math.min(n-1, Math.floor(rng[1]));
   // y 軸隨可見視窗重算(避免壓扁)
-  let yLo = Infinity, yHi = -Infinity, vHi = 1;
+  let yLo = Infinity, yHi = -Infinity, vHi = 1, mdM = 1e-6;
   for (let i=i0;i<=i1;i++){
     if (m.l[i]!=null && m.l[i]<yLo) yLo=m.l[i];
     if (m.h[i]!=null && m.h[i]>yHi) yHi=m.h[i];
     if (m.v[i]!=null && m.v[i]>vHi) vHi=m.v[i];
+    if (mdDif[i]!=null && Math.abs(mdDif[i])>mdM) mdM=Math.abs(mdDif[i]);
+    if (mdDea[i]!=null && Math.abs(mdDea[i])>mdM) mdM=Math.abs(mdDea[i]);
+    if (mdOsc[i]!=null && Math.abs(mdOsc[i])>mdM) mdM=Math.abs(mdOsc[i]);
   }
   if (yLo===Infinity){ yLo=Math.min(...m.l); yHi=Math.max(...m.h); }
   const pad = (yHi - yLo) * 0.04 || 1;
@@ -235,6 +266,13 @@ function draw(){
       line:{color:MA20C, width:1.4}, hoverinfo:"skip", showlegend:false },
     { type:"bar", x:xIdx, y:m.v, name:"量(張)", yaxis:"y2",
       marker:{color:volColors, opacity:.55}, showlegend:false, hoverinfo:"skip" },
+    // MACD:柱(OSC·正紅負綠) + DIF/DEA 線
+    { type:"bar", x:xIdx, y:mdOsc, name:"MACD柱", yaxis:"y3", opacity:.8,
+      marker:{color: mdOsc.map(v=> (v==null||v>=0) ? UP : DOWN)}, showlegend:false, hoverinfo:"skip" },
+    { type:"scatter", mode:"lines", x:xIdx, y:mdDif, name:"DIF", yaxis:"y3",
+      line:{color:C_DIF, width:1.2}, connectgaps:false, showlegend:false, hoverinfo:"skip" },
+    { type:"scatter", mode:"lines", x:xIdx, y:mdDea, name:"DEA", yaxis:"y3",
+      line:{color:C_DEA, width:1.2}, connectgaps:false, showlegend:false, hoverinfo:"skip" },
   ];
   const css = getComputedStyle(document.body);
   const T = (k, fb) => (css.getPropertyValue(k) || "").trim() || fb;
@@ -248,15 +286,38 @@ function draw(){
     xaxis:{ type:"linear", range:rng.slice(), rangeslider:{visible:false},
       tickmode:"array", tickvals, ticktext, tickangle:0,
       gridcolor:T("--th-border","#1f2937"), fixedrange:true },
-    yaxis:{ domain:[0.24, 1], range:[yLo-pad, yHi+pad], side:"right",
+    yaxis:{ domain:[0.42, 1], range:[yLo-pad, yHi+pad], side:"right",
       gridcolor:T("--th-border","#1f2937"), fixedrange:true, tickformat:",.0f" },
-    yaxis2:{ domain:[0, 0.2], range:[0, vHi*1.1], side:"right",
-      gridcolor:T("--th-border","#1f2937"), fixedrange:true, tickformat:"~s" },
+    yaxis2:{ domain:[0.22, 0.38], range:[0, vHi*1.1], side:"right",
+      gridcolor:T("--th-border","#1f2937"), fixedrange:true, tickformat:"~s",
+      title:{text:"量(張)", font:{size:9}} },
+    yaxis3:{ domain:[0, 0.18], range:[-mdM*1.2, mdM*1.2], side:"right",
+      gridcolor:T("--th-border","#1f2937"), fixedrange:true, tickformat:".1f",
+      zeroline:true, zerolinecolor:"rgba(148,163,184,.35)",
+      title:{text:"MACD", font:{size:9}} },
     shapes: skCrosshair(curIdx),
+    annotations: macdAnno(curIdx),
   };
   Plotly.react("chart", traces, layout,
     {displayModeBar:false, scrollZoom:false, doubleClick:false, responsive:true});
   showInfo();
+}
+
+/* MACD 格的標題列:當前游標日的 DIF/DEA/柱 + 增減箭頭,貼在 MACD 面板(y3)正上方 */
+function macdAnno(idx){
+  if (!SD || idx == null || idx < 0 || idx >= SD.c.length) return [];
+  const f = v => v==null ? "—" : ((v>=0?"+":"")+v.toFixed(2));
+  const d = SD.dif[idx], e = SD.dea[idx], o = SD.osc[idx];
+  const pd = prevNonNull(SD.dif, idx), pe = prevNonNull(SD.dea, idx), po = prevNonNull(SD.osc, idx);
+  const oc = (o==null) ? "#94a3b8" : (o>=0 ? UP : DOWN);
+  return [{
+    xref:"paper", yref:"paper", x:0.005, xanchor:"left", y:0.185, yanchor:"bottom",
+    showarrow:false, align:"left", font:{size:9.5, color:"#94a3b8"},
+    text:`<b>MACD(${MACD_F},${MACD_S},${MACD_SIG})</b>　`
+       + `<span style="color:${C_DIF}">DIF ${f(d)}</span>${arrow(d,pd)}　`
+       + `<span style="color:${C_DEA}">DEA ${f(e)}</span>${arrow(e,pe)}　`
+       + `<span style="color:${oc}">柱 ${f(o)}</span>${arrow(o,po)}`,
+  }];
 }
 
 /* 訊息列:當前游標日的 開高低收 + 漲跌 + 量 + MA5/MA20 (與圖同源) */
@@ -283,7 +344,7 @@ function showInfo(){
 /* 只更新游標(輕量,不整張 react) */
 function skRedrawCursor(){
   const g = $("#chart");
-  if (g && g._fullLayout){ Plotly.relayout(g, {shapes: skCrosshair(curIdx)}); }
+  if (g && g._fullLayout){ Plotly.relayout(g, {shapes: skCrosshair(curIdx), annotations: macdAnno(curIdx)}); }
   showInfo();
 }
 window.skRange = function(key){
