@@ -147,7 +147,7 @@ const $ = s => document.querySelector(s);
 function arrow(cur, prev){
   if (cur == null || prev == null) return "";
   const d = cur - prev;
-  if (Math.abs(d) < 1e-9) return ` <span style="color:#64748b">‧</span>`;
+  if (Math.abs(d) < 1e-9) return ` <span style="color:var(--th-faint,#64748b)">‧</span>`;
   return d > 0 ? ` <span style="color:${UP}">▲</span>` : ` <span style="color:${DOWN}">▼</span>`;
 }
 

@@ -211,7 +211,7 @@
   High/Low 為<b>日線相關性收縮估計</b>(rA,rB,ρ60),非逐筆同步極值,不可用於觸價/停損;逐筆精確版見
   <a href="spread_candle_block.html" style="color:var(--th-blue,#93c5fd);">B22 價差K線</a>。
   最後一根為今日盤中即時(RTD 約 5 秒),兩腿皆需成交才併入。
-  <b style="color:#fbbf24;">MACD(12/26/9)</b> = 直接算在價差 ln(A/B) 上的動能(非個股):<b style="color:#fbbf24;">DIF</b>(琥珀)與 <b style="color:#60a5fa;">DEA</b>(藍)黃金/死亡交叉、柱(OSC)零軸翻正/翻負,輔助判斷價差趨勢轉折;因算在對數價差上,數值量級與個股 MACD 不同(此配對約 0.0x~0.1x),判讀看<b>交叉方向與零軸正負</b>即可,不必與個股數值互相比較。
+  <b style="color:var(--th-amber,#fbbf24);">MACD(12/26/9)</b> = 直接算在價差 ln(A/B) 上的動能(非個股):<b style="color:var(--th-amber,#fbbf24);">DIF</b>(琥珀)與 <b style="color:var(--th-blue,#60a5fa);">DEA</b>(藍)黃金/死亡交叉、柱(OSC)零軸翻正/翻負,輔助判斷價差趨勢轉折;因算在對數價差上,數值量級與個股 MACD 不同(此配對約 0.0x~0.1x),判讀看<b>交叉方向與零軸正負</b>即可,不必與個股數值互相比較。
   ③ <b>CP_power(柱)</b> = B2 相位(PAB×CAB) Q1−Q3 象限力量差(近 20 日窗)：紅≥0 偏抱 A / 綠&lt;0 偏換 B;
   <b style="color:var(--th-pink,#e879f9);">CAB20(線)</b> = Qpower20(A)−Qpower20(B)(當日純籌碼淨力差·±0.05 為決策門檻)。二者為<b>每日</b>序列(pair_rotation journal·非即時),與 <a href="spread_candle_block.html" style="color:var(--th-blue,#93c5fd);">B22 ③格</a>同源。
   下方「主力動向觀察」為本配對兩檔的 T(主力)/V(主散背離)盤中走勢,自 poller 啟動起累積(讀 rt_intraday.json + 5 秒增量),與 <a href="pair_mainforce_live.html" style="color:var(--th-blue,#93c5fd);">主力動向 12 檔版</a>同源。
@@ -392,7 +392,7 @@ function cpAnno(idx){
   const bWho = (b==null) ? "" : `(利${b>=0?SD.na:SD.nb})`;   // CAB20>0 亦為 A 強
   // CP_power 是每日 journal 序列(非即時),最後一根K當日通常還沒產出 →
   // 仍顯示標題列但值給「—」並註明,避免看起來像功能壞掉
-  const note = (c==null && b==null) ? `　<span style="color:#64748b">(當日尚無 journal)</span>` : "";
+  const note = (c==null && b==null) ? `　<span style="color:var(--th-faint,#64748b)">(當日尚無 journal)</span>` : "";
   return [{
     // x 軸月份刻度錨在主圖(xaxis.anchor="y"),標籤畫在 paper y≈0.376~0.408,
     // 正好佔滿本格上方間隙 → 改放本格內部上緣往下長,並加半透明底色襯開柱狀圖
@@ -796,7 +796,7 @@ function renderMfSnapshot(){
 function arrow(cur, prev){
   if (cur == null || prev == null) return "";
   const d = cur - prev;
-  if (Math.abs(d) < 1e-9) return ` <span style="color:#64748b">‧</span>`;
+  if (Math.abs(d) < 1e-9) return ` <span style="color:var(--th-faint,#64748b)">‧</span>`;
   return d > 0 ? ` <span style="color:${UP}">▲</span>` : ` <span style="color:${DOWN}">▼</span>`;
 }
 /* 取序列中最後兩個「非 null」值 → [最新, 前一筆];序列可能有未成交的空洞 */
