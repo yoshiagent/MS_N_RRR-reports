@@ -5,7 +5,8 @@
 <link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=c3761c98">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>配對自選股 即時看盤入口</title>
+<title>大盤即時看盤(加權·櫃買)</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
 <style>
   html { overflow-x: hidden; }
   body {
@@ -14,37 +15,46 @@
     font-family:-apple-system,"Segoe UI","Microsoft JhengHei",sans-serif;
     line-height:1.7;
   }
-  #wrap { max-width:900px; margin:0 auto; padding:14px; }
-  h1 { font-size:1.15rem; margin:4px 0 6px 0; font-weight:700; }
-  #status { font-size:.82rem; color:var(--th-muted,#94a3b8); margin-bottom:12px; }
-  #status .dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+  #topbar { padding:10px 14px 0 14px; }
+  h1 { font-size:1.05rem; margin:0 0 6px 0; font-weight:700; }
+  #status { font-size:.8rem; color:var(--th-muted,#94a3b8); }
+  #status .dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px; vertical-align:middle; }
   .dot.live { background:var(--th-green,#4ade80); box-shadow:0 0 6px #4ade80; }
   .dot.stale { background:var(--th-hover,#64748b); }
   #hint { display:none; background:var(--th-blue-bg,#0f2040); border:1px solid rgba(59,130,246,.3); color:var(--th-blue,#93c5fd);
-          border-radius:8px; padding:8px 12px; font-size:.8rem; margin-bottom:12px; }
-  .cards { display:grid; grid-template-columns:1fr; gap:12px; }
-  @media(min-width:640px){ .cards { grid-template-columns:1fr 1fr; } }
-  a.card {
-    display:block; text-decoration:none; color:var(--th-text,#e2e8f0);
-    background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:10px; padding:14px 16px;
-    transition:border-color .15s;
-  }
-  a.card:hover { border-color:#3b82f6; }
-  a.card .ttl { font-size:1rem; font-weight:700; color:var(--th-blue,#93c5fd); }
-  a.card .desc { font-size:.78rem; color:var(--th-muted,#94a3b8); margin-top:2px; }
-  h2 { font-size:.9rem; color:var(--th-blue,#93c5fd); margin:18px 0 8px 0; }
-  .pairgrid { display:grid; grid-template-columns:1fr; gap:8px; }
-  @media(min-width:640px){ .pairgrid { grid-template-columns:1fr 1fr; } }
-  @media(min-width:980px){ .pairgrid { grid-template-columns:1fr 1fr 1fr; } }
-  .pair { background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:8px; padding:6px 10px; }
-  .pair .g { font-size:.7rem; color:var(--th-muted,#94a3b8); }
-  .row { display:flex; justify-content:space-between; align-items:baseline; gap:6px; font-size:.84rem; }
-  .row .nm { font-weight:700; min-width:5.5em; }
-  .row .px { min-width:4.2em; text-align:right; }
-  .row .pct { min-width:4.6em; text-align:right; font-size:.78rem; }
-  .row .tv { min-width:7.5em; text-align:right; font-size:.72rem; color:var(--th-muted,#94a3b8); }
+          border-radius:8px; padding:8px 12px; font-size:.8rem; margin:8px 14px 0 14px; }
+  .mktcards { display:grid; grid-template-columns:1fr; gap:10px; margin:10px 14px; }
+  @media(min-width:700px){ .mktcards { grid-template-columns:1fr 1fr; } }
+  .mkt { background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:10px; padding:10px 14px; }
+  .mkt .hd { display:flex; justify-content:space-between; align-items:baseline; }
+  .mkt .nm { font-size:.95rem; font-weight:700; }
+  .mkt .tm { font-size:.72rem; color:var(--th-muted,#94a3b8); }
+  .mkt .px { font-size:1.55rem; font-weight:700; line-height:1.3; }
+  .mkt .chg { font-size:.9rem; font-weight:700; margin-left:8px; }
+  .mkt .kv { display:flex; flex-wrap:wrap; gap:2px 14px; font-size:.78rem; color:var(--th-text2,#cbd5e1); margin-top:2px; }
+  .mkt .kv b { font-weight:600; color:var(--th-muted,#94a3b8); }
+  .bbar { display:flex; height:14px; border-radius:4px; overflow:hidden; margin:8px 0 2px 0; background:var(--th-bg,#07111e); }
+  .bbar .u { background:var(--th-red,#f87171); }
+  .bbar .f { background:var(--th-hover,#64748b); }
+  .bbar .d { background:var(--th-green,#4ade80); }
+  .bnums { display:flex; justify-content:space-between; font-size:.74rem; color:var(--th-muted,#94a3b8); }
+  .chips { margin-top:6px; display:flex; flex-wrap:wrap; gap:6px; }
+  .chip { font-size:.72rem; border:1px solid var(--th-border2,#334155); border-radius:6px; padding:1px 8px; color:var(--th-text2,#cbd5e1); white-space:nowrap; }
+  .chip.lu { border-color:rgba(248,113,113,.5); color:var(--th-red,#f87171); }
+  .chip.ld { border-color:rgba(74,222,128,.5); color:var(--th-green,#4ade80); }
   .up { color:var(--th-red,#f87171); } .down { color:var(--th-green,#4ade80); } .flat { color:var(--th-muted,#94a3b8); }
-  footer { padding:16px 0; font-size:.72rem; color:var(--th-muted,#94a3b8); }
+  .card { background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:8px; margin:10px 14px; padding:8px 10px; }
+  .card h2 { font-size:.92rem; color:var(--th-blue,#93c5fd); margin:0 0 4px 0; }
+  .chartbox { width:100%; }
+  details.info { margin:10px 14px; border:1px solid var(--th-border,#2d3f55); border-radius:6px; }
+  details.info summary { padding:6px 10px; cursor:pointer; font-size:.8rem; font-weight:700; color:var(--th-blue,#93c5fd); background:var(--th-blue-bg,#0f2040); user-select:none; }
+  details.info .info-desc { padding:8px 12px; font-size:.8rem; color:var(--th-text2,#cbd5e1); }
+  details.info ul { margin:4px 0 8px 18px; padding:0; }
+  details.info table { width:calc(100% - 24px); margin:0 12px 10px 12px; border-collapse:collapse; font-size:.78rem; }
+  details.info th, details.info td { padding:4px 8px; border:1px solid var(--th-border,#2d3f55); text-align:center; }
+  details.info th { background:var(--th-blue-bg,#0f2040); color:var(--th-blue,#93c5fd); }
+  details.info td:last-child { text-align:left; }
+  footer { padding:10px 14px 20px 14px; font-size:.72rem; color:var(--th-muted,#94a3b8); }
 </style>
 </head>
 <body>
@@ -91,127 +101,295 @@
 })();
 </script>
 <!-- GLOBAL_NAV_END -->
-<div id="wrap">
-  <h1>配對自選股 即時看盤入口</h1>
-  <div id="status"><span class="dot stale"></span><span id="statustext">載入中…</span></div>
-  <div id="hint">資料靜止:請確認 XQ 已登入,並點桌面捷徑「配對即時日K」啟動 poller。</div>
-
-  <div class="cards">
-    <a class="card" href="pair_realtime_k.html">
-      <div class="ttl">📈 即時日K</div>
-      <div class="desc">12 檔日K+量能,今日K棒盤中即時跳動,MA5/MA20,近3月/6月/全部</div>
-    </a>
-    <a class="card" href="pair_mainforce_live.html">
-      <div class="ttl">🔍 主力動向即時觀察</div>
-      <div class="desc">T(特大+大單)/ V(主散背離)盤中走勢+快照表,配對篩選,訊號研判表</div>
-    </a>
-    <a class="card" href="pair_realtime_spread_k.html">
-      <div class="ttl">📊 即時價差日K</div>
-      <div class="desc">6 配對 ln(A/B) 價差K線,今日盤中即時併棒,布林 MA20±2σ + Z20/Z60 換股訊號</div>
-    </a>
-    <a class="card" href="market_realtime.html">
-      <div class="ttl">🌐 大盤即時看盤</div>
-      <div class="desc">加權/櫃買 指數盤中走勢+家數/量能淨寬度+漲跌停家數+內外盤,約 5 秒更新</div>
-    </a>
+<div id="topbar">
+  <h1>大盤即時看盤 <span style="font-size:.7rem;color:var(--th-orange,#fb923c);">加權指數＋櫃買指數</span></h1>
+  <div style="font-size:.75rem;margin-bottom:2px;">
+    <a href="rt_home.html" style="color:var(--th-blue,#93c5fd);text-decoration:none;">🏠 入口</a>
+    <span style="color:var(--th-text,#334155);"> | </span>
+    <a href="pair_realtime_k.html" style="color:var(--th-blue,#93c5fd);text-decoration:none;">📈 即時日K</a>
+    <span style="color:var(--th-text,#334155);"> | </span>
+    <a href="pair_mainforce_live.html" style="color:var(--th-blue,#93c5fd);text-decoration:none;">🔍 主力動向</a>
+    <span style="color:var(--th-text,#334155);"> | </span>
+    <a href="pair_realtime_spread_k.html" style="color:var(--th-blue,#93c5fd);text-decoration:none;">📊 即時價差日K</a>
   </div>
-
-  <h2>大盤即時速覽 <span style="font-weight:400;color:var(--th-muted,#94a3b8);font-size:.72rem;">指數/漲跌% · ▲漲家 ▼跌家</span></h2>
-  <div id="idxgrid" class="pairgrid"></div>
-
-  <h2>12 檔即時速覽 <span style="font-weight:400;color:var(--th-muted,#94a3b8);font-size:.72rem;">現價/漲跌% · T=主力 V=背離</span></h2>
-  <div id="pairgrid" class="pairgrid"></div>
-
-  <footer>資料源:XQ RTD 約 5 秒更新 · 手機請開 Tailscale VPN 後訪問同路徑</footer>
+  <div id="status"><span class="dot stale"></span><span id="statustext">載入中…</span></div>
 </div>
+<div id="hint">資料靜止:請確認 XQ 已登入,並點桌面捷徑「配對即時日K」啟動 poller(大盤與配對共用同一條資料鏈)。</div>
+
+<div class="mktcards" id="mktcards"></div>
+
+<div class="card">
+  <h2>指數盤中走勢(上:加權 TSE / 下:櫃買 OTC · 虛線=昨收)</h2>
+  <div id="chart-px" class="chartbox"></div>
+</div>
+
+<div class="card">
+  <h2>市場寬度盤中走勢(上:家數淨寬度% / 下:量能淨寬度%)</h2>
+  <div id="chart-breadth" class="chartbox"></div>
+</div>
+
+<details class="info">
+  <summary>🧭 指標使用說明(怎麼判讀)</summary>
+  <p class="info-desc">
+    大盤即時頁看「<strong>指數方向</strong>」與「<strong>內部參與度(市場寬度,Market Breadth)</strong>」是否同步:
+  </p>
+  <ul style="font-size:.8rem;color:var(--th-text2,#cbd5e1);">
+    <li><strong>家數淨寬度%</strong> =(上漲家 − 下跌家)÷(上漲家＋下跌家)×100。指數漲但淨寬度弱(&lt;0 或走弱)= 少數權值股拉抬,追價風險高;指數跌但淨寬度回升 = 內部先止穩。</li>
+    <li><strong>量能淨寬度%</strong> =(上漲量 − 下跌量)÷(上漲量+下跌量)×100。錢實際流向漲方或跌方;與家數淨寬度背離時以量能為準。</li>
+    <li><strong>漲停/跌停家數</strong>:投機情緒溫度計。漲停家數多而指數平 = 資金集中題材股;跌停家數擴增 = 恐慌擴散警訊。</li>
+    <li><strong>內外盤比%(In/Out Ratio)</strong>:&gt;50 買方主動較強,&lt;50 賣方主動較強;盤中持續偏一邊比單點數值有意義。</li>
+    <li>加權(TSE)與櫃買(OTC)分流時:櫃買強 = 資金偏中小型/題材;加權強 = 資金偏權值防守。</li>
+  </ul>
+  <table>
+    <thead><tr><th>情境</th><th>訊號</th><th>解讀</th></tr></thead>
+    <tbody>
+      <tr><td>指數↑ + 家數淨寬度↑</td><td class="up">健康上漲</td><td>普漲,趨勢延續機率高</td></tr>
+      <tr><td>指數↑ + 家數淨寬度↓</td><td class="flat">背離警戒</td><td>權值撐盤,個股已轉弱</td></tr>
+      <tr><td>指數↓ + 家數淨寬度↑</td><td class="flat">止穩醞釀</td><td>殺權值但個股吸籌</td></tr>
+      <tr><td>指數↓ + 量能淨寬度急降</td><td class="down">恐慌賣壓</td><td>錢往跌方集中,勿急接刀</td></tr>
+    </tbody>
+  </table>
+</details>
+
+<details class="info">
+  <summary>📖 資料源與口徑(dataset/計算式)</summary>
+  <ul style="font-size:.8rem;color:var(--th-text2,#cbd5e1);padding-top:8px;">
+    <li>來源:XQ 全球贏家 RTD(<code>TSE.TW</code>/<code>OTC.TW</code>),約 5 秒一筆;鏈路 = Excel(配對自選股XQ_RTD.xlsx「大盤_RTD」表)→ COM poller → <code>rt_index_quotes.json</code>(快照)+<code>rt_index_intraday.json</code>(盤中累積)。</li>
+    <li>昨收 = 現價 − 漲跌 反推;成交值/昨量/上漲量/下跌量為 XQ 原始欄位值,單位依 XQ(大盤慣例為億元),頁面不換算。</li>
+    <li>家數淨寬度% =(NWUpStk − NWDownStk)÷(NWUpStk＋NWDownStk)×100(平盤家不入分母);量能淨寬度% =(NWUpVolume − NWDownVolume)÷(NWUpVolume＋NWDownVolume)×100。</li>
+    <li>盤中曲線自 poller 啟動起累積(排程平日 08:56 起跑,13:36 收工);XQ 未登入則整天無值。快照時間比現在晚 = 前一交易日殘值,不併入當日曲線。</li>
+    <li>個股 12 檔即時資料同鏈另檔(<code>rt_quotes.json</code>),兩者互不影響。</li>
+  </ul>
+</details>
+
+<footer>
+  資料來源:XQ 全球贏家 RTD(約 5 秒更新)· 曲線自 poller 啟動時起累積 · 手機請開 Tailscale VPN 後訪問同路徑
+</footer>
+
 <script>
 "use strict";
-const PAIRS = [
-  {g:"PCB載板", ss:[["8046","南電"],["3037","欣興"]]},
-  {g:"IC設計",  ss:[["3006","晶豪科"],["3035","智原"]]},
-  {g:"記憶體",  ss:[["2344","華邦電"],["2408","南亞科"]]},
-  {g:"傳動元件",ss:[["2049","上銀"],["4576","大銀微系統"]]},
-  {g:"自行車",  ss:[["9921","巨大"],["9914","美利達"]]},
-  {g:"被動元件",ss:[["2492","華新科"],["3026","禾伸堂"]]},
-];
 const POLL_MS = 5000, STALE_MS = 30000;
-let QUOTES = null;
-let IDX = null;
-const MKTS = [["TSE","加權指數"],["OTC","櫃買指數"]];
+const MKTS = [
+  {k:"TSE", nm:"加權指數", hue:"#38bdf8"},
+  {k:"OTC", nm:"櫃買指數", hue:"#c084fc"},
+];
+let QI = null;                       // rt_index_quotes.json 最新快照
+let times = [];
+const S = {};                        // k -> {p,up,dn,uv,dv,lu,ld}
+MKTS.forEach(m => S[m.k] = {p:[], up:[], dn:[], uv:[], dv:[], lu:[], ld:[]});
+let lastStamp = "";
+
 const $ = s => document.querySelector(s);
-const pc = v => v > 0 ? "up" : v < 0 ? "down" : "flat";
-const f = (v,d=2) => v == null ? "–" : Number(v).toFixed(d);
+const fmt = (v, d=2) => v == null ? "–" : Number(v).toLocaleString("en-US", {minimumFractionDigits:d, maximumFractionDigits:d});
 const fi = v => v == null ? "–" : Math.round(v).toLocaleString("en-US");
+const pc = v => v > 0 ? "up" : v < 0 ? "down" : "flat";
 
-function renderIdx(){
-  const el = $("#idxgrid");
+/* ---------- 快照卡 ---------- */
+function renderCards(){
+  const el = $("#mktcards");
   el.innerHTML = "";
-  const d = document.createElement("div");
-  d.className = "pair";
-  let html = `<div class="g">大盤 <a href="market_realtime.html" style="color:var(--th-blue,#93c5fd);text-decoration:none;">→ 詳細頁</a></div>`;
-  for (const [k, nm] of MKTS){
-    const q = IDX && IDX.markets && IDX.markets[k];
-    const chg = q ? q.change_pct : null;
-    html += `<div class="row">
-      <span class="nm">${nm}</span>
-      <span class="px ${chg==null?"flat":pc(chg)}">${q?f(q.price):"–"}</span>
-      <span class="pct ${chg==null?"flat":pc(chg)}">${chg==null?"–":(chg>0?"+":"")+f(chg)}%</span>
-      <span class="tv">▲${q?fi(q.up_count):"–"} ▼${q?fi(q.down_count):"–"}</span>
-    </div>`;
-  }
-  d.innerHTML = html;
-  el.appendChild(d);
-}
-
-function render(){
-  const el = $("#pairgrid");
-  el.innerHTML = "";
-  for (const p of PAIRS){
+  for (const m of MKTS){
+    const q = QI && QI.markets[m.k];
+    const chg = q ? q.change : null, cp = q ? q.change_pct : null;
+    const up = q ? q.up_count : null, dn = q ? q.down_count : null, fl = q ? q.flat_count : null;
+    const tot = (up||0) + (dn||0) + (fl||0);
+    const w = v => tot ? (100 * (v||0) / tot).toFixed(1) + "%" : "33.3%";
+    const volRatio = q && q.total_volume != null && q.prev_total_volume ?
+      (100 * q.total_volume / q.prev_total_volume).toFixed(0) + "%" : "–";
     const d = document.createElement("div");
-    d.className = "pair";
-    let html = `<div class="g">${p.g}</div>`;
-    for (const [sym, name] of p.ss){
-      const q = QUOTES && QUOTES.stocks[sym];
-      const chg = q ? q.change_pct : null;
-      html += `<div class="row">
-        <span class="nm">${name}</span>
-        <span class="px ${chg==null?"flat":pc(chg)}">${q?f(q.price):"–"}</span>
-        <span class="pct ${chg==null?"flat":pc(chg)}">${chg==null?"–":(chg>0?"+":"")+f(chg)}%</span>
-        <span class="tv">T ${q?f(q.t_main,1):"–"} · V ${q?f(q.v_div,1):"–"}</span>
+    d.className = "mkt";
+    d.innerHTML = `
+      <div class="hd"><span class="nm" style="color:${m.hue}">${m.nm} <span style="font-weight:400;font-size:.72rem;color:var(--th-muted,#94a3b8)">${m.k}.TW</span></span>
+        <span class="tm">${q ? q.time : "–"}</span></div>
+      <div><span class="px ${chg==null?"flat":pc(chg)}">${fmt(q && q.price)}</span><span class="chg ${chg==null?"flat":pc(chg)}">${chg==null?"":(chg>0?"+":"")+fmt(chg)} (${cp==null?"–":(cp>0?"+":"")+fmt(cp)}%)</span></div>
+      <div class="kv">
+        <span><b>開</b> ${fmt(q && q.open)}</span><span><b>高</b> ${fmt(q && q.high)}</span><span><b>低</b> ${fmt(q && q.low)}</span><span><b>均</b> ${fmt(q && q.avg_price)}</span>
+      </div>
+      <div class="kv">
+        <span><b>成交值</b> ${fmt(q && q.total_volume)}</span><span><b>昨量</b> ${fmt(q && q.prev_total_volume)}</span><span><b>較昨量</b> ${volRatio}</span><span><b>內外盤</b> ${fmt(q && q.inout, 1)}%</span>
+      </div>
+      <div class="bbar"><div class="u" style="width:${w(up)}"></div><div class="f" style="width:${w(fl)}"></div><div class="d" style="width:${w(dn)}"></div></div>
+      <div class="bnums"><span class="up">▲漲 ${fi(up)}</span><span class="flat">–平 ${fi(fl)}</span><span class="down">▼跌 ${fi(dn)}</span></div>
+      <div class="chips">
+        <span class="chip lu">漲停 ${fi(q && q.limit_up_count)}</span>
+        <span class="chip ld">跌停 ${fi(q && q.limit_down_count)}</span>
+        <span class="chip">外盤家 ${fi(q && q.out_count)}</span>
+        <span class="chip">內盤家 ${fi(q && q.in_count)}</span>
       </div>`;
-    }
-    d.innerHTML = html;
     el.appendChild(d);
   }
 }
+
+/* ---------- 圖表 ---------- */
+function thc(){
+  const css = getComputedStyle(document.body);
+  const T = (n, fb) => (css.getPropertyValue(n) || "").trim() || fb;
+  return T;
+}
+const CFG = {displayModeBar:false, scrollZoom:false, doubleClick:false, responsive:true};
+
+function baseLayout(h){
+  const T = thc();
+  return {
+    height:h, autosize:true,
+    paper_bgcolor:T("--th-card","#131f2e"), plot_bgcolor:T("--th-bg","#111827"),
+    font:{color:T("--th-muted","#94a3b8"), size:11},
+    margin:{l:34, r:52, t:10, b:34},
+    dragmode:false, hovermode:"x",
+    showlegend:false,
+    xaxis:{ gridcolor:T("--th-border","#1f2937"), fixedrange:true, nticks:7 },
+  };
+}
+
+function pxTraces(){
+  return MKTS.map((m, i) => ({
+    type:"scatter", mode:"lines", name:m.nm,
+    x:times.slice(), y:S[m.k].p.slice(), connectgaps:false,
+    yaxis: i ? "y2" : "y",
+    line:{color:m.hue, width:1.8},
+    hovertemplate:m.nm + " %{y:,.2f}<extra>%{x}</extra>",
+  }));
+}
+function drawPx(){
+  const T = thc();
+  const h = Math.max(330, Math.min(460, window.innerHeight * 0.46));
+  const ly = baseLayout(h);
+  ly.yaxis  = {domain:[0.55, 1], gridcolor:T("--th-border","#1f2937"), fixedrange:true, side:"right", tickformat:",.0f"};
+  ly.yaxis2 = {domain:[0, 0.45], gridcolor:T("--th-border","#1f2937"), fixedrange:true, side:"right", tickformat:",.0f"};
+  ly.shapes = [];
+  ly.annotations = MKTS.map((m, i) => ({
+    xref:"paper", yref:"paper", x:0.01, y: i ? 0.43 : 0.99, xanchor:"left", yanchor:"top",
+    text:m.nm, showarrow:false, font:{color:m.hue, size:11.5},
+  }));
+  MKTS.forEach((m, i) => {
+    const q = QI && QI.markets[m.k];
+    if (q && q.prev_close != null){
+      ly.shapes.push({type:"line", xref:"paper", x0:0, x1:1, yref: i ? "y2" : "y",
+        y0:q.prev_close, y1:q.prev_close,
+        line:{color:T("--th-hover","#64748b"), width:1, dash:"dot"}});
+    }
+  });
+  Plotly.react("chart-px", pxTraces(), ly, CFG);
+}
+
+function pctSeries(k, aKey, bKey){
+  const A = S[k][aKey], B = S[k][bKey];
+  return A.map((a, i) => {
+    const b = B[i];
+    if (a == null || b == null || (a + b) === 0) return null;
+    return 100 * (a - b) / (a + b);
+  });
+}
+function breadthCountSeries(k){
+  // 家數淨寬度% 用 up/dn;分母=up+dn(平盤家不入 intraday,以漲跌兩方參與家數為分母)
+  return pctSeries(k, "up", "dn");
+}
+function breadthVolSeries(k){
+  return pctSeries(k, "uv", "dv");
+}
+function brTraces(){
+  const t = times.slice();
+  const mk = (m, y, ax) => ({
+    type:"scatter", mode:"lines", name:m.nm,
+    x:t, y:y.slice(), connectgaps:false, yaxis:ax,
+    line:{color:m.hue, width:1.6},
+    hovertemplate:m.nm + " %{y:.1f}%<extra>%{x}</extra>",
+  });
+  return [
+    ...MKTS.map(m => mk(m, breadthCountSeries(m.k), "y")),
+    ...MKTS.map(m => mk(m, breadthVolSeries(m.k), "y2")),
+  ];
+}
+function drawBreadth(){
+  const T = thc();
+  const h = Math.max(300, Math.min(420, window.innerHeight * 0.42));
+  const ly = baseLayout(h);
+  const yCommon = {gridcolor:T("--th-border","#1f2937"), fixedrange:true, side:"right",
+                   zeroline:true, zerolinecolor:T("--th-border2","#334155"), zerolinewidth:1.5,
+                   ticksuffix:"%"};
+  ly.yaxis  = Object.assign({domain:[0.55, 1]}, yCommon);
+  ly.yaxis2 = Object.assign({domain:[0, 0.45]}, yCommon);
+  ly.annotations = [
+    {xref:"paper", yref:"paper", x:0.01, y:0.99, xanchor:"left", yanchor:"top",
+     text:"家數淨寬度% (藍=加權 紫=櫃買)", showarrow:false, font:{color:T("--th-muted","#94a3b8"), size:11}},
+    {xref:"paper", yref:"paper", x:0.01, y:0.43, xanchor:"left", yanchor:"top",
+     text:"量能淨寬度%", showarrow:false, font:{color:T("--th-muted","#94a3b8"), size:11}},
+  ];
+  Plotly.react("chart-breadth", brTraces(), ly, CFG);
+}
+function drawAll(){ drawPx(); drawBreadth(); }
+
+/* ---------- 狀態 ---------- */
 function renderStatus(){
   const dot = $("#status .dot"), txt = $("#statustext"), hint = $("#hint");
-  if (!QUOTES){ dot.className="dot stale"; txt.textContent="無即時資料"; hint.style.display="block"; return; }
-  const age = Date.now() - new Date(QUOTES.updated.replace(" ","T")).getTime();
+  if (!QI){ dot.className="dot stale"; txt.textContent="無即時資料(poller 未執行或大盤表尚未收錄)"; hint.style.display="block"; return; }
+  const age = Date.now() - new Date(QI.updated.replace(" ","T")).getTime();
   let stale = false;
-  if (QUOTES.session === "prev_day"){ dot.className="dot stale"; txt.textContent=`盤前/非本日資料 · 快照 ${QUOTES.updated}`; }
-  else if (QUOTES.session === "closed"){ dot.className="dot stale"; txt.textContent=`非交易日 · 快照 ${QUOTES.updated}`; }
-  else if (age < STALE_MS){ dot.className="dot live"; txt.textContent=`即時更新中 · 快照 ${QUOTES.updated}`; }
+  if (QI.session === "prev_day"){ dot.className="dot stale"; txt.textContent=`盤前/非本日資料 · 快照 ${QI.updated}`; }
+  else if (QI.session === "closed"){ dot.className="dot stale"; txt.textContent=`非交易日 · 快照 ${QI.updated}`; }
+  else if (age < STALE_MS){ dot.className="dot live"; txt.textContent=`即時更新中 · 快照 ${QI.updated} · 累積 ${times.length} 點`; }
   else {
     dot.className="dot stale"; stale = true;
-    const t = QUOTES.stocks["8046"] ? QUOTES.stocks["8046"].time : "";
-    txt.textContent = (t >= "13:30:00" ? "已收盤 · " : "資料靜止 · ") + `最後快照 ${QUOTES.updated}`;
-    if (t >= "13:30:00") stale = false;   // 收盤屬正常靜止,不提示
+    const t = QI.markets.TSE ? QI.markets.TSE.time : "";
+    txt.textContent = (t >= "13:30:00" ? "已收盤 · " : "資料靜止 · ") + `最後快照 ${QI.updated}`;
+    if (t >= "13:30:00") stale = false;
   }
   hint.style.display = stale ? "block" : "none";
 }
+
+/* ---------- 資料流 ---------- */
+async function seed(){
+  try {
+    const r = await fetch(`rt_index_intraday.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) return;
+    const d = await r.json();
+    const n = new Date();
+    const ymd = `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,"0")}-${String(n.getDate()).padStart(2,"0")}`;
+    if (d.date !== ymd) return;
+    times = d.times.slice();
+    for (const m of MKTS){
+      const s = d.markets[m.k];
+      if (!s) continue;
+      for (const key of ["p","up","dn","uv","dv","lu","ld"]) S[m.k][key] = (s[key] || []).slice();
+    }
+    if (times.length) lastStamp = times[times.length-1];
+  } catch(e){}
+}
 async function poll(){
   try {
-    const r = await fetch(`rt_quotes.json?t=${Date.now()}`, {cache:"no-store"});
-    if (r.ok) QUOTES = await r.json();
+    const r = await fetch(`rt_index_quotes.json?t=${Date.now()}`, {cache:"no-store"});
+    if (r.ok) QI = await r.json();
   } catch(e){}
-  try {
-    const r2 = await fetch(`rt_index_quotes.json?t=${Date.now()}`, {cache:"no-store"});
-    if (r2.ok) IDX = await r2.json();
-  } catch(e){}
-  render(); renderIdx(); renderStatus();
+  if (QI && QI.session === "live"){
+    const stamp = QI.updated.slice(11);
+    if (stamp !== lastStamp){
+      lastStamp = stamp;
+      times.push(stamp);
+      for (const m of MKTS){
+        const q = QI.markets[m.k], s = S[m.k];
+        const ok = q && q.fresh;
+        s.p.push(ok ? q.price : null);
+        s.up.push(ok ? q.up_count : null);
+        s.dn.push(ok ? q.down_count : null);
+        s.uv.push(ok ? q.up_volume : null);
+        s.dv.push(ok ? q.down_volume : null);
+        s.lu.push(ok ? q.limit_up_count : null);
+        s.ld.push(ok ? q.limit_down_count : null);
+      }
+    }
+  }
+  drawAll();                       // 每輪強制重繪(x/y 傳 .slice() 新參考,防 react stale 坑)
+  renderCards(); renderStatus();
 }
-poll();
-setInterval(poll, POLL_MS);
+async function init(){
+  await seed();
+  drawAll();
+  await poll();
+  setInterval(poll, POLL_MS);
+  window.addEventListener("resize", drawAll);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) drawAll(); });
+}
+init();
 </script>
 </body>
 </html>
