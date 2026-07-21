@@ -3,120 +3,120 @@
   "schema_version": "v1",
   "available": true,
   "shadow": true,
-  "state": "L3",
-  "state_label": "L3 空頭·現金",
-  "state_emoji": "🔴",
-  "state_tone": "bear",
-  "state_desc": "真崩/流動性危機 → 現金為王，低波股照跌故只留少量",
+  "state": "L2",
+  "state_label": "L2 轉弱·避風",
+  "state_emoji": "🟡",
+  "state_tone": "warn",
+  "state_desc": "過熱/轉弱(非崩) → 重倉璞玉低波避風港，適度現金",
   "prev_state": "L3",
-  "transition": "維持 L3(恐慌未解)",
-  "days_in_state": 12,
-  "since": "2026-07-01",
+  "transition": "L3→L2 解恐慌(確認12≥10日)",
+  "days_in_state": 1,
+  "since": "2026-07-21",
   "buckets": {
-    "rr": 10,
-    "jade": 10,
-    "cash": 80
+    "rr": 50,
+    "jade": 30,
+    "cash": 20
   },
   "signals": {
     "risk_mode": "DEFENSIVE",
-    "temp": 42.5,
-    "breadth": 30.7,
+    "temp": 48.1,
+    "breadth": 49.4,
     "rr_env": 55,
-    "zone": "NORMAL",
-    "z250": 1.388,
-    "twii20": -8.64
+    "zone": "HOT",
+    "z250": 1.614,
+    "twii20": -7.35
   },
   "triggers": {
     "enter_L2": true,
-    "enter_L3": true,
-    "exit_L3": false,
+    "enter_L3": false,
+    "exit_L3": true,
     "exit_L2": false
   },
-  "jade_constraint": "≤20%",
+  "jade_constraint": "20-40%",
   "jade_holdings": [
+    {
+      "symbol": "4105",
+      "name": "東洋",
+      "industry": "生技醫療業",
+      "sleeve_weight": 4.63,
+      "port_weight": 1.39
+    },
     {
       "symbol": "9917",
       "name": "中保科",
       "industry": "其他",
-      "sleeve_weight": 3.98,
-      "port_weight": 0.4
+      "sleeve_weight": 3.91,
+      "port_weight": 1.17
     },
     {
       "symbol": "2820",
       "name": "華票",
       "industry": "金融保險",
-      "sleeve_weight": 4.38,
-      "port_weight": 0.44
+      "sleeve_weight": 4.31,
+      "port_weight": 1.29
     },
     {
       "symbol": "1215",
       "name": "卜蜂",
       "industry": "食品工業",
-      "sleeve_weight": 2.09,
-      "port_weight": 0.21
+      "sleeve_weight": 2.06,
+      "port_weight": 0.62
     },
     {
       "symbol": "2812",
       "name": "台中銀",
       "industry": "金融保險",
-      "sleeve_weight": 4.62,
-      "port_weight": 0.46
+      "sleeve_weight": 4.55,
+      "port_weight": 1.36
     },
     {
       "symbol": "2006",
       "name": "東和鋼鐵",
       "industry": "鋼鐵工業",
-      "sleeve_weight": 2.14,
-      "port_weight": 0.21
+      "sleeve_weight": 2.1,
+      "port_weight": 0.63
     },
     {
       "symbol": "5876",
       "name": "上海商銀",
       "industry": "金融保險",
-      "sleeve_weight": 3.7,
-      "port_weight": 0.37
+      "sleeve_weight": 3.65,
+      "port_weight": 1.09
     },
     {
       "symbol": "1477",
       "name": "聚陽",
       "industry": "紡織纖維",
-      "sleeve_weight": 1.74,
-      "port_weight": 0.17
-    },
-    {
-      "symbol": "2206",
-      "name": "三陽工業",
-      "industry": "汽車工業",
-      "sleeve_weight": 3.31,
-      "port_weight": 0.33
+      "sleeve_weight": 1.72,
+      "port_weight": 0.52
     },
     {
       "symbol": "2912",
       "name": "統一超",
       "industry": "貿易百貨",
-      "sleeve_weight": 2.59,
-      "port_weight": 0.26
-    },
-    {
-      "symbol": "2010",
-      "name": "春源",
-      "industry": "鋼鐵工業",
-      "sleeve_weight": 2.59,
-      "port_weight": 0.26
+      "sleeve_weight": 2.55,
+      "port_weight": 0.77
     },
     {
       "symbol": "1102",
       "name": "亞泥",
       "industry": "水泥工業",
-      "sleeve_weight": 3.06,
-      "port_weight": 0.31
+      "sleeve_weight": 3.02,
+      "port_weight": 0.91
     },
     {
-      "symbol": "1104",
-      "name": "環泥",
-      "industry": "水泥工業",
-      "sleeve_weight": 3.15,
-      "port_weight": 0.32
+      "symbol": "2206",
+      "name": "三陽工業",
+      "industry": "汽車工業",
+      "sleeve_weight": 3.27,
+      "port_weight": 0.98
+    },
+    {
+      "symbol": "2010",
+      "name": "春源",
+      "industry": "鋼鐵工業",
+      "sleeve_weight": 2.54,
+      "port_weight": 0.76
     }
   ],
   "jade_pool_n": 40,
@@ -125,12 +125,12 @@
     "L2→L1": 15
   },
   "summary": {
-    "state": "L3",
-    "rr": 10,
-    "jade": 10,
-    "cash": 80,
-    "days_in_state": 12,
+    "state": "L2",
+    "rr": 50,
+    "jade": 30,
+    "cash": 20,
+    "days_in_state": 1,
     "note": "SHADOW 避風港三桶, 不接 cio_allocator/decision; 證明降回撤才併入"
   },
-  "generated_at": "2026-07-21T14:44:34"
+  "generated_at": "2026-07-21T22:06:23"
 }
