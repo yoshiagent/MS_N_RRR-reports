@@ -142,14 +142,12 @@
 </div>
 
 <div class="card">
-  <h2>指數盤中走勢(上:加權 TSE / 下:櫃買 OTC · 虛線=昨收)</h2>
-  <div id="info-px" class="chart-info">（點圖／◀▶ 或鍵盤 ← → 移游標 → 顯示該時點 指數＋漲跌）</div>
+  <h2>指數盤中走勢(上:加權 TSE / 下:櫃買 OTC · 虛線=昨收 · 讀數在各面板上方)</h2>
   <div id="chart-px" class="chartbox"></div>
 </div>
 
 <div class="card">
-  <h2>市場寬度盤中走勢(上:家數淨寬度% / 下:量能淨寬度%)</h2>
-  <div id="info-br" class="chart-info">（游標與上圖同步 → 顯示該時點 家數/量能淨寬度＋漲跌停家數）</div>
+  <h2>市場寬度盤中走勢(上:家數淨寬度% / 下:量能淨寬度% · 游標與上圖同步)</h2>
   <div id="chart-breadth" class="chartbox"></div>
 </div>
 
@@ -284,11 +282,16 @@ function prevNonNull(arr, i){      // 往前找最近一筆非 null(供增減箭
   for (let k = i-1; k >= 0; k--){ if ((arr||[])[k] != null) return arr[k]; }
   return null;
 }
+const UPC = "#f87171", DNC = "#4ade80", MUTC = "#94a3b8";   // annotation 內只能用 hex(CSS class/var 不解析)
 function arrow(cur, prev){
   if (cur == null || prev == null) return "";
   const d = cur - prev;
-  if (Math.abs(d) < 1e-9) return ` <span style="color:var(--th-faint,#64748b)">‧</span>`;
-  return d > 0 ? ` <span class="up">▲</span>` : ` <span class="down">▼</span>`;
+  if (Math.abs(d) < 1e-9) return ` <span style="color:#64748b">‧</span>`;
+  return d > 0 ? ` <span style="color:${UPC}">▲</span>` : ` <span style="color:${DNC}">▼</span>`;
+}
+function anno(y, text){            // 面板標題列:貼各面板上緣(paper 座標·左對齊)
+  return {xref:"paper", yref:"paper", x:0.005, xanchor:"left", y, yanchor:"bottom",
+          showarrow:false, align:"left", font:{size:9.8, color:MUTC}, text};
 }
 function winRange(arrs, i0, i1, padFrac, clampAbs){   // 可見視窗 y 範圍重算(避免壓扁)
   let lo = Infinity, hi = -Infinity;
@@ -338,15 +341,12 @@ function drawPx(){
     height:h, autosize:true,
     paper_bgcolor:T("--th-card","#131f2e"), plot_bgcolor:T("--th-bg","#111827"),
     font:{color:T("--th-muted","#94a3b8"), size:11},
-    margin:{l:8, r:56, t:10, b:30},
+    margin:{l:8, r:56, t:26, b:30},
     dragmode:false, hovermode:false, showlegend:false,
     xaxis:{ type:"linear", range:rng.slice(), tickmode:"array", tickvals:tv, ticktext:tt,
             gridcolor:T("--th-border","#1f2937"), fixedrange:true },
     shapes: pxShapes(effIdx()),
-    annotations: MKTS.map((m, i) => ({
-      xref:"paper", yref:"paper", x:0.01, y: i ? 0.43 : 0.99, xanchor:"left", yanchor:"top",
-      text:m.nm, showarrow:false, font:{color:m.hue, size:11.5},
-    })),
+    annotations: pxAnnos(effIdx()),
   };
   MKTS.forEach((m, i) => {
     const ax = {domain: i ? [0, 0.45] : [0.55, 1], side:"right", tickformat:",.0f",
@@ -396,17 +396,12 @@ function drawBreadth(){
     height:h, autosize:true,
     paper_bgcolor:T("--th-card","#131f2e"), plot_bgcolor:T("--th-bg","#111827"),
     font:{color:T("--th-muted","#94a3b8"), size:11},
-    margin:{l:8, r:56, t:10, b:30},
+    margin:{l:8, r:56, t:26, b:30},
     dragmode:false, hovermode:false, showlegend:false,
     xaxis:{ type:"linear", range:rng.slice(), tickmode:"array", tickvals:tv, ticktext:tt,
             gridcolor:T("--th-border","#1f2937"), fixedrange:true },
     shapes: crosshair(effIdx()),
-    annotations: [
-      {xref:"paper", yref:"paper", x:0.01, y:0.99, xanchor:"left", yanchor:"top",
-       text:"家數淨寬度% (藍=加權 紫=櫃買)", showarrow:false, font:{color:T("--th-muted","#94a3b8"), size:11}},
-      {xref:"paper", yref:"paper", x:0.01, y:0.43, xanchor:"left", yanchor:"top",
-       text:"量能淨寬度%", showarrow:false, font:{color:T("--th-muted","#94a3b8"), size:11}},
-    ],
+    annotations: brAnnos(effIdx()),
   };
   const yr1 = n ? winRange([BR.TSE.cnt, BR.OTC.cnt], i0, i1, 0.15, 105) : null;
   const yr2 = n ? winRange([BR.TSE.vol, BR.OTC.vol], i0, i1, 0.15, 105) : null;
@@ -415,50 +410,43 @@ function drawBreadth(){
   Plotly.react("chart-breadth", traces, ly, CFG);
 }
 
-/* ---------- 圖上資訊列(游標時點讀數+增減箭頭,與圖同源) ---------- */
-function infoPx(){
-  const el = $("#info-px"), i = effIdx();
-  if (!el) return;
-  if (i == null){ el.innerHTML = "（等待盤中資料…開盤後點圖／◀▶ 或鍵盤 ← → 移游標）"; return; }
-  let s = `<b>${times[i] || "–"}</b>`;
-  for (const m of MKTS){
-    const P = S[m.k].p, v = P[i], pv = prevNonNull(P, i);
+/* ---------- 各面板標題列讀數(游標時點,分開貼在各面板上方;relayout 需整組帶回) ---------- */
+function pxAnnos(idx){
+  if (idx == null) return [anno(1.0, "（等待盤中資料…開盤後點圖／◀▶ 或鍵盤 ← → 移游標）"), anno(0.455, "")];
+  const row = (m, withTime) => {
+    const P = S[m.k].p, v = P[idx], pv = prevNonNull(P, idx);
     const q = QI && QI.markets[m.k];
     const base = q ? q.prev_close : null;
     const chg = (v != null && base != null) ? v - base : null;
     const pct = (chg != null && base) ? chg / base * 100 : null;
-    const cls = chg == null ? "flat" : chg > 0 ? "up" : chg < 0 ? "down" : "flat";
-    s += `　<span style="color:${m.hue}">${m.nm}</span> <b class="${cls}">${fmt(v)}</b>${arrow(v, pv)}`
-       + (chg == null ? "" : ` <span class="${cls}">${chg > 0 ? "+" : ""}${fmt(chg)} (${pct > 0 ? "+" : ""}${fmt(pct)}%)</span>`);
-  }
-  el.innerHTML = s;
+    const c = chg == null ? MUTC : chg > 0 ? UPC : chg < 0 ? DNC : MUTC;
+    return (withTime ? `<b>${times[idx] || "–"}</b>　` : "")
+      + `<span style="color:${m.hue}">${m.nm}</span> <b><span style="color:${c}">${fmt(v)}</span></b>${arrow(v, pv)}`
+      + (chg == null ? "" : ` <span style="color:${c}">${chg > 0 ? "+" : ""}${fmt(chg)} (${pct > 0 ? "+" : ""}${fmt(pct)}%)</span>`);
+  };
+  return [anno(1.0, row(MKTS[0], true)), anno(0.455, row(MKTS[1], false))];
 }
-function infoBr(){
-  const el = $("#info-br"), i = effIdx();
-  if (!el) return;
-  if (i == null){ el.innerHTML = "（游標與上圖同步）"; return; }
+function brAnnos(idx){
+  if (idx == null) return [anno(1.0, "家數淨寬度%（游標與上圖同步）"), anno(0.455, "量能淨寬度%")];
   if (!BR) calcBreadth();
   const one = (m, key) => {
-    const A = BR[m.k][key], v = A[i], pv = prevNonNull(A, i);
-    const cls = v == null ? "flat" : v > 0 ? "up" : v < 0 ? "down" : "flat";
-    return `<span style="color:${m.hue}">${m.k}</span> <b class="${cls}">${v == null ? "–" : (v > 0 ? "+" : "") + fmt(v, 1)}%</b>${arrow(v, pv)}`;
+    const A = BR[m.k][key], v = A[idx], pv = prevNonNull(A, idx);
+    const c = v == null ? MUTC : v > 0 ? UPC : v < 0 ? DNC : MUTC;
+    return `<span style="color:${m.hue}">${m.k}</span> <b><span style="color:${c}">${v == null ? "–" : (v > 0 ? "+" : "") + fmt(v, 1)}%</span></b>${arrow(v, pv)}`;
   };
-  const lim = m => {
-    const lu = S[m.k].lu[i], ld = S[m.k].ld[i];
-    return `<span style="color:${m.hue}">${m.k}</span> <span class="up">${fi(lu)}</span>/<span class="down">${fi(ld)}</span>`;
-  };
-  el.innerHTML = `<b>${times[i] || "–"}</b>`
-    + `　家數淨寬 ${one(MKTS[0], "cnt")} ${one(MKTS[1], "cnt")}`
-    + `　量能淨寬 ${one(MKTS[0], "vol")} ${one(MKTS[1], "vol")}`
-    + `　漲停/跌停 ${lim(MKTS[0])} ${lim(MKTS[1])}`;
+  const lim = m => `<span style="color:${m.hue}">${m.k}</span> <span style="color:${UPC}">${fi(S[m.k].lu[idx])}</span>/<span style="color:${DNC}">${fi(S[m.k].ld[idx])}</span>`;
+  return [
+    anno(1.0, `<b>${times[idx] || "–"}</b>　家數淨寬度% ${one(MKTS[0], "cnt")} ${one(MKTS[1], "cnt")}`),
+    anno(0.455, `量能淨寬度% ${one(MKTS[0], "vol")} ${one(MKTS[1], "vol")}　漲停/跌停 ${lim(MKTS[0])} ${lim(MKTS[1])}`),
+  ];
 }
 
 /* ---------- 游標機制(點圖=定游標;◀▶/←→ 步進;⭯ 最新=跟隨即時) ---------- */
 function redrawCursor(){
+  const i = effIdx();
   const g1 = document.getElementById("chart-px"), g2 = document.getElementById("chart-breadth");
-  if (g1 && g1._fullLayout) Plotly.relayout(g1, {shapes: pxShapes(effIdx())});
-  if (g2 && g2._fullLayout) Plotly.relayout(g2, {shapes: crosshair(effIdx())});
-  infoPx(); infoBr();
+  if (g1 && g1._fullLayout) Plotly.relayout(g1, {shapes: pxShapes(i), annotations: pxAnnos(i)});
+  if (g2 && g2._fullLayout) Plotly.relayout(g2, {shapes: crosshair(i), annotations: brAnnos(i)});
 }
 window.mrCursor = function(step){
   const n = nPts();
@@ -498,7 +486,6 @@ function drawAll(){
   calcBreadth();
   drawPx(); drawBreadth();
   attachChart("chart-px"); attachChart("chart-breadth");
-  infoPx(); infoBr();
 }
 
 /* ---------- 狀態 ---------- */
