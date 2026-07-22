@@ -46,6 +46,14 @@
   .card { background:var(--th-card,#131f2e); border:1px solid var(--th-border,#2d3f55); border-radius:8px; margin:10px 14px; padding:8px 10px; }
   .card h2 { font-size:.92rem; color:var(--th-blue,#93c5fd); margin:0 0 4px 0; }
   .chartbox { width:100%; }
+  /* 房規互動工具列 (仿 chart_buttons.py / 即時日K 頁;site.css 未含) */
+  .chart-toolbar { display:flex; gap:4px; align-items:center; flex-wrap:wrap; padding:6px 14px 0 14px; }
+  .chart-toolbar button { background:var(--th-card,#1e293b); color:var(--th-text2,#cbd5e1); border:1px solid var(--th-border2,#334155); border-radius:5px; padding:3px 9px; font-size:.78rem; cursor:pointer; min-height:28px; transition:all .15s; }
+  .chart-toolbar button:hover { border-color:#3b82f6; color:var(--th-blue,#93c5fd); }
+  .chart-toolbar button.active { border-color:#3b82f6; color:var(--th-blue,#93c5fd); background:var(--th-blue-bg,#0f2040); }
+  .chart-toolbar .lbl { color:var(--th-muted,#94a3b8); font-size:.72rem; padding:0 2px; }
+  .chart-toolbar .sep { width:1px; align-self:stretch; background:var(--th-border2,#334155); margin:2px 4px; }
+  .chart-info { margin:0 0 6px 0; padding:5px 10px; background:var(--th-bg,#07111e); border:1px solid var(--th-border,#2d3f55); border-radius:6px; font-size:.8rem; line-height:1.7; color:var(--th-text2,#cbd5e1); white-space:nowrap; overflow-x:auto; }
   details.info { margin:10px 14px; border:1px solid var(--th-border,#2d3f55); border-radius:6px; }
   details.info summary { padding:6px 10px; cursor:pointer; font-size:.8rem; font-weight:700; color:var(--th-blue,#93c5fd); background:var(--th-blue-bg,#0f2040); user-select:none; }
   details.info .info-desc { padding:8px 12px; font-size:.8rem; color:var(--th-text2,#cbd5e1); }
@@ -118,13 +126,30 @@
 
 <div class="mktcards" id="mktcards"></div>
 
+<div class="chart-toolbar" id="mr-toolbar" title="✋ 拖曳/縮放/原生 hover 已關;點圖(手機單觸)=定游標;兩張圖游標同步">
+  <span class="lbl">⏱ 範圍</span>
+  <button data-rk="30m" onclick="mrRange('30m')">近30分</button>
+  <button data-rk="1h" onclick="mrRange('1h')">近1時</button>
+  <button data-rk="2h" onclick="mrRange('2h')">近2時</button>
+  <button data-rk="all" class="active" onclick="mrRange('all')">全日</button>
+  <span class="sep"></span>
+  <span class="lbl">⭢ 游標</span>
+  <button onclick="mrCursor(-60)" title="左移 5 分鐘">◀◀</button>
+  <button onclick="mrCursor(-1)" title="左移 1 筆(5秒);鍵盤 ←">◀</button>
+  <button onclick="mrCursor(1)" title="右移 1 筆(5秒);鍵盤 →">▶</button>
+  <button onclick="mrCursor(60)" title="右移 5 分鐘">▶▶</button>
+  <button onclick="mrLatest()" title="跳回最新並跟隨即時">⭯ 最新</button>
+</div>
+
 <div class="card">
   <h2>指數盤中走勢(上:加權 TSE / 下:櫃買 OTC · 虛線=昨收)</h2>
+  <div id="info-px" class="chart-info">（點圖／◀▶ 或鍵盤 ← → 移游標 → 顯示該時點 指數＋漲跌）</div>
   <div id="chart-px" class="chartbox"></div>
 </div>
 
 <div class="card">
   <h2>市場寬度盤中走勢(上:家數淨寬度% / 下:量能淨寬度%)</h2>
+  <div id="info-br" class="chart-info">（游標與上圖同步 → 顯示該時點 家數/量能淨寬度＋漲跌停家數）</div>
   <div id="chart-breadth" class="chartbox"></div>
 </div>
 
@@ -220,56 +245,117 @@ function renderCards(){
   }
 }
 
-/* ---------- 圖表 ---------- */
+/* ---------- 圖表(房規互動:停原生 hover;點圖/◀▶/←→ 定游標;兩圖游標同步) ---------- */
 function thc(){
   const css = getComputedStyle(document.body);
   const T = (n, fb) => (css.getPropertyValue(n) || "").trim() || fb;
   return T;
 }
 const CFG = {displayModeBar:false, scrollZoom:false, doubleClick:false, responsive:true};
+const PAD = 2;
+let curIdx = null;                 // null=跟隨最新一筆(⭯ 最新)
+let curRange = "all";              // 30m / 1h / 2h / all(右端錨最新)
 
-function baseLayout(h){
-  const T = thc();
-  return {
-    height:h, autosize:true,
-    paper_bgcolor:T("--th-card","#131f2e"), plot_bgcolor:T("--th-bg","#111827"),
-    font:{color:T("--th-muted","#94a3b8"), size:11},
-    margin:{l:34, r:52, t:10, b:34},
-    dragmode:false, hovermode:"x",
-    showlegend:false,
-    xaxis:{ gridcolor:T("--th-border","#1f2937"), fixedrange:true, nticks:7 },
-  };
+const nPts = () => times.length;
+function effIdx(){
+  const n = nPts();
+  if (!n) return null;
+  return curIdx == null ? n-1 : Math.min(curIdx, n-1);
 }
-
-function pxTraces(){
-  return MKTS.map((m, i) => ({
-    type:"scatter", mode:"lines", name:m.nm,
-    x:times.slice(), y:S[m.k].p.slice(), connectgaps:false,
-    yaxis: i ? "y2" : "y",
-    line:{color:m.hue, width:1.8},
-    hovertemplate:m.nm + " %{y:,.2f}<extra>%{x}</extra>",
-  }));
+function ranges(n){
+  const r = k => [Math.max(-0.5, n-k-0.5), n-1+PAD];
+  return {"30m":r(360), "1h":r(720), "2h":r(1440), "all":[-0.5, n-1+PAD]};
 }
-function drawPx(){
+function visWin(n){
+  const rng = ranges(n)[curRange];
+  return {rng, i0: Math.max(0, Math.ceil(rng[0])), i1: n-1};
+}
+function timeTicks(){              // 每 30 分鐘一個刻度(HH:MM)
+  const tv = [], tt = []; let prev = null;
+  for (let i = 0; i < times.length; i++){
+    const t = times[i];
+    if (!t || t.length < 5) continue;
+    const b = t.slice(0,3) + String(Math.floor(+t.slice(3,5)/30)*30).padStart(2,"0");
+    if (b !== prev){ tv.push(i); tt.push(b); prev = b; }
+  }
+  return {tv, tt};
+}
+function prevNonNull(arr, i){      // 往前找最近一筆非 null(供增減箭頭比較)
+  for (let k = i-1; k >= 0; k--){ if ((arr||[])[k] != null) return arr[k]; }
+  return null;
+}
+function arrow(cur, prev){
+  if (cur == null || prev == null) return "";
+  const d = cur - prev;
+  if (Math.abs(d) < 1e-9) return ` <span style="color:var(--th-faint,#64748b)">‧</span>`;
+  return d > 0 ? ` <span class="up">▲</span>` : ` <span class="down">▼</span>`;
+}
+function winRange(arrs, i0, i1, padFrac, clampAbs){   // 可見視窗 y 範圍重算(避免壓扁)
+  let lo = Infinity, hi = -Infinity;
+  for (const arr of arrs) for (let i = i0; i <= i1; i++){
+    const v = arr[i];
+    if (v == null) continue;
+    if (v < lo) lo = v;
+    if (v > hi) hi = v;
+  }
+  if (lo === Infinity) return null;
+  let pad = (hi - lo) * padFrac;
+  if (!pad) pad = Math.abs(hi) * 0.002 + 1;
+  lo -= pad; hi += pad;
+  if (clampAbs != null){ lo = Math.max(lo, -clampAbs); hi = Math.min(hi, clampAbs); }
+  return [lo, hi];
+}
+function crosshair(idx){
+  return idx == null ? [] : [{type:"line", xref:"x", yref:"paper", x0:idx, x1:idx, y0:0, y1:1,
+    line:{color:"rgba(148,163,184,0.9)", width:1, dash:"dot"}}];
+}
+function pxShapes(idx){            // 指數圖 shapes=游標+雙昨收虛線(relayout 需整組帶回)
   const T = thc();
-  const h = Math.max(330, Math.min(460, window.innerHeight * 0.46));
-  const ly = baseLayout(h);
-  ly.yaxis  = {domain:[0.55, 1], gridcolor:T("--th-border","#1f2937"), fixedrange:true, side:"right", tickformat:",.0f"};
-  ly.yaxis2 = {domain:[0, 0.45], gridcolor:T("--th-border","#1f2937"), fixedrange:true, side:"right", tickformat:",.0f"};
-  ly.shapes = [];
-  ly.annotations = MKTS.map((m, i) => ({
-    xref:"paper", yref:"paper", x:0.01, y: i ? 0.43 : 0.99, xanchor:"left", yanchor:"top",
-    text:m.nm, showarrow:false, font:{color:m.hue, size:11.5},
-  }));
+  const a = crosshair(idx);
   MKTS.forEach((m, i) => {
     const q = QI && QI.markets[m.k];
     if (q && q.prev_close != null){
-      ly.shapes.push({type:"line", xref:"paper", x0:0, x1:1, yref: i ? "y2" : "y",
+      a.push({type:"line", xref:"paper", x0:0, x1:1, yref: i ? "y2" : "y",
         y0:q.prev_close, y1:q.prev_close,
         line:{color:T("--th-hover","#64748b"), width:1, dash:"dot"}});
     }
   });
-  Plotly.react("chart-px", pxTraces(), ly, CFG);
+  return a;
+}
+function drawPx(){
+  const T = thc(), n = nPts();
+  const h = Math.max(330, Math.min(460, window.innerHeight * 0.46));
+  const {rng, i0, i1} = n ? visWin(n) : {rng:[-0.5, 10], i0:0, i1:0};
+  const xIdx = times.map((_, i) => i);
+  const {tv, tt} = timeTicks();
+  const traces = MKTS.map((m, i) => ({
+    type:"scatter", mode:"lines", name:m.nm,
+    x:xIdx, y:S[m.k].p.slice(), connectgaps:false,
+    yaxis: i ? "y2" : "y",
+    line:{color:m.hue, width:1.8}, hoverinfo:"skip",
+  }));
+  const ly = {
+    height:h, autosize:true,
+    paper_bgcolor:T("--th-card","#131f2e"), plot_bgcolor:T("--th-bg","#111827"),
+    font:{color:T("--th-muted","#94a3b8"), size:11},
+    margin:{l:8, r:56, t:10, b:30},
+    dragmode:false, hovermode:false, showlegend:false,
+    xaxis:{ type:"linear", range:rng.slice(), tickmode:"array", tickvals:tv, ticktext:tt,
+            gridcolor:T("--th-border","#1f2937"), fixedrange:true },
+    shapes: pxShapes(effIdx()),
+    annotations: MKTS.map((m, i) => ({
+      xref:"paper", yref:"paper", x:0.01, y: i ? 0.43 : 0.99, xanchor:"left", yanchor:"top",
+      text:m.nm, showarrow:false, font:{color:m.hue, size:11.5},
+    })),
+  };
+  MKTS.forEach((m, i) => {
+    const ax = {domain: i ? [0, 0.45] : [0.55, 1], side:"right", tickformat:",.0f",
+                gridcolor:T("--th-border","#1f2937"), fixedrange:true};
+    const yr = n ? winRange([S[m.k].p], i0, i1, 0.08) : null;
+    if (yr) ax.range = yr;
+    ly[i ? "yaxis2" : "yaxis"] = ax;
+  });
+  Plotly.react("chart-px", traces, ly, CFG);
 }
 
 function pctSeries(k, aKey, bKey){
@@ -280,44 +366,140 @@ function pctSeries(k, aKey, bKey){
     return 100 * (a - b) / (a + b);
   });
 }
-function breadthCountSeries(k){
-  // 家數淨寬度% 用 up/dn;分母=up+dn(平盤家不入 intraday,以漲跌兩方參與家數為分母)
-  return pctSeries(k, "up", "dn");
-}
-function breadthVolSeries(k){
-  return pctSeries(k, "uv", "dv");
-}
-function brTraces(){
-  const t = times.slice();
-  const mk = (m, y, ax) => ({
-    type:"scatter", mode:"lines", name:m.nm,
-    x:t, y:y.slice(), connectgaps:false, yaxis:ax,
-    line:{color:m.hue, width:1.6},
-    hovertemplate:m.nm + " %{y:.1f}%<extra>%{x}</extra>",
-  });
-  return [
-    ...MKTS.map(m => mk(m, breadthCountSeries(m.k), "y")),
-    ...MKTS.map(m => mk(m, breadthVolSeries(m.k), "y2")),
-  ];
+const breadthCountSeries = k => pctSeries(k, "up", "dn");   // 家數淨寬度%(分母=漲+跌家,平盤不入)
+const breadthVolSeries   = k => pctSeries(k, "uv", "dv");   // 量能淨寬度%
+let BR = null;                     // 當輪寬度序列快取(圖與資訊列同源)
+function calcBreadth(){
+  BR = {};
+  for (const m of MKTS) BR[m.k] = {cnt: breadthCountSeries(m.k), vol: breadthVolSeries(m.k)};
 }
 function drawBreadth(){
-  const T = thc();
+  const T = thc(), n = nPts();
   const h = Math.max(300, Math.min(420, window.innerHeight * 0.42));
-  const ly = baseLayout(h);
+  const {rng, i0, i1} = n ? visWin(n) : {rng:[-0.5, 10], i0:0, i1:0};
+  const xIdx = times.map((_, i) => i);
+  const {tv, tt} = timeTicks();
+  if (!BR) calcBreadth();
+  const mk = (m, y, ax) => ({
+    type:"scatter", mode:"lines", name:m.nm,
+    x:xIdx, y:y.slice(), connectgaps:false, yaxis:ax,
+    line:{color:m.hue, width:1.6}, hoverinfo:"skip",
+  });
+  const traces = [
+    ...MKTS.map(m => mk(m, BR[m.k].cnt, "y")),
+    ...MKTS.map(m => mk(m, BR[m.k].vol, "y2")),
+  ];
   const yCommon = {gridcolor:T("--th-border","#1f2937"), fixedrange:true, side:"right",
                    zeroline:true, zerolinecolor:T("--th-border2","#334155"), zerolinewidth:1.5,
                    ticksuffix:"%"};
-  ly.yaxis  = Object.assign({domain:[0.55, 1]}, yCommon);
-  ly.yaxis2 = Object.assign({domain:[0, 0.45]}, yCommon);
-  ly.annotations = [
-    {xref:"paper", yref:"paper", x:0.01, y:0.99, xanchor:"left", yanchor:"top",
-     text:"家數淨寬度% (藍=加權 紫=櫃買)", showarrow:false, font:{color:T("--th-muted","#94a3b8"), size:11}},
-    {xref:"paper", yref:"paper", x:0.01, y:0.43, xanchor:"left", yanchor:"top",
-     text:"量能淨寬度%", showarrow:false, font:{color:T("--th-muted","#94a3b8"), size:11}},
-  ];
-  Plotly.react("chart-breadth", brTraces(), ly, CFG);
+  const ly = {
+    height:h, autosize:true,
+    paper_bgcolor:T("--th-card","#131f2e"), plot_bgcolor:T("--th-bg","#111827"),
+    font:{color:T("--th-muted","#94a3b8"), size:11},
+    margin:{l:8, r:56, t:10, b:30},
+    dragmode:false, hovermode:false, showlegend:false,
+    xaxis:{ type:"linear", range:rng.slice(), tickmode:"array", tickvals:tv, ticktext:tt,
+            gridcolor:T("--th-border","#1f2937"), fixedrange:true },
+    shapes: crosshair(effIdx()),
+    annotations: [
+      {xref:"paper", yref:"paper", x:0.01, y:0.99, xanchor:"left", yanchor:"top",
+       text:"家數淨寬度% (藍=加權 紫=櫃買)", showarrow:false, font:{color:T("--th-muted","#94a3b8"), size:11}},
+      {xref:"paper", yref:"paper", x:0.01, y:0.43, xanchor:"left", yanchor:"top",
+       text:"量能淨寬度%", showarrow:false, font:{color:T("--th-muted","#94a3b8"), size:11}},
+    ],
+  };
+  const yr1 = n ? winRange([BR.TSE.cnt, BR.OTC.cnt], i0, i1, 0.15, 105) : null;
+  const yr2 = n ? winRange([BR.TSE.vol, BR.OTC.vol], i0, i1, 0.15, 105) : null;
+  ly.yaxis  = Object.assign({domain:[0.55, 1]}, yCommon, yr1 ? {range:yr1} : {});
+  ly.yaxis2 = Object.assign({domain:[0, 0.45]}, yCommon, yr2 ? {range:yr2} : {});
+  Plotly.react("chart-breadth", traces, ly, CFG);
 }
-function drawAll(){ drawPx(); drawBreadth(); }
+
+/* ---------- 圖上資訊列(游標時點讀數+增減箭頭,與圖同源) ---------- */
+function infoPx(){
+  const el = $("#info-px"), i = effIdx();
+  if (!el) return;
+  if (i == null){ el.innerHTML = "（等待盤中資料…開盤後點圖／◀▶ 或鍵盤 ← → 移游標）"; return; }
+  let s = `<b>${times[i] || "–"}</b>`;
+  for (const m of MKTS){
+    const P = S[m.k].p, v = P[i], pv = prevNonNull(P, i);
+    const q = QI && QI.markets[m.k];
+    const base = q ? q.prev_close : null;
+    const chg = (v != null && base != null) ? v - base : null;
+    const pct = (chg != null && base) ? chg / base * 100 : null;
+    const cls = chg == null ? "flat" : chg > 0 ? "up" : chg < 0 ? "down" : "flat";
+    s += `　<span style="color:${m.hue}">${m.nm}</span> <b class="${cls}">${fmt(v)}</b>${arrow(v, pv)}`
+       + (chg == null ? "" : ` <span class="${cls}">${chg > 0 ? "+" : ""}${fmt(chg)} (${pct > 0 ? "+" : ""}${fmt(pct)}%)</span>`);
+  }
+  el.innerHTML = s;
+}
+function infoBr(){
+  const el = $("#info-br"), i = effIdx();
+  if (!el) return;
+  if (i == null){ el.innerHTML = "（游標與上圖同步）"; return; }
+  if (!BR) calcBreadth();
+  const one = (m, key) => {
+    const A = BR[m.k][key], v = A[i], pv = prevNonNull(A, i);
+    const cls = v == null ? "flat" : v > 0 ? "up" : v < 0 ? "down" : "flat";
+    return `<span style="color:${m.hue}">${m.k}</span> <b class="${cls}">${v == null ? "–" : (v > 0 ? "+" : "") + fmt(v, 1)}%</b>${arrow(v, pv)}`;
+  };
+  const lim = m => {
+    const lu = S[m.k].lu[i], ld = S[m.k].ld[i];
+    return `<span style="color:${m.hue}">${m.k}</span> <span class="up">${fi(lu)}</span>/<span class="down">${fi(ld)}</span>`;
+  };
+  el.innerHTML = `<b>${times[i] || "–"}</b>`
+    + `　家數淨寬 ${one(MKTS[0], "cnt")} ${one(MKTS[1], "cnt")}`
+    + `　量能淨寬 ${one(MKTS[0], "vol")} ${one(MKTS[1], "vol")}`
+    + `　漲停/跌停 ${lim(MKTS[0])} ${lim(MKTS[1])}`;
+}
+
+/* ---------- 游標機制(點圖=定游標;◀▶/←→ 步進;⭯ 最新=跟隨即時) ---------- */
+function redrawCursor(){
+  const g1 = document.getElementById("chart-px"), g2 = document.getElementById("chart-breadth");
+  if (g1 && g1._fullLayout) Plotly.relayout(g1, {shapes: pxShapes(effIdx())});
+  if (g2 && g2._fullLayout) Plotly.relayout(g2, {shapes: crosshair(effIdx())});
+  infoPx(); infoBr();
+}
+window.mrCursor = function(step){
+  const n = nPts();
+  if (!n) return;
+  curIdx = Math.max(0, Math.min(n-1, (curIdx == null ? n-1 : curIdx) + step));
+  redrawCursor();
+};
+window.mrLatest = function(){ curIdx = null; redrawCursor(); };
+window.mrRange = function(key){
+  curRange = key;
+  document.querySelectorAll("#mr-toolbar [data-rk]").forEach(b => b.classList.toggle("active", b.dataset.rk === key));
+  drawAll();
+};
+function attachChart(id){                    // 點圖(手機單觸)→ 像素反推索引定游標
+  const g = document.getElementById(id);
+  if (!g || g._mrBound) return;
+  g._mrBound = true;
+  g.addEventListener("click", function(e){
+    const fl = g._fullLayout;
+    if (!fl || !fl.xaxis) return;
+    const rect = g.getBoundingClientRect(), px = e.clientX - rect.left - fl._size.l, len = fl.xaxis._length;
+    if (px < 0 || px > len) return;
+    const n = nPts();
+    if (!n) return;
+    const r = fl.xaxis.range, dx = r[0] + (px/len) * (r[1] - r[0]);
+    curIdx = Math.max(0, Math.min(n-1, Math.round(dx)));
+    redrawCursor();
+  });
+}
+document.addEventListener("keydown", function(e){
+  const t = document.activeElement;
+  if (t && /^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName)) return;
+  if (e.key === "ArrowLeft"){ window.mrCursor(-1); e.preventDefault(); }
+  else if (e.key === "ArrowRight"){ window.mrCursor(1); e.preventDefault(); }
+});
+function drawAll(){
+  calcBreadth();
+  drawPx(); drawBreadth();
+  attachChart("chart-px"); attachChart("chart-breadth");
+  infoPx(); infoBr();
+}
 
 /* ---------- 狀態 ---------- */
 function renderStatus(){
