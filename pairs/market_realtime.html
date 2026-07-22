@@ -201,7 +201,7 @@
     <li>昨收 = 現價 − 漲跌 反推;成交值/昨量/上漲量/下跌量為 XQ 原始欄位值,單位依 XQ(大盤慣例為億元),頁面不換算。</li>
     <li>家數淨寬度% =(NWUpStk − NWDownStk)÷(NWUpStk＋NWDownStk)×100(平盤家不入分母);量能淨寬度% =(NWUpVolume − NWDownVolume)÷(NWUpVolume＋NWDownVolume)×100。</li>
     <li>5分K/30分K:由 5 秒快照樣本前端聚合——開=時段首筆、高/低=極值、收=末筆,時段對齊整點;量=該時段成交值增量(Δ累積成交值,首根=當日累計);僅涵蓋當日盤中,隔日重新累積。兩格共用同一時間軸:每根 30分K 中心對齊其 6 根 5分K 中點、棒寬=6 根 5分K+5 個間隔(進行中時段隨根數增寬);單一游標線貫穿兩格同步移動,點任一格定位最近的 5分K。</li>
-    <li>分價量:每 5 秒樣本的 Δ成交值歸入當時價位(全日價區分 36 箱),疊於 5分K 格右側水平柱;POC=最大量箱中價,VA=自 POC 向量大鄰側擴張至 70% 總成交值;隨盤中每 5 秒重算,可由工具列「📊 分價量」開關。</li>
+    <li>分價量:每 5 秒樣本的 Δ成交值歸入當時價位(全日價區分 36 箱),疊於 5分K 格右側水平柱;POC=最大量箱中價,VA=自 POC 向量大鄰側擴張至 70% 總成交值;隨盤中每 5 秒重算,可由工具列「📊 分價量」開關。當日檔若無量能欄(2026-07-22 前的舊 poller 版)自動回退「時間分價 TPO 近似」(每樣本等權),讀數會標示「時間近似」。</li>
     <li>盤中曲線自 poller 啟動起累積(排程平日 08:56 起跑,13:36 收工);XQ 未登入則整天無值。快照時間比現在晚 = 前一交易日殘值,不併入當日曲線。</li>
     <li>個股 12 檔即時資料同鏈另檔(<code>rt_quotes.json</code>),兩者互不影響。</li>
   </ul>
@@ -515,19 +515,23 @@ let PROF_ON = true;
 function buildProfile(k){
   const P = S[k].p, TV = S[k].tv || [];
   let lo = Infinity, hi = -Infinity, lastTv = null;
-  const pts = [];
+  let pts = [];
   for (let i = 0; i < times.length; i++){
     const p = P[i];
     if (p == null) continue;
+    if (p < lo) lo = p;
+    if (p > hi) hi = p;
     let dv = null;
     if (TV[i] != null){
       dv = lastTv == null ? TV[i] : TV[i] - lastTv;   // 首樣本=當日累計(開盤前起跑即首時段量)
       lastTv = TV[i];
     }
-    if (dv == null || dv < 0) continue;
-    pts.push({p, dv});
-    if (p < lo) lo = p;
-    if (p > hi) hi = p;
+    if (dv != null && dv >= 0) pts.push({p, dv});
+  }
+  let mode = "val";
+  if (!pts.length){                // 當日檔無 tv(舊版 poller)→ 回退樣本數時間分價(TPO 近似)
+    mode = "tpo";
+    for (let i = 0; i < times.length; i++){ if (P[i] != null) pts.push({p: P[i], dv: 1}); }
   }
   if (!pts.length || lo === Infinity) return null;
   const bin = Math.max((hi - lo) / 36, hi * 1e-6);
@@ -544,7 +548,7 @@ function buildProfile(k){
     if (vb >= va){ b++; acc += vols[b]; } else { a--; acc += vols[a]; }
   }
   const cent = i => lo + (i + 0.5) * bin;
-  return {centers: vols.map((_, i) => cent(i)), vols, binSize: bin,
+  return {centers: vols.map((_, i) => cent(i)), vols, binSize: bin, mode,
           poc: cent(poc), val: lo + a * bin, vah: lo + (b + 1) * bin, maxV: vols[poc]};
 }
 function profLines(prof){
@@ -583,9 +587,10 @@ function kAnnos(i5, i30){
     anno(0.455, row(KC && KC.K30, i30, "30分K")),
   ];
   if (PROF_ON && KC && KC.prof){   // 分價量讀數(貼下格上緣右側,避開左側30分K讀數)
+    const tag = KC.prof.mode === "tpo" ? "分價量(時間近似·當日無量能欄)" : "分價量";
     out.push({xref:"paper", yref:"paper", x:0.995, xanchor:"right", y:0.455, yanchor:"bottom",
       showarrow:false, align:"right", font:{size:9.5, color:"#fbbf24"},
-      text:`分價量 POC ${fmt(KC.prof.poc)}｜VA ${fmt(KC.prof.val)}–${fmt(KC.prof.vah)}`});
+      text:`${tag} POC ${fmt(KC.prof.poc)}｜VA ${fmt(KC.prof.val)}–${fmt(KC.prof.vah)}`});
   }
   return out;
 }
