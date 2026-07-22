@@ -54,6 +54,9 @@
   .chart-toolbar .lbl { color:var(--th-muted,#94a3b8); font-size:.72rem; padding:0 2px; }
   .chart-toolbar .sep { width:1px; align-self:stretch; background:var(--th-border2,#334155); margin:2px 4px; }
   .chart-info { margin:0 0 6px 0; padding:5px 10px; background:var(--th-bg,#07111e); border:1px solid var(--th-border,#2d3f55); border-radius:6px; font-size:.8rem; line-height:1.7; color:var(--th-text2,#cbd5e1); white-space:nowrap; overflow-x:auto; }
+  .kchip { background:var(--th-card,#1e293b); color:var(--th-text2,#cbd5e1); border:1px solid var(--th-border2,#334155); border-radius:5px; padding:3px 9px; font-size:.78rem; cursor:pointer; min-height:28px; transition:all .15s; }
+  .kchip:hover { border-color:#3b82f6; color:var(--th-blue,#93c5fd); }
+  .kchip.active { border-color:#3b82f6; color:var(--th-blue,#93c5fd); background:var(--th-blue-bg,#0f2040); }
   details.info { margin:10px 14px; border:1px solid var(--th-border,#2d3f55); border-radius:6px; }
   details.info summary { padding:6px 10px; cursor:pointer; font-size:.8rem; font-weight:700; color:var(--th-blue,#93c5fd); background:var(--th-blue-bg,#0f2040); user-select:none; }
   details.info .info-desc { padding:8px 12px; font-size:.8rem; color:var(--th-text2,#cbd5e1); }
@@ -147,6 +150,21 @@
 </div>
 
 <div class="card">
+  <h2>5分K × 30分K 雙格同步(上:5分K / 下:30分K · 游標互相對映)</h2>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:2px 0 4px 0;">
+    <button class="kchip active" data-mk="TSE" onclick="kMarket('TSE')">加權</button>
+    <button class="kchip" data-mk="OTC" onclick="kMarket('OTC')">櫃買</button>
+    <span style="width:1px;align-self:stretch;background:var(--th-border2,#334155);margin:2px 4px;"></span>
+    <button class="kchip" onclick="kCursor(-6)" title="左移 6 根 5分K(30分)">◀◀</button>
+    <button class="kchip" onclick="kCursor(-1)" title="左移 1 根 5分K">◀</button>
+    <button class="kchip" onclick="kCursor(1)" title="右移 1 根 5分K">▶</button>
+    <button class="kchip" onclick="kCursor(6)" title="右移 6 根 5分K(30分)">▶▶</button>
+    <button class="kchip" onclick="kLatest()" title="跳回最新並跟隨即時">⭯ 最新</button>
+  </div>
+  <div id="chart-k" class="chartbox"></div>
+</div>
+
+<div class="card">
   <h2>市場寬度盤中走勢(上:家數淨寬度% / 下:量能淨寬度% · 游標與上圖同步)</h2>
   <div id="chart-breadth" class="chartbox"></div>
 </div>
@@ -180,6 +198,7 @@
     <li>來源:XQ 全球贏家 RTD(<code>TSE.TW</code>/<code>OTC.TW</code>),約 5 秒一筆;鏈路 = Excel(配對自選股XQ_RTD.xlsx「大盤_RTD」表)→ COM poller → <code>rt_index_quotes.json</code>(快照)+<code>rt_index_intraday.json</code>(盤中累積)。</li>
     <li>昨收 = 現價 − 漲跌 反推;成交值/昨量/上漲量/下跌量為 XQ 原始欄位值,單位依 XQ(大盤慣例為億元),頁面不換算。</li>
     <li>家數淨寬度% =(NWUpStk − NWDownStk)÷(NWUpStk＋NWDownStk)×100(平盤家不入分母);量能淨寬度% =(NWUpVolume − NWDownVolume)÷(NWUpVolume＋NWDownVolume)×100。</li>
+    <li>5分K/30分K:由 5 秒快照樣本前端聚合——開=時段首筆、高/低=極值、收=末筆,時段對齊整點;量=該時段成交值增量(Δ累積成交值,首根=當日累計);僅涵蓋當日盤中,隔日重新累積。下格點 30分K 時游標對映該時段最後一根 5分K。</li>
     <li>盤中曲線自 poller 啟動起累積(排程平日 08:56 起跑,13:36 收工);XQ 未登入則整天無值。快照時間比現在晚 = 前一交易日殘值,不併入當日曲線。</li>
     <li>個股 12 檔即時資料同鏈另檔(<code>rt_quotes.json</code>),兩者互不影響。</li>
   </ul>
@@ -198,8 +217,8 @@ const MKTS = [
 ];
 let QI = null;                       // rt_index_quotes.json 最新快照
 let times = [];
-const S = {};                        // k -> {p,up,dn,uv,dv,lu,ld}
-MKTS.forEach(m => S[m.k] = {p:[], up:[], dn:[], uv:[], dv:[], lu:[], ld:[]});
+const S = {};                        // k -> {p,up,dn,uv,dv,lu,ld,tv}
+MKTS.forEach(m => S[m.k] = {p:[], up:[], dn:[], uv:[], dv:[], lu:[], ld:[], tv:[]});
 let lastStamp = "";
 
 const $ = s => document.querySelector(s);
@@ -441,6 +460,156 @@ function brAnnos(idx){
   ];
 }
 
+/* ---------- 5分K × 30分K 雙格同步(仿B3:上5分/下30分·游標互相對映·由5秒樣本前端聚合) ---------- */
+let KSEL = "TSE";
+let kCurIdx = null;                // 5分K bar 游標;null=跟隨最新
+let KC = null;                     // 當輪 bars 快取 {K5,K30}
+function bucketLabel(t, m){        // "HH:MM(:SS)" → 對齊 m 分鐘的 "HH:MM"
+  return t.slice(0,3) + String(Math.floor(+t.slice(3,5)/m)*m).padStart(2,"0");
+}
+function buildBars(k, m){          // 開=時段首筆/高低=極值/收=末筆;dv=時段成交值增量
+  const P = S[k].p, TV = S[k].tv || [];
+  const bars = [];
+  let cur = null, lastTv = null;
+  for (let i = 0; i < times.length; i++){
+    const t = times[i], p = P[i];
+    if (p == null || !t || t.length < 5) continue;
+    const key = bucketLabel(t, m);
+    if (!cur || cur.t !== key){
+      if (cur) bars.push(cur);
+      cur = {t:key, o:p, h:p, l:p, c:p, tv0:lastTv, tv1:null};
+    } else {
+      if (p > cur.h) cur.h = p;
+      if (p < cur.l) cur.l = p;
+      cur.c = p;
+    }
+    if (TV[i] != null){ cur.tv1 = TV[i]; lastTv = TV[i]; }
+  }
+  if (cur) bars.push(cur);
+  bars.forEach(b => {
+    b.dv = (b.tv1 != null && b.tv0 != null) ? b.tv1 - b.tv0
+         : (b.tv0 == null ? b.tv1 : null);   // 首根=當日累計(poller 開盤前起跑時即該時段量)
+  });
+  return bars;
+}
+function kIdxPair(){               // 目前游標的 (i5, i30)
+  if (!KC || !KC.K5.length) return {i5:null, i30:null};
+  const n5 = KC.K5.length;
+  const i5 = kCurIdx == null ? n5-1 : Math.min(kCurIdx, n5-1);
+  const key = bucketLabel(KC.K5[i5].t, 30);
+  const i30 = KC.K30.findIndex(b => b.t === key);
+  return {i5, i30};
+}
+function kShapes(i5, i30){
+  const ln = {color:"rgba(148,163,184,0.9)", width:1, dash:"dot"};
+  const a = [];
+  if (i5 != null) a.push({type:"line", xref:"x", yref:"paper", x0:i5, x1:i5, y0:0.55, y1:1, line:ln});
+  if (i30 != null && i30 >= 0) a.push({type:"line", xref:"x2", yref:"paper", x0:i30, x1:i30, y0:0, y1:0.45, line:ln});
+  return a;
+}
+function kAnnos(i5, i30){
+  const nm = KSEL === "TSE" ? "加權" : "櫃買";
+  const q = QI && QI.markets[KSEL];
+  const base = q ? q.prev_close : null;
+  const row = (K, i, tag) => {
+    if (!K || i == null || i < 0 || i >= K.length) return `${nm} ${tag}（等待盤中資料…點圖／◀▶ 移游標）`;
+    const b = K[i];
+    const pb = i > 0 ? K[i-1].c : base;      // 漲跌 vs 前bar收(首bar vs 昨收)
+    const chg = (pb != null && b.c != null) ? b.c - pb : null;
+    const c = chg == null ? MUTC : chg > 0 ? UPC : chg < 0 ? DNC : MUTC;
+    return `<b>${b.t}</b> ${nm} ${tag}　開 ${fmt(b.o)}　高 ${fmt(b.h)}　低 ${fmt(b.l)}`
+      + `　收 <b><span style="color:${c}">${fmt(b.c)}</span></b>`
+      + (chg == null ? "" : ` <span style="color:${c}">${chg > 0 ? "+" : ""}${fmt(chg)}</span>`)
+      + `　量 ${b.dv == null ? "–" : fmt(b.dv)}`;
+  };
+  return [
+    anno(1.0,   row(KC && KC.K5,  i5,  "5分K")),
+    anno(0.455, row(KC && KC.K30, i30, "30分K")),
+  ];
+}
+function drawK(){
+  const T = thc();
+  KC = {K5: buildBars(KSEL, 5), K30: buildBars(KSEL, 30)};
+  const n5 = KC.K5.length, n30 = KC.K30.length;
+  const h = Math.max(360, Math.min(520, window.innerHeight * 0.52));
+  const {i5, i30} = kIdxPair();
+  const mkCandle = (K, xa, ya) => ({
+    type:"candlestick", x:K.map((_, i) => i),
+    open:K.map(b => b.o), high:K.map(b => b.h), low:K.map(b => b.l), close:K.map(b => b.c),
+    xaxis:xa, yaxis:ya, showlegend:false, hoverinfo:"skip",
+    increasing:{line:{color:UPC, width:1}, fillcolor:UPC},
+    decreasing:{line:{color:DNC, width:1}, fillcolor:DNC},
+  });
+  const tv5 = [], tt5 = [];        // 5分格刻度=每30分一格
+  let prev = null;
+  KC.K5.forEach((b, i) => { const l = bucketLabel(b.t, 30); if (l !== prev){ tv5.push(i); tt5.push(l); prev = l; } });
+  const axc = {gridcolor:T("--th-border","#1f2937"), fixedrange:true};
+  const ly = {
+    height:h, autosize:true,
+    paper_bgcolor:T("--th-card","#131f2e"), plot_bgcolor:T("--th-bg","#111827"),
+    font:{color:T("--th-muted","#94a3b8"), size:11},
+    margin:{l:8, r:56, t:26, b:24},
+    dragmode:false, hovermode:false, showlegend:false,
+    xaxis: Object.assign({domain:[0,1], anchor:"y", type:"linear",
+      range:[-0.7, Math.max(n5-1, 1) + 0.7], tickmode:"array", tickvals:tv5, ticktext:tt5,
+      rangeslider:{visible:false}}, axc),
+    xaxis2: Object.assign({domain:[0,1], anchor:"y2", type:"linear",
+      range:[-0.7, Math.max(n30-1, 1) + 0.7], tickmode:"array",
+      tickvals:KC.K30.map((_, i) => i), ticktext:KC.K30.map(b => b.t),
+      rangeslider:{visible:false}}, axc),
+    yaxis:  Object.assign({domain:[0.55, 1], side:"right", tickformat:",.0f"}, axc),
+    yaxis2: Object.assign({domain:[0, 0.45], side:"right", tickformat:",.0f"}, axc),
+    shapes: kShapes(i5, i30),
+    annotations: kAnnos(i5, i30),
+  };
+  Plotly.react("chart-k", [mkCandle(KC.K5, "x", "y"), mkCandle(KC.K30, "x2", "y2")], ly, CFG);
+  attachK();
+}
+function kRedraw(){                // 游標輕量重繪(shapes+annotations 整組帶回)
+  const g = document.getElementById("chart-k");
+  if (!g || !g._fullLayout || !KC) return;
+  const {i5, i30} = kIdxPair();
+  Plotly.relayout(g, {shapes: kShapes(i5, i30), annotations: kAnnos(i5, i30)});
+}
+window.kCursor = function(step){
+  if (!KC || !KC.K5.length) return;
+  const n = KC.K5.length;
+  kCurIdx = Math.max(0, Math.min(n-1, (kCurIdx == null ? n-1 : kCurIdx) + step));
+  kRedraw();
+};
+window.kLatest = function(){ kCurIdx = null; kRedraw(); };
+window.kMarket = function(k){
+  KSEL = k;
+  document.querySelectorAll(".kchip[data-mk]").forEach(b => b.classList.toggle("active", b.dataset.mk === k));
+  drawK();
+};
+function attachK(){                // 點圖(手機單觸):上格定5分bar;下格點30分bar→對映該時段末根5分bar
+  const g = document.getElementById("chart-k");
+  if (!g || g._mrBound) return;
+  g._mrBound = true;
+  g.addEventListener("click", function(e){
+    const fl = g._fullLayout;
+    if (!fl || !fl.xaxis || !KC || !KC.K5.length) return;
+    const rect = g.getBoundingClientRect();
+    const px = e.clientX - rect.left - fl._size.l, len = fl.xaxis._length;
+    if (px < 0 || px > len) return;
+    const frac = 1 - ((e.clientY - rect.top - fl._size.t) / fl._size.h);  // paper y
+    if (frac > 0.5){
+      const r = fl.xaxis.range, dx = r[0] + (px/len) * (r[1] - r[0]);
+      kCurIdx = Math.max(0, Math.min(KC.K5.length-1, Math.round(dx)));
+    } else {
+      const ax2 = fl.xaxis2 || fl.xaxis;
+      const r = ax2.range, dx = r[0] + (px/len) * (r[1] - r[0]);
+      const i30 = Math.max(0, Math.min(KC.K30.length-1, Math.round(dx)));
+      const key = KC.K30[i30] ? KC.K30[i30].t : null;
+      let last = null;
+      if (key != null) KC.K5.forEach((b, i) => { if (bucketLabel(b.t, 30) === key) last = i; });
+      if (last != null) kCurIdx = last;
+    }
+    kRedraw();
+  });
+}
+
 /* ---------- 游標機制(點圖=定游標;◀▶/←→ 步進;⭯ 最新=跟隨即時) ---------- */
 function redrawCursor(){
   const i = effIdx();
@@ -484,7 +653,7 @@ document.addEventListener("keydown", function(e){
 });
 function drawAll(){
   calcBreadth();
-  drawPx(); drawBreadth();
+  drawPx(); drawK(); drawBreadth();
   attachChart("chart-px"); attachChart("chart-breadth");
 }
 
@@ -519,7 +688,7 @@ async function seed(){
     for (const m of MKTS){
       const s = d.markets[m.k];
       if (!s) continue;
-      for (const key of ["p","up","dn","uv","dv","lu","ld"]) S[m.k][key] = (s[key] || []).slice();
+      for (const key of ["p","up","dn","uv","dv","lu","ld","tv"]) S[m.k][key] = (s[key] || []).slice();
     }
     if (times.length) lastStamp = times[times.length-1];
   } catch(e){}
@@ -544,6 +713,7 @@ async function poll(){
         s.dv.push(ok ? q.down_volume : null);
         s.lu.push(ok ? q.limit_up_count : null);
         s.ld.push(ok ? q.limit_down_count : null);
+        s.tv.push(ok ? q.total_volume : null);
       }
     }
   }
