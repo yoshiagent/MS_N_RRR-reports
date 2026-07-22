@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-21",
+  "as_of": "2026-07-22",
   "n_pairs": 6,
   "n_z_gate_passed": 1,
   "n_strong": 0,
@@ -23,33 +23,28 @@
         "南電",
         "欣興"
       ],
-      "signal": "hold_A",
+      "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": 1.92,
-      "switch_direction": "A",
-      "switch_into": {
-        "code": "8046",
-        "name": "南電"
-      },
+      "zscore": 1.83,
+      "switch_direction": null,
+      "switch_into": null,
       "components": {
         "rcga": {
           "score": 55.0,
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 0.18,
+          "score": null,
           "src": "no_rotation"
         },
         "box": {
-          "score": 70.0,
-          "src": "above_down",
-          "healthy": true
+          "score": null,
+          "src": null,
+          "healthy": null
         }
       },
       "active_weights": {
-        "rcga": 25,
-        "rcr": 25,
-        "box": 20
+        "rcga": 25
       },
       "z_mode": "gate",
       "weights": {
@@ -59,7 +54,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 39.7,
+      "switch_score_ref": 55.0,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -81,7 +76,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -0.85,
+      "zscore": -0.17,
       "switch_direction": "B",
       "switch_into": {
         "code": "3035",
@@ -93,7 +88,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 18.18,
+          "score": 25.45,
           "src": "no_rotation"
         },
         "box": {
@@ -115,7 +110,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 36.1,
+      "switch_score_ref": 38.7,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -135,13 +130,13 @@
         "華邦電",
         "南亞科"
       ],
-      "signal": "switch_to_A",
-      "z_gate_passed": true,
-      "zscore": -1.44,
-      "switch_direction": "A",
+      "signal": "hold_B",
+      "z_gate_passed": false,
+      "zscore": -1.39,
+      "switch_direction": "B",
       "switch_into": {
-        "code": "2344",
-        "name": "華邦電"
+        "code": "2408",
+        "name": "南亞科"
       },
       "components": {
         "rcga": {
@@ -149,63 +144,7 @@
           "src": "GREEN"
         },
         "rcr": {
-          "score": 5.73,
-          "src": "no_rotation"
-        },
-        "box": {
-          "score": 35.0,
-          "src": "inbox_down",
-          "healthy": false
-        }
-      },
-      "active_weights": {
-        "rcga": 25,
-        "rcr": 25,
-        "box": 20
-      },
-      "z_mode": "gate",
-      "weights": {
-        "z_reversal": 30,
-        "rcga": 25,
-        "rcr": 25,
-        "box": 20
-      },
-      "switch_score": 44.2,
-      "switch_score_ref": 44.2,
-      "strong_stays_strong": false,
-      "trim": null,
-      "recommendation": {
-        "label": "Z 到但籌碼/結構不支持 · 觀望",
-        "color": "#ef4444",
-        "icon": "🚫"
-      }
-    },
-    {
-      "pair_id": "2049_4576",
-      "pair_name": "",
-      "pair": [
-        "2049",
-        "4576"
-      ],
-      "names": [
-        "上銀",
-        "大銀微系統"
-      ],
-      "signal": "hold_A",
-      "z_gate_passed": false,
-      "zscore": 1.06,
-      "switch_direction": "A",
-      "switch_into": {
-        "code": "2049",
-        "name": "上銀"
-      },
-      "components": {
-        "rcga": {
-          "score": 20.0,
-          "src": "RED"
-        },
-        "rcr": {
-          "score": 2.29,
+          "score": 4.37,
           "src": "no_rotation"
         },
         "box": {
@@ -227,7 +166,63 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 20.8,
+      "switch_score_ref": 46.6,
+      "strong_stays_strong": false,
+      "trim": null,
+      "recommendation": {
+        "label": "延後 · Z60 未過換股門檻",
+        "color": "#64748b",
+        "icon": "⏸"
+      }
+    },
+    {
+      "pair_id": "2049_4576",
+      "pair_name": "",
+      "pair": [
+        "2049",
+        "4576"
+      ],
+      "names": [
+        "上銀",
+        "大銀微系統"
+      ],
+      "signal": "hold_A",
+      "z_gate_passed": false,
+      "zscore": 1.34,
+      "switch_direction": "A",
+      "switch_into": {
+        "code": "2049",
+        "name": "上銀"
+      },
+      "components": {
+        "rcga": {
+          "score": 20.0,
+          "src": "RED"
+        },
+        "rcr": {
+          "score": 9.03,
+          "src": "no_rotation"
+        },
+        "box": {
+          "score": 45.0,
+          "src": "inbox_side",
+          "healthy": false
+        }
+      },
+      "active_weights": {
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
+      },
+      "z_mode": "gate",
+      "weights": {
+        "z_reversal": 30,
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
+      },
+      "switch_score": null,
+      "switch_score_ref": 23.2,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -247,13 +242,13 @@
         "巨大",
         "美利達"
       ],
-      "signal": "hold_B",
-      "z_gate_passed": false,
-      "zscore": -0.15,
-      "switch_direction": "B",
+      "signal": "switch_to_A",
+      "z_gate_passed": true,
+      "zscore": 0.09,
+      "switch_direction": "A",
       "switch_into": {
-        "code": "9914",
-        "name": "美利達"
+        "code": "9921",
+        "name": "巨大"
       },
       "components": {
         "rcga": {
@@ -261,7 +256,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 5.65,
+          "score": 21.5,
           "src": "no_rotation"
         },
         "box": {
@@ -282,14 +277,14 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": null,
-      "switch_score_ref": 38.8,
+      "switch_score": 44.5,
+      "switch_score_ref": 44.5,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "延後 · Z60 未過換股門檻",
-        "color": "#64748b",
-        "icon": "⏸"
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
       }
     },
     {
@@ -305,7 +300,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": -2.76,
+      "zscore": -1.8,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -345,6 +340,6 @@
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-07-21T22:17:31",
+  "generated_at": "2026-07-22T22:28:52",
   "available": true
 }

@@ -308,7 +308,7 @@ const UPC = "#f87171", DNC = "#4ade80", MUTC = "#94a3b8";   // annotation 內只
 function arrow(cur, prev){
   if (cur == null || prev == null) return "";
   const d = cur - prev;
-  if (Math.abs(d) < 1e-9) return ` <span style="color:#64748b">‧</span>`;
+  if (Math.abs(d) < 1e-9) return ` <span style="color:var(--th-faint,#64748b)">‧</span>`;
   return d > 0 ? ` <span style="color:${UPC}">▲</span>` : ` <span style="color:${DNC}">▼</span>`;
 }
 function anno(y, text){            // 面板標題列:貼各面板上緣(paper 座標·左對齊)
