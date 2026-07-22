@@ -160,6 +160,7 @@
     <button class="kchip" onclick="kCursor(1)" title="右移 1 根 5分K">▶</button>
     <button class="kchip" onclick="kCursor(6)" title="右移 6 根 5分K(30分)">▶▶</button>
     <button class="kchip" onclick="kLatest()" title="跳回最新並跟隨即時">⭯ 最新</button>
+    <button class="kchip active" id="kprof" onclick="kProfToggle()" title="分價量(Volume Profile):當日成交值分價分布(右側水平柱);POC=最大量價位,VA=70%成交價值區">📊 分價量</button>
   </div>
   <div id="chart-k" class="chartbox"></div>
 </div>
@@ -179,6 +180,7 @@
     <li><strong>量能淨寬度%</strong> =(上漲量 − 下跌量)÷(上漲量+下跌量)×100。錢實際流向漲方或跌方;與家數淨寬度背離時以量能為準。</li>
     <li><strong>漲停/跌停家數</strong>:投機情緒溫度計。漲停家數多而指數平 = 資金集中題材股;跌停家數擴增 = 恐慌擴散警訊。</li>
     <li><strong>內外盤比%(In/Out Ratio)</strong>:&gt;50 買方主動較強,&lt;50 賣方主動較強;盤中持續偏一邊比單點數值有意義。</li>
+    <li><strong>分價量(Volume Profile)</strong>:當日成交值在各價位的分布。<strong>POC(Point of Control)</strong>= 最大量價位 = 當日多空攻防重心,價回 POC 常有支撐/壓力;<strong>VA(Value Area)</strong>= 包含 70% 成交價值的價區,價站上 VA 上緣 = 買方接受更高價(偏多),跌破 VA 下緣 = 賣方主導(偏空)。</li>
     <li>加權(TSE)與櫃買(OTC)分流時:櫃買強 = 資金偏中小型/題材;加權強 = 資金偏權值防守。</li>
   </ul>
   <table>
@@ -199,6 +201,7 @@
     <li>昨收 = 現價 − 漲跌 反推;成交值/昨量/上漲量/下跌量為 XQ 原始欄位值,單位依 XQ(大盤慣例為億元),頁面不換算。</li>
     <li>家數淨寬度% =(NWUpStk − NWDownStk)÷(NWUpStk＋NWDownStk)×100(平盤家不入分母);量能淨寬度% =(NWUpVolume − NWDownVolume)÷(NWUpVolume＋NWDownVolume)×100。</li>
     <li>5分K/30分K:由 5 秒快照樣本前端聚合——開=時段首筆、高/低=極值、收=末筆,時段對齊整點;量=該時段成交值增量(Δ累積成交值,首根=當日累計);僅涵蓋當日盤中,隔日重新累積。兩格共用同一時間軸:每根 30分K 中心對齊其 6 根 5分K 中點、棒寬=6 根 5分K+5 個間隔(進行中時段隨根數增寬);單一游標線貫穿兩格同步移動,點任一格定位最近的 5分K。</li>
+    <li>分價量:每 5 秒樣本的 Δ成交值歸入當時價位(全日價區分 36 箱),疊於 5分K 格右側水平柱;POC=最大量箱中價,VA=自 POC 向量大鄰側擴張至 70% 總成交值;隨盤中每 5 秒重算,可由工具列「📊 分價量」開關。</li>
     <li>盤中曲線自 poller 啟動起累積(排程平日 08:56 起跑,13:36 收工);XQ 未登入則整天無值。快照時間比現在晚 = 前一交易日殘值,不併入當日曲線。</li>
     <li>個股 12 檔即時資料同鏈另檔(<code>rt_quotes.json</code>),兩者互不影響。</li>
   </ul>
@@ -500,11 +503,66 @@ function kIdxPair(){               // 目前游標的 (i5, i30)
   const i30 = KC.K30.findIndex(b => b.t === key);
   return {i5, i30};
 }
-function kShapes(i5, i30){    // 兩格共用同一時間軸 → 單一游標線貫穿上下格同步移動
-  if (i5 == null) return [];
-  return [{type:"line", xref:"x", yref:"paper", x0:i5, x1:i5, y0:0, y1:1,
-    line:{color:"rgba(148,163,184,0.9)", width:1, dash:"dot"}}];
+function kShapes(i5, i30){    // 兩格共用同一時間軸 → 單一游標線貫穿上下格同步移動(+分價量 POC/VA 線)
+  const a = [];
+  if (i5 != null) a.push({type:"line", xref:"x", yref:"paper", x0:i5, x1:i5, y0:0, y1:1,
+    line:{color:"rgba(148,163,184,0.9)", width:1, dash:"dot"}});
+  return a.concat(profLines(KC && KC.prof));
 }
+
+/* ---------- 分價量 Volume Profile(5秒Δ成交值按價位分箱·疊5分K格右側) ---------- */
+let PROF_ON = true;
+function buildProfile(k){
+  const P = S[k].p, TV = S[k].tv || [];
+  let lo = Infinity, hi = -Infinity, lastTv = null;
+  const pts = [];
+  for (let i = 0; i < times.length; i++){
+    const p = P[i];
+    if (p == null) continue;
+    let dv = null;
+    if (TV[i] != null){
+      dv = lastTv == null ? TV[i] : TV[i] - lastTv;   // 首樣本=當日累計(開盤前起跑即首時段量)
+      lastTv = TV[i];
+    }
+    if (dv == null || dv < 0) continue;
+    pts.push({p, dv});
+    if (p < lo) lo = p;
+    if (p > hi) hi = p;
+  }
+  if (!pts.length || lo === Infinity) return null;
+  const bin = Math.max((hi - lo) / 36, hi * 1e-6);
+  const nb = Math.max(1, Math.floor((hi - lo) / bin) + 1);
+  const vols = new Array(nb).fill(0);
+  pts.forEach(({p, dv}) => { vols[Math.min(nb - 1, Math.floor((p - lo) / bin))] += dv; });
+  const total = vols.reduce((s, v) => s + v, 0);
+  if (total <= 0) return null;
+  let poc = 0;
+  vols.forEach((v, i) => { if (v > vols[poc]) poc = i; });
+  let acc = vols[poc], a = poc, b = poc;                // VA70%:自POC向量大鄰側擴張
+  while (acc < total * 0.7 && (a > 0 || b < nb - 1)){
+    const va = a > 0 ? vols[a - 1] : -1, vb = b < nb - 1 ? vols[b + 1] : -1;
+    if (vb >= va){ b++; acc += vols[b]; } else { a--; acc += vols[a]; }
+  }
+  const cent = i => lo + (i + 0.5) * bin;
+  return {centers: vols.map((_, i) => cent(i)), vols, binSize: bin,
+          poc: cent(poc), val: lo + a * bin, vah: lo + (b + 1) * bin, maxV: vols[poc]};
+}
+function profLines(prof){
+  if (!PROF_ON || !prof) return [];
+  const mk = (y, color, dash, w) => ({type:"line", xref:"paper", x0:0, x1:1, yref:"y",
+    y0:y, y1:y, line:{color, width:w, dash}});
+  return [
+    mk(prof.poc, "#fbbf24", "dash", 1.2),
+    mk(prof.vah, "rgba(251,191,36,0.45)", "dot", 1),
+    mk(prof.val, "rgba(251,191,36,0.45)", "dot", 1),
+  ];
+}
+window.kProfToggle = function(){
+  PROF_ON = !PROF_ON;
+  const b = document.getElementById("kprof");
+  if (b) b.classList.toggle("active", PROF_ON);
+  drawK();
+};
 function kAnnos(i5, i30){
   const nm = KSEL === "TSE" ? "加權" : "櫃買";
   const q = QI && QI.markets[KSEL];
@@ -520,14 +578,21 @@ function kAnnos(i5, i30){
       + (chg == null ? "" : ` <span style="color:${c}">${chg > 0 ? "+" : ""}${fmt(chg)}</span>`)
       + `　量 ${b.dv == null ? "–" : fmt(b.dv)}`;
   };
-  return [
+  const out = [
     anno(1.0,   row(KC && KC.K5,  i5,  "5分K")),
     anno(0.455, row(KC && KC.K30, i30, "30分K")),
   ];
+  if (PROF_ON && KC && KC.prof){   // 分價量讀數(貼下格上緣右側,避開左側30分K讀數)
+    out.push({xref:"paper", yref:"paper", x:0.995, xanchor:"right", y:0.455, yanchor:"bottom",
+      showarrow:false, align:"right", font:{size:9.5, color:"#fbbf24"},
+      text:`分價量 POC ${fmt(KC.prof.poc)}｜VA ${fmt(KC.prof.val)}–${fmt(KC.prof.vah)}`});
+  }
+  return out;
 }
 function drawK(){
   const T = thc();
   KC = {K5: buildBars(KSEL, 5), K30: buildBars(KSEL, 30)};
+  KC.prof = PROF_ON ? buildProfile(KSEL) : null;
   const n5 = KC.K5.length;
   const h = Math.max(360, Math.min(520, window.innerHeight * 0.52));
   const {i5, i30} = kIdxPair();
@@ -580,7 +645,15 @@ function drawK(){
     shapes: kShapes(i5, i30),
     annotations: kAnnos(i5, i30),
   };
-  Plotly.react("chart-k", [candle5, wick30, body30], ly, CFG);
+  const traces = [candle5, wick30, body30];
+  if (KC.prof){                    // 分價量:右側水平柱(x3 反向 range → 柱自右緣向左長,佔約28%寬)
+    traces.push({type:"bar", orientation:"h", x:KC.prof.vols, y:KC.prof.centers,
+      width:KC.prof.binSize * 0.85, base:0, xaxis:"x3", yaxis:"y",
+      marker:{color:"rgba(56,189,248,0.30)", line:{width:0}},
+      showlegend:false, hoverinfo:"skip"});
+    ly.xaxis3 = {overlaying:"x", range:[KC.prof.maxV * 3.6, 0], visible:false, fixedrange:true};
+  }
+  Plotly.react("chart-k", traces, ly, CFG);
   attachK();
 }
 function kRedraw(){                // 游標輕量重繪(shapes+annotations 整組帶回)
