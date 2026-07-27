@@ -211,7 +211,7 @@
   <div class="mf-h">🧭 盤中相對價量相位 · <span id="pv-pair"></span>
     <span style="font-weight:normal;font-size:11px;color:var(--th-faint,#64748b)">(B26a 即時輕量版 · 分K聚合)</span></div>
   <div class="mfcard">
-    <div class="mf-title">X=Δ金額增減%(bar 環比差) × Y=Δ漲跌%(bar 環比差)
+    <div class="mf-title">X=Δ金額增減%(bar 環比·量能增速) × Y=Δ當日漲跌%(相對昨收)
       <span style="margin-left:10px">
         <button class="pvbtn" data-min="5">5分</button><button class="pvbtn" data-min="10">10分</button><button class="pvbtn" data-min="15">15分</button><button class="pvbtn" data-min="30">30分</button>
       </span>
@@ -219,8 +219,9 @@
     <div id="chart-pv"></div>
     <div style="font-size:11px;color:var(--th-faint,#64748b);padding:4px 6px">
       Q1(+,+)=A 動能雙優 · Q2(−,+)=A 價強量弱(背離) · Q3(−,−)=B 動能雙優 · Q4(+,−)=A 量強價弱。
-      bar 金額 = Σ(價×Δ累積量),環比 = 本 bar / 前一 bar − 1;<b>原始 Δ%(未 z 標準化·未平滑)</b>,
-      盤中雜訊大,僅供即時方向感;完整相位(z20+引擎)見
+      <b>Y</b> = 兩檔「當日漲跌%」(bar 收 vs 昨收)之差 → 今日誰相對強(方向穩定·與盤面直覺一致);
+      <b>X</b> = 兩檔「bar 金額環比%」(本 bar/前 bar−1·金額=Σ 價×Δ累積量)之差 → 這 5 分鐘誰量能增速快(脈衝·左右擺動屬正常)。
+      <b>原始 Δ%(未 z 標準化·未平滑)</b>,盤中雜訊大,僅供即時方向感;完整相位(z20+引擎)見
       <a href="relative_pv_phase_chg_block.html" style="color:var(--th-blue,#93c5fd);">B26a 頁</a>。
     </div>
   </div>
@@ -862,16 +863,23 @@ function pvAggregate(sym, m){   // → [{k, close, amt}](amt=該bar Σ p×Δtvol
   return [...bars.values()];
 }
 function pvSeries(m){   // 兩腿聚合 → 逐bar Δ%點列 {ks, dxs, dys, degraded}
+  // Y=Δ當日漲跌%(bar 收 vs 昨收·2026-07-27 CIO 回饋修正:bar 環比脈衝正負亂跳與
+  //   盤面「當日誰強」直覺相反);X=Δ金額增減%(bar 環比·量能增速,保留脈衝口徑)
   const p = currentPair();
-  const A = pvAggregate(p.stocks[0].symbol, m), B = pvAggregate(p.stocks[1].symbol, m);
+  const symA = p.stocks[0].symbol, symB = p.stocks[1].symbol;
+  const A = pvAggregate(symA, m), B = pvAggregate(symB, m);
+  const qa = QUOTES && QUOTES.stocks ? QUOTES.stocks[symA] : null;
+  const qb = QUOTES && QUOTES.stocks ? QUOTES.stocks[symB] : null;
+  const baseA = (qa && qa.prev_close) || (A.length ? A[0].close : null);
+  const baseB = (qb && qb.prev_close) || (B.length ? B[0].close : null);
   const mb = new Map(B.map(b => [b.k, b]));
   const ks = [], dxs = [], dys = [];
   let degraded = true, pa = null, pb = null;
   for (const a of A){
     const b = mb.get(a.k); if (!b) continue;
     if (a.hasTv && b.hasTv) degraded = false;
-    if (pa && pb){
-      const dy = (a.close/pa.close - 1)*100 - (b.close/pb.close - 1)*100;
+    if (pa && pb && baseA && baseB){
+      const dy = (a.close/baseA - 1)*100 - (b.close/baseB - 1)*100;
       const dx = (a.hasTv && b.hasTv && pa.hasTv && pb.hasTv && pa.amt>0 && pb.amt>0)
         ? (a.amt/pa.amt - 1)*100 - (b.amt/pb.amt - 1)*100 : null;
       ks.push(a.k); dxs.push(dx); dys.push(dy);
@@ -904,7 +912,7 @@ function drawPVPhase(){
   }
   const li = ks.length - 1;
   const [qLab, qCol] = pvQuad(dxs[li], dys[li], na, nb);
-  if (vEl) vEl.innerHTML = `bar ${ks[li]}　Δ金額 <b>${dxs[li]==null?"—":(dxs[li]>=0?"+":"")+dxs[li].toFixed(1)}%</b> · Δ價 <b>${(dys[li]>=0?"+":"")+dys[li].toFixed(2)}%</b>　<span style="color:${qCol}">${qLab}</span>`
+  if (vEl) vEl.innerHTML = `bar ${ks[li]}　Δ金額 <b>${dxs[li]==null?"—":(dxs[li]>=0?"+":"")+dxs[li].toFixed(1)}%</b> · Δ當日 <b>${(dys[li]>=0?"+":"")+dys[li].toFixed(2)}%</b>　<span style="color:${qCol}">${qLab}</span>`
     + (degraded ? `　<span style="color:var(--th-amber,#fbbf24)">⚠ 今日檔尚無量欄(X 軸缺·poller 已升級·明日 08:56 生效)</span>` : "");
   const xv = dxs.filter(v => v!=null).map(Math.abs), yv = dys.map(Math.abs);
   const xm = Math.max(5, ...(xv.length?xv:[5])) * 1.2, ym = Math.max(0.3, ...yv) * 1.2;
@@ -934,7 +942,7 @@ function drawPVPhase(){
     margin:{l:44, r:16, t:8, b:36}, dragmode:false, hovermode:"closest",
     xaxis:{ title:{text:`Δ金額增減% = ${na}−${nb}(右=${na} 量能增速快 →)`, font:{size:10}},
       range:[-xm, xm], zeroline:false, gridcolor:T("--th-border","#1f2937"), fixedrange:true },
-    yaxis:{ title:{text:`Δ漲跌% (上=${na} 相對強 ↑)`, font:{size:10}},
+    yaxis:{ title:{text:`Δ當日漲跌% (上=${na} 今日相對強 ↑)`, font:{size:10}},
       range:[-ym, ym], zeroline:false, gridcolor:T("--th-border","#1f2937"), fixedrange:true },
     shapes:[
       {type:"rect", x0:0, x1:xm, y0:0, y1:ym, fillcolor:"rgba(34,197,94,0.07)", line:{width:0}, layer:"below"},
