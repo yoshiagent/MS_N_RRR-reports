@@ -211,16 +211,16 @@
   <div class="mf-h">🧭 盤中相對價量相位 · <span id="pv-pair"></span>
     <span style="font-weight:normal;font-size:11px;color:var(--th-faint,#64748b)">(B26a 即時輕量版 · 分K聚合)</span></div>
   <div class="mfcard">
-    <div class="mf-title">X=Δ金額增減%(bar 環比·量能增速) × Y=Δ當日漲跌%(相對昨收)
+    <div class="mf-title">X=Δ當日漲跌%(相對昨收) × Y=Δ金額增減%(bar 環比·量能增速)
       <span style="margin-left:10px">
         <button class="pvbtn" data-min="5">5分</button><button class="pvbtn" data-min="10">10分</button><button class="pvbtn" data-min="15">15分</button><button class="pvbtn" data-min="30">30分</button>
       </span>
       <span class="mf-val" id="pv-val"></span></div>
     <div id="chart-pv"></div>
     <div style="font-size:11px;color:var(--th-faint,#64748b);padding:4px 6px">
-      Q1(+,+)=A 動能雙優 · Q2(−,+)=A 價強量弱(背離) · Q3(−,−)=B 動能雙優 · Q4(+,−)=A 量強價弱。
-      <b>Y</b> = 兩檔「當日漲跌%」(bar 收 vs 昨收)之差 → 今日誰相對強(方向穩定·與盤面直覺一致);
-      <b>X</b> = 兩檔「bar 金額環比%」(本 bar/前 bar−1·金額=Σ 價×Δ累積量)之差 → 這 5 分鐘誰量能增速快(脈衝·左右擺動屬正常)。
+      Q1(+,+)=A 價量雙優 · Q2(−,+)=A 量強價弱 · Q3(−,−)=B 價量雙優 · Q4(+,−)=A 價強量弱(背離)。
+      <b>X</b> = 兩檔「當日漲跌%」(bar 收 vs 昨收)之差 → 今日誰相對強(方向穩定·與盤面直覺一致);
+      <b>Y</b> = 兩檔「bar 金額環比%」(本 bar/前 bar−1·金額=Σ 價×Δ累積量)之差 → 這 5 分鐘誰量能增速快(脈衝·上下擺動屬正常)。
       <b>原始 Δ%(未 z 標準化·未平滑)</b>,盤中雜訊大,僅供即時方向感;完整相位(z20+引擎)見
       <a href="relative_pv_phase_chg_block.html" style="color:var(--th-blue,#93c5fd);">B26a 頁</a>。
     </div>
@@ -888,12 +888,12 @@ function pvSeries(m){   // 兩腿聚合 → 逐bar Δ%點列 {ks, dxs, dys, degr
   }
   return {ks, dxs, dys, degraded};
 }
-function pvQuad(x, y, na, nb){
+function pvQuad(x, y, na, nb){   // x=Δ當日價·y=Δ量增速(2026-07-27 CIO 軸互換後語意)
   if (x==null || y==null) return ["—", "#94a3b8"];
-  if (x>=0 && y>=0) return [`Q1 ${na}動能雙優`, UP];
-  if (x<0 && y>=0) return [`Q2 ${na}價強量弱(背離)`, "#60a5fa"];
-  if (x<0 && y<0) return [`Q3 ${nb}動能雙優`, DOWN];
-  return [`Q4 ${na}量強價弱`, "#fb923c"];
+  if (x>=0 && y>=0) return [`Q1 ${na}價量雙優`, UP];
+  if (x<0 && y>=0) return [`Q2 ${na}量強價弱`, "#60a5fa"];
+  if (x<0 && y<0) return [`Q3 ${nb}價量雙優`, DOWN];
+  return [`Q4 ${na}價強量弱(背離)`, "#fb923c"];
 }
 function drawPVPhase(){
   const el = document.getElementById("chart-pv"); if (!el || !HIST) return;
@@ -905,17 +905,19 @@ function drawPVPhase(){
       + (+b.dataset.min === PV_MIN ? "background:var(--th-blue,#2563eb);color:var(--th-text,#fff)" : "background:transparent;color:var(--th-muted,#94a3b8)");
   });
   const {ks, dxs, dys, degraded} = pvSeries(PV_MIN);
+  // 2026-07-27 CIO 軸互換:X=Δ當日漲跌%(px=dys)·Y=Δ金額增減%(qy=dxs)
+  const px = dys, qy = dxs;
   const vEl = $("#pv-val");
   if (!ks.length){
     if (vEl) vEl.textContent = "(盤中資料累積中·需 ≥2 個完整分K bar)";
     Plotly.purge(el); return;
   }
   const li = ks.length - 1;
-  const [qLab, qCol] = pvQuad(dxs[li], dys[li], na, nb);
-  if (vEl) vEl.innerHTML = `bar ${ks[li]}　Δ金額 <b>${dxs[li]==null?"—":(dxs[li]>=0?"+":"")+dxs[li].toFixed(1)}%</b> · Δ當日 <b>${(dys[li]>=0?"+":"")+dys[li].toFixed(2)}%</b>　<span style="color:${qCol}">${qLab}</span>`
-    + (degraded ? `　<span style="color:var(--th-amber,#fbbf24)">⚠ 今日檔尚無量欄(X 軸缺·poller 已升級·明日 08:56 生效)</span>` : "");
-  const xv = dxs.filter(v => v!=null).map(Math.abs), yv = dys.map(Math.abs);
-  const xm = Math.max(5, ...(xv.length?xv:[5])) * 1.2, ym = Math.max(0.3, ...yv) * 1.2;
+  const [qLab, qCol] = pvQuad(px[li], qy[li], na, nb);
+  if (vEl) vEl.innerHTML = `bar ${ks[li]}　Δ當日 <b>${(px[li]>=0?"+":"")+px[li].toFixed(2)}%</b> · Δ金額 <b>${qy[li]==null?"—":(qy[li]>=0?"+":"")+qy[li].toFixed(1)}%</b>　<span style="color:${qCol}">${qLab}</span>`
+    + (degraded ? `　<span style="color:var(--th-amber,#fbbf24)">⚠ 今日檔尚無量欄(Y 軸缺·poller 已升級·明日 08:56 生效)</span>` : "");
+  const xvv = px.map(Math.abs), yvv = qy.filter(v => v!=null).map(Math.abs);
+  const xm = Math.max(0.3, ...xvv) * 1.2, ym = Math.max(5, ...(yvv.length?yvv:[5])) * 1.2;
   const css = getComputedStyle(document.body);
   const T = (k, fb) => (css.getPropertyValue(k) || "").trim() || fb;
   // 軌跡留痕(2026-07-27 CIO):漸層 markers(愈舊愈淡愈小 → 愈新愈深愈大)+半透明連線,
@@ -924,13 +926,13 @@ function drawPVPhase(){
   const trailOp = ks.map((_, i) => 0.18 + 0.72 * (nk <= 1 ? 1 : i / (nk - 1)));
   const trailSz = ks.map((_, i) => 3.5 + 4.5 * (nk <= 1 ? 1 : i / (nk - 1)));
   const traces = [
-    { type:"scatter", mode:"lines", x:dxs, y:dys, connectgaps:false,
+    { type:"scatter", mode:"lines", x:px, y:qy, connectgaps:false,
       line:{color:"rgba(34,211,238,0.55)", width:1.6}, hoverinfo:"skip", showlegend:false },
-    { type:"scatter", mode:"markers", x:dxs, y:dys,
+    { type:"scatter", mode:"markers", x:px, y:qy,
       marker:{size:trailSz, color:"#22d3ee", opacity:trailOp,
               line:{color:"rgba(255,255,255,0.25)", width:0.5}},
-      hovertemplate:ks.map(k=>k+" Δ金額%{x:.1f}%·Δ價%{y:.2f}%<extra></extra>"), showlegend:false },
-    { type:"scatter", mode:"markers+text", x:[dxs[li]], y:[dys[li]],
+      hovertemplate:ks.map(k=>k+" Δ當日%{x:.2f}%·Δ金額%{y:.1f}%<extra></extra>"), showlegend:false },
+    { type:"scatter", mode:"markers+text", x:[px[li]], y:[qy[li]],
       marker:{size:14, color:qCol, line:{color:"rgba(255,255,255,0.9)", width:1.4}},
       text:[ks[li]], textposition:"top center", textfont:{size:10, color:"#e2e8f0"},
       hoverinfo:"skip", showlegend:false },
@@ -940,9 +942,9 @@ function drawPVPhase(){
     paper_bgcolor:T("--th-card","#131f2e"), plot_bgcolor:T("--th-bg","#111827"),
     font:{color:T("--th-muted","#94a3b8"), size:11},
     margin:{l:44, r:16, t:8, b:36}, dragmode:false, hovermode:"closest",
-    xaxis:{ title:{text:`Δ金額增減% = ${na}−${nb}(右=${na} 量能增速快 →)`, font:{size:10}},
+    xaxis:{ title:{text:`Δ當日漲跌% = ${na}−${nb}(右=${na} 今日相對強 →)`, font:{size:10}},
       range:[-xm, xm], zeroline:false, gridcolor:T("--th-border","#1f2937"), fixedrange:true },
-    yaxis:{ title:{text:`Δ當日漲跌% (上=${na} 今日相對強 ↑)`, font:{size:10}},
+    yaxis:{ title:{text:`Δ金額增減% (上=${na} 量能增速快 ↑)`, font:{size:10}},
       range:[-ym, ym], zeroline:false, gridcolor:T("--th-border","#1f2937"), fixedrange:true },
     shapes:[
       {type:"rect", x0:0, x1:xm, y0:0, y1:ym, fillcolor:"rgba(34,197,94,0.07)", line:{width:0}, layer:"below"},
