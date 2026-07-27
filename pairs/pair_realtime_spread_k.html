@@ -31,13 +31,14 @@
   .up { color:var(--th-red,#f87171); }   /* 台股慣例:紅=價差走高(A 相對強) */
   .down { color:var(--th-green,#4ade80); } /* 綠=價差走低(B 相對強) */
   .flat { color:var(--th-muted,#94a3b8); }
-  #stats {
+  #stats, #pv-stats {
     display:flex; flex-wrap:wrap; gap:4px 16px; padding:6px 14px; font-size:.86rem;
     background:var(--th-card,#131f2e); border-top:1px solid var(--th-border,#2d3f55); border-bottom:1px solid var(--th-border,#2d3f55);
   }
-  #stats b { font-size:1.02rem; }
-  #stats .lbl { color:var(--th-muted,#94a3b8); font-size:.75rem; margin-right:4px; }
-  #stats .sep { color:var(--th-border2,#334155); }
+  #stats b, #pv-stats b { font-size:1.02rem; }
+  #stats .lbl, #pv-stats .lbl { color:var(--th-muted,#94a3b8); font-size:.75rem; margin-right:4px; }
+  #stats .sep, #pv-stats .sep { color:var(--th-border2,#334155); }
+  #pv-stats { border-radius:6px; margin:4px 0 6px; }
   #verdict { padding:6px 14px; font-size:.84rem; }
   .badge { display:inline-block; border-radius:6px; padding:2px 8px; font-size:.8rem; font-weight:700; }
   .badge.a { background:rgba(248,113,113,.14); color:var(--th-red,#f87171); border:1px solid rgba(248,113,113,.35); }
@@ -210,6 +211,7 @@
 <div id="pv-section">
   <div class="mf-h">🧭 盤中相對價量相位 · <span id="pv-pair"></span>
     <span style="font-weight:normal;font-size:11px;color:var(--th-faint,#64748b)">(B26a 即時輕量版 · 分K聚合)</span></div>
+  <div id="pv-stats"></div>
   <div class="mfcard">
     <div class="mf-title">X=Δ當日漲跌%(相對昨收) × Y=Δ金額增減%(bar 環比·量能增速)
       <span style="margin-left:10px">
@@ -900,6 +902,22 @@ function drawPVPhase(){
   const p = currentPair(), na = p.stocks[0].name, nb = p.stocks[1].name;
   const pe = $("#pv-pair");
   if (pe) pe.innerHTML = `<span style="color:${VA_C}">${na}</span> / <span style="color:${VB_C}">${nb}</span>　<span style="color:var(--th-faint,#64748b);font-weight:normal">${PV_MIN}分K</span>`;
+  // 即時數據列(2026-07-27 CIO):兩檔現價+漲跌% + 實際價差(A−B 元),同頂部統計列樣式
+  const pst = $("#pv-stats");
+  if (pst){
+    const qa = QUOTES && QUOTES.stocks ? QUOTES.stocks[p.stocks[0].symbol] : null;
+    const qb = QUOTES && QUOTES.stocks ? QUOTES.stocks[p.stocks[1].symbol] : null;
+    const leg = (nm, q) => {
+      if (!q) return `<span><span class="lbl">${nm}</span>–</span>`;
+      const c = pctClass(q.change_pct);
+      return `<span><span class="lbl">${nm}</span><b class="${c}">${fmt(q.price)}</b> <span class="${c}" style="font-size:.78rem;">${q.change_pct>0?"+":""}${fmt(q.change_pct)}%</span></span>`;
+    };
+    const pa2 = qa ? qa.price : null, pb2 = qb ? qb.price : null;
+    const pdv2 = (pa2!=null && pb2!=null) ? (pa2 - pb2) : null;
+    const c2 = pctClass(pdv2);
+    pst.innerHTML = `${leg(na, qa)}<span class="sep">│</span>${leg(nb, qb)}<span class="sep">│</span>`
+      + `<span><span class="lbl">價差(${na}−${nb})</span><b class="${c2}">${pdv2==null?"–":((pdv2>=0?"+":"")+fmt(pdv2,2))}</b> 元</span>`;
+  }
   document.querySelectorAll(".pvbtn").forEach(b => {
     b.style.cssText = "font-size:10.5px;padding:2px 8px;margin-right:4px;border-radius:4px;cursor:pointer;border:1px solid var(--th-border,#2d3f55);"
       + (+b.dataset.min === PV_MIN ? "background:var(--th-blue,#2563eb);color:var(--th-text,#fff)" : "background:transparent;color:var(--th-muted,#94a3b8)");
