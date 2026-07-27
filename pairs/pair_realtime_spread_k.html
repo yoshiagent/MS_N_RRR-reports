@@ -910,12 +910,20 @@ function drawPVPhase(){
   const xm = Math.max(5, ...(xv.length?xv:[5])) * 1.2, ym = Math.max(0.3, ...yv) * 1.2;
   const css = getComputedStyle(document.body);
   const T = (k, fb) => (css.getPropertyValue(k) || "").trim() || fb;
+  // 軌跡留痕(2026-07-27 CIO):漸層 markers(愈舊愈淡愈小 → 愈新愈深愈大)+半透明連線,
+  // 全日路徑保留、時序一眼可讀;現點另畫大點(象限色)。
+  const nk = ks.length;
+  const trailOp = ks.map((_, i) => 0.18 + 0.72 * (nk <= 1 ? 1 : i / (nk - 1)));
+  const trailSz = ks.map((_, i) => 3.5 + 4.5 * (nk <= 1 ? 1 : i / (nk - 1)));
   const traces = [
-    { type:"scatter", mode:"lines+markers", x:dxs, y:dys, connectgaps:false,
-      line:{color:"rgba(34,211,238,0.45)", width:1.2}, marker:{size:4, color:"rgba(34,211,238,0.5)"},
+    { type:"scatter", mode:"lines", x:dxs, y:dys, connectgaps:false,
+      line:{color:"rgba(34,211,238,0.55)", width:1.6}, hoverinfo:"skip", showlegend:false },
+    { type:"scatter", mode:"markers", x:dxs, y:dys,
+      marker:{size:trailSz, color:"#22d3ee", opacity:trailOp,
+              line:{color:"rgba(255,255,255,0.25)", width:0.5}},
       hovertemplate:ks.map(k=>k+" Δ金額%{x:.1f}%·Δ價%{y:.2f}%<extra></extra>"), showlegend:false },
     { type:"scatter", mode:"markers+text", x:[dxs[li]], y:[dys[li]],
-      marker:{size:13, color:qCol, line:{color:"rgba(255,255,255,0.85)", width:1.2}},
+      marker:{size:14, color:qCol, line:{color:"rgba(255,255,255,0.9)", width:1.4}},
       text:[ks[li]], textposition:"top center", textfont:{size:10, color:"#e2e8f0"},
       hoverinfo:"skip", showlegend:false },
   ];
