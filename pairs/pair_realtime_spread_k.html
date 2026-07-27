@@ -602,8 +602,13 @@ function showInfo(){
   const s = SD, i = curIdx;
   if (i < 0 || i >= s.sc.length) return;
   const f4 = v => v==null ? "—" : ((v>=0?"+":"")+(Math.round(v*1e4)/1e4).toFixed(4));
-  const up = s.sc[i]!=null && s.so[i]!=null && s.sc[i] >= s.so[i];
-  const dir = up ? `<b class="up">▲收漲(${s.na}強)</b>` : `<b class="down">▼收跌(${s.nb}強)</b>`;
+  // 漲跌語意=vs 前一日價差收盤(台股「漲跌」慣例·2026-07-27 CIO 回饋:原本比 bar 開收,
+  // 遇「跳空低開後盤中回升」會顯示收漲與當日兩檔相對強弱直覺相反);K 棒紅綠(開收)不變。
+  const pc0 = (i > 0 && s.sc[i-1] != null) ? s.sc[i-1] : null;
+  const dd0 = (pc0 != null && s.sc[i] != null) ? s.sc[i] - pc0 : null;
+  const dir = dd0 == null ? "" :
+    (dd0 >= 0 ? `<b class="up">▲價差較昨漲(${s.na}相對強)</b>`
+              : `<b class="down">▼價差較昨跌(${s.nb}相對強)</b>`);
   let bstat = "";
   if (s.mid[i]!=null && s.bbUp[i]!=null && s.bbLo[i]!=null){
     const pb = s.bbUp[i] > s.bbLo[i] ? (s.sc[i]-s.bbLo[i])/(s.bbUp[i]-s.bbLo[i])*100 : null;
