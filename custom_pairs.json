@@ -30,12 +30,12 @@
         "近 20 日 Z 範圍 [+1.00, +2.70]",
         "近期 Z 極大 +2.70 已折返至 +1.00（≤ +1.2） → 賣 8046 換 3037"
       ],
-      "A_state": "above_down",
-      "A_label": "箱上回測",
-      "A_icon": "🟡",
-      "A_color": "#fcd34d",
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
       "A_modifiers": [],
-      "A_healthy": true,
+      "A_healthy": false,
       "B_state": "inbox_side",
       "B_label": "箱內盤整",
       "B_icon": "⚪",
@@ -43,7 +43,7 @@
       "B_modifiers": [],
       "B_healthy": false,
       "healthy_pair": false,
-      "pair_health": "a_only"
+      "pair_health": "none"
     },
     {
       "idx": 2,
@@ -188,12 +188,14 @@
         "近 20 日 Z 範圍 [-1.56, +0.99]",
         "近期 Z 極小 -1.56 已折返至 +0.59（≥ -1.2） → 賣 9914 換 9921"
       ],
-      "A_state": "inbox_down",
-      "A_label": "箱內向下",
-      "A_icon": "🟠",
-      "A_color": "#fb923c",
-      "A_modifiers": [],
-      "A_healthy": false,
+      "A_state": "above_down",
+      "A_label": "箱上回測",
+      "A_icon": "🟡",
+      "A_color": "#fcd34d",
+      "A_modifiers": [
+        "breakout_pending"
+      ],
+      "A_healthy": true,
       "B_state": "inbox_down",
       "B_label": "箱內向下",
       "B_icon": "🟠",
@@ -201,7 +203,7 @@
       "B_modifiers": [],
       "B_healthy": false,
       "healthy_pair": false,
-      "pair_health": "none"
+      "pair_health": "a_only"
     },
     {
       "idx": 6,
