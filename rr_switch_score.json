@@ -1,9 +1,9 @@
 {
-  "as_of": "2026-07-27",
+  "as_of": "2026-07-28",
   "n_pairs": 6,
-  "n_z_gate_passed": 2,
+  "n_z_gate_passed": 1,
   "n_strong": 0,
-  "n_strong_stays_strong": 0,
+  "n_strong_stays_strong": 1,
   "z_mode": "gate",
   "weights": {
     "z_reversal": 30,
@@ -25,7 +25,7 @@
       ],
       "signal": "switch_to_B",
       "z_gate_passed": true,
-      "zscore": 1.0,
+      "zscore": 1.02,
       "switch_direction": "B",
       "switch_into": {
         "code": "3037",
@@ -37,7 +37,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 23.44,
+          "score": 1.24,
           "src": "no_rotation"
         },
         "box": {
@@ -58,14 +58,26 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 40.9,
-      "switch_score_ref": 40.9,
-      "strong_stays_strong": false,
-      "trim": null,
+      "switch_score": 32.9,
+      "switch_score_ref": 32.9,
+      "strong_stays_strong": true,
+      "trim": {
+        "target": {
+          "code": "8046",
+          "name": "南電"
+        },
+        "pct_range": [
+          0,
+          20
+        ],
+        "sell_chip_state": "accumulation",
+        "buy_chip_state": "distribution_warning",
+        "sell_mbs_increasing": true
+      },
       "recommendation": {
-        "label": "Z 到但籌碼/結構不支持 · 觀望",
-        "color": "#ef4444",
-        "icon": "🚫"
+        "label": "強者恆強 · 延後換股 · 減碼 南電 0–20% · 等待",
+        "color": "#a78bfa",
+        "icon": "💪"
       }
     },
     {
@@ -81,7 +93,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -0.68,
+      "zscore": -1.06,
       "switch_direction": "B",
       "switch_into": {
         "code": "3035",
@@ -93,13 +105,13 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 17.68,
+          "score": 29.63,
           "src": "no_rotation"
         },
         "box": {
-          "score": 60.0,
-          "src": "inbox_up",
-          "healthy": true
+          "score": 45.0,
+          "src": "inbox_side",
+          "healthy": false
         }
       },
       "active_weights": {
@@ -137,7 +149,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": -1.84,
+      "zscore": -1.77,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -188,7 +200,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": 1.54,
+      "zscore": 1.69,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -237,9 +249,9 @@
         "巨大",
         "美利達"
       ],
-      "signal": "switch_to_A",
-      "z_gate_passed": true,
-      "zscore": 0.59,
+      "signal": "hold_A",
+      "z_gate_passed": false,
+      "zscore": 0.69,
       "switch_direction": "A",
       "switch_into": {
         "code": "9921",
@@ -251,7 +263,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 19.95,
+          "score": 21.51,
           "src": "no_rotation"
         },
         "box": {
@@ -272,14 +284,14 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 46.8,
-      "switch_score_ref": 46.8,
+      "switch_score": null,
+      "switch_score_ref": 47.3,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "Z 到但籌碼/結構不支持 · 觀望",
-        "color": "#ef4444",
-        "icon": "🚫"
+        "label": "延後 · Z60 未過換股門檻",
+        "color": "#64748b",
+        "icon": "⏸"
       }
     },
     {
@@ -295,7 +307,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -1.38,
+      "zscore": -1.33,
       "switch_direction": "B",
       "switch_into": {
         "code": "3026",
@@ -307,7 +319,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 10.82,
+          "score": 6.84,
           "src": "no_rotation"
         },
         "box": {
@@ -329,7 +341,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 21.0,
+      "switch_score_ref": 19.6,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -340,6 +352,6 @@
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-07-27T23:17:03",
+  "generated_at": "2026-07-28T22:17:19",
   "available": true
 }
