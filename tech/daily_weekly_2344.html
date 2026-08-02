@@ -234,22 +234,46 @@
   }
   var PAD_R=2, B3M=63;                       // 右側留白根數 / 近3月根數
   function defRange(){ return [Math.max(-0.7,(N-B3M)-0.5), (N-1)+PAD_R+0.5]; }
-  window.kRangeLast=function(id,bars){var g=gd(id); if(!g||!g._fullLayout)return;
-    apply(g, Math.max(-0.7,(N-bars)-0.5), (N-1)+PAD_R+0.5);};
-  window.kAll=function(id){var g=gd(id); if(!g||!g._fullLayout)return;
-    apply(g, -0.7, (N-1)+PAD_R+0.5);};
-  window.kDefault=function(id){var g=gd(id); if(!g||!g._fullLayout)return;
+  /* 同頁多個 B3 實例(如配對頁 A/B 各一): closure 資料(DH/DL/C/N…)各自成套。
+     操作函式登錄到 per-div 註冊表 _dwkA, window.k* 只做 dispatch(各實例定義相同,
+     最後定義者生效)→ 免互踩(否則第2實例的資料會蓋掉第1實例按鈕的 closure)。 */
+  function fRangeLast(bars){var g=gd(DIV); if(!g||!g._fullLayout)return;
+    apply(g, Math.max(-0.7,(N-bars)-0.5), (N-1)+PAD_R+0.5);}
+  function fAll(){var g=gd(DIV); if(!g||!g._fullLayout)return;
+    apply(g, -0.7, (N-1)+PAD_R+0.5);}
+  function fDefault(){var g=gd(DIV); if(!g||!g._fullLayout)return;
     g._locked=false; g._kCur=N-1;                      // 解鎖游標 + 回最新日
     if(g._setOHLC) g._setOHLC(N-1);                    // 資訊列文字(不經 relayout)
-    var r=defRange(); apply(g, r[0], r[1]);};          // apply 的 .then 會在 g._kCur 畫十字游標
+    var r=defRange(); apply(g, r[0], r[1]);}           // apply 的 .then 會在 g._kCur 畫十字游標
     // (不另呼叫 cross(): 它的 shapes-relayout 會與 apply 的 range-relayout 競態 → 價格軸回 autorange)
-  window.kZoom=function(id,f){var g=gd(id); if(!g||!g._fullLayout)return;
+  function fZoom(f){var g=gd(DIV); if(!g||!g._fullLayout)return;
     var r=curX(g), a=N-1;                            // 以最後1天為錨點縮放(該根位置不動)
-    apply(g, a-(a-r[0])*f, a+(r[1]-a)*f);};
+    apply(g, a-(a-r[0])*f, a+(r[1]-a)*f);}
   /** 箭頭/鍵盤=移動十字游標(圖不動); step=±1/±5 交易日; 移動即鎖定 */
-  window.kCursor=function(id,step){var g=gd(id); if(!g||!g._kCross)return;
+  function fCursor(step){var g=gd(DIV); if(!g||!g._kCross)return;
     g._locked=true; var i=(g._kCur==null?N-1:g._kCur)+step;
-    i=Math.max(0,Math.min(N-1,i)); g._kCross(i);};
+    i=Math.max(0,Math.min(N-1,i)); g._kCross(i);}
+  /** 🗂 扣抵符號 開關(畫在 shapes, 非 trace) */
+  function fKoudi(btn){var g=gd(DIV); if(!g||!g._fullLayout)return;
+    g._koudiOn=!g._koudiOn;
+    Plotly.relayout(g,{shapes:(g._profShapes||[]).concat(crossShapes(g._kCur,g._koudiOn))});
+    if(btn) btn.classList.toggle('active', g._koudiOn);}
+  /** 🗂 分價量表 開關(改 shapes, 非 trace) */
+  function fProf(btn){var g=gd(DIV); if(!g||!g._fullLayout)return;
+    g._profOn=!g._profOn;
+    var r=curX(g); apply(g, r[0], r[1]);             // 以目前範圍重畫(含/不含分價條)
+    if(btn) btn.classList.toggle('active', g._profOn);}
+  window._dwkA=window._dwkA||{};
+  window._dwkA[DIV]={rangeLast:fRangeLast,all:fAll,def:fDefault,zoom:fZoom,cursor:fCursor,
+                     koudi:fKoudi,prof:fProf};
+  function _d(id){return window._dwkA[id];}
+  window.kRangeLast=function(id,bars){var a=_d(id); if(a)a.rangeLast(bars);};
+  window.kAll=function(id){var a=_d(id); if(a)a.all();};
+  window.kDefault=function(id){var a=_d(id); if(a)a.def();};
+  window.kZoom=function(id,f){var a=_d(id); if(a)a.zoom(f);};
+  window.kCursor=function(id,step){var a=_d(id); if(a)a.cursor(step);};
+  window.kKoudiToggle=function(id,btn){var a=_d(id); if(a)a.koudi(btn);};
+  window.kProfToggle=function(id,btn){var a=_d(id); if(a)a.prof(btn);};
   function _setVis(g,group,vis){                      // 設某 legendgroup 可見性 + 記錄狀態
     var idx=[]; g.data.forEach(function(t,i){ if(t.legendgroup===group) idx.push(i); });
     if(!idx.length) return false;
@@ -278,21 +302,6 @@
     if(g._setOHLC) g._setOHLC(g._kCur);
     syncMasters(g);
   };
-  /** 🗂 扣抵符號 開關(畫在 shapes, 非 trace) */
-  window.kKoudiToggle=function(id,btn){
-    var g=gd(id); if(!g||!g._fullLayout)return;
-    g._koudiOn=!g._koudiOn;
-    Plotly.relayout(g,{shapes:(g._profShapes||[]).concat(crossShapes(g._kCur,g._koudiOn))});
-    if(btn) btn.classList.toggle('active', g._koudiOn);
-  };
-  /** 🗂 分價量表 開關(改 shapes, 非 trace) */
-  window.kProfToggle=function(id,btn){
-    var g=gd(id); if(!g||!g._fullLayout)return;
-    g._profOn=!g._profOn;
-    var r=curX(g); apply(g, r[0], r[1]);             // 以目前範圍重畫(含/不含分價條)
-    if(btn) btn.classList.toggle('active', g._profOn);
-  };
-
   /* ── 十字游標 + 兩圖間資訊列 (取代 tooltip) ── */
   function fmt(v){ return (v==null||isNaN(v))?'—':(''+(Math.round(v*100)/100)); }
   function lbl(group,hid,color,inner){           // 資訊列可點標籤=該線個別開關(關閉→刪節線/淡)
@@ -373,12 +382,12 @@
       var r=fl.xaxis.range, dx=r[0]+(px/len)*(r[1]-r[0]);
       g._locked=true; cross(Math.max(0,Math.min(N-1,Math.round(dx))));
     });
-    g.addEventListener('dblclick',function(){ window.kDefault(id); });   // 雙擊→還原近3月+解鎖
+    g.addEventListener('dblclick',function(){ fDefault(); });   // 雙擊→還原近3月+解鎖
     document.addEventListener('keydown',function(e){                     // 桌機 ←→ 移動游標
       var t=document.activeElement;
       if(t&&/^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName)) return;
-      if(e.key==='ArrowLeft'){ window.kCursor(id,-1); e.preventDefault(); }
-      else if(e.key==='ArrowRight'){ window.kCursor(id,1); e.preventDefault(); }
+      if(e.key==='ArrowLeft'){ fCursor(-1); e.preventDefault(); }
+      else if(e.key==='ArrowRight'){ fCursor(1); e.preventDefault(); }
     });
     // 滑鼠 Y(像素)→ 價位 → 第2列分價量資訊(壓撐); 只在日K(row1)區內, 桶沒變不重畫
     var _lastB=-999;
@@ -391,7 +400,7 @@
       if(b===_lastB) return; _lastB=b;
       if(PROF_EL) PROF_EL.innerHTML=profInfoAt(g,price);   // 分價量列寫 HTML
     });
-    window.kDefault(id);                               // 預設視窗=近3月 + 游標停最新日(解鎖)
+    fDefault();                                        // 預設視窗=近3月 + 游標停最新日(解鎖)
   }
   initCross("dwk_2344");
 })();
