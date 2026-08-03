@@ -160,7 +160,7 @@
   <span class="sep"></span>
   <button id="bbtn" class="active" onclick="toggleBB()">布林 MA20±2σ</button>
 </div>
-<div id="chart-info">（點圖／◀▶ 或鍵盤 ← → 移游標 → 顯示當日 價差 OHLC ＋ MA20 ＋ 布林%B ＋ Z20 ＋ 來源）</div>
+<div id="chart-info">（點圖／◀▶ 或鍵盤 ← → 移游標 → 顯示當日 價差 OHLC ＋ MA20 ＋ 帶寬 ＋ Z20 ＋ 來源）</div>
 <div id="chart"></div>
 
 <div id="mf-section">
@@ -496,8 +496,9 @@ function draw(){
   const sd  = rollStd(sc, mid, BB_WIN);
   const bbUp = mid.map((m,i)=> m==null||sd[i]==null ? null : m+2*sd[i]);
   const bbLo = mid.map((m,i)=> m==null||sd[i]==null ? null : m-2*sd[i]);
-  // 布林%B 日序列(2026-08-03 CIO:訊息列 %B 讀數回歸+增減箭頭;存序列供 prevNonNull 比較)
-  const pctbArr = sc.map((c,i)=> (c==null||bbUp[i]==null||bbLo[i]==null||bbUp[i]<=bbLo[i]) ? null : (c-bbLo[i])/(bbUp[i]-bbLo[i]));
+  // 布林帶寬 日序列(2026-08-03 CIO:訊息列顯示 帶寬=上軌−下軌(=4σ·ln 尺度)+增減箭頭;
+  // 開口/收口判讀;存序列供 prevNonNull 比較。同日稍早的 %B 讀數改為此帶寬)
+  const bwArr = bbUp.map((u,i)=> (u==null||bbLo[i]==null) ? null : u-bbLo[i]);
   const mid60 = ma(sc, Z60_WIN), sd60 = rollStd(sc, mid60, Z60_WIN);
   const z60 = sc.map((c,i)=> (c==null||sd60[i]==null||!sd60[i]) ? null : (c-mid60[i])/sd60[i]);
 
@@ -515,7 +516,7 @@ function draw(){
   // 末筆=今日 live 併棒即時);標題列讀數=價差+兩檔成交價/漲跌/漲跌幅(MA20 讀數同日移除)
   const pdArr = al.dates.map((_,i)=> (al.cA[i]!=null && al.cB[i]!=null) ? al.cA[i]-al.cB[i] : null);
 
-  SD = { dates:al.dates, so, sh, sl, sc, mid, bbUp, bbLo, pctb:pctbArr, z60, dif:mdDif, dea:mdDea, osc:mdOsc,
+  SD = { dates:al.dates, so, sh, sl, sc, mid, bbUp, bbLo, bw:bwArr, z60, dif:mdDif, dea:mdDea, osc:mdOsc,
          cA:al.cA, cB:al.cB, cp:cpArr, cab:cabArr, rpv:rpvArr, pd:pdArr,
          na:nameA, nb:nameB, liveLast };
   if (curIdx == null || curIdx > n-1) curIdx = n-1;
@@ -716,18 +717,19 @@ function showInfo(){
               : `<b class="down">▼價差較昨跌(${s.nb}相對強)</b>`);
   // 2026-07-30 CIO:元價差改短版「價差(南−欣)=+165.00 元」(股名首字·不列兩腿個價);
   // 加 MA20(布林中軸·ln 單位)+增減箭頭(較前一有值日·同 B22 ①標題)。
-  // 2026-08-03 CIO:布林%B 讀數回歸(0~1·帶位置)+增減箭頭,插在 MA20 與 Z20 之間。
+  // 2026-08-03 CIO:加「帶寬=x.xx」(上軌−下軌=4σ·ln 尺度·開口/收口)+增減箭頭,
+  // 插在 MA20 與 Z20 之間(同日稍早的 %B 讀數改為此帶寬)。
   const z20 = (s.mid[i]!=null && s.bbUp[i]!=null && s.bbUp[i]>s.mid[i] && s.sc[i]!=null) ? (s.sc[i]-s.mid[i])/((s.bbUp[i]-s.mid[i])/2) : null;
   const z20s = z20==null ? "—" : ((z20>=0?"+":"")+z20.toFixed(2)+"σ");
   const pdv = (s.cA[i]!=null && s.cB[i]!=null) ? (s.cA[i]-s.cB[i]) : null;
   const pdc = pdv==null ? "flat" : (pdv>=0 ? "up" : "down");
   const pd = pdv==null ? "—" : `<b class="${pdc}">${(pdv>=0?"+":"")+pdv.toFixed(2)}</b> 元`;
   const ma20s = s.mid[i]==null ? "—" : f4(s.mid[i]) + arrow(s.mid[i], prevNonNull(s.mid, i));
-  const pbs = s.pctb[i]==null ? "—" : s.pctb[i].toFixed(2) + arrow(s.pctb[i], prevNonNull(s.pctb, i));
+  const bws = s.bw[i]==null ? "—" : s.bw[i].toFixed(2) + arrow(s.bw[i], prevNonNull(s.bw, i));
   // MACD 讀數已移至 MACD 面板的標題列(見 macdAnno),此處不再重複顯示
   // CP/CAB 讀數已移至該面板的標題列(見 cpAnno),此處不再重複顯示
   const src = (s.liveLast && i === s.sc.length-1) ? `　<span style="color:var(--th-cyan,#22d3ee)">◉RTD即時</span>` : `　<span class="flat">◐日線近似</span>`;
-  info.innerHTML = `<b>${s.dates[i]}</b>　價差(${s.na[0]}−${s.nb[0]})=${pd}　收(log) ${f4(s.sc[i])}　開 ${f4(s.so[i])}　高 ${f4(s.sh[i])}　低 ${f4(s.sl[i])}　${dir}　MA20 ${ma20s}　布林%B ${pbs}　Z20 ${z20s}${src}`;
+  info.innerHTML = `<b>${s.dates[i]}</b>　價差(${s.na[0]}−${s.nb[0]})=${pd}　收(log) ${f4(s.sc[i])}　開 ${f4(s.so[i])}　高 ${f4(s.sh[i])}　低 ${f4(s.sl[i])}　${dir}　MA20 ${ma20s}　帶寬=${bws}　Z20 ${z20s}${src}`;
 }
 
 /* 只更新游標(輕量,不整張 react) */
