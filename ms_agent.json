@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-03",
+  "as_of": "2026-08-04",
   "schema_version": "v2",
   "market_phase": {
     "value": "UNCLEAR",
@@ -7,16 +7,16 @@
     "confidence_band": "LOW",
     "reason": [
       "無 phase 規則滿足 ≥3 條 (BEAR 需 ≥4)",
-      "breadth_regime=weak, above_ma20=23.1%, adv_dec=0.62"
+      "breadth_regime=weak, above_ma20=28.4%, adv_dec=0.65"
     ]
   },
   "risk_mode": {
-    "value": "DEFENSIVE",
+    "value": "NORMAL",
     "confidence": 60,
     "confidence_band": "MEDIUM",
     "reason": [
-      "phase=UNCLEAR, triggers=3",
-      "風險訊號 3 個 (3-5)"
+      "phase=UNCLEAR, triggers=1",
+      "不到 AGGRESSIVE 條件, 也未達 DEFENSIVE 門檻"
     ]
   },
   "market_structure": {
@@ -46,23 +46,23 @@
     ]
   },
   "master_weight_policy": {
-    "Wyckoff": 36,
-    "Minervini": 8,
-    "ONeil": 7,
+    "Wyckoff": 26,
+    "Minervini": 10,
+    "ONeil": 10,
     "Weinstein": 12,
-    "Darvas": 8,
-    "Livermore": 8,
+    "Darvas": 11,
+    "Livermore": 10,
     "Lynch": 7,
     "Fisher": 7,
     "Buffett": 7
   },
   "discipline_policy": {
     "max_position_ratio_per_stock": 15,
-    "max_total_exposure": 49,
+    "max_total_exposure": 65,
     "allow_new_position": true,
     "allow_add_position": false,
-    "stop_loss_strictness": "HIGH",
-    "cash_minimum_ratio": 51
+    "stop_loss_strictness": "NORMAL",
+    "cash_minimum_ratio": 35
   },
   "orchestrator_instruction": {
     "action_bias": "MAINTAIN",
@@ -81,29 +81,29 @@
   "skill_feedback": {
     "active": true,
     "skill_index": {
-      "Wyckoff": 77.29,
-      "Minervini": 2.54,
-      "ONeil": 1.27,
-      "Weinstein": 12.77,
-      "Darvas": 3.14,
-      "Livermore": 2.61,
-      "Lynch": 0.14,
-      "Fisher": 0.2,
+      "Wyckoff": 49.45,
+      "Minervini": 8.95,
+      "ONeil": 7.65,
+      "Weinstein": 12.75,
+      "Darvas": 11.4,
+      "Livermore": 9.3,
+      "Lynch": 0.25,
+      "Fisher": 0.3,
       "Buffett": 0.0
     },
     "n_days_with_data": 7,
-    "alpha": 0.371,
+    "alpha": 0.362,
     "alpha_mode": "dynamic",
-    "avg_skill_std": 2.93,
-    "skill_source": "global",
-    "phase_days_current": 1
+    "avg_skill_std": 3.8,
+    "skill_source": "phase_specific:UNCLEAR",
+    "phase_days_current": 2
   },
   "summary": {
     "phase": "UNCLEAR",
-    "risk_mode": "DEFENSIVE",
+    "risk_mode": "NORMAL",
     "action_bias": "MAINTAIN",
     "skill_feedback_active": true
   },
-  "generated_at": "2026-08-03T22:01:15",
+  "generated_at": "2026-08-04T22:01:19",
   "available": true
 }
