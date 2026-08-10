@@ -1,9 +1,9 @@
 {
-  "as_of": "2026-08-07",
+  "as_of": "2026-08-10",
   "n_pairs": 6,
   "n_z_gate_passed": 2,
   "n_strong": 0,
-  "n_strong_stays_strong": 0,
+  "n_strong_stays_strong": 1,
   "z_mode": "gate",
   "weights": {
     "z_reversal": 30,
@@ -25,7 +25,7 @@
       ],
       "signal": "switch_to_B",
       "z_gate_passed": true,
-      "zscore": 0.27,
+      "zscore": 0.3,
       "switch_direction": "B",
       "switch_into": {
         "code": "3037",
@@ -33,11 +33,11 @@
       },
       "components": {
         "rcga": {
-          "score": 55.0,
-          "src": "YELLOW"
+          "score": 20.0,
+          "src": "RED"
         },
         "rcr": {
-          "score": 14.7,
+          "score": 13.69,
           "src": "no_rotation"
         },
         "box": {
@@ -58,8 +58,8 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 37.8,
-      "switch_score_ref": 37.8,
+      "switch_score": 24.9,
+      "switch_score_ref": 24.9,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -81,7 +81,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": 2.84,
+      "zscore": 2.95,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -132,7 +132,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": -1.73,
+      "zscore": -1.69,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -183,7 +183,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": 2.73,
+      "zscore": 1.82,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -234,7 +234,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": 2.43,
+      "zscore": 2.53,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -285,7 +285,7 @@
       ],
       "signal": "switch_to_A",
       "z_gate_passed": true,
-      "zscore": -1.08,
+      "zscore": -1.09,
       "switch_direction": "A",
       "switch_into": {
         "code": "2492",
@@ -293,16 +293,16 @@
       },
       "components": {
         "rcga": {
-          "score": 55.0,
-          "src": "YELLOW"
+          "score": 20.0,
+          "src": "RED"
         },
         "rcr": {
-          "score": 5.91,
+          "score": 3.82,
           "src": "no_rotation"
         },
         "box": {
-          "score": 35.0,
-          "src": "inbox_down",
+          "score": 45.0,
+          "src": "inbox_side",
           "healthy": false
         }
       },
@@ -318,18 +318,30 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 31.8,
-      "switch_score_ref": 31.8,
-      "strong_stays_strong": false,
-      "trim": null,
+      "switch_score": 21.4,
+      "switch_score_ref": 21.4,
+      "strong_stays_strong": true,
+      "trim": {
+        "target": {
+          "code": "3026",
+          "name": "禾伸堂"
+        },
+        "pct_range": [
+          0,
+          20
+        ],
+        "sell_chip_state": "accumulation",
+        "buy_chip_state": "no_signal",
+        "sell_mbs_increasing": true
+      },
       "recommendation": {
-        "label": "Z 到但籌碼/結構不支持 · 觀望",
-        "color": "#ef4444",
-        "icon": "🚫"
+        "label": "強者恆強 · 延後換股 · 減碼 禾伸堂 0–20% · 等待",
+        "color": "#a78bfa",
+        "icon": "💪"
       }
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-08-07T22:18:50",
+  "generated_at": "2026-08-10T22:23:51",
   "available": true
 }
