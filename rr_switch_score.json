@@ -1,9 +1,9 @@
 {
-  "as_of": "2026-08-10",
+  "as_of": "2026-08-11",
   "n_pairs": 6,
   "n_z_gate_passed": 2,
   "n_strong": 0,
-  "n_strong_stays_strong": 1,
+  "n_strong_stays_strong": 0,
   "z_mode": "gate",
   "weights": {
     "z_reversal": 30,
@@ -25,7 +25,7 @@
       ],
       "signal": "switch_to_B",
       "z_gate_passed": true,
-      "zscore": 0.3,
+      "zscore": 0.38,
       "switch_direction": "B",
       "switch_into": {
         "code": "3037",
@@ -37,7 +37,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 13.69,
+          "score": 23.84,
           "src": "no_rotation"
         },
         "box": {
@@ -58,8 +58,8 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 24.9,
-      "switch_score_ref": 24.9,
+      "switch_score": 28.5,
+      "switch_score_ref": 28.5,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -81,7 +81,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": 2.95,
+      "zscore": 2.63,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -130,28 +130,33 @@
         "華邦電",
         "南亞科"
       ],
-      "signal": "no_action",
+      "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -1.69,
-      "switch_direction": null,
-      "switch_into": null,
+      "zscore": -1.45,
+      "switch_direction": "B",
+      "switch_into": {
+        "code": "2408",
+        "name": "南亞科"
+      },
       "components": {
         "rcga": {
           "score": 55.0,
           "src": "YELLOW"
         },
         "rcr": {
-          "score": null,
+          "score": 16.26,
           "src": "no_rotation"
         },
         "box": {
-          "score": null,
-          "src": null,
-          "healthy": null
+          "score": 60.0,
+          "src": "inbox_up",
+          "healthy": true
         }
       },
       "active_weights": {
-        "rcga": 25
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
       },
       "z_mode": "gate",
       "weights": {
@@ -161,7 +166,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 55.0,
+      "switch_score_ref": 42.6,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -181,28 +186,33 @@
         "上銀",
         "大銀微系統"
       ],
-      "signal": "no_action",
+      "signal": "hold_A",
       "z_gate_passed": false,
-      "zscore": 1.82,
-      "switch_direction": null,
-      "switch_into": null,
+      "zscore": 1.47,
+      "switch_direction": "A",
+      "switch_into": {
+        "code": "2049",
+        "name": "上銀"
+      },
       "components": {
         "rcga": {
           "score": 20.0,
           "src": "RED"
         },
         "rcr": {
-          "score": null,
+          "score": 24.81,
           "src": "no_rotation"
         },
         "box": {
-          "score": null,
-          "src": null,
-          "healthy": null
+          "score": 60.0,
+          "src": "inbox_up",
+          "healthy": true
         }
       },
       "active_weights": {
-        "rcga": 25
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
       },
       "z_mode": "gate",
       "weights": {
@@ -212,7 +222,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 20.0,
+      "switch_score_ref": 33.1,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -234,7 +244,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": 2.53,
+      "zscore": 2.45,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -285,7 +295,7 @@
       ],
       "signal": "switch_to_A",
       "z_gate_passed": true,
-      "zscore": -1.09,
+      "zscore": -1.06,
       "switch_direction": "A",
       "switch_into": {
         "code": "2492",
@@ -297,7 +307,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 3.82,
+          "score": 9.83,
           "src": "no_rotation"
         },
         "box": {
@@ -318,30 +328,18 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 21.4,
-      "switch_score_ref": 21.4,
-      "strong_stays_strong": true,
-      "trim": {
-        "target": {
-          "code": "3026",
-          "name": "禾伸堂"
-        },
-        "pct_range": [
-          0,
-          20
-        ],
-        "sell_chip_state": "accumulation",
-        "buy_chip_state": "no_signal",
-        "sell_mbs_increasing": true
-      },
+      "switch_score": 23.5,
+      "switch_score_ref": 23.5,
+      "strong_stays_strong": false,
+      "trim": null,
       "recommendation": {
-        "label": "強者恆強 · 延後換股 · 減碼 禾伸堂 0–20% · 等待",
-        "color": "#a78bfa",
-        "icon": "💪"
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
       }
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-08-10T22:23:51",
+  "generated_at": "2026-08-11T22:21:55",
   "available": true
 }
