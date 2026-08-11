@@ -44,7 +44,36 @@
   });
 })();
 </script>
-<!-- GLOBAL_NAV_END --><h1 class="page-title">🔄 換股建議</h1><div class="note">目前沒有 DS≥40 + AS≥50 的配對 → 持有可延遲換股。</div>
+<!-- GLOBAL_NAV_END --><h1 class="page-title">🔄 換股建議 (Rotation Signals)</h1><div class="page-meta">資料日 <strong>2026-08-11</strong> ｜ 產生時間 2026-08-11 22:12:47.565031 ｜ <a href='../index.html'>← 回主頁</a></div><div class="banner"><div class="banner__row"><div><span class="metric__value"><span class="text-info">2</span></span> <span class="label">個換股配對</span></div><div><span class="metric__value"><span class="text-bear">2</span></span> <span class="label">檔派發中持有 (DS≥40)</span></div><div><span class="metric__value"><span class="text-bull">38</span></span> <span class="label">檔吸籌中候選 (AS≥50)</span></div></div><div class="grid-4"><div class="card card--compact text-center"><div class="metric__value"><span class="text-bear">🔴 0</span></div><div class="label">S 強烈換股 (urgency≥60)</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-warn">🟠 0</span></div><div class="label">A 建議換股 (40-60)</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-warn">🟡 2</span></div><div class="label">B 觀察換股 (20-40)</div></div><div class="card card--compact text-center"><div class="metric__value"><span class="text-info">🎯 1</span></div><div class="label">同族群配對</div></div></div></div><details class="explainer" open><summary class="explainer__title">🔄 換股訊號邏輯說明</summary><p><b class="value">🔄 Rotation Signal</b> = Distribution Score 對撞 Accumulation Score 的「換股決策層」。</p><p><b class="value">邏輯</b>：手上派發中（DS 高）→ 候選池吸籌中（AS 高）→ 計算 swap_urgency = max(0, DS-40) + max(0, AS-40) + 同族群 +10。</p><p><b class="value">使用</b>：手上 DS &lt; 40 → 不急（延遲換股，繼續持有）；DS ≥ 60 + 候選 AS ≥ 60 → 強烈換股建議。</p><p>🎯 同族群配對 = 族群輪動觀（內部資金移動）；🌋 持有股 UTAD = Distribution Phase C 訊號；🌱 候選股 Spring = Accumulation Phase C 訊號。</p></details><div class="section-head">📊 換股配對（按 swap_urgency 排序）</div><div class="btn-group"><input type="text" class="search-box" id="search" placeholder="🔍 代號 / 名稱 / 族群 搜尋"><button class="toggle is-active" data-filter="all">全部 (2)</button><button class="toggle" data-filter="S">🔴 S 強烈 (0)</button><button class="toggle" data-filter="A">🟠 A 級+ (0)</button><button class="toggle" data-filter="sameSect">🎯 同族群 (1)</button></div><div style='margin-top:14px'><div class="card pair-card" data-urg='B_watch' data-same-sect='1' data-search='3211 順達 2301 光寶科 25_電腦及週邊設備 25_電腦及週邊設備'><div style='display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center'><div style='display:flex;flex-direction:column;gap:4px'><div style='font-size:15px'><span class='text-muted' style='font-size:10px'>賣出</span> <strong>3211</strong> <span>順達</span></div><div class='text-muted' style='font-size:11px'>族群: 25_電腦及週邊設備 ｜ 來源: mainstream_core</div><div style='display:flex;gap:4px;flex-wrap:wrap;margin-top:2px'><span class="pill pill--bear">🌋 UTAD</span><span class="pill pill--bear">DS 42 (B)</span><span class="pill">Phase B（派發建倉）</span></div></div><div style='text-align:center'><span class='text-muted' style='font-size:18px'>→</span><div style='margin-top:4px'><span class="badge badge--amber">🟡 觀察換股</span></div><div class='text-muted' style='font-size:10px'>urgency 32</div><div style='font-size:10px;margin-top:3px'><span class="text-info">🎯 同族群</span></div></div><div style='display:flex;flex-direction:column;gap:4px;text-align:right;align-items:flex-end'><div style='font-size:15px'><span class='text-muted' style='font-size:10px'>買入</span> <strong>2301</strong> <span>光寶科</span></div><div class='text-muted' style='font-size:11px'>族群: 25_電腦及週邊設備</div><div style='display:flex;gap:4px;flex-wrap:wrap;margin-top:2px'><span class="pill pill--bull">AS 60 (B)</span><span class="pill">Phase B（建倉中）</span></div></div></div></div><div class="note">其他候選： 6781 AES-KY (AS 65, urg 27) ｜ 2354 鴻準 (AS 65, urg 27)</div><div class="card pair-card" data-urg='B_watch' data-same-sect='0' data-search='2409 友達 6781 aes-ky 26_光電業 28_電子零組件'><div style='display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center'><div style='display:flex;flex-direction:column;gap:4px'><div style='font-size:15px'><span class='text-muted' style='font-size:10px'>賣出</span> <strong>2409</strong> <span>友達</span></div><div class='text-muted' style='font-size:11px'>族群: 26_光電業 ｜ 來源: strong_safe</div><div style='display:flex;gap:4px;flex-wrap:wrap;margin-top:2px'><span class="pill pill--bear">🌋 UTAD</span><span class="pill pill--bear">DS 42 (B)</span><span class="pill">Phase B（派發建倉）</span></div></div><div style='text-align:center'><span class='text-muted' style='font-size:18px'>→</span><div style='margin-top:4px'><span class="badge badge--amber">🟡 觀察換股</span></div><div class='text-muted' style='font-size:10px'>urgency 27</div><div style='font-size:10px;margin-top:3px'></div></div><div style='display:flex;flex-direction:column;gap:4px;text-align:right;align-items:flex-end'><div style='font-size:15px'><span class='text-muted' style='font-size:10px'>買入</span> <strong>6781</strong> <span>AES-KY</span></div><div class='text-muted' style='font-size:11px'>族群: 28_電子零組件</div><div style='display:flex;gap:4px;flex-wrap:wrap;margin-top:2px'><span class="pill pill--bull">🌱 Spring</span><span class="pill pill--bull">AS 65 (A)</span><span class="pill">Phase D（LPS / SOS 浮現）</span></div></div></div></div><div class="note">其他候選： 2354 鴻準 (AS 65, urg 27) ｜ 3006 晶豪科 (AS 64, urg 26)</div></div><footer class="page-footer">Rotation Signals ｜ <code>src/agents/rotation_signals.py</code> ｜ 入料：<code>distribution_score.json</code> × <code>accumulation_pool.json</code> × <code>sector_constituents.json</code></footer><script>
+document.querySelectorAll('.toggle[data-filter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.toggle[data-filter]').forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.pair-card').forEach(c => {
+      const urg = c.dataset.urg;
+      const sameSect = c.dataset.sameSect === '1';
+      let show = true;
+      if (f === 'S') show = urg === 'S_strong';
+      else if (f === 'A') show = urg === 'A_recommend' || urg === 'S_strong';
+      else if (f === 'sameSect') show = sameSect;
+      c.classList.toggle('hidden', !show);
+    });
+  });
+});
+
+const sb = document.getElementById('search');
+if (sb) {
+  sb.addEventListener('input', () => {
+    const q = sb.value.trim().toLowerCase();
+    document.querySelectorAll('.pair-card').forEach(c => {
+      const txt = c.dataset.search || '';
+      const match = !q || txt.includes(q);
+      c.classList.toggle('hidden', !match);
+    });
+  });
+}
+</script>
 <style id='MS_N_RRR_tooltip_inject_v2'>
 .tip { position: relative; cursor: help; }
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
