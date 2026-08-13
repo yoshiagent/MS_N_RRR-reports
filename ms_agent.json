@@ -1,28 +1,29 @@
 {
-  "as_of": "2026-08-12",
+  "as_of": "2026-08-13",
   "schema_version": "v2",
   "market_phase": {
     "value": "MARKUP",
     "confidence": 73,
     "confidence_band": "HIGH",
     "reason": [
-      "站上 MA20 比例 60.9%, 多頭整齊",
+      "站上 MA20 比例 61.5%, 多頭整齊",
       "資金擴散仍在擴張",
-      "新高股比例 14.2%, 主升段表徵",
+      "新高股比例 16.3%, 主升段表徵",
       "另符合: EARLY_BULL"
     ]
   },
   "risk_mode": {
-    "value": "DEFENSIVE",
-    "confidence": 60,
-    "confidence_band": "MEDIUM",
+    "value": "AGGRESSIVE",
+    "confidence": 75,
+    "confidence_band": "HIGH",
     "reason": [
-      "phase=MARKUP, triggers=2"
+      "phase=MARKUP, 廣度健康 (regime=mixed, diff=expanding)",
+      "風險訊號 1 個, 環境可進取"
     ]
   },
   "market_structure": {
     "taiex_trend": "SIDEWAYS",
-    "otc_trend": "DOWN",
+    "otc_trend": "SIDEWAYS",
     "leadership": "LARGE_CAP",
     "breadth_status": "EXPANDING",
     "volume_status": "NORMAL"
@@ -47,23 +48,23 @@
     ]
   },
   "master_weight_policy": {
-    "Wyckoff": 12,
-    "Minervini": 24,
+    "Wyckoff": 10,
+    "Minervini": 25,
     "ONeil": 21,
     "Weinstein": 11,
     "Darvas": 15,
-    "Livermore": 17,
+    "Livermore": 18,
     "Lynch": 0,
     "Fisher": 0,
     "Buffett": 0
   },
   "discipline_policy": {
     "max_position_ratio_per_stock": 25,
-    "max_total_exposure": 68,
+    "max_total_exposure": 99,
     "allow_new_position": true,
     "allow_add_position": true,
-    "stop_loss_strictness": "HIGH",
-    "cash_minimum_ratio": 32
+    "stop_loss_strictness": "LOW",
+    "cash_minimum_ratio": 1
   },
   "orchestrator_instruction": {
     "action_bias": "EXPAND",
@@ -86,29 +87,29 @@
   "skill_feedback": {
     "active": true,
     "skill_index": {
-      "Wyckoff": 32.1,
-      "Minervini": 14.01,
-      "ONeil": 13.19,
-      "Weinstein": 13.67,
-      "Darvas": 14.34,
-      "Livermore": 12.47,
-      "Lynch": 0.09,
-      "Fisher": 0.11,
+      "Wyckoff": 26.91,
+      "Minervini": 15.94,
+      "ONeil": 15.19,
+      "Weinstein": 13.24,
+      "Darvas": 15.2,
+      "Livermore": 13.4,
+      "Lynch": 0.04,
+      "Fisher": 0.06,
       "Buffett": 0.0
     },
     "n_days_with_data": 7,
-    "alpha": 0.368,
+    "alpha": 0.369,
     "alpha_mode": "dynamic",
-    "avg_skill_std": 3.16,
+    "avg_skill_std": 3.12,
     "skill_source": "global",
-    "phase_days_current": 0
+    "phase_days_current": 1
   },
   "summary": {
     "phase": "MARKUP",
-    "risk_mode": "DEFENSIVE",
+    "risk_mode": "AGGRESSIVE",
     "action_bias": "EXPAND",
     "skill_feedback_active": true
   },
-  "generated_at": "2026-08-12T22:01:08",
+  "generated_at": "2026-08-13T22:01:01",
   "available": true
 }
