@@ -1,15 +1,14 @@
 {
-  "as_of": "2026-08-13",
+  "as_of": "2026-08-14",
   "schema_version": "v2",
   "market_phase": {
-    "value": "MARKUP",
+    "value": "EARLY_BULL",
     "confidence": 73,
     "confidence_band": "HIGH",
     "reason": [
-      "站上 MA20 比例 61.5%, 多頭整齊",
-      "資金擴散仍在擴張",
-      "新高股比例 16.3%, 主升段表徵",
-      "另符合: EARLY_BULL"
+      "站上 MA20 比例 56.3%, 過半轉強",
+      "新高股比例 10.9%, 主流浮現",
+      "溫度 50 處於健康偏熱區"
     ]
   },
   "risk_mode": {
@@ -17,13 +16,13 @@
     "confidence": 75,
     "confidence_band": "HIGH",
     "reason": [
-      "phase=MARKUP, 廣度健康 (regime=mixed, diff=expanding)",
+      "phase=EARLY_BULL, 廣度健康 (regime=mixed, diff=expanding)",
       "風險訊號 1 個, 環境可進取"
     ]
   },
   "market_structure": {
     "taiex_trend": "SIDEWAYS",
-    "otc_trend": "SIDEWAYS",
+    "otc_trend": "DOWN",
     "leadership": "LARGE_CAP",
     "breadth_status": "EXPANDING",
     "volume_status": "NORMAL"
@@ -34,51 +33,48 @@
     "weakening_sectors": []
   },
   "candidate_bias": {
-    "hot_stock_weight": 35,
-    "strong_stock_weight": 55,
-    "base_stock_weight": 10,
+    "hot_stock_weight": 20,
+    "strong_stock_weight": 50,
+    "base_stock_weight": 30,
     "preferred_pool": [
       "STRONG",
-      "HOT",
-      "BASE"
+      "BASE",
+      "HOT"
     ],
     "reason": [
-      "主升段應優先選擇強勢延續股",
-      "熱門股可作為資金流確認"
+      "多頭初升段主流成形, 強勢股優先",
+      "打底股仍有貢獻, 接近突破者可挑"
     ]
   },
   "master_weight_policy": {
-    "Wyckoff": 10,
-    "Minervini": 25,
-    "ONeil": 21,
-    "Weinstein": 11,
-    "Darvas": 15,
-    "Livermore": 18,
+    "Wyckoff": 6,
+    "Minervini": 23,
+    "ONeil": 28,
+    "Weinstein": 18,
+    "Darvas": 11,
+    "Livermore": 14,
     "Lynch": 0,
     "Fisher": 0,
     "Buffett": 0
   },
   "discipline_policy": {
-    "max_position_ratio_per_stock": 25,
-    "max_total_exposure": 99,
+    "max_position_ratio_per_stock": 20,
+    "max_total_exposure": 94,
     "allow_new_position": true,
     "allow_add_position": true,
     "stop_loss_strictness": "LOW",
-    "cash_minimum_ratio": 1
+    "cash_minimum_ratio": 6
   },
   "orchestrator_instruction": {
     "action_bias": "EXPAND",
     "priority": [
-      "優先評估強勢股池",
-      "熱門股需避免追高",
-      "打底股只保留接近突破者"
+      "優先評估強勢股池 (主流成形)",
+      "打底股接近突破者可挑"
     ],
-    "warning": [
-      "若成交金額放大但指數不漲, 需提高派發警戒"
-    ]
+    "warning": []
   },
   "transition_signals": {
-    "next_likely_phase": "MARKUP",
+    "next_likely_phase": "EARLY_BULL",
     "confidence": 0,
     "early_warning_days": 0,
     "triggers": [],
@@ -87,29 +83,29 @@
   "skill_feedback": {
     "active": true,
     "skill_index": {
-      "Wyckoff": 26.91,
-      "Minervini": 15.94,
-      "ONeil": 15.19,
-      "Weinstein": 13.24,
-      "Darvas": 15.2,
-      "Livermore": 13.4,
-      "Lynch": 0.04,
-      "Fisher": 0.06,
+      "Wyckoff": 17.35,
+      "Minervini": 19.1,
+      "ONeil": 22.7,
+      "Weinstein": 15.35,
+      "Darvas": 12.6,
+      "Livermore": 12.9,
+      "Lynch": 0.0,
+      "Fisher": 0.0,
       "Buffett": 0.0
     },
     "n_days_with_data": 7,
-    "alpha": 0.369,
+    "alpha": 0.368,
     "alpha_mode": "dynamic",
-    "avg_skill_std": 3.12,
-    "skill_source": "global",
-    "phase_days_current": 1
+    "avg_skill_std": 3.23,
+    "skill_source": "phase_specific:EARLY_BULL",
+    "phase_days_current": 2
   },
   "summary": {
-    "phase": "MARKUP",
+    "phase": "EARLY_BULL",
     "risk_mode": "AGGRESSIVE",
     "action_bias": "EXPAND",
     "skill_feedback_active": true
   },
-  "generated_at": "2026-08-13T22:01:01",
+  "generated_at": "2026-08-14T22:01:03",
   "available": true
 }

@@ -1,9 +1,9 @@
 {
-  "as_of": "2026-08-13",
+  "as_of": "2026-08-14",
   "n_pairs": 6,
-  "n_z_gate_passed": 2,
+  "n_z_gate_passed": 3,
   "n_strong": 0,
-  "n_strong_stays_strong": 0,
+  "n_strong_stays_strong": 1,
   "z_mode": "gate",
   "weights": {
     "z_reversal": 30,
@@ -25,7 +25,7 @@
       ],
       "signal": "switch_to_B",
       "z_gate_passed": true,
-      "zscore": 0.59,
+      "zscore": 0.85,
       "switch_direction": "B",
       "switch_into": {
         "code": "3037",
@@ -37,13 +37,13 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 41.27,
-          "src": "weak_rotation"
+          "score": 6.66,
+          "src": "no_rotation"
         },
         "box": {
-          "score": 45.0,
-          "src": "inbox_side",
-          "healthy": false
+          "score": 60.0,
+          "src": "inbox_up",
+          "healthy": true
         }
       },
       "active_weights": {
@@ -58,8 +58,8 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 34.7,
-      "switch_score_ref": 34.7,
+      "switch_score": 26.7,
+      "switch_score_ref": 26.7,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -81,7 +81,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": 2.59,
+      "zscore": 2.46,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -130,28 +130,33 @@
         "華邦電",
         "南亞科"
       ],
-      "signal": "no_action",
+      "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -1.87,
-      "switch_direction": null,
-      "switch_into": null,
+      "zscore": -1.42,
+      "switch_direction": "B",
+      "switch_into": {
+        "code": "2408",
+        "name": "南亞科"
+      },
       "components": {
         "rcga": {
           "score": 55.0,
           "src": "YELLOW"
         },
         "rcr": {
-          "score": null,
-          "src": "weak_rotation"
+          "score": 1.11,
+          "src": "no_rotation"
         },
         "box": {
-          "score": null,
-          "src": null,
-          "healthy": null
+          "score": 90.0,
+          "src": "above_up",
+          "healthy": true
         }
       },
       "active_weights": {
-        "rcga": 25
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
       },
       "z_mode": "gate",
       "weights": {
@@ -161,7 +166,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 55.0,
+      "switch_score_ref": 45.8,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -181,28 +186,33 @@
         "上銀",
         "大銀微系統"
       ],
-      "signal": "no_action",
-      "z_gate_passed": false,
-      "zscore": 1.6,
-      "switch_direction": null,
-      "switch_into": null,
+      "signal": "switch_to_B",
+      "z_gate_passed": true,
+      "zscore": 1.41,
+      "switch_direction": "B",
+      "switch_into": {
+        "code": "4576",
+        "name": "大銀微系統"
+      },
       "components": {
         "rcga": {
           "score": 20.0,
           "src": "RED"
         },
         "rcr": {
-          "score": null,
-          "src": "no_rotation"
+          "score": 40.27,
+          "src": "weak_rotation"
         },
         "box": {
-          "score": null,
-          "src": null,
-          "healthy": null
+          "score": 45.0,
+          "src": "inbox_side",
+          "healthy": false
         }
       },
       "active_weights": {
-        "rcga": 25
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
       },
       "z_mode": "gate",
       "weights": {
@@ -211,14 +221,14 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": null,
-      "switch_score_ref": 20.0,
+      "switch_score": 34.4,
+      "switch_score_ref": 34.4,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "延後 · Z60 未過換股門檻",
-        "color": "#64748b",
-        "icon": "⏸"
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
       }
     },
     {
@@ -234,7 +244,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": 3.04,
+      "zscore": 2.53,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -285,7 +295,7 @@
       ],
       "signal": "switch_to_A",
       "z_gate_passed": true,
-      "zscore": -1.06,
+      "zscore": -0.91,
       "switch_direction": "A",
       "switch_into": {
         "code": "2492",
@@ -293,11 +303,11 @@
       },
       "components": {
         "rcga": {
-          "score": 20.0,
-          "src": "RED"
+          "score": 55.0,
+          "src": "YELLOW"
         },
         "rcr": {
-          "score": 23.16,
+          "score": 1.75,
           "src": "no_rotation"
         },
         "box": {
@@ -318,18 +328,30 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 28.3,
-      "switch_score_ref": 28.3,
-      "strong_stays_strong": false,
-      "trim": null,
+      "switch_score": 33.1,
+      "switch_score_ref": 33.1,
+      "strong_stays_strong": true,
+      "trim": {
+        "target": {
+          "code": "3026",
+          "name": "禾伸堂"
+        },
+        "pct_range": [
+          0,
+          20
+        ],
+        "sell_chip_state": "healthy_rotation",
+        "buy_chip_state": "no_signal",
+        "sell_mbs_increasing": false
+      },
       "recommendation": {
-        "label": "Z 到但籌碼/結構不支持 · 觀望",
-        "color": "#ef4444",
-        "icon": "🚫"
+        "label": "強者恆強 · 延後換股 · 減碼 禾伸堂 0–20% · 等待",
+        "color": "#a78bfa",
+        "icon": "💪"
       }
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-08-13T22:18:04",
+  "generated_at": "2026-08-14T22:18:48",
   "available": true
 }
