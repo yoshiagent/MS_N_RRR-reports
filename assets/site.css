@@ -271,6 +271,10 @@ a{color:var(--th-accent)}
   padding:8px;text-align:left;border-bottom:1px solid var(--th-border2)}
 .data-table td{padding:6px 8px;border-bottom:1px solid var(--th-border);
   color:var(--th-text)}
+/* 表頭對齊：.data-table th 的 text-align:left 特異性高過 .text-right 工具 class,
+   不補這兩條的話「表頭靠左、內容靠右」對不齊 (2026-08-16 修, 全站數值欄通用) */
+.data-table th.text-right{text-align:right}
+.data-table th.text-center{text-align:center}
 .data-table--zebra tbody tr:nth-child(even){background:var(--th-bg2)}
 .data-table--sticky th{position:sticky;top:0;z-index:1}
 .data-table tr.is-clickable{cursor:pointer}
