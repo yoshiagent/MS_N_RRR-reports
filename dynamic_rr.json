@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-17",
+  "as_of": "2026-08-18",
   "market_state": "warning",
   "n_pairs": 6,
   "decisions": [
@@ -12,10 +12,10 @@
         "南電",
         "欣興"
       ],
-      "as_of": "2026-08-17",
-      "rr_ratio": 0.1452,
-      "z60": 0.28,
-      "vol_ratio": 0.47,
+      "as_of": "2026-08-18",
+      "rr_ratio": 0.0837,
+      "z60": -0.07,
+      "vol_ratio": 0.44,
       "vol_state": "low",
       "vol_state_cn": "低波動",
       "entry_z": 1.5,
@@ -37,11 +37,13 @@
       "A_color": "#60a5fa",
       "A_modifiers": [],
       "A_healthy": true,
-      "B_state": "inbox_up",
-      "B_label": "箱內向上",
-      "B_icon": "🔵",
-      "B_color": "#60a5fa",
-      "B_modifiers": [],
+      "B_state": "above_up",
+      "B_label": "箱上推進",
+      "B_icon": "🟢",
+      "B_color": "#10b981",
+      "B_modifiers": [
+        "breakout_pending"
+      ],
       "B_healthy": true,
       "healthy_pair": true,
       "pair_health": "both_healthy"
@@ -55,10 +57,10 @@
         "晶豪科",
         "智原"
       ],
-      "as_of": "2026-08-17",
-      "rr_ratio": 0.4333,
-      "z60": 2.14,
-      "vol_ratio": 1.31,
+      "as_of": "2026-08-18",
+      "rr_ratio": 0.3747,
+      "z60": 1.62,
+      "vol_ratio": 1.24,
       "vol_state": "high",
       "vol_state_cn": "高波動",
       "entry_z": 2.5,
@@ -72,26 +74,26 @@
       "cooldown_until": "2026-08-12",
       "cooldown_remain_days": null,
       "risk_alert": null,
-      "action": "等待 MA20 確認（close 177.00 < MA20 184.40，MA20 ↑）",
+      "action": "等待 MA20 確認（close 170.50 < MA20 184.64，MA20 ↑）",
       "reason": [
-        "close 177.00 < MA20 184.40，MA20 ↑"
+        "close 170.50 < MA20 184.64，MA20 ↑"
       ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [
-        "breakout_pending"
+      "A_state": "inbox_down",
+      "A_label": "箱內向下",
+      "A_icon": "🟠",
+      "A_color": "#fb923c",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "below_down",
+      "B_label": "箱下持續",
+      "B_icon": "🔴",
+      "B_color": "#ef4444",
+      "B_modifiers": [
+        "breakdown_pending"
       ],
-      "A_healthy": true,
-      "B_state": "inbox_up",
-      "B_label": "箱內向上",
-      "B_icon": "🔵",
-      "B_color": "#60a5fa",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "none"
     },
     {
       "pair": [
@@ -102,9 +104,9 @@
         "華邦電",
         "南亞科"
       ],
-      "as_of": "2026-08-17",
-      "rr_ratio": -1.0602,
-      "z60": -1.68,
+      "as_of": "2026-08-18",
+      "rr_ratio": -1.0708,
+      "z60": -1.71,
       "vol_ratio": 0.3,
       "vol_state": "low",
       "vol_state_cn": "低波動",
@@ -147,16 +149,16 @@
         "上銀",
         "大銀微系統"
       ],
-      "as_of": "2026-08-17",
-      "rr_ratio": 0.5258,
-      "z60": 1.37,
+      "as_of": "2026-08-18",
+      "rr_ratio": 0.5586,
+      "z60": 1.96,
       "vol_ratio": 0.51,
       "vol_state": "low",
       "vol_state_cn": "低波動",
       "entry_z": 1.5,
       "pullback_z": 0.3,
       "cooldown": 3,
-      "direction": "hold",
+      "direction": "to_B",
       "tranche_pct": 0,
       "cumulative_pct": 100,
       "position": "B",
@@ -176,9 +178,7 @@
       "B_label": "箱內盤整",
       "B_icon": "⚪",
       "B_color": "#94a3b8",
-      "B_modifiers": [
-        "compression"
-      ],
+      "B_modifiers": [],
       "B_healthy": false,
       "healthy_pair": false,
       "pair_health": "none"
@@ -192,27 +192,25 @@
         "巨大",
         "美利達"
       ],
-      "as_of": "2026-08-17",
-      "rr_ratio": 0.1782,
-      "z60": 2.05,
-      "vol_ratio": 0.66,
+      "as_of": "2026-08-18",
+      "rr_ratio": 0.1893,
+      "z60": 2.17,
+      "vol_ratio": 0.61,
       "vol_state": "low",
       "vol_state_cn": "低波動",
       "entry_z": 1.5,
       "pullback_z": 0.3,
       "cooldown": 3,
       "direction": "to_B",
-      "tranche_pct": 30,
+      "tranche_pct": 0,
       "cumulative_pct": 100,
       "position": "B",
       "in_cooldown": false,
       "cooldown_until": "2026-08-13",
       "cooldown_remain_days": null,
       "risk_alert": null,
-      "action": "✅ MA20 確認（最後 30%）：完成換股至 美利達（累計 100%）",
-      "reason": [
-        "目標股 MA20 OK：close 81.50 ≥ MA20 67.90，MA20 ↑"
-      ],
+      "action": "持倉 美利達（100% 已到位）",
+      "reason": [],
       "A_state": "above_up",
       "A_label": "箱上推進",
       "A_icon": "🟢",
@@ -239,10 +237,10 @@
         "華新科",
         "禾伸堂"
       ],
-      "as_of": "2026-08-17",
-      "rr_ratio": -0.8602,
-      "z60": -1.41,
-      "vol_ratio": 0.37,
+      "as_of": "2026-08-18",
+      "rr_ratio": -0.8624,
+      "z60": -1.37,
+      "vol_ratio": 0.34,
       "vol_state": "low",
       "vol_state_cn": "低波動",
       "entry_z": 1.5,
@@ -264,14 +262,14 @@
       "A_color": "#94a3b8",
       "A_modifiers": [],
       "A_healthy": false,
-      "B_state": "inbox_up",
-      "B_label": "箱內向上",
-      "B_icon": "🔵",
-      "B_color": "#60a5fa",
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
       "B_modifiers": [],
-      "B_healthy": true,
+      "B_healthy": false,
       "healthy_pair": false,
-      "pair_health": "b_only"
+      "pair_health": "none"
     }
   ]
 }

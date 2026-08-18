@@ -1,10 +1,10 @@
 {
   "available": true,
-  "as_of": "2026-08-17",
+  "as_of": "2026-08-18",
   "n_total": 6,
   "n_switches": 2,
-  "n_holds": 2,
-  "n_no_action": 2,
+  "n_holds": 3,
+  "n_no_action": 1,
   "results": [
     {
       "idx": 1,
@@ -19,16 +19,16 @@
       "chart_url": "nan_xin_chart.html",
       "chart_status": "from_xlsx+built",
       "chart_health": "RED",
-      "as_of": "2026-08-17",
-      "signal": "hold_A",
+      "as_of": "2026-08-18",
+      "signal": "hold_B",
       "confidence": 30,
-      "zscore": 0.28,
-      "rs_value": 0.1452,
+      "zscore": -0.07,
+      "rs_value": 0.0837,
       "reason": [
-        "as_of=2026-08-17",
-        "RS=+0.1452, Z60=+0.28",
-        "近 20 日 Z 範圍 [+0.11, +1.92]",
-        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.28）"
+        "as_of=2026-08-18",
+        "RS=+0.0837, Z60=-0.07",
+        "近 20 日 Z 範圍 [-0.07, +1.83]",
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.07）"
       ],
       "A_state": "inbox_up",
       "A_label": "箱內向上",
@@ -36,11 +36,13 @@
       "A_color": "#60a5fa",
       "A_modifiers": [],
       "A_healthy": true,
-      "B_state": "inbox_up",
-      "B_label": "箱內向上",
-      "B_icon": "🔵",
-      "B_color": "#60a5fa",
-      "B_modifiers": [],
+      "B_state": "above_up",
+      "B_label": "箱上推進",
+      "B_icon": "🟢",
+      "B_color": "#10b981",
+      "B_modifiers": [
+        "breakout_pending"
+      ],
       "B_healthy": true,
       "healthy_pair": true,
       "pair_health": "both_healthy"
@@ -58,33 +60,33 @@
       "chart_url": "jh_zy_chart.html",
       "chart_status": "from_xlsx+built",
       "chart_health": "YELLOW",
-      "as_of": "2026-08-17",
-      "signal": "no_action",
-      "confidence": 35,
-      "zscore": 2.15,
-      "rs_value": 0.4333,
+      "as_of": "2026-08-18",
+      "signal": "switch_to_B",
+      "confidence": 90,
+      "zscore": 1.64,
+      "rs_value": 0.3747,
       "reason": [
-        "as_of=2026-08-17",
-        "RS=+0.4333, Z60=+2.15",
+        "as_of=2026-08-18",
+        "RS=+0.3747, Z60=+1.64",
         "近 20 日 Z 範圍 [-1.06, +3.24]",
-        "Z=+2.15 ≥ +2.0（A 過強，等待折返）"
+        "近期 Z 極大 +3.24 已折返至 +1.64（≤ +1.7） → 賣 3006 換 3035"
       ],
-      "A_state": "above_up",
-      "A_label": "箱上推進",
-      "A_icon": "🟢",
-      "A_color": "#10b981",
-      "A_modifiers": [
-        "breakout_pending"
+      "A_state": "inbox_down",
+      "A_label": "箱內向下",
+      "A_icon": "🟠",
+      "A_color": "#fb923c",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "below_down",
+      "B_label": "箱下持續",
+      "B_icon": "🔴",
+      "B_color": "#ef4444",
+      "B_modifiers": [
+        "breakdown_pending"
       ],
-      "A_healthy": true,
-      "B_state": "inbox_up",
-      "B_label": "箱內向上",
-      "B_icon": "🔵",
-      "B_color": "#60a5fa",
-      "B_modifiers": [],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "none"
     },
     {
       "idx": 3,
@@ -99,16 +101,16 @@
       "chart_url": "pair_2344_2408.html",
       "chart_status": "built",
       "chart_health": "YELLOW",
-      "as_of": "2026-08-17",
+      "as_of": "2026-08-18",
       "signal": "hold_B",
       "confidence": 30,
-      "zscore": -1.7,
-      "rs_value": -1.0602,
+      "zscore": -1.73,
+      "rs_value": -1.0708,
       "reason": [
-        "as_of=2026-08-17",
-        "RS=-1.0602, Z60=-1.70",
+        "as_of=2026-08-18",
+        "RS=-1.0708, Z60=-1.73",
         "近 20 日 Z 範圍 [-1.87, -1.13]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-1.70）"
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-1.73）"
       ],
       "A_state": "inbox_up",
       "A_label": "箱內向上",
@@ -140,16 +142,16 @@
       "chart_url": "pair_2049_4576.html",
       "chart_status": "built",
       "chart_health": "RED",
-      "as_of": "2026-08-17",
-      "signal": "switch_to_B",
-      "confidence": 80,
-      "zscore": 1.38,
-      "rs_value": 0.5258,
+      "as_of": "2026-08-18",
+      "signal": "hold_A",
+      "confidence": 30,
+      "zscore": 1.97,
+      "rs_value": 0.5586,
       "reason": [
-        "as_of=2026-08-17",
-        "RS=+0.5258, Z60=+1.38",
+        "as_of=2026-08-18",
+        "RS=+0.5586, Z60=+1.97",
         "近 20 日 Z 範圍 [+0.72, +2.73]",
-        "近期 Z 極大 +2.73 已折返至 +1.38（≤ +1.7） → 賣 2049 換 4576"
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+1.97）"
       ],
       "A_state": "inbox_down",
       "A_label": "箱內向下",
@@ -161,9 +163,7 @@
       "B_label": "箱內盤整",
       "B_icon": "⚪",
       "B_color": "#94a3b8",
-      "B_modifiers": [
-        "compression"
-      ],
+      "B_modifiers": [],
       "B_healthy": false,
       "healthy_pair": false,
       "pair_health": "none"
@@ -181,16 +181,16 @@
       "chart_url": "pair_9921_9914.html",
       "chart_status": "built",
       "chart_health": "YELLOW",
-      "as_of": "2026-08-17",
+      "as_of": "2026-08-18",
       "signal": "no_action",
       "confidence": 35,
-      "zscore": 2.07,
-      "rs_value": 0.1782,
+      "zscore": 2.19,
+      "rs_value": 0.1893,
       "reason": [
-        "as_of=2026-08-17",
-        "RS=+0.1782, Z60=+2.07",
-        "近 20 日 Z 範圍 [-0.15, +3.04]",
-        "Z=+2.07 ≥ +2.0（A 過強，等待折返）"
+        "as_of=2026-08-18",
+        "RS=+0.1893, Z60=+2.19",
+        "近 20 日 Z 範圍 [+0.09, +3.04]",
+        "Z=+2.19 ≥ +2.0（A 過強，等待折返）"
       ],
       "A_state": "above_up",
       "A_label": "箱上推進",
@@ -222,16 +222,16 @@
       "chart_url": "pair_2492_3026.html",
       "chart_status": "built",
       "chart_health": "RED",
-      "as_of": "2026-08-17",
+      "as_of": "2026-08-18",
       "signal": "switch_to_A",
-      "confidence": 80,
-      "zscore": -1.42,
-      "rs_value": -0.8602,
+      "confidence": 70,
+      "zscore": -1.38,
+      "rs_value": -0.8624,
       "reason": [
-        "as_of=2026-08-17",
-        "RS=-0.8602, Z60=-1.42",
-        "近 20 日 Z 範圍 [-2.76, -0.52]",
-        "近期 Z 極小 -2.76 已折返至 -1.42（≥ -1.7） → 賣 3026 換 2492"
+        "as_of=2026-08-18",
+        "RS=-0.8624, Z60=-1.38",
+        "近 20 日 Z 範圍 [-2.03, -0.52]",
+        "近期 Z 極小 -2.03 已折返至 -1.38（≥ -1.7） → 賣 3026 換 2492"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",
@@ -239,14 +239,14 @@
       "A_color": "#94a3b8",
       "A_modifiers": [],
       "A_healthy": false,
-      "B_state": "inbox_up",
-      "B_label": "箱內向上",
-      "B_icon": "🔵",
-      "B_color": "#60a5fa",
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
       "B_modifiers": [],
-      "B_healthy": true,
+      "B_healthy": false,
       "healthy_pair": false,
-      "pair_health": "b_only"
+      "pair_health": "none"
     }
   ]
 }
