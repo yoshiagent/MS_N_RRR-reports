@@ -729,7 +729,7 @@ function showInfo(){
   // MACD 讀數已移至 MACD 面板的標題列(見 macdAnno),此處不再重複顯示
   // CP/CAB 讀數已移至該面板的標題列(見 cpAnno),此處不再重複顯示
   const src = (s.liveLast && i === s.sc.length-1) ? `　<span style="color:var(--th-cyan,#22d3ee)">◉RTD即時</span>` : `　<span class="flat">◐日線近似</span>`;
-  info.innerHTML = `<b>${s.dates[i]}</b>　價差(${s.na[0]}−${s.nb[0]})=${pd}　收(log) ${f4(s.sc[i])}　開 ${f4(s.so[i])}　高 ${f4(s.sh[i])}　低 ${f4(s.sl[i])}　${dir}　MA20 ${ma20s}　帶寬=${bws}　Z20 ${z20s}${src}`;
+  info.innerHTML = `<b>${s.dates[i]}</b>　價差(${s.na[0]}−${s.nb[0]})=${pd}　${dir}　MA20 ${ma20s}　帶寬=${bws}　Z20 ${z20s}　收(log) ${f4(s.sc[i])}　開 ${f4(s.so[i])}　高 ${f4(s.sh[i])}　低 ${f4(s.sl[i])}${src}`;
 }
 
 /* 只更新游標(輕量,不整張 react) */
