@@ -1,11 +1,11 @@
 {
-  "as_of": "2026-08-21",
+  "as_of": "2026-08-24",
   "schema_version": "v1",
   "results": [
     {
       "symbol": "3189",
       "name": "景碩",
-      "ds": 55.3,
+      "ds": 52.6,
       "tier": "adjust",
       "tier_label": "邊拉邊調節",
       "tier_color": "#fb923c",
@@ -23,13 +23,13 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 1.0,
-            "prog_now": 14.2,
-            "relv_now": 0.95,
-            "dist_from_high": 11.6,
+            "prog_now": 24.3,
+            "relv_now": 1.14,
+            "dist_from_high": 14.0,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 14.78,
+            "eff_now": 10.41,
             "eff_peak": 91.39,
             "in_markup": true,
             "win": 20
@@ -65,20 +65,20 @@
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": -37.0,
+            "institution_score": -56.0,
             "state": "法人派發",
             "signals": [
-              "投信轉買",
+              "投信買超",
               "外資賣超"
             ]
           }
         },
         "margin_heating": {
-          "score": 52.6,
+          "score": 26.4,
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": 11.5,
+            "margin_growth_20d": 5.8,
             "near_high": 0.0
           }
         }
@@ -90,9 +90,8 @@
         "n_votes": 2,
         "consensus": "多數"
       },
-      "headline": "DS 55.3 · 邊拉邊調節 · 多數(2/3票) · 價量60/籌碼0/Box85/法人100/融資53",
+      "headline": "DS 52.6 · 邊拉邊調節 · 多數(2/3票) · 價量60/籌碼0/Box85/法人100/融資26",
       "ds_series_pv": [
-        32.6,
         20.9,
         34.1,
         49.6,
@@ -152,38 +151,39 @@
         50.3,
         64.8,
         65.3,
+        60.0,
         60.0
       ]
     },
     {
-      "symbol": "8039",
-      "name": "台虹",
-      "ds": 47.4,
+      "symbol": "3006",
+      "name": "晶豪科",
+      "ds": 46.0,
       "tier": "adjust",
       "tier_label": "邊拉邊調節",
       "tier_color": "#fb923c",
       "layers": {
         "price_volume": {
-          "score": 79.1,
+          "score": 36.5,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 79.1,
-            "state": "價量派發·爆量長上影",
-            "color": "#ef4444",
-            "dominant": "爆量長上影",
+            "pv_distribution": 36.5,
+            "state": "效率轉差·效率衰退",
+            "color": "#fb923c",
+            "dominant": "效率衰退",
             "climax_stall": 0.0,
-            "no_demand": 0.0,
-            "eff_decay": 0.76,
-            "upper_shadow": 1.0,
-            "prog_now": 30.6,
-            "relv_now": 1.31,
-            "dist_from_high": 0.4,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
+            "no_demand": 0.02,
+            "eff_decay": 0.47,
+            "upper_shadow": 0.33,
+            "prog_now": 47.6,
+            "relv_now": 0.98,
+            "dist_from_high": 0.0,
+            "limit_up_recent": 1,
+            "limit_up_seal": 1,
             "disposed_recent": 0,
-            "eff_now": 13.4,
-            "eff_peak": 66.23,
+            "eff_now": 33.57,
+            "eff_peak": 62.96,
             "in_markup": true,
             "win": 20
           }
@@ -196,15 +196,20 @@
           }
         },
         "box_degradation": {
-          "score": 28.0,
+          "score": 100.0,
           "w": 0.2,
           "detail": {
             "available": true,
-            "degradation_level": "healthy",
+            "degradation_level": "high",
             "reasons": [
-              "箱高擴大（36%→63%）— 波動失控",
+              "箱底未持續上移（HL 結構弱化）",
+              "最新箱底跌破前箱底（trend down 警示）",
+              "箱高擴大（38%→66%）— 波動失控",
               "回檔幅度加深超過 5 個百分點",
-              "近 3 箱中 2 個劣化箱"
+              "整理時間變長（1→5 週）",
+              "假突破 3 次",
+              "箱體重疊度高（趨勢推進受阻）",
+              "近 3 箱中 3 個劣化箱"
             ]
           }
         },
@@ -216,91 +221,91 @@
             "institution_score": 0.0,
             "state": "法人中性",
             "signals": [
-              "投信轉買",
-              "外資賣超"
+              "投信賣超",
+              "外資轉買"
             ]
           }
         },
         "margin_heating": {
-          "score": 30.5,
+          "score": 0.0,
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": 3.7,
-            "near_high": 0.96
+            "margin_growth_20d": -10.2,
+            "near_high": 1.0
           }
         }
       },
       "votes": {
-        "box": false,
+        "box": true,
         "csa": false,
         "wyckoff": false,
-        "n_votes": 0,
-        "consensus": "無"
+        "n_votes": 1,
+        "consensus": "單一"
       },
-      "headline": "DS 47.4 · 邊拉邊調節 · 無(0/3票) · 價量79/籌碼0/Box28/法人100/融資30",
+      "headline": "DS 46.0 · 邊拉邊調節 · 單一(1/3票) · 價量36/籌碼0/Box100/法人100/融資0",
       "ds_series_pv": [
-        48.4,
-        50.2,
-        60.8,
-        65.8,
-        60.0,
-        60.9,
-        60.3,
-        61.3,
-        20.1,
-        19.6,
-        20.3,
-        43.9,
+        14.1,
+        13.9,
+        15.9,
+        13.9,
+        18.3,
+        0.0,
+        8.1,
+        10.2,
+        0.9,
+        1.8,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        24.4,
         20.0,
-        0.0,
-        0.0,
-        1.1,
-        4.3,
-        16.6,
-        4.1,
-        1.0,
-        0.0,
-        0.0,
-        0.0,
-        7.1,
         20.0,
-        20.5,
-        26.2,
-        43.4,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        40.0,
+        40.0,
+        40.0,
         40.0,
         12.0,
-        48.4,
-        45.0,
-        49.4,
-        68.9,
-        44.1,
-        66.2,
-        67.6,
-        51.7,
-        46.3,
-        45.5,
-        61.7,
-        60.0,
-        60.0,
-        60.0,
-        62.2,
-        60.0,
-        60.0,
-        60.0,
-        60.0,
-        60.0,
-        40.5,
+        12.0,
+        12.0,
+        6.0,
+        6.0,
+        6.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        17.3,
+        32.6,
+        32.8,
+        26.2,
+        45.8,
+        48.1,
+        43.3,
+        42.6,
         40.0,
         40.0,
         40.0,
-        42.4,
-        49.3,
-        26.0,
-        51.7,
-        56.4,
-        82.2,
-        79.1
+        20.0,
+        36.5
       ]
     },
     {
@@ -324,13 +329,13 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 1.0,
-            "prog_now": 28.7,
-            "relv_now": 1.39,
-            "dist_from_high": 23.8,
+            "prog_now": 28.1,
+            "relv_now": 1.07,
+            "dist_from_high": 30.6,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
-            "disposed_recent": 4,
-            "eff_now": 25.37,
+            "disposed_recent": 3,
+            "eff_now": 20.62,
             "eff_peak": 158.94,
             "in_markup": true,
             "win": 20
@@ -363,11 +368,11 @@
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": -19.0,
+            "institution_score": 0.0,
             "state": "法人中性",
             "signals": [
               "投信買超",
-              "外資賣壓下降"
+              "外資賣超"
             ]
           }
         },
@@ -376,22 +381,21 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -1.2,
+            "margin_growth_20d": -2.4,
             "near_high": 0.0
           }
         }
       },
       "votes": {
         "box": true,
-        "csa": true,
+        "csa": false,
         "wyckoff": false,
-        "n_votes": 2,
-        "consensus": "多數"
+        "n_votes": 1,
+        "consensus": "單一"
       },
-      "headline": "DS 45.0 · 邊拉邊調節 · 多數(2/3票) · 價量60/籌碼0/Box60/法人100/融資0",
-      "disposed_recent": 4,
+      "headline": "DS 45.0 · 邊拉邊調節 · 單一(1/3票) · 價量60/籌碼0/Box60/法人100/融資0",
+      "disposed_recent": 3,
       "ds_series_pv": [
-        20.0,
         40.8,
         63.4,
         65.1,
@@ -451,38 +455,39 @@
         40.0,
         40.0,
         40.0,
+        60.0,
         60.0
       ]
     },
     {
-      "symbol": "3443",
-      "name": "創意",
-      "ds": 44.5,
+      "symbol": "6446",
+      "name": "藥華藥",
+      "ds": 45.0,
       "tier": "adjust",
       "tier_label": "邊拉邊調節",
       "tier_color": "#fb923c",
       "layers": {
         "price_volume": {
-          "score": 28.3,
+          "score": 54.5,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 28.3,
-            "state": "量價健康",
-            "color": "#22c55e",
+            "pv_distribution": 54.5,
+            "state": "效率轉差·爆量長上影",
+            "color": "#fb923c",
             "dominant": "爆量長上影",
             "climax_stall": 0.0,
             "no_demand": 0.0,
-            "eff_decay": 0.33,
-            "upper_shadow": 0.33,
-            "prog_now": 38.3,
-            "relv_now": 1.24,
-            "dist_from_high": 4.5,
+            "eff_decay": 0.58,
+            "upper_shadow": 0.67,
+            "prog_now": 32.3,
+            "relv_now": 1.18,
+            "dist_from_high": 1.7,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 30.43,
-            "eff_peak": 121.15,
+            "eff_now": 19.93,
+            "eff_peak": 75.27,
             "in_markup": true,
             "win": 20
           }
@@ -495,16 +500,166 @@
           }
         },
         "box_degradation": {
-          "score": 65.0,
+          "score": 22.0,
           "w": 0.2,
           "detail": {
             "available": true,
-            "degradation_level": "moderate",
+            "degradation_level": "healthy",
+            "reasons": [
+              "假突破 1 次",
+              "近 3 箱中 2 個劣化箱"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 100.0,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": -19.0,
+            "state": "法人中性",
+            "signals": [
+              "投信轉買",
+              "外資賣超",
+              "自營買超"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 92.4,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": 12.6,
+            "near_high": 0.83
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": true,
+        "wyckoff": false,
+        "n_votes": 1,
+        "consensus": "單一"
+      },
+      "headline": "DS 45.0 · 邊拉邊調節 · 單一(1/3票) · 價量54/籌碼0/Box22/法人100/融資92",
+      "ds_series_pv": [
+        45.4,
+        23.9,
+        0.5,
+        2.2,
+        2.1,
+        7.8,
+        13.6,
+        8.0,
+        4.1,
+        15.0,
+        22.3,
+        25.0,
+        23.1,
+        20.0,
+        20.5,
+        20.0,
+        20.0,
+        22.7,
+        22.7,
+        24.6,
+        7.9,
+        11.9,
+        12.6,
+        16.2,
+        16.2,
+        19.2,
+        28.3,
+        27.5,
+        34.2,
+        21.2,
+        20.0,
+        40.0,
+        43.1,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.1,
+        40.0,
+        40.1,
+        21.7,
+        20.4,
+        2.9,
+        3.6,
+        0.2,
+        20.8,
+        44.7,
+        44.3,
+        40.0,
+        52.6,
+        59.9,
+        78.4,
+        77.6,
+        76.7,
+        63.8,
+        62.1,
+        62.1,
+        40.0,
+        42.0,
+        54.5
+      ]
+    },
+    {
+      "symbol": "6770",
+      "name": "力積電",
+      "ds": 44.0,
+      "tier": "adjust",
+      "tier_label": "邊拉邊調節",
+      "tier_color": "#fb923c",
+      "layers": {
+        "price_volume": {
+          "score": 40.0,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 40.0,
+            "state": "效率轉差·爆量長上影",
+            "color": "#fb923c",
+            "dominant": "爆量長上影",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.0,
+            "upper_shadow": 0.67,
+            "prog_now": 26.9,
+            "relv_now": 1.29,
+            "dist_from_high": 25.3,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": 11.13,
+            "eff_peak": 29.93,
+            "in_markup": true,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 85.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "high",
             "reasons": [
               "箱底未持續上移（HL 結構弱化）",
               "最新箱底跌破前箱底（trend down 警示）",
-              "箱高擴大（51%→68%）— 波動失控",
+              "箱高擴大（52%→86%）— 波動失控",
               "回檔幅度加深超過 5 個百分點",
+              "整理時間變長（1→5 週）",
+              "假突破 1 次",
               "箱體重疊度高（趨勢推進受阻）",
               "近 3 箱中 2 個劣化箱"
             ]
@@ -518,72 +673,73 @@
             "institution_score": 0.0,
             "state": "法人中性",
             "signals": [
-              "投信買超",
-              "外資轉買"
+              "投信賣超",
+              "外資賣超"
             ]
           }
         },
         "margin_heating": {
-          "score": 79.9,
+          "score": 0.0,
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": 13.6,
-            "near_high": 0.55
+            "margin_growth_20d": -10.7,
+            "near_high": 0.0
           }
         }
       },
       "votes": {
         "box": true,
-        "csa": true,
+        "csa": false,
         "wyckoff": false,
-        "n_votes": 2,
-        "consensus": "多數"
+        "n_votes": 1,
+        "consensus": "單一"
       },
-      "headline": "DS 44.5 · 邊拉邊調節 · 多數(2/3票) · 價量28/籌碼0/Box65/法人100/融資80",
+      "headline": "DS 44.0 · 邊拉邊調節 · 單一(1/3票) · 價量40/籌碼0/Box85/法人100/融資0",
       "ds_series_pv": [
+        45.3,
+        33.3,
+        37.8,
+        33.4,
+        27.2,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        26.6,
+        27.1,
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        34.5,
+        45.1,
+        41.2,
         40.0,
-        60.2,
-        49.6,
-        54.9,
-        54.1,
-        28.1,
-        29.0,
-        29.3,
-        28.6,
-        28.2,
-        30.9,
-        23.6,
-        22.3,
-        0.0,
-        0.8,
+        40.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        40.0,
+        40.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
         6.0,
-        24.2,
-        24.1,
-        23.2,
-        22.4,
-        20.2,
-        20.0,
-        20.0,
-        20.0,
-        20.0,
-        23.2,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
         0.0,
         0.0,
         0.0,
@@ -592,23 +748,22 @@
         6.0,
         6.0,
         6.0,
+        6.0,
         20.0,
-        20.0,
-        20.0,
-        20.0,
-        36.3,
-        27.6,
-        42.3,
-        13.0,
-        0.0,
-        24.5,
-        28.3
+        40.0,
+        60.0,
+        60.0,
+        18.0,
+        18.1,
+        12.0,
+        12.0,
+        40.0
       ]
     },
     {
       "symbol": "2383",
       "name": "台光電",
-      "ds": 44.3,
+      "ds": 42.9,
       "tier": "adjust",
       "tier_label": "邊拉邊調節",
       "tier_color": "#fb923c",
@@ -626,13 +781,13 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 0.33,
-            "prog_now": 18.0,
-            "relv_now": 1.16,
-            "dist_from_high": 11.8,
+            "prog_now": 23.1,
+            "relv_now": 1.17,
+            "dist_from_high": 16.9,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 16.7,
+            "eff_now": 10.89,
             "eff_peak": 84.43,
             "in_markup": true,
             "win": 20
@@ -677,11 +832,11 @@
           }
         },
         "margin_heating": {
-          "score": 55.0,
+          "score": 41.0,
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": 12.0,
+            "margin_growth_20d": 9.0,
             "near_high": 0.0
           }
         }
@@ -693,9 +848,8 @@
         "n_votes": 2,
         "consensus": "多數"
       },
-      "headline": "DS 44.3 · 邊拉邊調節 · 多數(2/3票) · 價量20/籌碼0/Box89/法人100/融資55",
+      "headline": "DS 42.9 · 邊拉邊調節 · 多數(2/3票) · 價量20/籌碼0/Box89/法人100/融資41",
       "ds_series_pv": [
-        25.2,
         0.0,
         3.4,
         0.0,
@@ -755,8 +909,94 @@
         29.7,
         20.0,
         24.9,
+        20.0,
         20.0
       ]
+    },
+    {
+      "symbol": "8039",
+      "name": "台虹",
+      "ds": 42.3,
+      "tier": "adjust",
+      "tier_label": "邊拉邊調節",
+      "tier_color": "#fb923c",
+      "layers": {
+        "price_volume": {
+          "score": 62.7,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 62.7,
+            "state": "價量派發·爆量長上影",
+            "color": "#ef4444",
+            "dominant": "爆量長上影",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.11,
+            "upper_shadow": 1.0,
+            "prog_now": 36.2,
+            "relv_now": 1.22,
+            "dist_from_high": 6.8,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": 18.61,
+            "eff_peak": 66.23,
+            "in_markup": true,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 28.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "healthy",
+            "reasons": [
+              "箱高擴大（36%→63%）— 波動失控",
+              "回檔幅度加深超過 5 個百分點",
+              "近 3 箱中 2 個劣化箱"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 100.0,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": -11.0,
+            "state": "法人中性",
+            "signals": [
+              "投信轉買",
+              "外資賣超"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 28.6,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": 5.0,
+            "near_high": 0.32
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": true,
+        "wyckoff": false,
+        "n_votes": 1,
+        "consensus": "單一"
+      },
+      "headline": "DS 42.3 · 邊拉邊調節 · 單一(1/3票) · 價量63/籌碼0/Box28/法人100/融資29"
     },
     {
       "symbol": "2344",
@@ -779,13 +1019,13 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 1.0,
-            "prog_now": 13.1,
-            "relv_now": 1.0,
-            "dist_from_high": 22.7,
+            "prog_now": 22.9,
+            "relv_now": 1.04,
+            "dist_from_high": 25.4,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 17.22,
+            "eff_now": 10.2,
             "eff_peak": 72.18,
             "in_markup": true,
             "win": 20
@@ -830,7 +1070,7 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -11.0,
+            "margin_growth_20d": -13.1,
             "near_high": 0.0
           }
         }
@@ -842,161 +1082,7 @@
         "n_votes": 0,
         "consensus": "無"
       },
-      "headline": "DS 41.0 · 邊拉邊調節 · 無(0/3票) · 價量60/籌碼0/Box40/法人100/融資0",
-      "ds_series_pv": [
-        47.7,
-        40.8,
-        46.1,
-        46.5,
-        43.7,
-        29.5,
-        35.9,
-        20.0,
-        20.0,
-        20.0,
-        20.0,
-        0.0,
-        4.3,
-        42.0,
-        33.5,
-        32.3,
-        24.8,
-        39.5,
-        25.4,
-        20.0,
-        43.8,
-        21.0,
-        20.0,
-        22.7,
-        20.0,
-        20.0,
-        20.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        6.0,
-        6.0,
-        6.0,
-        6.0,
-        20.0,
-        20.0,
-        12.0,
-        40.0,
-        40.0,
-        60.0,
-        60.0,
-        60.0,
-        60.0,
-        60.0,
-        18.0,
-        60.0,
-        60.0
-      ]
-    },
-    {
-      "symbol": "3006",
-      "name": "晶豪科",
-      "ds": 41.0,
-      "tier": "adjust",
-      "tier_label": "邊拉邊調節",
-      "tier_color": "#fb923c",
-      "layers": {
-        "price_volume": {
-          "score": 20.0,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 20.0,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "爆量長上影",
-            "climax_stall": 0.0,
-            "no_demand": 0.0,
-            "eff_decay": 0.0,
-            "upper_shadow": 0.33,
-            "prog_now": 21.0,
-            "relv_now": 0.91,
-            "dist_from_high": 8.2,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 1,
-            "eff_now": 26.85,
-            "eff_peak": 62.96,
-            "in_markup": true,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 100.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "high",
-            "reasons": [
-              "箱底未持續上移（HL 結構弱化）",
-              "最新箱底跌破前箱底（trend down 警示）",
-              "箱高擴大（38%→66%）— 波動失控",
-              "回檔幅度加深超過 5 個百分點",
-              "整理時間變長（1→5 週）",
-              "假突破 3 次",
-              "箱體重疊度高（趨勢推進受阻）",
-              "近 3 箱中 3 個劣化箱"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 100.0,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": 0.0,
-            "state": "法人中性",
-            "signals": [
-              "投信賣超",
-              "外資賣超"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 0.0,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": -12.1,
-            "near_high": 0.18
-          }
-        }
-      },
-      "votes": {
-        "box": true,
-        "csa": false,
-        "wyckoff": false,
-        "n_votes": 1,
-        "consensus": "單一"
-      },
-      "headline": "DS 41.0 · 邊拉邊調節 · 單一(1/3票) · 價量20/籌碼0/Box100/法人100/融資0",
-      "disposed_recent": 1
+      "headline": "DS 41.0 · 邊拉邊調節 · 無(0/3票) · 價量60/籌碼0/Box40/法人100/融資0"
     },
     {
       "symbol": "3450",
@@ -1019,13 +1105,13 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 0.33,
-            "prog_now": 25.8,
-            "relv_now": 1.81,
-            "dist_from_high": 11.1,
+            "prog_now": 25.2,
+            "relv_now": 1.89,
+            "dist_from_high": 20.7,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
-            "disposed_recent": 1,
-            "eff_now": 16.03,
+            "disposed_recent": 0,
+            "eff_now": 8.34,
             "eff_peak": 109.93,
             "in_markup": true,
             "win": 20
@@ -1061,12 +1147,11 @@
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": -19.0,
-            "state": "法人中性",
+            "institution_score": -56.0,
+            "state": "法人派發",
             "signals": [
               "投信轉買",
-              "外資賣超",
-              "自營買超"
+              "外資賣超"
             ]
           }
         },
@@ -1075,7 +1160,7 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -21.4,
+            "margin_growth_20d": -20.9,
             "near_high": 0.0
           }
         }
@@ -1087,38 +1172,37 @@
         "n_votes": 2,
         "consensus": "多數"
       },
-      "headline": "DS 40.4 · 邊拉邊調節 · 多數(2/3票) · 價量20/籌碼0/Box97/法人100/融資0",
-      "disposed_recent": 1
+      "headline": "DS 40.4 · 邊拉邊調節 · 多數(2/3票) · 價量20/籌碼0/Box97/法人100/融資0"
     },
     {
-      "symbol": "3008",
-      "name": "大立光",
-      "ds": 39.7,
+      "symbol": "3443",
+      "name": "創意",
+      "ds": 39.6,
       "tier": "adjust",
       "tier_label": "邊拉邊調節",
       "tier_color": "#fb923c",
       "layers": {
         "price_volume": {
-          "score": 14.3,
+          "score": 20.0,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 14.3,
+            "pv_distribution": 20.0,
             "state": "量價健康",
             "color": "#22c55e",
-            "dominant": "效率衰退",
+            "dominant": "爆量長上影",
             "climax_stall": 0.0,
             "no_demand": 0.0,
-            "eff_decay": 0.24,
-            "upper_shadow": 0.0,
-            "prog_now": 38.4,
-            "relv_now": 1.1,
-            "dist_from_high": 0.0,
-            "limit_up_recent": 1,
-            "limit_up_seal": 1,
+            "eff_decay": 0.0,
+            "upper_shadow": 0.33,
+            "prog_now": 46.6,
+            "relv_now": 1.25,
+            "dist_from_high": 9.0,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 40.56,
-            "eff_peak": 53.26,
+            "eff_now": 26.06,
+            "eff_peak": 121.15,
             "in_markup": true,
             "win": 20
           }
@@ -1131,16 +1215,18 @@
           }
         },
         "box_degradation": {
-          "score": 52.0,
+          "score": 65.0,
           "w": 0.2,
           "detail": {
             "available": true,
             "degradation_level": "moderate",
             "reasons": [
-              "箱高擴大（22%→46%）— 波動失控",
+              "箱底未持續上移（HL 結構弱化）",
+              "最新箱底跌破前箱底（trend down 警示）",
+              "箱高擴大（51%→68%）— 波動失控",
               "回檔幅度加深超過 5 個百分點",
-              "假突破 2 次",
-              "近 3 箱中 3 個劣化箱"
+              "箱體重疊度高（趨勢推進受阻）",
+              "近 3 箱中 2 個劣化箱"
             ]
           }
         },
@@ -1149,37 +1235,37 @@
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": -37.0,
-            "state": "法人派發",
+            "institution_score": 0.0,
+            "state": "法人中性",
             "signals": [
-              "投信買超",
-              "外資賣壓下降"
+              "投信轉買",
+              "外資轉買"
             ]
           }
         },
         "margin_heating": {
-          "score": 100.0,
+          "score": 56.3,
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": 48.5,
-            "near_high": 1.0
+            "margin_growth_20d": 11.4,
+            "near_high": 0.1
           }
         }
       },
       "votes": {
         "box": true,
-        "csa": false,
+        "csa": true,
         "wyckoff": false,
-        "n_votes": 1,
-        "consensus": "單一"
+        "n_votes": 2,
+        "consensus": "多數"
       },
-      "headline": "DS 39.7 · 邊拉邊調節 · 單一(1/3票) · 價量14/籌碼0/Box52/法人100/融資100"
+      "headline": "DS 39.6 · 邊拉邊調節 · 多數(2/3票) · 價量20/籌碼0/Box65/法人100/融資56"
     },
     {
       "symbol": "2049",
       "name": "上銀",
-      "ds": 39.0,
+      "ds": 39.2,
       "tier": "adjust",
       "tier_label": "邊拉邊調節",
       "tier_color": "#fb923c",
@@ -1197,13 +1283,13 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 1.0,
-            "prog_now": 8.0,
-            "relv_now": 2.17,
-            "dist_from_high": 16.7,
+            "prog_now": 14.5,
+            "relv_now": 2.3,
+            "dist_from_high": 18.5,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 5.3,
+            "eff_now": 2.76,
             "eff_peak": 42.45,
             "in_markup": true,
             "win": 20
@@ -1244,11 +1330,11 @@
           }
         },
         "margin_heating": {
-          "score": 5.2,
+          "score": 7.5,
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": 1.1,
+            "margin_growth_20d": 1.6,
             "near_high": 0.0
           }
         }
@@ -1260,7 +1346,95 @@
         "n_votes": 1,
         "consensus": "單一"
       },
-      "headline": "DS 39.0 · 邊拉邊調節 · 單一(1/3票) · 價量60/籌碼0/Box36/法人88/融資5"
+      "headline": "DS 39.2 · 邊拉邊調節 · 單一(1/3票) · 價量60/籌碼0/Box36/法人88/融資8"
+    },
+    {
+      "symbol": "8358",
+      "name": "金居",
+      "ds": 38.5,
+      "tier": "adjust",
+      "tier_label": "邊拉邊調節",
+      "tier_color": "#fb923c",
+      "layers": {
+        "price_volume": {
+          "score": 18.0,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 18.0,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "爆量長上影",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.0,
+            "upper_shadow": 1.0,
+            "prog_now": 24.9,
+            "relv_now": 2.52,
+            "dist_from_high": 67.1,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": 4.92,
+            "eff_peak": 141.32,
+            "in_markup": false,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 63.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "moderate",
+            "reasons": [
+              "箱底未持續上移（HL 結構弱化）",
+              "最新箱底跌破前箱底（trend down 警示）",
+              "箱高擴大（36%→178%）— 波動失控",
+              "回檔幅度加深超過 5 個百分點",
+              "整理時間變長（2→5 週）",
+              "箱體重疊度高（趨勢推進受阻）"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 100.0,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": -19.0,
+            "state": "法人中性",
+            "signals": [
+              "投信轉買",
+              "外資賣壓下降"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 55.0,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": 50.7,
+            "near_high": 0.0
+          }
+        }
+      },
+      "votes": {
+        "box": true,
+        "csa": true,
+        "wyckoff": false,
+        "n_votes": 2,
+        "consensus": "多數"
+      },
+      "headline": "DS 38.5 · 邊拉邊調節 · 多數(2/3票) · 價量18/籌碼0/Box63/法人100/融資55"
     },
     {
       "symbol": "6274",
@@ -1283,13 +1457,13 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 0.0,
-            "prog_now": 19.1,
+            "prog_now": 28.8,
             "relv_now": 0.98,
-            "dist_from_high": 27.1,
+            "dist_from_high": 30.6,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 19.98,
+            "eff_now": 16.34,
             "eff_peak": 216.3,
             "in_markup": false,
             "win": 20
@@ -1328,7 +1502,7 @@
             "institution_score": 0.0,
             "state": "法人中性",
             "signals": [
-              "投信買超",
+              "投信轉買",
               "外資賣壓下降"
             ]
           }
@@ -1338,7 +1512,7 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": 50.8,
+            "margin_growth_20d": 48.5,
             "near_high": 0.0
           }
         }
@@ -1353,35 +1527,35 @@
       "headline": "DS 37.5 · 邊拉邊調節 · 多數(2/3票) · 價量0/籌碼0/Box85/法人100/融資55"
     },
     {
-      "symbol": "6770",
-      "name": "力積電",
-      "ds": 35.6,
+      "symbol": "3008",
+      "name": "大立光",
+      "ds": 37.4,
       "tier": "adjust",
       "tier_label": "邊拉邊調節",
       "tier_color": "#fb923c",
       "layers": {
         "price_volume": {
-          "score": 12.0,
+          "score": 12.9,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 12.0,
+            "pv_distribution": 12.9,
             "state": "量價健康",
             "color": "#22c55e",
-            "dominant": "爆量長上影",
+            "dominant": "效率衰退",
             "climax_stall": 0.0,
             "no_demand": 0.0,
-            "eff_decay": 0.0,
-            "upper_shadow": 0.67,
-            "prog_now": 10.5,
-            "relv_now": 1.2,
-            "dist_from_high": 29.7,
+            "eff_decay": 0.22,
+            "upper_shadow": 0.0,
+            "prog_now": 39.3,
+            "relv_now": 1.13,
+            "dist_from_high": 4.2,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 9.2,
-            "eff_peak": 29.93,
-            "in_markup": false,
+            "eff_now": 29.21,
+            "eff_peak": 53.26,
+            "in_markup": true,
             "win": 20
           }
         },
@@ -1393,20 +1567,16 @@
           }
         },
         "box_degradation": {
-          "score": 85.0,
+          "score": 52.0,
           "w": 0.2,
           "detail": {
             "available": true,
-            "degradation_level": "high",
+            "degradation_level": "moderate",
             "reasons": [
-              "箱底未持續上移（HL 結構弱化）",
-              "最新箱底跌破前箱底（trend down 警示）",
-              "箱高擴大（52%→86%）— 波動失控",
+              "箱高擴大（22%→46%）— 波動失控",
               "回檔幅度加深超過 5 個百分點",
-              "整理時間變長（1→5 週）",
-              "假突破 1 次",
-              "箱體重疊度高（趨勢推進受阻）",
-              "近 3 箱中 2 個劣化箱"
+              "假突破 2 次",
+              "近 3 箱中 3 個劣化箱"
             ]
           }
         },
@@ -1415,32 +1585,32 @@
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": -37.0,
-            "state": "法人派發",
+            "institution_score": -19.0,
+            "state": "法人中性",
             "signals": [
-              "投信賣超",
+              "投信轉買",
               "外資賣超"
             ]
           }
         },
         "margin_heating": {
-          "score": 0.0,
+          "score": 81.2,
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -10.6,
-            "near_high": 0.0
+            "margin_growth_20d": 49.2,
+            "near_high": 0.58
           }
         }
       },
       "votes": {
         "box": true,
-        "csa": true,
+        "csa": false,
         "wyckoff": false,
-        "n_votes": 2,
-        "consensus": "多數"
+        "n_votes": 1,
+        "consensus": "單一"
       },
-      "headline": "DS 35.6 · 邊拉邊調節 · 多數(2/3票) · 價量12/籌碼0/Box85/法人100/融資0"
+      "headline": "DS 37.4 · 邊拉邊調節 · 單一(1/3票) · 價量13/籌碼0/Box52/法人100/融資81"
     },
     {
       "symbol": "2317",
@@ -1463,13 +1633,13 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 0.33,
-            "prog_now": -3.0,
-            "relv_now": 1.04,
-            "dist_from_high": 22.2,
+            "prog_now": 2.3,
+            "relv_now": 1.08,
+            "dist_from_high": 23.2,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": -2.66,
+            "eff_now": -3.49,
             "eff_peak": 22.31,
             "in_markup": false,
             "win": 20
@@ -1517,7 +1687,7 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -5.8,
+            "margin_growth_20d": -4.0,
             "near_high": 0.0
           }
         }
@@ -1534,31 +1704,31 @@
     {
       "symbol": "3081",
       "name": "聯亞",
-      "ds": 34.3,
+      "ds": 33.2,
       "tier": "adjust",
       "tier_label": "邊拉邊調節",
       "tier_color": "#fb923c",
       "layers": {
         "price_volume": {
-          "score": 40.8,
+          "score": 24.1,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 40.8,
-            "state": "效率轉差·效率衰退",
-            "color": "#fb923c",
-            "dominant": "效率衰退",
+            "pv_distribution": 24.1,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "爆量長上影",
             "climax_stall": 0.0,
             "no_demand": 0.0,
-            "eff_decay": 0.54,
+            "eff_decay": 0.16,
             "upper_shadow": 0.33,
-            "prog_now": 61.8,
-            "relv_now": 1.37,
-            "dist_from_high": 0.2,
-            "limit_up_recent": 1,
-            "limit_up_seal": 1,
-            "disposed_recent": 1,
-            "eff_now": 48.24,
+            "prog_now": 61.7,
+            "relv_now": 1.21,
+            "dist_from_high": 5.8,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": 43.9,
             "eff_peak": 107.78,
             "in_markup": true,
             "win": 20
@@ -1584,11 +1754,11 @@
           }
         },
         "institution_weak": {
-          "score": 56.7,
+          "score": 100.0,
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": 26.0,
+            "institution_score": 0.0,
             "state": "法人中性",
             "signals": [
               "投信轉買",
@@ -1597,12 +1767,12 @@
           }
         },
         "margin_heating": {
-          "score": 99.2,
+          "score": 74.0,
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": 26.1,
-            "near_high": 0.98
+            "margin_growth_20d": 21.6,
+            "near_high": 0.42
           }
         }
       },
@@ -1613,37 +1783,122 @@
         "n_votes": 0,
         "consensus": "無"
       },
-      "headline": "DS 34.3 · 邊拉邊調節 · 無(0/3票) · 價量41/籌碼0/Box18/法人57/融資99",
-      "disposed_recent": 1
+      "headline": "DS 33.2 · 邊拉邊調節 · 無(0/3票) · 價量24/籌碼0/Box18/法人100/融資74"
     },
     {
-      "symbol": "4576",
-      "name": "大銀微系統",
-      "ds": 33.5,
+      "symbol": "9914",
+      "name": "美利達",
+      "ds": 33.0,
       "tier": "adjust",
       "tier_label": "邊拉邊調節",
       "tier_color": "#fb923c",
       "layers": {
         "price_volume": {
-          "score": 19.5,
+          "score": 60.0,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 19.5,
-            "state": "量價健康",
-            "color": "#22c55e",
+            "pv_distribution": 60.0,
+            "state": "價量派發·爆量長上影",
+            "color": "#ef4444",
             "dominant": "爆量長上影",
-            "climax_stall": 0.21,
+            "climax_stall": 0.0,
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 1.0,
-            "prog_now": 3.1,
-            "relv_now": 1.47,
-            "dist_from_high": 40.0,
+            "prog_now": 13.5,
+            "relv_now": 1.09,
+            "dist_from_high": 11.6,
+            "limit_up_recent": 1,
+            "limit_up_seal": 1,
+            "disposed_recent": 0,
+            "eff_now": 11.32,
+            "eff_peak": 21.05,
+            "in_markup": true,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 0.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "healthy",
+            "reasons": [
+              "⚡ 強勢飆漲中（收盤 88 已突破最新 SH 78 +13%）",
+              "自最新有效 SH 形成已 7 週，期間持續創新高、無顯著回落",
+              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
+              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 100.0,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": -63.0,
+            "state": "法人派發",
+            "signals": [
+              "投信賣超",
+              "外資轉買"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 0.0,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": -22.8,
+            "near_high": 0.0
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": false,
+        "wyckoff": false,
+        "n_votes": 0,
+        "consensus": "無"
+      },
+      "headline": "DS 33.0 · 邊拉邊調節 · 無(0/3票) · 價量60/籌碼0/Box0/法人100/融資0"
+    },
+    {
+      "symbol": "4576",
+      "name": "大銀微系統",
+      "ds": 32.2,
+      "tier": "adjust",
+      "tier_label": "邊拉邊調節",
+      "tier_color": "#fb923c",
+      "layers": {
+        "price_volume": {
+          "score": 18.0,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 18.0,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "爆量長上影",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.0,
+            "upper_shadow": 1.0,
+            "prog_now": 9.7,
+            "relv_now": 1.52,
+            "dist_from_high": 43.2,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 3.92,
+            "eff_now": 0.5,
             "eff_peak": 39.31,
             "in_markup": false,
             "win": 20
@@ -1676,7 +1931,7 @@
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": -56.0,
+            "institution_score": -37.0,
             "state": "法人派發",
             "signals": [
               "外資賣超"
@@ -1684,11 +1939,11 @@
           }
         },
         "margin_heating": {
-          "score": 8.1,
+          "score": 0.0,
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": 1.8,
+            "margin_growth_20d": -0.9,
             "near_high": 0.0
           }
         }
@@ -1700,37 +1955,37 @@
         "n_votes": 2,
         "consensus": "多數"
       },
-      "headline": "DS 33.5 · 邊拉邊調節 · 多數(2/3票) · 價量20/籌碼0/Box59/法人100/融資8"
+      "headline": "DS 32.2 · 邊拉邊調節 · 多數(2/3票) · 價量18/籌碼0/Box59/法人100/融資0"
     },
     {
-      "symbol": "9914",
-      "name": "美利達",
-      "ds": 33.2,
+      "symbol": "8046",
+      "name": "南電",
+      "ds": 32.2,
       "tier": "adjust",
       "tier_label": "邊拉邊調節",
       "tier_color": "#fb923c",
       "layers": {
         "price_volume": {
-          "score": 60.6,
+          "score": 40.0,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 60.6,
-            "state": "價量派發·爆量長上影",
-            "color": "#ef4444",
+            "pv_distribution": 40.0,
+            "state": "效率轉差·爆量長上影",
+            "color": "#fb923c",
             "dominant": "爆量長上影",
             "climax_stall": 0.0,
             "no_demand": 0.0,
-            "eff_decay": 0.02,
-            "upper_shadow": 1.0,
-            "prog_now": 16.7,
-            "relv_now": 1.08,
-            "dist_from_high": 7.4,
-            "limit_up_recent": 1,
-            "limit_up_seal": 1,
-            "disposed_recent": 0,
-            "eff_now": 14.31,
-            "eff_peak": 21.05,
+            "eff_decay": 0.0,
+            "upper_shadow": 0.67,
+            "prog_now": 16.3,
+            "relv_now": 0.66,
+            "dist_from_high": 24.7,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 1,
+            "eff_now": 8.52,
+            "eff_peak": 69.13,
             "in_markup": true,
             "win": 20
           }
@@ -1743,29 +1998,31 @@
           }
         },
         "box_degradation": {
-          "score": 0.0,
+          "score": 50.0,
           "w": 0.2,
           "detail": {
             "available": true,
-            "degradation_level": "healthy",
+            "degradation_level": "light",
             "reasons": [
-              "⚡ 強勢飆漲中（收盤 88 已突破最新 SH 78 +13%）",
-              "自最新有效 SH 形成已 7 週，期間持續創新高、無顯著回落",
-              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
-              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
+              "箱高擴大（36%→79%）— 波動失控",
+              "回檔幅度加深超過 5 個百分點",
+              "假突破 1 次",
+              "箱體重疊度高（趨勢推進受阻）",
+              "近 3 箱中 2 個劣化箱"
             ]
           }
         },
         "institution_weak": {
-          "score": 100.0,
+          "score": 68.3,
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": -44.0,
-            "state": "法人派發",
+            "institution_score": 19.0,
+            "state": "法人中性",
             "signals": [
-              "投信賣超",
-              "外資轉買"
+              "投信買超",
+              "外資賣壓下降",
+              "自營買超"
             ]
           }
         },
@@ -1774,48 +2031,49 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -23.5,
-            "near_high": 0.26
+            "margin_growth_20d": -3.0,
+            "near_high": 0.0
           }
         }
       },
       "votes": {
         "box": false,
-        "csa": false,
+        "csa": true,
         "wyckoff": false,
-        "n_votes": 0,
-        "consensus": "無"
+        "n_votes": 1,
+        "consensus": "單一"
       },
-      "headline": "DS 33.2 · 邊拉邊調節 · 無(0/3票) · 價量61/籌碼0/Box0/法人100/融資0"
+      "headline": "DS 32.2 · 邊拉邊調節 · 單一(1/3票) · 價量40/籌碼0/Box50/法人68/融資0",
+      "disposed_recent": 1
     },
     {
       "symbol": "3037",
       "name": "欣興",
-      "ds": 32.7,
+      "ds": 32.0,
       "tier": "adjust",
       "tier_label": "邊拉邊調節",
       "tier_color": "#fb923c",
       "layers": {
         "price_volume": {
-          "score": 27.0,
+          "score": 24.6,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 27.0,
+            "pv_distribution": 24.6,
             "state": "量價健康",
             "color": "#22c55e",
             "dominant": "爆量長上影",
             "climax_stall": 0.0,
-            "no_demand": 0.09,
-            "eff_decay": 0.24,
+            "no_demand": 0.08,
+            "eff_decay": 0.15,
             "upper_shadow": 0.33,
-            "prog_now": 27.9,
-            "relv_now": 0.76,
-            "dist_from_high": 5.5,
-            "limit_up_recent": 1,
-            "limit_up_seal": 1,
+            "prog_now": 40.7,
+            "relv_now": 0.83,
+            "dist_from_high": 6.5,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 38.67,
+            "eff_now": 32.18,
             "eff_peak": 176.03,
             "in_markup": true,
             "win": 20
@@ -1861,8 +2119,8 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -7.7,
-            "near_high": 0.45
+            "margin_growth_20d": -8.3,
+            "near_high": 0.35
           }
         }
       },
@@ -1873,275 +2131,15 @@
         "n_votes": 1,
         "consensus": "單一"
       },
-      "headline": "DS 32.7 · 邊拉邊調節 · 單一(1/3票) · 價量27/籌碼0/Box48/法人100/融資0"
-    },
-    {
-      "symbol": "8046",
-      "name": "南電",
-      "ds": 32.5,
-      "tier": "adjust",
-      "tier_label": "邊拉邊調節",
-      "tier_color": "#fb923c",
-      "layers": {
-        "price_volume": {
-          "score": 40.0,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 40.0,
-            "state": "效率轉差·爆量長上影",
-            "color": "#fb923c",
-            "dominant": "爆量長上影",
-            "climax_stall": 0.0,
-            "no_demand": 0.0,
-            "eff_decay": 0.0,
-            "upper_shadow": 0.67,
-            "prog_now": 5.6,
-            "relv_now": 0.63,
-            "dist_from_high": 24.7,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 2,
-            "eff_now": 3.59,
-            "eff_peak": 94.66,
-            "in_markup": true,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 50.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "light",
-            "reasons": [
-              "箱高擴大（36%→79%）— 波動失控",
-              "回檔幅度加深超過 5 個百分點",
-              "假突破 1 次",
-              "箱體重疊度高（趨勢推進受阻）",
-              "近 3 箱中 2 個劣化箱"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 68.3,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": 19.0,
-            "state": "法人中性",
-            "signals": [
-              "投信轉買",
-              "外資賣超"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 2.5,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": 0.5,
-            "near_high": 0.0
-          }
-        }
-      },
-      "votes": {
-        "box": false,
-        "csa": true,
-        "wyckoff": false,
-        "n_votes": 1,
-        "consensus": "單一"
-      },
-      "headline": "DS 32.5 · 邊拉邊調節 · 單一(1/3票) · 價量40/籌碼0/Box50/法人68/融資2",
-      "disposed_recent": 2
-    },
-    {
-      "symbol": "2492",
-      "name": "華新科",
-      "ds": 30.8,
-      "tier": "adjust",
-      "tier_label": "邊拉邊調節",
-      "tier_color": "#fb923c",
-      "layers": {
-        "price_volume": {
-          "score": 23.5,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 23.5,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "爆量長上影",
-            "climax_stall": 0.73,
-            "no_demand": 0.0,
-            "eff_decay": 0.0,
-            "upper_shadow": 1.0,
-            "prog_now": -2.2,
-            "relv_now": 3.19,
-            "dist_from_high": 130.7,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 0,
-            "eff_now": -0.91,
-            "eff_peak": 423.55,
-            "in_markup": false,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 40.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "light",
-            "reasons": [
-              "箱底未持續上移（HL 結構弱化）",
-              "箱高擴大（41%→223%）— 波動失控",
-              "回檔幅度加深超過 5 個百分點",
-              "近 3 箱中 2 個劣化箱"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 68.3,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": 19.0,
-            "state": "法人中性",
-            "signals": [
-              "投信賣超",
-              "外資賣超",
-              "自營買超"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 55.0,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": 64.7,
-            "near_high": 0.0
-          }
-        }
-      },
-      "votes": {
-        "box": false,
-        "csa": true,
-        "wyckoff": false,
-        "n_votes": 1,
-        "consensus": "單一"
-      },
-      "headline": "DS 30.8 · 邊拉邊調節 · 單一(1/3票) · 價量24/籌碼0/Box40/法人68/融資55"
-    },
-    {
-      "symbol": "2308",
-      "name": "台達電",
-      "ds": 30.0,
-      "tier": "adjust",
-      "tier_label": "邊拉邊調節",
-      "tier_color": "#fb923c",
-      "layers": {
-        "price_volume": {
-          "score": 7.7,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 7.7,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "爆量長上影",
-            "climax_stall": 0.23,
-            "no_demand": 0.0,
-            "eff_decay": 0.0,
-            "upper_shadow": 0.33,
-            "prog_now": -0.3,
-            "relv_now": 1.31,
-            "dist_from_high": 43.3,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 0,
-            "eff_now": -1.5,
-            "eff_peak": 60.34,
-            "in_markup": false,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 52.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "moderate",
-            "reasons": [
-              "假突破 1 次",
-              "當前收盤 1745.00 跌破最新 SL 1870.22",
-              "近 3 箱中 1 個破壞箱"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 100.0,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": -44.0,
-            "state": "法人派發",
-            "signals": [
-              "投信賣超",
-              "外資賣壓下降"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 22.6,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": 4.9,
-            "near_high": 0.0
-          }
-        }
-      },
-      "votes": {
-        "box": true,
-        "csa": true,
-        "wyckoff": false,
-        "n_votes": 2,
-        "consensus": "多數"
-      },
-      "headline": "DS 30.0 · 邊拉邊調節 · 多數(2/3票) · 價量8/籌碼0/Box52/法人100/融資23"
+      "headline": "DS 32.0 · 邊拉邊調節 · 單一(1/3票) · 價量25/籌碼0/Box48/法人100/融資0"
     },
     {
       "symbol": "1303",
       "name": "南亞",
-      "ds": 29.8,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
+      "ds": 30.1,
+      "tier": "adjust",
+      "tier_label": "邊拉邊調節",
+      "tier_color": "#fb923c",
       "layers": {
         "price_volume": {
           "score": 20.0,
@@ -2156,13 +2154,13 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 0.33,
-            "prog_now": 10.3,
-            "relv_now": 1.07,
-            "dist_from_high": 18.5,
+            "prog_now": 14.6,
+            "relv_now": 1.04,
+            "dist_from_high": 26.4,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 7.67,
+            "eff_now": 3.32,
             "eff_peak": 110.1,
             "in_markup": true,
             "win": 20
@@ -2194,8 +2192,8 @@
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": 0.0,
-            "state": "法人中性",
+            "institution_score": -56.0,
+            "state": "法人派發",
             "signals": [
               "投信轉買",
               "外資賣超"
@@ -2203,52 +2201,137 @@
           }
         },
         "margin_heating": {
-          "score": 7.6,
+          "score": 11.3,
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": 1.7,
+            "margin_growth_20d": 2.5,
             "near_high": 0.0
           }
         }
       },
       "votes": {
         "box": false,
-        "csa": false,
+        "csa": true,
         "wyckoff": false,
-        "n_votes": 0,
-        "consensus": "無"
+        "n_votes": 1,
+        "consensus": "單一"
       },
-      "headline": "DS 29.8 · 健康拉升 · 無(0/3票) · 價量20/籌碼0/Box40/法人100/融資8"
+      "headline": "DS 30.1 · 邊拉邊調節 · 單一(1/3票) · 價量20/籌碼0/Box40/法人100/融資11"
     },
     {
-      "symbol": "2301",
-      "name": "光寶科",
-      "ds": 29.1,
+      "symbol": "2308",
+      "name": "台達電",
+      "ds": 29.8,
       "tier": "healthy",
       "tier_label": "健康拉升",
       "tier_color": "#22c55e",
       "layers": {
         "price_volume": {
-          "score": 13.7,
+          "score": 6.0,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 13.7,
+            "pv_distribution": 6.0,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "爆量長上影",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.0,
+            "upper_shadow": 0.33,
+            "prog_now": 9.8,
+            "relv_now": 1.4,
+            "dist_from_high": 44.5,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": -0.82,
+            "eff_peak": 60.34,
+            "in_markup": false,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 52.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "moderate",
+            "reasons": [
+              "假突破 1 次",
+              "當前收盤 1750.00 跌破最新 SL 1870.22",
+              "近 3 箱中 1 個破壞箱"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 100.0,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": 0.0,
+            "state": "法人中性",
+            "signals": [
+              "投信賣超",
+              "外資賣壓下降"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 25.6,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": 5.6,
+            "near_high": 0.0
+          }
+        }
+      },
+      "votes": {
+        "box": true,
+        "csa": true,
+        "wyckoff": false,
+        "n_votes": 2,
+        "consensus": "多數"
+      },
+      "headline": "DS 29.8 · 健康拉升 · 多數(2/3票) · 價量6/籌碼0/Box52/法人100/融資26"
+    },
+    {
+      "symbol": "2301",
+      "name": "光寶科",
+      "ds": 28.6,
+      "tier": "healthy",
+      "tier_label": "健康拉升",
+      "tier_color": "#22c55e",
+      "layers": {
+        "price_volume": {
+          "score": 20.0,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 20.0,
             "state": "量價健康",
             "color": "#22c55e",
             "dominant": "效率衰退",
             "climax_stall": 0.0,
             "no_demand": 0.0,
-            "eff_decay": 0.23,
+            "eff_decay": 0.33,
             "upper_shadow": 0.0,
-            "prog_now": 23.1,
-            "relv_now": 1.69,
-            "dist_from_high": 4.8,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
+            "prog_now": 49.3,
+            "relv_now": 1.85,
+            "dist_from_high": 0.0,
+            "limit_up_recent": 1,
+            "limit_up_seal": 1,
             "disposed_recent": 0,
-            "eff_now": 12.86,
+            "eff_now": 19.82,
             "eff_peak": 29.73,
             "in_markup": true,
             "win": 20
@@ -2262,26 +2345,26 @@
           }
         },
         "box_degradation": {
-          "score": 50.0,
+          "score": 62.0,
           "w": 0.2,
           "detail": {
             "available": true,
-            "degradation_level": "light",
+            "degradation_level": "moderate",
             "reasons": [
               "箱底未持續上移（HL 結構弱化）",
               "回檔幅度加深超過 5 個百分點",
               "整理時間變長（5→9 週）",
-              "假突破 1 次",
-              "近 3 箱中 2 個劣化箱"
+              "假突破 2 次",
+              "近 3 箱中 3 個劣化箱"
             ]
           }
         },
         "institution_weak": {
-          "score": 100.0,
+          "score": 68.3,
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": 0.0,
+            "institution_score": 19.0,
             "state": "法人中性",
             "signals": [
               "投信轉買",
@@ -2294,19 +2377,19 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -13.6,
-            "near_high": 0.52
+            "margin_growth_20d": -11.8,
+            "near_high": 1.0
           }
         }
       },
       "votes": {
-        "box": false,
-        "csa": true,
+        "box": true,
+        "csa": false,
         "wyckoff": false,
         "n_votes": 1,
         "consensus": "單一"
       },
-      "headline": "DS 29.1 · 健康拉升 · 單一(1/3票) · 價量14/籌碼0/Box50/法人100/融資0"
+      "headline": "DS 28.6 · 健康拉升 · 單一(1/3票) · 價量20/籌碼0/Box62/法人68/融資0"
     },
     {
       "symbol": "3017",
@@ -2329,13 +2412,13 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 0.33,
-            "prog_now": 19.4,
-            "relv_now": 1.06,
-            "dist_from_high": 12.9,
+            "prog_now": 28.3,
+            "relv_now": 1.11,
+            "dist_from_high": 12.5,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 19.27,
+            "eff_now": 17.83,
             "eff_peak": 57.72,
             "in_markup": true,
             "win": 20
@@ -2367,10 +2450,10 @@
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": -19.0,
-            "state": "法人中性",
+            "institution_score": -56.0,
+            "state": "法人派發",
             "signals": [
-              "投信賣超",
+              "投信買超",
               "外資轉買"
             ]
           }
@@ -2380,7 +2463,7 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -8.8,
+            "margin_growth_20d": -8.7,
             "near_high": 0.0
           }
         }
@@ -2395,91 +2478,8 @@
       "headline": "DS 28.6 · 健康拉升 · 單一(1/3票) · 價量20/籌碼0/Box38/法人100/融資0"
     },
     {
-      "symbol": "2059",
-      "name": "川湖",
-      "ds": 27.8,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
-      "layers": {
-        "price_volume": {
-          "score": 20.3,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 20.3,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "爆量長上影",
-            "climax_stall": 0.0,
-            "no_demand": 0.0,
-            "eff_decay": 0.01,
-            "upper_shadow": 0.33,
-            "prog_now": 61.8,
-            "relv_now": 1.02,
-            "dist_from_high": 7.4,
-            "limit_up_recent": 1,
-            "limit_up_seal": 1,
-            "disposed_recent": 0,
-            "eff_now": 71.51,
-            "eff_peak": 83.15,
-            "in_markup": true,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 0.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "healthy",
-            "reasons": [
-              "尚未形成有效箱"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 100.0,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": 0.0,
-            "state": "法人中性",
-            "signals": [
-              "投信轉買",
-              "外資賣超"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 66.9,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": 32.4,
-            "near_high": 0.26
-          }
-        }
-      },
-      "votes": {
-        "box": false,
-        "csa": true,
-        "wyckoff": false,
-        "n_votes": 1,
-        "consensus": "單一"
-      },
-      "headline": "DS 27.8 · 健康拉升 · 單一(1/3票) · 價量20/籌碼0/Box0/法人100/融資67"
-    },
-    {
-      "symbol": "3026",
-      "name": "禾伸堂",
+      "symbol": "2368",
+      "name": "金像電",
       "ds": 27.7,
       "tier": "healthy",
       "tier_label": "健康拉升",
@@ -2498,14 +2498,14 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 0.67,
-            "prog_now": 9.2,
-            "relv_now": 0.61,
-            "dist_from_high": 57.3,
+            "prog_now": 17.2,
+            "relv_now": 2.02,
+            "dist_from_high": 56.6,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
-            "disposed_recent": 4,
-            "eff_now": -0.25,
-            "eff_peak": 580.98,
+            "disposed_recent": 0,
+            "eff_now": 2.93,
+            "eff_peak": 104.1,
             "in_markup": false,
             "win": 20
           }
@@ -2524,7 +2524,7 @@
             "available": true,
             "degradation_level": "healthy",
             "reasons": [
-              "箱高擴大（28%→151%）— 波動失控",
+              "箱高擴大（32%→114%）— 波動失控",
               "回檔幅度加深超過 5 個百分點"
             ]
           }
@@ -2534,11 +2534,11 @@
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": -26.0,
+            "institution_score": -7.0,
             "state": "法人中性",
             "signals": [
-              "投信賣超",
-              "外資轉買"
+              "投信轉買",
+              "外資賣超"
             ]
           }
         },
@@ -2547,7 +2547,7 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": 14.0,
+            "margin_growth_20d": 46.2,
             "near_high": 0.0
           }
         }
@@ -2559,122 +2559,37 @@
         "n_votes": 1,
         "consensus": "單一"
       },
-      "headline": "DS 27.7 · 健康拉升 · 單一(1/3票) · 價量12/籌碼0/Box18/法人100/融資55",
-      "disposed_recent": 4
+      "headline": "DS 27.7 · 健康拉升 · 單一(1/3票) · 價量12/籌碼0/Box18/法人100/融資55"
     },
     {
-      "symbol": "2408",
-      "name": "南亞科",
-      "ds": 27.2,
+      "symbol": "2609",
+      "name": "陽明",
+      "ds": 25.9,
       "tier": "healthy",
       "tier_label": "健康拉升",
       "tier_color": "#22c55e",
       "layers": {
         "price_volume": {
-          "score": 32.7,
+          "score": 26.4,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 32.7,
-            "state": "效率轉差·效率衰退",
-            "color": "#fb923c",
-            "dominant": "效率衰退",
-            "climax_stall": 0.0,
-            "no_demand": 0.09,
-            "eff_decay": 0.51,
-            "upper_shadow": 0.0,
-            "prog_now": 21.1,
-            "relv_now": 0.96,
-            "dist_from_high": 0.0,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 0,
-            "eff_now": 32.87,
-            "eff_peak": 66.76,
-            "in_markup": true,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 12.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "healthy",
-            "reasons": [
-              "假突破 1 次"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 100.0,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": -19.0,
-            "state": "法人中性",
-            "signals": [
-              "投信轉買",
-              "外資轉買",
-              "自營買超"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 0.0,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": -12.3,
-            "near_high": 1.0
-          }
-        }
-      },
-      "votes": {
-        "box": false,
-        "csa": false,
-        "wyckoff": false,
-        "n_votes": 0,
-        "consensus": "無"
-      },
-      "headline": "DS 27.2 · 健康拉升 · 無(0/3票) · 價量33/籌碼0/Box12/法人100/融資0"
-    },
-    {
-      "symbol": "2603",
-      "name": "長榮",
-      "ds": 25.1,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
-      "layers": {
-        "price_volume": {
-          "score": 13.2,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 13.2,
+            "pv_distribution": 26.4,
             "state": "量價健康",
             "color": "#22c55e",
-            "dominant": "效率衰退",
+            "dominant": "爆量長上影",
             "climax_stall": 0.0,
             "no_demand": 0.0,
-            "eff_decay": 0.22,
-            "upper_shadow": 0.0,
-            "prog_now": 23.6,
-            "relv_now": 1.05,
+            "eff_decay": 0.26,
+            "upper_shadow": 0.33,
+            "prog_now": 27.2,
+            "relv_now": 2.61,
             "dist_from_high": 0.0,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 21.04,
-            "eff_peak": 26.99,
+            "eff_now": 10.05,
+            "eff_peak": 13.54,
             "in_markup": true,
             "win": 20
           }
@@ -2687,19 +2602,15 @@
           }
         },
         "box_degradation": {
-          "score": 77.0,
+          "score": 37.0,
           "w": 0.2,
           "detail": {
             "available": true,
-            "degradation_level": "high",
+            "degradation_level": "light",
             "reasons": [
               "箱底未持續上移（HL 結構弱化）",
               "最新箱底跌破前箱底（trend down 警示）",
-              "箱高擴大（14%→25%）— 波動失控",
-              "回檔幅度加深超過 5 個百分點",
-              "假突破 1 次",
-              "箱體重疊度高（趨勢推進受阻）",
-              "近 3 箱中 2 個劣化箱"
+              "箱體重疊度高（趨勢推進受阻）"
             ]
           }
         },
@@ -2717,98 +2628,12 @@
           }
         },
         "margin_heating": {
-          "score": 0.0,
+          "score": 48.1,
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -13.8,
+            "margin_growth_20d": 5.8,
             "near_high": 1.0
-          }
-        }
-      },
-      "votes": {
-        "box": true,
-        "csa": false,
-        "wyckoff": false,
-        "n_votes": 1,
-        "consensus": "單一"
-      },
-      "headline": "DS 25.1 · 健康拉升 · 單一(1/3票) · 價量13/籌碼0/Box77/法人38/融資0"
-    },
-    {
-      "symbol": "3653",
-      "name": "健策",
-      "ds": 24.5,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
-      "layers": {
-        "price_volume": {
-          "score": 25.7,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 25.7,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "爆量長上影",
-            "climax_stall": 0.0,
-            "no_demand": 0.0,
-            "eff_decay": 0.23,
-            "upper_shadow": 0.33,
-            "prog_now": 53.0,
-            "relv_now": 1.45,
-            "dist_from_high": 3.8,
-            "limit_up_recent": 1,
-            "limit_up_seal": 1,
-            "disposed_recent": 0,
-            "eff_now": 39.48,
-            "eff_peak": 69.83,
-            "in_markup": true,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 0.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "healthy",
-            "reasons": [
-              "⚡ 強勢飆漲中（收盤 5600 已突破最新 SH 4204 +33%）",
-              "自最新有效 SH 形成已 9 週，期間持續創新高、無顯著回落",
-              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
-              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 56.7,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": 26.0,
-            "state": "法人中性",
-            "signals": [
-              "投信買超",
-              "外資轉買"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 82.9,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": 26.9,
-            "near_high": 0.62
           }
         }
       },
@@ -2819,7 +2644,7 @@
         "n_votes": 0,
         "consensus": "無"
       },
-      "headline": "DS 24.5 · 健康拉升 · 無(0/3票) · 價量26/籌碼0/Box0/法人57/融資83"
+      "headline": "DS 25.9 · 健康拉升 · 無(0/3票) · 價量26/籌碼0/Box37/法人38/融資48"
     },
     {
       "symbol": "4958",
@@ -2842,13 +2667,13 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 0.67,
-            "prog_now": -6.3,
-            "relv_now": 0.96,
-            "dist_from_high": 46.5,
+            "prog_now": 1.9,
+            "relv_now": 0.97,
+            "dist_from_high": 48.3,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": -8.83,
+            "eff_now": -7.64,
             "eff_peak": 109.34,
             "in_markup": false,
             "win": 20
@@ -2868,7 +2693,7 @@
             "available": true,
             "degradation_level": "healthy",
             "reasons": [
-              "⚡ 強勢飆漲中（收盤 463 已突破最新 SH 213 +118%）",
+              "⚡ 強勢飆漲中（收盤 441 已突破最新 SH 213 +107%）",
               "自最新有效 SH 形成已 25 週，期間持續創新高、無顯著回落",
               "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
               "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
@@ -2893,7 +2718,7 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": 18.3,
+            "margin_growth_20d": 15.3,
             "near_high": 0.0
           }
         }
@@ -2906,267 +2731,6 @@
         "consensus": "無"
       },
       "headline": "DS 24.1 · 健康拉升 · 無(0/3票) · 價量12/籌碼0/Box0/法人100/融資55"
-    },
-    {
-      "symbol": "6213",
-      "name": "聯茂",
-      "ds": 23.8,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
-      "layers": {
-        "price_volume": {
-          "score": 20.0,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 20.0,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "爆量長上影",
-            "climax_stall": 0.0,
-            "no_demand": 0.0,
-            "eff_decay": 0.0,
-            "upper_shadow": 0.33,
-            "prog_now": 67.1,
-            "relv_now": 0.6,
-            "dist_from_high": 0.0,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 4,
-            "eff_now": 108.73,
-            "eff_peak": 108.73,
-            "in_markup": true,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 0.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "healthy",
-            "reasons": [
-              "⚡ 強勢飆漲中（收盤 510 已突破最新 SH 424 +20%）",
-              "自最新有效 SH 形成已 6 週，期間持續創新高、無顯著回落",
-              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
-              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 100.0,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": -19.0,
-            "state": "法人中性",
-            "signals": [
-              "投信轉買",
-              "外資轉買"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 28.2,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": 3.4,
-            "near_high": 1.0
-          }
-        }
-      },
-      "votes": {
-        "box": false,
-        "csa": false,
-        "wyckoff": false,
-        "n_votes": 0,
-        "consensus": "無"
-      },
-      "headline": "DS 23.8 · 健康拉升 · 無(0/3票) · 價量20/籌碼0/Box0/法人100/融資28",
-      "disposed_recent": 4
-    },
-    {
-      "symbol": "2330",
-      "name": "台積電",
-      "ds": 23.5,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
-      "layers": {
-        "price_volume": {
-          "score": 28.2,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 28.2,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "效率衰退",
-            "climax_stall": 0.0,
-            "no_demand": 0.12,
-            "eff_decay": 0.42,
-            "upper_shadow": 0.0,
-            "prog_now": 2.6,
-            "relv_now": 0.81,
-            "dist_from_high": 4.1,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 0,
-            "eff_now": 3.15,
-            "eff_peak": 25.37,
-            "in_markup": true,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 0.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "healthy",
-            "reasons": [
-              "⚡ 強勢飆漲中（收盤 2375 已突破最新 SH 2013 +18%）",
-              "自最新有效 SH 形成已 25 週，期間持續創新高、無顯著回落",
-              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
-              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 100.0,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": 0.0,
-            "state": "法人中性",
-            "signals": [
-              "投信賣超",
-              "外資轉買"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 0.0,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": -12.5,
-            "near_high": 0.59
-          }
-        }
-      },
-      "votes": {
-        "box": false,
-        "csa": false,
-        "wyckoff": false,
-        "n_votes": 0,
-        "consensus": "無"
-      },
-      "headline": "DS 23.5 · 健康拉升 · 無(0/3票) · 價量28/籌碼0/Box0/法人100/融資0"
-    },
-    {
-      "symbol": "8358",
-      "name": "金居",
-      "ds": 23.5,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
-      "layers": {
-        "price_volume": {
-          "score": 18.0,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 18.0,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "爆量長上影",
-            "climax_stall": 0.0,
-            "no_demand": 0.0,
-            "eff_decay": 0.0,
-            "upper_shadow": 1.0,
-            "prog_now": 17.5,
-            "relv_now": 2.38,
-            "dist_from_high": 59.8,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 0,
-            "eff_now": 7.88,
-            "eff_peak": 141.32,
-            "in_markup": false,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 63.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "moderate",
-            "reasons": [
-              "箱底未持續上移（HL 結構弱化）",
-              "最新箱底跌破前箱底（trend down 警示）",
-              "箱高擴大（36%→178%）— 波動失控",
-              "回檔幅度加深超過 5 個百分點",
-              "整理時間變長（2→5 週）",
-              "箱體重疊度高（趨勢推進受阻）"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 0.0,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": 63.0,
-            "state": "法人吸籌",
-            "signals": [
-              "投信轉買",
-              "外資賣壓下降"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 55.0,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": 53.5,
-            "near_high": 0.0
-          }
-        }
-      },
-      "votes": {
-        "box": true,
-        "csa": false,
-        "wyckoff": false,
-        "n_votes": 1,
-        "consensus": "單一"
-      },
-      "headline": "DS 23.5 · 健康拉升 · 單一(1/3票) · 價量18/籌碼0/Box63/法人0/融資55"
     },
     {
       "symbol": "8299",
@@ -3189,13 +2753,13 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 0.33,
-            "prog_now": 14.0,
-            "relv_now": 1.26,
-            "dist_from_high": 37.8,
+            "prog_now": 29.4,
+            "relv_now": 1.31,
+            "dist_from_high": 33.9,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 10.88,
+            "eff_now": 13.25,
             "eff_peak": 62.39,
             "in_markup": false,
             "win": 20
@@ -3243,7 +2807,7 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -2.5,
+            "margin_growth_20d": -3.4,
             "near_high": 0.0
           }
         }
@@ -3258,33 +2822,202 @@
       "headline": "DS 22.9 · 健康拉升 · 單一(1/3票) · 價量6/籌碼0/Box77/法人38/融資0"
     },
     {
-      "symbol": "3105",
-      "name": "穩懋",
-      "ds": 22.1,
+      "symbol": "6669",
+      "name": "緯穎",
+      "ds": 22.2,
       "tier": "healthy",
       "tier_label": "健康拉升",
       "tier_color": "#22c55e",
       "layers": {
         "price_volume": {
-          "score": 6.5,
+          "score": 17.1,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 6.5,
+            "pv_distribution": 17.1,
             "state": "量價健康",
             "color": "#22c55e",
-            "dominant": "爆量長上影",
-            "climax_stall": 0.07,
-            "no_demand": 0.0,
-            "eff_decay": 0.0,
-            "upper_shadow": 0.33,
-            "prog_now": 5.1,
-            "relv_now": 1.27,
-            "dist_from_high": 64.7,
+            "dominant": "效率衰退",
+            "climax_stall": 0.0,
+            "no_demand": 0.04,
+            "eff_decay": 0.27,
+            "upper_shadow": 0.0,
+            "prog_now": 18.5,
+            "relv_now": 0.96,
+            "dist_from_high": 5.1,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 7.26,
+            "eff_now": 10.11,
+            "eff_peak": 37.87,
+            "in_markup": true,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 34.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "light",
+            "reasons": [
+              "箱底未持續上移（HL 結構弱化）",
+              "假突破 1 次",
+              "近 3 箱中 2 個劣化箱"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 68.3,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": 19.0,
+            "state": "法人中性",
+            "signals": [
+              "投信賣超",
+              "外資賣壓下降",
+              "自營買超"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 0.0,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": -22.0,
+            "near_high": 0.49
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": false,
+        "wyckoff": false,
+        "n_votes": 0,
+        "consensus": "無"
+      },
+      "headline": "DS 22.2 · 健康拉升 · 無(0/3票) · 價量17/籌碼0/Box34/法人68/融資0"
+    },
+    {
+      "symbol": "2408",
+      "name": "南亞科",
+      "ds": 22.0,
+      "tier": "healthy",
+      "tier_label": "健康拉升",
+      "tier_color": "#22c55e",
+      "layers": {
+        "price_volume": {
+          "score": 15.3,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 15.3,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "效率衰退",
+            "climax_stall": 0.0,
+            "no_demand": 0.01,
+            "eff_decay": 0.25,
+            "upper_shadow": 0.0,
+            "prog_now": 27.6,
+            "relv_now": 0.99,
+            "dist_from_high": 5.4,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": 15.02,
+            "eff_peak": 66.76,
+            "in_markup": true,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 12.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "healthy",
+            "reasons": [
+              "假突破 1 次"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 100.0,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": -37.0,
+            "state": "法人派發",
+            "signals": [
+              "投信轉買",
+              "外資轉買"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 0.0,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": -16.9,
+            "near_high": 0.46
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": true,
+        "wyckoff": false,
+        "n_votes": 1,
+        "consensus": "單一"
+      },
+      "headline": "DS 22.0 · 健康拉升 · 單一(1/3票) · 價量15/籌碼0/Box12/法人100/融資0"
+    },
+    {
+      "symbol": "3105",
+      "name": "穩懋",
+      "ds": 22.0,
+      "tier": "healthy",
+      "tier_label": "健康拉升",
+      "tier_color": "#22c55e",
+      "layers": {
+        "price_volume": {
+          "score": 6.0,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 6.0,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "爆量長上影",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.0,
+            "upper_shadow": 0.33,
+            "prog_now": 9.9,
+            "relv_now": 1.19,
+            "dist_from_high": 73.1,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": 0.0,
             "eff_peak": 70.79,
             "in_markup": false,
             "win": 20
@@ -3319,7 +3052,7 @@
             "state": "法人中性",
             "signals": [
               "投信轉買",
-              "外資賣壓下降"
+              "外資賣超"
             ]
           }
         },
@@ -3328,49 +3061,49 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -1.4,
+            "margin_growth_20d": -2.0,
             "near_high": 0.0
           }
         }
       },
       "votes": {
         "box": false,
-        "csa": false,
+        "csa": true,
         "wyckoff": false,
-        "n_votes": 0,
-        "consensus": "無"
+        "n_votes": 1,
+        "consensus": "單一"
       },
-      "headline": "DS 22.1 · 健康拉升 · 無(0/3票) · 價量6/籌碼0/Box26/法人100/融資0"
+      "headline": "DS 22.0 · 健康拉升 · 單一(1/3票) · 價量6/籌碼0/Box26/法人100/融資0"
     },
     {
-      "symbol": "2881",
-      "name": "富邦金",
-      "ds": 21.6,
+      "symbol": "6213",
+      "name": "聯茂",
+      "ds": 21.3,
       "tier": "healthy",
       "tier_label": "健康拉升",
       "tier_color": "#22c55e",
       "layers": {
         "price_volume": {
-          "score": 52.8,
+          "score": 20.9,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 52.8,
-            "state": "效率轉差·效率衰退",
-            "color": "#fb923c",
-            "dominant": "效率衰退",
+            "pv_distribution": 20.9,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "爆量長上影",
             "climax_stall": 0.0,
-            "no_demand": 0.61,
-            "eff_decay": 0.63,
-            "upper_shadow": 0.0,
-            "prog_now": 3.1,
-            "relv_now": 0.61,
-            "dist_from_high": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.04,
+            "upper_shadow": 0.33,
+            "prog_now": 74.5,
+            "relv_now": 0.64,
+            "dist_from_high": 6.3,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
-            "disposed_recent": 0,
-            "eff_now": 8.42,
-            "eff_peak": 22.63,
+            "disposed_recent": 3,
+            "eff_now": 89.84,
+            "eff_peak": 108.73,
             "in_markup": true,
             "win": 20
           }
@@ -3389,20 +3122,20 @@
             "available": true,
             "degradation_level": "healthy",
             "reasons": [
-              "⚡ 強勢飆漲中（收盤 128 已突破最新 SH 96 +34%）",
-              "自最新有效 SH 形成已 33 週，期間持續創新高、無顯著回落",
+              "⚡ 強勢飆漲中（收盤 513 已突破最新 SH 424 +21%）",
+              "自最新有效 SH 形成已 6 週，期間持續創新高、無顯著回落",
               "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
               "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
             ]
           }
         },
         "institution_weak": {
-          "score": 38.3,
+          "score": 100.0,
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": 37.0,
-            "state": "法人吸籌",
+            "institution_score": -63.0,
+            "state": "法人派發",
             "signals": [
               "投信賣超",
               "外資轉買"
@@ -3414,50 +3147,51 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -7.6,
-            "near_high": 1.0
+            "margin_growth_20d": -1.4,
+            "near_high": 0.37
           }
         }
       },
       "votes": {
         "box": false,
-        "csa": false,
+        "csa": true,
         "wyckoff": false,
-        "n_votes": 0,
-        "consensus": "無"
+        "n_votes": 1,
+        "consensus": "單一"
       },
-      "headline": "DS 21.6 · 健康拉升 · 無(0/3票) · 價量53/籌碼0/Box0/法人38/融資0"
+      "headline": "DS 21.3 · 健康拉升 · 單一(1/3票) · 價量21/籌碼0/Box0/法人100/融資0",
+      "disposed_recent": 3
     },
     {
-      "symbol": "6488",
-      "name": "環球晶",
-      "ds": 21.2,
+      "symbol": "9921",
+      "name": "巨大",
+      "ds": 21.1,
       "tier": "healthy",
       "tier_label": "健康拉升",
       "tier_color": "#22c55e",
       "layers": {
         "price_volume": {
-          "score": 8.1,
+          "score": 20.5,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 8.1,
+            "pv_distribution": 20.5,
             "state": "量價健康",
             "color": "#22c55e",
             "dominant": "爆量長上影",
-            "climax_stall": 0.27,
+            "climax_stall": 0.0,
             "no_demand": 0.0,
-            "eff_decay": 0.0,
+            "eff_decay": 0.02,
             "upper_shadow": 0.33,
-            "prog_now": -11.6,
-            "relv_now": 1.22,
-            "dist_from_high": 60.4,
+            "prog_now": 22.4,
+            "relv_now": 1.53,
+            "dist_from_high": 7.2,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": -7.09,
-            "eff_peak": 102.8,
-            "in_markup": false,
+            "eff_now": 14.13,
+            "eff_peak": 17.94,
+            "in_markup": true,
             "win": 20
           }
         },
@@ -3475,20 +3209,103 @@
             "available": true,
             "degradation_level": "healthy",
             "reasons": [
-              "⚡ 強勢飆漲中（收盤 993 已突破最新 SH 535 +86%）",
-              "自最新有效 SH 形成已 29 週，期間持續創新高、無顯著回落",
+              "⚡ 強勢飆漲中（收盤 108 已突破最新 SH 80 +34%）",
+              "自最新有效 SH 形成已 7 週，期間持續創新高、無顯著回落",
               "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
               "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
             ]
           }
         },
         "institution_weak": {
-          "score": 88.3,
+          "score": 100.0,
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": 7.0,
-            "state": "法人中性",
+            "institution_score": -100.0,
+            "state": "法人派發",
+            "signals": [
+              "投信賣超",
+              "外資轉買"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 0.0,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": -28.3,
+            "near_high": 0.28
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": false,
+        "wyckoff": false,
+        "n_votes": 0,
+        "consensus": "無"
+      },
+      "headline": "DS 21.1 · 健康拉升 · 無(0/3票) · 價量20/籌碼0/Box0/法人100/融資0"
+    },
+    {
+      "symbol": "2059",
+      "name": "川湖",
+      "ds": 21.0,
+      "tier": "healthy",
+      "tier_label": "健康拉升",
+      "tier_color": "#22c55e",
+      "layers": {
+        "price_volume": {
+          "score": 23.2,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 23.2,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "爆量長上影",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.13,
+            "upper_shadow": 0.33,
+            "prog_now": 93.4,
+            "relv_now": 1.02,
+            "dist_from_high": 0.0,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": 72.35,
+            "eff_peak": 83.15,
+            "in_markup": true,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 0.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "healthy",
+            "reasons": [
+              "尚未形成有效箱"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 26.7,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": 44.0,
+            "state": "法人吸籌",
             "signals": [
               "投信轉買",
               "外資賣超"
@@ -3496,52 +3313,52 @@
           }
         },
         "margin_heating": {
-          "score": 55.0,
+          "score": 100.0,
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": 15.4,
-            "near_high": 0.0
+            "margin_growth_20d": 33.5,
+            "near_high": 1.0
           }
         }
       },
       "votes": {
         "box": false,
-        "csa": true,
+        "csa": false,
         "wyckoff": false,
-        "n_votes": 1,
-        "consensus": "單一"
+        "n_votes": 0,
+        "consensus": "無"
       },
-      "headline": "DS 21.2 · 健康拉升 · 單一(1/3票) · 價量8/籌碼0/Box0/法人88/融資55"
+      "headline": "DS 21.0 · 健康拉升 · 無(0/3票) · 價量23/籌碼0/Box0/法人27/融資100"
     },
     {
       "symbol": "3661",
       "name": "世芯-KY",
-      "ds": 21.1,
+      "ds": 20.9,
       "tier": "healthy",
       "tier_label": "健康拉升",
       "tier_color": "#22c55e",
       "layers": {
         "price_volume": {
-          "score": 18.2,
+          "score": 18.0,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 18.2,
+            "pv_distribution": 18.0,
             "state": "量價健康",
             "color": "#22c55e",
             "dominant": "爆量長上影",
-            "climax_stall": 0.03,
+            "climax_stall": 0.0,
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 1.0,
-            "prog_now": 6.9,
-            "relv_now": 1.27,
-            "dist_from_high": 45.3,
+            "prog_now": 19.9,
+            "relv_now": 1.3,
+            "dist_from_high": 43.9,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 6.85,
+            "eff_now": 6.13,
             "eff_peak": 56.41,
             "in_markup": false,
             "win": 20
@@ -3579,11 +3396,11 @@
           }
         },
         "margin_heating": {
-          "score": 24.3,
+          "score": 22.3,
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": 5.3,
+            "margin_growth_20d": 4.9,
             "near_high": 0.0
           }
         }
@@ -3595,22 +3412,357 @@
         "n_votes": 1,
         "consensus": "單一"
       },
-      "headline": "DS 21.1 · 健康拉升 · 單一(1/3票) · 價量18/籌碼0/Box0/法人88/融資24"
+      "headline": "DS 20.9 · 健康拉升 · 單一(1/3票) · 價量18/籌碼0/Box0/法人88/融資22"
     },
     {
-      "symbol": "6919",
-      "name": "康霈*",
-      "ds": 21.0,
+      "symbol": "2330",
+      "name": "台積電",
+      "ds": 20.8,
       "tier": "healthy",
       "tier_label": "健康拉升",
       "tier_color": "#22c55e",
       "layers": {
         "price_volume": {
-          "score": 20.0,
+          "score": 19.2,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 20.0,
+            "pv_distribution": 19.2,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "效率衰退",
+            "climax_stall": 0.0,
+            "no_demand": 0.11,
+            "eff_decay": 0.27,
+            "upper_shadow": 0.0,
+            "prog_now": 4.2,
+            "relv_now": 0.82,
+            "dist_from_high": 5.7,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": 1.3,
+            "eff_peak": 25.37,
+            "in_markup": true,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 0.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "healthy",
+            "reasons": [
+              "⚡ 強勢飆漲中（收盤 2410 已突破最新 SH 2013 +20%）",
+              "自最新有效 SH 形成已 25 週，期間持續創新高、無顯著回落",
+              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
+              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 100.0,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": 0.0,
+            "state": "法人中性",
+            "signals": [
+              "投信買超",
+              "外資賣壓下降"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 0.0,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": -12.0,
+            "near_high": 0.43
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": true,
+        "wyckoff": false,
+        "n_votes": 1,
+        "consensus": "單一"
+      },
+      "headline": "DS 20.8 · 健康拉升 · 單一(1/3票) · 價量19/籌碼0/Box0/法人100/融資0"
+    },
+    {
+      "symbol": "1815",
+      "name": "富喬",
+      "ds": 20.5,
+      "tier": "healthy",
+      "tier_label": "健康拉升",
+      "tier_color": "#22c55e",
+      "layers": {
+        "price_volume": {
+          "score": 40.0,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 40.0,
+            "state": "效率轉差·爆量長上影",
+            "color": "#fb923c",
+            "dominant": "爆量長上影",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.0,
+            "upper_shadow": 0.67,
+            "prog_now": 58.3,
+            "relv_now": 1.73,
+            "dist_from_high": 18.1,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": 24.77,
+            "eff_peak": 49.57,
+            "in_markup": true,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 0.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "healthy",
+            "reasons": [
+              "尚未形成有效箱"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 56.7,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": 26.0,
+            "state": "法人中性",
+            "signals": [
+              "投信轉買",
+              "外資轉買"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 0.0,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": -10.5,
+            "near_high": 0.0
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": true,
+        "wyckoff": false,
+        "n_votes": 1,
+        "consensus": "單一"
+      },
+      "headline": "DS 20.5 · 健康拉升 · 單一(1/3票) · 價量40/籌碼0/Box0/法人57/融資0"
+    },
+    {
+      "symbol": "6182",
+      "name": "合晶",
+      "ds": 20.4,
+      "tier": "healthy",
+      "tier_label": "健康拉升",
+      "tier_color": "#22c55e",
+      "layers": {
+        "price_volume": {
+          "score": 18.0,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 18.0,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "爆量長上影",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.0,
+            "upper_shadow": 1.0,
+            "prog_now": 5.3,
+            "relv_now": 0.47,
+            "dist_from_high": 72.3,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": -10.98,
+            "eff_peak": 220.21,
+            "in_markup": false,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 0.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "healthy",
+            "reasons": [
+              "⚡ 強勢飆漲中（收盤 106 已突破最新 SH 43 +147%）",
+              "自最新有效 SH 形成已 29 週，期間持續創新高、無顯著回落",
+              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
+              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 100.0,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": 0.0,
+            "state": "法人中性",
+            "signals": [
+              "投信賣超",
+              "外資賣超"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 0.0,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": -3.3,
+            "near_high": 0.0
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": false,
+        "wyckoff": false,
+        "n_votes": 0,
+        "consensus": "無"
+      },
+      "headline": "DS 20.4 · 健康拉升 · 無(0/3票) · 價量18/籌碼0/Box0/法人100/融資0"
+    },
+    {
+      "symbol": "2455",
+      "name": "全新",
+      "ds": 17.5,
+      "tier": "healthy",
+      "tier_label": "健康拉升",
+      "tier_color": "#22c55e",
+      "layers": {
+        "price_volume": {
+          "score": 40.0,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 40.0,
+            "state": "效率轉差·爆量長上影",
+            "color": "#fb923c",
+            "dominant": "爆量長上影",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.0,
+            "upper_shadow": 0.67,
+            "prog_now": 26.1,
+            "relv_now": 1.61,
+            "dist_from_high": 15.6,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 1,
+            "eff_now": 10.43,
+            "eff_peak": 89.48,
+            "in_markup": true,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 0.0,
+          "w": 0.2,
+          "detail": {
+            "available": false
+          }
+        },
+        "institution_weak": {
+          "score": 0.0,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": 63.0,
+            "state": "法人吸籌",
+            "signals": [
+              "投信轉買",
+              "外資賣超"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 55.0,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": 27.4,
+            "near_high": 0.0
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": false,
+        "wyckoff": false,
+        "n_votes": 0,
+        "consensus": "無"
+      },
+      "headline": "DS 17.5 · 健康拉升 · 無(0/3票) · 價量40/籌碼0/Box0/法人0/融資55",
+      "disposed_recent": 1
+    },
+    {
+      "symbol": "2454",
+      "name": "聯發科",
+      "ds": 16.8,
+      "tier": "healthy",
+      "tier_label": "健康拉升",
+      "tier_color": "#22c55e",
+      "layers": {
+        "price_volume": {
+          "score": 6.0,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 6.0,
             "state": "量價健康",
             "color": "#22c55e",
             "dominant": "爆量長上影",
@@ -3618,15 +3770,15 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 0.33,
-            "prog_now": 11.3,
-            "relv_now": 0.84,
-            "dist_from_high": 39.2,
+            "prog_now": 13.6,
+            "relv_now": 1.0,
+            "dist_from_high": 22.5,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 19.12,
-            "eff_peak": 28.95,
-            "in_markup": true,
+            "eff_now": 2.31,
+            "eff_peak": 100.73,
+            "in_markup": false,
             "win": 20
           }
         },
@@ -3653,94 +3805,8 @@
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": 0.0,
-            "state": "法人中性",
-            "signals": [
-              "投信賣超",
-              "外資轉買"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 0.0,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": 0.0,
-            "near_high": 0.0
-          }
-        }
-      },
-      "votes": {
-        "box": false,
-        "csa": false,
-        "wyckoff": false,
-        "n_votes": 0,
-        "consensus": "無"
-      },
-      "headline": "DS 21.0 · 健康拉升 · 無(0/3票) · 價量20/籌碼0/Box0/法人100/融資0"
-    },
-    {
-      "symbol": "6182",
-      "name": "合晶",
-      "ds": 20.4,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
-      "layers": {
-        "price_volume": {
-          "score": 18.0,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 18.0,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "爆量長上影",
-            "climax_stall": 0.0,
-            "no_demand": 0.0,
-            "eff_decay": 0.0,
-            "upper_shadow": 1.0,
-            "prog_now": -8.6,
-            "relv_now": 0.41,
-            "dist_from_high": 78.8,
-            "limit_up_recent": 1,
-            "limit_up_seal": 1,
-            "disposed_recent": 0,
-            "eff_now": -17.19,
-            "eff_peak": 220.21,
-            "in_markup": false,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 0.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "healthy",
-            "reasons": [
-              "⚡ 強勢飆漲中（收盤 110 已突破最新 SH 43 +156%）",
-              "自最新有效 SH 形成已 29 週，期間持續創新高、無顯著回落",
-              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
-              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 100.0,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": 0.0,
-            "state": "法人中性",
+            "institution_score": -37.0,
+            "state": "法人派發",
             "signals": [
               "投信賣超",
               "外資賣超"
@@ -3752,350 +3818,7 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -4.2,
-            "near_high": 0.0
-          }
-        }
-      },
-      "votes": {
-        "box": false,
-        "csa": false,
-        "wyckoff": false,
-        "n_votes": 0,
-        "consensus": "無"
-      },
-      "headline": "DS 20.4 · 健康拉升 · 無(0/3票) · 價量18/籌碼0/Box0/法人100/融資0"
-    },
-    {
-      "symbol": "2368",
-      "name": "金像電",
-      "ds": 20.3,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
-      "layers": {
-        "price_volume": {
-          "score": 18.1,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 18.1,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "爆量長上影",
-            "climax_stall": 0.01,
-            "no_demand": 0.0,
-            "eff_decay": 0.0,
-            "upper_shadow": 1.0,
-            "prog_now": 7.8,
-            "relv_now": 1.94,
-            "dist_from_high": 53.8,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 0,
-            "eff_now": 3.66,
-            "eff_peak": 104.1,
-            "in_markup": false,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 18.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "healthy",
-            "reasons": [
-              "箱高擴大（32%→114%）— 波動失控",
-              "回檔幅度加深超過 5 個百分點"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 38.3,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": 37.0,
-            "state": "法人吸籌",
-            "signals": [
-              "投信轉買",
-              "外資賣壓下降"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 55.0,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": 52.6,
-            "near_high": 0.0
-          }
-        }
-      },
-      "votes": {
-        "box": false,
-        "csa": true,
-        "wyckoff": false,
-        "n_votes": 1,
-        "consensus": "單一"
-      },
-      "headline": "DS 20.3 · 健康拉升 · 單一(1/3票) · 價量18/籌碼0/Box18/法人38/融資55"
-    },
-    {
-      "symbol": "3711",
-      "name": "日月光投控",
-      "ds": 17.2,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
-      "layers": {
-        "price_volume": {
-          "score": 0.0,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 0.0,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "爆量滯漲",
-            "climax_stall": 0.0,
-            "no_demand": 0.0,
-            "eff_decay": 0.0,
-            "upper_shadow": 0.0,
-            "prog_now": -3.5,
-            "relv_now": 0.86,
-            "dist_from_high": 22.7,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 0,
-            "eff_now": -4.93,
-            "eff_peak": 49.8,
-            "in_markup": false,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 0.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "healthy",
-            "reasons": [
-              "⚡ 強勢飆漲中（收盤 590 已突破最新 SH 390 +51%）",
-              "自最新有效 SH 形成已 25 週，期間持續創新高、無顯著回落",
-              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
-              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 100.0,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": -44.0,
-            "state": "法人派發",
-            "signals": [
-              "投信賣超",
-              "外資轉買"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 21.6,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": 4.7,
-            "near_high": 0.0
-          }
-        }
-      },
-      "votes": {
-        "box": false,
-        "csa": true,
-        "wyckoff": false,
-        "n_votes": 1,
-        "consensus": "單一"
-      },
-      "headline": "DS 17.2 · 健康拉升 · 單一(1/3票) · 價量0/籌碼0/Box0/法人100/融資22"
-    },
-    {
-      "symbol": "9921",
-      "name": "巨大",
-      "ds": 17.1,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
-      "layers": {
-        "price_volume": {
-          "score": 23.0,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 23.0,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "爆量長上影",
-            "climax_stall": 0.0,
-            "no_demand": 0.0,
-            "eff_decay": 0.12,
-            "upper_shadow": 0.33,
-            "prog_now": 25.7,
-            "relv_now": 1.53,
-            "dist_from_high": 3.7,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 0,
-            "eff_now": 13.86,
-            "eff_peak": 17.94,
-            "in_markup": true,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 0.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "healthy",
-            "reasons": [
-              "⚡ 強勢飆漲中（收盤 106 已突破最新 SH 80 +32%）",
-              "自最新有效 SH 形成已 7 週，期間持續創新高、無顯著回落",
-              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
-              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 68.3,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": 19.0,
-            "state": "法人中性",
-            "signals": [
-              "投信賣超",
-              "外資轉買",
-              "自營買超"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 0.0,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": -27.8,
-            "near_high": 0.63
-          }
-        }
-      },
-      "votes": {
-        "box": false,
-        "csa": false,
-        "wyckoff": false,
-        "n_votes": 0,
-        "consensus": "無"
-      },
-      "headline": "DS 17.1 · 健康拉升 · 無(0/3票) · 價量23/籌碼0/Box0/法人68/融資0"
-    },
-    {
-      "symbol": "2327",
-      "name": "國巨*",
-      "ds": 16.8,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
-      "layers": {
-        "price_volume": {
-          "score": 6.0,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 6.0,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "爆量長上影",
-            "climax_stall": 0.0,
-            "no_demand": 0.0,
-            "eff_decay": 0.0,
-            "upper_shadow": 0.33,
-            "prog_now": -11.4,
-            "relv_now": 0.89,
-            "dist_from_high": 105.8,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 0,
-            "eff_now": -15.47,
-            "eff_peak": 124.54,
-            "in_markup": false,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 0.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "healthy",
-            "reasons": [
-              "⚡ 強勢飆漲中（收盤 562 已突破最新 SH 302 +86%）",
-              "自最新有效 SH 形成已 29 週，期間持續創新高、無顯著回落",
-              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
-              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 100.0,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": -19.0,
-            "state": "法人中性",
-            "signals": [
-              "投信賣超",
-              "外資賣壓下降"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 0.0,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": -9.9,
+            "margin_growth_20d": -2.5,
             "near_high": 0.0
           }
         }
@@ -4108,178 +3831,6 @@
         "consensus": "單一"
       },
       "headline": "DS 16.8 · 健康拉升 · 單一(1/3票) · 價量6/籌碼0/Box0/法人100/融資0"
-    },
-    {
-      "symbol": "2454",
-      "name": "聯發科",
-      "ds": 16.8,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
-      "layers": {
-        "price_volume": {
-          "score": 6.0,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 6.0,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "爆量長上影",
-            "climax_stall": 0.0,
-            "no_demand": 0.0,
-            "eff_decay": 0.0,
-            "upper_shadow": 0.33,
-            "prog_now": 3.0,
-            "relv_now": 0.95,
-            "dist_from_high": 21.7,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 0,
-            "eff_now": 1.12,
-            "eff_peak": 100.73,
-            "in_markup": false,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 0.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "healthy",
-            "reasons": [
-              "⚡ 強勢飆漲中（收盤 3700 已突破最新 SH 1963 +88%）",
-              "自最新有效 SH 形成已 25 週，期間持續創新高、無顯著回落",
-              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
-              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 100.0,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": -81.0,
-            "state": "法人派發",
-            "signals": [
-              "投信賣超",
-              "外資轉買"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 0.0,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": -1.2,
-            "near_high": 0.0
-          }
-        }
-      },
-      "votes": {
-        "box": false,
-        "csa": false,
-        "wyckoff": false,
-        "n_votes": 0,
-        "consensus": "無"
-      },
-      "headline": "DS 16.8 · 健康拉升 · 無(0/3票) · 價量6/籌碼0/Box0/法人100/融資0"
-    },
-    {
-      "symbol": "2303",
-      "name": "聯電",
-      "ds": 15.2,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
-      "layers": {
-        "price_volume": {
-          "score": 0.7,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 0.7,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "爆量滯漲",
-            "climax_stall": 0.04,
-            "no_demand": 0.0,
-            "eff_decay": 0.0,
-            "upper_shadow": 0.0,
-            "prog_now": -7.5,
-            "relv_now": 1.03,
-            "dist_from_high": 50.6,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 0,
-            "eff_now": -8.72,
-            "eff_peak": 61.46,
-            "in_markup": false,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 0.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "healthy",
-            "reasons": [
-              "⚡ 強勢飆漲中（收盤 116 已突破最新 SH 78 +47%）",
-              "自最新有效 SH 形成已 28 週，期間持續創新高、無顯著回落",
-              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
-              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 100.0,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": -19.0,
-            "state": "法人中性",
-            "signals": [
-              "投信賣超",
-              "外資轉買"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 0.0,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": -27.8,
-            "near_high": 0.0
-          }
-        }
-      },
-      "votes": {
-        "box": false,
-        "csa": false,
-        "wyckoff": false,
-        "n_votes": 0,
-        "consensus": "無"
-      },
-      "headline": "DS 15.2 · 健康拉升 · 無(0/3票) · 價量1/籌碼0/Box0/法人100/融資0"
     },
     {
       "symbol": "3481",
@@ -4302,13 +3853,13 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 0.0,
-            "prog_now": -2.7,
-            "relv_now": 0.72,
-            "dist_from_high": 54.0,
+            "prog_now": 1.0,
+            "relv_now": 0.73,
+            "dist_from_high": 56.0,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": -9.67,
+            "eff_now": -5.52,
             "eff_peak": 70.22,
             "in_markup": false,
             "win": 20
@@ -4353,94 +3904,8 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -17.3,
+            "margin_growth_20d": -17.2,
             "near_high": 0.0
-          }
-        }
-      },
-      "votes": {
-        "box": false,
-        "csa": true,
-        "wyckoff": false,
-        "n_votes": 1,
-        "consensus": "單一"
-      },
-      "headline": "DS 15.0 · 健康拉升 · 單一(1/3票) · 價量0/籌碼0/Box0/法人100/融資0"
-    },
-    {
-      "symbol": "2609",
-      "name": "陽明",
-      "ds": 14.6,
-      "tier": "healthy",
-      "tier_label": "健康拉升",
-      "tier_color": "#22c55e",
-      "layers": {
-        "price_volume": {
-          "score": 9.8,
-          "w": 0.3,
-          "detail": {
-            "available": true,
-            "pv_distribution": 9.8,
-            "state": "量價健康",
-            "color": "#22c55e",
-            "dominant": "效率衰退",
-            "climax_stall": 0.0,
-            "no_demand": 0.0,
-            "eff_decay": 0.16,
-            "upper_shadow": 0.0,
-            "prog_now": 25.2,
-            "relv_now": 2.14,
-            "dist_from_high": 0.0,
-            "limit_up_recent": 0,
-            "limit_up_seal": 0,
-            "disposed_recent": 0,
-            "eff_now": 11.32,
-            "eff_peak": 13.54,
-            "in_markup": true,
-            "win": 20
-          }
-        },
-        "chip_dispersion": {
-          "score": 0.0,
-          "w": 0.25,
-          "detail": {
-            "detail": "CMG z60 缺值"
-          }
-        },
-        "box_degradation": {
-          "score": 37.0,
-          "w": 0.2,
-          "detail": {
-            "available": true,
-            "degradation_level": "light",
-            "reasons": [
-              "箱底未持續上移（HL 結構弱化）",
-              "最新箱底跌破前箱底（trend down 警示）",
-              "箱體重疊度高（趨勢推進受阻）"
-            ]
-          }
-        },
-        "institution_weak": {
-          "score": 6.7,
-          "w": 0.15,
-          "detail": {
-            "available": true,
-            "institution_score": 56.0,
-            "state": "法人吸籌",
-            "signals": [
-              "投信轉買",
-              "外資轉買",
-              "自營買超"
-            ]
-          }
-        },
-        "margin_heating": {
-          "score": 33.0,
-          "w": 0.1,
-          "detail": {
-            "available": true,
-            "margin_growth_20d": 4.0,
-            "near_high": 1.0
           }
         }
       },
@@ -4451,7 +3916,7 @@
         "n_votes": 0,
         "consensus": "無"
       },
-      "headline": "DS 14.6 · 健康拉升 · 無(0/3票) · 價量10/籌碼0/Box37/法人7/融資33"
+      "headline": "DS 15.0 · 健康拉升 · 無(0/3票) · 價量0/籌碼0/Box0/法人100/融資0"
     },
     {
       "symbol": "3035",
@@ -4474,13 +3939,13 @@
             "no_demand": 0.0,
             "eff_decay": 0.0,
             "upper_shadow": 0.0,
-            "prog_now": -15.5,
-            "relv_now": 0.76,
-            "dist_from_high": 37.5,
+            "prog_now": -8.4,
+            "relv_now": 0.79,
+            "dist_from_high": 37.1,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": -18.69,
+            "eff_now": -19.27,
             "eff_peak": 33.95,
             "in_markup": false,
             "win": 20
@@ -4524,7 +3989,7 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -10.0,
+            "margin_growth_20d": -9.4,
             "near_high": 0.0
           }
         }
@@ -4539,34 +4004,34 @@
       "headline": "DS 13.2 · 健康拉升 · 無(0/3票) · 價量0/籌碼0/Box46/法人27/融資0"
     },
     {
-      "symbol": "1815",
-      "name": "富喬",
-      "ds": 12.0,
+      "symbol": "3653",
+      "name": "健策",
+      "ds": 12.1,
       "tier": "healthy",
       "tier_label": "健康拉升",
       "tier_color": "#22c55e",
       "layers": {
         "price_volume": {
-          "score": 40.0,
+          "score": 20.0,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 40.0,
-            "state": "效率轉差·爆量長上影",
-            "color": "#fb923c",
+            "pv_distribution": 20.0,
+            "state": "量價健康",
+            "color": "#22c55e",
             "dominant": "爆量長上影",
             "climax_stall": 0.0,
             "no_demand": 0.0,
             "eff_decay": 0.0,
-            "upper_shadow": 0.67,
-            "prog_now": 48.9,
-            "relv_now": 1.47,
-            "dist_from_high": 13.4,
+            "upper_shadow": 0.33,
+            "prog_now": 53.0,
+            "relv_now": 1.57,
+            "dist_from_high": 8.6,
             "limit_up_recent": 0,
             "limit_up_seal": 0,
-            "disposed_recent": 1,
-            "eff_now": 35.05,
-            "eff_peak": 49.57,
+            "disposed_recent": 0,
+            "eff_now": 29.4,
+            "eff_peak": 69.83,
             "in_markup": true,
             "win": 20
           }
@@ -4585,7 +4050,10 @@
             "available": true,
             "degradation_level": "healthy",
             "reasons": [
-              "尚未形成有效箱"
+              "⚡ 強勢飆漲中（收盤 5395 已突破最新 SH 4204 +28%）",
+              "自最新有效 SH 形成已 9 週，期間持續創新高、無顯著回落",
+              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
+              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
             ]
           }
         },
@@ -4594,21 +4062,106 @@
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": 100.0,
+            "institution_score": 63.0,
             "state": "法人吸籌",
             "signals": [
               "投信轉買",
-              "外資轉買",
-              "自營買超"
+              "外資轉買"
             ]
           }
         },
         "margin_heating": {
-          "score": 0.0,
+          "score": 61.2,
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -13.9,
+            "margin_growth_20d": 26.1,
+            "near_high": 0.14
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": false,
+        "wyckoff": false,
+        "n_votes": 0,
+        "consensus": "無"
+      },
+      "headline": "DS 12.1 · 健康拉升 · 無(0/3票) · 價量20/籌碼0/Box0/法人0/融資61"
+    },
+    {
+      "symbol": "2492",
+      "name": "華新科",
+      "ds": 11.9,
+      "tier": "healthy",
+      "tier_label": "健康拉升",
+      "tier_color": "#22c55e",
+      "layers": {
+        "price_volume": {
+          "score": 18.0,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 18.0,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "爆量長上影",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.0,
+            "upper_shadow": 1.0,
+            "prog_now": 8.2,
+            "relv_now": 3.25,
+            "dist_from_high": 131.6,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": -0.79,
+            "eff_peak": 423.55,
+            "in_markup": false,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 0.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "healthy",
+            "reasons": [
+              "⚡ 強勢飆漲中（收盤 266 已突破最新 SH 159 +68%）",
+              "自最新有效 SH 形成已 25 週，期間持續創新高、無顯著回落",
+              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
+              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 6.7,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": 56.0,
+            "state": "法人吸籌",
+            "signals": [
+              "投信賣超",
+              "外資賣超"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 55.0,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": 69.8,
             "near_high": 0.0
           }
         }
@@ -4620,37 +4173,295 @@
         "n_votes": 0,
         "consensus": "無"
       },
-      "headline": "DS 12.0 · 健康拉升 · 無(0/3票) · 價量40/籌碼0/Box0/法人0/融資0",
-      "disposed_recent": 1
+      "headline": "DS 11.9 · 健康拉升 · 無(0/3票) · 價量18/籌碼0/Box0/法人7/融資55"
     },
     {
-      "symbol": "2615",
-      "name": "萬海",
-      "ds": 0.0,
+      "symbol": "3026",
+      "name": "禾伸堂",
+      "ds": 11.9,
       "tier": "healthy",
       "tier_label": "健康拉升",
       "tier_color": "#22c55e",
       "layers": {
         "price_volume": {
-          "score": 0.0,
+          "score": 18.0,
           "w": 0.3,
           "detail": {
             "available": true,
-            "pv_distribution": 0.0,
+            "pv_distribution": 18.0,
             "state": "量價健康",
             "color": "#22c55e",
-            "dominant": "爆量滯漲",
+            "dominant": "爆量長上影",
             "climax_stall": 0.0,
             "no_demand": 0.0,
             "eff_decay": 0.0,
-            "upper_shadow": 0.0,
-            "prog_now": 48.2,
-            "relv_now": 2.27,
-            "dist_from_high": 0.0,
-            "limit_up_recent": 2,
-            "limit_up_seal": 2,
+            "upper_shadow": 1.0,
+            "prog_now": 22.0,
+            "relv_now": 0.67,
+            "dist_from_high": 56.3,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 3,
+            "eff_now": 14.8,
+            "eff_peak": 580.98,
+            "in_markup": false,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 0.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "healthy",
+            "reasons": [
+              "⚡ 強勢飆漲中（收盤 639 已突破最新 SH 126 +408%）",
+              "自最新有效 SH 形成已 42 週，期間持續創新高、無顯著回落",
+              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
+              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 6.7,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": 56.0,
+            "state": "法人吸籌",
+            "signals": [
+              "投信轉買",
+              "外資賣壓下降"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 55.0,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": 12.2,
+            "near_high": 0.0
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": false,
+        "wyckoff": false,
+        "n_votes": 0,
+        "consensus": "無"
+      },
+      "headline": "DS 11.9 · 健康拉升 · 無(0/3票) · 價量18/籌碼0/Box0/法人7/融資55",
+      "disposed_recent": 3
+    },
+    {
+      "symbol": "6488",
+      "name": "環球晶",
+      "ds": 11.4,
+      "tier": "healthy",
+      "tier_label": "健康拉升",
+      "tier_color": "#22c55e",
+      "layers": {
+        "price_volume": {
+          "score": 6.4,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 6.4,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "爆量長上影",
+            "climax_stall": 0.05,
+            "no_demand": 0.0,
+            "eff_decay": 0.0,
+            "upper_shadow": 0.33,
+            "prog_now": 5.3,
+            "relv_now": 1.23,
+            "dist_from_high": 49.4,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
             "disposed_recent": 0,
-            "eff_now": 19.0,
+            "eff_now": -4.2,
+            "eff_peak": 102.8,
+            "in_markup": false,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 0.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "healthy",
+            "reasons": [
+              "⚡ 強勢飆漲中（收盤 941 已突破最新 SH 535 +76%）",
+              "自最新有效 SH 形成已 29 週，期間持續創新高、無顯著回落",
+              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
+              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 26.7,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": 44.0,
+            "state": "法人吸籌",
+            "signals": [
+              "投信轉買",
+              "外資賣超"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 55.0,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": 15.9,
+            "near_high": 0.0
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": false,
+        "wyckoff": false,
+        "n_votes": 0,
+        "consensus": "無"
+      },
+      "headline": "DS 11.4 · 健康拉升 · 無(0/3票) · 價量6/籌碼0/Box0/法人27/融資55"
+    },
+    {
+      "symbol": "2327",
+      "name": "國巨*",
+      "ds": 7.5,
+      "tier": "healthy",
+      "tier_label": "健康拉升",
+      "tier_color": "#22c55e",
+      "layers": {
+        "price_volume": {
+          "score": 6.0,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 6.0,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "爆量長上影",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.0,
+            "upper_shadow": 0.33,
+            "prog_now": -2.1,
+            "relv_now": 0.86,
+            "dist_from_high": 106.9,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": -13.8,
+            "eff_peak": 124.54,
+            "in_markup": false,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 0.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "healthy",
+            "reasons": [
+              "⚡ 強勢飆漲中（收盤 554 已突破最新 SH 302 +83%）",
+              "自最新有效 SH 形成已 29 週，期間持續創新高、無顯著回落",
+              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
+              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 38.3,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": 37.0,
+            "state": "法人吸籌",
+            "signals": [
+              "投信賣超",
+              "外資賣壓下降"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 0.0,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": -9.1,
+            "near_high": 0.0
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": false,
+        "wyckoff": false,
+        "n_votes": 0,
+        "consensus": "無"
+      },
+      "headline": "DS 7.5 · 健康拉升 · 無(0/3票) · 價量6/籌碼0/Box0/法人38/融資0"
+    },
+    {
+      "symbol": "2615",
+      "name": "萬海",
+      "ds": 6.2,
+      "tier": "healthy",
+      "tier_label": "健康拉升",
+      "tier_color": "#22c55e",
+      "layers": {
+        "price_volume": {
+          "score": 20.6,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 20.6,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "爆量長上影",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.02,
+            "upper_shadow": 0.33,
+            "prog_now": 48.9,
+            "relv_now": 2.6,
+            "dist_from_high": 0.0,
+            "limit_up_recent": 1,
+            "limit_up_seal": 1,
+            "disposed_recent": 0,
+            "eff_now": 18.57,
             "eff_peak": 19.0,
             "in_markup": true,
             "win": 20
@@ -4670,7 +4481,7 @@
             "available": true,
             "degradation_level": "healthy",
             "reasons": [
-              "⚡ 強勢飆漲中（收盤 114 已突破最新 SH 85 +34%）",
+              "⚡ 強勢飆漲中（收盤 124 已突破最新 SH 85 +47%）",
               "自最新有效 SH 形成已 9 週，期間持續創新高、無顯著回落",
               "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
               "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
@@ -4682,12 +4493,11 @@
           "w": 0.15,
           "detail": {
             "available": true,
-            "institution_score": 100.0,
+            "institution_score": 81.0,
             "state": "法人吸籌",
             "signals": [
               "投信轉買",
-              "外資轉買",
-              "自營買超"
+              "外資轉買"
             ]
           }
         },
@@ -4696,8 +4506,94 @@
           "w": 0.1,
           "detail": {
             "available": true,
-            "margin_growth_20d": -8.6,
+            "margin_growth_20d": -5.7,
             "near_high": 1.0
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": true,
+        "wyckoff": false,
+        "n_votes": 1,
+        "consensus": "單一"
+      },
+      "headline": "DS 6.2 · 健康拉升 · 單一(1/3票) · 價量21/籌碼0/Box0/法人0/融資0"
+    },
+    {
+      "symbol": "3711",
+      "name": "日月光投控",
+      "ds": 6.0,
+      "tier": "healthy",
+      "tier_label": "健康拉升",
+      "tier_color": "#22c55e",
+      "layers": {
+        "price_volume": {
+          "score": 0.0,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 0.0,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "爆量滯漲",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.0,
+            "upper_shadow": 0.0,
+            "prog_now": 6.9,
+            "relv_now": 0.89,
+            "dist_from_high": 21.7,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": -2.94,
+            "eff_peak": 49.8,
+            "in_markup": false,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 0.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "healthy",
+            "reasons": [
+              "⚡ 強勢飆漲中（收盤 587 已突破最新 SH 390 +50%）",
+              "自最新有效 SH 形成已 25 週，期間持續創新高、無顯著回落",
+              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
+              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 26.7,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": 44.0,
+            "state": "法人吸籌",
+            "signals": [
+              "投信賣超",
+              "外資轉買"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 19.7,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": 4.3,
+            "near_high": 0.0
           }
         }
       },
@@ -4708,7 +4604,93 @@
         "n_votes": 0,
         "consensus": "無"
       },
-      "headline": "DS 0.0 · 健康拉升 · 無(0/3票) · 價量0/籌碼0/Box0/法人0/融資0"
+      "headline": "DS 6.0 · 健康拉升 · 無(0/3票) · 價量0/籌碼0/Box0/法人27/融資20"
+    },
+    {
+      "symbol": "2303",
+      "name": "聯電",
+      "ds": 4.0,
+      "tier": "healthy",
+      "tier_label": "健康拉升",
+      "tier_color": "#22c55e",
+      "layers": {
+        "price_volume": {
+          "score": 0.0,
+          "w": 0.3,
+          "detail": {
+            "available": true,
+            "pv_distribution": 0.0,
+            "state": "量價健康",
+            "color": "#22c55e",
+            "dominant": "爆量滯漲",
+            "climax_stall": 0.0,
+            "no_demand": 0.0,
+            "eff_decay": 0.0,
+            "upper_shadow": 0.0,
+            "prog_now": 8.8,
+            "relv_now": 1.08,
+            "dist_from_high": 42.1,
+            "limit_up_recent": 0,
+            "limit_up_seal": 0,
+            "disposed_recent": 0,
+            "eff_now": -1.84,
+            "eff_peak": 61.46,
+            "in_markup": false,
+            "win": 20
+          }
+        },
+        "chip_dispersion": {
+          "score": 0.0,
+          "w": 0.25,
+          "detail": {
+            "detail": "CMG z60 缺值"
+          }
+        },
+        "box_degradation": {
+          "score": 0.0,
+          "w": 0.2,
+          "detail": {
+            "available": true,
+            "degradation_level": "healthy",
+            "reasons": [
+              "⚡ 強勢飆漲中（收盤 116 已突破最新 SH 78 +49%）",
+              "自最新有效 SH 形成已 28 週，期間持續創新高、無顯著回落",
+              "新箱尚未完成（缺有效 swing high/low 對），舊箱結構不再代表當前趨勢",
+              "本檔應視為 Stage 2 主升段強勢階段，劣化分析暫不適用"
+            ]
+          }
+        },
+        "institution_weak": {
+          "score": 26.7,
+          "w": 0.15,
+          "detail": {
+            "available": true,
+            "institution_score": 44.0,
+            "state": "法人吸籌",
+            "signals": [
+              "投信賣超",
+              "外資轉買"
+            ]
+          }
+        },
+        "margin_heating": {
+          "score": 0.0,
+          "w": 0.1,
+          "detail": {
+            "available": true,
+            "margin_growth_20d": -26.1,
+            "near_high": 0.0
+          }
+        }
+      },
+      "votes": {
+        "box": false,
+        "csa": false,
+        "wyckoff": false,
+        "n_votes": 0,
+        "consensus": "無"
+      },
+      "headline": "DS 4.0 · 健康拉升 · 無(0/3票) · 價量0/籌碼0/Box0/法人27/融資0"
     }
   ],
   "summary": {
@@ -4717,12 +4699,12 @@
     "by_tier": {
       "danger": 0,
       "high": 0,
-      "adjust": 20,
-      "healthy": 30
+      "adjust": 21,
+      "healthy": 29
     },
     "n_high_risk": 0,
-    "n_disposed_recent": 8,
-    "n_disposed_total": 1137,
+    "n_disposed_recent": 5,
+    "n_disposed_total": 1138,
     "weights": {
       "price_volume": 0.3,
       "chip_dispersion": 0.25,
@@ -4731,6 +4713,6 @@
       "margin_heating": 0.1
     }
   },
-  "generated_at": "2026-08-21T22:17:48",
+  "generated_at": "2026-08-24T22:13:54",
   "available": true
 }
