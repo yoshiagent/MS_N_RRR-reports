@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-24",
+  "as_of": "2026-08-25",
   "schema_version": "v2",
   "market_phase": {
     "value": "UNCLEAR",
@@ -7,19 +7,20 @@
     "confidence_band": "LOW",
     "reason": [
       "無 phase 規則滿足 ≥3 條 (BEAR 需 ≥4)",
-      "breadth_regime=weak, above_ma20=54.6%, adv_dec=0.36"
+      "breadth_regime=mixed, above_ma20=52.9%, adv_dec=0.49"
     ]
   },
   "risk_mode": {
-    "value": "DEFENSIVE",
+    "value": "NORMAL",
     "confidence": 60,
     "confidence_band": "MEDIUM",
     "reason": [
-      "phase=UNCLEAR, triggers=2"
+      "phase=UNCLEAR, triggers=1",
+      "不到 AGGRESSIVE 條件, 也未達 DEFENSIVE 門檻"
     ]
   },
   "market_structure": {
-    "taiex_trend": "DOWN",
+    "taiex_trend": "SIDEWAYS",
     "otc_trend": "DOWN",
     "leadership": "LARGE_CAP",
     "breadth_status": "EXPANDING",
@@ -57,11 +58,11 @@
   },
   "discipline_policy": {
     "max_position_ratio_per_stock": 15,
-    "max_total_exposure": 49,
+    "max_total_exposure": 65,
     "allow_new_position": true,
     "allow_add_position": false,
-    "stop_loss_strictness": "HIGH",
-    "cash_minimum_ratio": 51
+    "stop_loss_strictness": "NORMAL",
+    "cash_minimum_ratio": 35
   },
   "orchestrator_instruction": {
     "action_bias": "MAINTAIN",
@@ -80,29 +81,29 @@
   "skill_feedback": {
     "active": true,
     "skill_index": {
-      "Wyckoff": 19.07,
-      "Minervini": 17.4,
-      "ONeil": 14.9,
-      "Weinstein": 13.23,
-      "Darvas": 20.1,
-      "Livermore": 14.43,
+      "Wyckoff": 20.05,
+      "Minervini": 16.85,
+      "ONeil": 14.23,
+      "Weinstein": 13.25,
+      "Darvas": 20.42,
+      "Livermore": 14.32,
       "Lynch": 0.4,
       "Fisher": 0.5,
       "Buffett": 0.0
     },
     "n_days_with_data": 7,
-    "alpha": 0.371,
+    "alpha": 0.37,
     "alpha_mode": "dynamic",
-    "avg_skill_std": 2.88,
+    "avg_skill_std": 3.02,
     "skill_source": "phase_specific:UNCLEAR",
-    "phase_days_current": 3
+    "phase_days_current": 4
   },
   "summary": {
     "phase": "UNCLEAR",
-    "risk_mode": "DEFENSIVE",
+    "risk_mode": "NORMAL",
     "action_bias": "MAINTAIN",
     "skill_feedback_active": true
   },
-  "generated_at": "2026-08-24T22:01:07",
+  "generated_at": "2026-08-25T22:01:42",
   "available": true
 }
