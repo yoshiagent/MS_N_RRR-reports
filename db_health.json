@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-26 22:00:57",
-  "as_of": "2026-08-26",
+  "generated_at": "2026-08-27 22:00:45",
+  "as_of": "2026-08-27",
   "fix_applied": true,
   "overall_status": "healthy",
   "summary": {
@@ -18,13 +18,13 @@
       "message": "全部 8 個必要表存在",
       "detail": {
         "counts": {
-          "price": 2950480,
-          "indices": 3382,
-          "institutional": 1603285,
-          "futures": 2003,
-          "macro": 10039,
+          "price": 2953229,
+          "indices": 3386,
+          "institutional": 1627589,
+          "futures": 2004,
+          "macro": 10051,
           "symbols": 1935,
-          "signal_history": 127678,
+          "signal_history": 128649,
           "update_log": 1
         }
       },
@@ -36,14 +36,18 @@
       "name": "最新日資料齊全度",
       "category": "freshness",
       "status": "healthy",
-      "message": "最新日 2026-08-26 全市場 2752 檔齊全（≥ 1000）",
+      "message": "最新日 2026-08-27 全市場 2749 檔齊全（≥ 1000）",
       "detail": {
-        "latest_date": "2026-08-26",
-        "latest_count": 2752,
-        "second_date": "2026-08-25",
+        "latest_date": "2026-08-27",
+        "latest_count": 2749,
+        "second_date": "2026-08-26",
         "second_count": 2752,
         "days_lag": 0,
         "recent_5": [
+          {
+            "date": "2026-08-27",
+            "n": 2749
+          },
           {
             "date": "2026-08-26",
             "n": 2752
@@ -59,10 +63,6 @@
           {
             "date": "2026-08-21",
             "n": 2804
-          },
-          {
-            "date": "2026-08-20",
-            "n": 2803
           }
         ]
       },
@@ -90,8 +90,8 @@
       "detail": {
         "future_dates": 0,
         "non_positive_close": 0,
-        "zero_volume": 45729,
-        "total_rows": 2950480,
+        "zero_volume": 45763,
+        "total_rows": 2953229,
         "zero_vol_pct": 1.55
       },
       "fixable": true,
@@ -102,7 +102,7 @@
       "name": "價量完整度",
       "category": "integrity",
       "status": "healthy",
-      "message": "近 130 交易日 price 檔數皆齊全（無部分缺料日）",
+      "message": "近 131 交易日 price 檔數皆齊全（無部分缺料日）",
       "detail": {},
       "fixable": false,
       "fix_applied": false,
@@ -115,17 +115,17 @@
       "message": "全部 2 個關鍵指數齊全",
       "detail": {
         "latest_per_index": {
+          "TWII": {
+            "last_date": "2026-08-27",
+            "rows": 1127
+          },
           "KOSPI": {
-            "last_date": "2026-08-24",
-            "rows": 1132
+            "last_date": "2026-08-26",
+            "rows": 1134
           },
           "OTCI": {
-            "last_date": "2026-08-26",
-            "rows": 1124
-          },
-          "TWII": {
-            "last_date": "2026-08-26",
-            "rows": 1126
+            "last_date": "2026-08-27",
+            "rows": 1125
           }
         }
       },
@@ -140,20 +140,20 @@
       "message": "期貨/總經/三大法人皆 ≤ 7 天",
       "detail": {
         "futures": {
-          "last_date": "2026-08-25",
+          "last_date": "2026-08-26",
           "days_lag": 1
         },
         "macro": {
-          "VIX": "2026-08-24",
-          "FEARGREED": "2026-08-24",
-          "USDKRW": "2026-08-24",
-          "TWVIX": "2026-08-24",
+          "VIX": "2026-08-26",
+          "FEARGREED": "2026-08-26",
+          "USDKRW": "2026-08-26",
           "USDJPY": "2026-08-25",
-          "SOX": "2026-08-24",
-          "USDTWD": "2026-08-24"
+          "SOX": "2026-08-26",
+          "USDTWD": "2026-08-26",
+          "TWVIX": "2026-08-26"
         },
         "institutional": {
-          "last_date": "2026-08-26",
+          "last_date": "2026-08-27",
           "days_lag": 0
         }
       },
@@ -169,27 +169,27 @@
       "detail": {
         "market_pcr": {
           "label": "全市場 PCR（TAIFEX 官方）",
-          "last_date": "2026-08-25",
+          "last_date": "2026-08-26",
           "days_lag": 1,
-          "rows": 5321
+          "rows": 5322
         },
         "max_pain": {
           "label": "TXO Max Pain",
-          "last_date": "2026-08-25",
+          "last_date": "2026-08-26",
           "days_lag": 1,
-          "rows": 2837
+          "rows": 2838
         },
         "foreign_opt": {
           "label": "外資選擇權淨 OI",
-          "last_date": "2026-08-25",
+          "last_date": "2026-08-26",
           "days_lag": 1,
-          "rows": 2003
+          "rows": 2004
         },
         "retail_oi": {
           "label": "散戶（小台）未平倉",
-          "last_date": "2026-08-25",
+          "last_date": "2026-08-26",
           "days_lag": 1,
-          "rows": 2003
+          "rows": 2004
         }
       },
       "fixable": false,
@@ -200,14 +200,14 @@
       "name": "Sector map 對照表",
       "category": "coverage",
       "status": "healthy",
-      "message": "1981 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1853 ｜ 市值 1961 ｜ 41 天前更新",
+      "message": "1981 檔對照 ｜ XQ 覆蓋 97.9% ｜ 主題 1853 ｜ 市值 1961 ｜ 42 天前更新",
       "detail": {
         "total": 1981,
         "with_xq": 1940,
         "with_theme": 1853,
         "with_mcap": 1961,
         "xq_coverage_pct": 97.9,
-        "file_age_days": 41,
+        "file_age_days": 42,
         "last_modified": "2026-07-16 20:40"
       },
       "fixable": false,
