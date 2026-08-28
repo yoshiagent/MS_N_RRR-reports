@@ -1,79 +1,6 @@
 <!doctype html><html lang="zh-Hant"><head>
 <link rel="stylesheet" href="../assets/site.css?v=4781cc52">
-<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=4781cc52"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>個股 日K+週K 技術頁 總覽</title><style>
-/* === Chart interaction lock (chart_buttons.py) === */
-/* 鎖定 plotly 觸控：保留 tap，禁用 pinch & pan */
-.plotly-graph-div, .js-plotly-plot {
-  touch-action: manipulation !important;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-/* Toolbar 樣式 */
-.chart-toolbar {
-  display: flex;
-  gap: 4px;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 6px 8px;
-  background: var(--th-card,#0f1a2c);
-  border: 1px solid var(--th-border,#2d3f55);
-  border-radius: 6px;
-  margin: -8px 0 14px;
-  font-family: "Microsoft JhengHei", sans-serif;
-}
-.chart-toolbar button {
-  background: var(--th-card,#1e293b);
-  color: var(--th-text2,#cbd5e1);
-  border: 1px solid var(--th-border2,#334155);
-  border-radius: 4px;
-  padding: 5px 10px;
-  font-size: 12px;
-  font-family: inherit;
-  cursor: pointer;
-  transition: all 0.15s;
-  min-height: 30px;
-  min-width: 36px;
-}
-.chart-toolbar button:hover {
-  border-color: #3b82f6;
-  color: var(--th-blue,#93c5fd);
-}
-.chart-toolbar button:active {
-  transform: scale(0.95);
-  background: var(--th-card,#0f1a2c);
-}
-/* 篩選按鈕 active 高亮（RRG 4 象限切換） */
-.chart-toolbar button.active {
-  background: var(--th-blue-bg,#1e3a5f);
-  color: var(--th-blue,#93c5fd);
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 1px #3b82f6 inset;
-}
-/* 4 象限色彩標記 */
-.chart-toolbar button.q-leading.active   { background:var(--th-green-bg,#064e3b); color:var(--th-green,#6ee7b7); border-color:#10b981; box-shadow:0 0 0 1px #10b981 inset; }
-.chart-toolbar button.q-improving.active { background:var(--th-blue-bg,#0f2a44); color:var(--th-blue,#93c5fd); border-color:#60a5fa; box-shadow:0 0 0 1px #60a5fa inset; }
-.chart-toolbar button.q-weakening.active { background:var(--th-amber-bg,#3a1c08); color:var(--th-amber,#fcd34d); border-color:#fb923c; box-shadow:0 0 0 1px #fb923c inset; }
-.chart-toolbar button.q-lagging.active   { background:var(--th-red-bg,#3f0d1a); color:var(--th-red,#fda4af); border-color:#fda4af; box-shadow:0 0 0 1px #fda4af inset; }
-.chart-toolbar .sep {
-  width: 1px;
-  background: var(--th-hover,#334155);
-  margin: 2px 4px;
-  align-self: stretch;
-}
-.chart-toolbar .lbl {
-  color: var(--th-faint,#64748b);
-  font-size: 11px;
-  padding: 4px 4px;
-  align-self: center;
-  white-space: nowrap;
-}
-@media (max-width: 600px) {
-  .chart-toolbar { padding: 4px 6px; gap: 3px; }
-  .chart-toolbar button { padding: 5px 8px; font-size: 11px; min-width: 32px; }
-  .chart-toolbar .lbl { display: none; }
-  .chart-toolbar .sep { margin: 2px 2px; }
-}.dwk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-top:10px}</style></head><body>
+<link id="ms-theme-css" rel="stylesheet" href="../assets/theme-classic.css?v=4781cc52"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>投信動向熱力圖 — 全市場 ｜ MS_N_RR/RRR</title></head><body>
 <script>(function(){var L=document.getElementById("ms-theme-css");if(!L)return;var q="?v=4781cc52",b="../assets/";var DAY=["theme-red.css","theme-orange.css","theme-yellow.css","theme-green.css","theme-blue.css","theme-indigo.css","theme-violet.css"];function dayT(){return DAY[(new Date()).getDay()];}function ap(v){var t=(v==="auto")?dayT():v;L.setAttribute("href",b+t+q);}var sv=null;try{sv=localStorage.getItem("ms_theme");}catch(e){}if(!sv)sv="auto";ap(sv);var S=document.getElementById("ms-theme-sel");if(S){S.value=sv;S.addEventListener("change",function(){ap(S.value);try{localStorage.setItem("ms_theme",S.value);}catch(e){}});}})();</script>
 <!-- GLOBAL_NAV_START -->
 <nav class="gnav" id="gnav">
@@ -117,8 +44,70 @@
   });
 })();
 </script>
-<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><div class="card" style="max-width:1120px;margin:12px auto"><div class="card-title">📈 個股 日K+週K 技術頁（自選股池）</div><div class="page-meta">每檔含 日K(上)/週K(下) 同步 + 6 副圖(量／三大法人／融資／本益比PER) + 十字游標3列資訊 + 分價量／扣抵／SH·SL／箱壓撐 + 體質 banner</div><div class="dwk-grid"><a class="info-card" href="daily_weekly_8046.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">南電 <span style="color:var(--th-faint,#94a3b8);font-size:14px">8046</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_3037.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">欣興 <span style="color:var(--th-faint,#94a3b8);font-size:14px">3037</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_2344.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">華邦電 <span style="color:var(--th-faint,#94a3b8);font-size:14px">2344</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_2408.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">南亞科 <span style="color:var(--th-faint,#94a3b8);font-size:14px">2408</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_9921.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">巨大 <span style="color:var(--th-faint,#94a3b8);font-size:14px">9921</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_9914.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">美利達 <span style="color:var(--th-faint,#94a3b8);font-size:14px">9914</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_4576.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">大銀微系統 <span style="color:var(--th-faint,#94a3b8);font-size:14px">4576</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_3035.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">智原 <span style="color:var(--th-faint,#94a3b8);font-size:14px">3035</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_2049.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">上銀 <span style="color:var(--th-faint,#94a3b8);font-size:14px">2049</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a><a class="info-card" href="daily_weekly_3006.html" style="display:block;text-decoration:none;padding:14px 16px"><div style="font-size:18px;font-weight:700;color:var(--th-cyan,#38bdf8)">晶豪科 <span style="color:var(--th-faint,#94a3b8);font-size:14px">3006</span></div><div style="color:var(--th-faint,#94a3b8);font-size:12px;margin-top:5px">日K+週K · 6副圖 · 籌碼/估值/分價量 →</div></a></div></div>
-<style id='MS_N_RRR_tooltip_inject_v2'>
+<!-- GLOBAL_NAV_END --><a class="back-link" href="../index.html">← 返回主頁</a><h1 class="page-title">🌐 投信動向熱力圖 block — 買超/賣超 Top20 · 面積=金額 · 顏色=方向×佔量</h1><!-- BLOCK B36a START --><div class="block-region" id="block-B36a" data-block="B36a" data-block-file="trust_flow_heatmap_block.html" data-block-kind="圖" data-block-refs="B36"><div class="block-region__tag">🧱 B36a · 📊 圖 · 引用 B36</div><h1 class="page-title">🌐 投信動向熱力圖 — 投信今天在買什麼賣什麼 · 面積=金額 · 顏色=方向×佔量</h1><div class="page-meta">資料日 <strong>2026-08-27</strong> ｜ 近5日窗 2026-08-21 起 ｜ 全市場普通股 投信分項(中央庫)</div><div class="note">怎麼看:名單=全市場普通股<b>投信買超 Top 20 + 賣超 Top 20</b>;<b>色塊大小 = |投信買賣超金額|</b>(股數差×收盤估算),<b>顏色 = 買紅/賣綠,深淺 = 投信買賣超佔當日成交量%</b>(封頂 ±25%;深色=投信主導當日交易)。大而深紅=投信重手主買(主導盤面);大而淺色=金額大但佔量低。按鈕切「當日/近5日累計」看單日事件 vs 連續動向。投信量體小、偏中小型股,佔量%普遍比外資高。</div><script src="https://cdn.plot.ly/plotly-3.6.0.min.js" charset="utf-8"></script><style>.ffh-tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:6px 0 6px}.ffh-tabs button{padding:4px 12px;border-radius:8px;cursor:pointer;font-size:12.5px;background:var(--th-card);color:var(--th-text2);border:1px solid var(--th-border)}.ffh-tabs button.active{background:var(--th-card);color:var(--th-text);border-color:var(--th-cyan,#22d3ee);box-shadow:0 0 0 1.5px var(--th-cyan,#22d3ee);font-weight:700}.ffh-wrap{max-width:1100px;margin:0 auto}.ffh-info{text-align:center;font-size:13.5px;color:var(--th-text2);margin:2px 0 8px;line-height:1.7}.ffh-info b{color:var(--th-text)}</style><div class="ffh-tabs" role="tablist"><button class="active" onclick="tfhSel('day', this)">當日</button><button onclick="tfhSel('d5', this)">近 5 日累計</button></div><div id="trust_flow_heat_info" class="ffh-info"></div><div class="card"><div id="trust_flow_heat" class="ffh-wrap"></div></div>
+<script>(function(){
+var D={"day":{"tiles":[{"s":"3017","n":"奇鋐","lots":934,"amt_e8":31.2,"pct":15.3},{"s":"3081","n":"聯亞","lots":918,"amt_e8":30.95,"pct":13.9},{"s":"4979","n":"華星光","lots":3234,"amt_e8":19.95,"pct":11.0},{"s":"3008","n":"大立光","lots":218,"amt_e8":15.07,"pct":7.5},{"s":"6805","n":"富世達","lots":673,"amt_e8":14.97,"pct":15.3},{"s":"3211","n":"順達","lots":3183,"amt_e8":12.65,"pct":18.1},{"s":"1303","n":"南亞","lots":4555,"amt_e8":10.36,"pct":3.1},{"s":"3037","n":"欣興","lots":873,"amt_e8":10.31,"pct":3.6},{"s":"8996","n":"高力","lots":766,"amt_e8":10.03,"pct":12.3},{"s":"2301","n":"光寶科","lots":3050,"amt_e8":9.18,"pct":11.9},{"s":"6278","n":"台表科","lots":3461,"amt_e8":7.13,"pct":18.3},{"s":"6531","n":"愛普*","lots":743,"amt_e8":6.81,"pct":21.1},{"s":"8039","n":"台虹","lots":1910,"amt_e8":6.73,"pct":8.5},{"s":"3105","n":"穩懋","lots":1294,"amt_e8":5.77,"pct":3.4},{"s":"6187","n":"萬潤","lots":377,"amt_e8":5.39,"pct":7.3},{"s":"2881","n":"富邦金","lots":3679,"amt_e8":5.21,"pct":16.9},{"s":"3491","n":"昇達科","lots":338,"amt_e8":4.82,"pct":12.3},{"s":"8046","n":"南電","lots":343,"amt_e8":4.44,"pct":4.4},{"s":"5425","n":"台半","lots":4575,"amt_e8":4.36,"pct":10.9},{"s":"3450","n":"聯鈞","lots":688,"amt_e8":3.98,"pct":4.1},{"s":"6223","n":"旺矽","lots":-744,"amt_e8":-37.86,"pct":-27.9},{"s":"2327","n":"國巨*","lots":-5323,"amt_e8":-29.54,"pct":-10.6},{"s":"2303","n":"聯電","lots":-17981,"amt_e8":-21.31,"pct":-9.8},{"s":"2383","n":"台光電","lots":-315,"amt_e8":-17.35,"pct":-9.1},{"s":"2308","n":"台達電","lots":-837,"amt_e8":-14.82,"pct":-9.4},{"s":"2603","n":"長榮","lots":-5321,"amt_e8":-12.37,"pct":-25.4},{"s":"5274","n":"信驊","lots":-78,"amt_e8":-11.95,"pct":-24.4},{"s":"6515","n":"穎崴","lots":-188,"amt_e8":-11.46,"pct":-34.9},{"s":"6274","n":"台燿","lots":-773,"amt_e8":-11.17,"pct":-8.6},{"s":"3293","n":"鈊象","lots":-1203,"amt_e8":-8.47,"pct":-40.8},{"s":"3711","n":"日月光投控","lots":-1309,"amt_e8":-7.92,"pct":-11.2},{"s":"2330","n":"台積電","lots":-317,"amt_e8":-7.65,"pct":-1.7},{"s":"2059","n":"川湖","lots":-48,"amt_e8":-6.92,"pct":-12.6},{"s":"3665","n":"貿聯-KY","lots":-301,"amt_e8":-6.19,"pct":-10.3},{"s":"2360","n":"致茂","lots":-268,"amt_e8":-5.34,"pct":-14.3},{"s":"3653","n":"健策","lots":-66,"amt_e8":-3.74,"pct":-3.5},{"s":"3264","n":"欣銓","lots":-1594,"amt_e8":-3.5,"pct":-25.9},{"s":"5347","n":"世界","lots":-2261,"amt_e8":-3.41,"pct":-20.6},{"s":"2368","n":"金像電","lots":-323,"amt_e8":-3.33,"pct":-5.3},{"s":"7769","n":"鴻勁","lots":-46,"amt_e8":-2.94,"pct":-10.5}],"top_buy":219.3,"top_sell":-227.2,"net_all":-9.0,"n_all":347},"d5":{"tiles":[{"s":"3081","n":"聯亞","lots":2399,"amt_e8":77.32,"pct":8.8},{"s":"4979","n":"華星光","lots":8337,"amt_e8":49.54,"pct":7.9},{"s":"3017","n":"奇鋐","lots":1517,"amt_e8":49.21,"pct":8.0},{"s":"6805","n":"富世達","lots":1589,"amt_e8":33.08,"pct":15.1},{"s":"3443","n":"創意","lots":562,"amt_e8":32.17,"pct":4.7},{"s":"2059","n":"川湖","lots":213,"amt_e8":30.28,"pct":7.7},{"s":"3008","n":"大立光","lots":418,"amt_e8":26.09,"pct":3.2},{"s":"6669","n":"緯穎","lots":371,"amt_e8":24.8,"pct":6.0},{"s":"3105","n":"穩懋","lots":5932,"amt_e8":24.47,"pct":4.9},{"s":"8996","n":"高力","lots":1989,"amt_e8":24.4,"pct":10.1},{"s":"1303","n":"南亞","lots":11357,"amt_e8":23.45,"pct":2.6},{"s":"2301","n":"光寶科","lots":7196,"amt_e8":21.46,"pct":3.2},{"s":"8046","n":"南電","lots":1573,"amt_e8":19.04,"pct":3.2},{"s":"1815","n":"富喬","lots":16313,"amt_e8":18.33,"pct":4.0},{"s":"3189","n":"景碩","lots":2010,"amt_e8":18.25,"pct":2.1},{"s":"6278","n":"台表科","lots":7366,"amt_e8":14.46,"pct":11.3},{"s":"2313","n":"華通","lots":5943,"amt_e8":12.95,"pct":4.0},{"s":"8039","n":"台虹","lots":4003,"amt_e8":12.66,"pct":1.6},{"s":"3211","n":"順達","lots":2732,"amt_e8":12.07,"pct":5.8},{"s":"0050","n":"元大台灣50","lots":11260,"amt_e8":11.81,"pct":3.6},{"s":"2327","n":"國巨*","lots":-10816,"amt_e8":-59.25,"pct":-6.9},{"s":"2383","n":"台光電","lots":-1024,"amt_e8":-56.86,"pct":-8.8},{"s":"6223","n":"旺矽","lots":-1102,"amt_e8":-55.74,"pct":-17.1},{"s":"2308","n":"台達電","lots":-2592,"amt_e8":-45.5,"pct":-6.4},{"s":"3293","n":"鈊象","lots":-5006,"amt_e8":-35.67,"pct":-25.4},{"s":"2360","n":"致茂","lots":-1643,"amt_e8":-32.85,"pct":-16.8},{"s":"2345","n":"智邦","lots":-1418,"amt_e8":-29.13,"pct":-10.7},{"s":"2454","n":"聯發科","lots":-633,"amt_e8":-24.25,"pct":-2.1},{"s":"3711","n":"日月光投控","lots":-3835,"amt_e8":-22.8,"pct":-6.8},{"s":"6213","n":"聯茂","lots":-2649,"amt_e8":-13.83,"pct":-1.8},{"s":"2603","n":"長榮","lots":-5772,"amt_e8":-13.51,"pct":-4.5},{"s":"4958","n":"臻鼎-KY","lots":-2838,"amt_e8":-12.78,"pct":-3.0},{"s":"5274","n":"信驊","lots":-80,"amt_e8":-12.05,"pct":-6.5},{"s":"6515","n":"穎崴","lots":-191,"amt_e8":-11.62,"pct":-11.9},{"s":"2637","n":"慧洋-KY","lots":-12022,"amt_e8":-11.58,"pct":-12.9},{"s":"7769","n":"鴻勁","lots":-166,"amt_e8":-10.47,"pct":-9.0},{"s":"2303","n":"聯電","lots":-9398,"amt_e8":-10.38,"pct":-1.4},{"s":"3264","n":"欣銓","lots":-4844,"amt_e8":-10.31,"pct":-21.8},{"s":"3665","n":"貿聯-KY","lots":-515,"amt_e8":-9.62,"pct":-2.8},{"s":"3533","n":"嘉澤","lots":-546,"amt_e8":-8.77,"pct":-8.8}],"top_buy":535.8,"top_sell":-487.0,"net_all":120.0,"n_all":418}}, CAP=25.0, DIV='trust_flow_heat', INITED=false;
+var CS=[[0,'#16a34a'],[0.25,'#14532d'],[0.47,'#243447'],[0.53,'#243447'],
+        [0.75,'#7f1d1d'],[1,'#dc2626']];
+function fm(n,d){return (n==null?'—':n.toLocaleString('en-US',
+  {minimumFractionDigits:d||0,maximumFractionDigits:d||0}));}
+function mk(key){
+  var b=D[key];
+  var lab=[],vals=[],cols=[],txt=[],cd=[];
+  b.tiles.forEach(function(t){
+    lab.push(t.n+' '+t.s);
+    vals.push(Math.abs(t.amt_e8));
+    var sign=t.amt_e8>0?1:-1;
+    var mag=(t.pct==null)?CAP*0.4:Math.min(Math.abs(t.pct),CAP);
+    cols.push(sign*mag);
+    var side=t.amt_e8>0?'買超':'賣超';
+    txt.push(side+' '+fm(Math.abs(t.amt_e8),1)+' 億<br>'+
+      (t.pct==null?'':('佔量 '+t.pct.toFixed(1)+'%')));
+    cd.push([side, fm(Math.abs(t.amt_e8),1), fm(Math.abs(t.lots)),
+             (t.pct==null?'—':t.pct.toFixed(1)+'%')]);
+  });
+  return {type:'treemap',labels:lab,parents:lab.map(function(){return '';}),
+    values:vals,text:txt,textinfo:'label+text',
+    customdata:cd,
+    hovertemplate:'%{label}<br>投信%{customdata[0]} %{customdata[1]} 億'+
+      '（%{customdata[2]} 張）<br>佔當日成交量 %{customdata[3]}<extra></extra>',
+    pathbar:{visible:false},
+    textfont:{color:'#f1f5f9'},insidetextfont:{color:'#f1f5f9'},
+    marker:{colors:cols,colorscale:CS,cmin:-CAP,cmax:CAP,
+      line:{width:1,color:'#0b1220'},
+      colorbar:{title:{text:'佔成交量%',font:{size:11,color:'#94a3b8'}},
+        thickness:12,len:0.72,outlinewidth:0,ticksuffix:'%',
+        tickfont:{size:10,color:'#94a3b8'}}}};
+}
+function info(key){
+  var b=D[key];
+  var label=key==='day'?'當日':'近5日累計';
+  var netCol=b.net_all>0?'var(--th-red,#f87171)':'var(--th-green,#4ade80)';
+  document.getElementById('trust_flow_heat_info').innerHTML=
+    '🌐 '+label+' ｜ 全市場普通股投信淨買賣 <b style="color:'+netCol+'">'+
+    (b.net_all>0?'+':'')+fm(b.net_all,1)+' 億</b>（'+fm(b.n_all)+' 檔有投信進出）'+
+    '<br>圖示 = 買超 Top '+20+'（合計 <b>+'+fm(b.top_buy,1)+' 億</b>）'+
+    ' + 賣超 Top '+20+'（合計 <b>'+fm(b.top_sell,1)+' 億</b>）';
+}
+function draw(key){
+  var lay={margin:{t:6,l:6,r:6,b:6},height:600,
+    paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',
+    font:{color:'#e2e8f0'}};
+  var cfg={displayModeBar:false,responsive:true,doubleClick:false,scrollZoom:false};
+  Plotly.react(DIV,[mk(key)],lay,cfg).then(function(gd){
+    if(!INITED){INITED=true;
+      gd.on('plotly_treemapclick',function(){return false;});}
+  });
+  info(key);
+}
+window.tfhSel=function(key,btn){
+  draw(key);
+  if(btn){btn.parentNode.querySelectorAll('button').forEach(function(b){
+    b.classList.remove('active');});btn.classList.add('active');}
+};
+draw('day');
+})();</script><details class="explainer"><summary class="explainer__title">🌐 這個 block(B36a · 定義 · 判讀 · 資料 · 程式 — 點開)</summary><div class="section-head">定義</div><div class="formula">名單 = 全市場普通股(4 碼純數字;排除 ETF/ETN/特別股/TDR)投信買超前 20 + 賣超前 20(依金額)<br>面積 = |投信買賣超金額| = |股數差| × 當日收盤(估算,非成交回報)<br>顏色 = 方向(紅買/綠賣)× 佔量%(投信買賣超 ÷ 當日成交量,封頂 ±25%)<br>近5日 = Σ(每日股數差 × 該日收盤);佔量 = Σ買賣超 ÷ Σ成交量</div><div class="section-head">判讀</div><div class="note">投信買賣超=集中市場口徑。投信偏好中小型股且有<b>作帳行情</b>(季底 3/6/9/12 月)與認養慣性:連續多日進榜=認養建倉;佔量%高=投信主導該股價格;賣超深綠=棄養警訊(常伴隨跌勢加速)。⚠ 只是資金事實非買賣訊號;鉅額/盤後/申購不含在內。</div><div class="section-head">資料來源 / 程式</div><div class="formula">中央庫 stocks.duckdb <code>institutional</code>(全市場逐股三大法人,trust=投信(Investment_Trust))⨝ <code>price</code>(收盤/成交量);R6 只讀,零新抓取<br>程式:src/agents/foreign_flow_heatmap_block.py(flavor 核心) / trust_flow_heatmap_block.py(薄殼):fragment / build_block</div><div class="section-head">相關頁 / 可組裝</div><div class="formula"><a href="foreign_flow_heatmap_block.html">外資動向熱力圖(B36)↗</a> · <a href="active_etf.html">主動 ETF 績效榜 ↗</a> · <a href="../strategy/trading_focus_50.html">成交重心 50% 涵蓋 ↗</a><br>可組裝:blocks.fragment(&quot;B36a&quot;) · blocks.assemble([…,&quot;B36a&quot;])</div></details></div><!-- BLOCK B36a END -->
+<style>
 .tip { position: relative; cursor: help; }
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
