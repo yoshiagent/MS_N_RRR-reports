@@ -107,7 +107,7 @@ window.tfhSel=function(key,btn){
 };
 draw('day');
 })();</script><details class="explainer"><summary class="explainer__title">🌐 這個 block(B36a · 定義 · 判讀 · 資料 · 程式 — 點開)</summary><div class="section-head">定義</div><div class="formula">名單 = 全市場普通股(4 碼純數字;排除 ETF/ETN/特別股/TDR)投信買超前 20 + 賣超前 20(依金額)<br>面積 = |投信買賣超金額| = |股數差| × 當日收盤(估算,非成交回報)<br>顏色 = 方向(紅買/綠賣)× 佔量%(投信買賣超 ÷ 當日成交量,封頂 ±25%)<br>近5日 = Σ(每日股數差 × 該日收盤);佔量 = Σ買賣超 ÷ Σ成交量</div><div class="section-head">判讀</div><div class="note">投信買賣超=集中市場口徑。投信偏好中小型股且有<b>作帳行情</b>(季底 3/6/9/12 月)與認養慣性:連續多日進榜=認養建倉;佔量%高=投信主導該股價格;賣超深綠=棄養警訊(常伴隨跌勢加速)。⚠ 只是資金事實非買賣訊號;鉅額/盤後/申購不含在內。</div><div class="section-head">資料來源 / 程式</div><div class="formula">中央庫 stocks.duckdb <code>institutional</code>(全市場逐股三大法人,trust=投信(Investment_Trust))⨝ <code>price</code>(收盤/成交量);R6 只讀,零新抓取<br>程式:src/agents/foreign_flow_heatmap_block.py(flavor 核心) / trust_flow_heatmap_block.py(薄殼):fragment / build_block</div><div class="section-head">相關頁 / 可組裝</div><div class="formula"><a href="foreign_flow_heatmap_block.html">外資動向熱力圖(B36)↗</a> · <a href="active_etf.html">主動 ETF 績效榜 ↗</a> · <a href="../strategy/trading_focus_50.html">成交重心 50% 涵蓋 ↗</a><br>可組裝:blocks.fragment(&quot;B36a&quot;) · blocks.assemble([…,&quot;B36a&quot;])</div></details></div><!-- BLOCK B36a END -->
-<style id='MS_N_RRR_tooltip_inject_v2'>
+<style>
 .tip { position: relative; cursor: help; }
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
