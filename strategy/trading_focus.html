@@ -368,4 +368,120 @@ window.sehSel=function(sym,btn){
   }
 };
 draw('2327');
-})();</script><details class="explainer"><summary class="explainer__title">🎯 這個 block(B33 · 定義 · 判讀 · 資料 · 程式 — 點開)</summary><div class="section-head">定義</div><div class="formula">熱力圖 = Treemap:每檔「持有本股」的主動 ETF 一個色塊<br>面積 = 該 ETF 最新揭露日持本股 投資比例 weight%(占該 ETF 淨值,非占本股股本)<br>顏色 = 該 ETF 對本股 股數增減率% = (本期股數 − 前期股數) ÷ 前期股數 × 100(封頂 ±30%;塊上標真實 Δ張與 %)<br>期別 = 各 ETF 自己的「最新 vs 前一揭露日」(per-ETF 對齊,更新時點不同步)<br>不變 = |Δ股數| &lt; 1000 股;新進/出清 = 該 ETF 前期無↔本期無<br>ETF圈淨買賣 = Σ各 ETF Δ張(含新進,扣出清)= 主動 ETF 圈對本股的合計動作</div><div class="section-head">下鑽(點色塊)</div><div class="formula">點任一 ETF 色塊 → 下方展開「日K × 該ETF歷史進出」:主圖=該股日K(紅漲綠跌)+<b>該ETF持股成本虛線</b>(琥珀·移動平均法「窗內近似」:加碼以揭露日收盤計價、減碼按均價沖銷、首揭露整筆視為當日建倉——真實成交價不可得,成本為近似參考);副圖=該 ETF 逐揭露日增減柱(紅買綠賣)+<b>持股張數階梯線</b>(青,MoneyDJ 每日快照 forward 累積,2026-06-18 起)。K 線壓在成本虛線下=該 ETF 此股部位套牢;持股線持續墊高=經理人波段加碼、高檔下彎=減持/出清前兆。payload 分級:卷宗頁=該股全 ETF;榜單嵌入頁=選單股;獨立頁=共識前 40 檔。</div><div class="section-head">判讀</div><div class="note">多檔 ETF 同步加碼(整圖偏紅)= 經理人共識正形成;大塊綠(重倉 ETF 在撤)比小塊綠重要。⚠ 標疑申贖的 ETF(該 ETF 本期全持股增減同號)其加減碼是申購/贖回等比例部署,不代表選股意圖 → 看資訊列統計,共識判讀時扣掉。此圖與共同調整榜同源:榜=全市場掃描、本圖=單股深掘。</div><div class="section-head">操作</div><div class="note">獨立頁選單 = 被持有檔數 Top 12 快速鈕 + 全部個股下拉;嵌入頁可換自訂選單(如成交重心榜前 10 鈕+其餘下拉),選單中「無主動ETF持有」的股會註明、點選顯示說明。滑鼠懸停/手機點色塊看持有張數/揭露細節;點擊鑽入已停用(平面圖)。</div><div class="section-head">資料來源 / 程式</div><div class="formula">moneydj.duckdb <code>holdings</code>(全現役主動 ETF 的台股部位;含全球型如 00988A 的台股持股)<br>疑申贖/缺檔門檻同 B32/共同調整榜(全同號≥3 檔;檔數驟減>15%)<br>⚠ MoneyDJ 揭露常落後 1 日;增減=兩揭露日快照差,非成交回報<br>程式:src/agents/stock_etf_heatmap_block.py:fragment / build_block</div><div class="section-head">相關頁 / 可組裝</div><div class="formula"><a href="../market/etf_heatmap_block.html">B32 ETF 持股熱力圖(轉置視角)↗</a> · <a href="../market/active_etf_coverage.html">個股涵蓋表 ↗</a> · <a href="../market/active_etf_cochange.html">當日共同調整榜 ↗</a> · <a href="../market/active_etf_hub.html">主動 ETF 中樞 ↗</a><br>可組裝:blocks.fragment(&quot;B33&quot;) · blocks.assemble([…,&quot;B33&quot;])</div></details></div><div class="section-head">Top20 資金集中度時序（合計成交金額佔大盤%）</div><svg viewBox="0 0 720 150" style="width:100%;max-width:720px;display:block"><line x1='44' y1='120.1' x2='664' y2='120.1' stroke='var(--th-line,#e2e8f0)' stroke-width='1'/><text x='40' y='124.1' text-anchor='end' font-size='10' fill='var(--th-faint,#64748b)'>35%</text><line x1='44' y1='81.3' x2='664' y2='81.3' stroke='var(--th-line,#e2e8f0)' stroke-width='1'/><text x='40' y='85.3' text-anchor='end' font-size='10' fill='var(--th-faint,#64748b)'>42%</text><line x1='44' y1='21.9' x2='664' y2='21.9' stroke='var(--th-line,#e2e8f0)' stroke-width='1'/><text x='40' y='25.9' text-anchor='end' font-size='10' fill='var(--th-faint,#64748b)'>53%</text><polyline points='44.0,94.4 52.4,99.8 60.8,97.9 69.1,85.9 77.5,91.9 85.9,120.1 94.3,108.3 102.6,116.1 111.0,95.7 119.4,92.2 127.8,89.0 136.2,63.5 144.5,81.6 152.9,87.7 161.3,98.8 169.7,119.0 178.1,114.8 186.4,96.9 194.8,98.9 203.2,92.0 211.6,81.7 219.9,79.8 228.3,90.8 236.7,77.0 245.1,97.8 253.5,63.2 261.8,80.6 270.2,58.3 278.6,30.6 287.0,51.8 295.4,29.5 303.7,53.6 312.1,45.1 320.5,77.6 328.9,102.5 337.2,101.7 345.6,114.0 354.0,105.0 362.4,94.4 370.8,79.5 379.1,72.2 387.5,76.0 395.9,56.4 404.3,75.2 412.6,72.1 421.0,80.6 429.4,21.9 437.8,71.6 446.2,69.3 454.5,86.3 462.9,63.5 471.3,83.3 479.7,78.2 488.1,40.0 496.4,57.0 504.8,53.2 513.2,40.7 521.6,44.9 529.9,82.7 538.3,96.5 546.7,102.5 555.1,75.6 563.5,87.0 571.8,72.2 580.2,61.1 588.6,76.0 597.0,93.2 605.4,93.8 613.7,95.5 622.1,97.2 630.5,108.6 638.9,62.9 647.2,106.2 655.6,94.8 664.0,90.2' fill='none' stroke='var(--th-accent,#6366f1)' stroke-width='2'/><circle cx='664.0' cy='90.2' r='3.5' fill='var(--th-accent,#6366f1)'/><text x='670.0' y='94.2' font-size='11' font-weight='bold' fill='var(--th-accent,#6366f1)'>40.5%</text><text x='44' y='144' font-size='10' fill='var(--th-faint,#64748b)'>2026-05-14</text><text x='664' y='144' text-anchor='end' font-size='10' fill='var(--th-faint,#64748b)'>2026-08-28</text></svg><div class="note">近 75 個交易日；均值 <b>42.1%</b>、最新 <b>40.5%</b>。集中度飆升常見於恐慌殺盤或主升段（資金擠向少數重心股）、回落＝資金擴散/退潮，本身即市場 regime 訊號。</div><details class="explainer"><summary class="explainer__title">🗺 這個頁（榜單邏輯 · 名詞 · 資料源 · 待累積事項 — 點開）</summary><div class="section-head">榜單邏輯</div><div class="formula">FinMind <b>TaiwanStockPrice</b> 全市場單日資料 → 依 <b>Trading_money（成交金額）</b>由大到小排序取<b>前 20 名</b>，並與前一交易日名次比較。<br><b>宇宙</b>＝4 碼純數字普通股（含上市＋上櫃；排除 00 開頭 ETF/ETN、特別股、TDR）；名次在此宇宙內計算。<br>＝<b>市場資金正集中在哪些股票</b>的每日重心榜：名次前進＝資金加速湧入、連續在榜＝持續性主流、新進榜＝事件/題材啟動。</div><div class="section-head">判讀要點</div><div class="note">成交金額大 ≠ 可買——重心榜是「<b>資金在哪裡</b>」的事實陳述。搭配判讀：<b>金額·量倍數</b>（爆量方向）、<b>週轉率</b>（大市值天然大額 vs 中小型異常熱）、<b>法人買賣超%</b>（法人主導 vs 散戶/隔日沖主導）、<b>融資增減%</b>（散戶槓桿追價=警訊、融資減+法人買=籌碼換強手）、<b>距52週高</b>（高檔換手或低檔搶反彈）、<b>日·週結構</b>（多空結構定位）、<b>連續在榜</b>（主流持續性 vs 一日行情）、<b>同類股聚落</b>（市場·類股欄 x/N ＝主流族群確認）。名次快速後退＝熱度退潮，持股者宜警覺。</div><div class="section-head">資料 / 更新</div><div class="formula">成交金額/收盤/漲跌＝FinMind TaiwanStockPrice 全市場單日（原始價非還原價）；名次日誌＝rank_journal.json（每日 top 300，保留 120 天，已回填 45 個交易日後 forward 累積；昨日名次/連續在榜/集中度時序由此計算）；金額·量倍數＝FinMind 逐檔近 60 日史 ÷ 前 20 日均；週轉率分母＝sector_map.json issued_lots（XQ 產業對照表發行張數）；距52週高＝價格庫還原價近 240 根；法人買賣超＝fs_chip 三大法人（R6 只讀；約 15:00 後公布）；融資增減＝fs_chip 融資餘額日對日（約 21:00 後公布，22:00 排程時已可用）；日·週結構＝shsl snapshot（R6 只讀）；市場別＋類股＝sector_map.json。普通股宇宙 2319 檔。每日由 orchestrator 22:00 排程重建。</div><div class="section-head">⏳ 待資料累積 / 未來擴充（CIO 待拍板）</div><div class="formula"><b>① 榜單績效回測</b>：上榜隔日/5日/20日報酬統計（「追重心股是否有超額報酬」的存亡閘門）——需名次日誌 forward 累積足量樣本（日誌已回填 45 個交易日、之後每日累積，約 1~2 個月後可開工）。<br><b>② 連續在榜 &gt;45 天的長主流</b>：現有回填窗只能看到 45 天內的連續紀錄，更長的在榜史隨日誌累積自然延長（上限 120 天窗）。<br><b>③ 隔日沖分點佔比</b>：辨識「虛熱成交」（當沖/隔日沖貢獻的金額）——需 broker_branch 分點資料覆蓋本榜個股（現行分點僅追蹤特定股池），待分點池擴充後接入。</div></details><footer class="page-footer">資料來源：FinMind TaiwanStockPrice（全市場成交金額/逐檔均額）｜三大法人買賣超・融資餘額 fs_chip｜發行張數 sector_map.json（XQ）｜52週高 價格庫還原價｜結構 shsl snapshot。本頁為資金重心觀察，非投資建議。</footer></body></html>
+})();</script><details class="explainer"><summary class="explainer__title">🎯 這個 block(B33 · 定義 · 判讀 · 資料 · 程式 — 點開)</summary><div class="section-head">定義</div><div class="formula">熱力圖 = Treemap:每檔「持有本股」的主動 ETF 一個色塊<br>面積 = 該 ETF 最新揭露日持本股 投資比例 weight%(占該 ETF 淨值,非占本股股本)<br>顏色 = 該 ETF 對本股 股數增減率% = (本期股數 − 前期股數) ÷ 前期股數 × 100(封頂 ±30%;塊上標真實 Δ張與 %)<br>期別 = 各 ETF 自己的「最新 vs 前一揭露日」(per-ETF 對齊,更新時點不同步)<br>不變 = |Δ股數| &lt; 1000 股;新進/出清 = 該 ETF 前期無↔本期無<br>ETF圈淨買賣 = Σ各 ETF Δ張(含新進,扣出清)= 主動 ETF 圈對本股的合計動作</div><div class="section-head">下鑽(點色塊)</div><div class="formula">點任一 ETF 色塊 → 下方展開「日K × 該ETF歷史進出」:主圖=該股日K(紅漲綠跌)+<b>該ETF持股成本虛線</b>(琥珀·移動平均法「窗內近似」:加碼以揭露日收盤計價、減碼按均價沖銷、首揭露整筆視為當日建倉——真實成交價不可得,成本為近似參考);副圖=該 ETF 逐揭露日增減柱(紅買綠賣)+<b>持股張數階梯線</b>(青,MoneyDJ 每日快照 forward 累積,2026-06-18 起)。K 線壓在成本虛線下=該 ETF 此股部位套牢;持股線持續墊高=經理人波段加碼、高檔下彎=減持/出清前兆。payload 分級:卷宗頁=該股全 ETF;榜單嵌入頁=選單股;獨立頁=共識前 40 檔。</div><div class="section-head">判讀</div><div class="note">多檔 ETF 同步加碼(整圖偏紅)= 經理人共識正形成;大塊綠(重倉 ETF 在撤)比小塊綠重要。⚠ 標疑申贖的 ETF(該 ETF 本期全持股增減同號)其加減碼是申購/贖回等比例部署,不代表選股意圖 → 看資訊列統計,共識判讀時扣掉。此圖與共同調整榜同源:榜=全市場掃描、本圖=單股深掘。</div><div class="section-head">操作</div><div class="note">獨立頁選單 = 被持有檔數 Top 12 快速鈕 + 全部個股下拉;嵌入頁可換自訂選單(如成交重心榜前 10 鈕+其餘下拉),選單中「無主動ETF持有」的股會註明、點選顯示說明。滑鼠懸停/手機點色塊看持有張數/揭露細節;點擊鑽入已停用(平面圖)。</div><div class="section-head">資料來源 / 程式</div><div class="formula">moneydj.duckdb <code>holdings</code>(全現役主動 ETF 的台股部位;含全球型如 00988A 的台股持股)<br>疑申贖/缺檔門檻同 B32/共同調整榜(全同號≥3 檔;檔數驟減>15%)<br>⚠ MoneyDJ 揭露常落後 1 日;增減=兩揭露日快照差,非成交回報<br>程式:src/agents/stock_etf_heatmap_block.py:fragment / build_block</div><div class="section-head">相關頁 / 可組裝</div><div class="formula"><a href="../market/etf_heatmap_block.html">B32 ETF 持股熱力圖(轉置視角)↗</a> · <a href="../market/active_etf_coverage.html">個股涵蓋表 ↗</a> · <a href="../market/active_etf_cochange.html">當日共同調整榜 ↗</a> · <a href="../market/active_etf_hub.html">主動 ETF 中樞 ↗</a><br>可組裝:blocks.fragment(&quot;B33&quot;) · blocks.assemble([…,&quot;B33&quot;])</div></details></div><div class="section-head">Top20 資金集中度時序（合計成交金額佔大盤%）</div><svg viewBox="0 0 720 150" style="width:100%;max-width:720px;display:block"><line x1='44' y1='120.1' x2='664' y2='120.1' stroke='var(--th-line,#e2e8f0)' stroke-width='1'/><text x='40' y='124.1' text-anchor='end' font-size='10' fill='var(--th-faint,#64748b)'>35%</text><line x1='44' y1='81.3' x2='664' y2='81.3' stroke='var(--th-line,#e2e8f0)' stroke-width='1'/><text x='40' y='85.3' text-anchor='end' font-size='10' fill='var(--th-faint,#64748b)'>42%</text><line x1='44' y1='21.9' x2='664' y2='21.9' stroke='var(--th-line,#e2e8f0)' stroke-width='1'/><text x='40' y='25.9' text-anchor='end' font-size='10' fill='var(--th-faint,#64748b)'>53%</text><polyline points='44.0,94.4 52.4,99.8 60.8,97.9 69.1,85.9 77.5,91.9 85.9,120.1 94.3,108.3 102.6,116.1 111.0,95.7 119.4,92.2 127.8,89.0 136.2,63.5 144.5,81.6 152.9,87.7 161.3,98.8 169.7,119.0 178.1,114.8 186.4,96.9 194.8,98.9 203.2,92.0 211.6,81.7 219.9,79.8 228.3,90.8 236.7,77.0 245.1,97.8 253.5,63.2 261.8,80.6 270.2,58.3 278.6,30.6 287.0,51.8 295.4,29.5 303.7,53.6 312.1,45.1 320.5,77.6 328.9,102.5 337.2,101.7 345.6,114.0 354.0,105.0 362.4,94.4 370.8,79.5 379.1,72.2 387.5,76.0 395.9,56.4 404.3,75.2 412.6,72.1 421.0,80.6 429.4,21.9 437.8,71.6 446.2,69.3 454.5,86.3 462.9,63.5 471.3,83.3 479.7,78.2 488.1,40.0 496.4,57.0 504.8,53.2 513.2,40.7 521.6,44.9 529.9,82.7 538.3,96.5 546.7,102.5 555.1,75.6 563.5,87.0 571.8,72.2 580.2,61.1 588.6,76.0 597.0,93.2 605.4,93.8 613.7,95.5 622.1,97.2 630.5,108.6 638.9,62.9 647.2,106.2 655.6,94.8 664.0,90.2' fill='none' stroke='var(--th-accent,#6366f1)' stroke-width='2'/><circle cx='664.0' cy='90.2' r='3.5' fill='var(--th-accent,#6366f1)'/><text x='670.0' y='94.2' font-size='11' font-weight='bold' fill='var(--th-accent,#6366f1)'>40.5%</text><text x='44' y='144' font-size='10' fill='var(--th-faint,#64748b)'>2026-05-14</text><text x='664' y='144' text-anchor='end' font-size='10' fill='var(--th-faint,#64748b)'>2026-08-28</text></svg><div class="note">近 75 個交易日；均值 <b>42.1%</b>、最新 <b>40.5%</b>。集中度飆升常見於恐慌殺盤或主升段（資金擠向少數重心股）、回落＝資金擴散/退潮，本身即市場 regime 訊號。</div><details class="explainer"><summary class="explainer__title">🗺 這個頁（榜單邏輯 · 名詞 · 資料源 · 待累積事項 — 點開）</summary><div class="section-head">榜單邏輯</div><div class="formula">FinMind <b>TaiwanStockPrice</b> 全市場單日資料 → 依 <b>Trading_money（成交金額）</b>由大到小排序取<b>前 20 名</b>，並與前一交易日名次比較。<br><b>宇宙</b>＝4 碼純數字普通股（含上市＋上櫃；排除 00 開頭 ETF/ETN、特別股、TDR）；名次在此宇宙內計算。<br>＝<b>市場資金正集中在哪些股票</b>的每日重心榜：名次前進＝資金加速湧入、連續在榜＝持續性主流、新進榜＝事件/題材啟動。</div><div class="section-head">判讀要點</div><div class="note">成交金額大 ≠ 可買——重心榜是「<b>資金在哪裡</b>」的事實陳述。搭配判讀：<b>金額·量倍數</b>（爆量方向）、<b>週轉率</b>（大市值天然大額 vs 中小型異常熱）、<b>法人買賣超%</b>（法人主導 vs 散戶/隔日沖主導）、<b>融資增減%</b>（散戶槓桿追價=警訊、融資減+法人買=籌碼換強手）、<b>距52週高</b>（高檔換手或低檔搶反彈）、<b>日·週結構</b>（多空結構定位）、<b>連續在榜</b>（主流持續性 vs 一日行情）、<b>同類股聚落</b>（市場·類股欄 x/N ＝主流族群確認）。名次快速後退＝熱度退潮，持股者宜警覺。</div><div class="section-head">資料 / 更新</div><div class="formula">成交金額/收盤/漲跌＝FinMind TaiwanStockPrice 全市場單日（原始價非還原價）；名次日誌＝rank_journal.json（每日 top 300，保留 120 天，已回填 45 個交易日後 forward 累積；昨日名次/連續在榜/集中度時序由此計算）；金額·量倍數＝FinMind 逐檔近 60 日史 ÷ 前 20 日均；週轉率分母＝sector_map.json issued_lots（XQ 產業對照表發行張數）；距52週高＝價格庫還原價近 240 根；法人買賣超＝fs_chip 三大法人（R6 只讀；約 15:00 後公布）；融資增減＝fs_chip 融資餘額日對日（約 21:00 後公布，22:00 排程時已可用）；日·週結構＝shsl snapshot（R6 只讀）；市場別＋類股＝sector_map.json。普通股宇宙 2319 檔。每日由 orchestrator 22:00 排程重建。</div><div class="section-head">⏳ 待資料累積 / 未來擴充（CIO 待拍板）</div><div class="formula"><b>① 榜單績效回測</b>：上榜隔日/5日/20日報酬統計（「追重心股是否有超額報酬」的存亡閘門）——需名次日誌 forward 累積足量樣本（日誌已回填 45 個交易日、之後每日累積，約 1~2 個月後可開工）。<br><b>② 連續在榜 &gt;45 天的長主流</b>：現有回填窗只能看到 45 天內的連續紀錄，更長的在榜史隨日誌累積自然延長（上限 120 天窗）。<br><b>③ 隔日沖分點佔比</b>：辨識「虛熱成交」（當沖/隔日沖貢獻的金額）——需 broker_branch 分點資料覆蓋本榜個股（現行分點僅追蹤特定股池），待分點池擴充後接入。</div></details><footer class="page-footer">資料來源：FinMind TaiwanStockPrice（全市場成交金額/逐檔均額）｜三大法人買賣超・融資餘額 fs_chip｜發行張數 sector_map.json（XQ）｜52週高 價格庫還原價｜結構 shsl snapshot。本頁為資金重心觀察，非投資建議。</footer>
+<style>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: var(--th-bg,#0f172a);
+  color: var(--th-text,#e2e8f0);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid var(--th-border2,#475569);
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>
