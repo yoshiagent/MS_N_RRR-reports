@@ -126,7 +126,7 @@ window.tohSel=function(withTs,btn){
 };
 draw(false);
 })();</script><details class="explainer"><summary class="explainer__title">💰 這個 block(B34 · 定義 · 判讀 · 資料 · 程式 — 點開)</summary><div class="section-head">定義</div><div class="formula">熱力圖 = Treemap:成交重心榜每檔一個色塊<br>面積 = 當日成交金額(億);顏色 = 當日漲跌幅%(封頂 ±10%;紅漲綠跌)<br>名單 = 50% 涵蓋榜(全市場上市+上櫃普通股依成交金額由大到小,取到累積達宇宙總額 50% 為止;<b>台積電移出名單與分母</b>,按鈕可切含它的對照視圖;ETF/ETN 不入榜)</div><div class="section-head">判讀</div><div class="note">量是真金白銀,這張圖=「今天的錢集中在哪、那裡是漲是跌」。紅大塊群聚同一題材=主流確立;大綠塊(高量收黑)單獨看是警訊、群聚出現=資金重心轉空。榜單檔數本身=集中度訊號(檔數少=抱團、檔數多=擴散),詳見成交重心 50% 頁的大盤強弱判讀。</div><div class="section-head">操作</div><div class="note">按鈕切「不含台積電(預設,同榜單口徑)/含台積電(另計併入對照)」;滑鼠懸停/手機點色塊看名次(昨→今)/佔宇宙%/連續在榜;點擊鑽入已停用(平面圖)。嵌入頁若同頁有 B33 個股熱力圖(如成交重心 50% 頁),<b>點色塊=連動 B33 切到該股</b>(圖下方出現 🔗 連動提示)。</div><div class="section-head">資料來源 / 程式</div><div class="formula">FS <code>data/agents/trading_focus50/snapshot.json</code>(trading_focus50 agent 已算 money/chg_pct/rank/佔比/streak;R6 只讀不重算)<br>上游 = FinMind TaiwanStockPrice 全市場成交金額(中央價格庫)<br>程式:src/agents/turnover_heatmap_block.py:fragment / build_block</div><div class="section-head">相關頁 / 可組裝</div><div class="formula"><a href="trading_focus_50.html">成交重心 50% 涵蓋頁(完整榜+大盤強弱)↗</a> · <a href="trading_focus.html">成交重心股 Top20 ↗</a><br>可組裝:blocks.fragment(&quot;B34&quot;) · blocks.assemble([…,&quot;B34&quot;])</div></details></div><!-- BLOCK B34 END -->
-<style id='MS_N_RRR_tooltip_inject_v2'>
+<style>
 .tip { position: relative; cursor: help; }
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
