@@ -1,9 +1,9 @@
 {
-  "as_of": "2026-09-03",
+  "as_of": "2026-09-04",
   "n_pairs": 6,
-  "n_z_gate_passed": 2,
+  "n_z_gate_passed": 3,
   "n_strong": 0,
-  "n_strong_stays_strong": 1,
+  "n_strong_stays_strong": 0,
   "z_mode": "gate",
   "weights": {
     "z_reversal": 30,
@@ -25,7 +25,7 @@
       ],
       "signal": "hold_A",
       "z_gate_passed": false,
-      "zscore": 0.09,
+      "zscore": 0.06,
       "switch_direction": "A",
       "switch_into": {
         "code": "8046",
@@ -37,7 +37,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 0.0,
+          "score": 4.88,
           "src": "no_rotation"
         },
         "box": {
@@ -59,7 +59,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 20.0,
+      "switch_score_ref": 21.7,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -93,7 +93,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 0.66,
+          "score": 0.13,
           "src": "no_rotation"
         },
         "box": {
@@ -115,7 +115,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 45.6,
+      "switch_score_ref": 45.4,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -137,7 +137,7 @@
       ],
       "signal": "switch_to_A",
       "z_gate_passed": true,
-      "zscore": -0.87,
+      "zscore": -0.92,
       "switch_direction": "A",
       "switch_into": {
         "code": "2344",
@@ -149,7 +149,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 2.6,
+          "score": 6.06,
           "src": "no_rotation"
         },
         "box": {
@@ -170,8 +170,8 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 33.4,
-      "switch_score_ref": 33.4,
+      "switch_score": 34.7,
+      "switch_score_ref": 34.7,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -191,28 +191,33 @@
         "上銀",
         "大銀微系統"
       ],
-      "signal": "no_action",
-      "z_gate_passed": false,
-      "zscore": -1.53,
-      "switch_direction": null,
-      "switch_into": null,
+      "signal": "switch_to_A",
+      "z_gate_passed": true,
+      "zscore": -1.07,
+      "switch_direction": "A",
+      "switch_into": {
+        "code": "2049",
+        "name": "上銀"
+      },
       "components": {
         "rcga": {
           "score": 20.0,
           "src": "RED"
         },
         "rcr": {
-          "score": null,
+          "score": 5.53,
           "src": "no_rotation"
         },
         "box": {
-          "score": null,
-          "src": null,
-          "healthy": null
+          "score": 45.0,
+          "src": "inbox_side",
+          "healthy": false
         }
       },
       "active_weights": {
-        "rcga": 25
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
       },
       "z_mode": "gate",
       "weights": {
@@ -221,14 +226,14 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": null,
-      "switch_score_ref": 20.0,
+      "switch_score": 22.0,
+      "switch_score_ref": 22.0,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "延後 · Z60 未過換股門檻",
-        "color": "#64748b",
-        "icon": "⏸"
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
       }
     },
     {
@@ -244,7 +249,7 @@
       ],
       "signal": "no_action",
       "z_gate_passed": false,
-      "zscore": 1.96,
+      "zscore": 1.69,
       "switch_direction": null,
       "switch_into": null,
       "components": {
@@ -295,7 +300,7 @@
       ],
       "signal": "switch_to_A",
       "z_gate_passed": true,
-      "zscore": -0.86,
+      "zscore": -0.83,
       "switch_direction": "A",
       "switch_into": {
         "code": "2492",
@@ -307,7 +312,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 1.19,
+          "score": 18.69,
           "src": "no_rotation"
         },
         "box": {
@@ -328,30 +333,18 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 20.4,
-      "switch_score_ref": 20.4,
-      "strong_stays_strong": true,
-      "trim": {
-        "target": {
-          "code": "3026",
-          "name": "禾伸堂"
-        },
-        "pct_range": [
-          0,
-          20
-        ],
-        "sell_chip_state": "healthy_rotation",
-        "buy_chip_state": "no_signal",
-        "sell_mbs_increasing": false
-      },
+      "switch_score": 26.7,
+      "switch_score_ref": 26.7,
+      "strong_stays_strong": false,
+      "trim": null,
       "recommendation": {
-        "label": "強者恆強 · 延後換股 · 減碼 禾伸堂 0–20% · 等待",
-        "color": "#a78bfa",
-        "icon": "💪"
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
       }
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-09-03T22:24:03",
+  "generated_at": "2026-09-04T22:23:49",
   "available": true
 }
