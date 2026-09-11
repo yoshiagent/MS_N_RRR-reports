@@ -1,16 +1,45 @@
 {
-  "as_of": "2026-09-10",
+  "as_of": "2026-09-11",
   "schema_version": "v1",
   "holdings": [
     {
-      "symbol": "1513",
-      "name": "中興電",
-      "weight": 2.44,
+      "symbol": "2645",
+      "name": "長榮航太",
+      "weight": 2.75,
+      "managers": [
+        {
+          "manager": "Defensive",
+          "manager_zh": "防禦現金型",
+          "weight": 2.75
+        }
+      ],
+      "lead_manager_zh": "防禦現金型",
+      "alert_score": 85.0,
+      "level": "red",
+      "action": "⛔ 硬停損·換出",
+      "color": "#dc2626",
+      "bid_penalty": 50.0,
+      "hard_stop": true,
+      "pnl_pct": -0.24,
+      "fired": [
+        {
+          "src": "硬停損·爆量破低",
+          "w": 0,
+          "hard": true,
+          "detail": "跌破爆量K(08-17)低 181.50"
+        }
+      ],
+      "n_fired": 1
+    },
+    {
+      "symbol": "4938",
+      "name": "和碩",
+      "weight": 2.45,
       "managers": [
         {
           "manager": "Rotation",
           "manager_zh": "相對輪動型",
-          "weight": 2.44
+          "weight": 2.45
         }
       ],
       "lead_manager_zh": "相對輪動型",
@@ -20,7 +49,75 @@
       "color": "#dc2626",
       "bid_penalty": 50.0,
       "hard_stop": true,
-      "pnl_pct": -1.13,
+      "pnl_pct": -0.24,
+      "fired": [
+        {
+          "src": "硬停損·爆量破低",
+          "w": 0,
+          "hard": true,
+          "detail": "跌破爆量K(08-13)低 93.50"
+        },
+        {
+          "src": "結構劣化",
+          "detail": "Box 中度劣化",
+          "w": 12
+        }
+      ],
+      "n_fired": 2
+    },
+    {
+      "symbol": "6526",
+      "name": "達發",
+      "weight": 2.45,
+      "managers": [
+        {
+          "manager": "Rotation",
+          "manager_zh": "相對輪動型",
+          "weight": 2.45
+        }
+      ],
+      "lead_manager_zh": "相對輪動型",
+      "alert_score": 85.0,
+      "level": "red",
+      "action": "⛔ 硬停損·換出",
+      "color": "#dc2626",
+      "bid_penalty": 50.0,
+      "hard_stop": true,
+      "pnl_pct": -0.24,
+      "fired": [
+        {
+          "src": "硬停損·爆量破低",
+          "w": 0,
+          "hard": true,
+          "detail": "跌破爆量K(09-02)低 641.00"
+        },
+        {
+          "src": "結構劣化",
+          "detail": "Box 中度劣化",
+          "w": 12
+        }
+      ],
+      "n_fired": 2
+    },
+    {
+      "symbol": "1513",
+      "name": "中興電",
+      "weight": 2.33,
+      "managers": [
+        {
+          "manager": "Balanced",
+          "manager_zh": "核心配置型",
+          "weight": 2.33
+        }
+      ],
+      "lead_manager_zh": "核心配置型",
+      "alert_score": 85.0,
+      "level": "red",
+      "action": "⛔ 硬停損·換出",
+      "color": "#dc2626",
+      "bid_penalty": 50.0,
+      "hard_stop": true,
+      "pnl_pct": -1.43,
       "fired": [
         {
           "src": "硬停損·爆量破低",
@@ -37,27 +134,51 @@
       "n_fired": 2
     },
     {
-      "symbol": "2382",
-      "name": "廣達",
-      "weight": 3.9,
+      "symbol": "2049",
+      "name": "上銀",
+      "weight": 1.42,
       "managers": [
-        {
-          "manager": "Balanced",
-          "manager_zh": "核心配置型",
-          "weight": 2.36
-        },
         {
           "manager": "Trend",
           "manager_zh": "趨勢波段型",
-          "weight": 1.54
+          "weight": 1.42
         }
       ],
-      "lead_manager_zh": "核心配置型",
-      "alert_score": 34,
+      "lead_manager_zh": "趨勢波段型",
+      "alert_score": 85.0,
+      "level": "red",
+      "action": "⛔ 硬停損·換出",
+      "color": "#dc2626",
+      "bid_penalty": 50.0,
+      "hard_stop": true,
+      "pnl_pct": -0.24,
+      "fired": [
+        {
+          "src": "硬停損·爆量破低",
+          "w": 0,
+          "hard": true,
+          "detail": "跌破爆量K(08-13)低 377.50"
+        }
+      ],
+      "n_fired": 1
+    },
+    {
+      "symbol": "1303",
+      "name": "南亞",
+      "weight": 1.31,
+      "managers": [
+        {
+          "manager": "Growth",
+          "manager_zh": "積極成長型",
+          "weight": 1.31
+        }
+      ],
+      "lead_manager_zh": "積極成長型",
+      "alert_score": 41,
       "level": "amber",
       "action": "🟡 觀察/留意",
       "color": "#fb923c",
-      "bid_penalty": 9.6,
+      "bid_penalty": 12.4,
       "hard_stop": false,
       "pnl_pct": -0.24,
       "fired": [
@@ -65,6 +186,11 @@
           "src": "DS 邊拉邊出",
           "detail": "邊拉邊調節",
           "w": 10
+        },
+        {
+          "src": "高點過熱",
+          "detail": "B 偏熱",
+          "w": 7
         },
         {
           "src": "結構劣化",
@@ -77,21 +203,21 @@
           "w": 12
         }
       ],
-      "n_fired": 3
+      "n_fired": 4
     },
     {
-      "symbol": "2344",
-      "name": "華邦電",
-      "weight": 1.23,
+      "symbol": "3231",
+      "name": "緯創",
+      "weight": 1.43,
       "managers": [
         {
-          "manager": "Growth",
-          "manager_zh": "積極成長型",
-          "weight": 1.23
+          "manager": "Trend",
+          "manager_zh": "趨勢波段型",
+          "weight": 1.43
         }
       ],
-      "lead_manager_zh": "積極成長型",
-      "alert_score": 12,
+      "lead_manager_zh": "趨勢波段型",
+      "alert_score": 22,
       "level": "green",
       "action": "🟢 持有",
       "color": "#22c55e",
@@ -100,87 +226,32 @@
       "pnl_pct": -0.24,
       "fired": [
         {
-          "src": "主力×賣買家差",
-          "detail": "CMG Q3 籌碼擴散",
+          "src": "DS 邊拉邊出",
+          "detail": "邊拉邊調節",
+          "w": 10
+        },
+        {
+          "src": "結構劣化",
+          "detail": "Box 中度劣化",
           "w": 12
         }
       ],
-      "n_fired": 1
-    },
-    {
-      "symbol": "2408",
-      "name": "南亞科",
-      "weight": 1.23,
-      "managers": [
-        {
-          "manager": "Growth",
-          "manager_zh": "積極成長型",
-          "weight": 1.23
-        }
-      ],
-      "lead_manager_zh": "積極成長型",
-      "alert_score": 12,
-      "level": "green",
-      "action": "🟢 持有",
-      "color": "#22c55e",
-      "bid_penalty": 0.0,
-      "hard_stop": false,
-      "pnl_pct": -0.24,
-      "fired": [
-        {
-          "src": "主力×賣買家差",
-          "detail": "CMG Q3 籌碼擴散",
-          "w": 12
-        }
-      ],
-      "n_fired": 1
+      "n_fired": 2
     },
     {
       "symbol": "5876",
       "name": "上海商銀",
-      "weight": 7.83,
-      "managers": [
-        {
-          "manager": "Defensive",
-          "manager_zh": "防禦現金型",
-          "weight": 2.73
-        },
-        {
-          "manager": "Balanced",
-          "manager_zh": "核心配置型",
-          "weight": 2.62
-        },
-        {
-          "manager": "Rotation",
-          "manager_zh": "相對輪動型",
-          "weight": 2.49
-        }
-      ],
-      "lead_manager_zh": "防禦現金型",
-      "alert_score": 0.0,
-      "level": "green",
-      "action": "🟢 持有",
-      "color": "#22c55e",
-      "bid_penalty": 0.0,
-      "hard_stop": false,
-      "pnl_pct": 1.7,
-      "fired": [],
-      "n_fired": 0
-    },
-    {
-      "symbol": "3045",
-      "name": "台灣大",
-      "weight": 4.91,
+      "weight": 5.05,
       "managers": [
         {
           "manager": "Balanced",
           "manager_zh": "核心配置型",
-          "weight": 2.49
+          "weight": 2.6
         },
         {
           "manager": "Rotation",
           "manager_zh": "相對輪動型",
-          "weight": 2.42
+          "weight": 2.45
         }
       ],
       "lead_manager_zh": "核心配置型",
@@ -190,46 +261,46 @@
       "color": "#22c55e",
       "bid_penalty": 0.0,
       "hard_stop": false,
-      "pnl_pct": 2.32,
+      "pnl_pct": 3.29,
       "fired": [],
       "n_fired": 0
     },
     {
-      "symbol": "5880",
-      "name": "合庫金",
-      "weight": 4.78,
+      "symbol": "3045",
+      "name": "台灣大",
+      "weight": 4.99,
       "managers": [
-        {
-          "manager": "Rotation",
-          "manager_zh": "相對輪動型",
-          "weight": 2.45
-        },
         {
           "manager": "Balanced",
           "manager_zh": "核心配置型",
-          "weight": 2.33
+          "weight": 2.54
+        },
+        {
+          "manager": "Rotation",
+          "manager_zh": "相對輪動型",
+          "weight": 2.46
         }
       ],
-      "lead_manager_zh": "相對輪動型",
+      "lead_manager_zh": "核心配置型",
       "alert_score": 0.0,
       "level": "green",
       "action": "🟢 持有",
       "color": "#22c55e",
       "bid_penalty": 0.0,
       "hard_stop": false,
-      "pnl_pct": -0.26,
+      "pnl_pct": 3.15,
       "fired": [],
       "n_fired": 0
     },
     {
       "symbol": "6139",
       "name": "亞翔",
-      "weight": 2.9,
+      "weight": 2.82,
       "managers": [
         {
           "manager": "Defensive",
           "manager_zh": "防禦現金型",
-          "weight": 2.9
+          "weight": 2.82
         }
       ],
       "lead_manager_zh": "防禦現金型",
@@ -239,19 +310,41 @@
       "color": "#22c55e",
       "bid_penalty": 0.0,
       "hard_stop": false,
-      "pnl_pct": -0.24,
+      "pnl_pct": -5.9,
+      "fired": [],
+      "n_fired": 0
+    },
+    {
+      "symbol": "2834",
+      "name": "臺企銀",
+      "weight": 2.65,
+      "managers": [
+        {
+          "manager": "Defensive",
+          "manager_zh": "防禦現金型",
+          "weight": 2.65
+        }
+      ],
+      "lead_manager_zh": "防禦現金型",
+      "alert_score": 0.0,
+      "level": "green",
+      "action": "🟢 持有",
+      "color": "#22c55e",
+      "bid_penalty": 0.0,
+      "hard_stop": false,
+      "pnl_pct": -0.22,
       "fired": [],
       "n_fired": 0
     },
     {
       "symbol": "6691",
       "name": "洋基工程",
-      "weight": 2.63,
+      "weight": 2.55,
       "managers": [
         {
           "manager": "Defensive",
           "manager_zh": "防禦現金型",
-          "weight": 2.63
+          "weight": 2.55
         }
       ],
       "lead_manager_zh": "防禦現金型",
@@ -261,85 +354,41 @@
       "color": "#22c55e",
       "bid_penalty": 0.0,
       "hard_stop": false,
-      "pnl_pct": -0.43,
+      "pnl_pct": -2.51,
       "fired": [],
       "n_fired": 0
     },
     {
-      "symbol": "2105",
-      "name": "正新",
-      "weight": 2.53,
+      "symbol": "5880",
+      "name": "合庫金",
+      "weight": 2.34,
       "managers": [
         {
-          "manager": "Defensive",
-          "manager_zh": "防禦現金型",
-          "weight": 2.53
+          "manager": "Balanced",
+          "manager_zh": "核心配置型",
+          "weight": 2.34
         }
       ],
-      "lead_manager_zh": "防禦現金型",
+      "lead_manager_zh": "核心配置型",
       "alert_score": 0.0,
       "level": "green",
       "action": "🟢 持有",
       "color": "#22c55e",
       "bid_penalty": 0.0,
       "hard_stop": false,
-      "pnl_pct": -0.23,
-      "fired": [],
-      "n_fired": 0
-    },
-    {
-      "symbol": "2618",
-      "name": "長榮航",
-      "weight": 1.45,
-      "managers": [
-        {
-          "manager": "Trend",
-          "manager_zh": "趨勢波段型",
-          "weight": 1.45
-        }
-      ],
-      "lead_manager_zh": "趨勢波段型",
-      "alert_score": 0.0,
-      "level": "green",
-      "action": "🟢 持有",
-      "color": "#22c55e",
-      "bid_penalty": 0.0,
-      "hard_stop": false,
-      "pnl_pct": -1.99,
-      "fired": [],
-      "n_fired": 0
-    },
-    {
-      "symbol": "2883",
-      "name": "凱基金",
-      "weight": 1.45,
-      "managers": [
-        {
-          "manager": "Trend",
-          "manager_zh": "趨勢波段型",
-          "weight": 1.45
-        }
-      ],
-      "lead_manager_zh": "趨勢波段型",
-      "alert_score": 0.0,
-      "level": "green",
-      "action": "🟢 持有",
-      "color": "#22c55e",
-      "bid_penalty": 0.0,
-      "hard_stop": false,
-      "pnl_pct": -0.24,
+      "pnl_pct": 1.04,
       "fired": [],
       "n_fired": 0
     },
     {
       "symbol": "4904",
       "name": "遠傳",
-      "weight": 1.44,
+      "weight": 1.59,
       "managers": [
         {
           "manager": "Trend",
           "manager_zh": "趨勢波段型",
-          "weight": 1.44
+          "weight": 1.59
         }
       ],
       "lead_manager_zh": "趨勢波段型",
@@ -349,51 +398,29 @@
       "color": "#22c55e",
       "bid_penalty": 0.0,
       "hard_stop": false,
-      "pnl_pct": 0.24,
+      "pnl_pct": 1.08,
       "fired": [],
       "n_fired": 0
     },
     {
-      "symbol": "2887",
-      "name": "台新新光金",
-      "weight": 1.22,
+      "symbol": "5274",
+      "name": "信驊",
+      "weight": 1.43,
       "managers": [
         {
-          "manager": "Growth",
-          "manager_zh": "積極成長型",
-          "weight": 1.22
+          "manager": "Trend",
+          "manager_zh": "趨勢波段型",
+          "weight": 1.43
         }
       ],
-      "lead_manager_zh": "積極成長型",
+      "lead_manager_zh": "趨勢波段型",
       "alert_score": 0.0,
       "level": "green",
       "action": "🟢 持有",
       "color": "#22c55e",
       "bid_penalty": 0.0,
       "hard_stop": false,
-      "pnl_pct": -0.24,
-      "fired": [],
-      "n_fired": 0
-    },
-    {
-      "symbol": "2303",
-      "name": "聯電",
-      "weight": 1.22,
-      "managers": [
-        {
-          "manager": "Growth",
-          "manager_zh": "積極成長型",
-          "weight": 1.22
-        }
-      ],
-      "lead_manager_zh": "積極成長型",
-      "alert_score": 0.0,
-      "level": "green",
-      "action": "🟢 持有",
-      "color": "#22c55e",
-      "bid_penalty": 0.0,
-      "hard_stop": false,
-      "pnl_pct": -0.25,
+      "pnl_pct": null,
       "fired": [],
       "n_fired": 0
     }
@@ -402,6 +429,78 @@
     {
       "manager": "Rotation",
       "manager_zh": "相對輪動型",
+      "red": 2,
+      "amber": 0,
+      "green": 2,
+      "holdings": [
+        {
+          "symbol": "4938",
+          "name": "和碩",
+          "level": "red",
+          "alert_score": 85.0
+        },
+        {
+          "symbol": "6526",
+          "name": "達發",
+          "level": "red",
+          "alert_score": 85.0
+        },
+        {
+          "symbol": "5876",
+          "name": "上海商銀",
+          "level": "green",
+          "alert_score": 0.0
+        },
+        {
+          "symbol": "3045",
+          "name": "台灣大",
+          "level": "green",
+          "alert_score": 0.0
+        }
+      ],
+      "book_health": "需處理",
+      "health_color": "#ef4444",
+      "n_holdings": 4
+    },
+    {
+      "manager": "Defensive",
+      "manager_zh": "防禦現金型",
+      "red": 1,
+      "amber": 0,
+      "green": 3,
+      "holdings": [
+        {
+          "symbol": "2645",
+          "name": "長榮航太",
+          "level": "red",
+          "alert_score": 85.0
+        },
+        {
+          "symbol": "6139",
+          "name": "亞翔",
+          "level": "green",
+          "alert_score": 0.0
+        },
+        {
+          "symbol": "2834",
+          "name": "臺企銀",
+          "level": "green",
+          "alert_score": 0.0
+        },
+        {
+          "symbol": "6691",
+          "name": "洋基工程",
+          "level": "green",
+          "alert_score": 0.0
+        }
+      ],
+      "book_health": "需處理",
+      "health_color": "#ef4444",
+      "n_holdings": 4
+    },
+    {
+      "manager": "Balanced",
+      "manager_zh": "核心配置型",
       "red": 1,
       "amber": 0,
       "green": 3,
@@ -436,167 +535,84 @@
       "n_holdings": 4
     },
     {
-      "manager": "Balanced",
-      "manager_zh": "核心配置型",
-      "red": 0,
-      "amber": 1,
-      "green": 3,
-      "holdings": [
-        {
-          "symbol": "2382",
-          "name": "廣達",
-          "level": "amber",
-          "alert_score": 34
-        },
-        {
-          "symbol": "5876",
-          "name": "上海商銀",
-          "level": "green",
-          "alert_score": 0.0
-        },
-        {
-          "symbol": "3045",
-          "name": "台灣大",
-          "level": "green",
-          "alert_score": 0.0
-        },
-        {
-          "symbol": "5880",
-          "name": "合庫金",
-          "level": "green",
-          "alert_score": 0.0
-        }
-      ],
-      "book_health": "留意",
-      "health_color": "#fb923c",
-      "n_holdings": 4
-    },
-    {
       "manager": "Trend",
       "manager_zh": "趨勢波段型",
-      "red": 0,
-      "amber": 1,
+      "red": 1,
+      "amber": 0,
       "green": 3,
       "holdings": [
         {
-          "symbol": "2382",
-          "name": "廣達",
-          "level": "amber",
-          "alert_score": 34
+          "symbol": "2049",
+          "name": "上銀",
+          "level": "red",
+          "alert_score": 85.0
         },
         {
-          "symbol": "2618",
-          "name": "長榮航",
+          "symbol": "3231",
+          "name": "緯創",
           "level": "green",
-          "alert_score": 0.0
-        },
-        {
-          "symbol": "2883",
-          "name": "凱基金",
-          "level": "green",
-          "alert_score": 0.0
+          "alert_score": 22
         },
         {
           "symbol": "4904",
           "name": "遠傳",
           "level": "green",
           "alert_score": 0.0
+        },
+        {
+          "symbol": "5274",
+          "name": "信驊",
+          "level": "green",
+          "alert_score": 0.0
         }
       ],
-      "book_health": "留意",
-      "health_color": "#fb923c",
+      "book_health": "需處理",
+      "health_color": "#ef4444",
       "n_holdings": 4
     },
     {
       "manager": "Growth",
       "manager_zh": "積極成長型",
       "red": 0,
-      "amber": 0,
-      "green": 4,
+      "amber": 1,
+      "green": 0,
       "holdings": [
         {
-          "symbol": "2344",
-          "name": "華邦電",
-          "level": "green",
-          "alert_score": 12
-        },
-        {
-          "symbol": "2408",
-          "name": "南亞科",
-          "level": "green",
-          "alert_score": 12
-        },
-        {
-          "symbol": "2887",
-          "name": "台新新光金",
-          "level": "green",
-          "alert_score": 0.0
-        },
-        {
-          "symbol": "2303",
-          "name": "聯電",
-          "level": "green",
-          "alert_score": 0.0
+          "symbol": "1303",
+          "name": "南亞",
+          "level": "amber",
+          "alert_score": 41
         }
       ],
-      "book_health": "健康",
-      "health_color": "#22c55e",
-      "n_holdings": 4
-    },
-    {
-      "manager": "Defensive",
-      "manager_zh": "防禦現金型",
-      "red": 0,
-      "amber": 0,
-      "green": 4,
-      "holdings": [
-        {
-          "symbol": "5876",
-          "name": "上海商銀",
-          "level": "green",
-          "alert_score": 0.0
-        },
-        {
-          "symbol": "6139",
-          "name": "亞翔",
-          "level": "green",
-          "alert_score": 0.0
-        },
-        {
-          "symbol": "6691",
-          "name": "洋基工程",
-          "level": "green",
-          "alert_score": 0.0
-        },
-        {
-          "symbol": "2105",
-          "name": "正新",
-          "level": "green",
-          "alert_score": 0.0
-        }
-      ],
-      "book_health": "健康",
-      "health_color": "#22c55e",
-      "n_holdings": 4
+      "book_health": "留意",
+      "health_color": "#fb923c",
+      "n_holdings": 1
     }
   ],
   "bid_penalty": {
-    "Balanced": {
-      "2382": 9.6
-    },
-    "Trend": {
-      "2382": 9.6
+    "Defensive": {
+      "2645": 50.0
     },
     "Rotation": {
+      "4938": 50.0,
+      "6526": 50.0
+    },
+    "Balanced": {
       "1513": 50.0
+    },
+    "Trend": {
+      "2049": 50.0
+    },
+    "Growth": {
+      "1303": 12.4
     }
   },
   "summary": {
     "n_holdings": 15,
-    "n_red": 1,
+    "n_red": 5,
     "n_amber": 1,
-    "n_green": 13,
-    "n_hard_stop": 1,
+    "n_green": 9,
+    "n_hard_stop": 5,
     "n_managers": 5,
     "stop_rules": {
       "cost_pct": 10.0,
@@ -605,6 +621,6 @@
       "vol_mult": 2.5
     }
   },
-  "generated_at": "2026-09-10T22:19:58",
+  "generated_at": "2026-09-11T22:17:07",
   "available": true
 }
