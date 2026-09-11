@@ -508,4 +508,120 @@ condition1 = value6 &gt;= 15 or value7 &gt;= 8;                 { 漲多脈絡�
 condition2 = condition1 and value5 &lt;= 0.5;                { 已停滯：停止追價／分批減碼，不放空 }
 condition3 = condition1 and value5 &gt;= 2.5;                { 有效率續漲：續抱，吃得下 8–11% 回撤 }
 plot1(value5, &quot;PI5&quot;);
-</pre><div class="section-head">來源</div><div class="note">HAIII research/rv5_dp_turning：pi_exhaustion.py／pi_exhaustion_combo.py（2026-09-11，宇宙 208 檔＋全市場 2,359 檔，同儕基準＝同日×同腿×同動能三分位，block bootstrap CI）。</div></details><details class="explainer" open><summary class="explainer__title">📝 B3 詳細新增紀錄（圖層 / 功能異動時間軸）</summary><div style="margin-top:2px"><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-09-11</span><span style="font-size:13px;line-height:1.6"><b>PI5 格讀數加『當日 ΔP%』與『當日 RV5』</b><br><span style="color:var(--th-muted,#94a3b8)">PI5 格標題讀數在 值＋▲▼＋三態＋漲多旗標 之後，再接 <b>當日 ΔP%</b>（紅漲綠跌）與 <b>當日 RV5</b>（量÷5日均量；≥2 紅＝放量、&lt;0.7 綠＝量縮、其間灰白），也就是 PI5 的兩個原料；<span style='color:var(--th-amber,#fbbf24)'>漲停／跌停(不計)</span> 標示該日因鎖死未納入 PI5 分子分母。標題基底縮短為「PI5 量效率（Σ5 ΔP% ÷ Σ5 RV5）」，門檻與判讀說明留在頁首 meta 與「📐 PI5 判讀與 XS Code」卡。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-09-11</span><span style="font-size:13px;line-height:1.6"><b>📊 週K 上方新增『PI5 量效率』柱（第三格）</b><br><span style="color:var(--th-muted,#94a3b8)">MA5−MA10 柱與週K之間插一格 <b>PI5 ＝ Σ5 日漲跌幅 ÷ Σ5 RV5</b>（RV5＝當日量÷5日均量；漲跌停日分子分母皆不計）：<span style='color:var(--th-green,#22c55e)'>≤0.5 綠＝停滯</span>（漲多後力竭／冷卻）、<span style='color:var(--th-red,#ef4444)'>≥2.5 紅＝有效率續漲</span>、其間灰＝中性；0.5／2.5 門檻虛線。<b>只在「漲多」脈絡判讀</b>（20日漲幅≥15% 或 乖離MA20≥+8%，標題讀數標「漲多✓」）。實證（HAIII research/rv5_dp_turning，宇宙208＋全市場2,359）：漲多後 PI5 落低檔 → 高點 10 日內不再超過收盤+1ATR 的機率由 27–37% 升到 32–44%、上檔空間由 ~12% 縮到 6–10%，但高點多半幾天前已形成（同步偏落後）、後續同儕超額 0～−0.4%、回撤反比基準小→ 讀法＝<b>停止追價／分批減碼，不放空</b>；PI5 高檔＝續漲（同儕超額 +0.7～+2.5%），不是噴出力竭。單日 ΔP%÷RV5 與 ΔP% 相關 0.98、無資訊，故不畫單日版。讀數（值＋▲▼＋三態＋漲多旗標）接在該格標題後；🗂「PI5」可開關，<b>預設開</b>。XS Code 見 block 頁「📐 PI5 判讀與 XS Code」卡。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-08-18</span><span style="font-size:13px;line-height:1.6"><b>MA5−MA10 讀數移到該格圖標題</b><br><span style="color:var(--th-muted,#94a3b8)">快慢線差的即時讀數（值＋▲▼＋擴大/收斂）從資訊列第2列<b>移到那一格自己的圖標題後面</b>（「日 MA5 − MA10（快慢線差）　+81.00 ▼・收斂」），讀數貼著它描述的圖、不必在兩行間找。實作＝JS 把 <code>annotations[k].text</code> 與十字游標 shapes 打成<b>同一包 relayout</b>（同為 layout 屬性可同包；與 range 同包才會被 Plotly 靜默拒絕），k 由 Python 端<b>依標題文字動態尋址</b>不寫死（block=3列、完整頁=7列、日後再插格都不會撞號）。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-08-18</span><span style="font-size:13px;line-height:1.6"><b>▲▼ 資訊列數值加『與前一日比』增減箭頭</b><br><span style="color:var(--th-muted,#94a3b8)">第1列的<b>量／融資餘額</b>、第2列的 <b>MA20・MA60・週MA20・主力成本／融資成本・月MA5／10</b> 一律在數值後標 <span style='color:var(--th-red,#ef4444)'>▲</span>增／<span style='color:var(--th-green,#22c55e)'>▼</span>減／–持平（與前一交易日比）→ 一眼看出均線走揚或走弱、成本線被推高或壓低。<b>週MA20 與上週比、月MA5／10 與上月比</b>（週內/月內本來就持平，跟前一日比會永遠是『–』）。（扣抵旁的 ↑↓ 意義不同＝預告該均線<b>將</b>上彎/下彎，故用不同符號。）</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-08-18</span><span style="font-size:13px;line-height:1.6"><b>📊 日K 與 週K 之間新增『日MA5 − MA10』柱狀圖</b><br><span style="color:var(--th-muted,#94a3b8)">兩K中間插一格<b>快慢線差柱</b>（日MA5 − 日MA10）：柱 &gt;0 <span style='color:var(--th-red,#ef4444)'>紅＝短線轉強</span>、&lt;0 <span style='color:var(--th-green,#22c55e)'>綠＝短線轉弱</span>；<b>深色＝與前一根比擴大</b>（動能加速）、<b>淺色＝收斂</b>（動能衰竭，常領先均線交叉）。與兩K共用同一 x 軸（縮放/游標全同步）；資訊列第2列同步顯示數值與擴大/收斂，🗂「MA5−MA10」可開關，<b>預設開</b>。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-08-02</span><span style="font-size:13px;line-height:1.6"><b>進駐配對輪動精簡頁 + 多實例互動修正</b><br><span style="color:var(--th-muted,#94a3b8)">配對輪動精簡頁（pairs）於 B15 之上內嵌 <b>A/B 兩檔 B3</b>（依序、預設收合）；互動 JS 改 <b>per-div 註冊表 dispatch</b>——同頁多個 B3 實例的按鈕/游標/縮放各用各的資料，不再被後載入實例覆蓋。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-08-02</span><span style="font-size:13px;line-height:1.6"><b>🖍 新增『趨勢線』圖層</b><br><span style="color:var(--th-muted,#94a3b8)">日K 加入<b>近兩個確認 SH 連線</b>（<span style='color:var(--th-red,#f87171)'>紅虛線＝壓力趨勢</span>）與<b>近兩個確認 SL 連線</b>（<span style='color:var(--th-green,#4ade80)'>綠虛線＝支撐趨勢</span>），各自延伸到最新交易日；🗂「趨勢線」可獨立開關，<b>預設開</b>。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-06-28</span><span style="font-size:13px;line-height:1.6"><b>進駐 dossier 第五卡</b><br><span style="color:var(--th-muted,#94a3b8)">個股 dossier 的「互動 K 線」卡改由 <b>B3</b> 提供（取代原 chart_kit 單格版，同 plotly 引擎、功能超集）；fragment(symbol) 參數化，per-symbol 內嵌。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-06-28</span><span style="font-size:13px;line-height:1.6"><b>週K 結構線 + 週MA20 預設開</b><br><span style="color:var(--th-muted,#94a3b8)">週K 新增<b>結構線</b>圖層（連接週線 SH/SL 波段折線＋候選虛線，與日K共用 🗂『結構線』開關）；<b>週MA20 改為預設開啟</b>。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-06-28</span><span style="font-size:13px;line-height:1.6"><b>預設圖層精簡（CIO 指定）</b><br><span style="color:var(--th-muted,#94a3b8)">成本線 / SH·SL 標記 / 箱壓撐 / 月營收YoY <b>預設關閉</b>；均線只開 <b>日MA20</b> ＋ <b>扣抵</b>；結構線預設開。按 🗂 可隨時開回，個別線也可點資訊列上的名稱開關。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-06-28</span><span style="font-size:13px;line-height:1.6"><b>🌊 新增『結構線』圖層</b><br><span style="color:var(--th-muted,#94a3b8)">日K 加入連接波段 SH/SL 的<b>結構折線</b>（∿ 琥珀色，虛線延伸到當前候選），🗂 可獨立開關。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-06-28</span><span style="font-size:13px;line-height:1.6"><b>SHSL 波段偵測重構</b><br><span style="color:var(--th-muted,#94a3b8)">波段 SH/SL 偵測由『兩條候選並行』改為<b>方向狀態機（ATR ZigZag）</b>，消除孤立候選、結構嚴格交替；全市場 663/663 時段交替。決策脈絡見 nav「💬 顧問討論 → SHSL 波段偵測→狀態機」。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-06-26</span><span style="font-size:13px;line-height:1.6"><b>B3 雙K block 建立</b><br><span style="color:var(--th-muted,#94a3b8)">從 daily_weekly 抽成 block：<b>日K ＋ 週K 雙格同步</b>，100% 重用十字游標 / 分價 / 扣抵 / SH·SL / 箱壓撐 等既有 K 圖層；換股只改 BLOCK_SYMBOL。</span></span></div></div></details></body></html>
+</pre><div class="section-head">來源</div><div class="note">HAIII research/rv5_dp_turning：pi_exhaustion.py／pi_exhaustion_combo.py（2026-09-11，宇宙 208 檔＋全市場 2,359 檔，同儕基準＝同日×同腿×同動能三分位，block bootstrap CI）。</div></details><details class="explainer" open><summary class="explainer__title">📝 B3 詳細新增紀錄（圖層 / 功能異動時間軸）</summary><div style="margin-top:2px"><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-09-11</span><span style="font-size:13px;line-height:1.6"><b>PI5 格讀數加『當日 ΔP%』與『當日 RV5』</b><br><span style="color:var(--th-muted,#94a3b8)">PI5 格標題讀數在 值＋▲▼＋三態＋漲多旗標 之後，再接 <b>當日 ΔP%</b>（紅漲綠跌）與 <b>當日 RV5</b>（量÷5日均量；≥2 紅＝放量、&lt;0.7 綠＝量縮、其間灰白），也就是 PI5 的兩個原料；<span style='color:var(--th-amber,#fbbf24)'>漲停／跌停(不計)</span> 標示該日因鎖死未納入 PI5 分子分母。標題基底縮短為「PI5 量效率（Σ5 ΔP% ÷ Σ5 RV5）」，門檻與判讀說明留在頁首 meta 與「📐 PI5 判讀與 XS Code」卡。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-09-11</span><span style="font-size:13px;line-height:1.6"><b>📊 週K 上方新增『PI5 量效率』柱（第三格）</b><br><span style="color:var(--th-muted,#94a3b8)">MA5−MA10 柱與週K之間插一格 <b>PI5 ＝ Σ5 日漲跌幅 ÷ Σ5 RV5</b>（RV5＝當日量÷5日均量；漲跌停日分子分母皆不計）：<span style='color:var(--th-green,#22c55e)'>≤0.5 綠＝停滯</span>（漲多後力竭／冷卻）、<span style='color:var(--th-red,#ef4444)'>≥2.5 紅＝有效率續漲</span>、其間灰＝中性；0.5／2.5 門檻虛線。<b>只在「漲多」脈絡判讀</b>（20日漲幅≥15% 或 乖離MA20≥+8%，標題讀數標「漲多✓」）。實證（HAIII research/rv5_dp_turning，宇宙208＋全市場2,359）：漲多後 PI5 落低檔 → 高點 10 日內不再超過收盤+1ATR 的機率由 27–37% 升到 32–44%、上檔空間由 ~12% 縮到 6–10%，但高點多半幾天前已形成（同步偏落後）、後續同儕超額 0～−0.4%、回撤反比基準小→ 讀法＝<b>停止追價／分批減碼，不放空</b>；PI5 高檔＝續漲（同儕超額 +0.7～+2.5%），不是噴出力竭。單日 ΔP%÷RV5 與 ΔP% 相關 0.98、無資訊，故不畫單日版。讀數（值＋▲▼＋三態＋漲多旗標）接在該格標題後；🗂「PI5」可開關，<b>預設開</b>。XS Code 見 block 頁「📐 PI5 判讀與 XS Code」卡。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-08-18</span><span style="font-size:13px;line-height:1.6"><b>MA5−MA10 讀數移到該格圖標題</b><br><span style="color:var(--th-muted,#94a3b8)">快慢線差的即時讀數（值＋▲▼＋擴大/收斂）從資訊列第2列<b>移到那一格自己的圖標題後面</b>（「日 MA5 − MA10（快慢線差）　+81.00 ▼・收斂」），讀數貼著它描述的圖、不必在兩行間找。實作＝JS 把 <code>annotations[k].text</code> 與十字游標 shapes 打成<b>同一包 relayout</b>（同為 layout 屬性可同包；與 range 同包才會被 Plotly 靜默拒絕），k 由 Python 端<b>依標題文字動態尋址</b>不寫死（block=3列、完整頁=7列、日後再插格都不會撞號）。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-08-18</span><span style="font-size:13px;line-height:1.6"><b>▲▼ 資訊列數值加『與前一日比』增減箭頭</b><br><span style="color:var(--th-muted,#94a3b8)">第1列的<b>量／融資餘額</b>、第2列的 <b>MA20・MA60・週MA20・主力成本／融資成本・月MA5／10</b> 一律在數值後標 <span style='color:var(--th-red,#ef4444)'>▲</span>增／<span style='color:var(--th-green,#22c55e)'>▼</span>減／–持平（與前一交易日比）→ 一眼看出均線走揚或走弱、成本線被推高或壓低。<b>週MA20 與上週比、月MA5／10 與上月比</b>（週內/月內本來就持平，跟前一日比會永遠是『–』）。（扣抵旁的 ↑↓ 意義不同＝預告該均線<b>將</b>上彎/下彎，故用不同符號。）</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-08-18</span><span style="font-size:13px;line-height:1.6"><b>📊 日K 與 週K 之間新增『日MA5 − MA10』柱狀圖</b><br><span style="color:var(--th-muted,#94a3b8)">兩K中間插一格<b>快慢線差柱</b>（日MA5 − 日MA10）：柱 &gt;0 <span style='color:var(--th-red,#ef4444)'>紅＝短線轉強</span>、&lt;0 <span style='color:var(--th-green,#22c55e)'>綠＝短線轉弱</span>；<b>深色＝與前一根比擴大</b>（動能加速）、<b>淺色＝收斂</b>（動能衰竭，常領先均線交叉）。與兩K共用同一 x 軸（縮放/游標全同步）；資訊列第2列同步顯示數值與擴大/收斂，🗂「MA5−MA10」可開關，<b>預設開</b>。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-08-02</span><span style="font-size:13px;line-height:1.6"><b>進駐配對輪動精簡頁 + 多實例互動修正</b><br><span style="color:var(--th-muted,#94a3b8)">配對輪動精簡頁（pairs）於 B15 之上內嵌 <b>A/B 兩檔 B3</b>（依序、預設收合）；互動 JS 改 <b>per-div 註冊表 dispatch</b>——同頁多個 B3 實例的按鈕/游標/縮放各用各的資料，不再被後載入實例覆蓋。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-08-02</span><span style="font-size:13px;line-height:1.6"><b>🖍 新增『趨勢線』圖層</b><br><span style="color:var(--th-muted,#94a3b8)">日K 加入<b>近兩個確認 SH 連線</b>（<span style='color:var(--th-red,#f87171)'>紅虛線＝壓力趨勢</span>）與<b>近兩個確認 SL 連線</b>（<span style='color:var(--th-green,#4ade80)'>綠虛線＝支撐趨勢</span>），各自延伸到最新交易日；🗂「趨勢線」可獨立開關，<b>預設開</b>。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-06-28</span><span style="font-size:13px;line-height:1.6"><b>進駐 dossier 第五卡</b><br><span style="color:var(--th-muted,#94a3b8)">個股 dossier 的「互動 K 線」卡改由 <b>B3</b> 提供（取代原 chart_kit 單格版，同 plotly 引擎、功能超集）；fragment(symbol) 參數化，per-symbol 內嵌。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-06-28</span><span style="font-size:13px;line-height:1.6"><b>週K 結構線 + 週MA20 預設開</b><br><span style="color:var(--th-muted,#94a3b8)">週K 新增<b>結構線</b>圖層（連接週線 SH/SL 波段折線＋候選虛線，與日K共用 🗂『結構線』開關）；<b>週MA20 改為預設開啟</b>。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-06-28</span><span style="font-size:13px;line-height:1.6"><b>預設圖層精簡（CIO 指定）</b><br><span style="color:var(--th-muted,#94a3b8)">成本線 / SH·SL 標記 / 箱壓撐 / 月營收YoY <b>預設關閉</b>；均線只開 <b>日MA20</b> ＋ <b>扣抵</b>；結構線預設開。按 🗂 可隨時開回，個別線也可點資訊列上的名稱開關。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-06-28</span><span style="font-size:13px;line-height:1.6"><b>🌊 新增『結構線』圖層</b><br><span style="color:var(--th-muted,#94a3b8)">日K 加入連接波段 SH/SL 的<b>結構折線</b>（∿ 琥珀色，虛線延伸到當前候選），🗂 可獨立開關。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-06-28</span><span style="font-size:13px;line-height:1.6"><b>SHSL 波段偵測重構</b><br><span style="color:var(--th-muted,#94a3b8)">波段 SH/SL 偵測由『兩條候選並行』改為<b>方向狀態機（ATR ZigZag）</b>，消除孤立候選、結構嚴格交替；全市場 663/663 時段交替。決策脈絡見 nav「💬 顧問討論 → SHSL 波段偵測→狀態機」。</span></span></div><div style="display:flex;gap:10px;padding:8px 0;border-top:1px dashed var(--th-border2,#334155)"><span style="flex:0 0 auto;color:var(--th-cyan,#38bdf8);font-size:12px;font-weight:700;white-space:nowrap">2026-06-26</span><span style="font-size:13px;line-height:1.6"><b>B3 雙K block 建立</b><br><span style="color:var(--th-muted,#94a3b8)">從 daily_weekly 抽成 block：<b>日K ＋ 週K 雙格同步</b>，100% 重用十字游標 / 分價 / 扣抵 / SH·SL / 箱壓撐 等既有 K 圖層；換股只改 BLOCK_SYMBOL。</span></span></div></div></details>
+<style>
+.tip { position: relative; cursor: help; }
+/* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
+#tip-floater {
+  position: fixed;
+  background: var(--th-bg,#0f172a);
+  color: var(--th-text,#e2e8f0);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  max-width: 320px;
+  width: max-content;
+  text-align: left;
+  border: 1px solid var(--th-border2,#475569);
+  z-index: 999999;
+  pointer-events: none;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  display: none;
+}
+.tip:focus { outline: none; }
+@media (max-width: 600px) {
+  #tip-floater { max-width: 240px; font-size: 11px; padding: 6px 10px; }
+}
+</style>
+<script>
+(function(){
+  var floater = null;
+  function ensureFloater(){
+    if (floater) return floater;
+    floater = document.createElement('div');
+    floater.id = 'tip-floater';
+    document.body.appendChild(floater);
+    return floater;
+  }
+  function showTip(el){
+    var text = el.getAttribute('data-tip');
+    if (!text) return;
+    var f = ensureFloater();
+    f.textContent = text;
+    f.style.display = 'block';
+    // 量元素位置
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var pad = 8;
+    // 預設放上方居中
+    var tw = f.offsetWidth, th = f.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    var top = rect.top - th - 10;
+    // 邊界修正
+    if (left < pad) left = pad;
+    if (left + tw > vw - pad) left = vw - tw - pad;
+    // 若上方空間不夠，改放下方
+    if (top < pad) top = rect.bottom + 10;
+    // 若下方也不夠（窄屏），就靠近底部
+    if (top + th > vh - pad) top = vh - th - pad;
+    f.style.left = left + 'px';
+    f.style.top  = top + 'px';
+  }
+  function hideTip(){
+    if (floater) floater.style.display = 'none';
+  }
+  function init(){
+    // 把所有 title 屬性轉成 data-tip
+    document.querySelectorAll('[title]').forEach(function(el){
+      var t = el.getAttribute('title');
+      if (!t) return;
+      if (el.tagName === 'A') return; // <a> 保留 title (a11y)
+      el.setAttribute('data-tip', t);
+      el.removeAttribute('title');
+      if (!el.classList.contains('tip')) el.classList.add('tip');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+    // hover / focus 顯示
+    document.addEventListener('mouseover', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('mouseout', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) hideTip();
+    });
+    document.addEventListener('focusin', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) showTip(tip);
+    });
+    document.addEventListener('focusout', hideTip);
+    // 手機 tap 切換顯示
+    document.addEventListener('click', function(e){
+      var tip = e.target.closest('.tip');
+      if (tip) {
+        if (floater && floater.style.display === 'block' && floater.dataset.tipFor === tip.dataset.tip) {
+          hideTip();
+        } else {
+          showTip(tip);
+          ensureFloater().dataset.tipFor = tip.dataset.tip;
+        }
+        e.stopPropagation();
+      } else {
+        hideTip();
+      }
+    });
+    // 滾動 / resize 隱藏（避免位置漂移）
+    window.addEventListener('scroll', hideTip, true);
+    window.addEventListener('resize', hideTip);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>
