@@ -11,12 +11,19 @@ on:
 permissions:
   contents: write    # peaceiris needs to push to gh-pages branch
 
+# 同一時間只跑一個部署、後到的排隊（不取消）：
+# 2026-09-13 兩次 push 相隔數分鐘 → 兩個 run 並行，後者 gh-pages 基底過時 → push rejected (fetch first)。
+# 每次部署都是完整快照，排隊後最後一次自然是最新內容。
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
