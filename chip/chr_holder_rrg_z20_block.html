@@ -184,7 +184,7 @@
   ensure(draw);
 })();</script>
 <details class="explainer"><summary class="explainer__title">🗺 這個 block（B12a · 短線 Qpower20 · 定義 · 判讀 · 資料 · 程式 · 換股 — 點開）</summary><div class="section-head">定義</div><div class="formula">CS 持有強度 = z-score( 該持有者 近20日累積買賣超 )　右 = 買超累積強</div><div class="formula">CM 動能 = CS(今) − CS(10日前)　上 = 動能轉強</div><div class="formula">每個持有者(外資/投信/自營/融資)一條 CS×CM 軌跡;框半徑 = |值| 92 分位夾 [2.5,3.5]σ<br>（CS/CM 軸與 B12 相同;本頁只把資訊列 Qpower 動力學窗改 20 日）</div><div class="section-head">Q1_power / Q3_power / Qpower（資訊列 · 短線 20 日窗）</div><div class="formula">由<b>各持有者自己的 CS×CM 軌跡</b>算(非分點 CMG):Q1_power=<b>近20日</b>軌跡在 Q1(吸籌:CS≥0且CM≥0)的|向量|平均、Q3_power=Q3(派發:CS&lt;0且CM&lt;0)、Qpower=Q1−Q3(&gt;0=吸籌力量主導)·Q變化=對前一日</div><div class="formula"><b>三大法人(合計)</b>=外資+投信+自營 日買賣超合併後算;<b>融資</b>單獨算(不與法人併, 散戶槓桿須分開看)</div><div class="section-head">短線 20 日 vs 中期 60 日</div><div class="note">本頁 Qpower = <b>近 20 日</b>窗(反應快、雜訊多·短線換股時機);中期 60 日 Qpower 見 <a href="chr_holder_rrg_block.html" style="color:var(--th-cyan,#38bdf8)">B12 →</a>。兩者同法同源,只差動力學窗(20 vs 60);CS×CM 圖形相同。</div><div class="section-head">判讀（四象限）</div><div class="note">右上 吸籌中(持有強+動能升,最佳) · 左上 開始回補 · 左下 派發中(持有弱+動能降,最危險) · 右下 動能轉弱。理想循環 左下→左上→右上→右下→左下。看哪個持有者(外資/投信/自營)正往右上輪轉 = 主力進場。融資往右上 = 散戶高槓桿(過熱警訊)。</div><div class="section-head">資料來源 / 程式</div><div class="formula">三大法人(institutional)/融資(margin)/價(price) → CS/CM z-score;RRG 軌跡為視覺化(非 FS feature)<br>資料 100% 重用 src/agents/nan_xin_holder_chart.py:_series(con, symbol)["rrg"]<br>渲染重用 src/agents/chr_holder_rrg_block.py:_chart_block(sym, qwin=20)<br>程式:src/agents/chr_holder_rrg_z20_block.py:fragment / build_block</div><div class="section-head">換股 / 可組裝</div><div class="formula">換股:改 BLOCK_SYMBOL（本卡 8046 南電）或呼叫 fragment(symbol=…)<br>可組裝:blocks.fragment(&quot;B12a&quot;) · blocks.assemble([…,&quot;B12a&quot;])</div></details></div><!-- BLOCK B12a END -->
-<style id='MS_N_RRR_tooltip_inject_v2'>
+<style>
 .tip { position: relative; cursor: help; }
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
@@ -203,7 +203,7 @@
   z-index: 999999;
   pointer-events: none;
   line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   display: none;
 }
 .tip:focus { outline: none; }

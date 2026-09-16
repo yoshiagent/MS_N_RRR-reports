@@ -309,7 +309,7 @@
 })();
 </script>
 <details class="explainer"><summary class="explainer__title">🗺 這個 block（B11a · 短線 z20 · 定義 · 判讀 · 資料 · 程式 · 換股 — 點開）</summary><div class="section-head">定義（短線 z20 窗）</div><div class="formula">x = 融資水位 = −Z20( ln(融資餘額 ÷ MA20成交量) )　右 = 融資低(散戶退場)</div><div class="formula">y = 法人動向 = Z20( 法人買賣超 ÷ MA20成交量 )　上 = 法人買超</div><div class="formula">點隨時間移動 + 留軌跡 + 速度箭頭(RRG 式);法人軸可複選 外資/投信/自營</div><div class="section-head">判讀（四象限）</div><div class="note">右上 吸籌(法人進+融資退,最佳) · 左上 過熱追漲(法人買+融資也追) · 左下 派發(法人賣+散戶高槓桿,最危險) · 右下 棄守打底。理想多頭循環:右下→右上→左上→左下→右下。z20 窗短→反應快、雜訊多(短線換股時機)。融資 21:00 後才公布,當日點常落後法人 1 日。</div><div class="section-head">z20 vs z60</div><div class="note">本頁 = <b>短線 z20</b>(近月籌碼輪轉);中期趨勢與「三大法人(合計)+融資(單獨) Qpower」資訊列見 <a href="chip_rrg_block.html" style="color:var(--th-cyan,#38bdf8)">B11 (z60)</a> / <a href="chr_holder_rrg_block.html" style="color:var(--th-cyan,#38bdf8)">B12</a>。兩者同法同源,只差 z-score 窗(20 vs 60)。</div><div class="section-head">資料來源 / 程式</div><div class="formula">價量(MA20量)/三大法人買賣超/融資餘額 → Z20 標準化;RRG 軌跡為視覺化(非 FS feature 重算)<br>渲染 100% 重用 src/agents/chip_rrg.py:_section((symbol,), win=20, show_sym_select=False)<br>程式:src/agents/chip_rrg_z20_block.py:fragment / build_block</div><div class="section-head">換股 / 可組裝</div><div class="formula">換股:改 BLOCK_SYMBOL（本卡 8046 南電）或呼叫 fragment(symbol=…)<br>可組裝:blocks.fragment(&quot;B11a&quot;) · blocks.assemble([…,&quot;B11a&quot;])</div></details></div><!-- BLOCK B11a END -->
-<style id='MS_N_RRR_tooltip_inject_v2'>
+<style>
 .tip { position: relative; cursor: help; }
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
@@ -328,7 +328,7 @@
   z-index: 999999;
   pointer-events: none;
   line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   display: none;
 }
 .tip:focus { outline: none; }
