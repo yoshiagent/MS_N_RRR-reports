@@ -184,7 +184,7 @@
   ensure(draw);
 })();</script>
 <details class="explainer"><summary class="explainer__title">🗺 這個 block（B12 · 定義 · 判讀 · 資料 · 程式 · 換股 — 點開）</summary><div class="section-head">定義</div><div class="formula">CS 持有強度 = z-score( 該持有者 近20日累積買賣超 )　右 = 買超累積強</div><div class="formula">CM 動能 = CS(今) − CS(10日前)　上 = 動能轉強</div><div class="formula">每個持有者(外資/投信/自營/融資)一條 CS×CM 軌跡;框半徑 = |值| 92 分位夾 [2.5,3.5]σ</div><div class="section-head">Q1_power / Q3_power / Qpower（資訊列）</div><div class="formula">由<b>各持有者自己的 CS×CM 軌跡</b>算(非分點 CMG):Q1_power=近60日軌跡在 Q1(吸籌:CS≥0且CM≥0)的|向量|平均、Q3_power=Q3(派發:CS&lt;0且CM&lt;0)、Qpower=Q1−Q3(&gt;0=吸籌力量主導)·Q變化=對前一日</div><div class="formula"><b>三大法人(合計)</b>=外資+投信+自營 日買賣超合併後算;<b>融資</b>單獨算(不與法人併, 散戶槓桿須分開看)</div><div class="section-head">判讀（四象限）</div><div class="note">右上 吸籌中(持有強+動能升,最佳) · 左上 開始回補 · 左下 派發中(持有弱+動能降,最危險) · 右下 動能轉弱。理想循環 左下→左上→右上→右下→左下。看哪個持有者(外資/投信/自營)正往右上輪轉 = 主力進場。融資往右上 = 散戶高槓桿(過熱警訊)。</div><div class="section-head">資料來源 / 程式</div><div class="formula">三大法人(institutional)/融資(margin)/價(price) → CS/CM z-score;RRG 軌跡為視覺化(非 FS feature)<br>資料 100% 重用 src/agents/nan_xin_holder_chart.py:_series(con, symbol)["rrg"]<br>程式:src/agents/chr_holder_rrg_block.py:fragment / build_block</div><div class="section-head">換股 / 可組裝</div><div class="formula">換股:改 BLOCK_SYMBOL（本卡 8046 南電）或呼叫 fragment(symbol=…)<br>可組裝:blocks.fragment(&quot;B12&quot;) · blocks.assemble([…,&quot;B12&quot;])</div></details></div><!-- BLOCK B12 END -->
-<style id='MS_N_RRR_tooltip_inject_v2'>
+<style>
 .tip { position: relative; cursor: help; }
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
@@ -203,7 +203,7 @@
   z-index: 999999;
   pointer-events: none;
   line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   display: none;
 }
 .tip:focus { outline: none; }

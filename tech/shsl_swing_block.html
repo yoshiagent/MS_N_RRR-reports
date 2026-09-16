@@ -240,7 +240,7 @@
       價位帶: SL (綠) → 當前 (黃) → SH (紅), 位置百分比 = 在區間內位置
     </div>
     </div><details class="explainer"><summary class="explainer__title">🗺 這個 block（B5 · 定義 · 判讀 · 資料 · 程式 · 換股 — 點開）</summary><div class="section-head">定義</div><div class="formula">三時段(日/週/月)各取 SHSL Agent 的 wave_state + 4-flag(頭頭高/底底高/頭頭低/底底低) + 最後確認 SH/SL → 價位帶位置%</div><div class="formula">回檔箱(箱頂/箱底/世代/趨勢/位移)= box_structure agent 決定;報告頁只渲染(單一決策者)</div><div class="formula">Zigzag = 嚴格交替 SL→SH→SL… 近 6 點 + candidate(等確認);candidate 帶「3 條件確認進度」popover(跌破/回檔幅度/時間過濾)</div><div class="section-head">判讀（波段位置）</div><div class="note">wave_state:PULLBACK 拉回中(橘)· REBOUND 反彈中(紫)· BREAKOUT 突破(綠)· BREAKDOWN 跌破(紅)。4-flag 綠(頭頭高 HH/底底高 HL)= 多頭結構、紅(頭頭低 LH/底底低 LL)= 空頭結構。價位帶:SL(綠)→ 當前(黃)→ SH(紅),位置% = 在區間內位置(越高越接近壓力)。三時段同步(皆 REBOUND/PULLBACK)= 共振訊號;週反彈+日拉回 = 可能買點。⛔ 週線下降箱(頭頭低+底底低)= 紀律規範不得操作、持有應出清。</div><div class="section-head">資料來源 / 程式</div><div class="formula">FS <code>shsl</code>(SHSL Agent)+ FS <code>box_structure</code>(回檔箱單一決策者)<br>R6 只讀 FS feature 不重算;渲染 100% 重用 src/agents/stock_dossier_report.py:_render_shsl(sym)<br>程式:src/agents/shsl_swing_block.py:fragment / build_block</div><div class="section-head">換股 / 可組裝</div><div class="formula">換股:改 BLOCK_SYMBOL（本圖 8046 南電）或呼叫 fragment(symbol=…)<br>可組裝:blocks.fragment(&quot;B5&quot;) · blocks.assemble([…,&quot;B5&quot;])</div></details></div><!-- BLOCK B5 END -->
-<style id='MS_N_RRR_tooltip_inject_v2'>
+<style>
 .tip { position: relative; cursor: help; }
 /* 用 fixed-position 的浮動 div #tip-floater 顯示，避開 overflow:hidden 父層 */
 #tip-floater {
@@ -259,7 +259,7 @@
   z-index: 999999;
   pointer-events: none;
   line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(58,52,40,0.14);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   display: none;
 }
 .tip:focus { outline: none; }
