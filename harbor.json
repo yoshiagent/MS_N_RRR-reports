@@ -1,122 +1,122 @@
 {
-  "as_of": "2026-09-16",
+  "as_of": "2026-09-17",
   "schema_version": "v1",
   "available": true,
   "shadow": true,
-  "state": "L2",
-  "state_label": "L2 轉弱·避風",
-  "state_emoji": "🟡",
-  "state_tone": "warn",
-  "state_desc": "過熱/轉弱(非崩) → 重倉璞玉低波避風港，適度現金",
+  "state": "L1",
+  "state_label": "L1 正常·成長",
+  "state_emoji": "🟢",
+  "state_tone": "bull",
+  "state_desc": "市場健康 → 100% 攻擊型 RR 股池為主",
   "prev_state": "L2",
-  "transition": "維持 L2",
-  "days_in_state": 26,
-  "since": "2026-08-12",
+  "transition": "L2→L1 解避風(確認26≥15日)",
+  "days_in_state": 1,
+  "since": "2026-09-17",
   "buckets": {
-    "rr": 50,
-    "jade": 30,
-    "cash": 20
+    "rr": 85,
+    "jade": 10,
+    "cash": 5
   },
   "signals": {
     "risk_mode": "NORMAL",
-    "temp": 53.0,
-    "breadth": 52.8,
-    "rr_env": 75,
+    "temp": 60.7,
+    "breadth": 58.9,
+    "rr_env": 55,
     "zone": "NORMAL",
-    "z250": 1.325,
-    "twii20": 2.53
+    "z250": 1.373,
+    "twii20": 3.01
   },
   "triggers": {
     "enter_L2": false,
     "enter_L3": false,
     "exit_L3": true,
-    "exit_L2": false
+    "exit_L2": true
   },
-  "jade_constraint": "20-40%",
+  "jade_constraint": "≤15%",
   "jade_holdings": [
     {
       "symbol": "2812",
       "name": "台中銀",
       "industry": "金融保險",
       "sleeve_weight": 12.38,
-      "port_weight": 3.71
+      "port_weight": 1.24
     },
     {
       "symbol": "2912",
       "name": "統一超",
       "industry": "貿易百貨",
       "sleeve_weight": 6.82,
-      "port_weight": 2.05
+      "port_weight": 0.68
     },
     {
       "symbol": "5876",
       "name": "上海商銀",
       "industry": "金融保險",
-      "sleeve_weight": 9.83,
-      "port_weight": 2.95
+      "sleeve_weight": 9.84,
+      "port_weight": 0.98
     },
     {
       "symbol": "1216",
       "name": "統一",
       "industry": "食品工業",
-      "sleeve_weight": 9.23,
-      "port_weight": 2.77
-    },
-    {
-      "symbol": "3293",
-      "name": "鈊象",
-      "industry": "文化創意業",
-      "sleeve_weight": 5.92,
-      "port_weight": 1.78
+      "sleeve_weight": 9.22,
+      "port_weight": 0.92
     },
     {
       "symbol": "1102",
       "name": "亞泥",
       "industry": "水泥工業",
       "sleeve_weight": 8.09,
-      "port_weight": 2.43
+      "port_weight": 0.81
+    },
+    {
+      "symbol": "3293",
+      "name": "鈊象",
+      "industry": "文化創意業",
+      "sleeve_weight": 5.92,
+      "port_weight": 0.59
     },
     {
       "symbol": "1476",
       "name": "儒鴻",
       "industry": "紡織纖維",
-      "sleeve_weight": 4.78,
-      "port_weight": 1.43
+      "sleeve_weight": 4.79,
+      "port_weight": 0.48
     },
     {
       "symbol": "5871",
       "name": "中租-KY",
       "industry": "其他",
       "sleeve_weight": 7.66,
-      "port_weight": 2.3
+      "port_weight": 0.77
     },
     {
       "symbol": "6121",
       "name": "新普",
       "industry": "電腦及週邊設備業",
       "sleeve_weight": 4.96,
-      "port_weight": 1.49
+      "port_weight": 0.5
     },
     {
       "symbol": "8464",
       "name": "億豐",
       "industry": "其他",
       "sleeve_weight": 4.23,
-      "port_weight": 1.27
+      "port_weight": 0.42
     },
     {
       "symbol": "9910",
       "name": "豐泰",
       "industry": "其他",
-      "sleeve_weight": 3.81,
-      "port_weight": 1.14
+      "sleeve_weight": 3.8,
+      "port_weight": 0.38
     },
     {
       "symbol": "4904",
       "name": "遠傳",
       "industry": "通信網路業",
-      "sleeve_weight": 6.49,
-      "port_weight": 1.95
+      "sleeve_weight": 6.47,
+      "port_weight": 0.65
     }
   ],
   "jade_pool_n": 15,
@@ -125,12 +125,12 @@
     "L2→L1": 15
   },
   "summary": {
-    "state": "L2",
-    "rr": 50,
-    "jade": 30,
-    "cash": 20,
-    "days_in_state": 26,
+    "state": "L1",
+    "rr": 85,
+    "jade": 10,
+    "cash": 5,
+    "days_in_state": 1,
     "note": "SHADOW 避風港三桶, 不接 cio_allocator/decision; 證明降回撤才併入"
   },
-  "generated_at": "2026-09-16T22:14:06"
+  "generated_at": "2026-09-17T22:13:30"
 }
