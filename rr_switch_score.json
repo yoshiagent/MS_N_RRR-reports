@@ -1,7 +1,7 @@
 {
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-01",
   "n_pairs": 6,
-  "n_z_gate_passed": 1,
+  "n_z_gate_passed": 2,
   "n_strong": 0,
   "n_strong_stays_strong": 0,
   "z_mode": "gate",
@@ -25,7 +25,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -0.38,
+      "zscore": -0.15,
       "switch_direction": "B",
       "switch_into": {
         "code": "3037",
@@ -37,7 +37,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 2.03,
+          "score": 0.29,
           "src": "no_rotation"
         },
         "box": {
@@ -59,7 +59,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 25.0,
+      "switch_score_ref": 24.4,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -79,9 +79,9 @@
         "晶豪科",
         "智原"
       ],
-      "signal": "switch_to_B",
-      "z_gate_passed": true,
-      "zscore": -0.0,
+      "signal": "hold_B",
+      "z_gate_passed": false,
+      "zscore": -0.19,
       "switch_direction": "B",
       "switch_into": {
         "code": "3035",
@@ -93,8 +93,8 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 22.97,
-          "src": "no_rotation"
+          "score": 41.65,
+          "src": "weak_rotation"
         },
         "box": {
           "score": 90.0,
@@ -114,14 +114,14 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 53.6,
-      "switch_score_ref": 53.6,
+      "switch_score": null,
+      "switch_score_ref": 60.2,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "可換股 · 留意結構/籌碼",
-        "color": "#fb923c",
-        "icon": "⚠️"
+        "label": "延後 · Z60 未過換股門檻",
+        "color": "#64748b",
+        "icon": "⏸"
       }
     },
     {
@@ -137,7 +137,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -0.69,
+      "zscore": -0.63,
       "switch_direction": "B",
       "switch_into": {
         "code": "2408",
@@ -149,7 +149,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 1.92,
+          "score": 3.06,
           "src": "no_rotation"
         },
         "box": {
@@ -171,7 +171,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 40.3,
+      "switch_score_ref": 40.7,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -191,28 +191,33 @@
         "上銀",
         "大銀微系統"
       ],
-      "signal": "no_action",
-      "z_gate_passed": false,
-      "zscore": -1.56,
-      "switch_direction": null,
-      "switch_into": null,
+      "signal": "switch_to_A",
+      "z_gate_passed": true,
+      "zscore": -1.6,
+      "switch_direction": "A",
+      "switch_into": {
+        "code": "2049",
+        "name": "上銀"
+      },
       "components": {
         "rcga": {
           "score": 20.0,
           "src": "RED"
         },
         "rcr": {
-          "score": null,
+          "score": 15.19,
           "src": "no_rotation"
         },
         "box": {
-          "score": null,
-          "src": null,
-          "healthy": null
+          "score": 45.0,
+          "src": "inbox_side",
+          "healthy": false
         }
       },
       "active_weights": {
-        "rcga": 25
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
       },
       "z_mode": "gate",
       "weights": {
@@ -221,14 +226,14 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": null,
-      "switch_score_ref": 20.0,
+      "switch_score": 25.4,
+      "switch_score_ref": 25.4,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "延後 · Z60 未過換股門檻",
-        "color": "#64748b",
-        "icon": "⏸"
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
       }
     },
     {
@@ -242,28 +247,33 @@
         "巨大",
         "美利達"
       ],
-      "signal": "no_action",
-      "z_gate_passed": false,
-      "zscore": 1.65,
-      "switch_direction": null,
-      "switch_into": null,
+      "signal": "switch_to_B",
+      "z_gate_passed": true,
+      "zscore": 1.44,
+      "switch_direction": "B",
+      "switch_into": {
+        "code": "9914",
+        "name": "美利達"
+      },
       "components": {
         "rcga": {
           "score": 55.0,
           "src": "YELLOW"
         },
         "rcr": {
-          "score": null,
+          "score": 2.0,
           "src": "no_rotation"
         },
         "box": {
-          "score": null,
-          "src": null,
-          "healthy": null
+          "score": 12.0,
+          "src": "below_down",
+          "healthy": false
         }
       },
       "active_weights": {
-        "rcga": 25
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
       },
       "z_mode": "gate",
       "weights": {
@@ -272,14 +282,14 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": null,
-      "switch_score_ref": 55.0,
+      "switch_score": 23.8,
+      "switch_score_ref": 23.8,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "延後 · Z60 未過換股門檻",
-        "color": "#64748b",
-        "icon": "⏸"
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
       }
     },
     {
@@ -293,28 +303,33 @@
         "華新科",
         "禾伸堂"
       ],
-      "signal": "no_action",
+      "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -1.68,
-      "switch_direction": null,
-      "switch_into": null,
+      "zscore": -1.49,
+      "switch_direction": "B",
+      "switch_into": {
+        "code": "3026",
+        "name": "禾伸堂"
+      },
       "components": {
         "rcga": {
           "score": 20.0,
           "src": "RED"
         },
         "rcr": {
-          "score": null,
+          "score": 1.24,
           "src": "no_rotation"
         },
         "box": {
-          "score": null,
-          "src": null,
-          "healthy": null
+          "score": 45.0,
+          "src": "inbox_side",
+          "healthy": false
         }
       },
       "active_weights": {
-        "rcga": 25
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
       },
       "z_mode": "gate",
       "weights": {
@@ -324,7 +339,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 20.0,
+      "switch_score_ref": 20.4,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -335,6 +350,6 @@
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-09-30T23:54:41",
+  "generated_at": "2026-10-01T22:26:41",
   "available": true
 }
