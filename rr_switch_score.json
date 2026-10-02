@@ -1,9 +1,9 @@
 {
-  "as_of": "2026-10-01",
+  "as_of": "2026-10-02",
   "n_pairs": 6,
   "n_z_gate_passed": 2,
   "n_strong": 0,
-  "n_strong_stays_strong": 0,
+  "n_strong_stays_strong": 1,
   "z_mode": "gate",
   "weights": {
     "z_reversal": 30,
@@ -25,7 +25,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -0.15,
+      "zscore": -0.52,
       "switch_direction": "B",
       "switch_into": {
         "code": "3037",
@@ -37,12 +37,12 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 0.29,
+          "score": 3.56,
           "src": "no_rotation"
         },
         "box": {
-          "score": 60.0,
-          "src": "inbox_up",
+          "score": 90.0,
+          "src": "above_up",
           "healthy": true
         }
       },
@@ -59,7 +59,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 24.4,
+      "switch_score_ref": 34.1,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -81,7 +81,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -0.19,
+      "zscore": -0.2,
       "switch_direction": "B",
       "switch_into": {
         "code": "3035",
@@ -93,8 +93,8 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 41.65,
-          "src": "weak_rotation"
+          "score": 1.93,
+          "src": "no_rotation"
         },
         "box": {
           "score": 90.0,
@@ -115,7 +115,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 60.2,
+      "switch_score_ref": 46.0,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -137,7 +137,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -0.63,
+      "zscore": -0.99,
       "switch_direction": "B",
       "switch_into": {
         "code": "2408",
@@ -149,7 +149,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 3.06,
+          "score": 9.77,
           "src": "no_rotation"
         },
         "box": {
@@ -171,7 +171,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 40.7,
+      "switch_score_ref": 43.1,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -193,7 +193,7 @@
       ],
       "signal": "switch_to_A",
       "z_gate_passed": true,
-      "zscore": -1.6,
+      "zscore": -1.45,
       "switch_direction": "A",
       "switch_into": {
         "code": "2049",
@@ -205,7 +205,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 15.19,
+          "score": 1.08,
           "src": "no_rotation"
         },
         "box": {
@@ -226,14 +226,26 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 25.4,
-      "switch_score_ref": 25.4,
-      "strong_stays_strong": false,
-      "trim": null,
+      "switch_score": 20.4,
+      "switch_score_ref": 20.4,
+      "strong_stays_strong": true,
+      "trim": {
+        "target": {
+          "code": "4576",
+          "name": "大銀微系統"
+        },
+        "pct_range": [
+          0,
+          20
+        ],
+        "sell_chip_state": "healthy_rotation",
+        "buy_chip_state": "distribution_warning",
+        "sell_mbs_increasing": true
+      },
       "recommendation": {
-        "label": "Z 到但籌碼/結構不支持 · 觀望",
-        "color": "#ef4444",
-        "icon": "🚫"
+        "label": "強者恆強 · 延後換股 · 減碼 大銀微系統 0–20% · 等待",
+        "color": "#a78bfa",
+        "icon": "💪"
       }
     },
     {
@@ -249,7 +261,7 @@
       ],
       "signal": "switch_to_B",
       "z_gate_passed": true,
-      "zscore": 1.44,
+      "zscore": 1.36,
       "switch_direction": "B",
       "switch_into": {
         "code": "9914",
@@ -261,7 +273,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 2.0,
+          "score": 7.32,
           "src": "no_rotation"
         },
         "box": {
@@ -282,8 +294,8 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 23.8,
-      "switch_score_ref": 23.8,
+      "switch_score": 25.7,
+      "switch_score_ref": 25.7,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -303,13 +315,13 @@
         "華新科",
         "禾伸堂"
       ],
-      "signal": "hold_B",
+      "signal": "hold_A",
       "z_gate_passed": false,
-      "zscore": -1.49,
-      "switch_direction": "B",
+      "zscore": 0.05,
+      "switch_direction": "A",
       "switch_into": {
-        "code": "3026",
-        "name": "禾伸堂"
+        "code": "2492",
+        "name": "華新科"
       },
       "components": {
         "rcga": {
@@ -317,7 +329,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 1.24,
+          "score": 20.28,
           "src": "no_rotation"
         },
         "box": {
@@ -339,7 +351,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 20.4,
+      "switch_score_ref": 27.2,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -350,6 +362,6 @@
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-10-01T22:26:41",
+  "generated_at": "2026-10-02T22:24:25",
   "available": true
 }
