@@ -1,9 +1,9 @@
 {
-  "as_of": "2026-10-07",
+  "as_of": "2026-10-08",
   "n_pairs": 6,
-  "n_z_gate_passed": 2,
+  "n_z_gate_passed": 3,
   "n_strong": 0,
-  "n_strong_stays_strong": 0,
+  "n_strong_stays_strong": 1,
   "z_mode": "gate",
   "weights": {
     "z_reversal": 30,
@@ -25,7 +25,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -0.33,
+      "zscore": -0.06,
       "switch_direction": "B",
       "switch_into": {
         "code": "3037",
@@ -37,7 +37,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 8.61,
+          "score": 14.56,
           "src": "no_rotation"
         },
         "box": {
@@ -59,7 +59,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 35.9,
+      "switch_score_ref": 38.1,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -81,7 +81,7 @@
       ],
       "signal": "switch_to_B",
       "z_gate_passed": true,
-      "zscore": -0.41,
+      "zscore": -0.31,
       "switch_direction": "B",
       "switch_into": {
         "code": "3035",
@@ -93,7 +93,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 37.31,
+          "score": 21.11,
           "src": "no_rotation"
         },
         "box": {
@@ -114,14 +114,14 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 53.0,
-      "switch_score_ref": 53.0,
+      "switch_score": 47.2,
+      "switch_score_ref": 47.2,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "可換股 · 留意結構/籌碼",
-        "color": "#fb923c",
-        "icon": "⚠️"
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
       }
     },
     {
@@ -137,7 +137,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -0.37,
+      "zscore": -1.43,
       "switch_direction": "B",
       "switch_into": {
         "code": "2408",
@@ -149,7 +149,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 0.8,
+          "score": 22.52,
           "src": "no_rotation"
         },
         "box": {
@@ -171,7 +171,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 33.1,
+      "switch_score_ref": 40.9,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -193,7 +193,7 @@
       ],
       "signal": "switch_to_A",
       "z_gate_passed": true,
-      "zscore": -0.88,
+      "zscore": -1.05,
       "switch_direction": "A",
       "switch_into": {
         "code": "2049",
@@ -205,7 +205,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 23.71,
+          "score": 12.14,
           "src": "no_rotation"
         },
         "box": {
@@ -226,8 +226,8 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 28.5,
-      "switch_score_ref": 28.5,
+      "switch_score": 24.3,
+      "switch_score_ref": 24.3,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -249,7 +249,7 @@
       ],
       "signal": "hold_A",
       "z_gate_passed": false,
-      "zscore": 1.46,
+      "zscore": 1.47,
       "switch_direction": "A",
       "switch_into": {
         "code": "9921",
@@ -261,7 +261,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 8.8,
+          "score": 19.6,
           "src": "no_rotation"
         },
         "box": {
@@ -283,7 +283,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 35.6,
+      "switch_score_ref": 39.5,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -303,28 +303,33 @@
         "華新科",
         "禾伸堂"
       ],
-      "signal": "no_action",
-      "z_gate_passed": false,
-      "zscore": 2.14,
-      "switch_direction": null,
-      "switch_into": null,
+      "signal": "switch_to_A",
+      "z_gate_passed": true,
+      "zscore": 1.32,
+      "switch_direction": "A",
+      "switch_into": {
+        "code": "2492",
+        "name": "華新科"
+      },
       "components": {
         "rcga": {
           "score": 20.0,
           "src": "RED"
         },
         "rcr": {
-          "score": null,
+          "score": 4.21,
           "src": "no_rotation"
         },
         "box": {
-          "score": null,
-          "src": null,
-          "healthy": null
+          "score": 45.0,
+          "src": "inbox_side",
+          "healthy": false
         }
       },
       "active_weights": {
-        "rcga": 25
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
       },
       "z_mode": "gate",
       "weights": {
@@ -333,18 +338,30 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": null,
-      "switch_score_ref": 20.0,
-      "strong_stays_strong": false,
-      "trim": null,
+      "switch_score": 21.5,
+      "switch_score_ref": 21.5,
+      "strong_stays_strong": true,
+      "trim": {
+        "target": {
+          "code": "3026",
+          "name": "禾伸堂"
+        },
+        "pct_range": [
+          0,
+          20
+        ],
+        "sell_chip_state": "accumulation",
+        "buy_chip_state": "no_signal",
+        "sell_mbs_increasing": true
+      },
       "recommendation": {
-        "label": "延後 · Z60 未過換股門檻",
-        "color": "#64748b",
-        "icon": "⏸"
+        "label": "強者恆強 · 延後換股 · 減碼 禾伸堂 0–20% · 等待",
+        "color": "#a78bfa",
+        "icon": "💪"
       }
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-10-07T22:25:26",
+  "generated_at": "2026-10-08T22:23:45",
   "available": true
 }
