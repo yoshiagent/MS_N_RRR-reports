@@ -1,10 +1,10 @@
 {
   "available": true,
-  "as_of": "2026-10-12",
+  "as_of": "2026-10-13",
   "n_total": 6,
-  "n_switches": 2,
-  "n_holds": 2,
-  "n_no_action": 2,
+  "n_switches": 3,
+  "n_holds": 3,
+  "n_no_action": 0,
   "results": [
     {
       "idx": 1,
@@ -19,16 +19,16 @@
       "chart_url": "nan_xin_chart.html",
       "chart_status": "from_xlsx+built",
       "chart_health": "RED",
-      "as_of": "2026-10-12",
-      "signal": "hold_B",
+      "as_of": "2026-10-13",
+      "signal": "hold_A",
       "confidence": 30,
-      "zscore": -0.14,
-      "rs_value": 0.1375,
+      "zscore": 0.58,
+      "rs_value": 0.1991,
       "reason": [
-        "as_of=2026-10-12",
-        "RS=+0.1375, Z60=-0.14",
-        "近 20 日 Z 範圍 [-1.32, -0.06]",
-        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.14）"
+        "as_of=2026-10-13",
+        "RS=+0.1991, Z60=+0.58",
+        "近 20 日 Z 範圍 [-1.32, +0.58]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.58）"
       ],
       "A_state": "above_down",
       "A_label": "箱上回測",
@@ -38,16 +38,14 @@
         "breakout_pending"
       ],
       "A_healthy": true,
-      "B_state": "above_down",
-      "B_label": "箱上回測",
-      "B_icon": "🟡",
-      "B_color": "#fcd34d",
-      "B_modifiers": [
-        "breakout_pending"
-      ],
-      "B_healthy": true,
-      "healthy_pair": true,
-      "pair_health": "both_healthy"
+      "B_state": "inbox_down",
+      "B_label": "箱內向下",
+      "B_icon": "🟠",
+      "B_color": "#fb923c",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "a_only"
     },
     {
       "idx": 2,
@@ -62,16 +60,16 @@
       "chart_url": "jh_zy_chart.html",
       "chart_status": "from_xlsx+built",
       "chart_health": "YELLOW",
-      "as_of": "2026-10-12",
-      "signal": "switch_to_B",
-      "confidence": 50,
-      "zscore": -0.34,
-      "rs_value": 0.2769,
+      "as_of": "2026-10-13",
+      "signal": "hold_B",
+      "confidence": 30,
+      "zscore": -0.67,
+      "rs_value": 0.2314,
       "reason": [
-        "as_of=2026-10-12",
-        "RS=+0.2769, Z60=-0.34",
-        "近 20 日 Z 範圍 [-0.41, +1.66]",
-        "近期 Z 極大 +1.66 已折返至 -0.34（≤ +1.2） → 賣 3006 換 3035"
+        "as_of=2026-10-13",
+        "RS=+0.2314, Z60=-0.67",
+        "近 20 日 Z 範圍 [-0.67, +1.51]",
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.67）"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",
@@ -101,57 +99,16 @@
       "chart_url": "pair_2344_2408.html",
       "chart_status": "built",
       "chart_health": "RED",
-      "as_of": "2026-10-12",
-      "signal": "no_action",
-      "confidence": 25,
-      "zscore": -1.55,
-      "rs_value": -1.1081,
+      "as_of": "2026-10-13",
+      "signal": "hold_B",
+      "confidence": 30,
+      "zscore": -1.47,
+      "rs_value": -1.1058,
       "reason": [
-        "as_of=2026-10-12",
-        "RS=-1.1081, Z60=-1.55",
+        "as_of=2026-10-13",
+        "RS=-1.1058, Z60=-1.47",
         "近 20 日 Z 範圍 [-1.55, -0.37]",
-        "Z=-1.55 ≤ -1.5（A 過弱，等待折返）"
-      ],
-      "A_state": "inbox_side",
-      "A_label": "箱內盤整",
-      "A_icon": "⚪",
-      "A_color": "#94a3b8",
-      "A_modifiers": [],
-      "A_healthy": false,
-      "B_state": "above_down",
-      "B_label": "箱上回測",
-      "B_icon": "🟡",
-      "B_color": "#fcd34d",
-      "B_modifiers": [
-        "breakout_pending"
-      ],
-      "B_healthy": true,
-      "healthy_pair": false,
-      "pair_health": "b_only"
-    },
-    {
-      "idx": 4,
-      "pair": [
-        "2049",
-        "4576"
-      ],
-      "names": [
-        "上銀",
-        "大銀微系統"
-      ],
-      "chart_url": "pair_2049_4576.html",
-      "chart_status": "built",
-      "chart_health": "RED",
-      "as_of": "2026-10-12",
-      "signal": "switch_to_A",
-      "confidence": 70,
-      "zscore": -1.09,
-      "rs_value": 0.3699,
-      "reason": [
-        "as_of=2026-10-12",
-        "RS=+0.3699, Z60=-1.09",
-        "近 20 日 Z 範圍 [-2.20, -0.88]",
-        "近期 Z 極小 -2.20 已折返至 -1.09（≥ -1.2） → 賣 4576 換 2049"
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-1.47）"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",
@@ -171,6 +128,45 @@
       "pair_health": "none"
     },
     {
+      "idx": 4,
+      "pair": [
+        "2049",
+        "4576"
+      ],
+      "names": [
+        "上銀",
+        "大銀微系統"
+      ],
+      "chart_url": "pair_2049_4576.html",
+      "chart_status": "built",
+      "chart_health": "RED",
+      "as_of": "2026-10-13",
+      "signal": "switch_to_A",
+      "confidence": 70,
+      "zscore": -1.01,
+      "rs_value": 0.3739,
+      "reason": [
+        "as_of=2026-10-13",
+        "RS=+0.3739, Z60=-1.01",
+        "近 20 日 Z 範圍 [-2.20, -0.88]",
+        "近期 Z 極小 -2.20 已折返至 -1.01（≥ -1.7） → 賣 4576 換 2049"
+      ],
+      "A_state": "inbox_side",
+      "A_label": "箱內盤整",
+      "A_icon": "⚪",
+      "A_color": "#94a3b8",
+      "A_modifiers": [],
+      "A_healthy": false,
+      "B_state": "inbox_side",
+      "B_label": "箱內盤整",
+      "B_icon": "⚪",
+      "B_color": "#94a3b8",
+      "B_modifiers": [],
+      "B_healthy": false,
+      "healthy_pair": false,
+      "pair_health": "none"
+    },
+    {
       "idx": 5,
       "pair": [
         "9921",
@@ -183,16 +179,16 @@
       "chart_url": "pair_9921_9914.html",
       "chart_status": "built",
       "chart_health": "YELLOW",
-      "as_of": "2026-10-12",
-      "signal": "hold_A",
-      "confidence": 30,
-      "zscore": 1.37,
-      "rs_value": 0.3089,
+      "as_of": "2026-10-13",
+      "signal": "switch_to_B",
+      "confidence": 70,
+      "zscore": 1.43,
+      "rs_value": 0.3174,
       "reason": [
-        "as_of=2026-10-12",
-        "RS=+0.3089, Z60=+1.37",
+        "as_of=2026-10-13",
+        "RS=+0.3174, Z60=+1.43",
         "近 20 日 Z 範圍 [+1.35, +2.14]",
-        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+1.37）"
+        "近期 Z 極大 +2.14 已折返至 +1.43（≤ +1.7） → 賣 9921 換 9914"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",
@@ -222,16 +218,16 @@
       "chart_url": "pair_2492_3026.html",
       "chart_status": "built",
       "chart_health": "RED",
-      "as_of": "2026-10-12",
-      "signal": "no_action",
-      "confidence": 25,
-      "zscore": 1.76,
-      "rs_value": -0.6979,
+      "as_of": "2026-10-13",
+      "signal": "switch_to_B",
+      "confidence": 70,
+      "zscore": 1.43,
+      "rs_value": -0.7208,
       "reason": [
-        "as_of=2026-10-12",
-        "RS=-0.6979, Z60=+1.76",
+        "as_of=2026-10-13",
+        "RS=-0.7208, Z60=+1.43",
         "近 20 日 Z 範圍 [-1.59, +2.14]",
-        "Z=+1.76 ≥ +1.5（A 過強，等待折返）"
+        "近期 Z 極大 +2.14 已折返至 +1.43（≤ +1.7） → 賣 2492 換 3026"
       ],
       "A_state": "inbox_side",
       "A_label": "箱內盤整",
