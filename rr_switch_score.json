@@ -1,9 +1,9 @@
 {
-  "as_of": "2026-10-13",
+  "as_of": "2026-10-14",
   "n_pairs": 6,
   "n_z_gate_passed": 3,
   "n_strong": 0,
-  "n_strong_stays_strong": 2,
+  "n_strong_stays_strong": 1,
   "z_mode": "gate",
   "weights": {
     "z_reversal": 30,
@@ -25,7 +25,7 @@
       ],
       "signal": "hold_A",
       "z_gate_passed": false,
-      "zscore": 0.58,
+      "zscore": 0.51,
       "switch_direction": "A",
       "switch_into": {
         "code": "8046",
@@ -37,7 +37,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 12.65,
+          "score": 3.0,
           "src": "no_rotation"
         },
         "box": {
@@ -59,7 +59,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 31.7,
+      "switch_score_ref": 28.2,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -81,7 +81,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -0.67,
+      "zscore": -1.18,
       "switch_direction": "B",
       "switch_into": {
         "code": "3035",
@@ -93,13 +93,13 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 6.03,
+          "score": 21.61,
           "src": "no_rotation"
         },
         "box": {
-          "score": 45.0,
-          "src": "inbox_side",
-          "healthy": false
+          "score": 70.0,
+          "src": "above_down",
+          "healthy": true
         }
       },
       "active_weights": {
@@ -115,7 +115,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 34.7,
+      "switch_score_ref": 47.4,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -137,7 +137,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -1.47,
+      "zscore": -0.59,
       "switch_direction": "B",
       "switch_into": {
         "code": "2408",
@@ -149,7 +149,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 8.42,
+          "score": 1.36,
           "src": "no_rotation"
         },
         "box": {
@@ -171,7 +171,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 23.0,
+      "switch_score_ref": 20.5,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -193,7 +193,7 @@
       ],
       "signal": "switch_to_A",
       "z_gate_passed": true,
-      "zscore": -1.01,
+      "zscore": -0.7,
       "switch_direction": "A",
       "switch_into": {
         "code": "2049",
@@ -205,7 +205,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 2.01,
+          "score": 33.3,
           "src": "no_rotation"
         },
         "box": {
@@ -226,8 +226,8 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 20.7,
-      "switch_score_ref": 20.7,
+      "switch_score": 31.9,
+      "switch_score_ref": 31.9,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -249,7 +249,7 @@
       ],
       "signal": "switch_to_B",
       "z_gate_passed": true,
-      "zscore": 1.43,
+      "zscore": 1.46,
       "switch_direction": "B",
       "switch_into": {
         "code": "9914",
@@ -261,7 +261,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 0.52,
+          "score": 1.83,
           "src": "no_rotation"
         },
         "box": {
@@ -282,8 +282,8 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 23.3,
-      "switch_score_ref": 23.3,
+      "switch_score": 23.7,
+      "switch_score_ref": 23.7,
       "strong_stays_strong": true,
       "trim": {
         "target": {
@@ -294,7 +294,7 @@
           0,
           20
         ],
-        "sell_chip_state": "healthy_rotation",
+        "sell_chip_state": "accumulation",
         "buy_chip_state": "distribution_warning",
         "sell_mbs_increasing": true
       },
@@ -317,7 +317,7 @@
       ],
       "signal": "switch_to_B",
       "z_gate_passed": true,
-      "zscore": 1.43,
+      "zscore": 1.68,
       "switch_direction": "B",
       "switch_into": {
         "code": "3026",
@@ -329,7 +329,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 2.91,
+          "score": 2.77,
           "src": "no_rotation"
         },
         "box": {
@@ -352,28 +352,16 @@
       },
       "switch_score": 21.0,
       "switch_score_ref": 21.0,
-      "strong_stays_strong": true,
-      "trim": {
-        "target": {
-          "code": "2492",
-          "name": "華新科"
-        },
-        "pct_range": [
-          0,
-          20
-        ],
-        "sell_chip_state": "healthy_rotation",
-        "buy_chip_state": "no_signal",
-        "sell_mbs_increasing": true
-      },
+      "strong_stays_strong": false,
+      "trim": null,
       "recommendation": {
-        "label": "強者恆強 · 延後換股 · 減碼 華新科 0–20% · 等待",
-        "color": "#a78bfa",
-        "icon": "💪"
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
       }
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-10-13T22:27:04",
+  "generated_at": "2026-10-14T22:26:27",
   "available": true
 }
