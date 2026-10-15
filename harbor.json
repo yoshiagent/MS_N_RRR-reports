@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-14",
+  "as_of": "2026-10-15",
   "schema_version": "v1",
   "available": true,
   "shadow": true,
@@ -9,8 +9,8 @@
   "state_tone": "warn",
   "state_desc": "過熱/轉弱(非崩) → 重倉璞玉低波避風港，適度現金",
   "prev_state": "L2",
-  "transition": "L2 等待解避風確認",
-  "days_in_state": 3,
+  "transition": "維持 L2",
+  "days_in_state": 4,
   "since": "2026-10-12",
   "buckets": {
     "rr": 50,
@@ -18,19 +18,19 @@
     "cash": 20
   },
   "signals": {
-    "risk_mode": "AGGRESSIVE",
-    "temp": 59.2,
-    "breadth": 71.6,
+    "risk_mode": "DEFENSIVE",
+    "temp": 41.8,
+    "breadth": 36.2,
     "rr_env": 70,
     "zone": "NORMAL",
-    "z250": 1.47,
-    "twii20": 5.29
+    "z250": 1.245,
+    "twii20": 2.41
   },
   "triggers": {
-    "enter_L2": false,
+    "enter_L2": true,
     "enter_L3": false,
     "exit_L3": true,
-    "exit_L2": true
+    "exit_L2": false
   },
   "jade_constraint": "20-40%",
   "jade_holdings": [
@@ -38,14 +38,14 @@
       "symbol": "2812",
       "name": "台中銀",
       "industry": "金融保險",
-      "sleeve_weight": 13.11,
-      "port_weight": 3.93
+      "sleeve_weight": 13.17,
+      "port_weight": 3.95
     },
     {
       "symbol": "2912",
       "name": "統一超",
       "industry": "貿易百貨",
-      "sleeve_weight": 7.1,
+      "sleeve_weight": 7.11,
       "port_weight": 2.13
     },
     {
@@ -59,8 +59,8 @@
       "symbol": "5876",
       "name": "上海商銀",
       "industry": "金融保險",
-      "sleeve_weight": 10.31,
-      "port_weight": 3.09
+      "sleeve_weight": 10.28,
+      "port_weight": 3.08
     },
     {
       "symbol": "1102",
@@ -73,35 +73,28 @@
       "symbol": "3293",
       "name": "鈊象",
       "industry": "文化創意業",
-      "sleeve_weight": 6.15,
+      "sleeve_weight": 6.14,
       "port_weight": 1.84
-    },
-    {
-      "symbol": "5871",
-      "name": "中租-KY",
-      "industry": "其他",
-      "sleeve_weight": 7.94,
-      "port_weight": 2.38
     },
     {
       "symbol": "1476",
       "name": "儒鴻",
       "industry": "紡織纖維",
-      "sleeve_weight": 5.01,
+      "sleeve_weight": 5.0,
       "port_weight": 1.5
     },
     {
-      "symbol": "8464",
-      "name": "億豐",
+      "symbol": "5871",
+      "name": "中租-KY",
       "industry": "其他",
-      "sleeve_weight": 4.41,
-      "port_weight": 1.32
+      "sleeve_weight": 7.92,
+      "port_weight": 2.38
     },
     {
       "symbol": "6121",
       "name": "新普",
       "industry": "電腦及週邊設備業",
-      "sleeve_weight": 5.15,
+      "sleeve_weight": 5.14,
       "port_weight": 1.54
     },
     {
@@ -110,6 +103,13 @@
       "industry": "其他",
       "sleeve_weight": 3.99,
       "port_weight": 1.2
+    },
+    {
+      "symbol": "8464",
+      "name": "億豐",
+      "industry": "其他",
+      "sleeve_weight": 4.41,
+      "port_weight": 1.32
     },
     {
       "symbol": "4904",
@@ -129,8 +129,8 @@
     "rr": 50,
     "jade": 30,
     "cash": 20,
-    "days_in_state": 3,
+    "days_in_state": 4,
     "note": "SHADOW 避風港三桶, 不接 cio_allocator/decision; 證明降回撤才併入"
   },
-  "generated_at": "2026-10-14T22:12:45"
+  "generated_at": "2026-10-15T22:13:11"
 }
