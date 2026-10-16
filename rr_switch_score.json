@@ -1,9 +1,9 @@
 {
-  "as_of": "2026-10-15",
+  "as_of": "2026-10-16",
   "n_pairs": 6,
-  "n_z_gate_passed": 2,
+  "n_z_gate_passed": 4,
   "n_strong": 0,
-  "n_strong_stays_strong": 0,
+  "n_strong_stays_strong": 1,
   "z_mode": "gate",
   "weights": {
     "z_reversal": 30,
@@ -25,7 +25,7 @@
       ],
       "signal": "hold_A",
       "z_gate_passed": false,
-      "zscore": 1.05,
+      "zscore": 1.06,
       "switch_direction": "A",
       "switch_into": {
         "code": "8046",
@@ -37,7 +37,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 6.22,
+          "score": 4.49,
           "src": "no_rotation"
         },
         "box": {
@@ -59,7 +59,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 19.4,
+      "switch_score_ref": 18.7,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -81,7 +81,7 @@
       ],
       "signal": "hold_B",
       "z_gate_passed": false,
-      "zscore": -1.29,
+      "zscore": -0.89,
       "switch_direction": "B",
       "switch_into": {
         "code": "3035",
@@ -93,7 +93,7 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 6.04,
+          "score": 8.44,
           "src": "no_rotation"
         },
         "box": {
@@ -115,7 +115,7 @@
         "box": 20
       },
       "switch_score": null,
-      "switch_score_ref": 34.7,
+      "switch_score_ref": 35.5,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -137,7 +137,7 @@
       ],
       "signal": "switch_to_A",
       "z_gate_passed": true,
-      "zscore": 0.13,
+      "zscore": 0.8,
       "switch_direction": "A",
       "switch_into": {
         "code": "2344",
@@ -149,7 +149,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 2.68,
+          "score": 11.19,
           "src": "no_rotation"
         },
         "box": {
@@ -170,8 +170,8 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 21.0,
-      "switch_score_ref": 21.0,
+      "switch_score": 24.0,
+      "switch_score_ref": 24.0,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
@@ -193,7 +193,7 @@
       ],
       "signal": "switch_to_A",
       "z_gate_passed": true,
-      "zscore": -0.45,
+      "zscore": -0.6,
       "switch_direction": "A",
       "switch_into": {
         "code": "2049",
@@ -205,7 +205,7 @@
           "src": "RED"
         },
         "rcr": {
-          "score": 2.99,
+          "score": 1.06,
           "src": "no_rotation"
         },
         "box": {
@@ -226,14 +226,26 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": 21.1,
-      "switch_score_ref": 21.1,
-      "strong_stays_strong": false,
-      "trim": null,
+      "switch_score": 20.4,
+      "switch_score_ref": 20.4,
+      "strong_stays_strong": true,
+      "trim": {
+        "target": {
+          "code": "4576",
+          "name": "大銀微系統"
+        },
+        "pct_range": [
+          0,
+          20
+        ],
+        "sell_chip_state": "healthy_rotation",
+        "buy_chip_state": "distribution_warning",
+        "sell_mbs_increasing": false
+      },
       "recommendation": {
-        "label": "Z 到但籌碼/結構不支持 · 觀望",
-        "color": "#ef4444",
-        "icon": "🚫"
+        "label": "強者恆強 · 延後換股 · 減碼 大銀微系統 0–20% · 等待",
+        "color": "#a78bfa",
+        "icon": "💪"
       }
     },
     {
@@ -247,13 +259,13 @@
         "巨大",
         "美利達"
       ],
-      "signal": "hold_A",
-      "z_gate_passed": false,
-      "zscore": 1.25,
-      "switch_direction": "A",
+      "signal": "switch_to_B",
+      "z_gate_passed": true,
+      "zscore": 1.18,
+      "switch_direction": "B",
       "switch_into": {
-        "code": "9921",
-        "name": "巨大"
+        "code": "9914",
+        "name": "美利達"
       },
       "components": {
         "rcga": {
@@ -261,7 +273,63 @@
           "src": "YELLOW"
         },
         "rcr": {
-          "score": 0.26,
+          "score": 1.88,
+          "src": "no_rotation"
+        },
+        "box": {
+          "score": 30.0,
+          "src": "below_up",
+          "healthy": false
+        }
+      },
+      "active_weights": {
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
+      },
+      "z_mode": "gate",
+      "weights": {
+        "z_reversal": 30,
+        "rcga": 25,
+        "rcr": 25,
+        "box": 20
+      },
+      "switch_score": 28.9,
+      "switch_score_ref": 28.9,
+      "strong_stays_strong": false,
+      "trim": null,
+      "recommendation": {
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
+      }
+    },
+    {
+      "pair_id": "2492_3026",
+      "pair_name": "",
+      "pair": [
+        "2492",
+        "3026"
+      ],
+      "names": [
+        "華新科",
+        "禾伸堂"
+      ],
+      "signal": "switch_to_A",
+      "z_gate_passed": true,
+      "zscore": 1.36,
+      "switch_direction": "A",
+      "switch_into": {
+        "code": "2492",
+        "name": "華新科"
+      },
+      "components": {
+        "rcga": {
+          "score": 20.0,
+          "src": "RED"
+        },
+        "rcr": {
+          "score": 7.48,
           "src": "no_rotation"
         },
         "box": {
@@ -282,69 +350,18 @@
         "rcr": 25,
         "box": 20
       },
-      "switch_score": null,
-      "switch_score_ref": 32.6,
+      "switch_score": 22.7,
+      "switch_score_ref": 22.7,
       "strong_stays_strong": false,
       "trim": null,
       "recommendation": {
-        "label": "延後 · Z60 未過換股門檻",
-        "color": "#64748b",
-        "icon": "⏸"
-      }
-    },
-    {
-      "pair_id": "2492_3026",
-      "pair_name": "",
-      "pair": [
-        "2492",
-        "3026"
-      ],
-      "names": [
-        "華新科",
-        "禾伸堂"
-      ],
-      "signal": "no_action",
-      "z_gate_passed": false,
-      "zscore": 1.64,
-      "switch_direction": null,
-      "switch_into": null,
-      "components": {
-        "rcga": {
-          "score": 20.0,
-          "src": "RED"
-        },
-        "rcr": {
-          "score": null,
-          "src": "no_rotation"
-        },
-        "box": {
-          "score": null,
-          "src": null,
-          "healthy": null
-        }
-      },
-      "active_weights": {
-        "rcga": 25
-      },
-      "z_mode": "gate",
-      "weights": {
-        "z_reversal": 30,
-        "rcga": 25,
-        "rcr": 25,
-        "box": 20
-      },
-      "switch_score": null,
-      "switch_score_ref": 20.0,
-      "strong_stays_strong": false,
-      "trim": null,
-      "recommendation": {
-        "label": "延後 · Z60 未過換股門檻",
-        "color": "#64748b",
-        "icon": "⏸"
+        "label": "Z 到但籌碼/結構不支持 · 觀望",
+        "color": "#ef4444",
+        "icon": "🚫"
       }
     }
   ],
   "schema_version": "v1",
-  "generated_at": "2026-10-15T22:26:41",
+  "generated_at": "2026-10-16T22:27:17",
   "available": true
 }
