@@ -1,13 +1,14 @@
 {
-  "as_of": "2026-10-19",
+  "as_of": "2026-10-20",
   "schema_version": "v2",
   "market_phase": {
-    "value": "UNCLEAR",
-    "confidence": 35,
-    "confidence_band": "LOW",
+    "value": "ACCUMULATION",
+    "confidence": 71,
+    "confidence_band": "HIGH",
     "reason": [
-      "無 phase 規則滿足 ≥3 條 (BEAR 需 ≥4)",
-      "breadth_regime=weak, above_ma20=35.2%, adv_dec=0.21"
+      "站上 MA20 比例 31.7%, 多數仍在均線下",
+      "近期 20 日新高股 4.6%, 偏少",
+      "大盤風險訊號少 (≤2)"
     ]
   },
   "risk_mode": {
@@ -15,7 +16,7 @@
     "confidence": 60,
     "confidence_band": "MEDIUM",
     "reason": [
-      "phase=UNCLEAR, triggers=2"
+      "phase=ACCUMULATION, triggers=2"
     ]
   },
   "market_structure": {
@@ -31,47 +32,48 @@
     "weakening_sectors": []
   },
   "candidate_bias": {
-    "hot_stock_weight": 20,
+    "hot_stock_weight": 10,
     "strong_stock_weight": 30,
-    "base_stock_weight": 50,
+    "base_stock_weight": 60,
     "preferred_pool": [
       "BASE",
       "STRONG",
       "HOT"
     ],
     "reason": [
-      "市場訊號未明朗, 三池均衡偏防禦",
-      "建議等待 phase 明朗再加碼"
+      "吸籌期應優先佈局打底股, Wyckoff Spring 候選為主",
+      "強勢股可少量配置作為先行指標"
     ]
   },
   "master_weight_policy": {
-    "Wyckoff": 13,
-    "Minervini": 14,
-    "ONeil": 13,
-    "Weinstein": 12,
-    "Darvas": 15,
-    "Livermore": 12,
-    "Lynch": 7,
-    "Fisher": 7,
-    "Buffett": 7
+    "Wyckoff": 29,
+    "Minervini": 7,
+    "ONeil": 7,
+    "Weinstein": 24,
+    "Darvas": 19,
+    "Livermore": 5,
+    "Lynch": 3,
+    "Fisher": 3,
+    "Buffett": 3
   },
   "discipline_policy": {
     "max_position_ratio_per_stock": 15,
-    "max_total_exposure": 49,
+    "max_total_exposure": 52,
     "allow_new_position": true,
-    "allow_add_position": false,
+    "allow_add_position": true,
     "stop_loss_strictness": "HIGH",
-    "cash_minimum_ratio": 51
+    "cash_minimum_ratio": 48
   },
   "orchestrator_instruction": {
     "action_bias": "MAINTAIN",
     "priority": [
-      "保持觀察, 不主動加倉"
+      "優先評估打底股池 (Wyckoff Spring)",
+      "強勢股池可少量配置作為先行確認"
     ],
     "warning": []
   },
   "transition_signals": {
-    "next_likely_phase": "UNCLEAR",
+    "next_likely_phase": "ACCUMULATION",
     "confidence": 0,
     "early_warning_days": 0,
     "triggers": [],
@@ -80,29 +82,29 @@
   "skill_feedback": {
     "active": true,
     "skill_index": {
-      "Wyckoff": 14.45,
-      "Minervini": 20.25,
-      "ONeil": 15.55,
-      "Weinstein": 12.9,
-      "Darvas": 21.45,
-      "Livermore": 15.15,
-      "Lynch": 0.1,
-      "Fisher": 0.15,
+      "Wyckoff": 14.41,
+      "Minervini": 19.81,
+      "ONeil": 19.33,
+      "Weinstein": 14.21,
+      "Darvas": 18.44,
+      "Livermore": 13.66,
+      "Lynch": 0.06,
+      "Fisher": 0.07,
       "Buffett": 0.0
     },
     "n_days_with_data": 7,
-    "alpha": 0.359,
+    "alpha": 0.358,
     "alpha_mode": "dynamic",
-    "avg_skill_std": 4.08,
-    "skill_source": "phase_specific:UNCLEAR",
-    "phase_days_current": 2
+    "avg_skill_std": 4.19,
+    "skill_source": "global",
+    "phase_days_current": 0
   },
   "summary": {
-    "phase": "UNCLEAR",
+    "phase": "ACCUMULATION",
     "risk_mode": "DEFENSIVE",
     "action_bias": "MAINTAIN",
     "skill_feedback_active": true
   },
-  "generated_at": "2026-10-19T22:01:04",
+  "generated_at": "2026-10-20T22:01:04",
   "available": true
 }
