@@ -1,7 +1,7 @@
 {
   "available": true,
-  "as_of": "2026-11-05",
-  "generated_at": "2026-11-05 22:03:03",
+  "as_of": "2026-11-06",
+  "generated_at": "2026-11-06 22:03:36",
   "params": {
     "eval_window_days": 5,
     "max_history_days": 30,
@@ -11,16 +11,16 @@
   },
   "metrics": {
     "n_snapshots": 30,
-    "n_predictions_total": 275,
-    "n_predictions_evaluated": 111,
-    "n_success": 28,
-    "n_failed": 83,
-    "n_pending": 164,
-    "overall_rate": 0.252,
-    "baseline_rate": 0.522,
-    "skill_index": 0.483,
-    "rolling_7d_rate": 0.667,
-    "rolling_30d_rate": 0.258,
+    "n_predictions_total": 273,
+    "n_predictions_evaluated": 114,
+    "n_success": 26,
+    "n_failed": 88,
+    "n_pending": 159,
+    "overall_rate": 0.228,
+    "baseline_rate": 0.524,
+    "skill_index": 0.435,
+    "rolling_7d_rate": 0.364,
+    "rolling_30d_rate": 0.254,
     "eval_window_days": 5
   },
   "calibration_table": [
@@ -36,46 +36,46 @@
     {
       "range": "60-80",
       "label": "高",
-      "n_samples": 22,
+      "n_samples": 23,
       "predicted_rate": 0.7,
-      "actual_rate": 0.227,
-      "calibration_factor": 0.325,
+      "actual_rate": 0.087,
+      "calibration_factor": 0.124,
       "reliable": true
     },
     {
       "range": "40-60",
       "label": "中",
-      "n_samples": 11,
+      "n_samples": 9,
       "predicted_rate": 0.5,
-      "actual_rate": 0.182,
-      "calibration_factor": 0.364,
-      "reliable": true
+      "actual_rate": 0.222,
+      "calibration_factor": 0.444,
+      "reliable": false
     },
     {
       "range": "20-40",
       "label": "低",
-      "n_samples": 46,
+      "n_samples": 47,
       "predicted_rate": 0.3,
-      "actual_rate": 0.087,
-      "calibration_factor": 0.29,
+      "actual_rate": 0.085,
+      "calibration_factor": 0.284,
       "reliable": true
     },
     {
       "range": "0-20",
       "label": "極低",
-      "n_samples": 142,
+      "n_samples": 149,
       "predicted_rate": 0.1,
-      "actual_rate": 0.12,
-      "calibration_factor": 1.197,
+      "actual_rate": 0.121,
+      "calibration_factor": 1.208,
       "reliable": true
     }
   ],
   "sub_score_reliability": {
-    "future_score_high_rate": 0.294,
-    "future_score_low_rate": 0.245,
-    "discriminator_strength": 0.049,
-    "n_high": 17,
-    "n_low": 94,
+    "future_score_high_rate": 0.105,
+    "future_score_low_rate": 0.253,
+    "discriminator_strength": -0.147,
+    "n_high": 19,
+    "n_low": 95,
     "note": "未來 snapshot 加入 sub_future 子分數後可細分至 rotation_stage / money_flow / momentum_accel / trend_confirm 各別鑑別力"
   },
   "sector_reliability": [
@@ -106,20 +106,6 @@
       "n_samples": 3,
       "n_success": 2,
       "success_rate": 0.667
-    },
-    {
-      "track": "theme",
-      "sector": "權值股",
-      "n_samples": 4,
-      "n_success": 2,
-      "success_rate": 0.5
-    },
-    {
-      "track": "theme",
-      "sector": "其他電子",
-      "n_samples": 2,
-      "n_success": 1,
-      "success_rate": 0.5
     },
     {
       "track": "theme",
@@ -165,7 +151,14 @@
     },
     {
       "track": "theme",
-      "sector": "半導體",
+      "sector": "鋼鐵",
+      "n_samples": 2,
+      "n_success": 1,
+      "success_rate": 0.5
+    },
+    {
+      "track": "theme",
+      "sector": "權值股",
       "n_samples": 3,
       "n_success": 1,
       "success_rate": 0.333
@@ -192,9 +185,23 @@
       "success_rate": 0.0
     },
     {
+      "track": "theme",
+      "sector": "綠能",
+      "n_samples": 3,
+      "n_success": 0,
+      "success_rate": 0.0
+    },
+    {
       "track": "official",
-      "sector": "25_電腦及週邊設備",
-      "n_samples": 2,
+      "sector": "20_其他",
+      "n_samples": 3,
+      "n_success": 0,
+      "success_rate": 0.0
+    },
+    {
+      "track": "official",
+      "sector": "14_建材營造",
+      "n_samples": 3,
       "n_success": 0,
       "success_rate": 0.0
     },
@@ -211,115 +218,33 @@
       "n_samples": 2,
       "n_success": 0,
       "success_rate": 0.0
-    },
-    {
-      "track": "theme",
-      "sector": "汽車",
-      "n_samples": 2,
-      "n_success": 0,
-      "success_rate": 0.0
     }
   ],
   "alerts": [
     {
       "level": "warn",
       "icon": "🔴",
-      "msg": "⚠ 預測能力不足：實際命中率 25% < 隨機基線 52%，建議檢視 regime 是否轉換",
+      "msg": "⚠ 預測能力不足：實際命中率 23% < 隨機基線 52%，建議檢視 regime 是否轉換",
+      "color": "#fda4af"
+    },
+    {
+      "level": "warn",
+      "icon": "🔴",
+      "msg": "⚠ 近 7 日命中率僅 36%，跌破基線 — 可能市場結構轉變",
       "color": "#fda4af"
     }
   ],
   "weight_adjustment": {
     "enabled": true,
     "min_samples_required": 30,
-    "current_samples": 111,
+    "current_samples": 114,
     "suggestions": [
-      "Future Score 60-80 桶實際命中率僅 23%，建議下調該區間信心",
-      "Future Score 40-60 桶實際命中率僅 18%，建議下調該區間信心",
-      "Future Score 20-40 桶實際命中率僅 9%，建議下調該區間信心"
+      "Future Score 60-80 桶實際命中率僅 9%，建議下調該區間信心",
+      "Future Score 20-40 桶實際命中率僅 8%，建議下調該區間信心"
     ],
     "msg": "已啟用權重微調建議（基於 Calibration table）"
   },
   "labels_recent": [
-    {
-      "from_date": "2026-11-02",
-      "to_date": null,
-      "track": "official",
-      "sector": "09_造紙工業",
-      "raw_future_score": 70,
-      "raw_current_score": 62,
-      "outcome": "pending",
-      "promoted_to": null
-    },
-    {
-      "from_date": "2026-11-02",
-      "to_date": null,
-      "track": "official",
-      "sector": "18_貿易百貨",
-      "raw_future_score": 70,
-      "raw_current_score": 62,
-      "outcome": "pending",
-      "promoted_to": null
-    },
-    {
-      "from_date": "2026-11-02",
-      "to_date": null,
-      "track": "theme",
-      "sector": "電子通路",
-      "raw_future_score": 18,
-      "raw_current_score": 71,
-      "outcome": "pending",
-      "promoted_to": null
-    },
-    {
-      "from_date": "2026-11-02",
-      "to_date": "2026-11-03",
-      "track": "theme",
-      "sector": "光電",
-      "raw_future_score": 16,
-      "raw_current_score": 28,
-      "outcome": "pending",
-      "promoted_to": "candidate"
-    },
-    {
-      "from_date": "2026-11-02",
-      "to_date": null,
-      "track": "theme",
-      "sector": "半導體",
-      "raw_future_score": 12,
-      "raw_current_score": 23,
-      "outcome": "pending",
-      "promoted_to": null
-    },
-    {
-      "from_date": "2026-11-02",
-      "to_date": null,
-      "track": "theme",
-      "sector": "太陽能",
-      "raw_future_score": 12,
-      "raw_current_score": 38,
-      "outcome": "pending",
-      "promoted_to": null
-    },
-    {
-      "from_date": "2026-11-02",
-      "to_date": null,
-      "track": "theme",
-      "sector": "觀光餐旅",
-      "raw_future_score": 11,
-      "raw_current_score": 62,
-      "outcome": "pending",
-      "promoted_to": null
-    },
-    {
-      "from_date": "2026-11-03",
-      "to_date": null,
-      "track": "official",
-      "sector": "31_其他電子",
-      "raw_future_score": 20,
-      "raw_current_score": 25,
-      "outcome": "pending",
-      "promoted_to": null
-    },
     {
       "from_date": "2026-11-03",
       "to_date": null,
@@ -372,13 +297,13 @@
     },
     {
       "from_date": "2026-11-03",
-      "to_date": null,
+      "to_date": "2026-11-06",
       "track": "theme",
       "sector": "橡膠",
       "raw_future_score": 13,
       "raw_current_score": 62,
       "outcome": "pending",
-      "promoted_to": null
+      "promoted_to": "candidate"
     },
     {
       "from_date": "2026-11-04",
@@ -452,13 +377,13 @@
     },
     {
       "from_date": "2026-11-04",
-      "to_date": null,
+      "to_date": "2026-11-06",
       "track": "theme",
       "sector": "鋼鐵",
       "raw_future_score": 18,
       "raw_current_score": 80,
-      "outcome": "pending",
-      "promoted_to": null
+      "outcome": "success",
+      "promoted_to": "core"
     },
     {
       "from_date": "2026-11-04",
@@ -492,13 +417,13 @@
     },
     {
       "from_date": "2026-11-05",
-      "to_date": null,
+      "to_date": "2026-11-06",
       "track": "official",
       "sector": "27_通信網路",
       "raw_future_score": 17,
       "raw_current_score": 57,
       "outcome": "pending",
-      "promoted_to": null
+      "promoted_to": "candidate"
     },
     {
       "from_date": "2026-11-05",
@@ -537,6 +462,86 @@
       "sector": "化學",
       "raw_future_score": 17,
       "raw_current_score": 35,
+      "outcome": "pending",
+      "promoted_to": null
+    },
+    {
+      "from_date": "2026-11-06",
+      "to_date": null,
+      "track": "official",
+      "sector": "25_電腦及週邊設備",
+      "raw_future_score": 22,
+      "raw_current_score": 35,
+      "outcome": "pending",
+      "promoted_to": null
+    },
+    {
+      "from_date": "2026-11-06",
+      "to_date": null,
+      "track": "official",
+      "sector": "11_橡膠工業",
+      "raw_future_score": 20,
+      "raw_current_score": 77,
+      "outcome": "pending",
+      "promoted_to": null
+    },
+    {
+      "from_date": "2026-11-06",
+      "to_date": null,
+      "track": "official",
+      "sector": "18_貿易百貨",
+      "raw_future_score": 20,
+      "raw_current_score": 77,
+      "outcome": "pending",
+      "promoted_to": null
+    },
+    {
+      "from_date": "2026-11-06",
+      "to_date": null,
+      "track": "official",
+      "sector": "27_通信網路",
+      "raw_future_score": 18,
+      "raw_current_score": 55,
+      "outcome": "pending",
+      "promoted_to": null
+    },
+    {
+      "from_date": "2026-11-06",
+      "to_date": null,
+      "track": "theme",
+      "sector": "橡膠",
+      "raw_future_score": 20,
+      "raw_current_score": 77,
+      "outcome": "pending",
+      "promoted_to": null
+    },
+    {
+      "from_date": "2026-11-06",
+      "to_date": null,
+      "track": "theme",
+      "sector": "貿易百貨",
+      "raw_future_score": 20,
+      "raw_current_score": 77,
+      "outcome": "pending",
+      "promoted_to": null
+    },
+    {
+      "from_date": "2026-11-06",
+      "to_date": null,
+      "track": "theme",
+      "sector": "IC設計",
+      "raw_future_score": 19,
+      "raw_current_score": 25,
+      "outcome": "pending",
+      "promoted_to": null
+    },
+    {
+      "from_date": "2026-11-06",
+      "to_date": null,
+      "track": "theme",
+      "sector": "太陽能",
+      "raw_future_score": 19,
+      "raw_current_score": 18,
       "outcome": "pending",
       "promoted_to": null
     }
