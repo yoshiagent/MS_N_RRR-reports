@@ -1,0 +1,6642 @@
+{
+  "as_of": "2026-11-17",
+  "period": "daily",
+  "market": {
+    "as_of": "2026-11-17",
+    "market_state": "exit",
+    "score": 33,
+    "subscores": {
+      "twii_daily": 10,
+      "twii_weekly": 10,
+      "twii_monthly": 50,
+      "otci_weekly": 10,
+      "fx": 25,
+      "vix": 60,
+      "foreign_oi": 18,
+      "trust_oi": 87,
+      "dealer_oi": 45,
+      "market_insti": 21,
+      "market_margin": 65
+    },
+    "reason": [
+      "日線：收盤 < 日MA20、收盤 < 日MA60、日MA20 斜率向下",
+      "週線：收盤 < 週MA20、週MA20 斜率向下",
+      "月線：月收 < 月MA10、月MA10 斜率向上",
+      "OTC 週線：收盤 < 週MA20、週MA20 斜率向下",
+      "匯率：USDTWD 高出 60日均 +2.64%（台幣明顯貶）",
+      "VIX=20.6（中性）",
+      "外資台指期：未平倉 -97,896 口（外資淨空 > 6 萬（深空））；趨勢 5d 均 < 20d 均 5000 口（空單加碼）",
+      "投信台指期：未平倉 +91,226 口（投信淨多 ≥ 4 萬（強多））；趨勢 5d 均 > 20d 均 3000 口（持續加碼）",
+      "自營台指期：未平倉 -436 口（自營淨空 < 8000）；趨勢 5d 均略低於 20d 均",
+      "大盤法人現貨：外資+投信 5日 -2655 億（外資+投信 5日淨賣 ≥ 500 億）；近5日轉賣 (5d均<20d均)",
+      "散戶融資：大盤融資 20日 -0.5%（微減）；大盤券資比 2.43%",
+      "Z-score 模型：foreign_pressure=+0.47、etf_support=-0.37、市場結構分=-0.84（mild_bear）；RR 動態 Z 門檻=1.5"
+    ],
+    "allowed_action": "stop",
+    "foreign_pressure_score": 0.474,
+    "etf_support_score": -0.368,
+    "market_structure_score": -0.842,
+    "regime": "mild_bear",
+    "dynamic_z_threshold": 1.5,
+    "taiex_above_wma20": false,
+    "z_subscores": {
+      "Z_foreign_spot": -0.036,
+      "Z_foreign_fut": -1.544,
+      "Z_usdtwd": null,
+      "Z_sox": null,
+      "Z_trust": -1.1,
+      "Z_hidiv_vol": -0.935,
+      "Z_mkt_dd_narrow": 1.018,
+      "Z_etf_holder": null
+    },
+    "raw_values": {
+      "foreign_spot_billion": -321.9,
+      "trust_billion": -68.0,
+      "foreign_fut_net_oi": -97896,
+      "foreign_fut_net_oi_chg": -1109,
+      "retail_net_oi": 3029,
+      "retail_net_oi_chg": -2183,
+      "retail_ratio_pct": 8.52,
+      "retail_ratio_pct_chg": -6.25,
+      "foreign_opt_pcr_net": 0.861,
+      "market_pcr_oi_pct": 54.08,
+      "market_pcr_vol_pct": 78.95,
+      "max_pain": 41600,
+      "max_pain_gap_pct": 3.76,
+      "usdtwd": null,
+      "taiex": 40092.11,
+      "taiex_drawdown": -0.1953
+    },
+    "z_stale_inputs": []
+  },
+  "n_shape": [
+    {
+      "symbol": "2891",
+      "n_shape_score": 92,
+      "subscores": {
+        "monthly_breakout": 100,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 75
+      },
+      "status": "candidate",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（77.5 > 63.2）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[monthly_breakout] 月收突破近 12 月區間頂部（75.8）",
+        "[weekly_higher_low] 週 swing low 明顯上移 +8.70%（62.1 → 67.5）",
+        "[weekly_ma20] 週收 > 週MA20（高出 +12.3%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +2.6%",
+        "[pullback_test] 近 8 週內第 6 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 +3.3%（位置適中）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.15×）"
+      ]
+    },
+    {
+      "symbol": "2882",
+      "n_shape_score": 87,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 80,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 75
+      },
+      "status": "candidate",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（111.0 > 95.0）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 上移 +4.12%",
+        "[weekly_ma20] 週收 > 週MA20（高出 +3.7%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +2.0%",
+        "[pullback_test] 近 8 週內第 8 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 -1.4%（位置適中）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.12×）"
+      ]
+    },
+    {
+      "symbol": "2886",
+      "n_shape_score": 87,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 80,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 75
+      },
+      "status": "candidate",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（54.7 > 45.5）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 上移 +4.24%",
+        "[weekly_ma20] 週收 > 週MA20（高出 +8.6%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +4.6%",
+        "[pullback_test] 近 8 週內第 6 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 +1.0%（位置適中）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.12×）"
+      ]
+    },
+    {
+      "symbol": "3105",
+      "n_shape_score": 84,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 45
+      },
+      "status": "candidate",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（481.0 > 451.4）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 明顯上移 +20.17%（349.5 → 420.0）",
+        "[weekly_ma20] 週收 > 週MA20（高出 +6.8%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +1.9%",
+        "[pullback_test] 近 8 週內第 8 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 -5.4%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.33×）"
+      ]
+    },
+    {
+      "symbol": "2603",
+      "n_shape_score": 84,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 80,
+        "weekly_ma20": 100,
+        "pullback_test": 60,
+        "daily_pullback_quality": 85
+      },
+      "status": "candidate",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（256.5 > 214.2）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 上移 +2.38%",
+        "[weekly_ma20] 週收 > 週MA20（高出 +9.3%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +5.7%",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -1.1%（位置適中）",
+        "[daily_pullback_quality] 近 5 日均量略縮（0.97×）"
+      ]
+    },
+    {
+      "symbol": "2881",
+      "n_shape_score": 84,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 45
+      },
+      "status": "candidate",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（150.5 > 123.0）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 明顯上移 +13.36%（123.5 → 140.0）",
+        "[weekly_ma20] 週收 > 週MA20（高出 +4.3%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +4.3%",
+        "[pullback_test] 近 8 週內第 8 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 -4.0%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.27×）"
+      ]
+    },
+    {
+      "symbol": "1303",
+      "n_shape_score": 84,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 45
+      },
+      "status": "candidate",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（261.5 > 173.2）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 明顯上移 +65.68%（135.5 → 224.5）",
+        "[weekly_ma20] 週收 > 週MA20（高出 +10.3%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +12.1%",
+        "[pullback_test] 近 8 週內第 6 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 -9.5%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.28×）"
+      ]
+    },
+    {
+      "symbol": "2618",
+      "n_shape_score": 83,
+      "subscores": {
+        "monthly_breakout": 100,
+        "weekly_higher_low": 70,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 40
+      },
+      "status": "candidate",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（48.1 > 39.7）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[monthly_breakout] 月收突破近 12 月區間頂部（43.3）",
+        "[weekly_higher_low] 週 swing low 微幅上移 +1.35%",
+        "[weekly_ma20] 週收 > 週MA20（高出 +12.7%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +2.5%",
+        "[pullback_test] 近 8 週內第 7 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 +8.5%（略高）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.41×）"
+      ]
+    },
+    {
+      "symbol": "2207",
+      "n_shape_score": 83,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 50,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 85
+      },
+      "status": "candidate",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（531.0 > 505.6）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 近 30 週內 swing low 不足，給予中性 50",
+        "[weekly_ma20] 週收 > 週MA20（高出 +1.9%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +2.2%",
+        "[pullback_test] 近 8 週內第 8 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 +0.1%（位置適中）",
+        "[daily_pullback_quality] 近 5 日均量略縮（0.94×）"
+      ]
+    },
+    {
+      "symbol": "2610",
+      "n_shape_score": 79,
+      "subscores": {
+        "monthly_breakout": 100,
+        "weekly_higher_low": 70,
+        "weekly_ma20": 85,
+        "pullback_test": 85,
+        "daily_pullback_quality": 40
+      },
+      "status": "candidate",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（23.1 > 20.2）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[monthly_breakout] 月收突破近 12 月區間頂部（22.8）",
+        "[weekly_higher_low] 週 swing low 微幅上移 +0.75%",
+        "[weekly_ma20] 週收 > 週MA20（高出 +10.4%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +0.7%",
+        "[pullback_test] 近 8 週內第 7 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 +8.1%（略高）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.54×）"
+      ]
+    },
+    {
+      "symbol": "9904",
+      "n_shape_score": 79,
+      "subscores": {
+        "monthly_breakout": 60,
+        "weekly_higher_low": 70,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 75
+      },
+      "status": "candidate",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（26.3 > 25.5）",
+        "[monthly_breakout] 月MA10 斜率非向上",
+        "[weekly_higher_low] 週 swing low 微幅上移 +1.23%",
+        "[weekly_ma20] 週收 > 週MA20（高出 +5.1%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +1.1%",
+        "[pullback_test] 近 8 週內第 7 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 +1.3%（位置適中）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.23×）"
+      ]
+    },
+    {
+      "symbol": "4977",
+      "n_shape_score": 77,
+      "subscores": {
+        "monthly_breakout": 60,
+        "weekly_higher_low": 55,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 75
+      },
+      "status": "candidate",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（179.5 > 170.1）",
+        "[monthly_breakout] 月MA10 斜率非向上",
+        "[weekly_higher_low] 週 swing low 近似持平 -1.25%（雜訊範圍，給中性 55）",
+        "[weekly_ma20] 週收 > 週MA20（高出 +12.0%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +1.6%",
+        "[pullback_test] 近 8 週內第 8 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 +1.4%（位置適中）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.33×）"
+      ]
+    },
+    {
+      "symbol": "2884",
+      "n_shape_score": 76,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 70,
+        "weekly_ma20": 100,
+        "pullback_test": 60,
+        "daily_pullback_quality": 45
+      },
+      "status": "candidate",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（46.6 > 37.6）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 微幅上移 +0.34%",
+        "[weekly_ma20] 週收 > 週MA20（高出 +8.6%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +7.1%",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -3.2%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.17×）"
+      ]
+    },
+    {
+      "symbol": "6213",
+      "n_shape_score": 69,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 60,
+        "pullback_test": 60,
+        "daily_pullback_quality": 45
+      },
+      "status": "watch",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（432.0 > 374.2）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 明顯上移 +103.38%（237.0 → 482.0）",
+        "[weekly_ma20] 週收 < 週MA20",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +9.1%",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -31.4%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.06×）"
+      ]
+    },
+    {
+      "symbol": "3017",
+      "n_shape_score": 55,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 60,
+        "pullback_test": 30,
+        "daily_pullback_quality": 45
+      },
+      "status": "watch",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 明顯上移 +35.72%（2284.2 → 3100.0）",
+        "[weekly_ma20] 週收 < 週MA20",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +2.0%",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -15.5%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.28×）"
+      ]
+    },
+    {
+      "symbol": "3037",
+      "n_shape_score": 53,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 35,
+        "pullback_test": 60,
+        "daily_pullback_quality": 45
+      },
+      "status": "watch",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 明顯上移 +33.69%（653.0 → 873.0）",
+        "[weekly_ma20] 週收 < 週MA20",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -30.0%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.13×）"
+      ]
+    },
+    {
+      "symbol": "4906",
+      "n_shape_score": 51,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 35,
+        "pullback_test": 30,
+        "daily_pullback_quality": 70
+      },
+      "status": "watch",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 明顯上移 +5.13%（33.1 → 34.9）",
+        "[weekly_ma20] 週收 < 週MA20",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -15.5%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量縮（0.83× 20日均量）"
+      ]
+    },
+    {
+      "symbol": "3034",
+      "n_shape_score": 50,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 80,
+        "weekly_ma20": 45,
+        "pullback_test": 30,
+        "daily_pullback_quality": 55
+      },
+      "status": "watch",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 上移 +4.71%",
+        "[weekly_ma20] 週收 < 週MA20",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +0.3%",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -14.3%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量略縮（0.92×）"
+      ]
+    },
+    {
+      "symbol": "3711",
+      "n_shape_score": 49,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 35,
+        "pullback_test": 30,
+        "daily_pullback_quality": 55
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 明顯上移 +21.16%（465.5 → 564.0）",
+        "[weekly_ma20] 週收 < 週MA20",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -16.1%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量略縮（0.97×）"
+      ]
+    },
+    {
+      "symbol": "2382",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 70,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 微幅上移 +0.84%",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-1.987)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -13.7%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.28×）"
+      ]
+    },
+    {
+      "symbol": "3231",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 60,
+        "pullback_test": 30,
+        "daily_pullback_quality": 70
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（157.0 > 156.6）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 152.0 < 前一個 173.5（破壞底底高，-12.39%）",
+        "[weekly_ma20] 週收 < 週MA20",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +1.8%",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -11.7%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量縮（0.90× 20日均量）"
+      ]
+    },
+    {
+      "symbol": "2376",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 70,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 微幅上移 +1.64%",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-1.480)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -15.0%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.70×）"
+      ]
+    },
+    {
+      "symbol": "2356",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 55,
+        "weekly_ma20": 0,
+        "pullback_test": 60,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 近似持平 -0.88%（雜訊範圍，給中性 55）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-0.856)",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -23.0%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.41×）"
+      ]
+    },
+    {
+      "symbol": "3324",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 60,
+        "pullback_test": 60,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 810.0 < 前一個 950.1（破壞底底高，-14.75%）",
+        "[weekly_ma20] 週收 < 週MA20",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +1.5%",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -26.6%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.10×）"
+      ]
+    },
+    {
+      "symbol": "2308",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 0,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 否決：月收 1055.0 < 月MA10 1709.1 且斜率向下",
+        "[weekly_higher_low] 否決：週線最近 swing low 1020.0 < 前一個 1560.0（破壞底底高，-34.62%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-30.211)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -20.8%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.11×）"
+      ]
+    },
+    {
+      "symbol": "2330",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 2020.0 < 前一個 2173.6（破壞底底高，-7.07%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-3.656)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -6.6%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.08×）"
+      ]
+    },
+    {
+      "symbol": "2454",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 35,
+        "pullback_test": 30,
+        "daily_pullback_quality": 75
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（3840.0 > 3466.8）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 3115.0 < 前一個 3655.0（破壞底底高，-14.77%）",
+        "[weekly_ma20] 週收 < 週MA20",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -1.3%（位置適中）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.12×）"
+      ]
+    },
+    {
+      "symbol": "2303",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 60,
+        "daily_pullback_quality": 70
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 88.6 < 前一個 112.0（破壞底底高，-20.89%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-1.444)",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -15.4%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量縮（0.76× 20日均量）"
+      ]
+    },
+    {
+      "symbol": "2449",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 0,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 否決：月收 176.5 < 月MA10 268.2 且斜率向下",
+        "[weekly_higher_low] 否決：週線最近 swing low 195.0 < 前一個 250.0（破壞底底高，-22.01%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-1.721)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -26.4%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.14×）"
+      ]
+    },
+    {
+      "symbol": "2379",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 45,
+        "pullback_test": 30,
+        "daily_pullback_quality": 70
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（717.0 > 642.0）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 658.0 < 前一個 680.0（破壞底底高，-3.24%）",
+        "[weekly_ma20] 週收 < 週MA20",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +0.9%",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -5.6%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量縮（0.83× 20日均量）"
+      ]
+    },
+    {
+      "symbol": "6488",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 60,
+        "daily_pullback_quality": 55
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 508.0 < 前一個 872.0（破壞底底高，-41.74%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-25.358)",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -21.6%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量略縮（0.93×）"
+      ]
+    },
+    {
+      "symbol": "8046",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 明顯上移 +27.53%（792.0 → 1010.0）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-3.348)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -28.0%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.08×）"
+      ]
+    },
+    {
+      "symbol": "2383",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 0,
+        "pullback_test": 60,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 明顯上移 +18.48%（3912.1 → 4635.0）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-47.113)",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -21.1%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.04×）"
+      ]
+    },
+    {
+      "symbol": "2368",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 0,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 35,
+        "pullback_test": 30,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 否決：月收 835.0 < 月MA10 1049.8 且斜率向下",
+        "[weekly_higher_low] 否決：週線最近 swing low 782.0 < 前一個 950.0（破壞底底高，-17.68%）",
+        "[weekly_ma20] 週收 < 週MA20",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -18.1%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.16×）"
+      ]
+    },
+    {
+      "symbol": "2367",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 0,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 60,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 否決：月收 35.1 < 月MA10 51.8 且斜率向下",
+        "[weekly_higher_low] 否決：週線最近 swing low 31.5 < 前一個 39.5（破壞底底高，-20.35%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-0.276)",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -12.8%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.33×）"
+      ]
+    },
+    {
+      "symbol": "3043",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 0,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 60,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 否決：月收 18.1 < 月MA10 20.3 且斜率向下",
+        "[weekly_higher_low] 否決：週線最近 swing low 16.4 < 前一個 19.8（破壞底底高，-17.17%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-0.134)",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -3.4%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.51×）"
+      ]
+    },
+    {
+      "symbol": "3008",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 60,
+        "pullback_test": 30,
+        "daily_pullback_quality": 70
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（4515.0 > 4234.5）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 4075.0 < 前一個 5740.0（破壞底底高，-29.01%）",
+        "[weekly_ma20] 週收 < 週MA20",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +1.6%",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -16.0%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量縮（0.89× 20日均量）"
+      ]
+    },
+    {
+      "symbol": "2354",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 51.2 < 前一個 53.1（破壞底底高，-3.60%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-0.132)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -13.5%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.23×）"
+      ]
+    },
+    {
+      "symbol": "3504",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 70
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 48.7 < 前一個 77.0（破壞底底高，-36.75%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-0.742)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -17.3%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量縮（0.84× 20日均量）"
+      ]
+    },
+    {
+      "symbol": "3027",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 0,
+        "weekly_higher_low": 55,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 70
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 否決：月收 14.4 < 月MA10 18.9 且斜率向下",
+        "[weekly_higher_low] 週 swing low 近似持平 -1.42%（雜訊範圍，給中性 55）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-0.157)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -14.4%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量縮（0.73× 20日均量）"
+      ]
+    },
+    {
+      "symbol": "2344",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 明顯上移 +35.47%（117.0 → 158.5）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-1.626)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -23.0%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.01×）"
+      ]
+    },
+    {
+      "symbol": "2408",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 0,
+        "pullback_test": 60,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 明顯上移 +44.57%（322.0 → 465.5）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-2.271)",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -18.6%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.08×）"
+      ]
+    },
+    {
+      "symbol": "5269",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 70,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 微幅上移 +1.17%",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-6.270)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -13.8%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.01×）"
+      ]
+    },
+    {
+      "symbol": "3260",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 80,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 70
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 上移 +2.67%",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-4.047)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -13.6%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量縮（0.88× 20日均量）"
+      ]
+    },
+    {
+      "symbol": "8299",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 0,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 60,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 否決：月收 1535.0 < 月MA10 1961.3 且斜率向下",
+        "[weekly_higher_low] 否決：週線最近 swing low 1405.0 < 前一個 1900.0（破壞底底高，-26.05%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-14.838)",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -12.7%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.09×）"
+      ]
+    },
+    {
+      "symbol": "2451",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 明顯上移 +25.00%（216.0 → 270.0）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-1.282)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -17.9%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.18×）"
+      ]
+    },
+    {
+      "symbol": "3596",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 0,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 60,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 否決：月收 132.5 < 月MA10 164.3 且斜率向下",
+        "[weekly_higher_low] 否決：週線最近 swing low 128.0 < 前一個 163.5（破壞底底高，-21.71%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-2.516)",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -9.0%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.15×）"
+      ]
+    },
+    {
+      "symbol": "3380",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 0,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 35,
+        "pullback_test": 30,
+        "daily_pullback_quality": 70
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 否決：月收 27.7 < 月MA10 31.6 且斜率向下",
+        "[weekly_higher_low] 否決：週線最近 swing low 25.1 < 前一個 26.3（破壞底底高，-4.56%）",
+        "[weekly_ma20] 週收 < 週MA20",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -7.3%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量縮（0.68× 20日均量）"
+      ]
+    },
+    {
+      "symbol": "3491",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 0,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 75,
+        "pullback_test": 85,
+        "daily_pullback_quality": 40
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 否決：月收 1445.0 < 月MA10 1461.7 且斜率向下",
+        "[weekly_higher_low] 週 swing low 明顯上移 +17.16%（909.0 → 1065.0）",
+        "[weekly_ma20] 週收 > 週MA20（高出 +5.6%）",
+        "[pullback_test] 近 8 週內第 1 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 +10.0%（略高）",
+        "[daily_pullback_quality] 近 5 日均量未縮（2.17×）"
+      ]
+    },
+    {
+      "symbol": "2345",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 0,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 60,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 否決：月收 1330.0 < 月MA10 1891.6 且斜率向下",
+        "[weekly_higher_low] 否決：週線最近 swing low 1245.0 < 前一個 1770.0（破壞底底高，-29.66%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-45.181)",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -16.4%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.10×）"
+      ]
+    },
+    {
+      "symbol": "1503",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 0,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 60,
+        "daily_pullback_quality": 55
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 否決：月收 163.0 < 月MA10 197.8 且斜率向下",
+        "[weekly_higher_low] 否決：週線最近 swing low 152.0 < 前一個 194.0（破壞底底高，-21.65%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-1.714)",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -8.7%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量略縮（0.99×）"
+      ]
+    },
+    {
+      "symbol": "1504",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 0,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 70
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 否決：月收 60.1 < 月MA10 67.8 且斜率向下",
+        "[weekly_higher_low] 否決：週線最近 swing low 57.2 < 前一個 67.6（破壞底底高，-15.38%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-0.159)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -9.1%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量縮（0.90× 20日均量）"
+      ]
+    },
+    {
+      "symbol": "6206",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 55
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 107.0 < 前一個 132.5（破壞底底高，-19.25%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-0.575)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -7.8%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量略縮（0.94×）"
+      ]
+    },
+    {
+      "symbol": "6669",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 90,
+        "weekly_ma20": 0,
+        "pullback_test": 60,
+        "daily_pullback_quality": 55
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 週 swing low 明顯上移 +45.63%（1424.8 → 2075.0）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-11.859)",
+        "[pullback_test] 近 8 週未明顯回測週MA20，給予中性 60",
+        "[daily_pullback_quality] 距日MA20 -16.8%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量略縮（0.98×）"
+      ]
+    },
+    {
+      "symbol": "2609",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 75
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（59.9 > 54.6）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 54.9 < 前一個 58.1（破壞底底高，-5.51%）",
+        "[weekly_ma20] 週收 > 週MA20（高出 +4.3%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +3.9%",
+        "[pullback_test] 近 8 週內第 8 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 -1.7%（位置適中）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.17×）"
+      ]
+    },
+    {
+      "symbol": "2615",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（106.5 > 91.4）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 102.0 < 前一個 110.0（破壞底底高，-7.27%）",
+        "[weekly_ma20] 週收 > 週MA20（高出 +0.8%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +6.5%",
+        "[pullback_test] 近 8 週內第 8 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 -6.3%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.12×）"
+      ]
+    },
+    {
+      "symbol": "2885",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（68.0 > 59.3）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 62.2 < 前一個 66.5（破壞底底高，-6.47%）",
+        "[weekly_ma20] 週收 > 週MA20（高出 +0.7%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +2.5%",
+        "[pullback_test] 近 8 週內第 8 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 -3.9%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.28×）"
+      ]
+    },
+    {
+      "symbol": "2887",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（39.3 > 32.2）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 36.3 < 前一個 40.1（破壞底底高，-9.48%）",
+        "[weekly_ma20] 週收 > 週MA20（高出 +0.1%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +4.9%",
+        "[pullback_test] 近 8 週內第 7 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 -3.7%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.08×）"
+      ]
+    },
+    {
+      "symbol": "2317",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 45
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 212.5 < 前一個 243.5（破壞底底高，-12.73%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-0.768)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -9.0%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量未縮（1.05×）"
+      ]
+    },
+    {
+      "symbol": "1301",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 85,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 100,
+        "pullback_test": 85,
+        "daily_pullback_quality": 55
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 > 月MA10（67.5 > 57.8）",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 58.9 < 前一個 61.2（破壞底底高，-3.76%）",
+        "[weekly_ma20] 週收 > 週MA20（高出 +2.9%）",
+        "[weekly_ma20] 週MA20 過去 5 週上升 +5.1%",
+        "[pullback_test] 近 8 週內第 8 週曾觸及週MA20 ± 3%，目前已收回上方",
+        "[daily_pullback_quality] 距日MA20 -4.7%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量略縮（0.93×）"
+      ]
+    },
+    {
+      "symbol": "2105",
+      "n_shape_score": 0,
+      "subscores": {
+        "monthly_breakout": 45,
+        "weekly_higher_low": 0,
+        "weekly_ma20": 0,
+        "pullback_test": 30,
+        "daily_pullback_quality": 70
+      },
+      "status": "reject",
+      "reason": [
+        "[monthly_breakout] 月收 < 月MA10",
+        "[monthly_breakout] 月MA10 斜率向上",
+        "[weekly_higher_low] 否決：週線最近 swing low 28.6 < 前一個 29.8（破壞底底高，-4.19%）",
+        "[weekly_ma20] 否決：週MA20 斜率向下 (-0.101)",
+        "[pullback_test] 近期觸及週MA20 但目前週收仍在 MA20 之下",
+        "[daily_pullback_quality] 距日MA20 -5.9%（深跌）",
+        "[daily_pullback_quality] 近 5 日均量縮（0.71× 20日均量）"
+      ]
+    }
+  ],
+  "rrr_pairs": [
+    {
+      "pair": [
+        "2882",
+        "2618"
+      ],
+      "rrr_score": 90,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=32.8%(100) / B=24.6%(100)",
+        "[phase] 日報酬相關 +0.25",
+        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.35, min=-2.18）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.328,
+          "vol_b": 0.246
+        },
+        "phase": {
+          "corr": 0.249
+        },
+        "cycle": {
+          "zero_crossings": 9
+        },
+        "mean_reversion": {
+          "z_max": 3.35,
+          "z_min": -2.18,
+          "span": 5.53
+        }
+      }
+    },
+    {
+      "pair": [
+        "2882",
+        "2610"
+      ],
+      "rrr_score": 90,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=32.8%(100) / B=25.4%(100)",
+        "[phase] 日報酬相關 +0.29",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.34, min=-2.10）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.328,
+          "vol_b": 0.254
+        },
+        "phase": {
+          "corr": 0.295
+        },
+        "cycle": {
+          "zero_crossings": 7
+        },
+        "mean_reversion": {
+          "z_max": 3.34,
+          "z_min": -2.1,
+          "span": 5.44
+        }
+      }
+    },
+    {
+      "pair": [
+        "2886",
+        "2603"
+      ],
+      "rrr_score": 90,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=23.2%(100) / B=37.0%(100)",
+        "[phase] 日報酬相關 +0.09",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.40, min=-2.31）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.232,
+          "vol_b": 0.37
+        },
+        "phase": {
+          "corr": 0.091
+        },
+        "cycle": {
+          "zero_crossings": 7
+        },
+        "mean_reversion": {
+          "z_max": 3.4,
+          "z_min": -2.31,
+          "span": 5.71
+        }
+      }
+    },
+    {
+      "pair": [
+        "2886",
+        "2610"
+      ],
+      "rrr_score": 90,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=23.2%(100) / B=25.4%(100)",
+        "[phase] 日報酬相關 +0.24",
+        "[cycle] 近 120 日 Z60 零軸交叉 10 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.72, min=-4.06）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.232,
+          "vol_b": 0.254
+        },
+        "phase": {
+          "corr": 0.238
+        },
+        "cycle": {
+          "zero_crossings": 10
+        },
+        "mean_reversion": {
+          "z_max": 2.72,
+          "z_min": -4.06,
+          "span": 6.78
+        }
+      }
+    },
+    {
+      "pair": [
+        "2603",
+        "2207"
+      ],
+      "rrr_score": 90,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=37.0%(100) / B=24.1%(100)",
+        "[phase] 日報酬相關 +0.06",
+        "[cycle] 近 120 日 Z60 零軸交叉 6 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.52, min=-2.42）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.37,
+          "vol_b": 0.241
+        },
+        "phase": {
+          "corr": 0.06
+        },
+        "cycle": {
+          "zero_crossings": 6
+        },
+        "mean_reversion": {
+          "z_max": 2.52,
+          "z_min": -2.42,
+          "span": 4.94
+        }
+      }
+    },
+    {
+      "pair": [
+        "2603",
+        "2610"
+      ],
+      "rrr_score": 90,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=37.0%(100) / B=25.4%(100)",
+        "[phase] 日報酬相關 +0.10",
+        "[cycle] 近 120 日 Z60 零軸交叉 5 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.26, min=-4.37）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.37,
+          "vol_b": 0.254
+        },
+        "phase": {
+          "corr": 0.1
+        },
+        "cycle": {
+          "zero_crossings": 5
+        },
+        "mean_reversion": {
+          "z_max": 2.26,
+          "z_min": -4.37,
+          "span": 6.64
+        }
+      }
+    },
+    {
+      "pair": [
+        "2603",
+        "2884"
+      ],
+      "rrr_score": 90,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=37.0%(100) / B=28.3%(100)",
+        "[phase] 日報酬相關 +0.20",
+        "[cycle] 近 120 日 Z60 零軸交叉 12 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.40, min=-2.26）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.37,
+          "vol_b": 0.283
+        },
+        "phase": {
+          "corr": 0.196
+        },
+        "cycle": {
+          "zero_crossings": 12
+        },
+        "mean_reversion": {
+          "z_max": 2.4,
+          "z_min": -2.26,
+          "span": 4.66
+        }
+      }
+    },
+    {
+      "pair": [
+        "2618",
+        "2884"
+      ],
+      "rrr_score": 90,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=24.6%(100) / B=28.3%(100)",
+        "[phase] 日報酬相關 +0.20",
+        "[cycle] 近 120 日 Z60 零軸交叉 10 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.15, min=-3.10）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.246,
+          "vol_b": 0.283
+        },
+        "phase": {
+          "corr": 0.2
+        },
+        "cycle": {
+          "zero_crossings": 10
+        },
+        "mean_reversion": {
+          "z_max": 3.15,
+          "z_min": -3.1,
+          "span": 6.25
+        }
+      }
+    },
+    {
+      "pair": [
+        "2610",
+        "2884"
+      ],
+      "rrr_score": 90,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=25.4%(100) / B=28.3%(100)",
+        "[phase] 日報酬相關 +0.25",
+        "[cycle] 近 120 日 Z60 零軸交叉 10 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.50, min=-2.53）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.254,
+          "vol_b": 0.283
+        },
+        "phase": {
+          "corr": 0.249
+        },
+        "cycle": {
+          "zero_crossings": 10
+        },
+        "mean_reversion": {
+          "z_max": 3.5,
+          "z_min": -2.53,
+          "span": 6.02
+        }
+      }
+    },
+    {
+      "pair": [
+        "2886",
+        "3105"
+      ],
+      "rrr_score": 87,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=23.2%(100) / B=90.5%(40)",
+        "[phase] 日報酬相關 -0.11",
+        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.89, min=-2.51）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 85,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.232,
+          "vol_b": 0.905
+        },
+        "phase": {
+          "corr": -0.106
+        },
+        "cycle": {
+          "zero_crossings": 9
+        },
+        "mean_reversion": {
+          "z_max": 2.89,
+          "z_min": -2.51,
+          "span": 5.4
+        }
+      }
+    },
+    {
+      "pair": [
+        "3105",
+        "2207"
+      ],
+      "rrr_score": 87,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=90.5%(40) / B=24.1%(100)",
+        "[phase] 日報酬相關 -0.13",
+        "[cycle] 近 120 日 Z60 零軸交叉 5 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.45, min=-3.20）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 85,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.905,
+          "vol_b": 0.241
+        },
+        "phase": {
+          "corr": -0.125
+        },
+        "cycle": {
+          "zero_crossings": 5
+        },
+        "mean_reversion": {
+          "z_max": 2.45,
+          "z_min": -3.2,
+          "span": 5.65
+        }
+      }
+    },
+    {
+      "pair": [
+        "2618",
+        "9904"
+      ],
+      "rrr_score": 87,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=24.6%(100) / B=18.1%(75)",
+        "[phase] 日報酬相關 +0.16",
+        "[cycle] 近 120 日 Z60 零軸交叉 8 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.26, min=-2.22）"
+      ],
+      "subscores": {
+        "volatility": 87,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.246,
+          "vol_b": 0.181
+        },
+        "phase": {
+          "corr": 0.157
+        },
+        "cycle": {
+          "zero_crossings": 8
+        },
+        "mean_reversion": {
+          "z_max": 3.26,
+          "z_min": -2.22,
+          "span": 5.48
+        }
+      }
+    },
+    {
+      "pair": [
+        "2207",
+        "9904"
+      ],
+      "rrr_score": 87,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=24.1%(100) / B=18.1%(75)",
+        "[phase] 日報酬相關 +0.02",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.79, min=-2.64）"
+      ],
+      "subscores": {
+        "volatility": 87,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.241,
+          "vol_b": 0.181
+        },
+        "phase": {
+          "corr": 0.016
+        },
+        "cycle": {
+          "zero_crossings": 7
+        },
+        "mean_reversion": {
+          "z_max": 3.79,
+          "z_min": -2.64,
+          "span": 6.43
+        }
+      }
+    },
+    {
+      "pair": [
+        "2891",
+        "2603"
+      ],
+      "rrr_score": 86,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=28.3%(100) / B=37.0%(100)",
+        "[phase] 日報酬相關 +0.22",
+        "[cycle] 近 120 日 Z60 零軸交叉 14 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.52, min=-2.57）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 75,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.283,
+          "vol_b": 0.37
+        },
+        "phase": {
+          "corr": 0.22
+        },
+        "cycle": {
+          "zero_crossings": 14
+        },
+        "mean_reversion": {
+          "z_max": 3.52,
+          "z_min": -2.57,
+          "span": 6.09
+        }
+      }
+    },
+    {
+      "pair": [
+        "2881",
+        "2618"
+      ],
+      "rrr_score": 86,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=35.2%(100) / B=24.6%(100)",
+        "[phase] 日報酬相關 +0.13",
+        "[cycle] 近 120 日 Z60 零軸交叉 13 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.97, min=-2.09）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 75,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.352,
+          "vol_b": 0.246
+        },
+        "phase": {
+          "corr": 0.127
+        },
+        "cycle": {
+          "zero_crossings": 13
+        },
+        "mean_reversion": {
+          "z_max": 3.97,
+          "z_min": -2.09,
+          "span": 6.07
+        }
+      }
+    },
+    {
+      "pair": [
+        "2891",
+        "2882"
+      ],
+      "rrr_score": 84,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=28.3%(100) / B=32.8%(100)",
+        "[phase] 日報酬相關 +0.56",
+        "[cycle] 近 120 日 Z60 零軸交叉 5 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.38, min=-3.10）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.283,
+          "vol_b": 0.328
+        },
+        "phase": {
+          "corr": 0.562
+        },
+        "cycle": {
+          "zero_crossings": 5
+        },
+        "mean_reversion": {
+          "z_max": 2.38,
+          "z_min": -3.1,
+          "span": 5.48
+        }
+      }
+    },
+    {
+      "pair": [
+        "2891",
+        "2886"
+      ],
+      "rrr_score": 84,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=28.3%(100) / B=23.2%(100)",
+        "[phase] 日報酬相關 +0.37",
+        "[cycle] 近 120 日 Z60 零軸交叉 12 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+4.36, min=-2.19）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.283,
+          "vol_b": 0.232
+        },
+        "phase": {
+          "corr": 0.371
+        },
+        "cycle": {
+          "zero_crossings": 12
+        },
+        "mean_reversion": {
+          "z_max": 4.36,
+          "z_min": -2.19,
+          "span": 6.55
+        }
+      }
+    },
+    {
+      "pair": [
+        "2891",
+        "2881"
+      ],
+      "rrr_score": 84,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=28.3%(100) / B=35.2%(100)",
+        "[phase] 日報酬相關 +0.49",
+        "[cycle] 近 120 日 Z60 零軸交叉 5 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.86, min=-3.11）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.283,
+          "vol_b": 0.352
+        },
+        "phase": {
+          "corr": 0.486
+        },
+        "cycle": {
+          "zero_crossings": 5
+        },
+        "mean_reversion": {
+          "z_max": 2.86,
+          "z_min": -3.11,
+          "span": 5.97
+        }
+      }
+    },
+    {
+      "pair": [
+        "2882",
+        "2886"
+      ],
+      "rrr_score": 84,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=32.8%(100) / B=23.2%(100)",
+        "[phase] 日報酬相關 +0.48",
+        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.46, min=-2.71）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.328,
+          "vol_b": 0.232
+        },
+        "phase": {
+          "corr": 0.478
+        },
+        "cycle": {
+          "zero_crossings": 9
+        },
+        "mean_reversion": {
+          "z_max": 3.46,
+          "z_min": -2.71,
+          "span": 6.17
+        }
+      }
+    },
+    {
+      "pair": [
+        "2886",
+        "2881"
+      ],
+      "rrr_score": 84,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=23.2%(100) / B=35.2%(100)",
+        "[phase] 日報酬相關 +0.34",
+        "[cycle] 近 120 日 Z60 零軸交叉 11 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.14, min=-4.46）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.232,
+          "vol_b": 0.352
+        },
+        "phase": {
+          "corr": 0.343
+        },
+        "cycle": {
+          "zero_crossings": 11
+        },
+        "mean_reversion": {
+          "z_max": 2.14,
+          "z_min": -4.46,
+          "span": 6.61
+        }
+      }
+    },
+    {
+      "pair": [
+        "2886",
+        "2884"
+      ],
+      "rrr_score": 84,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=23.2%(100) / B=28.3%(100)",
+        "[phase] 日報酬相關 +0.60",
+        "[cycle] 近 120 日 Z60 零軸交叉 10 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.72, min=-3.27）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.232,
+          "vol_b": 0.283
+        },
+        "phase": {
+          "corr": 0.595
+        },
+        "cycle": {
+          "zero_crossings": 10
+        },
+        "mean_reversion": {
+          "z_max": 2.72,
+          "z_min": -3.27,
+          "span": 5.99
+        }
+      }
+    },
+    {
+      "pair": [
+        "2881",
+        "9904"
+      ],
+      "rrr_score": 84,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=35.2%(100) / B=18.1%(75)",
+        "[phase] 日報酬相關 -0.02",
+        "[cycle] 近 120 日 Z60 零軸交叉 5 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.99, min=-1.07）"
+      ],
+      "subscores": {
+        "volatility": 87,
+        "phase": 85,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.352,
+          "vol_b": 0.181
+        },
+        "phase": {
+          "corr": -0.023
+        },
+        "cycle": {
+          "zero_crossings": 5
+        },
+        "mean_reversion": {
+          "z_max": 2.99,
+          "z_min": -1.07,
+          "span": 4.06
+        }
+      }
+    },
+    {
+      "pair": [
+        "2891",
+        "3105"
+      ],
+      "rrr_score": 83,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=28.3%(100) / B=90.5%(40)",
+        "[phase] 日報酬相關 +0.22",
+        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.43, min=-2.63）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.283,
+          "vol_b": 0.905
+        },
+        "phase": {
+          "corr": 0.224
+        },
+        "cycle": {
+          "zero_crossings": 9
+        },
+        "mean_reversion": {
+          "z_max": 2.43,
+          "z_min": -2.63,
+          "span": 5.05
+        }
+      }
+    },
+    {
+      "pair": [
+        "2891",
+        "2618"
+      ],
+      "rrr_score": 83,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=28.3%(100) / B=24.6%(100)",
+        "[phase] 日報酬相關 +0.18",
+        "[cycle] 近 120 日 Z60 零軸交叉 11 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+4.00, min=-1.99）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.283,
+          "vol_b": 0.246
+        },
+        "phase": {
+          "corr": 0.181
+        },
+        "cycle": {
+          "zero_crossings": 11
+        },
+        "mean_reversion": {
+          "z_max": 4.0,
+          "z_min": -1.99,
+          "span": 5.98
+        }
+      }
+    },
+    {
+      "pair": [
+        "2891",
+        "2207"
+      ],
+      "rrr_score": 83,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=28.3%(100) / B=24.1%(100)",
+        "[phase] 日報酬相關 +0.29",
+        "[cycle] 近 120 日 Z60 零軸交叉 4 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.22, min=-1.78）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.283,
+          "vol_b": 0.241
+        },
+        "phase": {
+          "corr": 0.286
+        },
+        "cycle": {
+          "zero_crossings": 4
+        },
+        "mean_reversion": {
+          "z_max": 3.22,
+          "z_min": -1.78,
+          "span": 5.0
+        }
+      }
+    },
+    {
+      "pair": [
+        "2882",
+        "2603"
+      ],
+      "rrr_score": 83,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=32.8%(100) / B=37.0%(100)",
+        "[phase] 日報酬相關 +0.11",
+        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.82, min=-1.94）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.328,
+          "vol_b": 0.37
+        },
+        "phase": {
+          "corr": 0.112
+        },
+        "cycle": {
+          "zero_crossings": 9
+        },
+        "mean_reversion": {
+          "z_max": 3.82,
+          "z_min": -1.94,
+          "span": 5.76
+        }
+      }
+    },
+    {
+      "pair": [
+        "2882",
+        "1303"
+      ],
+      "rrr_score": 83,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=32.8%(100) / B=88.3%(40)",
+        "[phase] 日報酬相關 +0.30",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.97, min=-4.01）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.328,
+          "vol_b": 0.883
+        },
+        "phase": {
+          "corr": 0.3
+        },
+        "cycle": {
+          "zero_crossings": 7
+        },
+        "mean_reversion": {
+          "z_max": 2.97,
+          "z_min": -4.01,
+          "span": 6.98
+        }
+      }
+    },
+    {
+      "pair": [
+        "2882",
+        "2207"
+      ],
+      "rrr_score": 83,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=32.8%(100) / B=24.1%(100)",
+        "[phase] 日報酬相關 +0.23",
+        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.83, min=-1.12）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.328,
+          "vol_b": 0.241
+        },
+        "phase": {
+          "corr": 0.232
+        },
+        "cycle": {
+          "zero_crossings": 9
+        },
+        "mean_reversion": {
+          "z_max": 2.83,
+          "z_min": -1.12,
+          "span": 3.95
+        }
+      }
+    },
+    {
+      "pair": [
+        "2886",
+        "2207"
+      ],
+      "rrr_score": 83,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=23.2%(100) / B=24.1%(100)",
+        "[phase] 日報酬相關 +0.21",
+        "[cycle] 近 120 日 Z60 零軸交叉 8 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.88, min=-1.76）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.232,
+          "vol_b": 0.241
+        },
+        "phase": {
+          "corr": 0.215
+        },
+        "cycle": {
+          "zero_crossings": 8
+        },
+        "mean_reversion": {
+          "z_max": 2.88,
+          "z_min": -1.76,
+          "span": 4.63
+        }
+      }
+    },
+    {
+      "pair": [
+        "3105",
+        "2618"
+      ],
+      "rrr_score": 83,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=90.5%(40) / B=24.6%(100)",
+        "[phase] 日報酬相關 +0.24",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.38, min=-2.77）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.905,
+          "vol_b": 0.246
+        },
+        "phase": {
+          "corr": 0.241
+        },
+        "cycle": {
+          "zero_crossings": 7
+        },
+        "mean_reversion": {
+          "z_max": 2.38,
+          "z_min": -2.77,
+          "span": 5.15
+        }
+      }
+    },
+    {
+      "pair": [
+        "3105",
+        "2610"
+      ],
+      "rrr_score": 83,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=90.5%(40) / B=25.4%(100)",
+        "[phase] 日報酬相關 +0.18",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.26, min=-2.75）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.905,
+          "vol_b": 0.254
+        },
+        "phase": {
+          "corr": 0.176
+        },
+        "cycle": {
+          "zero_crossings": 7
+        },
+        "mean_reversion": {
+          "z_max": 2.26,
+          "z_min": -2.75,
+          "span": 5.01
+        }
+      }
+    },
+    {
+      "pair": [
+        "2603",
+        "2618"
+      ],
+      "rrr_score": 83,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=37.0%(100) / B=24.6%(100)",
+        "[phase] 日報酬相關 +0.19",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.73, min=-4.78）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.37,
+          "vol_b": 0.246
+        },
+        "phase": {
+          "corr": 0.195
+        },
+        "cycle": {
+          "zero_crossings": 7
+        },
+        "mean_reversion": {
+          "z_max": 1.73,
+          "z_min": -4.78,
+          "span": 6.5
+        }
+      }
+    },
+    {
+      "pair": [
+        "2881",
+        "2610"
+      ],
+      "rrr_score": 83,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=35.2%(100) / B=25.4%(100)",
+        "[phase] 日報酬相關 +0.18",
+        "[cycle] 近 120 日 Z60 零軸交叉 5 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+4.22, min=-1.97）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.352,
+          "vol_b": 0.254
+        },
+        "phase": {
+          "corr": 0.179
+        },
+        "cycle": {
+          "zero_crossings": 5
+        },
+        "mean_reversion": {
+          "z_max": 4.22,
+          "z_min": -1.97,
+          "span": 6.19
+        }
+      }
+    },
+    {
+      "pair": [
+        "2207",
+        "2610"
+      ],
+      "rrr_score": 83,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=24.1%(100) / B=25.4%(100)",
+        "[phase] 日報酬相關 +0.10",
+        "[cycle] 近 120 日 Z60 零軸交叉 6 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.86, min=-5.17）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.241,
+          "vol_b": 0.254
+        },
+        "phase": {
+          "corr": 0.105
+        },
+        "cycle": {
+          "zero_crossings": 6
+        },
+        "mean_reversion": {
+          "z_max": 1.86,
+          "z_min": -5.17,
+          "span": 7.03
+        }
+      }
+    },
+    {
+      "pair": [
+        "2207",
+        "2884"
+      ],
+      "rrr_score": 83,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=24.1%(100) / B=28.3%(100)",
+        "[phase] 日報酬相關 +0.28",
+        "[cycle] 近 120 日 Z60 零軸交叉 4 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.13, min=-4.09）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.241,
+          "vol_b": 0.283
+        },
+        "phase": {
+          "corr": 0.281
+        },
+        "cycle": {
+          "zero_crossings": 4
+        },
+        "mean_reversion": {
+          "z_max": 1.13,
+          "z_min": -4.09,
+          "span": 5.22
+        }
+      }
+    },
+    {
+      "pair": [
+        "2891",
+        "9904"
+      ],
+      "rrr_score": 80,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=28.3%(100) / B=18.1%(75)",
+        "[phase] 日報酬相關 +0.14",
+        "[cycle] 近 120 日 Z60 零軸交叉 8 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.87, min=-1.30）"
+      ],
+      "subscores": {
+        "volatility": 87,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.283,
+          "vol_b": 0.181
+        },
+        "phase": {
+          "corr": 0.143
+        },
+        "cycle": {
+          "zero_crossings": 8
+        },
+        "mean_reversion": {
+          "z_max": 2.87,
+          "z_min": -1.3,
+          "span": 4.16
+        }
+      }
+    },
+    {
+      "pair": [
+        "2886",
+        "1303"
+      ],
+      "rrr_score": 80,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=23.2%(100) / B=88.3%(40)",
+        "[phase] 日報酬相關 -0.03",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+0.62, min=-3.71）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 85,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.232,
+          "vol_b": 0.883
+        },
+        "phase": {
+          "corr": -0.031
+        },
+        "cycle": {
+          "zero_crossings": 7
+        },
+        "mean_reversion": {
+          "z_max": 0.62,
+          "z_min": -3.71,
+          "span": 4.33
+        }
+      }
+    },
+    {
+      "pair": [
+        "2886",
+        "9904"
+      ],
+      "rrr_score": 80,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=23.2%(100) / B=18.1%(75)",
+        "[phase] 日報酬相關 +0.19",
+        "[cycle] 近 120 日 Z60 零軸交叉 4 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.40, min=-0.42）"
+      ],
+      "subscores": {
+        "volatility": 87,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.232,
+          "vol_b": 0.181
+        },
+        "phase": {
+          "corr": 0.193
+        },
+        "cycle": {
+          "zero_crossings": 4
+        },
+        "mean_reversion": {
+          "z_max": 2.4,
+          "z_min": -0.42,
+          "span": 2.82
+        }
+      }
+    },
+    {
+      "pair": [
+        "3105",
+        "9904"
+      ],
+      "rrr_score": 80,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=90.5%(40) / B=18.1%(75)",
+        "[phase] 日報酬相關 +0.00",
+        "[cycle] 近 120 日 Z60 零軸交叉 5 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.50, min=-3.23）"
+      ],
+      "subscores": {
+        "volatility": 57,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.905,
+          "vol_b": 0.181
+        },
+        "phase": {
+          "corr": 0.0
+        },
+        "cycle": {
+          "zero_crossings": 5
+        },
+        "mean_reversion": {
+          "z_max": 2.5,
+          "z_min": -3.23,
+          "span": 5.73
+        }
+      }
+    },
+    {
+      "pair": [
+        "2603",
+        "9904"
+      ],
+      "rrr_score": 80,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=37.0%(100) / B=18.1%(75)",
+        "[phase] 日報酬相關 +0.27",
+        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.01, min=-0.62）"
+      ],
+      "subscores": {
+        "volatility": 87,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.37,
+          "vol_b": 0.181
+        },
+        "phase": {
+          "corr": 0.272
+        },
+        "cycle": {
+          "zero_crossings": 9
+        },
+        "mean_reversion": {
+          "z_max": 3.01,
+          "z_min": -0.62,
+          "span": 3.63
+        }
+      }
+    },
+    {
+      "pair": [
+        "1303",
+        "2207"
+      ],
+      "rrr_score": 80,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=88.3%(40) / B=24.1%(100)",
+        "[phase] 日報酬相關 -0.04",
+        "[cycle] 近 120 日 Z60 零軸交叉 4 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.23, min=-0.19）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 85,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.883,
+          "vol_b": 0.241
+        },
+        "phase": {
+          "corr": -0.039
+        },
+        "cycle": {
+          "zero_crossings": 4
+        },
+        "mean_reversion": {
+          "z_max": 3.23,
+          "z_min": -0.19,
+          "span": 3.42
+        }
+      }
+    },
+    {
+      "pair": [
+        "2207",
+        "4977"
+      ],
+      "rrr_score": 80,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=24.1%(100) / B=78.2%(40)",
+        "[phase] 日報酬相關 -0.06",
+        "[cycle] 近 120 日 Z60 零軸交叉 6 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.68, min=-1.92）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 85,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.241,
+          "vol_b": 0.782
+        },
+        "phase": {
+          "corr": -0.062
+        },
+        "cycle": {
+          "zero_crossings": 6
+        },
+        "mean_reversion": {
+          "z_max": 2.68,
+          "z_min": -1.92,
+          "span": 4.6
+        }
+      }
+    },
+    {
+      "pair": [
+        "2891",
+        "2610"
+      ],
+      "rrr_score": 79,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=28.3%(100) / B=25.4%(100)",
+        "[phase] 日報酬相關 +0.23",
+        "[cycle] 近 120 日 Z60 零軸交叉 13 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.63, min=-1.64）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 75,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.283,
+          "vol_b": 0.254
+        },
+        "phase": {
+          "corr": 0.227
+        },
+        "cycle": {
+          "zero_crossings": 13
+        },
+        "mean_reversion": {
+          "z_max": 3.63,
+          "z_min": -1.64,
+          "span": 5.27
+        }
+      }
+    },
+    {
+      "pair": [
+        "2618",
+        "2207"
+      ],
+      "rrr_score": 79,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=24.6%(100) / B=24.1%(100)",
+        "[phase] 日報酬相關 +0.05",
+        "[cycle] 近 120 日 Z60 零軸交叉 14 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+4.65, min=-1.71）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 75,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.246,
+          "vol_b": 0.241
+        },
+        "phase": {
+          "corr": 0.052
+        },
+        "cycle": {
+          "zero_crossings": 14
+        },
+        "mean_reversion": {
+          "z_max": 4.65,
+          "z_min": -1.71,
+          "span": 6.36
+        }
+      }
+    },
+    {
+      "pair": [
+        "2886",
+        "2618"
+      ],
+      "rrr_score": 78,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=23.2%(100) / B=24.6%(100)",
+        "[phase] 日報酬相關 +0.23",
+        "[cycle] 近 120 日 Z60 零軸交叉 22 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.63, min=-3.60）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 40,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.232,
+          "vol_b": 0.246
+        },
+        "phase": {
+          "corr": 0.231
+        },
+        "cycle": {
+          "zero_crossings": 22
+        },
+        "mean_reversion": {
+          "z_max": 2.63,
+          "z_min": -3.6,
+          "span": 6.23
+        }
+      }
+    },
+    {
+      "pair": [
+        "2882",
+        "3105"
+      ],
+      "rrr_score": 77,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=32.8%(100) / B=90.5%(40)",
+        "[phase] 日報酬相關 +0.38",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.33, min=-2.72）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.328,
+          "vol_b": 0.905
+        },
+        "phase": {
+          "corr": 0.382
+        },
+        "cycle": {
+          "zero_crossings": 7
+        },
+        "mean_reversion": {
+          "z_max": 2.33,
+          "z_min": -2.72,
+          "span": 5.04
+        }
+      }
+    },
+    {
+      "pair": [
+        "2882",
+        "4977"
+      ],
+      "rrr_score": 77,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=32.8%(100) / B=78.2%(40)",
+        "[phase] 日報酬相關 +0.34",
+        "[cycle] 近 120 日 Z60 零軸交叉 8 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.23, min=-2.29）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.328,
+          "vol_b": 0.782
+        },
+        "phase": {
+          "corr": 0.343
+        },
+        "cycle": {
+          "zero_crossings": 8
+        },
+        "mean_reversion": {
+          "z_max": 3.23,
+          "z_min": -2.29,
+          "span": 5.52
+        }
+      }
+    },
+    {
+      "pair": [
+        "2881",
+        "1303"
+      ],
+      "rrr_score": 77,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=35.2%(100) / B=88.3%(40)",
+        "[phase] 日報酬相關 +0.32",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.54, min=-3.83）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.352,
+          "vol_b": 0.883
+        },
+        "phase": {
+          "corr": 0.324
+        },
+        "cycle": {
+          "zero_crossings": 7
+        },
+        "mean_reversion": {
+          "z_max": 2.54,
+          "z_min": -3.83,
+          "span": 6.37
+        }
+      }
+    },
+    {
+      "pair": [
+        "2881",
+        "2884"
+      ],
+      "rrr_score": 77,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=35.2%(100) / B=28.3%(100)",
+        "[phase] 日報酬相關 +0.36",
+        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.84, min=-1.97）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.352,
+          "vol_b": 0.283
+        },
+        "phase": {
+          "corr": 0.358
+        },
+        "cycle": {
+          "zero_crossings": 9
+        },
+        "mean_reversion": {
+          "z_max": 3.84,
+          "z_min": -1.97,
+          "span": 5.81
+        }
+      }
+    },
+    {
+      "pair": [
+        "2618",
+        "2610"
+      ],
+      "rrr_score": 77,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=24.6%(100) / B=25.4%(100)",
+        "[phase] 日報酬相關 +0.80",
+        "[cycle] 近 120 日 Z60 零軸交叉 10 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.58, min=-2.70）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 25,
+        "cycle": 90,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.246,
+          "vol_b": 0.254
+        },
+        "phase": {
+          "corr": 0.799
+        },
+        "cycle": {
+          "zero_crossings": 10
+        },
+        "mean_reversion": {
+          "z_max": 3.58,
+          "z_min": -2.7,
+          "span": 6.28
+        }
+      }
+    },
+    {
+      "pair": [
+        "9904",
+        "4977"
+      ],
+      "rrr_score": 77,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=18.1%(75) / B=78.2%(40)",
+        "[phase] 日報酬相關 -0.02",
+        "[cycle] 近 120 日 Z60 零軸交叉 10 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.48, min=-1.77）"
+      ],
+      "subscores": {
+        "volatility": 57,
+        "phase": 85,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.181,
+          "vol_b": 0.782
+        },
+        "phase": {
+          "corr": -0.021
+        },
+        "cycle": {
+          "zero_crossings": 10
+        },
+        "mean_reversion": {
+          "z_max": 2.48,
+          "z_min": -1.77,
+          "span": 4.25
+        }
+      }
+    },
+    {
+      "pair": [
+        "2891",
+        "1303"
+      ],
+      "rrr_score": 76,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=28.3%(100) / B=88.3%(40)",
+        "[phase] 日報酬相關 +0.19",
+        "[cycle] 近 120 日 Z60 零軸交叉 8 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.88, min=-3.82）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.283,
+          "vol_b": 0.883
+        },
+        "phase": {
+          "corr": 0.189
+        },
+        "cycle": {
+          "zero_crossings": 8
+        },
+        "mean_reversion": {
+          "z_max": 1.88,
+          "z_min": -3.82,
+          "span": 5.7
+        }
+      }
+    },
+    {
+      "pair": [
+        "2891",
+        "2884"
+      ],
+      "rrr_score": 76,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=28.3%(100) / B=28.3%(100)",
+        "[phase] 日報酬相關 +0.46",
+        "[cycle] 近 120 日 Z60 零軸交叉 2 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.40, min=-2.20）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 50,
+        "cycle": 55,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.283,
+          "vol_b": 0.283
+        },
+        "phase": {
+          "corr": 0.461
+        },
+        "cycle": {
+          "zero_crossings": 2
+        },
+        "mean_reversion": {
+          "z_max": 3.4,
+          "z_min": -2.2,
+          "span": 5.59
+        }
+      }
+    },
+    {
+      "pair": [
+        "2882",
+        "9904"
+      ],
+      "rrr_score": 76,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=32.8%(100) / B=18.1%(75)",
+        "[phase] 日報酬相關 +0.18",
+        "[cycle] 近 120 日 Z60 零軸交叉 13 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.68, min=-1.50）"
+      ],
+      "subscores": {
+        "volatility": 87,
+        "phase": 70,
+        "cycle": 75,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.328,
+          "vol_b": 0.181
+        },
+        "phase": {
+          "corr": 0.178
+        },
+        "cycle": {
+          "zero_crossings": 13
+        },
+        "mean_reversion": {
+          "z_max": 2.68,
+          "z_min": -1.5,
+          "span": 4.19
+        }
+      }
+    },
+    {
+      "pair": [
+        "2603",
+        "1303"
+      ],
+      "rrr_score": 76,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=37.0%(100) / B=88.3%(40)",
+        "[phase] 日報酬相關 +0.15",
+        "[cycle] 近 120 日 Z60 零軸交叉 6 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+0.35, min=-4.20）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.37,
+          "vol_b": 0.883
+        },
+        "phase": {
+          "corr": 0.146
+        },
+        "cycle": {
+          "zero_crossings": 6
+        },
+        "mean_reversion": {
+          "z_max": 0.35,
+          "z_min": -4.2,
+          "span": 4.55
+        }
+      }
+    },
+    {
+      "pair": [
+        "1303",
+        "2884"
+      ],
+      "rrr_score": 76,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=88.3%(40) / B=28.3%(100)",
+        "[phase] 日報酬相關 +0.10",
+        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.36, min=-0.85）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.883,
+          "vol_b": 0.283
+        },
+        "phase": {
+          "corr": 0.097
+        },
+        "cycle": {
+          "zero_crossings": 9
+        },
+        "mean_reversion": {
+          "z_max": 3.36,
+          "z_min": -0.85,
+          "span": 4.21
+        }
+      }
+    },
+    {
+      "pair": [
+        "2618",
+        "4977"
+      ],
+      "rrr_score": 76,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=24.6%(100) / B=78.2%(40)",
+        "[phase] 日報酬相關 +0.23",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.53, min=-1.47）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.246,
+          "vol_b": 0.782
+        },
+        "phase": {
+          "corr": 0.235
+        },
+        "cycle": {
+          "zero_crossings": 7
+        },
+        "mean_reversion": {
+          "z_max": 2.53,
+          "z_min": -1.47,
+          "span": 4.0
+        }
+      }
+    },
+    {
+      "pair": [
+        "2610",
+        "4977"
+      ],
+      "rrr_score": 76,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=25.4%(100) / B=78.2%(40)",
+        "[phase] 日報酬相關 +0.20",
+        "[cycle] 近 120 日 Z60 零軸交叉 9 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.58, min=-1.70）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.254,
+          "vol_b": 0.782
+        },
+        "phase": {
+          "corr": 0.197
+        },
+        "cycle": {
+          "zero_crossings": 9
+        },
+        "mean_reversion": {
+          "z_max": 2.58,
+          "z_min": -1.7,
+          "span": 4.28
+        }
+      }
+    },
+    {
+      "pair": [
+        "2881",
+        "2207"
+      ],
+      "rrr_score": 75,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=35.2%(100) / B=24.1%(100)",
+        "[phase] 日報酬相關 +0.20",
+        "[cycle] 近 120 日 Z60 零軸交叉 15 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.17, min=-0.70）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 55,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.352,
+          "vol_b": 0.241
+        },
+        "phase": {
+          "corr": 0.198
+        },
+        "cycle": {
+          "zero_crossings": 15
+        },
+        "mean_reversion": {
+          "z_max": 3.17,
+          "z_min": -0.7,
+          "span": 3.87
+        }
+      }
+    },
+    {
+      "pair": [
+        "3105",
+        "2881"
+      ],
+      "rrr_score": 74,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=90.5%(40) / B=35.2%(100)",
+        "[phase] 日報酬相關 +0.37",
+        "[cycle] 近 120 日 Z60 零軸交叉 13 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.73, min=-2.35）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 50,
+        "cycle": 75,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.905,
+          "vol_b": 0.352
+        },
+        "phase": {
+          "corr": 0.366
+        },
+        "cycle": {
+          "zero_crossings": 13
+        },
+        "mean_reversion": {
+          "z_max": 2.73,
+          "z_min": -2.35,
+          "span": 5.08
+        }
+      }
+    },
+    {
+      "pair": [
+        "2891",
+        "4977"
+      ],
+      "rrr_score": 72,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=28.3%(100) / B=78.2%(40)",
+        "[phase] 日報酬相關 +0.26",
+        "[cycle] 近 120 日 Z60 零軸交叉 13 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.83, min=-1.64）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 75,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.283,
+          "vol_b": 0.782
+        },
+        "phase": {
+          "corr": 0.259
+        },
+        "cycle": {
+          "zero_crossings": 13
+        },
+        "mean_reversion": {
+          "z_max": 2.83,
+          "z_min": -1.64,
+          "span": 4.47
+        }
+      }
+    },
+    {
+      "pair": [
+        "2882",
+        "2884"
+      ],
+      "rrr_score": 72,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=32.8%(100) / B=28.3%(100)",
+        "[phase] 日報酬相關 +0.48",
+        "[cycle] 近 120 日 Z60 零軸交叉 1 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.00, min=-2.26）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 50,
+        "cycle": 35,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.328,
+          "vol_b": 0.283
+        },
+        "phase": {
+          "corr": 0.484
+        },
+        "cycle": {
+          "zero_crossings": 1
+        },
+        "mean_reversion": {
+          "z_max": 3.0,
+          "z_min": -2.26,
+          "span": 5.26
+        }
+      }
+    },
+    {
+      "pair": [
+        "2603",
+        "4977"
+      ],
+      "rrr_score": 72,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=37.0%(100) / B=78.2%(40)",
+        "[phase] 日報酬相關 +0.23",
+        "[cycle] 近 120 日 Z60 零軸交叉 14 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.46, min=-1.16）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 75,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.37,
+          "vol_b": 0.782
+        },
+        "phase": {
+          "corr": 0.232
+        },
+        "cycle": {
+          "zero_crossings": 14
+        },
+        "mean_reversion": {
+          "z_max": 2.46,
+          "z_min": -1.16,
+          "span": 3.62
+        }
+      }
+    },
+    {
+      "pair": [
+        "1303",
+        "2618"
+      ],
+      "rrr_score": 72,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=88.3%(40) / B=24.6%(100)",
+        "[phase] 日報酬相關 +0.27",
+        "[cycle] 近 120 日 Z60 零軸交叉 3 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.52, min=-0.63）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 75,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.883,
+          "vol_b": 0.246
+        },
+        "phase": {
+          "corr": 0.274
+        },
+        "cycle": {
+          "zero_crossings": 3
+        },
+        "mean_reversion": {
+          "z_max": 3.52,
+          "z_min": -0.63,
+          "span": 4.15
+        }
+      }
+    },
+    {
+      "pair": [
+        "1303",
+        "2610"
+      ],
+      "rrr_score": 72,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=88.3%(40) / B=25.4%(100)",
+        "[phase] 日報酬相關 +0.27",
+        "[cycle] 近 120 日 Z60 零軸交叉 3 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.54, min=-0.61）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 75,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.883,
+          "vol_b": 0.254
+        },
+        "phase": {
+          "corr": 0.266
+        },
+        "cycle": {
+          "zero_crossings": 3
+        },
+        "mean_reversion": {
+          "z_max": 3.54,
+          "z_min": -0.61,
+          "span": 4.14
+        }
+      }
+    },
+    {
+      "pair": [
+        "2610",
+        "9904"
+      ],
+      "rrr_score": 72,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=25.4%(100) / B=18.1%(75)",
+        "[phase] 日報酬相關 +0.21",
+        "[cycle] 近 120 日 Z60 零軸交叉 2 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.72, min=-1.66）"
+      ],
+      "subscores": {
+        "volatility": 87,
+        "phase": 70,
+        "cycle": 55,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.254,
+          "vol_b": 0.181
+        },
+        "phase": {
+          "corr": 0.213
+        },
+        "cycle": {
+          "zero_crossings": 2
+        },
+        "mean_reversion": {
+          "z_max": 3.72,
+          "z_min": -1.66,
+          "span": 5.37
+        }
+      }
+    },
+    {
+      "pair": [
+        "3105",
+        "2603"
+      ],
+      "rrr_score": 71,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=90.5%(40) / B=37.0%(100)",
+        "[phase] 日報酬相關 +0.17",
+        "[cycle] 近 120 日 Z60 零軸交叉 19 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.71, min=-3.17）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 40,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.905,
+          "vol_b": 0.37
+        },
+        "phase": {
+          "corr": 0.172
+        },
+        "cycle": {
+          "zero_crossings": 19
+        },
+        "mean_reversion": {
+          "z_max": 2.71,
+          "z_min": -3.17,
+          "span": 5.88
+        }
+      }
+    },
+    {
+      "pair": [
+        "3105",
+        "2884"
+      ],
+      "rrr_score": 71,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=90.5%(40) / B=28.3%(100)",
+        "[phase] 日報酬相關 +0.02",
+        "[cycle] 近 120 日 Z60 零軸交叉 17 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+2.53, min=-3.05）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 40,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.905,
+          "vol_b": 0.283
+        },
+        "phase": {
+          "corr": 0.018
+        },
+        "cycle": {
+          "zero_crossings": 17
+        },
+        "mean_reversion": {
+          "z_max": 2.53,
+          "z_min": -3.05,
+          "span": 5.58
+        }
+      }
+    },
+    {
+      "pair": [
+        "2603",
+        "2881"
+      ],
+      "rrr_score": 71,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=37.0%(100) / B=35.2%(100)",
+        "[phase] 日報酬相關 +0.12",
+        "[cycle] 近 120 日 Z60 零軸交叉 17 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.70, min=-3.82）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 70,
+        "cycle": 40,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.37,
+          "vol_b": 0.352
+        },
+        "phase": {
+          "corr": 0.124
+        },
+        "cycle": {
+          "zero_crossings": 17
+        },
+        "mean_reversion": {
+          "z_max": 1.7,
+          "z_min": -3.82,
+          "span": 5.52
+        }
+      }
+    },
+    {
+      "pair": [
+        "2882",
+        "2881"
+      ],
+      "rrr_score": 70,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=32.8%(100) / B=35.2%(100)",
+        "[phase] 日報酬相關 +0.81",
+        "[cycle] 近 120 日 Z60 零軸交叉 12 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.17, min=-2.82）"
+      ],
+      "subscores": {
+        "volatility": 100,
+        "phase": 25,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.328,
+          "vol_b": 0.352
+        },
+        "phase": {
+          "corr": 0.807
+        },
+        "cycle": {
+          "zero_crossings": 12
+        },
+        "mean_reversion": {
+          "z_max": 1.17,
+          "z_min": -2.82,
+          "span": 3.99
+        }
+      }
+    },
+    {
+      "pair": [
+        "1303",
+        "9904"
+      ],
+      "rrr_score": 70,
+      "status": "tradable",
+      "reason": [
+        "[volatility] 年化波動 A=88.3%(40) / B=18.1%(75)",
+        "[phase] 日報酬相關 +0.07",
+        "[cycle] 近 120 日 Z60 零軸交叉 3 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.21, min=-0.33）"
+      ],
+      "subscores": {
+        "volatility": 57,
+        "phase": 70,
+        "cycle": 75,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.883,
+          "vol_b": 0.181
+        },
+        "phase": {
+          "corr": 0.071
+        },
+        "cycle": {
+          "zero_crossings": 3
+        },
+        "mean_reversion": {
+          "z_max": 3.21,
+          "z_min": -0.33,
+          "span": 3.54
+        }
+      }
+    },
+    {
+      "pair": [
+        "2886",
+        "4977"
+      ],
+      "rrr_score": 69,
+      "status": "watch",
+      "reason": [
+        "[volatility] 年化波動 A=23.2%(100) / B=78.2%(40)",
+        "[phase] 日報酬相關 -0.15",
+        "[cycle] 近 120 日 Z60 零軸交叉 17 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+2.44, min=-1.25）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 85,
+        "cycle": 40,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.232,
+          "vol_b": 0.782
+        },
+        "phase": {
+          "corr": -0.15
+        },
+        "cycle": {
+          "zero_crossings": 17
+        },
+        "mean_reversion": {
+          "z_max": 2.44,
+          "z_min": -1.25,
+          "span": 3.69
+        }
+      }
+    },
+    {
+      "pair": [
+        "4977",
+        "2884"
+      ],
+      "rrr_score": 68,
+      "status": "watch",
+      "reason": [
+        "[volatility] 年化波動 A=78.2%(40) / B=28.3%(100)",
+        "[phase] 日報酬相關 +0.10",
+        "[cycle] 近 120 日 Z60 零軸交叉 16 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.36, min=-2.35）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 55,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.782,
+          "vol_b": 0.283
+        },
+        "phase": {
+          "corr": 0.098
+        },
+        "cycle": {
+          "zero_crossings": 16
+        },
+        "mean_reversion": {
+          "z_max": 1.36,
+          "z_min": -2.35,
+          "span": 3.71
+        }
+      }
+    },
+    {
+      "pair": [
+        "9904",
+        "2884"
+      ],
+      "rrr_score": 67,
+      "status": "watch",
+      "reason": [
+        "[volatility] 年化波動 A=18.1%(75) / B=28.3%(100)",
+        "[phase] 日報酬相關 +0.29",
+        "[cycle] 近 120 日 Z60 零軸交叉 1 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+0.12, min=-2.83）"
+      ],
+      "subscores": {
+        "volatility": 87,
+        "phase": 70,
+        "cycle": 35,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.181,
+          "vol_b": 0.283
+        },
+        "phase": {
+          "corr": 0.289
+        },
+        "cycle": {
+          "zero_crossings": 1
+        },
+        "mean_reversion": {
+          "z_max": 0.12,
+          "z_min": -2.83,
+          "span": 2.95
+        }
+      }
+    },
+    {
+      "pair": [
+        "2881",
+        "4977"
+      ],
+      "rrr_score": 65,
+      "status": "watch",
+      "reason": [
+        "[volatility] 年化波動 A=35.2%(100) / B=78.2%(40)",
+        "[phase] 日報酬相關 +0.25",
+        "[cycle] 近 120 日 Z60 零軸交叉 20 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.07, min=-1.75）"
+      ],
+      "subscores": {
+        "volatility": 70,
+        "phase": 70,
+        "cycle": 40,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.352,
+          "vol_b": 0.782
+        },
+        "phase": {
+          "corr": 0.255
+        },
+        "cycle": {
+          "zero_crossings": 20
+        },
+        "mean_reversion": {
+          "z_max": 3.07,
+          "z_min": -1.75,
+          "span": 4.82
+        }
+      }
+    },
+    {
+      "pair": [
+        "3105",
+        "1303"
+      ],
+      "rrr_score": 64,
+      "status": "watch",
+      "reason": [
+        "[volatility] 年化波動 A=90.5%(40) / B=88.3%(40)",
+        "[phase] 日報酬相關 +0.54",
+        "[cycle] 近 120 日 Z60 零軸交叉 7 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+1.96, min=-3.28）"
+      ],
+      "subscores": {
+        "volatility": 40,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.905,
+          "vol_b": 0.883
+        },
+        "phase": {
+          "corr": 0.539
+        },
+        "cycle": {
+          "zero_crossings": 7
+        },
+        "mean_reversion": {
+          "z_max": 1.96,
+          "z_min": -3.28,
+          "span": 5.24
+        }
+      }
+    },
+    {
+      "pair": [
+        "1303",
+        "4977"
+      ],
+      "rrr_score": 64,
+      "status": "watch",
+      "reason": [
+        "[volatility] 年化波動 A=88.3%(40) / B=78.2%(40)",
+        "[phase] 日報酬相關 +0.46",
+        "[cycle] 近 120 日 Z60 零軸交叉 6 次",
+        "[mean_reversion] Z60 單邊觸極端（max=+3.11, min=-0.96）"
+      ],
+      "subscores": {
+        "volatility": 40,
+        "phase": 50,
+        "cycle": 90,
+        "mean_reversion": 75
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.883,
+          "vol_b": 0.782
+        },
+        "phase": {
+          "corr": 0.459
+        },
+        "cycle": {
+          "zero_crossings": 6
+        },
+        "mean_reversion": {
+          "z_max": 3.11,
+          "z_min": -0.96,
+          "span": 4.07
+        }
+      }
+    },
+    {
+      "pair": [
+        "3105",
+        "4977"
+      ],
+      "rrr_score": 52,
+      "status": "watch",
+      "reason": [
+        "[volatility] 年化波動 A=90.5%(40) / B=78.2%(40)",
+        "[phase] 日報酬相關 +0.67",
+        "[cycle] 近 120 日 Z60 零軸交叉 19 次",
+        "[mean_reversion] Z60 雙邊觸極端（max=+3.68, min=-2.25）"
+      ],
+      "subscores": {
+        "volatility": 40,
+        "phase": 25,
+        "cycle": 40,
+        "mean_reversion": 100
+      },
+      "details": {
+        "volatility": {
+          "vol_a": 0.905,
+          "vol_b": 0.782
+        },
+        "phase": {
+          "corr": 0.668
+        },
+        "cycle": {
+          "zero_crossings": 19
+        },
+        "mean_reversion": {
+          "z_max": 3.68,
+          "z_min": -2.25,
+          "span": 5.93
+        }
+      }
+    }
+  ],
+  "signals": [
+    {
+      "pair": [
+        "2207",
+        "9904"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 3.0052,
+      "zscore": -1.16,
+      "signal": "switch_to_A",
+      "confidence": 80,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+3.0052, Z60=-1.16",
+        "近 20 日 Z 範圍 [-2.64, +0.23]",
+        "近期 Z 極小 -2.64 已折返至 -1.16（≥ -1.2） → 賣 9904 換 2207"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "2618"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.1286,
+      "zscore": -1.0,
+      "signal": "switch_to_B",
+      "confidence": 80,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.1286, Z60=-1.00",
+        "近 20 日 Z 範圍 [-1.00, +2.63]",
+        "近期 Z 極大 +2.63 已折返至 -1.00（≤ +1.2） → 賣 2886 換 2618"
+      ]
+    },
+    {
+      "pair": [
+        "2618",
+        "2610"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.7334,
+      "zscore": 0.28,
+      "signal": "switch_to_A",
+      "confidence": 80,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.7334, Z60=+0.28",
+        "近 20 日 Z 範圍 [-2.70, +2.03]",
+        "近期 Z 極小 -2.70 已折返至 +0.28（≥ -1.2） → 賣 2610 換 2618"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "2610"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.862,
+      "zscore": -0.87,
+      "signal": "switch_to_B",
+      "confidence": 70,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.8620, Z60=-0.87",
+        "近 20 日 Z 範圍 [-1.34, +2.16]",
+        "近期 Z 極大 +2.16 已折返至 -0.87（≤ +1.2） → 賣 2886 換 2610"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2618"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.477,
+      "zscore": -0.3,
+      "signal": "switch_to_B",
+      "confidence": 70,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.4770, Z60=-0.30",
+        "近 20 日 Z 範圍 [-0.86, +2.46]",
+        "近期 Z 極大 +2.46 已折返至 -0.30（≤ +1.2） → 賣 2891 換 2618"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "9904"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 2.2776,
+      "zscore": -0.08,
+      "signal": "switch_to_B",
+      "confidence": 70,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+2.2776, Z60=-0.08",
+        "近 20 日 Z 範圍 [-0.62, +2.18]",
+        "近期 Z 極大 +2.18 已折返至 -0.08（≤ +1.2） → 賣 2603 換 9904"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2610"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 1.2104,
+      "zscore": -0.22,
+      "signal": "switch_to_B",
+      "confidence": 70,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+1.2104, Z60=-0.22",
+        "近 20 日 Z 範圍 [-1.31, +2.01]",
+        "近期 Z 極大 +2.01 已折返至 -0.22（≤ +1.2） → 賣 2891 換 2610"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "4977"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -0.4806,
+      "zscore": -0.97,
+      "signal": "switch_to_A",
+      "confidence": 70,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-0.4806, Z60=-0.97",
+        "近 20 日 Z 範圍 [-2.29, +0.57]",
+        "近期 Z 極小 -2.29 已折返至 -0.97（≥ -1.2） → 賣 4977 換 2882"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "2884"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.8669,
+      "zscore": -0.59,
+      "signal": "switch_to_A",
+      "confidence": 70,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.8669, Z60=-0.59",
+        "近 20 日 Z 範圍 [-2.26, -0.59]",
+        "近期 Z 極小 -2.26 已折返至 -0.59（≥ -1.2） → 賣 2884 換 2882"
+      ]
+    },
+    {
+      "pair": [
+        "3105",
+        "2884"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 2.3332,
+      "zscore": -0.45,
+      "signal": "switch_to_A",
+      "confidence": 70,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+2.3332, Z60=-0.45",
+        "近 20 日 Z 範圍 [-2.20, +1.23]",
+        "近期 Z 極小 -2.20 已折返至 -0.45（≥ -1.2） → 賣 2884 換 3105"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "2207"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -0.7276,
+      "zscore": 0.66,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-0.7276, Z60=+0.66",
+        "近 20 日 Z 範圍 [-0.11, +1.91]",
+        "近期 Z 極大 +1.91 已折返至 +0.66（≤ +1.2） → 賣 2603 換 2207"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "2610"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 2.4073,
+      "zscore": -1.37,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+2.4073, Z60=-1.37",
+        "近 20 日 Z 範圍 [-1.63, +1.71]",
+        "近期 Z 極大 +1.71 已折返至 -1.37（≤ +1.2） → 賣 2603 換 2610"
+      ]
+    },
+    {
+      "pair": [
+        "2618",
+        "2884"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.0306,
+      "zscore": 1.04,
+      "signal": "switch_to_A",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.0306, Z60=+1.04",
+        "近 20 日 Z 範圍 [-1.61, +1.04]",
+        "近期 Z 極小 -1.61 已折返至 +1.04（≥ -1.2） → 賣 2884 換 2618"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "3105"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -2.174,
+      "zscore": 0.69,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-2.1740, Z60=+0.69",
+        "近 20 日 Z 範圍 [-1.15, +1.67]",
+        "近期 Z 極大 +1.67 已折返至 +0.69（≤ +1.2） → 賣 2886 換 3105"
+      ]
+    },
+    {
+      "pair": [
+        "3105",
+        "2207"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -0.0989,
+      "zscore": -0.16,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-0.0989, Z60=-0.16",
+        "近 20 日 Z 範圍 [-1.09, +1.51]",
+        "近期 Z 極大 +1.51 已折返至 -0.16（≤ +1.2） → 賣 3105 換 2207"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "3105"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -1.8256,
+      "zscore": 0.99,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-1.8256, Z60=+0.99",
+        "近 20 日 Z 範圍 [-1.16, +1.69]",
+        "近期 Z 極大 +1.69 已折返至 +0.99（≤ +1.2） → 賣 2891 換 3105"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "2603"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -0.8376,
+      "zscore": -0.68,
+      "signal": "switch_to_A",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-0.8376, Z60=-0.68",
+        "近 20 日 Z 範圍 [-1.57, +0.10]",
+        "近期 Z 極小 -1.57 已折返至 -0.68（≥ -1.2） → 賣 2603 換 2882"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "1303"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -0.8569,
+      "zscore": -0.11,
+      "signal": "switch_to_A",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-0.8569, Z60=-0.11",
+        "近 20 日 Z 範圍 [-1.78, +0.06]",
+        "近期 Z 極小 -1.78 已折返至 -0.11（≥ -1.2） → 賣 1303 換 2882"
+      ]
+    },
+    {
+      "pair": [
+        "3105",
+        "2610"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 3.036,
+      "zscore": -0.92,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+3.0360, Z60=-0.92",
+        "近 20 日 Z 範圍 [-1.29, +1.52]",
+        "近期 Z 極大 +1.52 已折返至 -0.92（≤ +1.2） → 賣 3105 換 2610"
+      ]
+    },
+    {
+      "pair": [
+        "2207",
+        "2884"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 2.4321,
+      "zscore": -0.34,
+      "signal": "switch_to_A",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+2.4321, Z60=-0.34",
+        "近 20 日 Z 範圍 [-1.63, -0.34]",
+        "近期 Z 極小 -1.63 已折返至 -0.34（≥ -1.2） → 賣 2884 換 2207"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "9904"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.7323,
+      "zscore": 0.71,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.7323, Z60=+0.71",
+        "近 20 日 Z 範圍 [+0.12, +1.64]",
+        "近期 Z 極大 +1.64 已折返至 +0.71（≤ +1.2） → 賣 2886 換 9904"
+      ]
+    },
+    {
+      "pair": [
+        "3105",
+        "9904"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 2.9063,
+      "zscore": -0.42,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+2.9063, Z60=-0.42",
+        "近 20 日 Z 範圍 [-1.26, +1.50]",
+        "近期 Z 極大 +1.50 已折返至 -0.42（≤ +1.2） → 賣 3105 換 9904"
+      ]
+    },
+    {
+      "pair": [
+        "1303",
+        "2207"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -0.7083,
+      "zscore": 0.05,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-0.7083, Z60=+0.05",
+        "近 20 日 Z 範圍 [-0.19, +1.68]",
+        "近期 Z 極大 +1.68 已折返至 +0.05（≤ +1.2） → 賣 1303 換 2207"
+      ]
+    },
+    {
+      "pair": [
+        "2207",
+        "4977"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 1.0846,
+      "zscore": -0.53,
+      "signal": "switch_to_A",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+1.0846, Z60=-0.53",
+        "近 20 日 Z 範圍 [-1.92, +0.33]",
+        "近期 Z 極小 -1.92 已折返至 -0.53（≥ -1.2） → 賣 4977 換 2207"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "3105"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -1.4663,
+      "zscore": 0.14,
+      "signal": "switch_to_A",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-1.4663, Z60=+0.14",
+        "近 20 日 Z 範圍 [-1.52, +1.10]",
+        "近期 Z 極小 -1.52 已折返至 +0.14（≥ -1.2） → 賣 3105 換 2882"
+      ]
+    },
+    {
+      "pair": [
+        "2881",
+        "1303"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -0.5525,
+      "zscore": -0.19,
+      "signal": "switch_to_A",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-0.5525, Z60=-0.19",
+        "近 20 日 Z 範圍 [-1.78, +0.30]",
+        "近期 Z 極小 -1.78 已折返至 -0.19（≥ -1.2） → 賣 1303 換 2881"
+      ]
+    },
+    {
+      "pair": [
+        "2881",
+        "2884"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 1.1713,
+      "zscore": -1.0,
+      "signal": "switch_to_A",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+1.1713, Z60=-1.00",
+        "近 20 日 Z 範圍 [-1.97, +0.08]",
+        "近期 Z 極小 -1.97 已折返至 -1.00（≥ -1.2） → 賣 2884 換 2881"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "9904"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 1.44,
+      "zscore": -0.9,
+      "signal": "switch_to_A",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+1.4400, Z60=-0.90",
+        "近 20 日 Z 範圍 [-1.50, +1.12]",
+        "近期 Z 極小 -1.50 已折返至 -0.90（≥ -1.2） → 賣 9904 換 2882"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "1303"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -0.0193,
+      "zscore": 0.16,
+      "signal": "switch_to_A",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-0.0193, Z60=+0.16",
+        "近 20 日 Z 範圍 [-1.58, +0.35]",
+        "近期 Z 極小 -1.58 已折返至 +0.16（≥ -1.2） → 賣 1303 換 2603"
+      ]
+    },
+    {
+      "pair": [
+        "3105",
+        "2881"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 1.1619,
+      "zscore": -0.07,
+      "signal": "switch_to_A",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+1.1619, Z60=-0.07",
+        "近 20 日 Z 範圍 [-1.58, +1.55]",
+        "近期 Z 極小 -1.58 已折返至 -0.07（≥ -1.2） → 賣 2881 換 3105"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "4977"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -0.8399,
+      "zscore": 1.06,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-0.8399, Z60=+1.06",
+        "近 20 日 Z 範圍 [-0.61, +1.50]",
+        "近期 Z 極大 +1.50 已折返至 +1.06（≤ +1.2） → 賣 2891 換 4977"
+      ]
+    },
+    {
+      "pair": [
+        "1303",
+        "2618"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 1.6932,
+      "zscore": -0.63,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+1.6932, Z60=-0.63",
+        "近 20 日 Z 範圍 [-0.63, +1.69]",
+        "近期 Z 極大 +1.69 已折返至 -0.63（≤ +1.2） → 賣 1303 換 2618"
+      ]
+    },
+    {
+      "pair": [
+        "1303",
+        "2610"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 2.4266,
+      "zscore": -0.61,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+2.4266, Z60=-0.61",
+        "近 20 日 Z 範圍 [-0.61, +1.59]",
+        "近期 Z 極大 +1.59 已折返至 -0.61（≤ +1.2） → 賣 1303 換 2610"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "2881"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -0.3044,
+      "zscore": 0.33,
+      "signal": "switch_to_A",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-0.3044, Z60=+0.33",
+        "近 20 日 Z 範圍 [-1.86, +0.33]",
+        "近期 Z 極小 -1.86 已折返至 +0.33（≥ -1.2） → 賣 2881 換 2882"
+      ]
+    },
+    {
+      "pair": [
+        "1303",
+        "9904"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 2.2969,
+      "zscore": -0.17,
+      "signal": "switch_to_B",
+      "confidence": 50,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+2.2969, Z60=-0.17",
+        "近 20 日 Z 範圍 [-0.33, +1.63]",
+        "近期 Z 極大 +1.63 已折返至 -0.17（≤ +1.2） → 賣 1303 換 9904"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "2603"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -1.5453,
+      "zscore": 0.74,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-1.5453, Z60=+0.74",
+        "近 20 日 Z 範圍 [-1.05, +1.13]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.74）"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "2884"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 1.7045,
+      "zscore": 0.09,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+1.7045, Z60=+0.09",
+        "近 20 日 Z 範圍 [-0.86, +0.28]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.09）"
+      ]
+    },
+    {
+      "pair": [
+        "2610",
+        "2884"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -0.7028,
+      "zscore": 0.98,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-0.7028, Z60=+0.98",
+        "近 20 日 Z 範圍 [-1.49, +0.98]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.98）"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "2884"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.1592,
+      "zscore": 0.86,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.1592, Z60=+0.86",
+        "近 20 日 Z 範圍 [-1.07, +0.86]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.86）"
+      ]
+    },
+    {
+      "pair": [
+        "2881",
+        "9904"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 1.7444,
+      "zscore": -0.97,
+      "signal": "hold_B",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+1.7444, Z60=-0.97",
+        "近 20 日 Z 範圍 [-1.07, +1.35]",
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.97）"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "2207"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -1.5652,
+      "zscore": -0.18,
+      "signal": "hold_B",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-1.5652, Z60=-0.18",
+        "近 20 日 Z 範圍 [-0.84, +1.21]",
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.18）"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "2207"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -2.2729,
+      "zscore": 1.41,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-2.2729, Z60=+1.41",
+        "近 20 日 Z 範圍 [+0.66, +2.88]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+1.41）"
+      ]
+    },
+    {
+      "pair": [
+        "3105",
+        "2618"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 2.3026,
+      "zscore": -0.96,
+      "signal": "hold_B",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+2.3026, Z60=-0.96",
+        "近 20 日 Z 範圍 [-1.24, +1.50]",
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.96）"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "9904"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 1.0807,
+      "zscore": 1.45,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+1.0807, Z60=+1.45",
+        "近 20 日 Z 範圍 [-0.22, +2.22]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+1.45）"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "1303"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -1.5646,
+      "zscore": 0.4,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-1.5646, Z60=+0.40",
+        "近 20 日 Z 範圍 [-1.42, +0.62]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.40）"
+      ]
+    },
+    {
+      "pair": [
+        "9904",
+        "4977"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -1.9206,
+      "zscore": -0.0,
+      "signal": "hold_B",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-1.9206, Z60=-0.00",
+        "近 20 日 Z 範圍 [-1.14, +0.82]",
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.00）"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "1303"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -1.2162,
+      "zscore": 0.66,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-1.2162, Z60=+0.66",
+        "近 20 日 Z 範圍 [-1.39, +0.66]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.66）"
+      ]
+    },
+    {
+      "pair": [
+        "1303",
+        "2884"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 1.7238,
+      "zscore": -0.14,
+      "signal": "hold_B",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+1.7238, Z60=-0.14",
+        "近 20 日 Z 範圍 [-0.85, +1.47]",
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.14）"
+      ]
+    },
+    {
+      "pair": [
+        "2618",
+        "4977"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -1.3169,
+      "zscore": 1.14,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-1.3169, Z60=+1.14",
+        "近 20 日 Z 範圍 [-1.10, +1.43]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+1.14）"
+      ]
+    },
+    {
+      "pair": [
+        "2610",
+        "4977"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -2.0503,
+      "zscore": 1.08,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-2.0503, Z60=+1.08",
+        "近 20 日 Z 範圍 [-1.08, +1.33]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+1.08）"
+      ]
+    },
+    {
+      "pair": [
+        "2881",
+        "2207"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -1.2608,
+      "zscore": -0.3,
+      "signal": "hold_B",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-1.2608, Z60=-0.30",
+        "近 20 日 Z 範圍 [-0.30, +1.42]",
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.30）"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "4977"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.357,
+      "zscore": -0.03,
+      "signal": "hold_B",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.3570, Z60=-0.03",
+        "近 20 日 Z 範圍 [-0.73, +1.26]",
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.03）"
+      ]
+    },
+    {
+      "pair": [
+        "3105",
+        "2603"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.6287,
+      "zscore": -0.41,
+      "signal": "hold_B",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.6287, Z60=-0.41",
+        "近 20 日 Z 範圍 [-1.27, +1.25]",
+        "近期無極端訊號，當前 RS 偏 B 多頭（Z=-0.41）"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "2881"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.5332,
+      "zscore": 0.84,
+      "signal": "hold_A",
+      "confidence": 30,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.5332, Z60=+0.84",
+        "近 20 日 Z 範圍 [-0.62, +1.00]",
+        "近期無極端訊號，當前 RS 偏 A 多頭（Z=+0.84）"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2881"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -0.6637,
+      "zscore": 2.86,
+      "signal": "no_action",
+      "confidence": 40,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-0.6637, Z60=+2.86",
+        "近 20 日 Z 範圍 [-0.36, +2.86]",
+        "Z=+2.86 ≥ +1.5（A 過強，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2618",
+        "2207"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -2.4015,
+      "zscore": 2.62,
+      "signal": "no_action",
+      "confidence": 40,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-2.4015, Z60=+2.62",
+        "近 20 日 Z 範圍 [-1.38, +4.65]",
+        "Z=+2.62 ≥ +1.5（A 過強，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "2618"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.8362,
+      "zscore": -2.18,
+      "signal": "no_action",
+      "confidence": 35,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.8362, Z60=-2.18",
+        "近 20 日 Z 範圍 [-2.18, +1.13]",
+        "Z=-2.18 ≤ -1.5（A 過弱，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "2610"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 1.5697,
+      "zscore": -2.03,
+      "signal": "no_action",
+      "confidence": 35,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+1.5697, Z60=-2.03",
+        "近 20 日 Z 範圍 [-2.10, +1.22]",
+        "Z=-2.03 ≤ -1.5（A 過弱，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2618",
+        "9904"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.6037,
+      "zscore": 2.42,
+      "signal": "no_action",
+      "confidence": 35,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.6037, Z60=+2.42",
+        "近 20 日 Z 範圍 [-2.22, +3.26]",
+        "Z=+2.42 ≥ +1.5（A 過強，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2881",
+        "2618"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 1.1407,
+      "zscore": -2.09,
+      "signal": "no_action",
+      "confidence": 35,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+1.1407, Z60=-2.09",
+        "近 20 日 Z 範圍 [-2.09, +1.28]",
+        "Z=-2.09 ≤ -1.5（A 過弱，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2882"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -0.3593,
+      "zscore": 2.24,
+      "signal": "no_action",
+      "confidence": 35,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-0.3593, Z60=+2.24",
+        "近 20 日 Z 範圍 [+0.44, +2.38]",
+        "Z=+2.24 ≥ +1.5（A 過強，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "2881"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -1.0121,
+      "zscore": 2.14,
+      "signal": "no_action",
+      "confidence": 35,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-1.0121, Z60=+2.14",
+        "近 20 日 Z 範圍 [-0.46, +2.14]",
+        "Z=+2.14 ≥ +1.5（A 過強，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2207",
+        "2610"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 3.1349,
+      "zscore": -2.32,
+      "signal": "no_action",
+      "confidence": 35,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+3.1349, Z60=-2.32",
+        "近 20 日 Z 範圍 [-5.17, +1.57]",
+        "Z=-2.32 ≤ -1.5（A 過弱，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2610",
+        "9904"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -0.1297,
+      "zscore": 2.04,
+      "signal": "no_action",
+      "confidence": 35,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-0.1297, Z60=+2.04",
+        "近 20 日 Z 範圍 [-1.66, +3.72]",
+        "Z=+2.04 ≥ +1.5（A 過強，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2603"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -1.1969,
+      "zscore": 1.55,
+      "signal": "no_action",
+      "confidence": 25,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-1.1969, Z60=+1.55",
+        "近 20 日 Z 範圍 [-0.95, +2.04]",
+        "Z=+1.55 ≥ +1.5（A 過強，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2886"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.3484,
+      "zscore": 1.64,
+      "signal": "no_action",
+      "confidence": 25,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.3484, Z60=+1.64",
+        "近 20 日 Z 範圍 [-0.43, +2.20]",
+        "Z=+1.64 ≥ +1.5（A 過強，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "2886"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.7077,
+      "zscore": -1.77,
+      "signal": "no_action",
+      "confidence": 25,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.7077, Z60=-1.77",
+        "近 20 日 Z 範圍 [-2.71, -0.24]",
+        "Z=-1.77 ≤ -1.5（A 過弱，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2207"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": -1.9245,
+      "zscore": 1.81,
+      "signal": "no_action",
+      "confidence": 25,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=-1.9245, Z60=+1.81",
+        "近 20 日 Z 範圍 [+1.08, +2.55]",
+        "Z=+1.81 ≥ +1.5（A 過強，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "2618"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 1.6738,
+      "zscore": -1.61,
+      "signal": "no_action",
+      "confidence": 25,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+1.6738, Z60=-1.61",
+        "近 20 日 Z 範圍 [-1.61, +1.73]",
+        "Z=-1.61 ≤ -1.5（A 過弱，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2881",
+        "2610"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 1.8741,
+      "zscore": -1.97,
+      "signal": "no_action",
+      "confidence": 25,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+1.8741, Z60=-1.97",
+        "近 20 日 Z 範圍 [-1.97, +1.27]",
+        "Z=-1.97 ≤ -1.5（A 過弱，等待折返）"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2884"
+      ],
+      "as_of": "2026-11-17",
+      "rs_value": 0.5076,
+      "zscore": 1.59,
+      "signal": "no_action",
+      "confidence": 25,
+      "reason": [
+        "as_of=2026-11-17",
+        "RS=+0.5076, Z60=+1.59",
+        "近 20 日 Z 範圍 [-1.19, +1.59]",
+        "Z=+1.59 ≥ +1.5（A 過強，等待折返）"
+      ]
+    }
+  ],
+  "chips": {
+    "2882": {
+      "symbol": "2882",
+      "chip_score": 47,
+      "foreign_score": 10,
+      "investment_trust_score": 90,
+      "dealer_score": 75,
+      "main_force_score": 50,
+      "warning": [
+        "外資佔量比 5d=-9.93% / 20d=-6.58%（持續賣超）"
+      ],
+      "status": "neutral",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": -0.0993,
+        "foreign_pct_20d": -0.0658,
+        "trust_pct_5d": 0.1843,
+        "dealer_pct_5d": 0.0205,
+        "rows_used": 20
+      }
+    },
+    "2618": {
+      "symbol": "2618",
+      "chip_score": 78,
+      "foreign_score": 90,
+      "investment_trust_score": 65,
+      "dealer_score": 65,
+      "main_force_score": 50,
+      "warning": [],
+      "status": "support",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": 0.3739,
+        "foreign_pct_20d": 0.3193,
+        "trust_pct_5d": 0.0072,
+        "dealer_pct_5d": 0.0156,
+        "rows_used": 20
+      }
+    },
+    "2610": {
+      "symbol": "2610",
+      "chip_score": 76,
+      "foreign_score": 90,
+      "investment_trust_score": 65,
+      "dealer_score": 55,
+      "main_force_score": 50,
+      "warning": [],
+      "status": "support",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": 0.255,
+        "foreign_pct_20d": 0.335,
+        "trust_pct_5d": 0.0075,
+        "dealer_pct_5d": 0.0037,
+        "rows_used": 20
+      }
+    },
+    "2886": {
+      "symbol": "2886",
+      "chip_score": 66,
+      "foreign_score": 90,
+      "investment_trust_score": 10,
+      "dealer_score": 90,
+      "main_force_score": 50,
+      "warning": [
+        "投信佔量比 5d=-21.27%（持續賣超）"
+      ],
+      "status": "neutral",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": 0.3147,
+        "foreign_pct_20d": 0.1613,
+        "trust_pct_5d": -0.2127,
+        "dealer_pct_5d": 0.0567,
+        "rows_used": 20
+      }
+    },
+    "2603": {
+      "symbol": "2603",
+      "chip_score": 48,
+      "foreign_score": 17,
+      "investment_trust_score": 90,
+      "dealer_score": 65,
+      "main_force_score": 50,
+      "warning": [
+        "外資佔量比 5d=-16.71% / 20d=-2.63%（持續賣超）"
+      ],
+      "status": "neutral",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": -0.1671,
+        "foreign_pct_20d": -0.0263,
+        "trust_pct_5d": 0.1523,
+        "dealer_pct_5d": 0.0163,
+        "rows_used": 20
+      }
+    },
+    "2207": {
+      "symbol": "2207",
+      "chip_score": 82,
+      "foreign_score": 90,
+      "investment_trust_score": 65,
+      "dealer_score": 90,
+      "main_force_score": 50,
+      "warning": [],
+      "status": "support",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": 0.1305,
+        "foreign_pct_20d": 0.071,
+        "trust_pct_5d": 0.0054,
+        "dealer_pct_5d": 0.0745,
+        "rows_used": 20
+      }
+    },
+    "2884": {
+      "symbol": "2884",
+      "chip_score": 62,
+      "foreign_score": 82,
+      "investment_trust_score": 10,
+      "dealer_score": 90,
+      "main_force_score": 50,
+      "warning": [
+        "投信佔量比 5d=-23.90%（持續賣超）"
+      ],
+      "status": "neutral",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": 0.2701,
+        "foreign_pct_20d": 0.0325,
+        "trust_pct_5d": -0.239,
+        "dealer_pct_5d": 0.0512,
+        "rows_used": 20
+      }
+    },
+    "3105": {
+      "symbol": "3105",
+      "chip_score": 66,
+      "foreign_score": 70,
+      "investment_trust_score": 65,
+      "dealer_score": 55,
+      "main_force_score": 50,
+      "warning": [],
+      "status": "neutral",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": 0.0063,
+        "foreign_pct_20d": 0.0353,
+        "trust_pct_5d": 0.0121,
+        "dealer_pct_5d": -0.0,
+        "rows_used": 20
+      }
+    },
+    "9904": {
+      "symbol": "9904",
+      "chip_score": 63,
+      "foreign_score": 90,
+      "investment_trust_score": 10,
+      "dealer_score": 75,
+      "main_force_score": 50,
+      "warning": [
+        "投信佔量比 5d=-5.69%（持續賣超）"
+      ],
+      "status": "neutral",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": 0.304,
+        "foreign_pct_20d": 0.235,
+        "trust_pct_5d": -0.0569,
+        "dealer_pct_5d": 0.0253,
+        "rows_used": 20
+      }
+    },
+    "2891": {
+      "symbol": "2891",
+      "chip_score": 66,
+      "foreign_score": 47,
+      "investment_trust_score": 90,
+      "dealer_score": 75,
+      "main_force_score": 50,
+      "warning": [],
+      "status": "neutral",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": -0.0027,
+        "foreign_pct_20d": -0.0191,
+        "trust_pct_5d": 0.1922,
+        "dealer_pct_5d": 0.0334,
+        "rows_used": 20
+      }
+    },
+    "2881": {
+      "symbol": "2881",
+      "chip_score": 48,
+      "foreign_score": 17,
+      "investment_trust_score": 90,
+      "dealer_score": 65,
+      "main_force_score": 50,
+      "warning": [
+        "外資佔量比 5d=-14.64% / 20d=-4.32%（持續賣超）"
+      ],
+      "status": "neutral",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": -0.1464,
+        "foreign_pct_20d": -0.0432,
+        "trust_pct_5d": 0.2219,
+        "dealer_pct_5d": 0.0183,
+        "rows_used": 20
+      }
+    },
+    "1303": {
+      "symbol": "1303",
+      "chip_score": 38,
+      "foreign_score": 10,
+      "investment_trust_score": 75,
+      "dealer_score": 55,
+      "main_force_score": 50,
+      "warning": [
+        "外資佔量比 5d=-8.39% / 20d=-6.40%（持續賣超）"
+      ],
+      "status": "warning",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": -0.0839,
+        "foreign_pct_20d": -0.064,
+        "trust_pct_5d": 0.0461,
+        "dealer_pct_5d": 0.003,
+        "rows_used": 20
+      }
+    },
+    "4977": {
+      "symbol": "4977",
+      "chip_score": 62,
+      "foreign_score": 70,
+      "investment_trust_score": 55,
+      "dealer_score": 55,
+      "main_force_score": 50,
+      "warning": [],
+      "status": "neutral",
+      "stubbed": false,
+      "details": {
+        "foreign_pct_5d": 0.0329,
+        "foreign_pct_20d": 0.0115,
+        "trust_pct_5d": 0.0,
+        "dealer_pct_5d": 0.0004,
+        "rows_used": 20
+      }
+    }
+  },
+  "decisions": [
+    {
+      "pair": [
+        "2207",
+        "9904"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "2618"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2618",
+        "2610"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "2610"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2618"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "9904"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2610"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "4977"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "2884"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "3105",
+        "2884"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "2207"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "2610"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2618",
+        "2884"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "3105"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "3105",
+        "2207"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "3105"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "2603"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "1303"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "3105",
+        "2610"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2207",
+        "2884"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "9904"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "3105",
+        "9904"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "1303",
+        "2207"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2207",
+        "4977"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "3105"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2881",
+        "1303"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2881",
+        "2884"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "9904"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "1303"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "3105",
+        "2881"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "4977"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "1303",
+        "2618"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "1303",
+        "2610"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "2881"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "1303",
+        "9904"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "2603"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "2884"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2610",
+        "2884"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "2884"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2881",
+        "9904"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "2207"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "2207"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "3105",
+        "2618"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "9904"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "1303"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "9904",
+        "4977"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "1303"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "1303",
+        "2884"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2618",
+        "4977"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2610",
+        "4977"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2881",
+        "2207"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "4977"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "3105",
+        "2603"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "2881"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2881"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2618",
+        "2207"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "2618"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "2610"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2618",
+        "9904"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2881",
+        "2618"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2882"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2886",
+        "2881"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2207",
+        "2610"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2610",
+        "9904"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2603"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2886"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2882",
+        "2886"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2207"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2603",
+        "2618"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2881",
+        "2610"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    },
+    {
+      "pair": [
+        "2891",
+        "2884"
+      ],
+      "allowed": false,
+      "position_action": "stop",
+      "position_size": "0%",
+      "risk_reason": [
+        "市場狀態 出清 → 最大部位 0%",
+        "市場進入出清區，停止積極換股"
+      ]
+    }
+  ]
+}
