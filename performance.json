@@ -1,46 +1,27 @@
 {
   "schema_version": "v1",
-  "as_of": "2026-11-18",
+  "as_of": "2026-11-19",
   "today_snapshot": {
-    "as_of": "2026-11-18",
-    "ms_phase": "ACCUMULATION",
+    "as_of": "2026-11-19",
+    "ms_phase": "DISTRIBUTION",
     "risk_mode": "DEFENSIVE",
-    "n_positions": 13,
-    "total_weight": 35.89,
-    "cash_pct": 64.11,
+    "n_positions": 12,
+    "total_weight": 32.32,
+    "cash_pct": 67.68,
     "avg_composite": 0,
-    "overall_verdict": "WARN",
+    "overall_verdict": "VETO",
     "master_pick_count": {},
     "master_contribution_pct": {
-      "Wyckoff": 39.3,
-      "Weinstein": 28.3,
-      "Darvas": 31.9,
-      "Lynch": 0.2,
-      "Fisher": 0.3,
-      "Buffett": 0.0
+      "Wyckoff": 57.2,
+      "Minervini": 1.4,
+      "ONeil": 0.8,
+      "Weinstein": 19.1,
+      "Darvas": 20.2,
+      "Livermore": 1.3
     }
   },
-  "history_count": 109,
+  "history_count": 110,
   "history_last_7d": [
-    {
-      "as_of": "2026-11-10",
-      "ms_phase": "ACCUMULATION",
-      "risk_mode": "DEFENSIVE",
-      "n_positions": 15,
-      "total_weight": 36.7,
-      "cash_pct": 63.3,
-      "avg_composite": 0,
-      "overall_verdict": "WARN",
-      "master_pick_count": {},
-      "master_contribution_pct": {
-        "Wyckoff": 37.6,
-        "Minervini": 2.0,
-        "ONeil": 0.8,
-        "Weinstein": 26.0,
-        "Darvas": 31.5,
-        "Livermore": 2.0
-      }
-    },
     {
       "as_of": "2026-11-11",
       "ms_phase": "ACCUMULATION",
@@ -153,40 +134,59 @@
         "Fisher": 0.3,
         "Buffett": 0.0
       }
+    },
+    {
+      "as_of": "2026-11-19",
+      "ms_phase": "DISTRIBUTION",
+      "risk_mode": "DEFENSIVE",
+      "n_positions": 12,
+      "total_weight": 32.32,
+      "cash_pct": 67.68,
+      "avg_composite": 0,
+      "overall_verdict": "VETO",
+      "master_pick_count": {},
+      "master_contribution_pct": {
+        "Wyckoff": 57.2,
+        "Minervini": 1.4,
+        "ONeil": 0.8,
+        "Weinstein": 19.1,
+        "Darvas": 20.2,
+        "Livermore": 1.3
+      }
     }
   ],
   "skill_index": {
-    "Wyckoff": 39.16,
-    "Minervini": 2.94,
+    "Wyckoff": 41.96,
+    "Minervini": 2.86,
     "ONeil": 2.06,
-    "Weinstein": 23.61,
-    "Darvas": 29.21,
-    "Livermore": 2.94,
+    "Weinstein": 22.63,
+    "Darvas": 27.6,
+    "Livermore": 2.84,
     "Lynch": 0.03,
     "Fisher": 0.04,
     "Buffett": 0.0
   },
   "skill_volatility": {
-    "Wyckoff": 9.99,
-    "Minervini": 4.63,
+    "Wyckoff": 11.75,
+    "Minervini": 4.65,
     "ONeil": 3.75,
-    "Weinstein": 4.81,
-    "Darvas": 3.99,
-    "Livermore": 4.67,
+    "Weinstein": 4.92,
+    "Darvas": 4.92,
+    "Livermore": 4.69,
     "Lynch": 0.07,
     "Fisher": 0.1,
     "Buffett": 0.0
   },
   "skill_by_phase": {
     "ACCUMULATION": {
-      "Wyckoff": 39.52,
-      "Minervini": 1.0,
-      "ONeil": 0.48,
-      "Weinstein": 26.44,
-      "Darvas": 31.46,
-      "Livermore": 1.0,
-      "Lynch": 0.04,
-      "Fisher": 0.06,
+      "Wyckoff": 40.0,
+      "Minervini": 0.75,
+      "ONeil": 0.4,
+      "Weinstein": 26.55,
+      "Darvas": 31.45,
+      "Livermore": 0.75,
+      "Lynch": 0.05,
+      "Fisher": 0.07,
       "Buffett": 0.0
     },
     "EARLY_BULL": {
@@ -223,11 +223,11 @@
       "Buffett": 0.0
     },
     "DISTRIBUTION": {
-      "Wyckoff": 56.7,
+      "Wyckoff": 56.95,
       "Minervini": 1.4,
       "ONeil": 0.8,
-      "Weinstein": 19.4,
-      "Darvas": 20.4,
+      "Weinstein": 19.25,
+      "Darvas": 20.3,
       "Livermore": 1.3,
       "Lynch": 0.0,
       "Fisher": 0.0,
@@ -257,11 +257,11 @@
     }
   },
   "days_by_phase": {
-    "ACCUMULATION": 5,
+    "ACCUMULATION": 4,
     "EARLY_BULL": 0,
     "MARKUP": 0,
     "LATE_BULL": 0,
-    "DISTRIBUTION": 1,
+    "DISTRIBUTION": 2,
     "BEAR": 0,
     "UNCLEAR": 1
   },
@@ -282,42 +282,42 @@
     "window_days": 7,
     "n_days_with_data": 7,
     "ready_for_feedback": true,
-    "avg_skill_std": 4.0,
-    "recommended_alpha": 0.36,
+    "avg_skill_std": 4.36,
+    "recommended_alpha": 0.356,
     "alpha_formula": "0.40 - avg_std × 0.01 (clipped [0.10, 0.40])",
     "phase_specific_min_days": 2
   },
   "summary": {
     "today": {
-      "phase": "ACCUMULATION",
-      "n_positions": 13,
+      "phase": "DISTRIBUTION",
+      "n_positions": 12,
       "avg_composite": 0,
-      "verdict": "WARN"
+      "verdict": "VETO"
     },
     "master_contribution_pct": {
-      "Wyckoff": 39.3,
-      "Weinstein": 28.3,
-      "Darvas": 31.9,
-      "Lynch": 0.2,
-      "Fisher": 0.3,
-      "Buffett": 0.0
+      "Wyckoff": 57.2,
+      "Minervini": 1.4,
+      "ONeil": 0.8,
+      "Weinstein": 19.1,
+      "Darvas": 20.2,
+      "Livermore": 1.3
     },
-    "history_days_tracked": 109,
+    "history_days_tracked": 110,
     "skill_index": {
-      "Wyckoff": 39.16,
-      "Minervini": 2.94,
+      "Wyckoff": 41.96,
+      "Minervini": 2.86,
       "ONeil": 2.06,
-      "Weinstein": 23.61,
-      "Darvas": 29.21,
-      "Livermore": 2.94,
+      "Weinstein": 22.63,
+      "Darvas": 27.6,
+      "Livermore": 2.84,
       "Lynch": 0.03,
       "Fisher": 0.04,
       "Buffett": 0.0
     },
     "feedback_active": true,
-    "avg_skill_std": 4.0,
-    "recommended_alpha": 0.36
+    "avg_skill_std": 4.36,
+    "recommended_alpha": 0.356
   },
-  "generated_at": "2026-11-18T22:02:49",
+  "generated_at": "2026-11-19T22:01:36",
   "available": true
 }
