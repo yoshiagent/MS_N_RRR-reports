@@ -1,26 +1,27 @@
 {
-  "as_of": "2026-11-23",
+  "as_of": "2026-11-24",
   "schema_version": "v2",
   "market_phase": {
     "value": "ACCUMULATION",
     "confidence": 71,
     "confidence_band": "HIGH",
     "reason": [
-      "站上 MA20 比例 6.8%, 多數仍在均線下",
-      "近期 20 日新高股 0.9%, 偏少",
+      "站上 MA20 比例 17.0%, 多數仍在均線下",
+      "近期 20 日新高股 2.4%, 偏少",
       "大盤風險訊號少 (≤2)"
     ]
   },
   "risk_mode": {
-    "value": "DEFENSIVE",
+    "value": "NORMAL",
     "confidence": 60,
     "confidence_band": "MEDIUM",
     "reason": [
-      "phase=ACCUMULATION, triggers=2"
+      "phase=ACCUMULATION, triggers=1",
+      "不到 AGGRESSIVE 條件, 也未達 DEFENSIVE 門檻"
     ]
   },
   "market_structure": {
-    "taiex_trend": "DOWN",
+    "taiex_trend": "SIDEWAYS",
     "otc_trend": "UP",
     "leadership": "MID_SMALL_CAP",
     "breadth_status": "EXPANDING",
@@ -58,11 +59,11 @@
   },
   "discipline_policy": {
     "max_position_ratio_per_stock": 15,
-    "max_total_exposure": 52,
+    "max_total_exposure": 70,
     "allow_new_position": true,
     "allow_add_position": true,
-    "stop_loss_strictness": "HIGH",
-    "cash_minimum_ratio": 48
+    "stop_loss_strictness": "NORMAL",
+    "cash_minimum_ratio": 30
   },
   "orchestrator_instruction": {
     "action_bias": "MAINTAIN",
@@ -82,29 +83,29 @@
   "skill_feedback": {
     "active": true,
     "skill_index": {
-      "Wyckoff": 40.7,
-      "Minervini": 0.67,
-      "ONeil": 0.27,
-      "Weinstein": 26.43,
-      "Darvas": 31.13,
-      "Livermore": 0.67,
-      "Lynch": 0.07,
-      "Fisher": 0.1,
+      "Wyckoff": 39.97,
+      "Minervini": 0.33,
+      "ONeil": 0.0,
+      "Weinstein": 27.53,
+      "Darvas": 31.53,
+      "Livermore": 0.33,
+      "Lynch": 0.1,
+      "Fisher": 0.2,
       "Buffett": 0.0
     },
     "n_days_with_data": 7,
-    "alpha": 0.35,
+    "alpha": 0.348,
     "alpha_mode": "dynamic",
-    "avg_skill_std": 5.05,
+    "avg_skill_std": 5.17,
     "skill_source": "phase_specific:ACCUMULATION",
     "phase_days_current": 3
   },
   "summary": {
     "phase": "ACCUMULATION",
-    "risk_mode": "DEFENSIVE",
+    "risk_mode": "NORMAL",
     "action_bias": "MAINTAIN",
     "skill_feedback_active": true
   },
-  "generated_at": "2026-11-23T22:00:59",
+  "generated_at": "2026-11-24T22:00:58",
   "available": true
 }
