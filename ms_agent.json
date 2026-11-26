@@ -1,28 +1,26 @@
 {
-  "as_of": "2026-11-25",
+  "as_of": "2026-11-26",
   "schema_version": "v2",
   "market_phase": {
-    "value": "DISTRIBUTION",
-    "confidence": 73,
+    "value": "ACCUMULATION",
+    "confidence": 71,
     "confidence_band": "HIGH",
     "reason": [
-      "外資轉賣壓力高",
-      "上漲 / 下跌家數 = 0.09, 嚴重失衡",
-      "風險訊號 3 個"
+      "站上 MA20 比例 14.2%, 多數仍在均線下",
+      "近期 20 日新高股 2.2%, 偏少",
+      "大盤風險訊號少 (≤2)"
     ]
   },
   "risk_mode": {
     "value": "DEFENSIVE",
-    "confidence": 75,
-    "confidence_band": "HIGH",
+    "confidence": 60,
+    "confidence_band": "MEDIUM",
     "reason": [
-      "phase=DISTRIBUTION, triggers=3",
-      "派發期偏向防禦",
-      "風險訊號 3 個 (3-5)"
+      "phase=ACCUMULATION, triggers=2"
     ]
   },
   "market_structure": {
-    "taiex_trend": "SIDEWAYS",
+    "taiex_trend": "DOWN",
     "otc_trend": "UP",
     "leadership": "MID_SMALL_CAP",
     "breadth_status": "EXPANDING",
@@ -34,50 +32,48 @@
     "weakening_sectors": []
   },
   "candidate_bias": {
-    "hot_stock_weight": 5,
-    "strong_stock_weight": 25,
-    "base_stock_weight": 70,
+    "hot_stock_weight": 10,
+    "strong_stock_weight": 30,
+    "base_stock_weight": 60,
     "preferred_pool": [
       "BASE",
       "STRONG",
       "HOT"
     ],
     "reason": [
-      "派發期僅保留打底股池",
-      "熱門 / 強勢股池應降至最低"
+      "吸籌期應優先佈局打底股, Wyckoff Spring 候選為主",
+      "強勢股可少量配置作為先行指標"
     ]
   },
   "master_weight_policy": {
-    "Wyckoff": 48,
+    "Wyckoff": 37,
     "Minervini": 0,
     "ONeil": 0,
-    "Weinstein": 13,
-    "Darvas": 7,
+    "Weinstein": 30,
+    "Darvas": 24,
     "Livermore": 0,
-    "Lynch": 6,
-    "Fisher": 10,
-    "Buffett": 16
+    "Lynch": 3,
+    "Fisher": 3,
+    "Buffett": 3
   },
   "discipline_policy": {
-    "max_position_ratio_per_stock": 10,
-    "max_total_exposure": 38,
+    "max_position_ratio_per_stock": 15,
+    "max_total_exposure": 52,
     "allow_new_position": true,
-    "allow_add_position": false,
+    "allow_add_position": true,
     "stop_loss_strictness": "HIGH",
-    "cash_minimum_ratio": 62
+    "cash_minimum_ratio": 48
   },
   "orchestrator_instruction": {
-    "action_bias": "REDUCE",
+    "action_bias": "MAINTAIN",
     "priority": [
-      "大幅降曝險",
-      "只挑深度價值或 Wyckoff Spring 候選"
+      "優先評估打底股池 (Wyckoff Spring)",
+      "強勢股池可少量配置作為先行確認"
     ],
-    "warning": [
-      "大量不漲 + 法人轉賣 + 廣度惡化"
-    ]
+    "warning": []
   },
   "transition_signals": {
-    "next_likely_phase": "DISTRIBUTION",
+    "next_likely_phase": "ACCUMULATION",
     "confidence": 0,
     "early_warning_days": 0,
     "triggers": [],
@@ -86,29 +82,29 @@
   "skill_feedback": {
     "active": true,
     "skill_index": {
-      "Wyckoff": 60.9,
-      "Minervini": 0.93,
-      "ONeil": 0.53,
-      "Weinstein": 18.47,
-      "Darvas": 17.7,
-      "Livermore": 0.87,
+      "Wyckoff": 38.97,
+      "Minervini": 0.0,
+      "ONeil": 0.0,
+      "Weinstein": 28.53,
+      "Darvas": 32.07,
+      "Livermore": 0.0,
       "Lynch": 0.13,
-      "Fisher": 0.47,
+      "Fisher": 0.27,
       "Buffett": 0.0
     },
     "n_days_with_data": 7,
-    "alpha": 0.368,
+    "alpha": 0.365,
     "alpha_mode": "dynamic",
-    "avg_skill_std": 3.17,
-    "skill_source": "phase_specific:DISTRIBUTION",
+    "avg_skill_std": 3.54,
+    "skill_source": "phase_specific:ACCUMULATION",
     "phase_days_current": 3
   },
   "summary": {
-    "phase": "DISTRIBUTION",
+    "phase": "ACCUMULATION",
     "risk_mode": "DEFENSIVE",
-    "action_bias": "REDUCE",
+    "action_bias": "MAINTAIN",
     "skill_feedback_active": true
   },
-  "generated_at": "2026-11-25T22:01:23",
+  "generated_at": "2026-11-26T22:01:13",
   "available": true
 }
